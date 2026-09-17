@@ -1,0 +1,766 @@
+{
+  "normal_gate_definition": {
+    "tail_s": 1.0,
+    "contacts_mean_min": 3.95,
+    "contact_duty_min": 0.999,
+    "Fn_relative_error_max": 0.01,
+    "Fn_cv_max": 0.01,
+    "body_vz_rms_mm_s_max": 0.1,
+    "gap_std_um_max": 1.0,
+    "truncated_contacts_required": 0
+  },
+  "sap_normal_gate": [
+    {
+      "engine": "sap_warp",
+      "device": "cuda:0",
+      "k_pair_N_m": 10000.0,
+      "k_shape_N_m": 20000.0,
+      "tau_pair_ms": 3.0,
+      "dt_ms": 0.5,
+      "duration_s": 3.0,
+      "tail_s": 1.0,
+      "interfaces": {
+        "ground_bottom": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_expected_N": 29.43,
+          "Fn_mean_N": 29.430001275158066,
+          "Fn_std_N": 1.8661328972804635e-05,
+          "Fn_relative_error": 4.332851057592796e-08,
+          "Fn_cv": 6.340920205313313e-07,
+          "gap_mean_mm": -0.7357490062713627,
+          "gap_std_um": 0.0,
+          "gate_pass": true
+        },
+        "bottom_middle": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_expected_N": 19.62,
+          "Fn_mean_N": 19.62000083907145,
+          "Fn_std_N": 5.503871492490025e-05,
+          "Fn_relative_error": 4.2766128977696516e-08,
+          "Fn_cv": 2.805235095367358e-06,
+          "gap_mean_mm": -0.39049327373504716,
+          "gap_std_um": 5.421010862427522e-14,
+          "gate_pass": true
+        },
+        "middle_top": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_expected_N": 9.81,
+          "Fn_mean_N": 9.810000517717494,
+          "Fn_std_N": 4.178651941086502e-05,
+          "Fn_relative_error": 5.277446419615497e-08,
+          "Fn_cv": 4.25958381300754e-06,
+          "gap_mean_mm": -0.14525741338729944,
+          "gap_std_um": 2.710505431213761e-14,
+          "gate_pass": true
+        }
+      },
+      "body_vz_rms_mm_s": [
+        0.00044136420469990614,
+        0.0021588511083423015,
+        0.00030766469566237924
+      ],
+      "max_truncated_contacts": 0,
+      "wall_s": 34.03542476706207,
+      "gate_pass": true
+    },
+    {
+      "engine": "sap_warp",
+      "device": "cuda:0",
+      "k_pair_N_m": 100000.0,
+      "k_shape_N_m": 200000.0,
+      "tau_pair_ms": 3.0,
+      "dt_ms": 0.5,
+      "duration_s": 3.0,
+      "tail_s": 1.0,
+      "interfaces": {
+        "ground_bottom": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_expected_N": 29.43,
+          "Fn_mean_N": 29.425911984499674,
+          "Fn_std_N": 5.260878893628374,
+          "Fn_relative_error": 0.0001389064050399518,
+          "Fn_cv": 0.1787838859981496,
+          "gap_mean_mm": -0.07357468747574393,
+          "gap_std_um": 1.9437030586459427,
+          "gate_pass": false
+        },
+        "bottom_middle": {
+          "contacts_mean": 2.498750624687656,
+          "contact_duty": 0.624687656171914,
+          "Fn_expected_N": 19.62,
+          "Fn_mean_N": 19.610196455192046,
+          "Fn_std_N": 15.542110671840556,
+          "Fn_relative_error": 0.0004996709891924045,
+          "Fn_cv": 0.7925525227324067,
+          "gap_mean_mm": -0.0003492217445786971,
+          "gap_std_um": 3.0966389725250973,
+          "gate_pass": false
+        },
+        "middle_top": {
+          "contacts_mean": 1.501249375312344,
+          "contact_duty": 0.375312343828086,
+          "Fn_expected_N": 9.81,
+          "Fn_mean_N": 9.818575509631314,
+          "Fn_std_N": 12.985410045919917,
+          "Fn_relative_error": 0.0008741600031920074,
+          "Fn_cv": 1.3225350289542679,
+          "gap_mean_mm": 0.0006458114856833653,
+          "gap_std_um": 3.402818680869208,
+          "gate_pass": false
+        }
+      },
+      "body_vz_rms_mm_s": [
+        4.013931156908665,
+        6.188348329887059,
+        4.809379236043562
+      ],
+      "max_truncated_contacts": 0,
+      "wall_s": 30.81629763590172,
+      "gate_pass": false
+    },
+    {
+      "engine": "sap_warp",
+      "device": "cuda:0",
+      "k_pair_N_m": 1000000.0,
+      "k_shape_N_m": 2000000.0,
+      "tau_pair_ms": 3.0,
+      "dt_ms": 0.5,
+      "duration_s": 3.0,
+      "tail_s": 1.0,
+      "interfaces": {
+        "ground_bottom": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_expected_N": 29.43,
+          "Fn_mean_N": 29.452116544496732,
+          "Fn_std_N": 31.821190174202144,
+          "Fn_relative_error": 0.0007514965850062051,
+          "Fn_cv": 1.0804381452900398,
+          "gap_mean_mm": -0.007358699634872692,
+          "gap_std_um": 0.8870398940128662,
+          "gate_pass": false
+        },
+        "bottom_middle": {
+          "contacts_mean": 0.8555722138930535,
+          "contact_duty": 0.21389305347326337,
+          "Fn_expected_N": 19.62,
+          "Fn_mean_N": 19.648443406252216,
+          "Fn_std_N": 37.69845009301857,
+          "Fn_relative_error": 0.001449714895627686,
+          "Fn_cv": 1.9186481755100646,
+          "gap_mean_mm": 0.006731167204792653,
+          "gap_std_um": 7.55291332552261,
+          "gate_pass": false
+        },
+        "middle_top": {
+          "contacts_mean": 0.8535732133933034,
+          "contact_duty": 0.21339330334832585,
+          "Fn_expected_N": 9.81,
+          "Fn_mean_N": 9.801169139971336,
+          "Fn_std_N": 18.823125656313064,
+          "Fn_relative_error": 0.0009001896053684856,
+          "Fn_cv": 1.9204979923821734,
+          "gap_mean_mm": 0.00976270456602346,
+          "gap_std_um": 9.209384629781301,
+          "gate_pass": false
+        }
+      },
+      "body_vz_rms_mm_s": [
+        2.439678879404877,
+        17.34497077897524,
+        6.655413309175055
+      ],
+      "max_truncated_contacts": 0,
+      "wall_s": 52.1757229520008,
+      "gate_pass": false
+    }
+  ],
+  "friction_metric_definition": {
+    "force_snapshot_half_width_N": 0.01,
+    "low_velocity_diagnostic": "|vt| >= 1 mm/s continuously for 50 ms; not treated as breakaway",
+    "macroscopic_sustained_slip_proxy": "|vt| >= 10 mm/s continuously for 50 ms while interface contact exists"
+  },
+  "friction_ramps": [
+    {
+      "engine": "mujoco",
+      "path": "exp-results/frictional-stack-v3/mujoco-matched-kpair-1e4/trace.csv",
+      "normal_preforce": {
+        "ground_bottom": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 29.43000000125574,
+          "Fn_std_N": 0.03402546757544542,
+          "Fn_cv": 0.0011561490850830309,
+          "gap_mean_mm": -0.7357499992183609,
+          "gap_std_um": 0.022505820323000792
+        },
+        "bottom_middle": {
+          "contacts_mean": 4.003996003996004,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 19.619999999511727,
+          "Fn_std_N": 0.03497217373737321,
+          "Fn_cv": 0.0017824757257004866,
+          "gap_mean_mm": -0.49016527917441305,
+          "gap_std_um": 0.717133209866842
+        },
+        "middle_top": {
+          "contacts_mean": 4.003996003996004,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 9.809999997977256,
+          "Fn_std_N": 0.021130036652434816,
+          "Fn_cv": 0.002153928303444614,
+          "gap_mean_mm": -0.24508073189151192,
+          "gap_std_um": 0.3627393987825822
+        }
+      },
+      "interfaces": {
+        "ground_bottom": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.08136423232755464,
+              "vt_abs_mean_mm_s": 0.4254924930069693,
+              "rho_mean": 0.033636633558366935,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.24662711689719333,
+              "vt_abs_mean_mm_s": 0.6343957332890626,
+              "rho_mean": 0.06756620361855106,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 0.7758707311208203,
+              "vt_abs_mean_mm_s": 1.0590196052265222,
+              "rho_mean": 0.1355115382798762,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 1.569791181570552,
+              "vt_abs_mean_mm_s": 1.4739612313603252,
+              "rho_mean": 0.20244958235499738,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 2.9639237634471196,
+              "vt_abs_mean_mm_s": 2.0913847980807656,
+              "rho_mean": 0.22213616023833865,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 2.431747359160634,
+              "vt_abs_mean_mm_s": 1.168712602019404,
+              "rho_mean": 0.005301037276616311,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 2.3813942532630334,
+              "vt_abs_mean_mm_s": 0.00308959758161323,
+              "rho_mean": 1.5306449430743817e-05,
+              "contact_duty": 1.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.568,
+              "vt_abs_mm_s": 0.45234918850238554,
+              "rho": 0.03823706313287374,
+              "contacts": 4
+            },
+            "1.0": {
+              "force_N": 2.3183999999999996,
+              "vt_abs_mm_s": 1.1944478689794504,
+              "rho": 0.1571445425189783,
+              "contacts": 4
+            },
+            "5.0": null
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 1.8616,
+              "slip_mm": 0.6867910487775624,
+              "rho": 0.1261081233550693,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            },
+            "10.0": null
+          }
+        },
+        "bottom_middle": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.19058212063602895,
+              "vt_abs_mean_mm_s": 0.9411872955330383,
+              "rho_mean": 0.05052466398723509,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.5433822381291462,
+              "vt_abs_mean_mm_s": 1.3232737013495766,
+              "rho_mean": 0.10148040606097539,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 1.6199218325969222,
+              "vt_abs_mean_mm_s": 2.1274154335249507,
+              "rho_mean": 0.20391190306540716,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 3.222035171598743,
+              "vt_abs_mean_mm_s": 3.2859034053764478,
+              "rho_mean": 0.3059284765616522,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 6.801568058429967,
+              "vt_abs_mean_mm_s": 15.960521756603077,
+              "rho_mean": 0.3410904222209624,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 52.11535203389408,
+              "vt_abs_mean_mm_s": 396.6546618598061,
+              "rho_mean": null,
+              "contact_duty": 0.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 57.030106451221435,
+              "vt_abs_mean_mm_s": 0.00908225872107248,
+              "rho_mean": null,
+              "contact_duty": 0.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.3368000000000002,
+              "vt_abs_mm_s": 0.8264062378475147,
+              "rho": 0.03375860053635425,
+              "contacts": 4
+            },
+            "1.0": {
+              "force_N": 1.4832,
+              "vt_abs_mm_s": 1.7070410448426572,
+              "rho": 0.15088545173935067,
+              "contacts": 4
+            },
+            "5.0": {
+              "force_N": 3.6152,
+              "vt_abs_mm_s": 6.079419808181318,
+              "rho": 0.3673599337232693,
+              "contacts": 4
+            }
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 0.584,
+              "slip_mm": 0.2415415537209605,
+              "rho": 0.059056950634240414,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            },
+            "10.0": {
+              "force_N": 3.9520000000000004,
+              "slip_mm": 6.4060400937805495,
+              "rho": 0.3129955823582549,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            }
+          }
+        },
+        "middle_top": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.2375833863986164,
+              "vt_abs_mean_mm_s": 1.116997826491441,
+              "rho_mean": 0.10141317288732132,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.6427100490643495,
+              "vt_abs_mean_mm_s": 1.4839291565173023,
+              "rho_mean": 0.2034997096953315,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 1.812294796753966,
+              "vt_abs_mean_mm_s": 2.266083809683943,
+              "rho_mean": 0.4095552173300008,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 3.527832024403526,
+              "vt_abs_mean_mm_s": 3.619026165562744,
+              "rho_mean": 0.6184521216609332,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 7.190498251221647,
+              "vt_abs_mean_mm_s": 24.557855170063135,
+              "rho_mean": 0.7426211174587516,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 82.24844581824155,
+              "vt_abs_mean_mm_s": 63.61961151637133,
+              "rho_mean": null,
+              "contact_duty": 0.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 201.82681969996125,
+              "vt_abs_mean_mm_s": 540.7642497764847,
+              "rho_mean": null,
+              "contact_duty": 0.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.2911999999999999,
+              "vt_abs_mm_s": 0.9707432576360127,
+              "rho": 0.05839784934767855,
+              "contacts": 4
+            },
+            "1.0": {
+              "force_N": 1.3536000000000001,
+              "vt_abs_mm_s": 1.7551152241599564,
+              "rho": 0.27601912051791316,
+              "contacts": 4
+            },
+            "5.0": {
+              "force_N": 3.528,
+              "vt_abs_mm_s": 5.45336072037827,
+              "rho": 0.732627064655475,
+              "contacts": 4
+            }
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 0.31999999999999995,
+              "slip_mm": 0.11808149782223269,
+              "rho": 0.06446000676223652,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            },
+            "10.0": {
+              "force_N": 3.94,
+              "slip_mm": 6.492497201189244,
+              "rho": 0.7511392317396246,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            }
+          }
+        }
+      },
+      "body_vz_rms_mm_s": [
+        0.001918523667006688,
+        0.03366529825690431,
+        0.05116375343211578
+      ]
+    },
+    {
+      "engine": "sap_warp",
+      "path": "exp-results/frictional-stack-v3/sap-friction-kpair-1e4/trace.csv",
+      "normal_preforce": {
+        "ground_bottom": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 29.430004633383053,
+          "Fn_std_N": 1.9305374996871174e-05,
+          "Fn_cv": 6.559759414707225e-07
+        },
+        "bottom_middle": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 19.620002884454987,
+          "Fn_std_N": 4.126020421718653e-05,
+          "Fn_cv": 2.102966266629714e-06
+        },
+        "middle_top": {
+          "contacts_mean": 4.0,
+          "contact_duty": 1.0,
+          "Fn_mean_N": 9.810000855023619,
+          "Fn_std_N": 6.650149022637339e-05,
+          "Fn_cv": 6.7789484638340815e-06
+        }
+      },
+      "interfaces": {
+        "ground_bottom": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.0672299893601011,
+              "vt_abs_mean_mm_s": 0.4295471488512703,
+              "rho_mean": 0.05505425082608383,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.13915406001314107,
+              "vt_abs_mean_mm_s": 0.43769964614057244,
+              "rho_mean": 0.10021330335862981,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 0.27744356004103604,
+              "vt_abs_mean_mm_s": 0.2348299528239295,
+              "rho_mean": 0.13634787316594194,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 0.41783062086022976,
+              "vt_abs_mean_mm_s": 0.22934829030418769,
+              "rho_mean": 0.20346452424955558,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 0.5622189915417839,
+              "vt_abs_mean_mm_s": 0.23464401077944785,
+              "rho_mean": 0.27178676055607387,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 0.6165034514530707,
+              "vt_abs_mean_mm_s": 0.050271955824428005,
+              "rho_mean": 0.29353376896304534,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 0.7411051359637786,
+              "vt_abs_mean_mm_s": 1.3556507416069508,
+              "rho_mean": 0.2766944778395304,
+              "contact_duty": 1.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.732,
+              "vt_abs_mm_s": 0.358646793756634,
+              "rho": 0.09613305748369952,
+              "contacts": 4
+            },
+            "1.0": null,
+            "5.0": null
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 4.8648,
+              "slip_mm": 0.7152097723125626,
+              "rho": 0.2762747367957984,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            },
+            "10.0": {
+              "force_N": 4.9992,
+              "slip_mm": 0.7205092888004292,
+              "rho": 0.378239472889963,
+              "contacts": 2,
+              "window_contact_duty": 1.0
+            }
+          }
+        },
+        "bottom_middle": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.16849409271670585,
+              "vt_abs_mean_mm_s": 0.601925804039638,
+              "rho_mean": 0.04892124656368864,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.31650715834401627,
+              "vt_abs_mean_mm_s": 0.3855048235027425,
+              "rho_mean": 0.10377078192078104,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 0.6180110641376682,
+              "vt_abs_mean_mm_s": 0.5771571467630565,
+              "rho_mean": 0.20479610274127805,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 0.9712012820032991,
+              "vt_abs_mean_mm_s": 0.6019686741637997,
+              "rho_mean": 0.30944207146873304,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 1.3315883916889883,
+              "vt_abs_mean_mm_s": 0.5824659595964476,
+              "rho_mean": 0.41120750727176125,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 1.4675331288104512,
+              "vt_abs_mean_mm_s": 0.15959906415446312,
+              "rho_mean": 0.4458498641178474,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 1.8189665940677384,
+              "vt_abs_mean_mm_s": 3.85536752641201,
+              "rho_mean": 0.4224862606822515,
+              "contact_duty": 1.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.24080000000000013,
+              "vt_abs_mm_s": 0.9067819337360561,
+              "rho": 0.028737840543912048,
+              "contacts": 4
+            },
+            "1.0": {
+              "force_N": 3.0784,
+              "vt_abs_mm_s": 0.798070163000375,
+              "rho": 0.3083269664623349,
+              "contacts": 5
+            },
+            "5.0": null
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 4.6816,
+              "slip_mm": 1.5315494602633275,
+              "rho": 0.4417719230289418,
+              "contacts": 5,
+              "window_contact_duty": 1.0
+            },
+            "10.0": {
+              "force_N": 4.9856,
+              "slip_mm": 1.8644084557978071,
+              "rho": 0.4473246149890012,
+              "contacts": 5,
+              "window_contact_duty": 1.0
+            }
+          }
+        },
+        "middle_top": {
+          "force_snapshots": [
+            {
+              "force_N": 0.5,
+              "slip_mm": 0.21623560904203032,
+              "vt_abs_mean_mm_s": 0.5870933411642909,
+              "rho_mean": 0.10206932170589007,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 1.0,
+              "slip_mm": 0.38088908222647433,
+              "vt_abs_mean_mm_s": 0.5375679503777064,
+              "rho_mean": 0.20124352028800502,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 2.0,
+              "slip_mm": 0.7123389645866496,
+              "vt_abs_mean_mm_s": 0.6624400138389319,
+              "rho_mean": 0.4148897422497369,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 3.0,
+              "slip_mm": 1.1389256703122896,
+              "vt_abs_mean_mm_s": 0.7465669128578156,
+              "rho_mean": 0.6279754567835044,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.0,
+              "slip_mm": 1.5869464740544004,
+              "vt_abs_mean_mm_s": 0.7370933890342712,
+              "rho_mean": 0.8299711343388839,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.5,
+              "slip_mm": 2.0692894762768788,
+              "vt_abs_mean_mm_s": 7.749605397257255,
+              "rho_mean": 0.907755763254795,
+              "contact_duty": 1.0
+            },
+            {
+              "force_N": 4.9,
+              "slip_mm": 13.384119855837469,
+              "vt_abs_mean_mm_s": 104.71929078921676,
+              "rho_mean": 0.8779372557998064,
+              "contact_duty": 1.0
+            }
+          ],
+          "displacement_thresholds": {
+            "0.1": {
+              "force_N": 0.2032,
+              "vt_abs_mm_s": 1.3996274210512638,
+              "rho": 0.04338912137007391,
+              "contacts": 4
+            },
+            "1.0": {
+              "force_N": 2.6768,
+              "vt_abs_mm_s": 0.7726309704594314,
+              "rho": 0.6399530201856671,
+              "contacts": 4
+            },
+            "5.0": {
+              "force_N": 4.712000000000001,
+              "vt_abs_mm_s": 42.06169373355806,
+              "rho": 0.8992016241076629,
+              "contacts": 5
+            }
+          },
+          "velocity_onsets_50ms": {
+            "1.0": {
+              "force_N": 0.11600000000000002,
+              "slip_mm": 0.029126554146330363,
+              "rho": 0.0163252968605842,
+              "contacts": 4,
+              "window_contact_duty": 1.0
+            },
+            "10.0": {
+              "force_N": 4.5280000000000005,
+              "slip_mm": 2.2238614937677426,
+              "rho": 0.9072726368695453,
+              "contacts": 5,
+              "window_contact_duty": 1.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

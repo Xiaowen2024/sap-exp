@@ -1,0 +1,91 @@
+Warp 1.16.0 initialized:
+   CUDA not enabled in this build
+   Devices:
+     "cpu"      : "arm"
+   Kernel cache:
+     /Users/xiaowenyuan/Library/Caches/warp/1.16.0
+Module _sap_validate_and_correct_inertia_kernel_b4b3de8f 8558ddf load on device 'cpu' took 10.99 ms  (cached)
+Module __main__ fe41014 load on device 'cpu' took 1.26 ms  (cached)
+Module sim.collision.pipeline be3d280 load on device 'cpu' took 1.11 ms  (cached)
+Module sim.collision.broad_phase_nxn f48f11e load on device 'cpu' took 0.50 ms  (cached)
+Module sap_create_narrow_phase_primitive_kernel__locals__sap_narrow_phase_primitive_kernel_5a7cafbc 9b74006 load on device 'cpu' took 0.40 ms  (cached)
+Module sap_create_narrow_phase_kernel_gjk_mpr__locals__sap_narrow_phase_kernel_gjk_mpr_6bc5e5f9 b1981d2 load on device 'cpu' took 0.53 ms  (cached)
+Module sim.collision.narrow_phase 091f619 load on device 'cpu' took 0.45 ms  (cached)
+Module sim.sap_helpers c6cd315 load on device 'cpu' took 1.44 ms  (cached)
+Module sim.free_motion 5074932 load on device 'cpu' took 0.52 ms  (cached)
+Module _make_eval_jacobian_transpose_times_p_gemm_tile__locals___eval_jacobian_transpose_times_p_gemm_tile_e389ff75 f017d97 load on device 'cpu' took 0.46 ms  (cached)
+Module create_blocked_cholesky_kernel_batched__locals__blocked_cholesky_kernel_batched_d722b632 aa4bda0 load on device 'cpu' took 1.07 ms  (cached)
+Module create_blocked_cholesky_solve_kernel_batched__locals__blocked_cholesky_solve_kernel_batched_213fbdf6 85382c6 load on device 'cpu' took 0.38 ms  (cached)
+Module sim.contact_jacobian 39c3bed load on device 'cpu' took 0.91 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___copy_solve_velocity_inputs_flat_batched_with_guess_flag_5a61195c 23740df load on device 'cpu' took 0.45 ms  (cached)
+Module sim.contact_solve 3a11a03 load on device 'cpu' took 1.08 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___extract_a_diag_data_batched_f2407061 119eca4 load on device 'cpu' took 0.43 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___build_pd_terms_sap_batched_a54d3994 45eb3a9 load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___build_limit_terms_sap_batched_fddcfb57 bface0e load on device 'cpu' took 0.37 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___clear_participating_dofs_batched_6bf445a9 16145d4 load on device 'cpu' took 0.52 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___mark_contact_participating_dofs_batched_4f140833 da87fb6 load on device 'cpu' took 0.62 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___mark_model_participating_dofs_batched_2a08cb6d 11b31a3 load on device 'cpu' took 0.31 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___initialize_and_mark_unconstrained_free_envs_batched_84557400 a6df5e7 load on device 'cpu' took 0.39 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___initialize_newton_loop_state_27e10151 f67ae3f load on device 'cpu' took 0.56 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___projection_eval_contact_gamma_sap_batched_3e4acfb5 acbb056 load on device 'cpu' took 0.29 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_contact_impulse_single_tile_kernel__locals___contact_impulse_single_tile_340c4926 3ebcf11 load on device 'cpu' took 0.43 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_assemble_model_terms_and_grad_tiled_kernel__locals___assemble_model_terms_and_grad_tiled_ea179549 38e79e2 load on device 'cpu' took 0.40 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_compute_norm_terms_and_update_active_conditional_tiled_kernel__locals___compute_norm_terms_and_update_active_conditional_tiled_3b5aa1dd 2b416d7 load on device 'cpu' took 0.35 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___projection_eval_contact_hessian_sap_batched_6e045895 ae11849 load on device 'cpu' took 0.32 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_pack_contact_hessian_gemm_inputs_kernel__locals___pack_contact_hessian_gemm_inputs_255afeeb a102792 load on device 'cpu' took 0.26 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_contact_hessian_gemm_tile_kernel__locals___contact_hessian_gemm_tile_c1a542fd 1d2840f load on device 'cpu' took 0.28 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___assemble_hessian_total_batched_ce3e77b5 70f1723 load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___create_pack_dense_and_grad_to_padded_batched_kernel__locals___pack_dense_and_grad_to_padded_batched_63d6eae8 9fd5fc4 load on device 'cpu' took 0.28 ms  (cached)
+Module create_blocked_cholesky_kernel_batched_masked__locals__blocked_cholesky_kernel_batched_masked_9187545a bd7f1c2 load on device 'cpu' took 1.01 ms  (cached)
+Module create_blocked_cholesky_solve_kernel_batched_masked__locals__blocked_cholesky_solve_kernel_batched_masked_84271bc9 7c6cc20 load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___create_unpack_solution_and_first_batched_kernel__locals___unpack_solution_and_first_batched_b68166dd eb32ea7 load on device 'cpu' took 0.39 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___compute_search_direction_data_serial_batched_df3645a4 ea6d373 load on device 'cpu' took 0.14 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___make_compute_base_cost_tiled_kernel__locals___compute_base_cost_tiled_4d446df5 0ac8bd0 load on device 'cpu' took 0.27 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___init_sap_backtracking_state_685fbabe 4f3dbbf load on device 'cpu' took 0.14 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___axpy_to_trial_batched_cd8e538f bddf831 load on device 'cpu' took 0.26 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___eval_pd_terms_sap_batched_91f95ab0 f48cdfd load on device 'cpu' took 0.15 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___eval_limit_terms_sap_batched_dd7f78d1 9a15f5d load on device 'cpu' took 1.01 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___accumulate_pd_impulse_batched_187463c4 de58b19 load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___accumulate_limit_impulse_batched_73b9fa4c c931a61 load on device 'cpu' took 0.94 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___replace_trial_cost_with_sap_line_search_cost_batched_13f955b7 5b3089f load on device 'cpu' took 0.31 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___compute_line_derivative_serial_batched_bdf8ee72 06be20b load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___accept_sap_alpha_max_4c28e187 4770ebb load on device 'cpu' took 0.41 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___scale_sap_backtracking_alpha_d8a5cfae e845ede load on device 'cpu' took 0.42 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___update_sap_backtracking_iteration_conditional_ac5335bf 0b8e904 load on device 'cpu' took 0.34 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___increment_scalar_i32_c98889cc 556d6c5 load on device 'cpu' took 0.53 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___accumulate_line_search_iterations_batched_ce5d8733 99268a6 load on device 'cpu' took 0.33 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___commit_line_search_step_batched_2b921cc6 afef630 load on device 'cpu' took 0.51 ms  (cached)
+Module _make_contact_solve_kernel_table__locals___set_scalar_i32_ac4bac66 d7dcf3b load on device 'cpu' took 0.26 ms  (cached)
+Module sim.solver_sap 772cb2c load on device 'cpu' took 0.15 ms  (cached)
+Module sim.sap_kinematics f746409 load on device 'cpu' took 1.07 ms  (cached)
+{
+  "engine": "SAP Warp 1.16.0",
+  "device": "cpu",
+  "dt_s": 0.001,
+  "duration_s": 4.0,
+  "force_N": 150.0,
+  "force_direction": "xy at 60 deg",
+  "effective_pair_mu": {
+    "box_ground": 0.4,
+    "ball_box": 0.8
+  },
+  "contact_parameters": {
+    "ke": 10000.0,
+    "tau_s": 0.03,
+    "preset": "drake"
+  },
+  "mean_squared_velocity_error": 0.36005781322318775,
+  "step_rate_hz": 6.801947399216515,
+  "max_raw_collision_contacts": 29,
+  "contact_capacity": 64,
+  "final_box_velocity_m_s": [
+    0.992621660232544,
+    1.7254754304885864,
+    0.007457841653376818
+  ],
+  "final_ball_velocity_m_s": [
+    0.6169419884681702,
+    1.0611869096755981,
+    -0.007421825546771288
+  ]
+}

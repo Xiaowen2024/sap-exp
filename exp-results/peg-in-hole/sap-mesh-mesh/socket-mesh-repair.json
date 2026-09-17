@@ -1,0 +1,36 @@
+{
+  "source": "/Users/xiaowenyuan/Documents/SIM-EXP/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/blind_socket.obj",
+  "output": "/Users/xiaowenyuan/Documents/SIM-EXP/sap-sim/assets/peg_in_hole/blind_socket_collision_watertight.obj",
+  "source_vertices": 257,
+  "source_faces": 512,
+  "source_watertight": false,
+  "components": [
+    {
+      "vertices": 257,
+      "faces": 510,
+      "watertight": true,
+      "volume_m3": 0.0003010082855407127
+    },
+    {
+      "vertices": 3,
+      "faces": 2,
+      "watertight": true,
+      "volume_m3": 0.0
+    }
+  ],
+  "kept_component_faces": 510,
+  "output_watertight": true,
+  "output_winding_consistent": true,
+  "output_bounds_m": [
+    [
+      -0.05,
+      -0.05,
+      0.0
+    ],
+    [
+      0.05,
+      0.05,
+      0.04
+    ]
+  ]
+}

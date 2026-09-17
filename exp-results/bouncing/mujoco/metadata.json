@@ -1,0 +1,10 @@
+{
+  "source_task": "leggedrobotics/SimBenchmark bouncing",
+  "balls": 49,
+  "mass_kg": 10.0,
+  "radius_m": 0.1,
+  "height_m": 5.0,
+  "duration_s": 20.0,
+  "reference": "E(t) = E0; reported metric mean((E-E0)^2)",
+  "contact": "MuJoCo direct solref=[-stiffness,-damping], solimp=[.999,.999,.001,.5,2]"
+}

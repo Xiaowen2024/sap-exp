@@ -1,0 +1,120 @@
+[
+  {
+    "k_pair_target_N_m": 10000.0,
+    "reference_dt_ms": 0.025,
+    "reference_impact_speed_m_s": 0.5,
+    "target_e_eff": 0.8,
+    "tau_pair_ms": 1.4609375,
+    "observed_e_eff": 0.8000028729438782,
+    "calibration_abs_error": 2.872943878129419e-06,
+    "candidate_trials": [
+      {
+        "tau_pair_ms": 0.0,
+        "e_eff": 0.9960830211639404
+      },
+      {
+        "tau_pair_ms": 0.05,
+        "e_eff": 0.9883107542991638
+      },
+      {
+        "tau_pair_ms": 0.1,
+        "e_eff": 0.9806166887283325
+      },
+      {
+        "tau_pair_ms": 0.2,
+        "e_eff": 0.9654882550239563
+      },
+      {
+        "tau_pair_ms": 0.5,
+        "e_eff": 0.9220279455184937
+      },
+      {
+        "tau_pair_ms": 1.0,
+        "e_eff": 0.8554993867874146
+      },
+      {
+        "tau_pair_ms": 2.0,
+        "e_eff": 0.7413373589515686
+      },
+      {
+        "tau_pair_ms": 3.0,
+        "e_eff": 0.6475695967674255
+      },
+      {
+        "tau_pair_ms": 5.0,
+        "e_eff": 0.5045580267906189
+      },
+      {
+        "tau_pair_ms": 8.0,
+        "e_eff": 0.3623811900615692
+      },
+      {
+        "tau_pair_ms": 12.0,
+        "e_eff": 0.24812527000904083
+      },
+      {
+        "tau_pair_ms": 20.0,
+        "e_eff": 0.13499793410301208
+      }
+    ]
+  },
+  {
+    "k_pair_target_N_m": 100000.0,
+    "reference_dt_ms": 0.025,
+    "reference_impact_speed_m_s": 0.5,
+    "target_e_eff": 0.8,
+    "tau_pair_ms": 0.4441162109375,
+    "observed_e_eff": 0.8000040650367737,
+    "calibration_abs_error": 4.065036773637232e-06,
+    "candidate_trials": [
+      {
+        "tau_pair_ms": 0.0,
+        "e_eff": 0.9876639246940613
+      },
+      {
+        "tau_pair_ms": 0.05,
+        "e_eff": 0.963614821434021
+      },
+      {
+        "tau_pair_ms": 0.1,
+        "e_eff": 0.940392255783081
+      },
+      {
+        "tau_pair_ms": 0.2,
+        "e_eff": 0.8962295055389404
+      },
+      {
+        "tau_pair_ms": 0.5,
+        "e_eff": 0.7800453901290894
+      },
+      {
+        "tau_pair_ms": 1.0,
+        "e_eff": 0.629079282283783
+      },
+      {
+        "tau_pair_ms": 2.0,
+        "e_eff": 0.4303758442401886
+      },
+      {
+        "tau_pair_ms": 3.0,
+        "e_eff": 0.3104284107685089
+      },
+      {
+        "tau_pair_ms": 5.0,
+        "e_eff": 0.18083636462688446
+      },
+      {
+        "tau_pair_ms": 8.0,
+        "e_eff": 0.0968184620141983
+      },
+      {
+        "tau_pair_ms": 12.0,
+        "e_eff": 0.05177181214094162
+      },
+      {
+        "tau_pair_ms": 20.0,
+        "e_eff": 0.021531373262405396
+      }
+    ]
+  }
+]

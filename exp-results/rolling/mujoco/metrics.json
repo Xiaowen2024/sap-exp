@@ -1,0 +1,19 @@
+{
+  "engine": "MuJoCo 3.12.0",
+  "dt_s": 0.001,
+  "duration_s": 4.0,
+  "force_N": 150.0,
+  "force_direction": "xy at 60 deg",
+  "mean_squared_velocity_error": 0.006926908414994679,
+  "step_rate_hz": 7280.150815752609,
+  "final_box_velocity_m_s": [
+    1.4943542603505287,
+    2.621469304036173,
+    -0.01950014940747403
+  ],
+  "final_ball_velocity_m_s": [
+    0.4302761808699313,
+    0.7304024874052482,
+    -0.006352237764622961
+  ]
+}

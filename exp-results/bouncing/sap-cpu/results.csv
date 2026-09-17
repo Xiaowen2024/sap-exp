@@ -1,0 +1,2 @@
+dt_s,ke_N_m,tau_s,energy_initial_J,energy_mse_J2,energy_rmse_J,max_abs_energy_error_J,final_energy_ratio,first_rebound_height_m,first_rebound_height_ratio,max_raw_collision_contacts,elapsed_s,step_rate_hz
+0.001,10000.0,0.0,24034.500000000004,86143122.84670721,9281.331954342933,25718.61957278252,0.44952291928969657,4.648948669433594,0.9297897338867187,49,246.46455479100405,81.14757116681348

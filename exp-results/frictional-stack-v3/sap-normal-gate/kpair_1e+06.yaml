@@ -1,0 +1,82 @@
+schema_version: 1
+name: frictional_stack_normal_gate
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 256
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 15624.999999999998
+      ke: 2000000.0
+      tau: 0.0015
+      mu: 0.5
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+bodies:
+- id: box_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.02
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+- id: box_1
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.06
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+- id: box_2
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.1
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+joints:
+- id: box_0_free
+  type: free
+  parent: world
+  child: box_0
+- id: box_1_free
+  type: free
+  parent: world
+  child: box_1
+- id: box_2_free
+  type: free
+  parent: world
+  child: box_2
+articulations:
+- id: box_0_art
+  joints:
+  - box_0_free
+- id: box_1_art
+  joints:
+  - box_1_free
+- id: box_2_art
+  joints:
+  - box_2_free

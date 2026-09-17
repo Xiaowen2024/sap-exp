@@ -1,0 +1,42 @@
+{
+  "engine": "mujoco",
+  "tag": "mu_1",
+  "spec": {
+    "mu": 1.0,
+    "mass_kg": 0.1,
+    "offset_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "transfer_speed": "nominal"
+  },
+  "dt_s": 0.001,
+  "duration_s": 8.2,
+  "solref_timeconst_ms": 3.0,
+  "solref_dampratio": 0.75,
+  "closed_finger_target_m": 0.016,
+  "controller_gains": {
+    "arm_kp": 150.0,
+    "arm_kd": 30.0,
+    "finger_kp": 3000.0,
+    "finger_kd": 80.0
+  },
+  "success": false,
+  "failure_mode": "normal_contact_instability",
+  "drop_time_s": null,
+  "final_cube_z_m": 0.01999861663995428,
+  "max_relative_slip_mm": 2.8645532407872684e-13,
+  "max_orientation_drift_deg": 0.0,
+  "max_raw_orientation_drift_deg": 8.87267600082659e-06,
+  "max_penetration_mm": 2.289884718840137,
+  "finger_contact_duty": {
+    "left": 0.0,
+    "right": 0.0
+  },
+  "arm_tracking_rms_rad": 0.07753184278577921,
+  "arm_tracking_max_rad": 0.4675664740121405,
+  "torque_saturation_ratio": 0.09304878048780488,
+  "max_contacts": 6,
+  "wall_s": 0.7100144159630872
+}

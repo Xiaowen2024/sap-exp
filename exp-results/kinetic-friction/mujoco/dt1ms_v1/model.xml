@@ -1,0 +1,18 @@
+<mujoco model="free_sliding_block">
+      <option timestep="0.001" gravity="0 0 -9.81" integrator="implicitfast"
+              solver="Newton" cone="elliptic" iterations="100" tolerance="1e-12"/>
+      <size nconmax="32" njmax="64"/>
+      <worldbody>
+        <geom name="ground" type="plane" size="2 2 .1" friction="0.5 .005 .0001"/>
+        <body name="block" pos="0 0 0.02">
+          <joint name="x" type="slide" axis="1 0 0"/>
+          <joint name="z" type="slide" axis="0 0 1"/>
+          <geom name="block_geom" type="box" size="0.02 0.02 0.02" mass="1.0" friction="0.5 .005 .0001"/>
+        </body>
+      </worldbody>
+      <contact>
+        <pair geom1="ground" geom2="block_geom" condim="3" margin="0" gap="0"
+              friction="0.5 0.5 .005 .0001 .0001"
+              solimp="0.9 0.9 .001 .5 2" solref="-999.9999999999998 -63.24555320336758"/>
+      </contact>
+    </mujoco>

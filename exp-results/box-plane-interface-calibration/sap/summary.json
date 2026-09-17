@@ -1,0 +1,47 @@
+{
+  "geometry": "40 mm cube, z-only, plane, four nominal contact points",
+  "forces_N": [
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "fits": [
+    {
+      "pair_ke_N_m": 100000.0,
+      "dt_ms": 0.1,
+      "interface_slope_N_m": 400000.24470536475,
+      "intercept_N": 9.925224865049859e-05,
+      "fit_R2": 0.9999999995012558,
+      "theory_4kpair_N_m": 400000.0,
+      "relative_theory_error": 6.117634119284787e-07
+    },
+    {
+      "pair_ke_N_m": 100000.0,
+      "dt_ms": 0.5,
+      "interface_slope_N_m": 400000.3336391072,
+      "intercept_N": 9.061732314395893e-05,
+      "fit_R2": 0.9999999995757446,
+      "theory_4kpair_N_m": 400000.0,
+      "relative_theory_error": 8.340977679655026e-07
+    },
+    {
+      "pair_ke_N_m": 1000000.0,
+      "dt_ms": 0.1,
+      "interface_slope_N_m": 4000060.6069414946,
+      "intercept_N": -0.0018611968511626834,
+      "fit_R2": 0.9999999789308613,
+      "theory_4kpair_N_m": 4000000.0,
+      "relative_theory_error": 1.5151735373697406e-05
+    },
+    {
+      "pair_ke_N_m": 1000000.0,
+      "dt_ms": 0.5,
+      "interface_slope_N_m": 4000055.5699807187,
+      "intercept_N": -0.0016673618094956402,
+      "fit_R2": 0.9999999841049728,
+      "theory_4kpair_N_m": 4000000.0,
+      "relative_theory_error": 1.3892495179579356e-05
+    }
+  ]
+}

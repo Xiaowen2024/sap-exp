@@ -1,0 +1,9 @@
+<mujoco model="frictional_three_box_native_hold">
+<option timestep="0.0005" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" cone="elliptic"
+        iterations="100" tolerance="1e-12" impratio="10.0"
+        noslip_iterations="0" noslip_tolerance="1e-12"/>
+<size nconmax="256" njmax="1024"/>
+<default><geom friction="0.5 0.005 0.0001" margin="0" gap="0"
+              solref="0.001 1" solimp="0.9 0.95 0.001 0.5 2"/></default>
+<worldbody><geom name="ground" type="plane" size="2 2 0.1"/><body name="box_0" pos="0 0 0.02"><freejoint/><geom name="box_0_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body><body name="box_1" pos="0 0 0.06"><freejoint/><geom name="box_1_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body><body name="box_2" pos="0 0 0.1"><freejoint/><geom name="box_2_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body></worldbody>
+</mujoco>

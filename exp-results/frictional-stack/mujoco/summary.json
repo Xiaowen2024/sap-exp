@@ -1,0 +1,26 @@
+{
+  "engine": "mujoco",
+  "dt_ms": 0.5,
+  "box_mass_kg": 1.0,
+  "mu": 0.5,
+  "force_ramp_N": [
+    0.0,
+    8.0
+  ],
+  "settle_s": 1.5,
+  "ramp_s": 5.0,
+  "theoretical_first_breakaway_N": 4.905,
+  "slip_threshold_mm": 0.1,
+  "first_slip": {
+    "time_s": 2.8665000000000003,
+    "force_N": 2.1864000000000003,
+    "interface": "top-middle",
+    "relative_displacement_m": 0.00010004691166723114
+  },
+  "final_relative_slip_mm": [
+    0.5201782640112973,
+    10.957325375857037,
+    12458.976262168431
+  ],
+  "wall_s": 0.31753620799281634
+}

@@ -1,0 +1,966 @@
+schema_version: 1
+name: plate_stack_coacd_shared
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 4096
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.002
+  defaults:
+    shape:
+      density: 2600.0
+      ke: 100000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: true
+  label: table
+bodies:
+- id: plate_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.07
+    q: identity
+  shapes:
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_00.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: &id001
+    - 0
+    - 2
+    - 1
+    face_order: &id002
+    - 0
+    - 2
+    - 1
+    transform: &id003
+      p:
+      - 0.0
+      - 0.0
+      - -0.00827
+      q: identity
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_01.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_02.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_03.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_04.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_05.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_06.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_07.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_08.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_09.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_10.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_11.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_12.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_13.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_14.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_15.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_16.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_17.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_18.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_19.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_20.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_21.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_22.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_23.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_24.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_25.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_26.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_27.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_28.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_29.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_30.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_31.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id001
+    face_order: *id002
+    transform: *id003
+    cfg:
+      mass: 0.301
+- id: plate_1
+  transform:
+    p:
+    - 0.003
+    - -0.002
+    - 0.13
+    q: identity
+  shapes:
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_00.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: &id004
+    - 0
+    - 2
+    - 1
+    face_order: &id005
+    - 0
+    - 2
+    - 1
+    transform: &id006
+      p:
+      - 0.0
+      - 0.0
+      - -0.00827
+      q: identity
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_01.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_02.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_03.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_04.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_05.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_06.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_07.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_08.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_09.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_10.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_11.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_12.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_13.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_14.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_15.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_16.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_17.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_18.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_19.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_20.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_21.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_22.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_23.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_24.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_25.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_26.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_27.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_28.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_29.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_30.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_31.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id004
+    face_order: *id005
+    transform: *id006
+    cfg:
+      mass: 0.301
+- id: plate_2
+  transform:
+    p:
+    - -0.002
+    - 0.002
+    - 0.19
+    q: identity
+  shapes:
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_00.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: &id007
+    - 0
+    - 2
+    - 1
+    face_order: &id008
+    - 0
+    - 2
+    - 1
+    transform: &id009
+      p:
+      - 0.0
+      - 0.0
+      - -0.00827
+      q: identity
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_01.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_02.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_03.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_04.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_05.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_06.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_07.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_08.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_09.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_10.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_11.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_12.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_13.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_14.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_15.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_16.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_17.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_18.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_19.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_20.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_21.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_22.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_23.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_24.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_25.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_26.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_27.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_28.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_29.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_30.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/concave_plate_experiments/assets/collision/plate_piece_31.obj
+    is_solid: true
+    scale: 0.02263458
+    axis_order: *id007
+    face_order: *id008
+    transform: *id009
+    cfg:
+      mass: 0.301
+joints:
+- id: plate_0_free
+  type: free
+  parent: world
+  child: plate_0
+- id: plate_1_free
+  type: free
+  parent: world
+  child: plate_1
+- id: plate_2_free
+  type: free
+  parent: world
+  child: plate_2
+articulations:
+- id: plate_0_art
+  joints:
+  - plate_0_free
+- id: plate_1_art
+  joints:
+  - plate_1_free
+- id: plate_2_art
+  joints:
+  - plate_2_free

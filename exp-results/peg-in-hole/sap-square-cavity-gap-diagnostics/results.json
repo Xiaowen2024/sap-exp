@@ -1,0 +1,78 @@
+[
+  {
+    "case": "square_offset_1mm_gap_0mm",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 1.0,
+    "final_center_mm": [
+      1.0000000474974513,
+      6.315086675812154e-06,
+      35.00168398022652
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.2929801121354103,
+    "max_raw_witness_penetration_mm": 0.2929801191920841,
+    "final_phi0_penetration_mm": 0.1001991331577301,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 22.055071741999996,
+    "end_to_end_wall_s": 22.507252038000047,
+    "rigid_gap_mm": 0.0
+  },
+  {
+    "case": "square_offset_1mm_gap_0.1mm",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 1.0,
+    "final_center_mm": [
+      1.0000000474974513,
+      1.5013053300538814e-07,
+      35.090114921331406
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.2929801121354103,
+    "max_raw_witness_penetration_mm": 0.2929801191920841,
+    "final_phi0_penetration_mm": 0.009884126484394073,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 21.533781223000005,
+    "end_to_end_wall_s": 21.61674911,
+    "rigid_gap_mm": 0.1
+  },
+  {
+    "case": "square_offset_1mm_gap_0.5mm",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 1.0,
+    "final_center_mm": [
+      0.999999581836164,
+      -2.668926413207373e-06,
+      35.090263932943344
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.009734183549880981,
+    "max_raw_witness_penetration_mm": 0.00973421010840885,
+    "final_phi0_penetration_mm": 0.009734183549880981,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 20.869354513000076,
+    "end_to_end_wall_s": 20.9563513170001,
+    "rigid_gap_mm": 0.5
+  },
+  {
+    "case": "square_offset_1mm_gap_1mm",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 1.0,
+    "final_center_mm": [
+      -70.16133517026901,
+      5.979289300739765,
+      -13465.215682983398
+    ],
+    "entered_cavity": false,
+    "max_contacts": 12,
+    "max_phi0_penetration_mm": 0.0,
+    "max_raw_witness_penetration_mm": 0.0,
+    "final_phi0_penetration_mm": 0.0,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 25.325376520999953,
+    "end_to_end_wall_s": 25.416658087999963,
+    "rigid_gap_mm": 1.0
+  }
+]

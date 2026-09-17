@@ -1,0 +1,10 @@
+{
+  "purpose": "SAP Drake preset CPU A/B/C sweep",
+  "ball_grid": 1,
+  "warning": "one-ball values use a separately recomputed n=1 analytic reference and are not comparable to 25-ball MSE",
+  "sections": {
+    "A": "dt",
+    "B": "tau at dt=1ms, ke=1e4",
+    "C": "ke at dt=1ms, tau=30ms"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "dt_s": 0.005,
+  "duration_s": 6.0,
+  "controller": "common computed torque; arm Kp/Kd=100/20, finger Kp/Kd=3000/80; SAP built-in drive disabled",
+  "contact_limit": "not material-calibrated; SAP CPU skips mesh-mesh contacts; Drake uses converted OBJ convex hull collision meshes",
+  "results": [
+    {
+      "engine": "sap-approx32",
+      "initial_cube_z_m": 0.019999999552965164,
+      "final_cube_z_m": 0.19215072691440582,
+      "peak_cube_z_m": 0.19215072691440582,
+      "peak_after_lift_start_m": 0.19215072691440582,
+      "lifted_above_0_10_m": true,
+      "max_friction_utilization": 0.9999999999999996,
+      "max_penetration_m": 0.002260493114590645
+    },
+    {
+      "engine": "sap-drake",
+      "initial_cube_z_m": 0.019999999552965164,
+      "final_cube_z_m": 0.19310681521892548,
+      "peak_cube_z_m": 0.19310681521892548,
+      "peak_after_lift_start_m": 0.19310681521892548,
+      "lifted_above_0_10_m": true,
+      "max_friction_utilization": 0.9999999999999998,
+      "max_penetration_m": 0.00028637077775783837
+    },
+    {
+      "engine": "drake",
+      "initial_cube_z_m": 0.019999999552965164,
+      "final_cube_z_m": 0.19154917883427383,
+      "peak_cube_z_m": 0.19154917883427383,
+      "peak_after_lift_start_m": 0.19154917883427383,
+      "lifted_above_0_10_m": true,
+      "max_friction_utilization": NaN,
+      "max_penetration_m": NaN
+    }
+  ]
+}

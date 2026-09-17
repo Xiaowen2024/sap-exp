@@ -1,0 +1,2 @@
+preset,duration_s,dt_s,ke_N_m,tau_s,energy_initial_J,energy_mse_J2,energy_rmse_J,max_abs_energy_error_J,final_energy_ratio,first_rebound_height_m,first_rebound_height_ratio,max_raw_collision_contacts,elapsed_s,step_rate_hz
+approx32,20.0,0.0005,10000.0,0.0,24034.500000000004,23649142.127113484,4863.038363730383,25748.19553948455,0.8340286106640608,4.909714221954346,0.9819428443908691,49,482.14986241600127,82.96175757380556

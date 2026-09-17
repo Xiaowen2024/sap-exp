@@ -1,0 +1,2 @@
+tag,success,failure_mode,solref_timeconst_ms,solref_dampratio,final_cube_z_m,max_relative_slip_mm,max_orientation_drift_deg,max_penetration_mm,arm_tracking_rms_rad,torque_saturation_ratio,wall_s
+tc_3ms_dr_0.75,True,success,3.0,0.75,0.19251291275875254,0.3460068895941184,0.04202393913543749,0.13290180587001,0.14902254913180765,0.5668292682926829,0.7868323340080678

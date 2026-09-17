@@ -1,0 +1,31 @@
+{
+  "scene": "/Users/xiaowenyuan/Documents/SIM-EXP/sap-sim/assets/yaml/two_finger_pinch.yaml",
+  "results": [
+    {
+      "case": "baseline",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "device": "cpu",
+      "dt_s": 0.0005,
+      "commanded_lift_mm": 60.0,
+      "cube_lift_mm": 60.48685312271118,
+      "lift_follow_percent": 100.8114218711853,
+      "final_cube_center_z_mm": 141.35383069515228,
+      "max_penetration_mm": 0.3001093864440918,
+      "max_contact_count": 512
+    },
+    {
+      "case": "low_friction",
+      "friction": 0.05,
+      "cube_mass_kg": 0.1,
+      "device": "cpu",
+      "dt_s": 0.0005,
+      "commanded_lift_mm": 60.0,
+      "cube_lift_mm": -27.10266225039959,
+      "lift_follow_percent": -45.171103750665985,
+      "final_cube_center_z_mm": 19.95083875954151,
+      "max_penetration_mm": 0.5939158145338297,
+      "max_contact_count": 512
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "calibration": {
+    "mujoco": [
+      {
+        "k_pair_target_N_m": 10000.0,
+        "reference_dt_ms": 0.025,
+        "reference_impact_speed_m_s": 0.5,
+        "target_e_eff": 0.8,
+        "damping_scale": 0.07437438964843752,
+        "observed_e_eff": 0.7999977821369305,
+        "calibration_abs_error": 2.2178630695313117e-06
+      },
+      {
+        "k_pair_target_N_m": 100000.0,
+        "reference_dt_ms": 0.025,
+        "reference_impact_speed_m_s": 0.5,
+        "target_e_eff": 0.8,
+        "damping_scale": 0.07441406250000002,
+        "observed_e_eff": 0.7999981996322438,
+        "calibration_abs_error": 1.800367756210619e-06
+      }
+    ],
+    "sap": [
+      {
+        "k_pair_target_N_m": 10000.0,
+        "reference_dt_ms": 0.025,
+        "reference_impact_speed_m_s": 0.5,
+        "target_e_eff": 0.8,
+        "tau_pair_ms": 1.4609375,
+        "observed_e_eff": 0.8000028729438782,
+        "calibration_abs_error": 2.872943878129419e-06,
+        "candidate_trials": [
+          {
+            "tau_pair_ms": 0.0,
+            "e_eff": 0.9960830211639404
+          },
+          {
+            "tau_pair_ms": 0.05,
+            "e_eff": 0.9883107542991638
+          },
+          {
+            "tau_pair_ms": 0.1,
+            "e_eff": 0.9806166887283325
+          },
+          {
+            "tau_pair_ms": 0.2,
+            "e_eff": 0.9654882550239563
+          },
+          {
+            "tau_pair_ms": 0.5,
+            "e_eff": 0.9220279455184937
+          },
+          {
+            "tau_pair_ms": 1.0,
+            "e_eff": 0.8554993867874146
+          },
+          {
+            "tau_pair_ms": 2.0,
+            "e_eff": 0.7413373589515686
+          },
+          {
+            "tau_pair_ms": 3.0,
+            "e_eff": 0.6475695967674255
+          },
+          {
+            "tau_pair_ms": 5.0,
+            "e_eff": 0.5045580267906189
+          },
+          {
+            "tau_pair_ms": 8.0,
+            "e_eff": 0.3623811900615692
+          },
+          {
+            "tau_pair_ms": 12.0,
+            "e_eff": 0.24812527000904083
+          },
+          {
+            "tau_pair_ms": 20.0,
+            "e_eff": 0.13499793410301208
+          }
+        ]
+      },
+      {
+        "k_pair_target_N_m": 100000.0,
+        "reference_dt_ms": 0.025,
+        "reference_impact_speed_m_s": 0.5,
+        "target_e_eff": 0.8,
+        "tau_pair_ms": 0.4441162109375,
+        "observed_e_eff": 0.8000040650367737,
+        "calibration_abs_error": 4.065036773637232e-06,
+        "candidate_trials": [
+          {
+            "tau_pair_ms": 0.0,
+            "e_eff": 0.9876639246940613
+          },
+          {
+            "tau_pair_ms": 0.05,
+            "e_eff": 0.963614821434021
+          },
+          {
+            "tau_pair_ms": 0.1,
+            "e_eff": 0.940392255783081
+          },
+          {
+            "tau_pair_ms": 0.2,
+            "e_eff": 0.8962295055389404
+          },
+          {
+            "tau_pair_ms": 0.5,
+            "e_eff": 0.7800453901290894
+          },
+          {
+            "tau_pair_ms": 1.0,
+            "e_eff": 0.629079282283783
+          },
+          {
+            "tau_pair_ms": 2.0,
+            "e_eff": 0.4303758442401886
+          },
+          {
+            "tau_pair_ms": 3.0,
+            "e_eff": 0.3104284107685089
+          },
+          {
+            "tau_pair_ms": 5.0,
+            "e_eff": 0.18083636462688446
+          },
+          {
+            "tau_pair_ms": 8.0,
+            "e_eff": 0.0968184620141983
+          },
+          {
+            "tau_pair_ms": 12.0,
+            "e_eff": 0.05177181214094162
+          },
+          {
+            "tau_pair_ms": 20.0,
+            "e_eff": 0.021531373262405396
+          }
+        ]
+      }
+    ]
+  },
+  "stats": {
+    "mujoco_10000": {
+      "e_ref": 0.7999977821369305,
+      "e_velocity_span": 1.9984014443252818e-15,
+      "e_dt_min": 0.7999725450856718,
+      "e_dt_max": 0.8008208515498232,
+      "max_pen": 56.598381651883926,
+      "max_impulse_error": 2.4671075931643913e-15,
+      "mean_wall_ms": 14.048529459008327,
+      "contact_ms_at_ref": 99.625
+    },
+    "mujoco_100000": {
+      "e_ref": 0.7999981996322438,
+      "e_velocity_span": 4.440892098500626e-16,
+      "e_dt_min": 0.7999179545819091,
+      "e_dt_max": 0.8026469878395552,
+      "max_pen": 17.922633170982394,
+      "max_impulse_error": 1.7270923160897735e-15,
+      "mean_wall_ms": 4.491633753787028,
+      "contact_ms_at_ref": 31.5
+    },
+    "sap_warp_10000": {
+      "e_ref": 0.8000028729438782,
+      "e_velocity_span": 0.00027677714412055465,
+      "e_dt_min": 0.7452223300933838,
+      "e_dt_max": 0.8019192814826965,
+      "max_pen": 17.91132821701467,
+      "max_impulse_error": 1.0118930105320236e-06,
+      "mean_wall_ms": 3654.078871541666,
+      "contact_ms_at_ref": 30.024999999999995
+    },
+    "sap_warp_100000": {
+      "e_ref": 0.8000040650367737,
+      "e_velocity_span": 0.0008948027953994409,
+      "e_dt_min": 0.6412432193756104,
+      "e_dt_max": 0.8060867786407471,
+      "max_pen": 5.6796348467469215,
+      "max_impulse_error": 4.2822837107120295e-07,
+      "mean_wall_ms": 1340.2352516253206,
+      "contact_ms_at_ref": 9.500000000000002
+    }
+  }
+}

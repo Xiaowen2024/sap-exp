@@ -1,0 +1,50 @@
+{
+  "engine": "sap_warp",
+  "device": "cuda:0",
+  "contact_preset": "drake",
+  "mu": 0.4,
+  "mass_kg": 0.1,
+  "compression_per_side_mm": -0.01,
+  "dt_ms": 0.5,
+  "gate_s": 1.5,
+  "pair_ke_N_m": 10000.0,
+  "shape_ke_N_m": 20000.0,
+  "pair_tau_ms": 3.0,
+  "shape_tau_ms": 1.5,
+  "rigid_gap_mm": 0.0,
+  "max_contact_capacity": 128,
+  "normal_gate": {
+    "left": {
+      "Fn_mean_N": 0.0,
+      "Fn_cv": Infinity,
+      "duty": 0.0,
+      "points_mean": 0.0
+    },
+    "right": {
+      "Fn_mean_N": 0.0,
+      "Fn_cv": Infinity,
+      "duty": 0.0,
+      "points_mean": 0.0
+    }
+  },
+  "normal_gate_pass": false,
+  "N_measured_per_side_N": 0.0,
+  "capacity_ratio_2muN_over_mg": 0.0,
+  "lift_follow_mm": -7667.147565374762,
+  "cube_vz_tail_mm_s": -11784.238338470459,
+  "slip_distance_mm": 7723.127979340843,
+  "mean_abs_vt_mm_s": 6190.802972127771,
+  "max_candidate_contacts": 128,
+  "max_truncated_contacts": 0,
+  "valid_for_force_comparison": true,
+  "wall_s": 18.796060940716416,
+  "left_duty_lift": 0.0,
+  "left_Fn_mean_lift_N": NaN,
+  "left_rho_mean_lift": NaN,
+  "right_duty_lift": 0.0,
+  "right_Fn_mean_lift_N": NaN,
+  "right_rho_mean_lift": NaN,
+  "grasp_success": false,
+  "left_tail_phi0_minus_geometric_mm": NaN,
+  "right_tail_phi0_minus_geometric_mm": NaN
+}

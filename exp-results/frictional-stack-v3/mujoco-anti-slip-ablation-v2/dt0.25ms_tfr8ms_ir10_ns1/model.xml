@@ -1,0 +1,14 @@
+<mujoco model="three_box_mujoco_anti_slip_ablation">
+<option timestep="0.00025" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" cone="elliptic"
+        iterations="100" tolerance="1e-12" impratio="10.0"
+        noslip_iterations="1" noslip_tolerance="1e-12"/>
+<size nconmax="256" njmax="1024"/>
+<default><geom friction="0.5 0.005 0.0001" margin="0" gap="0"
+              solref="0.002 1.0" solimp="0.9 0.95 0.001 0.5 2"/></default>
+<worldbody><geom name="ground" type="plane" size="2 2 0.1"/><body name="box_0" pos="0 0 0.02"><freejoint/><geom name="box_0_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body><body name="box_1" pos="0 0 0.06"><freejoint/><geom name="box_1_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body><body name="box_2" pos="0 0 0.1"><freejoint/><geom name="box_2_geom" type="box" size="0.02 0.02 0.02" mass="1.0"/></body></worldbody>
+<contact>
+  <pair name="ground_bottom" geom1="ground" geom2="box_0_geom" friction="0.5 0.005 0.0001" solref="0.002 1.0" solreffriction="0.008 1" solimp="0.9 0.95 0.001 0.5 2" margin="0" gap="0"/>
+  <pair name="bottom_middle" geom1="box_0_geom" geom2="box_1_geom" friction="0.5 0.005 0.0001" solref="0.002 1.0" solreffriction="0.008 1" solimp="0.9 0.95 0.001 0.5 2" margin="0" gap="0"/>
+  <pair name="middle_top" geom1="box_1_geom" geom2="box_2_geom" friction="0.5 0.005 0.0001" solref="0.002 1.0" solreffriction="0.008 1" solimp="0.9 0.95 0.001 0.5 2" margin="0" gap="0"/>
+</contact>
+</mujoco>

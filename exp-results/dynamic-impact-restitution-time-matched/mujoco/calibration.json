@@ -1,0 +1,15 @@
+[
+  {
+    "k_pair_target_N_m": 110275.86390702323,
+    "reference_dt_ms": 0.025,
+    "reference_impact_speed_m_s": 0.5,
+    "target_e_eff": 0.8,
+    "damping_scale": 0.07441711425781251,
+    "observed_e_eff": 0.7999974830304062,
+    "calibration_abs_error": 2.5169695938576098e-06,
+    "observed_contact_duration_ms": 30.0,
+    "target_contact_duration_ms": 30.0,
+    "contact_duration_abs_error_ms": 0.0,
+    "calibration_mode": "matched_restitution_and_duration"
+  }
+]

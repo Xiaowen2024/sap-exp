@@ -1,0 +1,1865 @@
+[
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt100_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5962605829990935,
+    "trace": "dt0.25ms_bt100_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt100_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9025303329981398,
+    "trace": "dt0.25ms_bt100_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt100_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0866856669890694,
+    "trace": "dt0.25ms_bt100_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt100_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6478710839874111,
+    "trace": "dt0.25ms_bt100_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt100_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9324535839841701,
+    "trace": "dt0.25ms_bt100_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt100_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0718282499874476,
+    "trace": "dt0.25ms_bt100_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt100_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6598184160247911,
+    "trace": "dt0.25ms_bt100_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt100_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9130541250051465,
+    "trace": "dt0.25ms_bt100_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt100_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0763555829762481,
+    "trace": "dt0.25ms_bt100_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt1000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.643402249988867,
+    "trace": "dt0.25ms_bt1000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt1000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0194896670000162,
+    "trace": "dt0.25ms_bt1000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt1000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1074204159958754,
+    "trace": "dt0.25ms_bt1000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt1000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6609240839898121,
+    "trace": "dt0.25ms_bt1000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt1000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9194823330035433,
+    "trace": "dt0.25ms_bt1000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt1000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0771958339901175,
+    "trace": "dt0.25ms_bt1000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt1000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.664196666009957,
+    "trace": "dt0.25ms_bt1000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt1000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9226734170224518,
+    "trace": "dt0.25ms_bt1000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt1000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0834367079951335,
+    "trace": "dt0.25ms_bt1000_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt10000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1356146250036545,
+    "trace": "dt0.25ms_bt10000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt10000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7182980000216048,
+    "trace": "dt0.25ms_bt10000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt10000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7131264169875067,
+    "trace": "dt0.25ms_bt10000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt10000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.3842277090006974,
+    "trace": "dt0.25ms_bt10000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt10000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.8985990840010345,
+    "trace": "dt0.25ms_bt10000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt10000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.9757290839916095,
+    "trace": "dt0.25ms_bt10000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_bt10000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.6335022090061102,
+    "trace": "dt0.25ms_bt10000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_bt10000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.0560577919823118,
+    "trace": "dt0.25ms_bt10000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_bt10000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.8463730830117129,
+    "trace": "dt0.25ms_bt10000_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt100_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.39806291699642316,
+    "trace": "dt0.5ms_bt100_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt100_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7121641249977984,
+    "trace": "dt0.5ms_bt100_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt100_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6252810840087477,
+    "trace": "dt0.5ms_bt100_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt100_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.42218616598984227,
+    "trace": "dt0.5ms_bt100_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt100_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5996527090028394,
+    "trace": "dt0.5ms_bt100_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt100_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6166414579784032,
+    "trace": "dt0.5ms_bt100_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt100_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.4226926249975804,
+    "trace": "dt0.5ms_bt100_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt100_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5551357500080485,
+    "trace": "dt0.5ms_bt100_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt100_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.604439334012568,
+    "trace": "dt0.5ms_bt100_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt1000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3872130000090692,
+    "trace": "dt0.5ms_bt1000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt1000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5691027090069838,
+    "trace": "dt0.5ms_bt1000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt1000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6051778749970254,
+    "trace": "dt0.5ms_bt1000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt1000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.4276775420003105,
+    "trace": "dt0.5ms_bt1000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt1000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5223791250027716,
+    "trace": "dt0.5ms_bt1000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt1000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6085678749950603,
+    "trace": "dt0.5ms_bt1000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt1000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.402495332993567,
+    "trace": "dt0.5ms_bt1000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt1000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5307244579889812,
+    "trace": "dt0.5ms_bt1000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt1000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1370375829865225,
+    "trace": "dt0.5ms_bt1000_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt10000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.27509874998941086,
+    "trace": "dt0.5ms_bt10000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt10000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.36275904200738296,
+    "trace": "dt0.5ms_bt10000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt10000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3543843750085216,
+    "trace": "dt0.5ms_bt10000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt10000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.29133870798978023,
+    "trace": "dt0.5ms_bt10000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt10000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3992867080087308,
+    "trace": "dt0.5ms_bt10000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt10000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.4131292499951087,
+    "trace": "dt0.5ms_bt10000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_bt10000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.2899916669994127,
+    "trace": "dt0.5ms_bt10000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_bt10000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.33791687499615364,
+    "trace": "dt0.5ms_bt10000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_bt10000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3346736670064274,
+    "trace": "dt0.5ms_bt10000_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt100_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.23442749999230728,
+    "trace": "dt1ms_bt100_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt100_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.34788612500415184,
+    "trace": "dt1ms_bt100_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt100_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3557458750146907,
+    "trace": "dt1ms_bt100_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt100_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.2650131669943221,
+    "trace": "dt1ms_bt100_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt100_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3396869589923881,
+    "trace": "dt1ms_bt100_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt100_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.34517266700277105,
+    "trace": "dt1ms_bt100_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt100_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.27086550000240095,
+    "trace": "dt1ms_bt100_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt100_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.33564158400986344,
+    "trace": "dt1ms_bt100_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 100.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt100_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -100.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.37251600000308827,
+    "trace": "dt1ms_bt100_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt1000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.2647622080112342,
+    "trace": "dt1ms_bt1000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt1000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3320352080045268,
+    "trace": "dt1ms_bt1000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt1000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3557491670071613,
+    "trace": "dt1ms_bt1000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt1000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.2661822499940172,
+    "trace": "dt1ms_bt1000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt1000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.4271285829890985,
+    "trace": "dt1ms_bt1000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt1000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.35663733299588785,
+    "trace": "dt1ms_bt1000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt1000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.26892379199853167,
+    "trace": "dt1ms_bt1000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt1000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.32889399997657165,
+    "trace": "dt1ms_bt1000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 1000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt1000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -1000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.34336062500369735,
+    "trace": "dt1ms_bt1000_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt10000_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09958737500710413,
+    "trace": "dt1ms_bt10000_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt10000_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.12239087501075119,
+    "trace": "dt1ms_bt10000_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt10000_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09820745899924077,
+    "trace": "dt1ms_bt10000_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt10000_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09373541601235047,
+    "trace": "dt1ms_bt10000_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt10000_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.1083493749902118,
+    "trace": "dt1ms_bt10000_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt10000_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09951083298074082,
+    "trace": "dt1ms_bt10000_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_bt10000_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.1016317089961376,
+    "trace": "dt1ms_bt10000_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_bt10000_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09426129100029357,
+    "trace": "dt1ms_bt10000_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_damping_s_inv": 10000.0,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_bt10000_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      -1.0,
+      -10000.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.09611116599990055,
+    "trace": "dt1ms_bt10000_ir100_ns3/trace.csv"
+  }
+]

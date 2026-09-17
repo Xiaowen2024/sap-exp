@@ -1,0 +1,143 @@
+schema_version: 1
+name: round_socket_coacd_shared
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 2048
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.001
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: false
+joints:
+- id: peg_free
+  type: free
+  parent: world
+  child: peg
+articulations:
+- id: peg_art
+  joints:
+  - peg_free
+bodies:
+- id: socket
+  shapes:
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_00.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_01.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_02.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_03.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_04.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_05.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_06.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_07.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_08.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_09.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_10.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_11.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_12.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_13.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_14.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_15.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_16.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_17.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_18.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_19.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_20.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_21.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_22.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_23.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_24.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_25.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_26.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_27.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_28.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_29.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_30.obj
+    is_solid: true
+  - type: convex_mesh
+    path: /root/autodl-tmp/mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision/socket_piece_31.obj
+    is_solid: true
+- id: peg
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.12
+    q:
+    - 0.0
+    - 0.008726535498373935
+    - 0.0
+    - 0.9999619230641713
+  shapes:
+  - type: cylinder
+    radius: 0.01175
+    half_height: 0.025

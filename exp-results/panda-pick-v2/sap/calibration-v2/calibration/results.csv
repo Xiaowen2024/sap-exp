@@ -1,0 +1,4 @@
+tag,preset,success,failure_mode,final_cube_z_m,max_relative_slip_mm,max_orientation_drift_deg,max_penetration_mm,arm_tracking_rms_rad,torque_saturation_proxy_ratio,max_truncated_contacts,wall_s
+nominal_drake_ke10000_tau3ms,drake,False,normal_contact_instability,0.19389259815216064,12.991359457373619,36.740515672384944,6.027583964169025,0.017729860390926725,0.0,0,11.364137676544487
+nominal_approx32_ke10000_tau3ms,approx32,False,normal_contact_instability,0.19328820705413818,12.388219125568867,38.50468601311833,9.684596210718155,0.017741549830907317,0.0,0,11.28722492326051
+nominal_approx64_ke10000_tau3ms,approx64,False,normal_contact_instability,0.19328074157238007,12.4473562464118,38.501471609776,9.68456082046032,0.017741555032221867,0.0,0,11.524713482707739

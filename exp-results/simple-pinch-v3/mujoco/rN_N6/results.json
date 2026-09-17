@@ -1,0 +1,268 @@
+[
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.9786,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.232065366937709,
+        "Fn_cv": 8.405875388334824e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.232065366937709,
+        "Fn_cv": 6.99672424677009e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.232065366937709,
+    "capacity_ratio_2muN_over_mg": 0.5193352101485726,
+    "lift_follow_mm": -6693.354945704747,
+    "cube_vz_tail_mm_s": -10944.0503517243,
+    "slip_distance_mm": 6750.495295057366,
+    "mean_abs_vt_mm_s": 5400.523821635192,
+    "max_contacts": 8,
+    "wall_s": 0.046161666978150606,
+    "left_duty_lift": 0.01679328268692523,
+    "left_Fn_mean_lift_N": 48.6566413866482,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.01679328268692523,
+    "right_Fn_mean_lift_N": 48.65664138751903,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.6116,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.2156540686511255,
+        "Fn_cv": 3.2876032425915484e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.215654068651126,
+        "Fn_cv": 3.26463673144717e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.215654068651126,
+    "capacity_ratio_2muN_over_mg": 0.82878205441,
+    "lift_follow_mm": -5333.250345987229,
+    "cube_vz_tail_mm_s": -9701.468347775937,
+    "slip_distance_mm": 5390.700787092137,
+    "mean_abs_vt_mm_s": 4312.874424236066,
+    "max_contacts": 8,
+    "wall_s": 0.04720691597322002,
+    "left_duty_lift": 0.040383846461415435,
+    "left_Fn_mean_lift_N": 31.45636152228624,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.040383846461415435,
+    "right_Fn_mean_lift_N": 31.456361522286127,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.5151,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.207488391731899,
+        "Fn_cv": 2.6464153494142665e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.207488391731896,
+        "Fn_cv": 3.219828340398918e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.207488391731898,
+    "capacity_ratio_2muN_over_mg": 0.9827551894826235,
+    "lift_follow_mm": -869.5538722401525,
+    "cube_vz_tail_mm_s": -3616.0911668173203,
+    "slip_distance_mm": 928.5254268827258,
+    "mean_abs_vt_mm_s": 743.3447330037934,
+    "max_contacts": 8,
+    "wall_s": 0.0664640839677304,
+    "left_duty_lift": 0.28748500599760096,
+    "left_Fn_mean_lift_N": 14.620648429146083,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.28748500599760096,
+    "right_Fn_mean_lift_N": 14.620648429146083,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.4893,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.204764370399791,
+        "Fn_cv": 3.3756536758444144e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.204764370399791,
+        "Fn_cv": 3.1360216786670476e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.204764370399791,
+    "capacity_ratio_2muN_over_mg": 1.0341202854896692,
+    "lift_follow_mm": 56.05599445331751,
+    "cube_vz_tail_mm_s": -0.19030944367770017,
+    "slip_distance_mm": 3.821474896650693,
+    "mean_abs_vt_mm_s": 3.056853612131337,
+    "max_contacts": 8,
+    "wall_s": 0.10060291702393442,
+    "left_duty_lift": 0.968812475009996,
+    "left_Fn_mean_lift_N": 6.412379081291304,
+    "left_rho_mean_lift": 0.9656878266541351,
+    "right_duty_lift": 0.968812475009996,
+    "right_Fn_mean_lift_N": 6.412379081291302,
+    "right_rho_mean_lift": 0.9656878266474471,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.466,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.202047499594026,
+        "Fn_cv": 3.1133888165059384e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.202047499594025,
+        "Fn_cv": 3.548509990959594e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.202047499594025,
+    "capacity_ratio_2muN_over_mg": 1.0853508506418563,
+    "lift_follow_mm": 58.05050739154974,
+    "cube_vz_tail_mm_s": -0.1873317566460457,
+    "slip_distance_mm": 1.8326081220801311,
+    "mean_abs_vt_mm_s": 1.4663541058946363,
+    "max_contacts": 8,
+    "wall_s": 0.09956183301983401,
+    "left_duty_lift": 0.9860055977608957,
+    "left_Fn_mean_lift_N": 6.293713415512414,
+    "left_rho_mean_lift": 0.9206400024868213,
+    "right_duty_lift": 0.9860055977608957,
+    "right_Fn_mean_lift_N": 6.293713415512414,
+    "right_rho_mean_lift": 0.9206400021068046,
+    "grasp_success": true
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.40775,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.193911243914005,
+        "Fn_cv": 2.877445271170276e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.193911243914005,
+        "Fn_cv": 2.6845056281859456e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.193911243914005,
+    "capacity_ratio_2muN_over_mg": 1.2387737322133923,
+    "lift_follow_mm": 59.17283122667131,
+    "cube_vz_tail_mm_s": -0.17988740513960974,
+    "slip_distance_mm": 0.7243790894456852,
+    "mean_abs_vt_mm_s": 0.5800071703780278,
+    "max_contacts": 8,
+    "wall_s": 0.09772495797369629,
+    "left_duty_lift": 0.9956017592962815,
+    "left_Fn_mean_lift_N": 6.2231813712724176,
+    "left_rho_mean_lift": 0.8070101994801732,
+    "right_duty_lift": 0.9956017592962815,
+    "right_Fn_mean_lift_N": 6.2231813712724176,
+    "right_rho_mean_lift": 0.807010200392083,
+    "grasp_success": true
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.24465,
+    "compression_per_side_mm": 0.31434,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 6.15087889501032,
+        "Fn_cv": 1.7269235737910447e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 6.150878895010321,
+        "Fn_cv": 1.571643354835784e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 6.150878895010321,
+    "capacity_ratio_2muN_over_mg": 2.0502788693362137,
+    "lift_follow_mm": 59.731810362452165,
+    "cube_vz_tail_mm_s": -0.1590402453095173,
+    "slip_distance_mm": 0.2046332086445292,
+    "mean_abs_vt_mm_s": 0.16390398321891336,
+    "max_contacts": 8,
+    "wall_s": 0.09854616597294807,
+    "left_duty_lift": 1.0,
+    "left_Fn_mean_lift_N": 6.151208701715519,
+    "left_rho_mean_lift": 0.48836324589558977,
+    "right_duty_lift": 1.0,
+    "right_Fn_mean_lift_N": 6.151208701715519,
+    "right_rho_mean_lift": 0.48836318288833,
+    "grasp_success": true
+  }
+]

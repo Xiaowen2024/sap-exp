@@ -1,0 +1,31 @@
+{
+  "engine": "SAP Warp 1.16.0",
+  "device": "cpu",
+  "dt_s": 0.001,
+  "duration_s": 4.0,
+  "force_N": 150.0,
+  "force_direction": "xy at 60 deg",
+  "effective_pair_mu": {
+    "box_ground": 0.4,
+    "ball_box": 0.8
+  },
+  "contact_parameters": {
+    "ke": 10000.0,
+    "tau_s": 0.03,
+    "preset": "drake"
+  },
+  "mean_squared_velocity_error": 0.36005781322318775,
+  "step_rate_hz": 6.801947399216515,
+  "max_raw_collision_contacts": 29,
+  "contact_capacity": 64,
+  "final_box_velocity_m_s": [
+    0.992621660232544,
+    1.7254754304885864,
+    0.007457841653376818
+  ],
+  "final_ball_velocity_m_s": [
+    0.6169419884681702,
+    1.0611869096755981,
+    -0.007421825546771288
+  ]
+}

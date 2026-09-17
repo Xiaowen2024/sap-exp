@@ -1,0 +1,15 @@
+{
+  "purpose": "MuJoCo A/B/C sweep structurally matched to SAP Drake experiment",
+  "fixed": {
+    "solver": "Newton",
+    "integrator": "Euler",
+    "cone": "elliptic",
+    "iterations": 1000,
+    "tolerance": 1e-30
+  },
+  "sections": {
+    "A": "dt",
+    "B": "solref time constant",
+    "C": "solimp impedance; no one-to-one SAP ke equivalence"
+  }
+}

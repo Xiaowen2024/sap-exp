@@ -1,0 +1,12 @@
+{
+  "engine": "SAP Warp 1.16.0",
+  "device": "cpu",
+  "source_task": "leggedrobotics/SimBenchmark bouncing",
+  "balls": 49,
+  "mass_kg": 10.0,
+  "radius_m": 0.1,
+  "height_m": 5.0,
+  "duration_s": 2.4,
+  "reference": "E(t) = E0; reported metric mean((E-E0)^2)",
+  "contact": "SAP native compliant contact; Drake preset; per-shape ke/tau sweep"
+}

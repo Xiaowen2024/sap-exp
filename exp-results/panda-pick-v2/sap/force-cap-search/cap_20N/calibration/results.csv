@@ -1,0 +1,2 @@
+tag,preset,success,failure_mode,final_cube_z_m,max_relative_slip_mm,max_orientation_drift_deg,max_penetration_mm,arm_tracking_rms_rad,torque_saturation_proxy_ratio,max_truncated_contacts,wall_s
+nominal_drake_ke50000_tau1ms_f16mm_cap20N,drake,True,success,0.19266818463802338,2.407366089143955,11.856273836597339,0.4019908665213734,0.017729322005746933,0.5615853658536586,0,15.201709008775651

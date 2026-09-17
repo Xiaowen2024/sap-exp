@@ -1,0 +1,39 @@
+{
+  "engine": "sap_warp",
+  "device": "cuda",
+  "tag": "offset_z_plus_5mm_drake_ke50000_tau1ms_f16mm",
+  "spec": {
+    "mu": 0.8,
+    "mass_kg": 0.1,
+    "offset_m": [
+      0.0,
+      0.0,
+      0.005
+    ],
+    "transfer_speed": "nominal"
+  },
+  "dt_s": 0.005,
+  "duration_s": 8.2,
+  "preset": "drake",
+  "pair_ke_N_m": 50000.0,
+  "pair_tau_ms": 1.0,
+  "closed_finger_target_m": 0.016,
+  "success": true,
+  "failure_mode": "success",
+  "drop_time_s": null,
+  "final_cube_z_m": 0.19277699291706085,
+  "max_relative_slip_mm": 1.4398772039607064,
+  "max_orientation_drift_deg": 7.2446053078769115,
+  "max_raw_orientation_drift_deg": 7.2450018008403285,
+  "max_penetration_mm": 1.323280273936689,
+  "finger_contact_duty": {
+    "left": 1.0,
+    "right": 1.0
+  },
+  "arm_tracking_rms_rad": 0.017729589630811313,
+  "arm_tracking_max_rad": 0.027503110074083882,
+  "torque_saturation_proxy_ratio": 0.0,
+  "max_candidate_contacts": 256,
+  "max_truncated_contacts": 0,
+  "wall_s": 13.54477540589869
+}

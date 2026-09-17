@@ -1,0 +1,184 @@
+{
+  "mujoco": {
+    "calibration": {
+      "k_pair_target_N_m": 110275.86390702323,
+      "reference_dt_ms": 0.025,
+      "reference_impact_speed_m_s": 0.5,
+      "target_e_eff": 0.8,
+      "damping_scale": 0.07441711425781251,
+      "observed_e_eff": 0.7999974830304062,
+      "calibration_abs_error": 2.5169695938576098e-06,
+      "observed_contact_duration_ms": 30.0,
+      "target_contact_duration_ms": 30.0,
+      "contact_duration_abs_error_ms": 0.0,
+      "calibration_mode": "matched_restitution_and_duration"
+    },
+    "reference_row": {
+      "engine": "mujoco",
+      "k_pair_target_N_m": 110275.86390702323,
+      "dt_ms": 0.025,
+      "impact_speed_m_s": 0.5,
+      "damping_scale": 0.07441711425781251,
+      "solref_stiffness_s_2": 11027.586390702321,
+      "solref_damping_s_1": 15.629426950765305,
+      "solimp_constant_impedance": 0.9,
+      "integrator": "implicitfast",
+      "solver": "Newton",
+      "margin_mm": 0.0,
+      "gap_mm": 0.0,
+      "initial_surface_separation_mm": 1.0,
+      "v_pre_m_s": -0.5,
+      "v_post_m_s": 0.3999987415152031,
+      "e_eff": 0.7999974830304062,
+      "max_geometric_penetration_mm": 4.258670905920747,
+      "contact_duration_ms": 30.0,
+      "peak_normal_force_N": 47.497247416256556,
+      "normal_impulse_N_s": 0.8999987415152029,
+      "momentum_change_N_s": 0.8999987415152031,
+      "impulse_momentum_relative_error": 2.467165726823191e-16,
+      "energy_loss_J": 0.045000503393126876,
+      "energy_loss_fraction": 0.360004027145015,
+      "contact_observed": "True",
+      "separated": "True",
+      "wall_s": 0.005268082953989506,
+      "trace_csv": "exp-results/dynamic-impact-restitution-time-matched/mujoco/traces/k110276_dt0p025ms_v0p5.csv"
+    },
+    "e_range_over_dt_at_reference_velocity": [
+      0.7999136722310517,
+      0.8027170173089277
+    ],
+    "tc_range_over_dt_at_reference_velocity_ms": [
+      30.0,
+      30.000000000000004
+    ]
+  },
+  "sap": {
+    "calibration": {
+      "k_pair_target_N_m": 10000.0,
+      "reference_dt_ms": 0.025,
+      "reference_impact_speed_m_s": 0.5,
+      "target_e_eff": 0.8,
+      "tau_pair_ms": 1.4609375,
+      "observed_e_eff": 0.8000028729438782,
+      "calibration_abs_error": 2.872943878129419e-06,
+      "candidate_trials": [
+        {
+          "tau_pair_ms": 0.0,
+          "e_eff": 0.9960833787918091
+        },
+        {
+          "tau_pair_ms": 0.05,
+          "e_eff": 0.9883107542991638
+        },
+        {
+          "tau_pair_ms": 0.1,
+          "e_eff": 0.9806162714958191
+        },
+        {
+          "tau_pair_ms": 0.2,
+          "e_eff": 0.9654882550239563
+        },
+        {
+          "tau_pair_ms": 0.5,
+          "e_eff": 0.9220278859138489
+        },
+        {
+          "tau_pair_ms": 1.0,
+          "e_eff": 0.8554993867874146
+        },
+        {
+          "tau_pair_ms": 2.0,
+          "e_eff": 0.7413373589515686
+        },
+        {
+          "tau_pair_ms": 3.0,
+          "e_eff": 0.6475695967674255
+        },
+        {
+          "tau_pair_ms": 5.0,
+          "e_eff": 0.5045581459999084
+        },
+        {
+          "tau_pair_ms": 8.0,
+          "e_eff": 0.3623811900615692
+        },
+        {
+          "tau_pair_ms": 12.0,
+          "e_eff": 0.24812527000904083
+        },
+        {
+          "tau_pair_ms": 20.0,
+          "e_eff": 0.13499793410301208
+        }
+      ],
+      "observed_contact_duration_ms": 30.024999999999995,
+      "target_contact_duration_ms": 30.0,
+      "contact_duration_abs_error_ms": 0.024999999999995026,
+      "calibration_mode": "matched_restitution_and_duration",
+      "duration_candidates": [
+        {
+          "k_pair_target_N_m": 7500.0,
+          "contact_duration_ms": 34.675,
+          "e_eff": 0.8000085353851318
+        },
+        {
+          "k_pair_target_N_m": 8500.0,
+          "contact_duration_ms": 32.575,
+          "e_eff": 0.7999914288520813
+        },
+        {
+          "k_pair_target_N_m": 10000.0,
+          "contact_duration_ms": 30.024999999999995,
+          "e_eff": 0.8000028729438782
+        },
+        {
+          "k_pair_target_N_m": 11500.0,
+          "contact_duration_ms": 28.000000000000004,
+          "e_eff": 0.7999972701072693
+        },
+        {
+          "k_pair_target_N_m": 13000.0,
+          "contact_duration_ms": 26.325000000000003,
+          "e_eff": 0.8000048398971558
+        }
+      ]
+    },
+    "reference_row": {
+      "engine": "sap_warp",
+      "device": "cuda",
+      "contact_preset": "drake",
+      "k_pair_target_N_m": 10000.0,
+      "ke_shape_N_m": 20000.0,
+      "tau_pair_ms": 1.4609375,
+      "tau_shape_ms": 0.73046875,
+      "dt_ms": 0.025,
+      "impact_speed_m_s": 0.5,
+      "margin_mm": 0.0,
+      "rigid_gap_mm": 0.0,
+      "initial_surface_separation_mm": 1.0,
+      "v_pre_m_s": -0.5,
+      "v_post_m_s": 0.4000014364719391,
+      "e_eff": 0.8000028729438782,
+      "max_geometric_penetration_mm": 4.472138807177544,
+      "contact_duration_ms": 30.024999999999995,
+      "peak_normal_force_N": 45.21117030505524,
+      "normal_impulse_N_s": 0.9000015443863372,
+      "momentum_change_N_s": 0.9000014364719391,
+      "impulse_momentum_relative_error": 1.1990469538276523e-07,
+      "energy_loss_J": 0.04499942541019264,
+      "energy_loss_fraction": 0.3599954032815411,
+      "contact_observed": "True",
+      "separated": "True",
+      "wall_s": 6.540731956250966,
+      "trace_csv": "/root/SIM-EXP/dynamic-impact-restitution-time-matched/sap/traces/k10000_dt0p025ms_v0p5/trace.csv"
+    },
+    "e_range_over_dt_at_reference_velocity": [
+      0.7452223300933838,
+      0.8019192814826965
+    ],
+    "tc_range_over_dt_at_reference_velocity_ms": [
+      30.0,
+      30.024999999999995
+    ]
+  }
+}

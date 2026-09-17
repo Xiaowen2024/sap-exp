@@ -1,0 +1,110 @@
+[
+  {
+    "engine": "mujoco",
+    "mujoco_version": "3.12.0",
+    "force_target_N": 1.0,
+    "dt_ms": 0.5,
+    "sample_period_ms": 5.0,
+    "settle_s": 1.5,
+    "ramp_s": 1.0,
+    "hold_s": 8.0,
+    "tail_s": 2.0,
+    "target_pair_ke_N_m": 10000.0,
+    "solref_ground_direct": [
+      -999.9999999999998,
+      -63.24555320336758
+    ],
+    "solref_internal_direct": [
+      -1999.9999999999995,
+      -89.44271909999158
+    ],
+    "solimp_constant_d": 0.9,
+    "cone": "elliptic",
+    "mu_pair": 0.5,
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "wall_s": 0.4185585000086576,
+    "trace": "trace_F_1N.csv"
+  },
+  {
+    "engine": "mujoco",
+    "mujoco_version": "3.12.0",
+    "force_target_N": 2.0,
+    "dt_ms": 0.5,
+    "sample_period_ms": 5.0,
+    "settle_s": 1.5,
+    "ramp_s": 1.0,
+    "hold_s": 8.0,
+    "tail_s": 2.0,
+    "target_pair_ke_N_m": 10000.0,
+    "solref_ground_direct": [
+      -999.9999999999998,
+      -63.24555320336758
+    ],
+    "solref_internal_direct": [
+      -1999.9999999999995,
+      -89.44271909999158
+    ],
+    "solimp_constant_d": 0.9,
+    "cone": "elliptic",
+    "mu_pair": 0.5,
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "wall_s": 0.39531312498729676,
+    "trace": "trace_F_2N.csv"
+  },
+  {
+    "engine": "mujoco",
+    "mujoco_version": "3.12.0",
+    "force_target_N": 3.0,
+    "dt_ms": 0.5,
+    "sample_period_ms": 5.0,
+    "settle_s": 1.5,
+    "ramp_s": 1.0,
+    "hold_s": 8.0,
+    "tail_s": 2.0,
+    "target_pair_ke_N_m": 10000.0,
+    "solref_ground_direct": [
+      -999.9999999999998,
+      -63.24555320336758
+    ],
+    "solref_internal_direct": [
+      -1999.9999999999995,
+      -89.44271909999158
+    ],
+    "solimp_constant_d": 0.9,
+    "cone": "elliptic",
+    "mu_pair": 0.5,
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "wall_s": 0.3832017919921782,
+    "trace": "trace_F_3N.csv"
+  },
+  {
+    "engine": "mujoco",
+    "mujoco_version": "3.12.0",
+    "force_target_N": 4.0,
+    "dt_ms": 0.5,
+    "sample_period_ms": 5.0,
+    "settle_s": 1.5,
+    "ramp_s": 1.0,
+    "hold_s": 8.0,
+    "tail_s": 2.0,
+    "target_pair_ke_N_m": 10000.0,
+    "solref_ground_direct": [
+      -999.9999999999998,
+      -63.24555320336758
+    ],
+    "solref_internal_direct": [
+      -1999.9999999999995,
+      -89.44271909999158
+    ],
+    "solimp_constant_d": 0.9,
+    "cone": "elliptic",
+    "mu_pair": 0.5,
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "wall_s": 0.37969154099118896,
+    "trace": "trace_F_4N.csv"
+  }
+]

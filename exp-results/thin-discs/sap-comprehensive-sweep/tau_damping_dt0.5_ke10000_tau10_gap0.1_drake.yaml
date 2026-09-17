@@ -1,0 +1,80 @@
+schema_version: 1
+name: thin_disc_stack
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 2048
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0001
+  defaults:
+    shape:
+      density: 2598.0
+      ke: 10000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: true
+bodies:
+- id: disc_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.03
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+- id: disc_1
+  transform:
+    p:
+    - 0.003
+    - -0.002
+    - 0.07
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+- id: disc_2
+  transform:
+    p:
+    - -0.002
+    - 0.002
+    - 0.11
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+joints:
+- id: disc_0_free
+  type: free
+  parent: world
+  child: disc_0
+- id: disc_1_free
+  type: free
+  parent: world
+  child: disc_1
+- id: disc_2_free
+  type: free
+  parent: world
+  child: disc_2
+articulations:
+- id: disc_0_art
+  joints:
+  - disc_0_free
+- id: disc_1_art
+  joints:
+  - disc_1_free
+- id: disc_2_art
+  joints:
+  - disc_2_free

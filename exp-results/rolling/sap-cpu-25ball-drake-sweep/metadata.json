@@ -1,0 +1,9 @@
+{
+  "purpose": "SAP Drake preset CPU A/B/C sweep",
+  "ball_grid": 5,
+  "sections": {
+    "A": "dt",
+    "B": "tau at dt=1ms, ke=1e4",
+    "C": "ke at dt=1ms, tau=30ms"
+  }
+}

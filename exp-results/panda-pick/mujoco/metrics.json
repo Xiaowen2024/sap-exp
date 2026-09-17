@@ -1,0 +1,13 @@
+{
+  "dt_s": 0.001,
+  "duration_s": 6,
+  "initial_cube_z_m": 0.01999985904678465,
+  "final_cube_z_m": 0.13439797723796887,
+  "peak_cube_z_m": 0.13439797723796887,
+  "lifted_above_0_10_m": true,
+  "max_penetration_m": 0.0017003712012705094,
+  "max_contacts": 12,
+  "controller": "MuJoCo inverse-dynamics PD, Kp/Kd arm=100/20, finger=3000/80; URDF effort-clipped",
+  "contact_parameters": "solref=\"0.005 1.5\"; solimp=\"0.9 0.95 0.001 0.5 2\"",
+  "scene_alignment": "same Panda URDF, cube pose/size, friction=0.8, armature and self-collision setting as SAP"
+}

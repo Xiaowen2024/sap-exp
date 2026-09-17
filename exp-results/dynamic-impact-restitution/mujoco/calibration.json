@@ -1,0 +1,20 @@
+[
+  {
+    "k_pair_target_N_m": 10000.0,
+    "reference_dt_ms": 0.025,
+    "reference_impact_speed_m_s": 0.5,
+    "target_e_eff": 0.8,
+    "damping_scale": 0.07437438964843752,
+    "observed_e_eff": 0.7999977821369305,
+    "calibration_abs_error": 2.2178630695313117e-06
+  },
+  {
+    "k_pair_target_N_m": 100000.0,
+    "reference_dt_ms": 0.025,
+    "reference_impact_speed_m_s": 0.5,
+    "target_e_eff": 0.8,
+    "damping_scale": 0.07441406250000002,
+    "observed_e_eff": 0.7999981996322438,
+    "calibration_abs_error": 1.800367756210619e-06
+  }
+]

@@ -1,0 +1,43 @@
+schema_version: 1
+name: sphere_plane_impact
+simulation:
+  dt: 2.5e-05
+  num_worlds: 1
+  max_rigid_contact: 16
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: 0.0
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 29841.55182973037
+      ke: 15000.0
+      tau: 0.0008454589843750001
+      mu: 0.0
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+bodies:
+- id: sphere
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.021
+    q: identity
+  shapes:
+  - type: sphere
+    radius: 0.02
+    density: 29841.55182973037
+joints:
+- id: sphere_free
+  type: free
+  parent: world
+  child: sphere
+articulations:
+- id: sphere_art
+  joints:
+  - sphere_free

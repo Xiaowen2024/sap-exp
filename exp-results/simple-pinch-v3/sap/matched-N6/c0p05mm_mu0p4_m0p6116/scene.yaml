@@ -1,0 +1,125 @@
+schema_version: 1
+name: simple_pinch_v2
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 128
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: 0.0
+  rigid_gap: 0.0
+  defaults:
+    joint:
+      armature: 0.0
+      target_ke: 20000.0
+      target_kd: 300.0
+    shape:
+      density: 1000.0
+      ke: 20000.0
+      tau: 0.0015
+      mu: 0.4
+ground: false
+bodies:
+- id: left_pad
+  transform:
+    p:
+    - -0.029949999999999997
+    - 0.0
+    - 0.0
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.01
+    hy: 0.04
+    hz: 0.04
+    cfg:
+      density: 312500.0
+      mu: 0.4
+- id: right_pad
+  transform:
+    p:
+    - 0.029949999999999997
+    - 0.0
+    - 0.0
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.01
+    hy: 0.04
+    hz: 0.04
+    cfg:
+      density: 312500.0
+      mu: 0.4
+- id: cube
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.0
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+    cfg:
+      density: 9556.249999999998
+      mu: 0.4
+joints:
+- id: left_lift
+  type: prismatic
+  parent: world
+  child: left_pad
+  axis:
+  - 0
+  - 0
+  - 1
+  parent_xform:
+    p:
+    - -0.029949999999999997
+    - 0
+    - 0
+    q: identity
+  child_xform: identity
+- id: right_lift
+  type: prismatic
+  parent: world
+  child: right_pad
+  axis:
+  - 0
+  - 0
+  - 1
+  parent_xform:
+    p:
+    - 0.029949999999999997
+    - 0
+    - 0
+    q: identity
+  child_xform: identity
+- id: cube_free
+  type: free
+  parent: world
+  child: cube
+articulations:
+- id: left_articulation
+  joints:
+  - left_lift
+- id: right_articulation
+  joints:
+  - right_lift
+- id: cube_articulation
+  joints:
+  - cube_free
+post_build:
+- op: set_joint_targets
+  joint: left_lift
+  mode: position
+  ke: 20000.0
+  kd: 300.0
+- op: set_joint_targets
+  joint: right_lift
+  mode: position
+  ke: 20000.0
+  kd: 300.0

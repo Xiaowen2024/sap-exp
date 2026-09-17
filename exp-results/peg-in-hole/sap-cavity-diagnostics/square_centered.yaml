@@ -1,0 +1,94 @@
+schema_version: 1
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 2048
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.001
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: false
+bodies:
+- id: socket
+  shapes:
+  - type: box
+    hx: 0.005
+    hy: 0.027
+    hz: 0.02
+    transform:
+      p:
+      - 0.017
+      - 0.0
+      - 0.02
+      q: identity
+  - type: box
+    hx: 0.005
+    hy: 0.027
+    hz: 0.02
+    transform:
+      p:
+      - -0.017
+      - 0.0
+      - 0.02
+      q: identity
+  - type: box
+    hx: 0.027
+    hy: 0.005
+    hz: 0.02
+    transform:
+      p:
+      - 0.0
+      - 0.017
+      - 0.02
+      q: identity
+  - type: box
+    hx: 0.027
+    hy: 0.005
+    hz: 0.02
+    transform:
+      p:
+      - 0.0
+      - -0.017
+      - 0.02
+      q: identity
+  - type: box
+    hx: 0.022
+    hy: 0.022
+    hz: 0.005
+    transform:
+      p:
+      - 0.0
+      - 0.0
+      - 0.005
+      q: identity
+- id: peg
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.12
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.01
+    hy: 0.01
+    hz: 0.025
+joints:
+- id: peg_free
+  type: free
+  parent: world
+  child: peg
+articulations:
+- id: peg_art
+  joints:
+  - peg_free
+name: analytic_square_cavity

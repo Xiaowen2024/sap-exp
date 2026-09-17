@@ -1,0 +1,5 @@
+sweep_group,engine,device,dt_ms,ke_N_m,tau_ms,kd_Ns_m,rigid_gap_mm,preset,max_penetration_mm,final_com_height_error_mm,orientation_tilt_max_deg,tail_com_jitter_pp_mm,tail_tilt_jitter_pp_deg,settling_time_s,solver_iterations_mean,solver_iterations_max,max_contacts,truncated_contacts,order_preserved,escaped,failure,stepping_wall_s
+rigid_gap,sap_warp,cuda:0,0.5,100000.0,3.0,300.0,0.0,drake,0.8872361504472792,0.059698462175826646,0.0743470746208026,0.007067923434078693,0.001843553543875066,2.0,-1.0,-1,12,0,True,False,False,51.165784797631204
+rigid_gap,sap_warp,cuda:0,0.5,100000.0,3.0,300.0,0.05,drake,0.35649543860927224,0.0073880401129525555,0.037928740046556,0.0,2.667585926345657e-07,0.17,-1.0,-1,12,0,True,False,False,25.029289221856743
+rigid_gap,sap_warp,cuda:0,0.5,100000.0,3.0,300.0,0.1,drake,0.35649543860927224,0.0073880401129525555,0.037928740046556,0.0,2.667585926345657e-07,0.17,-1.0,-1,12,0,True,False,False,25.22854520333931
+rigid_gap,sap_warp,cuda:0,0.5,100000.0,3.0,300.0,0.5,drake,0.3320607356727123,0.007389592317243003,0.03654821396843775,0.0,2.918113491710916e-07,0.17,-1.0,-1,12,0,True,False,False,24.451713841874152

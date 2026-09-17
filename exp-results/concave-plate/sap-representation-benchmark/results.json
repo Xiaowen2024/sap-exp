@@ -1,0 +1,140 @@
+[
+  {
+    "engine": "sap_warp",
+    "device": "cuda:0",
+    "task": "sphere_in_plate",
+    "representation": "raw_mesh_control",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "rigid_gap_mm": 2.0,
+    "ke_shape_N_m": 100000.0,
+    "tau_shape_ms": 10.0,
+    "final_z_mm": [
+      -0.0038985390347079374,
+      26.750778779387474
+    ],
+    "final_radial_mm": [
+      2.362199311239948e-05,
+      19.560548891754394
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9613333333333334,
+    "max_candidate_contacts": 25,
+    "max_phi0_penetration_mm": 0.017657876014709473,
+    "max_raw_witness_penetration_mm": 0.004669651129369473,
+    "tail_z_jitter_pp_mm": [
+      0.00011927113519050181,
+      0.01010112464427948
+    ],
+    "max_truncated_contacts": 0,
+    "representation_valid_for_penetration": false,
+    "trace_csv": "/root/autodl-tmp/sim-exp-extra/plate/formal/sphere_in_plate_raw_mesh_control/trace.csv",
+    "stepping_wall_s": 62.40988842584193
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda:0",
+    "task": "sphere_in_plate",
+    "representation": "coacd_shared",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "rigid_gap_mm": 2.0,
+    "ke_shape_N_m": 100000.0,
+    "tau_shape_ms": 10.0,
+    "final_z_mm": [
+      0.08482119301334023,
+      27.444055303931236
+    ],
+    "final_radial_mm": [
+      0.00018053865373205793,
+      33.66688885642797
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9613333333333334,
+    "max_candidate_contacts": 13,
+    "max_phi0_penetration_mm": 0.024711713194847107,
+    "max_raw_witness_penetration_mm": 0.01913308989224212,
+    "tail_z_jitter_pp_mm": [
+      1.6370904631912708e-06,
+      1.862645149230957e-06
+    ],
+    "max_truncated_contacts": 0,
+    "representation_valid_for_penetration": true,
+    "trace_csv": "/root/autodl-tmp/sim-exp-extra/plate/formal/sphere_in_plate_coacd_shared/trace.csv",
+    "stepping_wall_s": 53.66860755579546
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda:0",
+    "task": "three_plate_stack",
+    "representation": "raw_mesh_control",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "rigid_gap_mm": 2.0,
+    "ke_shape_N_m": 100000.0,
+    "tau_shape_ms": 10.0,
+    "final_z_mm": [
+      -0.00971112876868574,
+      8.333725854754448,
+      16.677753999829292
+    ],
+    "final_radial_mm": [
+      0.0014910542914332474,
+      3.6322720502735457,
+      2.4860754259508755
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9613333333333334,
+    "max_candidate_contacts": 148,
+    "max_phi0_penetration_mm": 0.0182650655915495,
+    "max_raw_witness_penetration_mm": 0.01826487816782657,
+    "tail_z_jitter_pp_mm": [
+      0.00011408701539039612,
+      0.00012107193470001221,
+      0.00011734664440155029
+    ],
+    "max_truncated_contacts": 0,
+    "representation_valid_for_penetration": false,
+    "trace_csv": "/root/autodl-tmp/sim-exp-extra/plate/formal/three_plate_stack_raw_mesh_control/trace.csv",
+    "stepping_wall_s": 185.6759723010473
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda:0",
+    "task": "three_plate_stack",
+    "representation": "coacd_shared",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "rigid_gap_mm": 2.0,
+    "ke_shape_N_m": 100000.0,
+    "tau_shape_ms": 10.0,
+    "final_z_mm": [
+      0.0640212238067761,
+      11.250702664256096,
+      22.414442151784897
+    ],
+    "final_radial_mm": [
+      0.03943207701928806,
+      6.939148440966629,
+      0.3662498562761508
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9613333333333334,
+    "max_candidate_contacts": 218,
+    "max_phi0_penetration_mm": 0.08853129838826135,
+    "max_raw_witness_penetration_mm": 0.08852439755950794,
+    "tail_z_jitter_pp_mm": [
+      2.2482709027826786e-06,
+      0.003837980329990387,
+      0.004295259714126587
+    ],
+    "max_truncated_contacts": 0,
+    "representation_valid_for_penetration": true,
+    "trace_csv": "/root/autodl-tmp/sim-exp-extra/plate/formal/three_plate_stack_coacd_shared/trace.csv",
+    "stepping_wall_s": 118.87691114004701
+  }
+]

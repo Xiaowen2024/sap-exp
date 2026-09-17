@@ -1,0 +1,1865 @@
+[
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfrinherit_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.003089290985372,
+    "trace": "dt0.25ms_tfrinherit_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfrinherit_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.90671041700989,
+    "trace": "dt0.25ms_tfrinherit_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfrinherit_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.197882375010522,
+    "trace": "dt0.25ms_tfrinherit_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfrinherit_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9896456249989569,
+    "trace": "dt0.25ms_tfrinherit_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfrinherit_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7770787499903236,
+    "trace": "dt0.25ms_tfrinherit_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfrinherit_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.9944370829907712,
+    "trace": "dt0.25ms_tfrinherit_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfrinherit_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9170610000146553,
+    "trace": "dt0.25ms_tfrinherit_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfrinherit_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7024457500083372,
+    "trace": "dt0.25ms_tfrinherit_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfrinherit_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.263303249987075,
+    "trace": "dt0.25ms_tfrinherit_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr4ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.089026166999247,
+    "trace": "dt0.25ms_tfr4ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr4ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.8866279590001795,
+    "trace": "dt0.25ms_tfr4ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr4ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.2037967079959344,
+    "trace": "dt0.25ms_tfr4ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr4ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9081009170040488,
+    "trace": "dt0.25ms_tfr4ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr4ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.712178749992745,
+    "trace": "dt0.25ms_tfr4ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr4ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.8217949170211796,
+    "trace": "dt0.25ms_tfr4ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr4ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9095398339850362,
+    "trace": "dt0.25ms_tfr4ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr4ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7018051659979392,
+    "trace": "dt0.25ms_tfr4ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr4ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.885834499989869,
+    "trace": "dt0.25ms_tfr4ms_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr8ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0007865420193411,
+    "trace": "dt0.25ms_tfr8ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr8ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.890529708005488,
+    "trace": "dt0.25ms_tfr8ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr8ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.3326994589879178,
+    "trace": "dt0.25ms_tfr8ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr8ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9131129999877885,
+    "trace": "dt0.25ms_tfr8ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr8ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7253491670126095,
+    "trace": "dt0.25ms_tfr8ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr8ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 2.3475290420174133,
+    "trace": "dt0.25ms_tfr8ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.25ms_tfr8ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9089537079853471,
+    "trace": "dt0.25ms_tfr8ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.25ms_tfr8ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.7010130829876289,
+    "trace": "dt0.25ms_tfr8ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.00025,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.25ms_tfr8ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.8920475420018192,
+    "trace": "dt0.25ms_tfr8ms_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfrinherit_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5745441250037402,
+    "trace": "dt0.5ms_tfrinherit_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfrinherit_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0395996670122258,
+    "trace": "dt0.5ms_tfrinherit_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfrinherit_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1744193329941481,
+    "trace": "dt0.5ms_tfrinherit_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfrinherit_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5323622500000056,
+    "trace": "dt0.5ms_tfrinherit_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfrinherit_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7604186249955092,
+    "trace": "dt0.5ms_tfrinherit_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfrinherit_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.138666791986907,
+    "trace": "dt0.5ms_tfrinherit_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfrinherit_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5328539170150179,
+    "trace": "dt0.5ms_tfrinherit_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfrinherit_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.8218420000048354,
+    "trace": "dt0.5ms_tfrinherit_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfrinherit_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1592906669829972,
+    "trace": "dt0.5ms_tfrinherit_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr4ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5913137079915032,
+    "trace": "dt0.5ms_tfr4ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr4ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9234355000080541,
+    "trace": "dt0.5ms_tfr4ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr4ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.2113205829809885,
+    "trace": "dt0.5ms_tfr4ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr4ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5521366659959313,
+    "trace": "dt0.5ms_tfr4ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr4ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9183307089842856,
+    "trace": "dt0.5ms_tfr4ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr4ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.2614267079916317,
+    "trace": "dt0.5ms_tfr4ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr4ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5649671659921296,
+    "trace": "dt0.5ms_tfr4ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr4ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.9848274579853751,
+    "trace": "dt0.5ms_tfr4ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr4ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1422759169945493,
+    "trace": "dt0.5ms_tfr4ms_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr8ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5012249999854248,
+    "trace": "dt0.5ms_tfr8ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr8ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1572825000039302,
+    "trace": "dt0.5ms_tfr8ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr8ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.2597864590061363,
+    "trace": "dt0.5ms_tfr8ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr8ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5663052499876358,
+    "trace": "dt0.5ms_tfr8ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr8ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1119279589911457,
+    "trace": "dt0.5ms_tfr8ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr8ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.2835627919994295,
+    "trace": "dt0.5ms_tfr8ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt0.5ms_tfr8ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6289373329782393,
+    "trace": "dt0.5ms_tfr8ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt0.5ms_tfr8ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.1152979579928797,
+    "trace": "dt0.5ms_tfr8ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.0005,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt0.5ms_tfr8ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.2226073750061914,
+    "trace": "dt0.5ms_tfr8ms_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfrinherit_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3918626249942463,
+    "trace": "dt1ms_tfrinherit_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfrinherit_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7280807500064839,
+    "trace": "dt1ms_tfrinherit_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfrinherit_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6647365830140188,
+    "trace": "dt1ms_tfrinherit_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfrinherit_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3661796670057811,
+    "trace": "dt1ms_tfrinherit_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfrinherit_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7154629590222612,
+    "trace": "dt1ms_tfrinherit_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfrinherit_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7688146250147838,
+    "trace": "dt1ms_tfrinherit_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfrinherit_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3723475000006147,
+    "trace": "dt1ms_tfrinherit_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfrinherit_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5700256669952068,
+    "trace": "dt1ms_tfrinherit_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": null,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfrinherit_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.0,
+      0.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6367158750072122,
+    "trace": "dt1ms_tfrinherit_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr4ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.4158227909938432,
+    "trace": "dt1ms_tfr4ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr4ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7277078749903012,
+    "trace": "dt1ms_tfr4ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr4ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7518090000085067,
+    "trace": "dt1ms_tfr4ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr4ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3698692080215551,
+    "trace": "dt1ms_tfr4ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr4ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7154849999933504,
+    "trace": "dt1ms_tfr4ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr4ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6404487919935491,
+    "trace": "dt1ms_tfr4ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr4ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.3990398329915479,
+    "trace": "dt1ms_tfr4ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr4ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6503957920067478,
+    "trace": "dt1ms_tfr4ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.004,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr4ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.004,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7967029999999795,
+    "trace": "dt1ms_tfr4ms_ir100_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr8ms_ir1_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.35972866701195017,
+    "trace": "dt1ms_tfr8ms_ir1_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr8ms_ir1_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.8243879160145298,
+    "trace": "dt1ms_tfr8ms_ir1_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 1.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr8ms_ir1_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7291488749906421,
+    "trace": "dt1ms_tfr8ms_ir1_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr8ms_ir10_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.41355629099416547,
+    "trace": "dt1ms_tfr8ms_ir10_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr8ms_ir10_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.7667335830046795,
+    "trace": "dt1ms_tfr8ms_ir10_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 10.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr8ms_ir10_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.6536590830073692,
+    "trace": "dt1ms_tfr8ms_ir10_ns3/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 0
+    },
+    "tag": "dt1ms_tfr8ms_ir100_ns0",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.39993616598076187,
+    "trace": "dt1ms_tfr8ms_ir100_ns0/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 1
+    },
+    "tag": "dt1ms_tfr8ms_ir100_ns1",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 0.5903464579896536,
+    "trace": "dt1ms_tfr8ms_ir100_ns1/trace.csv"
+  },
+  {
+    "configuration": {
+      "dt_s": 0.001,
+      "friction_timeconst_s": 0.008,
+      "impratio": 100.0,
+      "noslip_iterations": 3
+    },
+    "tag": "dt1ms_tfr8ms_ir100_ns3",
+    "force_N": 4.0,
+    "normal_solref": [
+      0.002,
+      1.0
+    ],
+    "friction_solreffriction": [
+      0.008,
+      1.0
+    ],
+    "margin_mm": 0.0,
+    "gap_mm": 0.0,
+    "sample_period_ms": 5.0,
+    "wall_s": 1.0658432499913033,
+    "trace": "dt1ms_tfr8ms_ir100_ns3/trace.csv"
+  }
+]

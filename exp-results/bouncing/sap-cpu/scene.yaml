@@ -1,0 +1,1202 @@
+schema_version: 1
+name: simbenchmark_bouncing_sap
+simulation:
+  dt: 0.002
+  num_worlds: 1
+  max_rigid_contact: 64
+  solver:
+    contact_preset_variant: approx32
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.0
+      mu: 0.0
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+    mu: 0.0
+bodies:
+- id: ball_0_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_1
+  transform:
+    p:
+    - 0.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_2
+  transform:
+    p:
+    - 0.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_3
+  transform:
+    p:
+    - 0.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_4
+  transform:
+    p:
+    - 0.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_5
+  transform:
+    p:
+    - 0.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_0_6
+  transform:
+    p:
+    - 0.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_0
+  transform:
+    p:
+    - 2.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_1
+  transform:
+    p:
+    - 2.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_2
+  transform:
+    p:
+    - 2.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_3
+  transform:
+    p:
+    - 2.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_4
+  transform:
+    p:
+    - 2.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_5
+  transform:
+    p:
+    - 2.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_1_6
+  transform:
+    p:
+    - 2.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_0
+  transform:
+    p:
+    - 4.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_1
+  transform:
+    p:
+    - 4.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_2
+  transform:
+    p:
+    - 4.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_3
+  transform:
+    p:
+    - 4.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_4
+  transform:
+    p:
+    - 4.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_5
+  transform:
+    p:
+    - 4.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_2_6
+  transform:
+    p:
+    - 4.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_0
+  transform:
+    p:
+    - 6.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_1
+  transform:
+    p:
+    - 6.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_2
+  transform:
+    p:
+    - 6.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_3
+  transform:
+    p:
+    - 6.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_4
+  transform:
+    p:
+    - 6.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_5
+  transform:
+    p:
+    - 6.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_3_6
+  transform:
+    p:
+    - 6.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_0
+  transform:
+    p:
+    - 8.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_1
+  transform:
+    p:
+    - 8.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_2
+  transform:
+    p:
+    - 8.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_3
+  transform:
+    p:
+    - 8.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_4
+  transform:
+    p:
+    - 8.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_5
+  transform:
+    p:
+    - 8.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_4_6
+  transform:
+    p:
+    - 8.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_0
+  transform:
+    p:
+    - 10.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_1
+  transform:
+    p:
+    - 10.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_2
+  transform:
+    p:
+    - 10.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_3
+  transform:
+    p:
+    - 10.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_4
+  transform:
+    p:
+    - 10.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_5
+  transform:
+    p:
+    - 10.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_5_6
+  transform:
+    p:
+    - 10.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_0
+  transform:
+    p:
+    - 12.0
+    - 0.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_1
+  transform:
+    p:
+    - 12.0
+    - 2.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_2
+  transform:
+    p:
+    - 12.0
+    - 4.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_3
+  transform:
+    p:
+    - 12.0
+    - 6.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_4
+  transform:
+    p:
+    - 12.0
+    - 8.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_5
+  transform:
+    p:
+    - 12.0
+    - 10.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+- id: ball_6_6
+  transform:
+    p:
+    - 12.0
+    - 12.0
+    - 5.0
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.1
+    cfg:
+      density: 2387.3241463784298
+      mu: 0.0
+joints:
+- id: ball_0_0_free
+  type: free
+  parent: world
+  child: ball_0_0
+- id: ball_0_1_free
+  type: free
+  parent: world
+  child: ball_0_1
+- id: ball_0_2_free
+  type: free
+  parent: world
+  child: ball_0_2
+- id: ball_0_3_free
+  type: free
+  parent: world
+  child: ball_0_3
+- id: ball_0_4_free
+  type: free
+  parent: world
+  child: ball_0_4
+- id: ball_0_5_free
+  type: free
+  parent: world
+  child: ball_0_5
+- id: ball_0_6_free
+  type: free
+  parent: world
+  child: ball_0_6
+- id: ball_1_0_free
+  type: free
+  parent: world
+  child: ball_1_0
+- id: ball_1_1_free
+  type: free
+  parent: world
+  child: ball_1_1
+- id: ball_1_2_free
+  type: free
+  parent: world
+  child: ball_1_2
+- id: ball_1_3_free
+  type: free
+  parent: world
+  child: ball_1_3
+- id: ball_1_4_free
+  type: free
+  parent: world
+  child: ball_1_4
+- id: ball_1_5_free
+  type: free
+  parent: world
+  child: ball_1_5
+- id: ball_1_6_free
+  type: free
+  parent: world
+  child: ball_1_6
+- id: ball_2_0_free
+  type: free
+  parent: world
+  child: ball_2_0
+- id: ball_2_1_free
+  type: free
+  parent: world
+  child: ball_2_1
+- id: ball_2_2_free
+  type: free
+  parent: world
+  child: ball_2_2
+- id: ball_2_3_free
+  type: free
+  parent: world
+  child: ball_2_3
+- id: ball_2_4_free
+  type: free
+  parent: world
+  child: ball_2_4
+- id: ball_2_5_free
+  type: free
+  parent: world
+  child: ball_2_5
+- id: ball_2_6_free
+  type: free
+  parent: world
+  child: ball_2_6
+- id: ball_3_0_free
+  type: free
+  parent: world
+  child: ball_3_0
+- id: ball_3_1_free
+  type: free
+  parent: world
+  child: ball_3_1
+- id: ball_3_2_free
+  type: free
+  parent: world
+  child: ball_3_2
+- id: ball_3_3_free
+  type: free
+  parent: world
+  child: ball_3_3
+- id: ball_3_4_free
+  type: free
+  parent: world
+  child: ball_3_4
+- id: ball_3_5_free
+  type: free
+  parent: world
+  child: ball_3_5
+- id: ball_3_6_free
+  type: free
+  parent: world
+  child: ball_3_6
+- id: ball_4_0_free
+  type: free
+  parent: world
+  child: ball_4_0
+- id: ball_4_1_free
+  type: free
+  parent: world
+  child: ball_4_1
+- id: ball_4_2_free
+  type: free
+  parent: world
+  child: ball_4_2
+- id: ball_4_3_free
+  type: free
+  parent: world
+  child: ball_4_3
+- id: ball_4_4_free
+  type: free
+  parent: world
+  child: ball_4_4
+- id: ball_4_5_free
+  type: free
+  parent: world
+  child: ball_4_5
+- id: ball_4_6_free
+  type: free
+  parent: world
+  child: ball_4_6
+- id: ball_5_0_free
+  type: free
+  parent: world
+  child: ball_5_0
+- id: ball_5_1_free
+  type: free
+  parent: world
+  child: ball_5_1
+- id: ball_5_2_free
+  type: free
+  parent: world
+  child: ball_5_2
+- id: ball_5_3_free
+  type: free
+  parent: world
+  child: ball_5_3
+- id: ball_5_4_free
+  type: free
+  parent: world
+  child: ball_5_4
+- id: ball_5_5_free
+  type: free
+  parent: world
+  child: ball_5_5
+- id: ball_5_6_free
+  type: free
+  parent: world
+  child: ball_5_6
+- id: ball_6_0_free
+  type: free
+  parent: world
+  child: ball_6_0
+- id: ball_6_1_free
+  type: free
+  parent: world
+  child: ball_6_1
+- id: ball_6_2_free
+  type: free
+  parent: world
+  child: ball_6_2
+- id: ball_6_3_free
+  type: free
+  parent: world
+  child: ball_6_3
+- id: ball_6_4_free
+  type: free
+  parent: world
+  child: ball_6_4
+- id: ball_6_5_free
+  type: free
+  parent: world
+  child: ball_6_5
+- id: ball_6_6_free
+  type: free
+  parent: world
+  child: ball_6_6
+articulations:
+- id: ball_0_0_articulation
+  joints:
+  - ball_0_0_free
+- id: ball_0_1_articulation
+  joints:
+  - ball_0_1_free
+- id: ball_0_2_articulation
+  joints:
+  - ball_0_2_free
+- id: ball_0_3_articulation
+  joints:
+  - ball_0_3_free
+- id: ball_0_4_articulation
+  joints:
+  - ball_0_4_free
+- id: ball_0_5_articulation
+  joints:
+  - ball_0_5_free
+- id: ball_0_6_articulation
+  joints:
+  - ball_0_6_free
+- id: ball_1_0_articulation
+  joints:
+  - ball_1_0_free
+- id: ball_1_1_articulation
+  joints:
+  - ball_1_1_free
+- id: ball_1_2_articulation
+  joints:
+  - ball_1_2_free
+- id: ball_1_3_articulation
+  joints:
+  - ball_1_3_free
+- id: ball_1_4_articulation
+  joints:
+  - ball_1_4_free
+- id: ball_1_5_articulation
+  joints:
+  - ball_1_5_free
+- id: ball_1_6_articulation
+  joints:
+  - ball_1_6_free
+- id: ball_2_0_articulation
+  joints:
+  - ball_2_0_free
+- id: ball_2_1_articulation
+  joints:
+  - ball_2_1_free
+- id: ball_2_2_articulation
+  joints:
+  - ball_2_2_free
+- id: ball_2_3_articulation
+  joints:
+  - ball_2_3_free
+- id: ball_2_4_articulation
+  joints:
+  - ball_2_4_free
+- id: ball_2_5_articulation
+  joints:
+  - ball_2_5_free
+- id: ball_2_6_articulation
+  joints:
+  - ball_2_6_free
+- id: ball_3_0_articulation
+  joints:
+  - ball_3_0_free
+- id: ball_3_1_articulation
+  joints:
+  - ball_3_1_free
+- id: ball_3_2_articulation
+  joints:
+  - ball_3_2_free
+- id: ball_3_3_articulation
+  joints:
+  - ball_3_3_free
+- id: ball_3_4_articulation
+  joints:
+  - ball_3_4_free
+- id: ball_3_5_articulation
+  joints:
+  - ball_3_5_free
+- id: ball_3_6_articulation
+  joints:
+  - ball_3_6_free
+- id: ball_4_0_articulation
+  joints:
+  - ball_4_0_free
+- id: ball_4_1_articulation
+  joints:
+  - ball_4_1_free
+- id: ball_4_2_articulation
+  joints:
+  - ball_4_2_free
+- id: ball_4_3_articulation
+  joints:
+  - ball_4_3_free
+- id: ball_4_4_articulation
+  joints:
+  - ball_4_4_free
+- id: ball_4_5_articulation
+  joints:
+  - ball_4_5_free
+- id: ball_4_6_articulation
+  joints:
+  - ball_4_6_free
+- id: ball_5_0_articulation
+  joints:
+  - ball_5_0_free
+- id: ball_5_1_articulation
+  joints:
+  - ball_5_1_free
+- id: ball_5_2_articulation
+  joints:
+  - ball_5_2_free
+- id: ball_5_3_articulation
+  joints:
+  - ball_5_3_free
+- id: ball_5_4_articulation
+  joints:
+  - ball_5_4_free
+- id: ball_5_5_articulation
+  joints:
+  - ball_5_5_free
+- id: ball_5_6_articulation
+  joints:
+  - ball_5_6_free
+- id: ball_6_0_articulation
+  joints:
+  - ball_6_0_free
+- id: ball_6_1_articulation
+  joints:
+  - ball_6_1_free
+- id: ball_6_2_articulation
+  joints:
+  - ball_6_2_free
+- id: ball_6_3_articulation
+  joints:
+  - ball_6_3_free
+- id: ball_6_4_articulation
+  joints:
+  - ball_6_4_free
+- id: ball_6_5_articulation
+  joints:
+  - ball_6_5_free
+- id: ball_6_6_articulation
+  joints:
+  - ball_6_6_free

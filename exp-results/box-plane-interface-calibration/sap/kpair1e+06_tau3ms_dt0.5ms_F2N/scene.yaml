@@ -1,0 +1,58 @@
+schema_version: 1
+name: box_plane_interface_calibration
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 64
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: 0.0
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 15624.999999999998
+      ke: 2000000.0
+      tau: 0.0015
+      mu: 0.0
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+bodies:
+- id: box
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.02
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+    cfg:
+      density: 15624.999999999998
+      mu: 0.0
+joints:
+- id: box_z
+  type: prismatic
+  parent: world
+  child: box
+  axis:
+  - 0.0
+  - 0.0
+  - 1.0
+  parent_xform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.02
+    q: identity
+  child_xform: identity
+articulations:
+- id: box_art
+  joints:
+  - box_z

@@ -1,0 +1,74 @@
+[
+  {
+    "case": "square_centered_ke_1000",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 0.0,
+    "final_center_mm": [
+      1.3700796053228714e-07,
+      1.3657461273020033e-07,
+      35.0019708275795
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.0980272889137268,
+    "max_raw_witness_penetration_mm": 0.0980273183193367,
+    "final_phi0_penetration_mm": 0.0980272889137268,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 19.871618377000004,
+    "end_to_end_wall_s": 20.376168202000002
+  },
+  {
+    "case": "square_centered_ke_10000",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 0.0,
+    "final_center_mm": [
+      4.379623053107906e-08,
+      4.379623053107906e-08,
+      35.090263932943344
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.009734183549880981,
+    "max_raw_witness_penetration_mm": 0.009734188433960234,
+    "final_phi0_penetration_mm": 0.009734183549880981,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 17.800024495000002,
+    "end_to_end_wall_s": 17.882635558999993
+  },
+  {
+    "case": "square_centered_ke_100000",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 0.0,
+    "final_center_mm": [
+      2.685421156278789e-08,
+      2.685421156278789e-08,
+      35.098373889923096
+    ],
+    "entered_cavity": true,
+    "max_contacts": 4,
+    "max_phi0_penetration_mm": 0.0016242265701293945,
+    "max_raw_witness_penetration_mm": 0.001624227319141358,
+    "final_phi0_penetration_mm": 0.0016242265701293945,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 19.372664295999982,
+    "end_to_end_wall_s": 19.465156068
+  },
+  {
+    "case": "square_offset_1mm_ke_10000",
+    "geometry": "analytic_square",
+    "initial_offset_mm": 1.0,
+    "final_center_mm": [
+      -70.16133517026901,
+      5.979289300739765,
+      -13465.215682983398
+    ],
+    "entered_cavity": false,
+    "max_contacts": 12,
+    "max_phi0_penetration_mm": 0.0,
+    "max_raw_witness_penetration_mm": 0.0,
+    "final_phi0_penetration_mm": 0.0,
+    "truncated_contacts": 0,
+    "stepping_wall_s": 25.887269414000002,
+    "end_to_end_wall_s": 25.988920647000015
+  }
+]

@@ -1,0 +1,118 @@
+{
+  "setup": {
+    "pinch_compression_per_side_mm": 0.2,
+    "lift_mm": 60.0,
+    "lift_start_s": 0.5,
+    "duration_s": 4.0
+  },
+  "results": [
+    {
+      "case": "baseline",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "solref": [
+        0.004,
+        1.0
+      ],
+      "noslip_iterations": 0,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": 59.507,
+      "lift_follow_percent": 99.18,
+      "final_cube_center_z_mm": 159.922,
+      "cube_left_table": true,
+      "maximum_cube_rotation_deg": 0.0,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -1.078
+    },
+    {
+      "case": "low_friction",
+      "friction": 0.05,
+      "cube_mass_kg": 0.1,
+      "solref": [
+        0.004,
+        1.0
+      ],
+      "noslip_iterations": 0,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": -0.0,
+      "lift_follow_percent": -0.0,
+      "final_cube_center_z_mm": -130.002,
+      "cube_left_table": false,
+      "maximum_cube_rotation_deg": 0.0,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -291.002
+    },
+    {
+      "case": "soft_contact_16ms",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "solref": [
+        0.016,
+        1.0
+      ],
+      "noslip_iterations": 0,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": 49.904,
+      "lift_follow_percent": 83.17,
+      "final_cube_center_z_mm": 148.653,
+      "cube_left_table": true,
+      "maximum_cube_rotation_deg": 0.0,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -12.347
+    },
+    {
+      "case": "hard_contact_1ms",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "solref": [
+        0.001,
+        1.0
+      ],
+      "noslip_iterations": 0,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": 59.877,
+      "lift_follow_percent": 99.79,
+      "final_cube_center_z_mm": 159.832,
+      "cube_left_table": true,
+      "maximum_cube_rotation_deg": 0.0,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -1.168
+    },
+    {
+      "case": "heavy_cube_500g",
+      "friction": 0.2,
+      "cube_mass_kg": 0.5,
+      "solref": [
+        0.004,
+        1.0
+      ],
+      "noslip_iterations": 0,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": -0.0,
+      "lift_follow_percent": -0.0,
+      "final_cube_center_z_mm": -130.002,
+      "cube_left_table": false,
+      "maximum_cube_rotation_deg": 0.0,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -291.002
+    },
+    {
+      "case": "baseline_noslip10",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "solref": [
+        0.004,
+        1.0
+      ],
+      "noslip_iterations": 10,
+      "commanded_finger_lift_mm": 60.0,
+      "cube_lift_mm": 59.998,
+      "lift_follow_percent": 100.0,
+      "final_cube_center_z_mm": 160.483,
+      "cube_left_table": true,
+      "maximum_cube_rotation_deg": 0.001,
+      "max_finger_cube_penetration_mm": 0.2,
+      "minimum_cube_minus_finger_z_mm_after_lift": -0.571
+    }
+  ]
+}

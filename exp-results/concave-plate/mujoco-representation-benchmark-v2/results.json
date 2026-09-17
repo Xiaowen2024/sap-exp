@@ -1,0 +1,124 @@
+[
+  {
+    "engine": "mujoco",
+    "task": "sphere_in_plate",
+    "representation": "mesh_sdf",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "solver": "Newton",
+    "integrator": "implicitfast",
+    "solref": "0.008 1",
+    "solimp": "0.95 0.99 0.002",
+    "final_z_mm": [
+      -0.024541421289093934,
+      26.396885514345986
+    ],
+    "final_radial_mm": [
+      0.0029155915688082964,
+      19.587482329371593
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9601666666666666,
+    "max_contacts": 17,
+    "max_contact_distance_overlap_mm": 3.699623527075261,
+    "tail_z_jitter_pp_mm": [
+      0.007243000914555122,
+      0.1265236196180304
+    ],
+    "representation_valid_for_cross_engine_penetration": false
+  },
+  {
+    "engine": "mujoco",
+    "task": "sphere_in_plate",
+    "representation": "coacd_shared",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "solver": "Newton",
+    "integrator": "implicitfast",
+    "solref": "0.008 1",
+    "solimp": "0.95 0.99 0.002",
+    "final_z_mm": [
+      -0.012688770073376838,
+      27.23830767490202
+    ],
+    "final_radial_mm": [
+      0.0054449757811023125,
+      33.524107930203506
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9601666666666666,
+    "max_contacts": 9,
+    "max_contact_distance_overlap_mm": 4.941135916805416,
+    "tail_z_jitter_pp_mm": [
+      0.006162982674604723,
+      0.009294545002765109
+    ],
+    "representation_valid_for_cross_engine_penetration": false
+  },
+  {
+    "engine": "mujoco",
+    "task": "three_plate_stack",
+    "representation": "mesh_sdf",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "solver": "Newton",
+    "integrator": "implicitfast",
+    "solref": "0.008 1",
+    "solimp": "0.95 0.99 0.002",
+    "final_z_mm": [
+      -0.05503125575944202,
+      21.76888626892773,
+      50.96803459906749
+    ],
+    "final_radial_mm": [
+      2.150456392000687,
+      10.840850154286576,
+      16.56818435974275
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9601666666666666,
+    "max_contacts": 41,
+    "max_contact_distance_overlap_mm": 54.14180777700514,
+    "tail_z_jitter_pp_mm": [
+      0.010086300339593119,
+      1.6583707815011408,
+      2.2430916987191822
+    ],
+    "representation_valid_for_cross_engine_penetration": false
+  },
+  {
+    "engine": "mujoco",
+    "task": "three_plate_stack",
+    "representation": "coacd_shared",
+    "dt_ms": 0.5,
+    "duration_s": 3.0,
+    "solver": "Newton",
+    "integrator": "implicitfast",
+    "solref": "0.008 1",
+    "solimp": "0.95 0.99 0.002",
+    "final_z_mm": [
+      -0.030053195835124,
+      10.714217883713491,
+      22.20118591807666
+    ],
+    "final_radial_mm": [
+      0.19839295510110527,
+      3.2626490415989684,
+      1.7164047238483258
+    ],
+    "order_preserved": true,
+    "escaped": false,
+    "contact_duty": 0.9601666666666666,
+    "max_contacts": 111,
+    "max_contact_distance_overlap_mm": 8.392483599306592,
+    "tail_z_jitter_pp_mm": [
+      0.005368272285594113,
+      0.017822044887249103,
+      0.04565136347091034
+    ],
+    "representation_valid_for_cross_engine_penetration": false
+  }
+]

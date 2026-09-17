@@ -1,0 +1,29 @@
+{
+  "scenario": "SimBenchmark rolling; 10 kg 20x20x1 box, 25 1 kg radius-.5 balls, 150 N at 60 degrees",
+  "mujoco_tolerance": 1e-30,
+  "default_contact": {
+    "solref": [
+      0.02,
+      1.0
+    ],
+    "solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ]
+  },
+  "softness_presets": {
+    "default": null,
+    "soft_40ms": [
+      0.04,
+      1.0
+    ],
+    "stiff_4ms": [
+      0.004,
+      1.0
+    ]
+  },
+  "rows": 648
+}

@@ -1,0 +1,1842 @@
+[
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.3_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19316060841083527,
+    "max_relative_slip_mm": 2.7850813060671733,
+    "max_orientation_drift_deg": 1.4260073651343155,
+    "max_raw_orientation_drift_deg": 1.4259853233968545,
+    "max_penetration_mm": 0.3009627398569137,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01773001465277301,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5621951219512196,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 23.687234800308943
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.35_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.35,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1936451643705368,
+    "max_relative_slip_mm": 3.0426960730481354,
+    "max_orientation_drift_deg": 1.851795099993192,
+    "max_raw_orientation_drift_deg": 1.8511230168686286,
+    "max_penetration_mm": 0.30095651163719594,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017730005502630836,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 22.00718060042709
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.4_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19286467134952545,
+    "max_relative_slip_mm": 2.631884690938756,
+    "max_orientation_drift_deg": 1.0569386579800788,
+    "max_raw_orientation_drift_deg": 1.059421549197354,
+    "max_penetration_mm": 0.2993292291648686,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01773025372836888,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 20.589691505767405
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.45_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.45,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19264326989650726,
+    "max_relative_slip_mm": 2.5884977216312675,
+    "max_orientation_drift_deg": 1.0527384376359663,
+    "max_raw_orientation_drift_deg": 1.0542373144653403,
+    "max_penetration_mm": 0.2972897491417825,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01773025904012728,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 18.829582673497498
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.5_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19245070219039917,
+    "max_relative_slip_mm": 2.865004601114915,
+    "max_orientation_drift_deg": 1.1811211198219005,
+    "max_raw_orientation_drift_deg": 1.1843051439320706,
+    "max_penetration_mm": 0.2972143411170691,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01773017073210461,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 18.547423588111997
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.6_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1924518197774887,
+    "max_relative_slip_mm": 4.200550765569165,
+    "max_orientation_drift_deg": 13.691515384839175,
+    "max_raw_orientation_drift_deg": 13.691861658620363,
+    "max_penetration_mm": 0.3011987137142569,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017729317261393575,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 17.19875997584313
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.7_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19263269007205963,
+    "max_relative_slip_mm": 4.581686825149398,
+    "max_orientation_drift_deg": 14.537147283063879,
+    "max_raw_orientation_drift_deg": 14.53747562979151,
+    "max_penetration_mm": 0.30000667902641,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017729278467334027,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5640243902439024,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 17.931410583667457
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.1_mu0.8_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19262884557247162,
+    "max_relative_slip_mm": 4.594736055397652,
+    "max_orientation_drift_deg": 14.561024006295005,
+    "max_raw_orientation_drift_deg": 14.561263045505543,
+    "max_penetration_mm": 0.3000496362801641,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.0177292796360755,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5640243902439024,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 17.976851258426905
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.3_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19274477660655975,
+    "max_relative_slip_mm": 2.659268444026646,
+    "max_orientation_drift_deg": 1.1525143342948991,
+    "max_raw_orientation_drift_deg": 1.153503653494159,
+    "max_penetration_mm": 0.3017629496753216,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017754283439538002,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5621951219512196,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 25.398721295408905
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.35_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.35,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19351650774478912,
+    "max_relative_slip_mm": 2.9929190399191032,
+    "max_orientation_drift_deg": 1.4607432460526517,
+    "max_raw_orientation_drift_deg": 1.461227394229995,
+    "max_penetration_mm": 0.30263085500337183,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017754299958820264,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 20.855538645759225
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.4_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19261521100997925,
+    "max_relative_slip_mm": 2.5706403883218045,
+    "max_orientation_drift_deg": 0.7069754652797905,
+    "max_raw_orientation_drift_deg": 0.7088606793130918,
+    "max_penetration_mm": 0.2979449345730245,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017754651382002565,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 19.227434721775353
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.45_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.45,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19238707423210144,
+    "max_relative_slip_mm": 2.5364780276356482,
+    "max_orientation_drift_deg": 0.7317794293925298,
+    "max_raw_orientation_drift_deg": 0.7338167848263956,
+    "max_penetration_mm": 0.29615138191729784,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017754657333837888,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 18.712003838270903
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.5_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19215483963489532,
+    "max_relative_slip_mm": 2.692310516510589,
+    "max_orientation_drift_deg": 0.764471256711214,
+    "max_raw_orientation_drift_deg": 0.7692267761586219,
+    "max_penetration_mm": 0.2950731141027063,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017754564684877298,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 19.546516694128513
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.6_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "rotation_or_torque_failure",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1918211132287979,
+    "max_relative_slip_mm": 4.021745834630558,
+    "max_orientation_drift_deg": 17.005842335457,
+    "max_raw_orientation_drift_deg": 17.005856832069494,
+    "max_penetration_mm": 0.30681630596518517,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017753356523338117,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 17.174008762463927
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.7_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19255051016807556,
+    "max_relative_slip_mm": 4.823280654790188,
+    "max_orientation_drift_deg": 14.413170160876515,
+    "max_raw_orientation_drift_deg": 14.413216972234961,
+    "max_penetration_mm": 0.29130378970876336,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017753471750626634,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5640243902439024,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 17.803844390437007
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.15_mu0.8_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19255219399929047,
+    "max_relative_slip_mm": 4.8359968168370315,
+    "max_orientation_drift_deg": 14.385667463538024,
+    "max_raw_orientation_drift_deg": 14.385804440150093,
+    "max_penetration_mm": 0.2918374084401876,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017753471747556142,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5640243902439024,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 18.9067769870162
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.3_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19232895970344543,
+    "max_relative_slip_mm": 2.56680559565931,
+    "max_orientation_drift_deg": 1.1078765269418402,
+    "max_raw_orientation_drift_deg": 1.1092275470514943,
+    "max_penetration_mm": 0.3008320345543325,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017778650064146622,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5621951219512196,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.796707950532436
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.4_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19235359132289886,
+    "max_relative_slip_mm": 2.5257670528670015,
+    "max_orientation_drift_deg": 0.5529195057637943,
+    "max_raw_orientation_drift_deg": 0.5581290728320577,
+    "max_penetration_mm": 0.2975804090965539,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017779132031394203,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5628048780487804,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 22.238772520795465
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.5_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1919240802526474,
+    "max_relative_slip_mm": 2.6798156120195653,
+    "max_orientation_drift_deg": 0.6435573833288888,
+    "max_raw_orientation_drift_deg": 0.6440672057470749,
+    "max_penetration_mm": 0.2935134689323604,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01777903822479563,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 20.580721890553832
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.6_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "rotation_or_torque_failure",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19133232533931732,
+    "max_relative_slip_mm": 3.823520380293252,
+    "max_orientation_drift_deg": 15.490400667354363,
+    "max_raw_orientation_drift_deg": 15.49063644986719,
+    "max_penetration_mm": 0.30405103461816907,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01777769440511641,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 22.346871967427433
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.7_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19252848625183105,
+    "max_relative_slip_mm": 4.938220653968516,
+    "max_orientation_drift_deg": 13.208944824311716,
+    "max_raw_orientation_drift_deg": 13.209116113449694,
+    "max_penetration_mm": 0.2895114594139159,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017777849046686587,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5634146341463414,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 21.033045939169824
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.2_mu0.8_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1925070583820343,
+    "max_relative_slip_mm": 4.953889125374335,
+    "max_orientation_drift_deg": 13.764285030250534,
+    "max_raw_orientation_drift_deg": 13.764327559249573,
+    "max_penetration_mm": 0.29009979334659874,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01777784482079255,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5640243902439024,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 20.900057047605515
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.1_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.1,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019985295832157135,
+    "max_relative_slip_mm": 356.9423054250152,
+    "max_orientation_drift_deg": 38.80946063841049,
+    "max_raw_orientation_drift_deg": 38.80956612564973,
+    "max_penetration_mm": 0.3225787659175694,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.017678958751428723,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.08841463414634146,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 12.530282875522971
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.11_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.11,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01998528465628624,
+    "max_relative_slip_mm": 357.36889139895914,
+    "max_orientation_drift_deg": 38.80946142047385,
+    "max_raw_orientation_drift_deg": 38.80956612564973,
+    "max_penetration_mm": 0.34951503039337695,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.01767895874911146,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09329268292682927,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 11.883486740291119
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.12_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.12,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1882668286561966,
+    "max_relative_slip_mm": 2.106553747114314,
+    "max_orientation_drift_deg": 1.0288434436261233,
+    "max_raw_orientation_drift_deg": 1.0317241614009984,
+    "max_penetration_mm": 0.3141493652947247,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01782770034299074,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5591463414634147,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 27.140738567337394
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.13_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.13,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19005273282527924,
+    "max_relative_slip_mm": 2.0660870567764253,
+    "max_orientation_drift_deg": 0.2519185630138611,
+    "max_raw_orientation_drift_deg": 0.26540801378059237,
+    "max_penetration_mm": 0.31410527299158275,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01782774857159113,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5591463414634147,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.73444651067257
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.14_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.14,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19082187116146088,
+    "max_relative_slip_mm": 2.0651837826743584,
+    "max_orientation_drift_deg": 0.12287915953381691,
+    "max_raw_orientation_drift_deg": 0.13122121185688196,
+    "max_penetration_mm": 0.31833825050853193,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017827751286111006,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5597560975609757,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 25.888293606229126
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.3_mu0.15_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19114604592323303,
+    "max_relative_slip_mm": 2.0985292913261784,
+    "max_orientation_drift_deg": 0.11190004796221235,
+    "max_raw_orientation_drift_deg": 0.1251145157995564,
+    "max_penetration_mm": 0.3136059094686061,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01782775179145432,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5597560975609757,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.06501672323793
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.15_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "transfer_slip",
+    "drop_time_s": 6.91,
+    "final_cube_z_m": 0.01998039148747921,
+    "max_relative_slip_mm": 168.6408428666891,
+    "max_orientation_drift_deg": 4.258933164167266,
+    "max_raw_orientation_drift_deg": 4.25947096225537,
+    "max_penetration_mm": 0.3114058927167207,
+    "finger_contact_duty": {
+      "left": 0.5705882352941176,
+      "right": 0.5720588235294117
+    },
+    "arm_tracking_rms_rad": 0.017815790482496742,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.3823170731707317,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 23.532013585790992
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.16_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.16,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.18802322447299957,
+    "max_relative_slip_mm": 2.1584364463534227,
+    "max_orientation_drift_deg": 0.729540887849298,
+    "max_raw_orientation_drift_deg": 0.7327494107529533,
+    "max_penetration_mm": 0.3046522615477443,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017877259872734762,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5603658536585366,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 30.154964562505484
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.17_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.17,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.18980786204338074,
+    "max_relative_slip_mm": 2.11141070967883,
+    "max_orientation_drift_deg": 0.23145009344247305,
+    "max_raw_orientation_drift_deg": 0.2438931249297883,
+    "max_penetration_mm": 0.3083673946093768,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01787726814989237,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5603658536585366,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 28.359970482066274
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.18_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.18,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19063247740268707,
+    "max_relative_slip_mm": 2.1401653426629155,
+    "max_orientation_drift_deg": 0.12218799615871494,
+    "max_raw_orientation_drift_deg": 0.15323336536774143,
+    "max_penetration_mm": 0.3085087228100747,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.01787726242099515,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5603658536585366,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 28.253555411472917
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.19_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.19,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19093425571918488,
+    "max_relative_slip_mm": 2.158660161171379,
+    "max_orientation_drift_deg": 0.1421556902315532,
+    "max_raw_orientation_drift_deg": 0.16785874404997686,
+    "max_penetration_mm": 0.30642226920463145,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017877262205366087,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5609756097560976,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 27.48083766363561
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.4_mu0.2_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19104065001010895,
+    "max_relative_slip_mm": 2.187092531090401,
+    "max_orientation_drift_deg": 0.22321155966806971,
+    "max_raw_orientation_drift_deg": 0.2502290688861673,
+    "max_penetration_mm": 0.30730472644791007,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017877243164126054,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5609756097560976,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.706023529171944
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.15_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019975487142801285,
+    "max_relative_slip_mm": 356.65906689096374,
+    "max_orientation_drift_deg": 38.80947442356975,
+    "max_raw_orientation_drift_deg": 38.80954556763878,
+    "max_penetration_mm": 0.31018315348774195,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.017678958751412798,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.08902439024390243,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 11.900331359356642
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.16_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.16,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019975487142801285,
+    "max_relative_slip_mm": 356.7216383736639,
+    "max_orientation_drift_deg": 38.80947119870848,
+    "max_raw_orientation_drift_deg": 38.80952500961736,
+    "max_penetration_mm": 0.3097100416198373,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.0176789587514367,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.08963414634146341,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 12.319222321733832
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.17_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.17,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01997547596693039,
+    "max_relative_slip_mm": 356.841959095028,
+    "max_orientation_drift_deg": 38.80948084877905,
+    "max_raw_orientation_drift_deg": 38.80958668365022,
+    "max_penetration_mm": 0.30907447217032313,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.017678958749067032,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09024390243902439,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 12.022341603413224
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.18_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.18,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019975479692220688,
+    "max_relative_slip_mm": 357.02212492717723,
+    "max_orientation_drift_deg": 38.809471849924456,
+    "max_raw_orientation_drift_deg": 38.80954556763878,
+    "max_penetration_mm": 0.3082240582443774,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.017678958749056492,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09207317073170732,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 12.204713526181877
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.19_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.19,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": 5.7700000000000005,
+    "final_cube_z_m": 0.019975487142801285,
+    "max_relative_slip_mm": 316.2317876333825,
+    "max_orientation_drift_deg": 38.800201248810865,
+    "max_raw_orientation_drift_deg": 38.80027283724762,
+    "max_penetration_mm": 0.397075287764892,
+    "finger_contact_duty": {
+      "left": 0.23823529411764705,
+      "right": 0.23529411764705882
+    },
+    "arm_tracking_rms_rad": 0.017790706399139586,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.24451219512195121,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 19.659220994450152
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.5_mu0.2_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.18744441866874695,
+    "max_relative_slip_mm": 2.2632731792056355,
+    "max_orientation_drift_deg": 0.8174058667464087,
+    "max_raw_orientation_drift_deg": 0.8232894688952431,
+    "max_penetration_mm": 0.3074707346968353,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017927043376984288,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5609756097560976,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.903755836188793
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.2_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019970573484897614,
+    "max_relative_slip_mm": 356.57488573389224,
+    "max_orientation_drift_deg": 38.80946392063629,
+    "max_raw_orientation_drift_deg": 38.80960724164022,
+    "max_penetration_mm": 0.30753776081837714,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.01767895874907063,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09085365853658536,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 11.544158594682813
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.21_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.21,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019970571622252464,
+    "max_relative_slip_mm": 356.7550717265337,
+    "max_orientation_drift_deg": 38.80943865402284,
+    "max_raw_orientation_drift_deg": 38.80958668365022,
+    "max_penetration_mm": 0.30785147100687027,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.017678958749400057,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09146341463414634,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 11.644297510385513
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.22_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.22,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019970569759607315,
+    "max_relative_slip_mm": 357.042500765165,
+    "max_orientation_drift_deg": 38.80947561406368,
+    "max_raw_orientation_drift_deg": 38.80958668365022,
+    "max_penetration_mm": 0.3087007498834282,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.01767895875141241,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.09268292682926829,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 12.701897898688912
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.23_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.23,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019970569759607315,
+    "max_relative_slip_mm": 358.3518652508322,
+    "max_orientation_drift_deg": 38.809465839663595,
+    "max_raw_orientation_drift_deg": 38.80962779961976,
+    "max_penetration_mm": 0.3869248612318188,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.01767895879845458,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.10365853658536585,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 11.686937493272126
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.24_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.24,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.18698182702064514,
+    "max_relative_slip_mm": 2.432420329787505,
+    "max_orientation_drift_deg": 1.1539135987017743,
+    "max_raw_orientation_drift_deg": 1.1562146171114516,
+    "max_penetration_mm": 0.30862921266816556,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017977445735659438,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5621951219512196,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 26.577904862351716
+  },
+  {
+    "engine": "sap_warp",
+    "device": "cuda",
+    "tag": "m0.6_mu0.25_drake_ke50000_tau1ms_f16mm_cap15N",
+    "spec": {
+      "mu": 0.25,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.005,
+    "duration_s": 8.2,
+    "preset": "drake",
+    "pair_ke_N_m": 50000.0,
+    "pair_tau_ms": 1.0,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1887696236371994,
+    "max_relative_slip_mm": 2.3449893022273685,
+    "max_orientation_drift_deg": 0.54563506691283,
+    "max_raw_orientation_drift_deg": 0.5467953008353649,
+    "max_penetration_mm": 0.30721945222467184,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.017977445702968973,
+    "arm_tracking_max_rad": 0.027503110074083882,
+    "torque_saturation_proxy_ratio": 0.5621951219512196,
+    "max_candidate_contacts": 256,
+    "max_truncated_contacts": 0,
+    "wall_s": 27.99348297715187
+  }
+]

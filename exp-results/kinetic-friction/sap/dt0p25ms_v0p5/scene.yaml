@@ -1,0 +1,81 @@
+schema_version: 1
+name: free_sliding_block
+simulation:
+  dt: 0.00025
+  num_worlds: 1
+  max_rigid_contact: 32
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 15624.999999999998
+      ke: 20000.0
+      tau: 0.0015
+      mu: 0.5
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+bodies:
+- id: x_stage
+  transform:
+    p:
+    - 0
+    - 0
+    - 0.02
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.001
+    hy: 0.001
+    hz: 0.001
+    cfg:
+      density: 125.0
+      has_shape_collision: false
+- id: block
+  transform:
+    p:
+    - 0
+    - 0
+    - 0.02
+    q: identity
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+joints:
+- id: x
+  type: prismatic
+  parent: world
+  child: x_stage
+  axis:
+  - 1
+  - 0
+  - 0
+  parent_xform:
+    p:
+    - 0
+    - 0
+    - 0.02
+    q: identity
+  child_xform: identity
+- id: z
+  type: prismatic
+  parent: x_stage
+  child: block
+  axis:
+  - 0
+  - 0
+  - 1
+  parent_xform: identity
+  child_xform: identity
+articulations:
+- id: block_xz
+  joints:
+  - x
+  - z

@@ -1,0 +1,1980 @@
+[
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.3",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1949384331592005,
+    "max_relative_slip_mm": 7.373033565202112,
+    "max_orientation_drift_deg": 2.2076522082847365,
+    "max_raw_orientation_drift_deg": 2.207652208281673,
+    "max_penetration_mm": 0.22248875942031757,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.078994735773562,
+    "arm_tracking_max_rad": 0.1371717302881126,
+    "torque_saturation_ratio": 0.5656097560975609,
+    "max_contacts": 8,
+    "wall_s": 0.8711529999854974
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.35",
+    "spec": {
+      "mu": 0.35,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1958906223457937,
+    "max_relative_slip_mm": 4.978616159588937,
+    "max_orientation_drift_deg": 1.6508974402601935,
+    "max_raw_orientation_drift_deg": 1.6508974402553243,
+    "max_penetration_mm": 0.22733238564330271,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.07791248656543825,
+    "arm_tracking_max_rad": 0.1371717302881126,
+    "torque_saturation_ratio": 0.5656097560975609,
+    "max_contacts": 10,
+    "wall_s": 0.8957032909966074
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.4",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1956830488240408,
+    "max_relative_slip_mm": 10.254721449299302,
+    "max_orientation_drift_deg": 2.5834358144500875,
+    "max_raw_orientation_drift_deg": 2.583435814453761,
+    "max_penetration_mm": 0.28681854127246004,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.07822443261575276,
+    "arm_tracking_max_rad": 0.1371717302881126,
+    "torque_saturation_ratio": 0.565,
+    "max_contacts": 8,
+    "wall_s": 0.88243729097303
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.45",
+    "spec": {
+      "mu": 0.45,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19348689588384443,
+    "max_relative_slip_mm": 6.538873717437522,
+    "max_orientation_drift_deg": 2.686240715932916,
+    "max_raw_orientation_drift_deg": 2.6862407159297743,
+    "max_penetration_mm": 0.22693219505468226,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.08486183387053645,
+    "arm_tracking_max_rad": 0.14412020067853476,
+    "torque_saturation_ratio": 0.5652439024390243,
+    "max_contacts": 8,
+    "wall_s": 0.9699486659956165
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.5",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19526739802161394,
+    "max_relative_slip_mm": 6.993446298215355,
+    "max_orientation_drift_deg": 2.503233995495483,
+    "max_raw_orientation_drift_deg": 2.5032339954970086,
+    "max_penetration_mm": 0.27301104183319513,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.11164974276278579,
+    "arm_tracking_max_rad": 0.21276296801401645,
+    "torque_saturation_ratio": 0.5651219512195121,
+    "max_contacts": 8,
+    "wall_s": 0.9174497499479912
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.6",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1938521684605583,
+    "max_relative_slip_mm": 9.113529545663928,
+    "max_orientation_drift_deg": 3.8598153533608244,
+    "max_raw_orientation_drift_deg": 3.8598153533628534,
+    "max_penetration_mm": 0.29714156332946634,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.09510268991896445,
+    "arm_tracking_max_rad": 0.18762697162652733,
+    "torque_saturation_ratio": 0.5647560975609756,
+    "max_contacts": 8,
+    "wall_s": 0.8813565830350854
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.7",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.210565566439177,
+    "max_relative_slip_mm": 2.0535791743029885,
+    "max_orientation_drift_deg": 3.7394833440744923,
+    "max_raw_orientation_drift_deg": 3.7394833440723194,
+    "max_penetration_mm": 0.3115060563237999,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.2876418845571178,
+    "arm_tracking_max_rad": 0.33112797304448477,
+    "torque_saturation_ratio": 0.564390243902439,
+    "max_contacts": 10,
+    "wall_s": 0.8550423340057023
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.1_mu0.8",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.1,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.21326373952168468,
+    "max_relative_slip_mm": 1.6646168521909275,
+    "max_orientation_drift_deg": 1.820077321412072,
+    "max_raw_orientation_drift_deg": 1.8200773214107562,
+    "max_penetration_mm": 0.3826494321838825,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.30037024337620877,
+    "arm_tracking_max_rad": 0.3472528261651287,
+    "torque_saturation_ratio": 0.5654878048780487,
+    "max_contacts": 10,
+    "wall_s": 0.8776141669950448
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.3",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": true,
+    "failure_mode": "success",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19570353344732352,
+    "max_relative_slip_mm": 2.4688476423106356,
+    "max_orientation_drift_deg": 3.444459444971714,
+    "max_raw_orientation_drift_deg": 3.4444594449726353,
+    "max_penetration_mm": 0.20337524174478983,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10690066530197247,
+    "arm_tracking_max_rad": 0.14653949668106384,
+    "torque_saturation_ratio": 0.5648780487804878,
+    "max_contacts": 9,
+    "wall_s": 0.9711065830197185
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.35",
+    "spec": {
+      "mu": 0.35,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19634789450934456,
+    "max_relative_slip_mm": 7.79085605830327,
+    "max_orientation_drift_deg": 2.6342843869801715,
+    "max_raw_orientation_drift_deg": 2.6342843869858066,
+    "max_penetration_mm": 0.2317949598502929,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10627222807795798,
+    "arm_tracking_max_rad": 0.1455771735523455,
+    "torque_saturation_ratio": 0.565,
+    "max_contacts": 10,
+    "wall_s": 0.8934936249861494
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.4",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19626220230587213,
+    "max_relative_slip_mm": 10.711077375268802,
+    "max_orientation_drift_deg": 2.169113972033327,
+    "max_raw_orientation_drift_deg": 2.169113972034469,
+    "max_penetration_mm": 0.22917672581234097,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10630334868196088,
+    "arm_tracking_max_rad": 0.15454238770846748,
+    "torque_saturation_ratio": 0.5653658536585365,
+    "max_contacts": 8,
+    "wall_s": 0.8894737500231713
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.45",
+    "spec": {
+      "mu": 0.45,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19689180266111095,
+    "max_relative_slip_mm": 9.441162043836282,
+    "max_orientation_drift_deg": 3.599618013316828,
+    "max_raw_orientation_drift_deg": 3.599618013319444,
+    "max_penetration_mm": 0.22332553920644171,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10583835921572109,
+    "arm_tracking_max_rad": 0.14495995793084254,
+    "torque_saturation_ratio": 0.5648780487804878,
+    "max_contacts": 9,
+    "wall_s": 0.889334500010591
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.5",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19371924346707467,
+    "max_relative_slip_mm": 8.678965727243563,
+    "max_orientation_drift_deg": 4.701376973682315,
+    "max_raw_orientation_drift_deg": 4.701376973678654,
+    "max_penetration_mm": 0.2706213892547206,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.11220217668981355,
+    "arm_tracking_max_rad": 0.15251268851086744,
+    "torque_saturation_ratio": 0.564390243902439,
+    "max_contacts": 8,
+    "wall_s": 0.8689601249643601
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.6",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19616170064536853,
+    "max_relative_slip_mm": 12.953940470420237,
+    "max_orientation_drift_deg": 4.659169757017442,
+    "max_raw_orientation_drift_deg": 4.659169757020207,
+    "max_penetration_mm": 0.2770980214107173,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10381664234544032,
+    "arm_tracking_max_rad": 0.14615171933980192,
+    "torque_saturation_ratio": 0.5645121951219512,
+    "max_contacts": 10,
+    "wall_s": 0.8678118329844438
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.7",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19807290663023858,
+    "max_relative_slip_mm": 7.19354150216061,
+    "max_orientation_drift_deg": 4.581576456964035,
+    "max_raw_orientation_drift_deg": 4.58157645696566,
+    "max_penetration_mm": 0.29936178001853503,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10221595496731098,
+    "arm_tracking_max_rad": 0.1538371261200021,
+    "torque_saturation_ratio": 0.5640243902439024,
+    "max_contacts": 8,
+    "wall_s": 0.8691100000287406
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.15_mu0.8",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.15,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19624506940791425,
+    "max_relative_slip_mm": 11.260619585861445,
+    "max_orientation_drift_deg": 3.757296064519809,
+    "max_raw_orientation_drift_deg": 3.7572960645193714,
+    "max_penetration_mm": 0.35371364812687595,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.11104513596293634,
+    "arm_tracking_max_rad": 0.19645574497818444,
+    "torque_saturation_ratio": 0.563780487804878,
+    "max_contacts": 8,
+    "wall_s": 0.8614832499879412
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.3",
+    "spec": {
+      "mu": 0.3,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19148925771490174,
+    "max_relative_slip_mm": 9.408540949928772,
+    "max_orientation_drift_deg": 1.026143944392409,
+    "max_raw_orientation_drift_deg": 1.0261439443937823,
+    "max_penetration_mm": 0.19136644731988703,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.08708912336834523,
+    "arm_tracking_max_rad": 0.1371717302881126,
+    "torque_saturation_ratio": 0.5651219512195121,
+    "max_contacts": 10,
+    "wall_s": 1.01514649996534
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.4",
+    "spec": {
+      "mu": 0.4,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19502909379581532,
+    "max_relative_slip_mm": 10.729885991422982,
+    "max_orientation_drift_deg": 5.102345636757565,
+    "max_raw_orientation_drift_deg": 5.102345636757454,
+    "max_penetration_mm": 0.21277755155366568,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.10794690709164233,
+    "arm_tracking_max_rad": 0.2166469895080521,
+    "torque_saturation_ratio": 0.5648780487804878,
+    "max_contacts": 9,
+    "wall_s": 0.9543215419980697
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.5",
+    "spec": {
+      "mu": 0.5,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.1949010831365826,
+    "max_relative_slip_mm": 8.738041535176082,
+    "max_orientation_drift_deg": 4.960157622601351,
+    "max_raw_orientation_drift_deg": 4.960157622604142,
+    "max_penetration_mm": 0.2669126107571279,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.11802391502054413,
+    "arm_tracking_max_rad": 0.1849402760876031,
+    "torque_saturation_ratio": 0.5648780487804878,
+    "max_contacts": 8,
+    "wall_s": 0.957137833989691
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.6",
+    "spec": {
+      "mu": 0.6,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19471224966306785,
+    "max_relative_slip_mm": 12.968538973865451,
+    "max_orientation_drift_deg": 4.497576484467576,
+    "max_raw_orientation_drift_deg": 4.497576484467187,
+    "max_penetration_mm": 0.30278035166584244,
+    "finger_contact_duty": {
+      "left": 0.9997058823529412,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.11954113225013009,
+    "arm_tracking_max_rad": 0.19150855559431884,
+    "torque_saturation_ratio": 0.5645121951219512,
+    "max_contacts": 8,
+    "wall_s": 0.864273208018858
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.7",
+    "spec": {
+      "mu": 0.7,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19513557325243047,
+    "max_relative_slip_mm": 10.617234805980582,
+    "max_orientation_drift_deg": 3.03328563016769,
+    "max_raw_orientation_drift_deg": 3.0332856301729025,
+    "max_penetration_mm": 0.19641565127126165,
+    "finger_contact_duty": {
+      "left": 0.9991176470588236,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.1224231507164666,
+    "arm_tracking_max_rad": 0.17989654288170362,
+    "torque_saturation_ratio": 0.5660975609756097,
+    "max_contacts": 8,
+    "wall_s": 0.8608060000115074
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.2_mu0.8",
+    "spec": {
+      "mu": 0.8,
+      "mass_kg": 0.2,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "static_slip",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.19693113201969537,
+    "max_relative_slip_mm": 10.242185946053594,
+    "max_orientation_drift_deg": 6.312801926740465,
+    "max_raw_orientation_drift_deg": 6.3128019267413045,
+    "max_penetration_mm": 0.2820398589235766,
+    "finger_contact_duty": {
+      "left": 1.0,
+      "right": 1.0
+    },
+    "arm_tracking_rms_rad": 0.16261391367975944,
+    "arm_tracking_max_rad": 0.30369738809423646,
+    "torque_saturation_ratio": 0.5641463414634146,
+    "max_contacts": 8,
+    "wall_s": 0.8760555000044405
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.1",
+    "spec": {
+      "mu": 0.1,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954354,
+    "max_relative_slip_mm": 363.15433688995626,
+    "max_orientation_drift_deg": 38.22801553420374,
+    "max_raw_orientation_drift_deg": 38.228015534204054,
+    "max_penetration_mm": 0.44642909476630177,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07577216866059085,
+    "arm_tracking_max_rad": 0.13790982162847065,
+    "torque_saturation_ratio": 0.10170731707317072,
+    "max_contacts": 10,
+    "wall_s": 0.7891099589760415
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.11",
+    "spec": {
+      "mu": 0.11,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01999861663995435,
+    "max_relative_slip_mm": 364.0299533708892,
+    "max_orientation_drift_deg": 38.22008149767867,
+    "max_raw_orientation_drift_deg": 38.22008149767892,
+    "max_penetration_mm": 0.5850027191413172,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07576618019141741,
+    "arm_tracking_max_rad": 0.1371717302881126,
+    "torque_saturation_ratio": 0.1024390243902439,
+    "max_contacts": 10,
+    "wall_s": 0.7696375420200638
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.12",
+    "spec": {
+      "mu": 0.12,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01999861663995435,
+    "max_relative_slip_mm": 368.8971927580338,
+    "max_orientation_drift_deg": 38.17136101765512,
+    "max_raw_orientation_drift_deg": 38.17136101765524,
+    "max_penetration_mm": 0.6674377352089633,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07570580808730977,
+    "arm_tracking_max_rad": 0.13752472883474742,
+    "torque_saturation_ratio": 0.11914634146341463,
+    "max_contacts": 10,
+    "wall_s": 0.783687999995891
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.13",
+    "spec": {
+      "mu": 0.13,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954354,
+    "max_relative_slip_mm": 405.16399426469496,
+    "max_orientation_drift_deg": 47.388589598416324,
+    "max_raw_orientation_drift_deg": 97.77729742193058,
+    "max_penetration_mm": 1.0097212881060162,
+    "finger_contact_duty": {
+      "left": 0.005588235294117647,
+      "right": 0.002352941176470588
+    },
+    "arm_tracking_rms_rad": 0.0757283757840924,
+    "arm_tracking_max_rad": 0.1450822500572553,
+    "torque_saturation_ratio": 0.15134146341463414,
+    "max_contacts": 8,
+    "wall_s": 0.7926093330024742
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.14",
+    "spec": {
+      "mu": 0.14,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": 5.239000000000084,
+    "final_cube_z_m": 0.01999861663995433,
+    "max_relative_slip_mm": 394.58377543783956,
+    "max_orientation_drift_deg": 52.23229355415528,
+    "max_raw_orientation_drift_deg": 94.25316946453401,
+    "max_penetration_mm": 1.6044153687199367,
+    "finger_contact_duty": {
+      "left": 0.09147058823529412,
+      "right": 0.08794117647058823
+    },
+    "arm_tracking_rms_rad": 0.0769868334150557,
+    "arm_tracking_max_rad": 0.15528758879132581,
+    "torque_saturation_ratio": 0.18707317073170732,
+    "max_contacts": 10,
+    "wall_s": 0.9446787920314819
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.3_mu0.15",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.3,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": 5.925000000000313,
+    "final_cube_z_m": 0.01999861663995438,
+    "max_relative_slip_mm": 357.1000305140115,
+    "max_orientation_drift_deg": 47.15800079191129,
+    "max_raw_orientation_drift_deg": 93.62210542310024,
+    "max_penetration_mm": 2.0119366971433994,
+    "finger_contact_duty": {
+      "left": 0.2326470588235294,
+      "right": 0.23470588235294118
+    },
+    "arm_tracking_rms_rad": 0.0923969305078961,
+    "arm_tracking_max_rad": 0.1596924910112537,
+    "torque_saturation_ratio": 0.24707317073170731,
+    "max_contacts": 9,
+    "wall_s": 0.8472246250021271
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.15",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954333,
+    "max_relative_slip_mm": 373.25405330450366,
+    "max_orientation_drift_deg": 38.18871295190844,
+    "max_raw_orientation_drift_deg": 38.18871295190915,
+    "max_penetration_mm": 0.6605292768942916,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07573761134541152,
+    "arm_tracking_max_rad": 0.16363113434422183,
+    "torque_saturation_ratio": 0.1075609756097561,
+    "max_contacts": 10,
+    "wall_s": 0.8080818749731407
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.16",
+    "spec": {
+      "mu": 0.16,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954357,
+    "max_relative_slip_mm": 367.88148236077063,
+    "max_orientation_drift_deg": 38.23113910173431,
+    "max_raw_orientation_drift_deg": 38.23113910173432,
+    "max_penetration_mm": 0.3884999570844436,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07578488590167728,
+    "arm_tracking_max_rad": 0.1677627805361638,
+    "torque_saturation_ratio": 0.1048780487804878,
+    "max_contacts": 10,
+    "wall_s": 0.7909795419545844
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.17",
+    "spec": {
+      "mu": 0.17,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954368,
+    "max_relative_slip_mm": 366.82834785727323,
+    "max_orientation_drift_deg": 38.245914568200035,
+    "max_raw_orientation_drift_deg": 38.2459145682,
+    "max_penetration_mm": 0.6742984085751383,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07570068647218157,
+    "arm_tracking_max_rad": 0.1695116337810127,
+    "torque_saturation_ratio": 0.1197560975609756,
+    "max_contacts": 9,
+    "wall_s": 0.764880417031236
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.18",
+    "spec": {
+      "mu": 0.18,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": 5.0630000000000255,
+    "final_cube_z_m": 0.019998616639954347,
+    "max_relative_slip_mm": 351.10242925754085,
+    "max_orientation_drift_deg": 48.55204162210129,
+    "max_raw_orientation_drift_deg": 98.83620462689768,
+    "max_penetration_mm": 1.0590699472837688,
+    "finger_contact_duty": {
+      "left": 0.043823529411764706,
+      "right": 0.047058823529411764
+    },
+    "arm_tracking_rms_rad": 0.07562804164013162,
+    "arm_tracking_max_rad": 0.16618576078055614,
+    "torque_saturation_ratio": 0.16865853658536586,
+    "max_contacts": 10,
+    "wall_s": 0.7945431669941172
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.19",
+    "spec": {
+      "mu": 0.19,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01999861663995434,
+    "max_relative_slip_mm": 358.992680995698,
+    "max_orientation_drift_deg": 55.50735980077685,
+    "max_raw_orientation_drift_deg": 55.50735980077731,
+    "max_penetration_mm": 0.6732840707506307,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07556624889417746,
+    "arm_tracking_max_rad": 0.16546267454171548,
+    "torque_saturation_ratio": 0.1420731707317073,
+    "max_contacts": 9,
+    "wall_s": 0.7670957500231452
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.4_mu0.2",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.4,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": 5.098000000000037,
+    "final_cube_z_m": 0.01999861663995438,
+    "max_relative_slip_mm": 361.1951411925013,
+    "max_orientation_drift_deg": 47.89104827294206,
+    "max_raw_orientation_drift_deg": 98.24093027345396,
+    "max_penetration_mm": 1.8113440070437579,
+    "finger_contact_duty": {
+      "left": 0.05205882352941176,
+      "right": 0.05529411764705883
+    },
+    "arm_tracking_rms_rad": 0.0761634411381484,
+    "arm_tracking_max_rad": 0.1746875679154671,
+    "torque_saturation_ratio": 0.17170731707317075,
+    "max_contacts": 8,
+    "wall_s": 0.7795869169640355
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.15",
+    "spec": {
+      "mu": 0.15,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954357,
+    "max_relative_slip_mm": 362.4347530011376,
+    "max_orientation_drift_deg": 38.23210418874841,
+    "max_raw_orientation_drift_deg": 38.232104188748586,
+    "max_penetration_mm": 0.5143673644970406,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.0757747924706328,
+    "arm_tracking_max_rad": 0.18180815681869927,
+    "torque_saturation_ratio": 0.09939024390243903,
+    "max_contacts": 10,
+    "wall_s": 0.7718931249692105
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.16",
+    "spec": {
+      "mu": 0.16,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954375,
+    "max_relative_slip_mm": 364.71452700038253,
+    "max_orientation_drift_deg": 38.23709550374711,
+    "max_raw_orientation_drift_deg": 38.23709550374691,
+    "max_penetration_mm": 0.4366686305957015,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07577775454876963,
+    "arm_tracking_max_rad": 0.17642985380874776,
+    "torque_saturation_ratio": 0.09975609756097562,
+    "max_contacts": 10,
+    "wall_s": 0.7861340829986148
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.17",
+    "spec": {
+      "mu": 0.17,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954378,
+    "max_relative_slip_mm": 356.75403096229525,
+    "max_orientation_drift_deg": 38.222296797088696,
+    "max_raw_orientation_drift_deg": 38.22229679708854,
+    "max_penetration_mm": 0.4574606873124895,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07576805675294943,
+    "arm_tracking_max_rad": 0.17535980083976047,
+    "torque_saturation_ratio": 0.10170731707317072,
+    "max_contacts": 10,
+    "wall_s": 0.9345609580050223
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.18",
+    "spec": {
+      "mu": 0.18,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954392,
+    "max_relative_slip_mm": 359.79093128201237,
+    "max_orientation_drift_deg": 38.22765349705296,
+    "max_raw_orientation_drift_deg": 38.22765349705248,
+    "max_penetration_mm": 0.47797006042150825,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07574644059244982,
+    "arm_tracking_max_rad": 0.16377557637826987,
+    "torque_saturation_ratio": 0.10182926829268292,
+    "max_contacts": 9,
+    "wall_s": 0.8058312920038588
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.19",
+    "spec": {
+      "mu": 0.19,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954364,
+    "max_relative_slip_mm": 365.8117300493655,
+    "max_orientation_drift_deg": 38.22559710642419,
+    "max_raw_orientation_drift_deg": 38.22559710642422,
+    "max_penetration_mm": 0.5840602573619936,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.0757394157438879,
+    "arm_tracking_max_rad": 0.16410546431827402,
+    "torque_saturation_ratio": 0.1074390243902439,
+    "max_contacts": 9,
+    "wall_s": 0.7919423750136048
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.5_mu0.2",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.5,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954336,
+    "max_relative_slip_mm": 371.4312381505019,
+    "max_orientation_drift_deg": 38.190203670839004,
+    "max_raw_orientation_drift_deg": 38.19020367083942,
+    "max_penetration_mm": 0.6469462624272784,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07568764834329411,
+    "arm_tracking_max_rad": 0.17120739608358682,
+    "torque_saturation_ratio": 0.11170731707317073,
+    "max_contacts": 10,
+    "wall_s": 0.7978364999871701
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.2",
+    "spec": {
+      "mu": 0.2,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01999861663995434,
+    "max_relative_slip_mm": 360.2753354009534,
+    "max_orientation_drift_deg": 38.26348735294265,
+    "max_raw_orientation_drift_deg": 38.26348735294295,
+    "max_penetration_mm": 0.3516451524701094,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07572624881777558,
+    "arm_tracking_max_rad": 0.17666495068154167,
+    "torque_saturation_ratio": 0.10207317073170731,
+    "max_contacts": 9,
+    "wall_s": 0.8471108329831623
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.21",
+    "spec": {
+      "mu": 0.21,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.01999861663995433,
+    "max_relative_slip_mm": 360.5013005114145,
+    "max_orientation_drift_deg": 38.20820203867874,
+    "max_raw_orientation_drift_deg": 38.20820203867945,
+    "max_penetration_mm": 0.3819883530791638,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07574871803444674,
+    "arm_tracking_max_rad": 0.17431284214894813,
+    "torque_saturation_ratio": 0.10560975609756097,
+    "max_contacts": 9,
+    "wall_s": 0.8819731250405312
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.22",
+    "spec": {
+      "mu": 0.22,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954368,
+    "max_relative_slip_mm": 368.1289581609177,
+    "max_orientation_drift_deg": 38.26223949151558,
+    "max_raw_orientation_drift_deg": 38.26223949151561,
+    "max_penetration_mm": 0.7139813622252609,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07572544623817669,
+    "arm_tracking_max_rad": 0.2064049536204025,
+    "torque_saturation_ratio": 0.11646341463414635,
+    "max_contacts": 9,
+    "wall_s": 0.7785331250051968
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.23",
+    "spec": {
+      "mu": 0.23,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954378,
+    "max_relative_slip_mm": 360.88480593229065,
+    "max_orientation_drift_deg": 38.20809305161515,
+    "max_raw_orientation_drift_deg": 38.20809305161499,
+    "max_penetration_mm": 0.46139382011650765,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.0757446386204293,
+    "arm_tracking_max_rad": 0.17117557857383908,
+    "torque_saturation_ratio": 0.10292682926829268,
+    "max_contacts": 10,
+    "wall_s": 0.7735714169684798
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.24",
+    "spec": {
+      "mu": 0.24,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954364,
+    "max_relative_slip_mm": 368.16776365115777,
+    "max_orientation_drift_deg": 38.15421401514036,
+    "max_raw_orientation_drift_deg": 38.15421401514041,
+    "max_penetration_mm": 0.5676706394227311,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07567719743877704,
+    "arm_tracking_max_rad": 0.16609284260899032,
+    "torque_saturation_ratio": 0.10841463414634146,
+    "max_contacts": 9,
+    "wall_s": 0.7520319169852883
+  },
+  {
+    "engine": "mujoco",
+    "tag": "m0.6_mu0.25",
+    "spec": {
+      "mu": 0.25,
+      "mass_kg": 0.6,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transfer_speed": "nominal"
+    },
+    "dt_s": 0.001,
+    "duration_s": 8.2,
+    "solref_timeconst_ms": 3.0,
+    "solref_dampratio": 0.75,
+    "closed_finger_target_m": 0.016,
+    "finger_effort_limit_N": 15.0,
+    "controller_gains": {
+      "arm_kp": 150.0,
+      "arm_kd": 30.0,
+      "finger_kp": 3000.0,
+      "finger_kd": 80.0
+    },
+    "success": false,
+    "failure_mode": "normal_contact_instability",
+    "drop_time_s": null,
+    "final_cube_z_m": 0.019998616639954357,
+    "max_relative_slip_mm": 366.55050146771924,
+    "max_orientation_drift_deg": 38.2228531634267,
+    "max_raw_orientation_drift_deg": 38.222853163426706,
+    "max_penetration_mm": 0.6891482750267773,
+    "finger_contact_duty": {
+      "left": 0.0,
+      "right": 0.0
+    },
+    "arm_tracking_rms_rad": 0.07563967231116245,
+    "arm_tracking_max_rad": 0.15491988053951466,
+    "torque_saturation_ratio": 0.1171951219512195,
+    "max_contacts": 9,
+    "wall_s": 0.9647035840316676
+  }
+]

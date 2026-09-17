@@ -1,0 +1,26 @@
+{
+  "engine": "sap_warp",
+  "device": "cuda:0",
+  "dt_ms": 0.5,
+  "duration_s": 8.0,
+  "box_size_mm": [
+    40,
+    40,
+    40
+  ],
+  "box_mass_kg": 1.0,
+  "mu_pair": 0.5,
+  "shape_ke_N_m": 20000.0,
+  "pair_ke_N_m": 10000.0,
+  "shape_tau_ms": 1.5,
+  "pair_tau_ms": 3.0,
+  "rigid_gap_mm": 0.0,
+  "shape_margin_mm": 0.0,
+  "settle_s": 1.5,
+  "ramp_s": 5.0,
+  "hold_s": 1.5,
+  "force_max_N": 8.0,
+  "ideal_first_breakaway_N": 4.905,
+  "contact_preset": "drake",
+  "wall_s": 100.70436316169798
+}

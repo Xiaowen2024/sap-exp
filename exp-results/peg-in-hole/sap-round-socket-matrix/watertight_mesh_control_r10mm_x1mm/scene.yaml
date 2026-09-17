@@ -1,0 +1,49 @@
+schema_version: 1
+name: round_socket_watertight_mesh_control
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 2048
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.001
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: false
+joints:
+- id: peg_free
+  type: free
+  parent: world
+  child: peg
+articulations:
+- id: peg_art
+  joints:
+  - peg_free
+bodies:
+- id: socket
+  shapes:
+  - type: mesh
+    path: /root/autodl-tmp/sap-sim/assets/peg_in_hole/blind_socket_collision_watertight.obj
+    is_solid: false
+- id: peg
+  transform:
+    p:
+    - 0.001
+    - 0.0
+    - 0.12
+    q:
+    - 0.0
+    - 0.008726535498373935
+    - 0.0
+    - 0.9999619230641713
+  shapes:
+  - type: mesh
+    path: /root/autodl-tmp/sim-exp-extra/round/formal/watertight_mesh_control_r10mm_x1mm/peg.obj

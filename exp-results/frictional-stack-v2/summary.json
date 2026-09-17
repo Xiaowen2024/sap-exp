@@ -1,0 +1,302 @@
+{
+  "mujoco": {
+    "engine": "mujoco",
+    "metadata": {
+      "engine": "mujoco",
+      "mujoco_version": "3.12.0",
+      "dt_ms": 0.5,
+      "duration_s": 8.0,
+      "box_size_mm": [
+        40,
+        40,
+        40
+      ],
+      "box_mass_kg": 1.0,
+      "mu_pair": 0.5,
+      "settle_s": 1.5,
+      "ramp_s": 5.0,
+      "hold_s": 1.5,
+      "force_max_N": 8.0,
+      "ideal_first_breakaway_N": 4.905,
+      "solver": "Newton",
+      "integrator": "implicitfast",
+      "solref": [
+        0.002,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "margin_m": 0.0,
+      "gap_m": 0.0,
+      "wall_s": 1.3632058750081342
+    },
+    "settle_interfaces": {
+      "ground_bottom": {
+        "Fn_expected_N": 29.43,
+        "Fn_mean_N": 29.430000000000003,
+        "Fn_std_N": 5.011900335324946e-13,
+        "Fn_mean_relative_error": 1.2071742027864427e-16,
+        "contacts_mean": 4.0,
+        "contact_duty": 1.0
+      },
+      "bottom_middle": {
+        "Fn_expected_N": 19.62,
+        "Fn_mean_N": 19.62,
+        "Fn_std_N": 3.22063772802302e-13,
+        "Fn_mean_relative_error": 0.0,
+        "contacts_mean": 4.0,
+        "contact_duty": 1.0
+      },
+      "middle_top": {
+        "Fn_expected_N": 9.81,
+        "Fn_mean_N": 9.81,
+        "Fn_std_N": 1.9034209364414814e-13,
+        "Fn_mean_relative_error": 0.0,
+        "contacts_mean": 4.0,
+        "contact_duty": 1.0
+      }
+    },
+    "displacement_thresholds": {
+      "0.1_mm": {
+        "time_s": 2.8665000000000003,
+        "force_command_N": 2.1856,
+        "middle_top_Fn_N": 9.809944147357626,
+        "middle_top_Ft_N": 2.1852696344972258,
+        "middle_top_rho": 0.4455213203402066,
+        "middle_top_point_rho_max": 0.5377702744993403,
+        "middle_top_contacts": 4.0
+      },
+      "1_mm": {
+        "time_s": 4.363,
+        "force_command_N": 4.58,
+        "middle_top_Fn_N": 9.923744208470318,
+        "middle_top_Ft_N": 4.960839627538559,
+        "middle_top_rho": 0.9997919179142648,
+        "middle_top_point_rho_max": 1.0,
+        "middle_top_contacts": 4.0
+      },
+      "5_mm": {
+        "time_s": 4.787,
+        "force_command_N": 5.2584,
+        "middle_top_Fn_N": 0.0,
+        "middle_top_Ft_N": 0.0,
+        "middle_top_rho": null,
+        "middle_top_point_rho_max": null,
+        "middle_top_contacts": 0.0
+      }
+    },
+    "rho_thresholds": {
+      "ground_bottom": {
+        "aggregate_0.99": {
+          "time_s": 4.6995000000000005,
+          "force_command_N": 5.118399999999999,
+          "ground_bottom_rho": 1.0,
+          "ground_bottom_slip_m": 0.0003426590621888,
+          "ground_bottom_contacts": 2.0
+        },
+        "point_0.99": {
+          "time_s": 4.055,
+          "force_command_N": 4.0872,
+          "ground_bottom_point_rho_max": 1.0,
+          "ground_bottom_slip_m": 0.000182443691753,
+          "ground_bottom_contacts": 4.0
+        }
+      },
+      "bottom_middle": {
+        "aggregate_0.99": {
+          "time_s": 4.18,
+          "force_command_N": 4.2872,
+          "bottom_middle_rho": 0.999897665579745,
+          "bottom_middle_slip_m": 0.0004296907366788,
+          "bottom_middle_contacts": 2.0
+        },
+        "point_0.99": {
+          "time_s": 3.7845,
+          "force_command_N": 3.6544,
+          "bottom_middle_point_rho_max": 1.0,
+          "bottom_middle_slip_m": 0.000290751833853,
+          "bottom_middle_contacts": 4.0
+        }
+      },
+      "middle_top": {
+        "aggregate_0.99": {
+          "time_s": 3.7845,
+          "force_command_N": 3.6544,
+          "middle_top_rho": 0.9999029015526598,
+          "middle_top_slip_m": 0.0003411617102924,
+          "middle_top_contacts": 2.0
+        },
+        "point_0.99": {
+          "time_s": 3.768,
+          "force_command_N": 3.628,
+          "middle_top_point_rho_max": 0.990036083658986,
+          "middle_top_slip_m": 0.0003346061159062,
+          "middle_top_contacts": 4.0
+        }
+      }
+    },
+    "pre_creep_rho": {
+      "mean": 0.22257530268281833,
+      "max": 0.4453582185541932,
+      "last_100ms_mean": 0.42912960596029875,
+      "last_100ms_max": 0.4453582185541932
+    },
+    "final_slip_mm": {
+      "ground_bottom": 0.5201782640117,
+      "bottom_middle": 10.9573253758574,
+      "middle_top": 12458.976262168431
+    },
+    "max_truncated_contacts": 0
+  },
+  "sap": {
+    "engine": "sap",
+    "metadata": {
+      "engine": "sap_warp",
+      "device": "cuda:0",
+      "dt_ms": 0.5,
+      "duration_s": 8.0,
+      "box_size_mm": [
+        40,
+        40,
+        40
+      ],
+      "box_mass_kg": 1.0,
+      "mu_pair": 0.5,
+      "shape_ke_N_m": 2000000.0,
+      "pair_ke_N_m": 1000000.0,
+      "shape_tau_ms": 1.5,
+      "pair_tau_ms": 3.0,
+      "rigid_gap_mm": 0.0,
+      "shape_margin_mm": 0.0,
+      "settle_s": 1.5,
+      "ramp_s": 5.0,
+      "hold_s": 1.5,
+      "force_max_N": 8.0,
+      "ideal_first_breakaway_N": 4.905,
+      "contact_preset": "drake",
+      "wall_s": 169.41797943087295
+    },
+    "settle_interfaces": {
+      "ground_bottom": {
+        "Fn_expected_N": 29.43,
+        "Fn_mean_N": 29.42147717912133,
+        "Fn_std_N": 31.959083506886945,
+        "Fn_mean_relative_error": 0.00028959636013153097,
+        "contacts_mean": 4.0,
+        "contact_duty": 1.0
+      },
+      "bottom_middle": {
+        "Fn_expected_N": 19.62,
+        "Fn_mean_N": 19.611521817632553,
+        "Fn_std_N": 37.844709694988516,
+        "Fn_mean_relative_error": 0.0004321193867200598,
+        "contacts_mean": 0.848,
+        "contact_duty": 0.212
+      },
+      "middle_top": {
+        "Fn_expected_N": 9.81,
+        "Fn_mean_N": 9.853159350276401,
+        "Fn_std_N": 18.948757710283502,
+        "Fn_mean_relative_error": 0.004399526022059219,
+        "contacts_mean": 0.852,
+        "contact_duty": 0.213
+      }
+    },
+    "displacement_thresholds": {
+      "0.1_mm": {
+        "time_s": 1.6435,
+        "force_command_N": 0.2288,
+        "middle_top_Fn_N": 0.0,
+        "middle_top_Ft_N": 0.0,
+        "middle_top_rho": null,
+        "middle_top_point_rho_max": null,
+        "middle_top_contacts": 0.0
+      },
+      "1_mm": {
+        "time_s": 1.9315,
+        "force_command_N": 0.6896000000000001,
+        "middle_top_Fn_N": 0.0,
+        "middle_top_Ft_N": 0.0,
+        "middle_top_rho": null,
+        "middle_top_point_rho_max": null,
+        "middle_top_contacts": 0.0
+      },
+      "5_mm": {
+        "time_s": 2.441,
+        "force_command_N": 1.5048,
+        "middle_top_Fn_N": 30.573790366058525,
+        "middle_top_Ft_N": 6.946086704302549,
+        "middle_top_rho": 0.4543817839487604,
+        "middle_top_point_rho_max": 0.9999999996566932,
+        "middle_top_contacts": 4.0
+      }
+    },
+    "rho_thresholds": {
+      "ground_bottom": {
+        "aggregate_0.99": {
+          "time_s": 2.68,
+          "force_command_N": 1.8872,
+          "ground_bottom_rho": 0.9970354721664156,
+          "ground_bottom_slip_m": 5.580793930315409e-06,
+          "ground_bottom_contacts": 4.0
+        },
+        "point_0.99": {
+          "time_s": 2.5005,
+          "force_command_N": 1.6,
+          "ground_bottom_point_rho_max": 0.9999999948010624,
+          "ground_bottom_slip_m": 3.994847537436286e-06,
+          "ground_bottom_contacts": 4.0
+        }
+      },
+      "bottom_middle": {
+        "aggregate_0.99": {
+          "time_s": 2.7625,
+          "force_command_N": 2.0192,
+          "bottom_middle_rho": 0.9995187498868532,
+          "bottom_middle_slip_m": -0.0008859200600623,
+          "bottom_middle_contacts": 5.0
+        },
+        "point_0.99": {
+          "time_s": 2.265,
+          "force_command_N": 1.2231999999999998,
+          "bottom_middle_point_rho_max": 0.9943917925851457,
+          "bottom_middle_slip_m": -0.0003816976500898,
+          "bottom_middle_contacts": 4.0
+        }
+      },
+      "middle_top": {
+        "aggregate_0.99": {
+          "time_s": 2.436,
+          "force_command_N": 1.4968000000000004,
+          "middle_top_rho": 0.9939612118455508,
+          "middle_top_slip_m": 0.0049460661530247,
+          "middle_top_contacts": 4.0
+        },
+        "point_0.99": {
+          "time_s": 1.891,
+          "force_command_N": 0.6248000000000001,
+          "middle_top_point_rho_max": 0.9999988305662232,
+          "middle_top_slip_m": 0.000810454211205,
+          "middle_top_contacts": 4.0
+        }
+      }
+    },
+    "pre_creep_rho": {
+      "mean": 0.02125004335511919,
+      "max": 0.0464089883373919,
+      "last_100ms_mean": 0.028232727217325008,
+      "last_100ms_max": 0.0464089883373919
+    },
+    "final_slip_mm": {
+      "ground_bottom": 0.03612756319726351,
+      "bottom_middle": -11.544551965761,
+      "middle_top": 10871.90994588218
+    },
+    "max_truncated_contacts": 0
+  }
+}

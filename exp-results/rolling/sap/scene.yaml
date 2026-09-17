@@ -1,0 +1,76 @@
+schema_version: 1
+name: simbenchmark_rolling_sap
+simulation:
+  dt: 0.001
+  num_worlds: 1
+  max_rigid_contact: 64
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.06
+      mu: 0.5
+ground:
+  enabled: true
+  cfg:
+    has_shape_collision: true
+    mu: 0.25
+bodies:
+- id: box
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.499998
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: box
+    hx: 10.0
+    hy: 10.0
+    hz: 0.5
+    cfg:
+      density: 0.025
+      mu: 1.0
+- id: ball_0_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 1.499998
+    q:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+  shapes:
+  - type: sphere
+    radius: 0.5
+    cfg:
+      density: 1.909859317102744
+      mu: 0.6666666666666666
+joints:
+- id: box_free
+  type: free
+  parent: world
+  child: box
+- id: ball_0_0_free
+  type: free
+  parent: world
+  child: ball_0_0
+articulations:
+- id: box_articulation
+  joints:
+  - box_free
+- id: ball_0_0_articulation
+  joints:
+  - ball_0_0_free

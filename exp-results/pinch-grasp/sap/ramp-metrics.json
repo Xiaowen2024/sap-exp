@@ -1,0 +1,31 @@
+{
+  "scene": "/Users/xiaowenyuan/Documents/SIM-EXP/sap-sim/assets/yaml/two_finger_pinch_ramp.yaml",
+  "results": [
+    {
+      "case": "baseline",
+      "friction": 0.2,
+      "cube_mass_kg": 0.1,
+      "device": "cpu",
+      "dt_s": 0.001,
+      "commanded_lift_mm": 60.0,
+      "cube_lift_mm": 50.5746528506279,
+      "lift_follow_percent": 84.29108808437984,
+      "final_cube_center_z_mm": 70.53054124116898,
+      "max_penetration_mm": 10.28824970126152,
+      "max_contact_count": 512
+    },
+    {
+      "case": "low_friction",
+      "friction": 0.05,
+      "cube_mass_kg": 0.1,
+      "device": "cpu",
+      "dt_s": 0.001,
+      "commanded_lift_mm": 60.0,
+      "cube_lift_mm": 50.44507794082165,
+      "lift_follow_percent": 84.07512990136942,
+      "final_cube_center_z_mm": 70.38987427949905,
+      "max_penetration_mm": 10.305844247341156,
+      "max_contact_count": 512
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+schema_version: 1
+name: mesh_peg
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 2048
+  solver:
+    contact_preset_variant: drake
+builder:
+  gravity: -9.81
+  rigid_gap: 0.001
+  defaults:
+    shape:
+      density: 1000.0
+      ke: 10000.0
+      tau: 0.01
+      mu: 0.8
+ground:
+  enabled: false
+bodies:
+- id: socket
+  shapes:
+  - type: mesh
+    path: /home/ubuntu/sap-mesh-exp/assets/peg_in_hole/blind_socket_collision_watertight.obj
+    is_solid: false
+- id: peg
+  transform:
+    p:
+    - 0.001
+    - 0
+    - 0.12
+    q: identity
+  shapes:
+  - type: mesh
+    path: /home/ubuntu/sap-mesh-exp/outputs/mesh-peg-in-hole-representation-diagnostics/peg_0.01000.obj
+joints:
+- id: peg_free
+  type: free
+  parent: world
+  child: peg
+articulations:
+- id: peg_art
+  joints:
+  - peg_free

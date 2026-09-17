@@ -1,0 +1,458 @@
+[
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.1,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.954396246991599,
+        "Fn_cv": 8.007758546895124e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9543962469915995,
+        "Fn_cv": 9.223972980012908e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9543962469915992,
+    "capacity_ratio_2muN_over_mg": 0.1945761971440569,
+    "lift_follow_mm": -7330.611745082088,
+    "cube_vz_tail_mm_s": -11490.882432383274,
+    "slip_distance_mm": 7387.615310501232,
+    "mean_abs_vt_mm_s": 5910.12616511916,
+    "max_contacts": 8,
+    "wall_s": 0.04826899996260181,
+    "left_duty_lift": 0.0075969612155137945,
+    "left_Fn_mean_lift_N": 15.182898295645577,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.0075969612155137945,
+    "right_Fn_mean_lift_N": 15.182898295646893,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.1,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 9.582793493979633e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 1.1003508077306251e-13,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9787420896275789,
+    "capacity_ratio_2muN_over_mg": 0.07981586867503192,
+    "lift_follow_mm": -7534.167092575488,
+    "cube_vz_tail_mm_s": -11662.479307716645,
+    "slip_distance_mm": 7591.128147779104,
+    "mean_abs_vt_mm_s": 6072.905944595522,
+    "max_contacts": 8,
+    "wall_s": 0.04434887500246987,
+    "left_duty_lift": 0.0059976009596161535,
+    "left_Fn_mean_lift_N": 19.47969871411595,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.0059976009596161535,
+    "right_Fn_mean_lift_N": 19.479698713971448,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.2,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.954396246991599,
+        "Fn_cv": 8.007758546895124e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9543962469915995,
+        "Fn_cv": 9.223972980012908e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9543962469915992,
+    "capacity_ratio_2muN_over_mg": 0.3891523942881138,
+    "lift_follow_mm": -6886.339639850534,
+    "cube_vz_tail_mm_s": -11111.98791989269,
+    "slip_distance_mm": 6943.437019271368,
+    "mean_abs_vt_mm_s": 5554.84905977364,
+    "max_contacts": 8,
+    "wall_s": 0.044047624978702515,
+    "left_duty_lift": 0.0075969612155137945,
+    "left_Fn_mean_lift_N": 17.56235737125779,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.0075969612155137945,
+    "right_Fn_mean_lift_N": 17.562357371257985,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.2,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 9.582793493979633e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 1.1003508077306251e-13,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9787420896275789,
+    "capacity_ratio_2muN_over_mg": 0.15963173735006383,
+    "lift_follow_mm": -7340.185274166612,
+    "cube_vz_tail_mm_s": -11498.489252847714,
+    "slip_distance_mm": 7397.186807014394,
+    "mean_abs_vt_mm_s": 5917.781588992052,
+    "max_contacts": 8,
+    "wall_s": 0.0433309170184657,
+    "left_duty_lift": 0.004798080767692923,
+    "left_Fn_mean_lift_N": 29.25710907864112,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.004798080767692923,
+    "right_Fn_mean_lift_N": 29.257109078310346,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.954396246991599,
+        "Fn_cv": 8.007758546895124e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9543962469915995,
+        "Fn_cv": 9.223972980012908e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9543962469915992,
+    "capacity_ratio_2muN_over_mg": 0.7783047885762276,
+    "lift_follow_mm": -5268.424388816267,
+    "cube_vz_tail_mm_s": -9639.047305867749,
+    "slip_distance_mm": 5325.889028207067,
+    "mean_abs_vt_mm_s": 4261.03274305853,
+    "max_contacts": 8,
+    "wall_s": 0.04420495900558308,
+    "left_duty_lift": 0.02039184326269492,
+    "left_Fn_mean_lift_N": 10.491716637906384,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.02039184326269492,
+    "right_Fn_mean_lift_N": 10.491716637906388,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.05,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 9.582793493979633e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 0.9787420896275789,
+        "Fn_cv": 1.1003508077306251e-13,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 0.9787420896275789,
+    "capacity_ratio_2muN_over_mg": 0.31926347470012767,
+    "lift_follow_mm": -6954.485117644515,
+    "cube_vz_tail_mm_s": -11170.062064466592,
+    "slip_distance_mm": 7011.567874149561,
+    "mean_abs_vt_mm_s": 5609.343224236011,
+    "max_contacts": 8,
+    "wall_s": 0.04352570802439004,
+    "left_duty_lift": 0.005197920831667333,
+    "left_Fn_mean_lift_N": 29.293049785705048,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.005197920831667333,
+    "right_Fn_mean_lift_N": 29.293049784858166,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.1,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.8176089920924015,
+        "Fn_cv": 2.2742999999228906e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.817608992092401,
+        "Fn_cv": 2.674313091403782e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.817608992092401,
+    "capacity_ratio_2muN_over_mg": 0.7783096823837719,
+    "lift_follow_mm": -5556.384785594756,
+    "cube_vz_tail_mm_s": -9914.719331476099,
+    "slip_distance_mm": 5613.781817794356,
+    "mean_abs_vt_mm_s": 4491.311156804583,
+    "max_contacts": 8,
+    "wall_s": 0.04755716701038182,
+    "left_duty_lift": 0.06117552978808476,
+    "left_Fn_mean_lift_N": 12.187177572053184,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.06117552978808476,
+    "right_Fn_mean_lift_N": 12.187177572053182,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.1,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 4.9428940284431e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 5.127399162132971e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.914970852412749,
+    "capacity_ratio_2muN_over_mg": 0.3192636780764729,
+    "lift_follow_mm": -7176.931456235201,
+    "cube_vz_tail_mm_s": -11361.060860421518,
+    "slip_distance_mm": 7233.96762927117,
+    "mean_abs_vt_mm_s": 5787.23127242398,
+    "max_contacts": 8,
+    "wall_s": 0.045165249961428344,
+    "left_duty_lift": 0.02039184326269492,
+    "left_Fn_mean_lift_N": 20.50473723426823,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.02039184326269492,
+    "right_Fn_mean_lift_N": 20.504737234262095,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.2,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.8176089920924015,
+        "Fn_cv": 2.2742999999228906e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.817608992092401,
+        "Fn_cv": 2.674313091403782e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.817608992092401,
+    "capacity_ratio_2muN_over_mg": 1.5566193647675437,
+    "lift_follow_mm": 59.72801259393753,
+    "cube_vz_tail_mm_s": -0.14054968569620266,
+    "slip_distance_mm": 0.24403671513622208,
+    "mean_abs_vt_mm_s": 0.19586444990397728,
+    "max_contacts": 8,
+    "wall_s": 0.10075316700385883,
+    "left_duty_lift": 1.0,
+    "left_Fn_mean_lift_N": 3.819374465494528,
+    "left_rho_mean_lift": 0.6429939819256163,
+    "right_duty_lift": 1.0,
+    "right_Fn_mean_lift_N": 3.819374465494528,
+    "right_rho_mean_lift": 0.6429939874667968,
+    "grasp_success": true
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.2,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 4.9428940284431e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 5.127399162132971e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.914970852412749,
+    "capacity_ratio_2muN_over_mg": 0.6385273561529458,
+    "lift_follow_mm": -6330.392112228114,
+    "cube_vz_tail_mm_s": -10624.190832786766,
+    "slip_distance_mm": 6387.611836288126,
+    "mean_abs_vt_mm_s": 5110.2693632704495,
+    "max_contacts": 8,
+    "wall_s": 0.044506709033157676,
+    "left_duty_lift": 0.023990403838464614,
+    "left_Fn_mean_lift_N": 24.065972233616275,
+    "left_rho_mean_lift": 1.0,
+    "right_duty_lift": 0.023990403838464614,
+    "right_Fn_mean_lift_N": 24.06597223361801,
+    "right_rho_mean_lift": 1.0,
+    "grasp_success": false
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.1,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.8176089920924015,
+        "Fn_cv": 2.2742999999228906e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.817608992092401,
+        "Fn_cv": 2.674313091403782e-14,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.817608992092401,
+    "capacity_ratio_2muN_over_mg": 3.1132387295350874,
+    "lift_follow_mm": 59.79580703325079,
+    "cube_vz_tail_mm_s": -0.14054968569603457,
+    "slip_distance_mm": 0.1754887441082088,
+    "mean_abs_vt_mm_s": 0.14038198539333932,
+    "max_contacts": 8,
+    "wall_s": 0.09652420796919614,
+    "left_duty_lift": 1.0,
+    "left_Fn_mean_lift_N": 3.8176089920924,
+    "left_rho_mean_lift": 0.3217517240133588,
+    "right_duty_lift": 1.0,
+    "right_Fn_mean_lift_N": 3.8176089920924,
+    "right_rho_mean_lift": 0.32175172880232794,
+    "grasp_success": true
+  },
+  {
+    "engine": "mujoco",
+    "device": "cpu",
+    "mu": 0.4,
+    "mass_kg": 0.25,
+    "compression_per_side_mm": 0.2,
+    "dt_ms": 0.5,
+    "normal_gate": {
+      "left": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 4.9428940284431e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      },
+      "right": {
+        "Fn_mean_N": 3.914970852412749,
+        "Fn_cv": 5.127399162132971e-16,
+        "duty": 1.0,
+        "points_mean": 4.0
+      }
+    },
+    "normal_gate_pass": true,
+    "N_measured_per_side_N": 3.914970852412749,
+    "capacity_ratio_2muN_over_mg": 1.2770547123058915,
+    "lift_follow_mm": 59.33153185390465,
+    "cube_vz_tail_mm_s": -0.1597313814400959,
+    "slip_distance_mm": 0.6039643333581152,
+    "mean_abs_vt_mm_s": 0.48360255214500675,
+    "max_contacts": 8,
+    "wall_s": 0.10363349999533966,
+    "left_duty_lift": 0.9956017592962815,
+    "left_Fn_mean_lift_N": 3.933568690082879,
+    "left_rho_mean_lift": 0.7828739305318451,
+    "right_duty_lift": 0.9956017592962815,
+    "right_Fn_mean_lift_N": 3.9335686900828795,
+    "right_rho_mean_lift": 0.7828739620464971,
+    "grasp_success": true
+  }
+]

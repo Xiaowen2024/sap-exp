@@ -1,0 +1,70 @@
+{
+  "geometry": "40 mm cube, z-only, plane, four nominal contact points",
+  "forces_N": [
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "target_from_sap": {
+    "k_pair_N_m": 1000000.0,
+    "contact_points": 4,
+    "interface_k_N_m": 4000000.0
+  },
+  "best_tested_mujoco_parameters": {
+    "solref_stiffness_s_2": 100000.0,
+    "solref_damping_s_1": 632.4555320336759,
+    "interface_slope_N_m": 3999999.999999516,
+    "intercept_N": 1.8101076193488556e-12,
+    "fit_R2": 1.0,
+    "target_interface_stiffness_N_m": 4000000.0,
+    "relative_target_error": 1.2090328738167955e-13
+  },
+  "fits": [
+    {
+      "solref_stiffness_s_2": 100000.0,
+      "solref_damping_s_1": 632.4555320336759,
+      "interface_slope_N_m": 3999999.999999516,
+      "intercept_N": 1.8101076193488556e-12,
+      "fit_R2": 1.0,
+      "target_interface_stiffness_N_m": 4000000.0,
+      "relative_target_error": 1.2090328738167955e-13
+    },
+    {
+      "solref_stiffness_s_2": 200000.0,
+      "solref_damping_s_1": 894.4271909999159,
+      "interface_slope_N_m": 8000000.000003317,
+      "intercept_N": -7.630340803643777e-12,
+      "fit_R2": 1.0,
+      "target_interface_stiffness_N_m": 4000000.0,
+      "relative_target_error": 1.0000000000008296
+    },
+    {
+      "solref_stiffness_s_2": 400000.0,
+      "solref_damping_s_1": 1264.9110640673518,
+      "interface_slope_N_m": 16000000.000011394,
+      "intercept_N": -2.0445867221496887e-12,
+      "fit_R2": 1.0,
+      "target_interface_stiffness_N_m": 4000000.0,
+      "relative_target_error": 3.0000000000028484
+    },
+    {
+      "solref_stiffness_s_2": 800000.0,
+      "solref_damping_s_1": 1788.8543819998317,
+      "interface_slope_N_m": 32000000.000049807,
+      "intercept_N": -2.9913849175500218e-12,
+      "fit_R2": 1.0,
+      "target_interface_stiffness_N_m": 4000000.0,
+      "relative_target_error": 7.000000000012452
+    },
+    {
+      "solref_stiffness_s_2": 1600000.0,
+      "solref_damping_s_1": 2529.8221281347037,
+      "interface_slope_N_m": 63999999.999696545,
+      "intercept_N": 8.22897305852166e-11,
+      "fit_R2": 1.0,
+      "target_interface_stiffness_N_m": 4000000.0,
+      "relative_target_error": 14.999999999924137
+    }
+  ]
+}
