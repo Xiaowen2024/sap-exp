@@ -214,6 +214,19 @@ h1 {
   line-height: 1.55;
 }
 
+.research-question {
+  max-width: 900px;
+  margin: 34px 0 0;
+  padding: 14px 17px;
+  color: var(--muted);
+  background: var(--soft);
+  border-left: 2px solid var(--border-dark);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.research-question strong { color: var(--ink); }
+
 .report-meta {
   margin: 0;
   padding: 0 0 2px;
@@ -270,6 +283,43 @@ h1 {
 .callout p { max-width: none; margin: 0; }
 .callout-label { margin-bottom: 5px !important; color: var(--link); }
 .conclusion { margin-top: 28px; background: #f2f7fa; }
+
+.equation {
+  width: fit-content;
+  max-width: 100%;
+  margin: 12px 0 17px;
+  padding: 8px 14px;
+  color: #354858;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.takeaway {
+  margin: 20px 0 0;
+  padding: 12px 14px;
+  color: var(--muted);
+  background: #f8fafb;
+  border-left: 2px solid var(--link);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.takeaway strong { color: var(--link-dark); }
+
+.result-quote {
+  max-width: 900px;
+  margin: 21px 0;
+  padding: 13px 16px;
+  color: var(--ink);
+  background: #f2f7fa;
+  border-left: 3px solid var(--link);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.55;
+}
 
 .summary-table,
 .data-table,
