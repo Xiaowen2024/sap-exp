@@ -24,19 +24,18 @@ task outcomes.
 ## Full report
 
 The complete advisor-facing synthesis is a single-page, documentation-style
-report with numbered sections, tables, selected plots, and source links:
+report with numbered sections, tables, and source links:
 
 **[Open the full GitHub Pages report →](https://xiaowen2024.github.io/sap-exp/)**
 
 The report follows the progression:
 
-1. Scope and protocol
-2. Contact calibration and settling
-3. Motion, impact, and energy
-4. Frictional contact
-5. Collision geometry and insertion
-6. Panda manipulation robustness
-7. Overall comparison, limitations, and conclusion
+1. Executive summary
+2. Scope and protocol
+3. Benchmark results
+4. Overall comparison
+5. Interpretation and limitations
+6. Sources
 
 ## Repository structure
 
