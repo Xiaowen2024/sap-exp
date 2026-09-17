@@ -1,29 +1,58 @@
-# SAP/Warp × MuJoCo contact-dynamics benchmark
+# SAP/Warp × MuJoCo contact-rich simulation benchmark
 
 This repository contains a controlled comparison of SAP/Warp and MuJoCo across
-normal-contact calibration, stacking, friction, impact, rolling, collision
+contact calibration, stacking, friction, impact, rolling, collision
 representation, and Panda manipulation tasks.
 
-## Report website
+## Executive summary
 
-The advisor-facing synthesis is a single-page, documentation-style report:
+There is no universal winner. In the tested configurations:
 
-**[Open the GitHub Pages report](https://xiaowen2024.github.io/sap-exp/)**
+| Regime | Main observation | Practical reading |
+| --- | --- | --- |
+| Near-rigid contact | MuJoCo maintained stable multi-contact stacks and near-zero static force-balance error; SAP/Warp showed high-stiffness contact switching and jitter. | MuJoCo was the more consistent near-rigid reference. |
+| Compliant friction | SAP/Warp stayed closer to the Coulomb limit in free sliding and reached the ideal breakaway threshold more closely in the stable ramp and pinch tests. | SAP/Warp is useful when interpretable compliant friction is the target, subject to normal-contact stability. |
+| Impact and energy | MuJoCo transferred calibrated restitution more consistently across time steps and retained more energy in the elastic-bounce test. | MuJoCo was the safer dynamic baseline in these tests. |
+| Geometry and manipulation | Broad concave settling was similar, but tight insertion and Panda task outcomes exposed different collision and controller–contact failure modes. | Collision representation and task configuration can dominate the apparent ranking. |
 
-The site is generated from [docs/](docs/). The complete experiment reports,
-raw CSV/JSON traces, scene files, and runners remain under
-[exp-report/](exp-report/) and [exp-results/](exp-results/).
+All statements above refer to the tested configurations, not engine-best
+performance. The comparison does not treat MuJoCo's `solref`/`solimp` and
+SAP/Warp's `ke`/`tau` as one-to-one physical equivalents; parameters are
+interpreted through measured force, penetration, slip, energy, stability, and
+task outcomes.
 
-## Scope
+## Full report
 
-The comparison does not claim a universal winner. It distinguishes:
+The complete advisor-facing synthesis is a single-page, documentation-style
+report with numbered sections, tables, selected plots, and source links:
 
-- native-configuration behavior;
-- observable-matched comparisons, such as measured normal force or contact
-  timescale; and
-- task-level robustness, where controllers and contact models interact.
+**[Open the full GitHub Pages report →](https://xiaowen2024.github.io/sap-exp/)**
 
-In particular, MuJoCo and SAP/Warp parameters are not treated as
-one-to-one physical equivalents: solref/solimp and ke/tau must be interpreted
-through measured penetration, force, slip, energy, stability, and task
-outcomes.
+The report follows the progression:
+
+1. Scope and protocol
+2. Contact calibration and settling
+3. Motion, impact, and energy
+4. Frictional contact
+5. Collision geometry and insertion
+6. Panda manipulation robustness
+7. Overall comparison, limitations, and conclusion
+
+## Repository structure
+
+- [`docs/`](docs/) — source files for the full report website
+- [`exp-report/`](exp-report/) — experiment-level reports and interpretations
+- [`exp-results/`](exp-results/) — raw CSV/JSON traces, plots, videos, and scene files
+- [`.github/workflows/pages.yml`](.github/workflows/pages.yml) — GitHub Pages deployment workflow
+
+## Comparison principles
+
+The benchmark distinguishes three levels of evidence:
+
+- **Observable-matched comparisons**, such as aggregate stiffness or contact time scale;
+- **Native-configuration behavior**, where each simulator uses its own contact and solver controls; and
+- **Task-level robustness**, where the controller, collision geometry, time step, and contact model interact.
+
+Runtime is not interpreted from CPU MuJoCo versus CUDA SAP/Warp wall time. A
+fair scalability comparison requires matched hardware, world count, contact
+capacity, and measurement scope.
