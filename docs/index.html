@@ -3,321 +3,339 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Controlled contact-dynamics benchmark comparing SAP/Warp and MuJoCo across calibration, friction, impact, stacking, geometry, and robot manipulation tasks.">
-  <title>SAP/Warp × MuJoCo | Contact Dynamics Benchmark</title>
+  <meta name="description" content="A controlled cross-simulator benchmark of SAP/Warp and MuJoCo for contact-rich rigid-body robotics simulation.">
+  <title>SAP/Warp vs MuJoCo — Contact-Rich Simulation Benchmark</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav-shell">
-      <a class="wordmark" href="#top" aria-label="Back to top"><span class="wordmark-mark">S</span><span>SAP/Warp × MuJoCo</span></a>
-      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="#summary">Summary</a>
-        <a href="#method">Method</a>
-        <a href="#experiments">Experiments</a>
-        <a href="#tradeoffs">Trade-offs</a>
-        <a href="#sources">Sources</a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="site-shell">
+    <aside class="sidebar" aria-label="Report navigation">
+      <div class="brand">
+        <a href="#top" class="brand-title">SAP/Warp</a>
+        <span class="brand-subtitle">× MuJoCo</span>
+      </div>
+      <p class="sidebar-description">Contact-rich simulation benchmark</p>
+
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="report-nav">
+        Contents
+      </button>
+
+      <nav id="report-nav" class="report-nav">
+        <p class="nav-label">Contents</p>
+        <ol>
+          <li><a href="#summary">Executive summary</a></li>
+          <li><a href="#scope">Scope and protocol</a></li>
+          <li>
+            <a href="#results">Benchmark results</a>
+            <ol>
+              <li><a href="#calibration">Calibration and settling</a></li>
+              <li><a href="#motion">Motion and impact</a></li>
+              <li><a href="#friction">Frictional contact</a></li>
+              <li><a href="#geometry">Collision geometry</a></li>
+              <li><a href="#manipulation">Manipulation</a></li>
+            </ol>
+          </li>
+          <li><a href="#comparison">Overall comparison</a></li>
+          <li><a href="#interpretation">Interpretation and limitations</a></li>
+          <li><a href="#evidence">Selected evidence</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ol>
       </nav>
-    </div>
-  </header>
 
-  <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy">
-        <p class="eyebrow">CONTROLLED CONTACT-DYNAMICS BENCHMARK · SEPTEMBER 2026</p>
-        <h1>What changes when the contact model changes?</h1>
-        <p class="hero-lede">A controlled comparison of SAP/Warp and MuJoCo across normal compliance, friction, impact, stacking, collision representation, and robot manipulation.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#summary">Read the findings <span>↓</span></a>
-          <a class="button button-secondary" href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">Open repository <span>↗</span></a>
+      <div class="sidebar-footer">
+        <a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a>
+        <a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP/Warp documentation ↗</a>
+      </div>
+    </aside>
+
+    <main id="main-content" class="content">
+      <header id="top" class="page-header">
+        <p class="breadcrumb"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP/Warp</a> / Benchmarking / Cross-simulator study</p>
+        <div class="header-grid">
+          <div>
+            <p class="eyebrow">Research report · September 2026</p>
+            <h1>SAP/Warp vs MuJoCo:<br>contact-rich simulation benchmark</h1>
+            <p class="lede">A controlled comparison of contact law, time stepping, collision representation, frictional behavior, and manipulation robustness across more than 650 experiments.</p>
+          </div>
+          <dl class="report-meta">
+            <div><dt>Scope</dt><dd>Rigid-body robotics simulation</dd></div>
+            <div><dt>Primary question</dt><dd>Which failure modes appear under which contact regimes?</dd></div>
+            <div><dt>Comparison basis</dt><dd>Observable behavior, not parameter-name equivalence</dd></div>
+          </dl>
         </div>
-      </div>
-      <div class="hero-panel">
-        <div class="hero-panel-top"><span class="status-dot"></span><span>Advisor-facing synthesis</span><span class="panel-kicker">01 / 08</span></div>
-        <div class="hero-equation">contact<br><span>model</span><b>×</b> discretization<br><span>×</span> geometry</div>
-        <p>Observed behavior is a property of the full numerical pipeline—not of a single solver label.</p>
-      </div>
-    </section>
+      </header>
 
-    <section id="summary" class="section-shell section-block">
-      <div class="section-heading">
-        <p class="eyebrow">01 · EXECUTIVE SUMMARY</p>
-        <h2>No universal winner—different contact regimes expose different strengths.</h2>
-        <p class="section-intro">The comparison is strongest when it asks a physically explicit question: does a trajectory match an analytical reference, does a force balance close, does a contact remain stable, or does a robot task succeed?</p>
-      </div>
-
-      <div class="finding-grid">
-        <article class="finding-card finding-card-wide accent-coral">
-          <div class="card-label">Main conclusion</div>
-          <h3>MuJoCo is the more consistent reference in the tested near-rigid and impact regimes.</h3>
-          <p>It preserved four-point static contact in the calibrated stacks, transferred a calibrated restitution more robustly across timestep, and retained substantially more mechanical energy in repeated elastic bouncing.</p>
-          <div class="metric-line"><span>Rolling MSE</span><strong>0.00693</strong><em>standard MuJoCo</em><span class="metric-arrow">vs.</span><strong>0.34721</strong><em>best tested SAP</em></div>
-        </article>
-        <article class="finding-card accent-teal">
-          <div class="card-label">SAP/Warp signal</div>
-          <h3>Material-like pair stiffness and compliant friction are useful—but configuration-sensitive.</h3>
-          <p>SAP reproduced the measured four-contact force–deformation slope and, in a stable friction ramp, reached the Coulomb breakaway threshold more closely than the tested MuJoCo configuration.</p>
-        </article>
-        <article class="finding-card accent-amber">
-          <div class="card-label">Most important caveat</div>
-          <h3>High stiffness does not automatically mean higher fidelity.</h3>
-          <p>SAP high-stiffness stacks developed contact-manifold switching and jitter; MuJoCo’s scalar stiffness mapping did not transfer unchanged from ground to dynamic box–box interfaces.</p>
-        </article>
-        <article class="finding-card accent-blue">
-          <div class="card-label">Robotics reading</div>
-          <h3>Task outcomes are controller–contact interactions.</h3>
-          <p>At frozen native Panda settings, SAP had the larger observed mass/friction feasible region, while MuJoCo showed lower hand-relative drift after contact was established. This is task-level evidence, not solver-equivalence evidence.</p>
-        </article>
-      </div>
-
-      <div class="stat-strip" aria-label="Benchmark scale">
-        <div><strong>650+</strong><span>controlled runs</span></div>
-        <div><strong>648</strong><span>MuJoCo rolling sweep cases</span></div>
-        <div><strong>96</strong><span>calibrated impact-transfer cases</span></div>
-        <div><strong>46</strong><span>Panda mass/friction conditions</span></div>
-      </div>
-    </section>
-
-    <section id="method" class="section-shell section-block section-tint">
-      <div class="section-heading split-heading">
-        <div>
-          <p class="eyebrow">02 · HOW TO READ THE COMPARISON</p>
-          <h2>Separate physical behavior from numerical bookkeeping.</h2>
+      <section id="summary" class="report-section">
+        <h2>1. Executive summary</h2>
+        <div class="callout">
+          <p class="callout-label">Bottom line</p>
+          <p>There is no universal winner. MuJoCo was the more consistent reference in the tested near-rigid, impact, and static-equilibrium regimes. SAP/Warp exposed useful material-like contact controls and tracked Coulomb friction more closely in several controlled compliant-contact tests. The practical result depends on the contact regime, collision representation, and task-level configuration.</p>
         </div>
-        <p class="section-intro">The benchmark uses two complementary protocols: frozen native configurations to characterize each engine as used, and observable-matched experiments to remove a specific confound such as normal force or contact timescale.</p>
-      </div>
 
-      <div class="method-grid">
-        <article class="method-card">
-          <span class="method-number">A</span>
-          <h3>Analytical or invariant references</h3>
-          <p>For single-contact or low-complexity systems, compare trajectory, restitution, frictional acceleration, impulse, energy, or force balance with a known reference.</p>
-          <div class="tag-row"><span>trajectory</span><span>impulse</span><span>energy</span><span>force balance</span></div>
-        </article>
-        <article class="method-card">
-          <span class="method-number">B</span>
-          <h3>Observable matching</h3>
-          <p>Do not equate parameter names numerically. Match the measured interface slope, normal preload, or dynamic contact time, then compare the task outcome.</p>
-          <div class="tag-row"><span>same N</span><span>same K</span><span>same t<sub>c</sub></span></div>
-        </article>
-        <article class="method-card">
-          <span class="method-number">C</span>
-          <h3>Task-level diagnostics</h3>
-          <p>For stacks and robots without a unique ground truth, report contact duty, point count, penetration, slip, drift, settling, failure mode, and success gates together.</p>
-          <div class="tag-row"><span>stability</span><span>slip</span><span>failure mode</span></div>
-        </article>
-      </div>
-
-      <div class="parameter-panel">
-        <div>
-          <p class="card-label">Parameter semantics</p>
-          <h3>Functionally related does not mean mathematically equivalent.</h3>
-          <p><code>solref</code>/<code>solimp</code> and <code>ke</code>/<code>tau</code> both affect contact response, but the mapping depends on mass, geometry, active contacts, and timestep.</p>
-        </div>
-        <table class="compact-table">
-          <thead><tr><th>Contact property</th><th>MuJoCo</th><th>SAP/Warp</th></tr></thead>
+        <table class="summary-table">
+          <thead>
+            <tr><th>Finding</th><th>Evidence from the tested configurations</th><th>Meaning</th></tr>
+          </thead>
           <tbody>
-            <tr><td>strength / stiffness</td><td><code>solimp</code> + <code>solref</code></td><td><code>ke</code></td></tr>
-            <tr><td>relaxation / dissipation</td><td><code>solref.timeconst</code></td><td><code>tau</code></td></tr>
-            <tr><td>elasticity / damping ratio</td><td><code>solref.dampratio</code></td><td>no direct one-to-one parameter</td></tr>
-            <tr><td>friction limit</td><td>effective pair <code>mu</code></td><td>effective pair <code>mu</code></td></tr>
+            <tr>
+              <th scope="row">Near-rigid contact</th>
+              <td>MuJoCo maintained stable multi-contact stacks and near-zero static force-balance error. SAP/Warp showed contact-manifold switching and jitter at high pair stiffness.</td>
+              <td>Increasing stiffness is not, by itself, a reliable path to higher fidelity.</td>
+            </tr>
+            <tr>
+              <th scope="row">Compliant friction</th>
+              <td>SAP/Warp stayed closer to the Coulomb limit in free sliding and reached the ideal breakaway threshold more closely in the stable ramp and pinch tests.</td>
+              <td>SAP/Warp is promising when an interpretable compliant friction response is the target, subject to normal-contact stability.</td>
+            </tr>
+            <tr>
+              <th scope="row">Impact and energy</th>
+              <td>After calibration, MuJoCo transferred restitution more consistently across timesteps. In the elastic-bounce test, MuJoCo retained approximately the initial energy while SAP/Warp accumulated measurable dissipation.</td>
+              <td>MuJoCo was the safer baseline for dynamic contact and restitution in these tests.</td>
+            </tr>
+            <tr>
+              <th scope="row">Geometry and robotics</th>
+              <td>Broad concave settling was similar, but tight tilted insertion was sensitive to collision representation. In Panda tasks, feasible-region size and post-contact drift favored different engines.</td>
+              <td>Collision geometry and the controller–contact interaction can dominate the apparent simulator ranking.</td>
+            </tr>
           </tbody>
         </table>
-      </div>
-      <p class="method-note"><strong>Performance note.</strong> Current wall times are descriptive only: MuJoCo measurements are CPU stepping, while SAP measurements include different GPU/CPU paths, host-device transfers, instrumentation, and in some cases a single world. They are not a normalized solver-throughput ranking.</p>
-    </section>
+      </section>
 
-    <section id="experiments" class="section-shell section-block">
-      <div class="section-heading">
-        <p class="eyebrow">03 · EXPERIMENTAL EVIDENCE</p>
-        <h2>Eight experiments, one consistent story.</h2>
-        <p class="section-intro">Use the filters to read the report by physical phenomenon. Every result below is labeled by its comparison scope so that a native-model observation is not mistaken for a universal engine ranking.</p>
-      </div>
+      <section id="scope" class="report-section">
+        <h2>2. Scope and protocol</h2>
+        <p>The study evaluates two rigid-body simulation stacks under controlled analytical, contact, and robotics tasks. Each benchmark is interpreted through physically meaningful observables: force balance, penetration, energy, velocity error, slip, pose drift, and task success.</p>
 
-      <div class="filter-bar" role="toolbar" aria-label="Filter experiments">
-        <button class="filter-button is-active" data-filter="all">All experiments</button>
-        <button class="filter-button" data-filter="foundation">Calibration</button>
-        <button class="filter-button" data-filter="dynamics">Impact &amp; motion</button>
-        <button class="filter-button" data-filter="contact">Stacking &amp; friction</button>
-        <button class="filter-button" data-filter="geometry">Geometry</button>
-        <button class="filter-button" data-filter="robotics">Robotics</button>
-      </div>
-
-      <div class="experiment-list">
-        <article class="experiment-card" data-category="foundation" id="calibration">
-          <div class="experiment-index">01</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Calibration</span><span>quasi-static normal contact</span></div>
-            <h3>Four-point box–plane interface</h3>
-            <p class="question">Can a simple force–deformation law be measured and transferred between engines?</p>
-            <div class="experiment-body">
-              <div><p>For a 40 mm cube constrained to vertical motion, the experiment directly measured the aggregate interface slope K = dF<sub>N</sub>/dδ under four known loads.</p><p><strong>Result.</strong> SAP reproduced K ≈ 4k<sub>pair</sub> to better than 0.002% in the symmetric four-contact setup. MuJoCo was empirically calibrated to the same 4 × 10<sup>6</sup> N/m aggregate slope with a direct-format <code>solref</code> stiffness of 10<sup>5</sup> s<sup>−2</sup>.</p></div>
-              <div class="result-box result-positive"><span>Meaning</span><strong>Both engines can be calibrated at one interface.</strong><small>The mapping is geometry-specific and does not automatically transfer to rotating or dynamic box–box contact.</small></div>
-            </div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/box-plane-interface-calibration-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Full calibration report ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="contact" id="stacks">
-          <div class="experiment-index">02</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Stacking</span><span>thin discs + layered boxes</span></div>
-            <h3>Settling, stiffness, and contact-manifold stability</h3>
-            <p class="question">Does increasing contact stiffness make a multi-contact stack more physically reliable?</p>
-            <div class="experiment-body">
-              <div><p>The thin-disc native sweeps found usable operating bands in both engines. MuJoCo’s tested balanced point was dt = .25 ms, solref = 1 ms; SAP’s was ke = 10<sup>5</sup> N/m, τ = 3 ms, dt = .25–.5 ms.</p><p>In the calibrated layered-box study, both engines matched mean static force balance. MuJoCo retained four contacts at every internal interface. SAP was stable at low stiffness, but high-stiffness cases showed contact switching and jitter; its constraint coordinate also carried a repeatable ≈0.1 mm offset from raw geometric overlap.</p></div>
-              <div class="result-box result-warning"><span>Key lesson</span><strong>Lower peak penetration is not enough.</strong><small>Contact duty, point count, tail velocity, and geometric reference must be reported with penetration.</small></div>
-            </div>
-            <div class="mini-table-wrap"><table class="mini-table"><thead><tr><th>Calibrated 5-box case</th><th>MuJoCo</th><th>SAP/Warp</th></tr></thead><tbody><tr><td>mean force balance</td><td>near zero error</td><td>≤0.27% error</td></tr><tr><td>internal contact points</td><td>4.00, stable</td><td>0.45–1.67 at high stiffness</td></tr><tr><td>high-stiffness state</td><td>stable</td><td>switching / jitter</td></tr></tbody></table></div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-calibrated-layered-stack.md" target="_blank" rel="noreferrer">Layered-stack report ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">Thin-disc sweep ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="dynamics" id="rolling">
-          <div class="experiment-index">03</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Analytical dynamics</span><span>25-ball rolling</span></div>
-            <h3>Multi-contact tangential impulse allocation</h3>
-            <p class="question">When many contacts must preserve symmetric pure rolling, how closely does the trajectory follow the analytical reference?</p>
-            <div class="experiment-body">
-              <div><p>This benchmark applies a horizontal force to a plate carrying 25 balls and compares world-frame velocities with the SimBenchmark analytical solution.</p><p><strong>Result.</strong> MuJoCo reproduced the published standard value, MSE = 0.00692691 (m/s)²; its best tested sweep point reached 0.001146. The best tested SAP Drake configuration reached 0.347212.</p></div>
-              <div class="chart-card"><div class="chart-title">Velocity MSE · lower is closer</div><div id="rolling-chart" class="bar-chart" aria-label="Rolling benchmark velocity MSE chart"></div><p class="chart-note">The comparison is against this specific ideal pure-rolling reference, not all real contact behavior.</p></div>
-            </div>
-            <div class="interpretation"><span class="interpretation-icon">↗</span><p><strong>Interpretation.</strong> Equal μ only limits the available tangential impulse; it does not prescribe the multi-contact impulse distribution. This task amplifies differences in regularization, dissipation, and finite-dt velocity updates.</p></div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-rolling-contact-report.md" target="_blank" rel="noreferrer">Rolling report ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="dynamics" id="impact">
-          <div class="experiment-index">04</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Impact</span><span>restitution + long-horizon energy</span></div>
-            <h3>Dynamic timestep transfer</h3>
-            <p class="question">After matching restitution and contact timescale at one reference impact, which response transfers more robustly as dt grows?</p>
-            <div class="experiment-body">
-              <div><p>For a frictionless sphere–plane impact, both engines were calibrated to e = 0.8 and t<sub>c</sub> ≈ 30 ms at the reference case, then evaluated over incident speeds and timesteps.</p><p>At dt = .5 ms, v = .5 m/s, MuJoCo measured e = .8027, while SAP measured e = .7452. In a separate 20 s elastic-bounce test, the best tested SAP run retained E/E<sub>0</sub> = .834, compared with ≈1.002 for MuJoCo.</p></div>
-              <div class="chart-card"><div class="chart-title">Matched-timescale restitution · dt = .5 ms</div><div id="impact-chart" class="bar-chart" aria-label="Impact restitution chart"></div><p class="chart-note">Both are calibrated at the reference point; the difference is timestep transfer.</p></div>
-            </div>
-           <figure class="figure-wide"><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/dynamic-impact-restitution-time-matched/time-matched-transfer-curves.png" alt="Time-matched restitution transfer curves for MuJoCo and SAP"></figure>
-            <figure class="figure-wide"><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/bouncing/plots/bouncing-speed-accuracy.png" alt="Bouncing benchmark speed-accuracy plot"><figcaption class="figure-caption">Long-horizon elastic bounce: the best tested SAP run still retained only 83.4% of initial mechanical energy after 20 s.</figcaption></figure>
-           <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/dynamic-impact-restitution-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Impact-transfer report ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-vs-mujoco-elastic-bouncing-report.md" target="_blank" rel="noreferrer">Elastic-bounce report ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="contact" id="friction">
-          <div class="experiment-index">05</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Friction</span><span>sliding, ramp, and pinch</span></div>
-            <h3>Friction is a contact-state problem, not only a μ problem</h3>
-            <p class="question">Do the engines produce the same stick/slip behavior when the friction coefficient and normal load are controlled?</p>
-            <div class="experiment-body">
-              <div><p>In free sliding, SAP stayed closer to the Coulomb deceleration limit over the tested speed range, while MuJoCo showed stronger low-speed regularization under the matched baseline. In the three-box ramp, only SAP k<sub>pair</sub> = 10<sup>4</sup> N/m passed the normal-stability gate; higher stiffness introduced contact switching before friction was tested.</p><p>In the force-matched simple pinch, both engines recovered the expected r = 2μN/(mg) = 1 threshold. SAP’s transition interval was r = .959–1.010, versus MuJoCo’s 1.031–1.176 under the tested native configurations.</p></div>
-              <div class="result-box result-positive"><span>Task-level result</span><strong>SAP was closer to the ideal breakaway threshold in the stable ramp.</strong><small>Native MuJoCo anti-slip options changed the result, so this is not a universal friction ranking.</small></div>
-            </div>
-            <div class="image-grid"><figure><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/kinetic-friction/kinetic-friction-comparison.png" alt="Kinetic friction comparison plots"><figcaption>Free sliding: velocity, force, distance, and error.</figcaption></figure><figure><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/frictional-stack-v3/force-holds/steady-creep-comparison.png" alt="Steady creep comparison"><figcaption>Stable 4 N hold: SAP ≈2.52 µm/s creep in this setup.</figcaption></figure></div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/kinetic-friction-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Kinetic friction ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-frictional-three-box-ramp.md" target="_blank" rel="noreferrer">Three-box friction ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/simple-pinch-sap-vs-mujoco-final.md" target="_blank" rel="noreferrer">Force-matched pinch ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="geometry" id="geometry">
-          <div class="experiment-index">06</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Geometry</span><span>peg-in-hole + concave plate</span></div>
-            <h3>Collision representation can dominate the outcome</h3>
-            <p class="question">Is an apparent insertion or penetration actually a physically credible contact configuration?</p>
-            <div class="experiment-body">
-              <div><p>Analytic square-cavity controls were successful in both engines. SAP’s 1 mm <code>rigid_gap</code> failed at a 1 mm offset because it changed contact activation; reducing it to 0.1–0.5 mm restored the offset insertion.</p><p>For the tilted round socket using the shared 32-piece CoACD representation, MuJoCo produced 2 credible cases out of 25; the tested SAP native configuration produced 0 out of 10. Raw mesh/SDF “entries” were rejected by the screening rule because they could contain invalid internal witnesses or excessive overlap.</p><p>For the shared concave dinner-plate representation, both engines settled the sphere and preserved the three-plate order, but reached different equilibria.</p></div>
-              <div class="result-box result-warning"><span>Interpretation boundary</span><strong>Do not rank engines from raw mesh entry alone.</strong><small>This section compares tested collision representations and parameter coverage, not engine-best versus engine-best.</small></div>
-            </div>
-            <figure class="figure-wide"><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/peg-in-hole/penetration-vs-clearance-tuned-contact.png" alt="Peg-in-hole penetration versus clearance parameter sweep"></figure>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/peg-in-hole-mujoco-vs-sap-master.md" target="_blank" rel="noreferrer">Peg-in-hole synthesis ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">Concave representation ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="robotics" id="panda">
-          <div class="experiment-index">07</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Robotics</span><span>Panda pick-and-transfer</span></div>
-            <h3>Task robustness changes the practical ranking</h3>
-            <p class="question">Under a shared Panda task intent and a frozen native configuration, which engine preserves a grasp across mass, friction, pose, and transfer changes?</p>
-            <div class="experiment-body">
-              <div><p>The corrected benchmark uses hand-relative pose, a common 15 N per-finger cap, bilateral-contact duty, drop, slip, rotation, and overlap gates. Controllers and timestep remain native by design, so this is an end-to-end task robustness study.</p><p><strong>Mass/friction sweep.</strong> SAP passed 32/46 conditions; MuJoCo passed 4/46. <strong>Pose sweep.</strong> MuJoCo passed 14/19; SAP passed 10/19. <strong>Transfer rate.</strong> MuJoCo passed 7/7; SAP passed 6/7. During a 10 s final hold, MuJoCo’s corrected configuration accumulated ≈0.465 mm/s drift and failed the 5 mm gate; SAP remained within the gate but sat closer to the rotation limit.</p></div>
-              <div class="chart-card"><div class="chart-title">Frozen mass/friction map · pass rate</div><div id="panda-chart" class="bar-chart" aria-label="Panda mass and friction pass-rate chart"></div><p class="chart-note">A larger feasible region does not imply more accurate contact physics; it reflects the full native task stack.</p></div>
-            </div>
-            <div class="image-grid"><figure><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/grasp-summary/panda-pick-cube-height.png" alt="Panda pick cube height comparison"><figcaption>Pick trajectory summary.</figcaption></figure><figure><img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/grasp-summary/panda-pick-mujoco-solref-sweep.png" alt="MuJoCo Panda solref sweep"><figcaption>MuJoCo contact-parameter sensitivity.</figcaption></figure></div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/panda-pick-v3-frame-corrected-robustness.md" target="_blank" rel="noreferrer">Corrected Panda report ↗</a></div>
-          </div>
-        </article>
-
-        <article class="experiment-card" data-category="foundation" id="parameters">
-          <div class="experiment-index">08</div>
-          <div class="experiment-main">
-            <div class="experiment-meta"><span class="category-label">Parameter behavior</span><span>native sweeps</span></div>
-            <h3>Both engines have useful operating bands—not monotonic “harder is better” laws</h3>
-            <p class="question">What does parameter sensitivity reveal about the simulators themselves?</p>
-            <div class="experiment-body">
-              <div><p>MuJoCo thin-disc sweeps showed that the dt/solref ratio, damping ratio, impedance shape, integrator, and solver interact non-monotonically. SAP sweeps showed that ke, τ, <code>rigid_gap</code>, and contact preset jointly determine penetration, settling, and geometric bias.</p><p>Across both engines, a parameter can improve one metric while damaging another: stiffer contact may reduce peak penetration but increase jitter, contact switching, or energy error. The practical output is a validated operating band for a task, not a single universal setting.</p></div>
-              <div class="result-box result-neutral"><span>Engineering takeaway</span><strong>Choose parameters by observable task behavior.</strong><small>Report the full tuple: timestep, contact parameters, solver/integrator, geometry, metric, and failure mode.</small></div>
-            </div>
-            <div class="source-row"><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-results.md" target="_blank" rel="noreferrer">MuJoCo native sweep ↗</a><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP native sweep ↗</a></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="tradeoffs" class="section-shell section-block section-tint">
-      <div class="section-heading">
-        <p class="eyebrow">04 · OVERALL TRADE-OFFS</p>
-        <h2>What each simulator is good at, based on the tested evidence.</h2>
-        <p class="section-intro">These are scoped engineering conclusions from the benchmark—not claims that one engine is universally more physical.</p>
-      </div>
-      <div class="tradeoff-table-wrap">
-        <table class="tradeoff-table">
-          <thead><tr><th>Dimension</th><th>MuJoCo</th><th>SAP/Warp</th><th>Practical reading</th></tr></thead>
+        <table class="data-table">
+          <thead>
+            <tr><th>Evaluation layer</th><th>Representative tests</th><th>Primary observables</th></tr>
+          </thead>
           <tbody>
-            <tr><td>Near-rigid static contact</td><td class="cell-strong">Stable four-point stacks in the tested calibrated regime</td><td>Low-stiffness regime stable; high-stiffness multi-contact switching observed</td><td>MuJoCo was the safer near-rigid reference in these tests.</td></tr>
-            <tr><td>Pair stiffness semantics</td><td>Effective response depends on mass/contact topology; ground calibration did not transfer unchanged to box–box</td><td>Measured pair/material-like ke law in simple interfaces; high ke can expose geometric/contact offsets</td><td>Calibrate observable interface behavior, not parameter names.</td></tr>
-            <tr><td>Analytical rolling</td><td class="cell-strong">Closest tested trajectory reference</td><td>Large error in the tested Drake compliant-contact configuration</td><td>Multi-contact tangential impulse allocation is a current SAP weakness in this benchmark.</td></tr>
-            <tr><td>Impact / restitution</td><td class="cell-strong">Better timestep transfer and long-horizon energy retention</td><td>Restitution degrades more as dt grows; repeated elastic impacts dissipate energy</td><td>Validate SAP carefully for rebound- and energy-sensitive tasks.</td></tr>
-            <tr><td>Compliant friction</td><td>Low-speed regularization and native anti-slip options materially change behavior</td><td class="cell-strong">Stable moderate-compliance ramp reached the Coulomb threshold more closely in the tested setup</td><td>Friction conclusions require a normal-stability gate and explicit preload matching.</td></tr>
-            <tr><td>Collision geometry</td><td>Primitive controls are interpretable; CoACD had limited credible round-socket successes</td><td>Analytic cavity works; current round CoACD configuration did not enter</td><td>Representation quality can dominate solver quality.</td></tr>
-            <tr><td>Robot manipulation</td><td>Lower drift after contact establishes; contact-mode sensitivity can cause discontinuous failures</td><td class="cell-strong">Broader observed Panda mass/friction feasibility; more slip/rotation margin consumed</td><td>Task outcomes combine controller, timestep, contact model, and geometry.</td></tr>
-            <tr><td>Performance evidence</td><td>Fast CPU timings in current small-world tests</td><td>GPU/batched potential is a core motivation, but this repo does not yet provide a fair batched throughput comparison</td><td>Do not turn current wall time into a headline ranking.</td></tr>
+            <tr><td>Contact law</td><td>Sphere–plane stiffness; four-point box–plane calibration</td><td>Force–deformation slope, penetration, static force balance</td></tr>
+            <tr><td>Time stepping</td><td>Thin discs; dynamic impact; elastic bounce</td><td>Stability, restitution transfer, energy retention, settling</td></tr>
+            <tr><td>Friction</td><td>Free sliding; three-box ramp; simple pinch</td><td>Deceleration, Coulomb utilization, breakaway threshold, creep</td></tr>
+            <tr><td>Collision representation</td><td>Analytic cavity; CoACD round socket; concave plate</td><td>Valid insertion, geometric clearance, final equilibrium</td></tr>
+            <tr><td>Task robustness</td><td>Panda pick-and-transfer</td><td>Feasible mass/friction region, pose success, transfer, hold drift</td></tr>
           </tbody>
         </table>
-      </div>
 
-      <div class="recommendation-grid">
-        <article class="recommendation-card"><span class="rec-icon">M</span><div><h3>Prefer MuJoCo when…</h3><p>You need a mature general-purpose baseline, near-rigid static contact, analytical reference tracking, or robust energy/restitution behavior in the tested regime.</p></div></article>
-        <article class="recommendation-card"><span class="rec-icon rec-icon-sap">S</span><div><h3>Prefer SAP/Warp when…</h3><p>You need explicit pair stiffness/relaxation controls, compliant contact behavior, or a GPU-oriented platform for batched simulation—after validating the task’s stiffness, timestep, and collision representation.</p></div></article>
-      </div>
-    </section>
+        <div class="two-column">
+          <div>
+            <h3>What was held fixed</h3>
+            <ul>
+              <li>Scene geometry, mass, gravity, control sequence, and evaluation windows whenever the task allowed it.</li>
+              <li>Time step and contact parameters were swept within each simulator's native parameterization.</li>
+              <li>Analytical references were used where available instead of treating either engine as ground truth.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>What was not assumed</h3>
+            <ul>
+              <li><code>ke</code>/<code>tau</code> and <code>solref</code>/<code>solimp</code> are not one-to-one equivalents.</li>
+              <li>A smaller penetration or a successful render is not sufficient evidence of valid concave geometry.</li>
+              <li>CPU MuJoCo wall time and CUDA SAP/Warp wall time are not a fair raw runtime ranking.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note"><strong>Interpretation rule.</strong> Unless explicitly stated otherwise, every result below describes the tested configuration and regime, not an engine-best claim.</p>
+      </section>
 
-    <section class="section-shell section-block closing-section">
-      <div class="closing-card">
-        <p class="eyebrow">BOTTOM LINE</p>
-        <h2>The right comparison is not “which solver wins?”</h2>
-        <p>It is: <strong>which contact formulation, parameter regime, collision representation, and timestep produce the behavior the downstream task requires?</strong> On that question, the benchmark gives a useful division of labor: MuJoCo is the stronger current reference for several near-rigid and impact-sensitive tests; SAP/Warp shows meaningful advantages in observable compliant-contact semantics and selected task-level friction/robot regimes, while needing more care around high-stiffness multi-contact and concave insertion.</p>
-      </div>
-    </section>
+      <section id="results" class="report-section">
+        <h2>3. Benchmark results</h2>
+        <p class="section-lede">The experiments form a progression from contact-law behavior to task-level robustness. The main diagnostic is not a single score; it is the failure mode that appears when the operating regime changes.</p>
 
-    <section id="sources" class="section-shell section-block sources-section">
-      <div class="section-heading">
-        <p class="eyebrow">05 · PROVENANCE</p>
-        <h2>Source reports and reproducibility.</h2>
-        <p class="section-intro">The website is a concise synthesis. The repository retains the full markdown reports, raw CSV/JSON traces, scene files, and experiment runners.</p>
-      </div>
-      <div class="source-grid">
-        <a class="source-card" href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer"><span>Repository</span><strong>github.com/Xiaowen2024/sap-exp ↗</strong><small>Code, raw results, reports, and site source</small></a>
-        <a class="source-card" href="https://app.notion.com/p/3cba0738b542803390bcde5d6e7e0603?v=39ca0738b542802fbb4d000cd2fb8e75&amp;source=copy_link" target="_blank" rel="noreferrer"><span>Research notes</span><strong>Mujoco Sap Comparison ↗</strong><small>Experiment-level working notes and interpretations</small></a>
-        <a class="source-card" href="https://app.notion.com/p/3cba0738b54280519c39f479c14c5b74?v=39ca0738b542802fbb4d000cd2fb8e75&amp;source=copy_link" target="_blank" rel="noreferrer"><span>Method notes</span><strong>Simulator Comparison Notes ↗</strong><small>Metrics, parameter semantics, and comparison principles</small></a>
-      </div>
-      <p class="footer-note">Scope reminder: unless a card explicitly says “matched,” the result is for the stated tested configuration. Native contact parameters are not treated as one-to-one physical equivalents.</p>
-    </section>
-  </main>
+        <section id="calibration" class="subsection">
+          <h3>3.1 Calibration and settling</h3>
 
-  <footer class="site-footer"><div class="section-shell"><span>SAP/Warp × MuJoCo Contact Dynamics Benchmark</span><span>Prepared for technical review · 2026</span></div></footer>
-  <script src="app.js"></script>
+          <h4>Four-point box–plane interface</h4>
+          <p>This calibration isolates the mapping between a requested pair stiffness and the aggregate stiffness measured through four simultaneous contacts.</p>
+          <table class="result-table">
+            <thead><tr><th>Engine</th><th>Observed result</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>SAP/Warp</td><td>Measured aggregate slope was approximately <strong>4 × k<sub>pair</sub></strong>, within 0.002% in the tested range.</td><td>The expected four-contact aggregation was reproduced for this geometry.</td></tr>
+              <tr><td>MuJoCo</td><td>Matched the target aggregate stiffness of 4 × 10<sup>6</sup> N/m using direct stiffness calibration.</td><td>The comparison must be made at the observable aggregate response, not by matching parameter names.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Thin discs and layered box stacks</h4>
+          <p>Thin-disc sweeps identified stable operating bands in both engines rather than a monotonic “harder is better” trend. In the calibrated layered-stack study, MuJoCo retained four internal contacts and stayed close to static force balance. SAP/Warp was stable at low stiffness, while high-stiffness cases developed contact switching and vertical jitter.</p>
+          <table class="result-table">
+            <thead><tr><th>Test</th><th>MuJoCo</th><th>SAP/Warp</th><th>Conclusion</th></tr></thead>
+            <tbody>
+              <tr><td>Balanced thin-disc point</td><td>dt = 0.25 ms; solref = 1 ms</td><td>dt = 0.25–0.5 ms; k<sub>e</sub> = 10<sup>5</sup> N/m; τ = 3 ms</td><td>Both have usable parameter bands; neither is characterized by one universally optimal setting.</td></tr>
+              <tr><td>Calibrated 5-box stack</td><td>Near-zero mean force-balance error; four stable internal contacts</td><td>≤0.27% mean force-balance error at low stiffness; 0.45–1.67 effective contacts in high-stiffness cases</td><td>MuJoCo was more stable in the near-rigid multi-contact regime.</td></tr>
+              <tr><td>10-box native stack</td><td>Peak violation 0.226 mm; final COM error 0.0096 mm</td><td>Peak violation 0.128 mm; final COM error 0.329 mm</td><td>SAP/Warp reduced the instantaneous peak but settled farther from the rigid equilibrium.</td></tr>
+            </tbody>
+          </table>
+          <p class="note">The 10-box wall times are not reported as a speed comparison: the runs used different hardware paths (CPU MuJoCo versus CUDA SAP/Warp).</p>
+        </section>
+
+        <section id="motion" class="subsection">
+          <h3>3.2 Motion and impact</h3>
+
+          <h4>25-ball rolling</h4>
+          <p>The rolling benchmark compares tangential impulse allocation against an analytical pure-rolling reference. MuJoCo's standard tested configuration produced a velocity MSE of <strong>0.00693</strong>; the best tested SAP/Warp configuration produced <strong>0.347</strong>. This is evidence about the current configurations and sweep breadth, not a universal statement about all possible settings.</p>
+          <p class="result-line"><span class="label">Result</span> MuJoCo was closer to the selected ideal rolling reference. SAP/Warp's tangential impulse distribution differed systematically, showing that the friction law and solver response—not only the nominal μ—matter.</p>
+
+          <h4>Dynamic impact and restitution</h4>
+          <p>Both engines were calibrated to approximately e = 0.8 at the reference condition. When the time step increased to 0.5 ms, MuJoCo produced e = <strong>0.803</strong>, whereas SAP/Warp produced e = <strong>0.745</strong>. Across the matched-timescale extension, MuJoCo changed by approximately 0.003 in restitution while SAP/Warp changed by approximately 0.057.</p>
+          <p class="result-line"><span class="label">Result</span> MuJoCo transferred the calibrated impact response more robustly across the tested timesteps.</p>
+
+          <h4>Elastic bouncing</h4>
+          <p>In a 49-ball, 20-second bounce with a nominally elastic setting, MuJoCo retained approximately E/E<sub>0</sub> ≈ 1.00. The best tested SAP/Warp configuration reached E/E<sub>0</sub> = <strong>0.834</strong>, indicating accumulated finite-step contact dissipation.</p>
+          <p class="note">For SAP/Warp, k<sub>e</sub>, τ, and dt materially changed rebound height and energy retention. The result is a useful diagnostic of compliant-contact dissipation, not a claim that SAP/Warp cannot model energetic impacts.</p>
+        </section>
+
+        <section id="friction" class="subsection">
+          <h3>3.3 Frictional contact</h3>
+
+          <h4>Free sliding</h4>
+          <p>For a 1 kg cube sliding at v<sub>0</sub> = 0.5 m/s, SAP/Warp had a 0.20% deceleration error and 0.54% stopping-distance error. MuJoCo had a 4.89% deceleration error and 0.25% stopping-distance error. The different metric ordering is important: “closer” depends on the observable being evaluated.</p>
+
+          <h4>Three-box friction ramp and force hold</h4>
+          <p>Only the SAP/Warp k<sub>pair</sub> = 10<sup>4</sup> N/m case passed the normal-stability gate; higher stiffness introduced contact switching before the friction test. Under the stable ramp, breakaway occurred at 4.528 N for SAP/Warp and 3.940 N for MuJoCo, against the ideal 4.905 N. SAP/Warp therefore showed less pre-slip in this matched setup.</p>
+          <table class="result-table compact">
+            <thead><tr><th>Condition</th><th>MuJoCo</th><th>SAP/Warp</th><th>Reading</th></tr></thead>
+            <tbody>
+              <tr><td>Stable ramp onset</td><td>3.940 N</td><td>4.528 N</td><td>SAP/Warp was closer to the ideal threshold in this configuration.</td></tr>
+              <tr><td>Ideal threshold</td><td colspan="2">4.905 N</td><td>Reference from the prescribed normal load and μ.</td></tr>
+              <tr><td>4 N steady hold</td><td>Native anti-slip options reduced creep to approximately 0.00347 µm/s in a tested case.</td><td>Approximately 2.516 µm/s in the stable baseline.</td><td>MuJoCo's native anti-slip controls can change the practical result; this is not a matched-model ranking.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Simple pinch</h4>
+          <p>Both engines recovered the expected support transition near r = 2μN/(mg) = 1. SAP/Warp transitioned at approximately r = 0.959–1.010, while MuJoCo transitioned at r = 1.031–1.176 under the tested native configurations.</p>
+          <p class="result-line"><span class="label">Result</span> SAP/Warp was closer to the ideal Coulomb threshold in this force-matched pinch. MuJoCo's anti-slip and friction-specific solver controls remain important when comparing practical grasp retention.</p>
+        </section>
+
+        <section id="geometry" class="subsection">
+          <h3>3.4 Collision geometry and insertion</h3>
+          <p>This benchmark separates collision representation from contact-law behavior. The same simulator can appear successful or unsuccessful depending on whether the geometry is analytic, convex-decomposed, raw mesh, or SDF-based.</p>
+          <table class="result-table">
+            <thead><tr><th>Geometry test</th><th>Observed result</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Analytic square cavity</td><td>Both engines completed insertion under the tested clearance and tilt conditions.</td><td>The basic insertion pipeline is not intrinsically simulator-specific.</td></tr>
+              <tr><td>Broad concave settling</td><td>Sphere final height/radius: MuJoCo 27.238 / 33.524 mm; SAP/Warp 27.444 / 33.667 mm. Three plates preserved their order in both engines.</td><td>Both engines can produce similar macroscopic equilibrium in a permissive concave contact.</td></tr>
+              <tr><td>Tight tilted round socket</td><td>Shared 32-piece CoACD: MuJoCo had 7/25 apparent entries and 2/25 credible cases; current SAP/Warp native sweep had 0/10 entries and 0/10 credible cases.</td><td>Tight insertion exposed a collision-manifold failure mode in the tested SAP/Warp configuration.</td></tr>
+            </tbody>
+          </table>
+          <p class="note"><strong>Credibility rule.</strong> An apparent entry based only on small penetration or a raw concave mesh is not counted as a valid insertion. Pose, clearance, penetration relative to clearance, contact capacity, and collision representation must be checked together.</p>
+        </section>
+
+        <section id="manipulation" class="subsection">
+          <h3>3.5 Manipulation robustness</h3>
+          <h4>Panda pick-and-transfer</h4>
+          <p>The Panda benchmark evaluates the full native task stack rather than attempting to make all solver settings mathematically identical.</p>
+          <table class="result-table">
+            <thead><tr><th>Metric</th><th>MuJoCo</th><th>SAP/Warp</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Mass/friction feasibility map</td><td>4/46 passes</td><td>32/46 passes</td><td>SAP/Warp had a broader observed feasible region in the tested native task.</td></tr>
+              <tr><td>Successful pick pose</td><td>14/19</td><td>10/19</td><td>MuJoCo was more reliable for the initial pose criterion.</td></tr>
+              <tr><td>Successful transfer</td><td>7/7</td><td>6/7</td><td>Both performed well after contact was established; MuJoCo was perfect in this sweep.</td></tr>
+              <tr><td>Long-hold tail drift</td><td>0.465 mm/s; failed the 10 s drift gate</td><td>43 µm/s; passed but approached the rotation gate</td><td>Lower drift and task pass/fail favored SAP/Warp in this hold condition.</td></tr>
+            </tbody>
+          </table>
+          <p class="result-line"><span class="label">Result</span> Task-level robustness does not collapse to one simulator ranking. MuJoCo retained the object more consistently once contact was established, while SAP/Warp had a larger native feasible mass/friction region but consumed more slip and rotation margin in representative passes.</p>
+        </section>
+      </section>
+
+      <section id="comparison" class="report-section">
+        <h2>4. Overall comparison</h2>
+        <p class="section-lede">The table below summarizes the characteristics exposed by the experiments. It is intended as a selection guide for the next benchmark, not as a leaderboard.</p>
+
+        <table class="comparison-table">
+          <thead>
+            <tr><th>Aspect</th><th>MuJoCo</th><th>SAP/Warp</th><th>Practical implication</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Contact parameterization</th><td>Constraint reference and impedance parameters; behavior depends on effective mass, solver, cone, and integration settings.</td><td>Material-like pair stiffness and relaxation parameters expose a more constitutive contact interpretation.</td><td>Parameters should be calibrated to observables; names cannot be transferred directly.</td></tr>
+            <tr><th scope="row">Near-rigid equilibrium</th><td>Strong performance in the tested static stacks and force-balance checks.</td><td>Good low-stiffness behavior; high-stiffness multi-contact switching appeared in the tested stack.</td><td>Use a normal-stability and contact-manifold gate before interpreting friction or task results.</td></tr>
+            <tr><th scope="row">Kinetic friction</th><td>Low-speed regularization and residual creep can be significant in the baseline; anti-slip controls can reduce it.</td><td>Closer to saturated Coulomb friction over the tested sliding speeds and in the stable ramp.</td><td>Report friction utilization, creep, and solver controls together.</td></tr>
+            <tr><th scope="row">Impact and energy</th><td>More consistent restitution transfer and energy retention in the tested dynamic cases.</td><td>Finite-step compliant contact can introduce measurable dissipation; k<sub>e</sub>, τ, and dt are coupled.</td><td>MuJoCo was the safer dynamic reference for these tests.</td></tr>
+            <tr><th scope="row">Collision geometry</th><td>Shared CoACD produced a small credible region for tight round insertion in the tested sweep.</td><td>Analytic and broad concave cases were usable; current round CoACD setup did not produce credible insertion.</td><td>Collision representation can dominate solver differences.</td></tr>
+            <tr><th scope="row">Robotics task behavior</th><td>Strong transfer and post-contact retention in the Panda sweep.</td><td>Broader observed mass/friction feasibility and acceptable long-hold drift, with more sensitivity in pose and rotation.</td><td>Choose based on the task's failure mode and controller coupling.</td></tr>
+            <tr><th scope="row">Parallel simulation potential</th><td>Mature general-purpose baseline; raw runtime must be measured on comparable hardware.</td><td>GPU-oriented Warp implementation with explicit batched-scene and contact-capacity controls.</td><td>Scalability is a separate benchmark dimension, not inferred from these single-world accuracy tests.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="interpretation" class="report-section">
+        <h2>5. Interpretation and limitations</h2>
+        <div class="two-column">
+          <div>
+            <h3>How to read the results</h3>
+            <ol>
+              <li><strong>Contact law:</strong> Is the force, friction, or restitution response physically appropriate?</li>
+              <li><strong>Parameter transfer:</strong> Does calibration at one timestep or load transfer to another?</li>
+              <li><strong>Geometry and manifold:</strong> Are contacts generated from a valid and sufficiently resolved representation?</li>
+              <li><strong>Task robustness:</strong> Does the full controller–contact system complete the intended task?</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Limits of the current comparison</h3>
+            <ul>
+              <li>The native parameter sweeps are not symmetric in every experiment, especially for the round socket.</li>
+              <li>Several results compare different contact formulations by matching observable behavior, not identical equations.</li>
+              <li>Single-world CPU and CUDA wall times should not be used as a performance ranking.</li>
+              <li>Without physical ground truth, an equilibrium difference is a diagnostic, not proof that one engine is correct.</li>
+              <li>SAP/Warp and MuJoCo are both affected by collision representation, timestep, solver controls, and floating-point behavior.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout conclusion">
+          <p class="callout-label">Conclusion</p>
+          <p>MuJoCo is currently the more dependable reference for near-rigid equilibrium, impact transfer, and broad task reproducibility in the tested regimes. SAP/Warp offers a useful alternative when compliant, parameterized, GPU-oriented contact is the target, but its operating band must be established explicitly. The most informative next comparison is therefore not “which engine is more accurate?” but “which contact regime and failure mode does each formulation support reliably?”</p>
+        </div>
+      </section>
+
+      <section id="evidence" class="report-section">
+        <h2>6. Selected evidence</h2>
+        <p class="section-lede">The figures below are representative plots from the experiment repository. Detailed traces, model files, and summaries remain in the linked source reports.</p>
+        <div class="figure-grid">
+          <figure>
+            <img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/dynamic-impact-restitution-time-matched/time-matched-transfer-curves.png" alt="Time-matched restitution transfer curves for SAP/Warp and MuJoCo" loading="lazy">
+            <figcaption>Dynamic impact: timestep transfer after restitution calibration.</figcaption>
+          </figure>
+          <figure>
+            <img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/kinetic-friction/kinetic-friction-comparison.png" alt="Kinetic friction comparison plots" loading="lazy">
+            <figcaption>Free sliding: velocity, force, distance, and error metrics.</figcaption>
+          </figure>
+          <figure>
+            <img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/peg-in-hole/penetration-vs-clearance-tuned-contact.png" alt="Penetration versus clearance for tuned peg-in-hole contact" loading="lazy">
+            <figcaption>Insertion: penetration and clearance must be interpreted together.</figcaption>
+          </figure>
+          <figure>
+            <img src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/grasp-summary/panda-pick-cube-height.png" alt="Panda pick cube height comparison" loading="lazy">
+            <figcaption>Panda pick-and-transfer: task-level trajectory evidence.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="sources" class="report-section sources-section">
+        <h2>7. Sources</h2>
+        <p>All numerical claims are derived from the experiment reports and notes below. The source repository contains the run scripts, raw summaries, videos, and plots.</p>
+        <ul class="source-list">
+          <li><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">Experiment repository: Xiaowen2024/sap-exp ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-calibrated-layered-stack.md" target="_blank" rel="noreferrer">Calibrated layered box stack ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-rolling-contact-report.md" target="_blank" rel="noreferrer">Rolling contact benchmark ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/dynamic-impact-restitution-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Dynamic impact and restitution ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/kinetic-friction-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Kinetic friction ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/peg-in-hole-mujoco-vs-sap-master.md" target="_blank" rel="noreferrer">Peg-in-hole and concave geometry ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/panda-pick-v3-frame-corrected-robustness.md" target="_blank" rel="noreferrer">Panda pick-and-transfer ↗</a></li>
+          <li><a href="https://sap-sim.github.io/sap_warp/benchmarking/index.html" target="_blank" rel="noreferrer">SAP/Warp benchmarking documentation ↗</a></li>
+        </ul>
+        <p class="source-note">Prepared as an advisor-facing synthesis of the current benchmark set. The report intentionally separates simulator behavior from parameter semantics, collision representation, and task-level controller effects.</p>
+      </section>
+
+      <footer class="page-footer">
+        <span>SAP/Warp × MuJoCo contact-rich simulation benchmark</span>
+        <a href="#top">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>

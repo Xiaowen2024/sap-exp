@@ -6,7 +6,7 @@ representation, and Panda manipulation tasks.
 
 ## Report website
 
-The advisor-facing synthesis is available at:
+The advisor-facing synthesis is a single-page, documentation-style report:
 
 **[Open the GitHub Pages report](https://xiaowen2024.github.io/sap-exp/)**
 
