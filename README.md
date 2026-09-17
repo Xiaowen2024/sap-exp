@@ -1,8 +1,8 @@
 # SAP/Warp × MuJoCo contact-rich simulation benchmark
 
 This repository contains a controlled comparison of SAP/Warp and MuJoCo across
-contact calibration, stacking, friction, impact, rolling, collision
-representation, and Panda manipulation tasks.
+contact parameterization, friction, dynamic impact, collision representation,
+and Panda manipulation tasks.
 
 ## Executive summary
 
@@ -31,11 +31,15 @@ report with numbered sections, tables, and source links:
 The report follows the progression:
 
 1. Executive summary
-2. Scope and protocol
-3. Benchmark results
-4. Overall comparison
-5. Interpretation and limitations
-6. Sources
+2. Main findings
+3. Friction
+4. Dynamic contact
+5. Collision representation and contact geometry
+6. Panda manipulation
+7. Overall comparison
+8. Implications for robotics
+9. Final conclusion
+10. Sources
 
 ## Repository structure
 
