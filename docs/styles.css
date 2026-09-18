@@ -321,6 +321,58 @@ h1 {
   line-height: 1.55;
 }
 
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 28px;
+  margin-top: 28px;
+}
+
+.video-demo {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.video-demo video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #101418;
+  border: 1px solid var(--border-dark);
+}
+
+.video-demo figcaption { padding-top: 12px; }
+
+.video-demo h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.video-demo p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.video-demo .video-note {
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.video-demo a {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.video-catalog-link {
+  margin-top: 32px !important;
+  color: var(--faint);
+  font-size: 12px;
+}
+
 .summary-table,
 .data-table,
 .result-table,
@@ -524,6 +576,7 @@ li { margin: 5px 0; }
   body { font-size: 14px; }
   .header-grid,
   .two-column,
+  .video-grid,
   .source-list { grid-template-columns: 1fr; }
   .header-grid { gap: 28px; }
   .report-meta { max-width: 460px; }
