@@ -321,13 +321,6 @@ h1 {
   line-height: 1.55;
 }
 
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 34px 28px;
-  margin-top: 28px;
-}
-
 .video-demo {
   margin: 0;
   padding-top: 16px;
@@ -367,10 +360,9 @@ h1 {
   font-weight: 650;
 }
 
-.video-catalog-link {
-  margin-top: 32px !important;
-  color: var(--faint);
-  font-size: 12px;
+.inline-video {
+  max-width: 760px;
+  margin: 25px 0 0;
 }
 
 .summary-table,
@@ -576,7 +568,6 @@ li { margin: 5px 0; }
   body { font-size: 14px; }
   .header-grid,
   .two-column,
-  .video-grid,
   .source-list { grid-template-columns: 1fr; }
   .header-grid { gap: 28px; }
   .report-meta { max-width: 460px; }
