@@ -18,16 +18,17 @@ generated clip.
 
 | Website experiment | Intended representative demos | Current status |
 |---|---|---|
-| Rolling benchmark | native 25-ball task-level comparison | **complete** |
-| Sub-Coulomb friction / creep | 4-N sub-threshold hold, matched compliance; optional MuJoCo NoSlip control | **complete — trace-driven replay** |
-| Kinetic friction | free sliding, reference `v0 = 1 m/s` | **complete — trace-driven replay** |
-| Force-matched simple pinch | near-threshold pass plus slip-boundary control | **complete — trace-driven boundary replay** |
-| Dynamic impact / restitution | calibrated `e_eff=0.8` reference impact; coarse-dt bottleneck | **complete — trace-driven replay** |
-| Repeated elastic bounce | energy-retention representative and dissipative bottleneck | **complete — trace-driven replay** |
+| Rolling benchmark | native 25-ball task-level comparison | **archived; removed from website pending parameter-alignment review** |
+| Sub-Coulomb friction / creep | 4-N sub-threshold hold, matched compliance; optional MuJoCo NoSlip control | **telemetry and 3-D reconstruction** |
+| Kinetic friction | free sliding, reference `v0 = 1 m/s` | **telemetry and 3-D pose replay** |
+| Force-matched simple pinch | threshold and successful-lift controls | **telemetry and 3-D physical-object replay** |
+| Dynamic impact / restitution | calibrated `e_eff=0.8` reference impact; coarse-dt bottleneck | **telemetry and 3-D pose replay** |
+| Repeated elastic bounce | energy-retention representative and dissipative bottleneck | **telemetry and 3-D visual replication** |
+| Layered box contact semantics | five dynamic boxes; low and high pair stiffness | **low/high body–body pose replays** |
 | Square analytic cavity | centered insertion and 1-mm offset rigid-gap bottleneck | **complete — native/pose-replay comparison** |
 | Round concave socket | shared-CoACD attempt plus raw-mesh invalid control | **complete — CoACD attempt; raw control retained separately** |
 | Broad concave settling | sphere-in-plate or three-plate shared-CoACD settling | **complete — shared-CoACD stack demo** |
-| Panda pick and transfer | native-controller successful task-level comparison; robustness/failure pair | **complete — success and 0.5-kg failure-mode demos** |
+| Panda pick and transfer | native-controller task comparison and corrected-v3 boundary contrasts | **success, failure, pose, and hold demos** |
 
 ## Generated videos
 
@@ -69,9 +70,9 @@ traces.
 | MuJoCo | free 1-kg block, `mu=0.5`, initial `vx=1 m/s`, `dt=0.5 ms` | reference-speed sliding trace |
 | SAP/Warp | same task-level mass/friction/initial speed, Drake preset, `dt=0.5 ms` | same reference-speed sliding trace |
 
-The video shows `vx(t)` and `rho = |Ft| / (mu Fn)` after release. It makes the
-low-speed friction-regularization difference visible while retaining a direct
-audit trail to the source CSVs.
+The video shows `vx(t)` and conditional `rho = |Ft| / (mu Fn)` after release.
+Blank `rho` intervals mean `Fn=Ft=0` (no active normal contact), not zero
+friction utilization. The source CSVs remain the audit trail.
 
 ### 04. Sub-Coulomb static friction — 4-N force hold
 
@@ -229,6 +230,23 @@ different mechanisms.
 As with the success demo, controllers remain engine-native. The video is
 useful for qualitative failure diagnosis, not a pure contact-solver ranking.
 
+## Later 3-D and corrected-v3 website clips (12–22)
+
+These are renderings of existing engine traces, not new physics runs. The
+website places each next to its matching experiment. Contact forces and
+success metrics come from the reports and telemetry clips, not the renderings.
+
+- [12 kinetic friction](../exp-results/site-video-demos/12_kinetic_friction_physical.mp4): logged block `x,z` poses; `m=1 kg`, `mu=0.5`, `v0=1 m/s`, `dt=0.5 ms`.
+- [13 three-box 4-N hold](../exp-results/site-video-demos/13_static_friction_three_box_physical.mp4): horizontal poses reconstructed from logged interface slip and vertical poses from logged velocities; SAP pair `ke=1e4 N/m`, `tau=3 ms`, `dt=0.5 ms`.
+- [14 SAP pinch threshold](../exp-results/site-video-demos/14_simple_pinch_physical.mp4): **SAP-only**, `N=4.040 N/side`, `mu=0.4`; mass `0.4077 kg` gives `r=0.808` and expected slip, while `0.3262 kg` gives `r=1.010` and support.
+- [15 impact](../exp-results/site-video-demos/15_impact_restitution_physical.mp4): logged equal-timescale sphere trajectories, calibrated to `e_eff=0.8` and evaluated at `dt=0.5 ms`.
+- [16 repeated bounce](../exp-results/site-video-demos/16_repeated_elastic_bounce_physical.mp4): 49 visual copies of the single logged representative ball-0 height, **not** 49 individually logged pose tracks; `dt=0.5 ms`.
+- [17 low-stiffness stack](../exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4) and [18 high-stiffness stack](../exp-results/site-video-demos/18_layered_box_high_stiffness_body_body.mp4): five dynamic boxes, `dt=0.5 ms`, SAP pair `ke=1e4` versus `1e6 N/m`, pair `tau=3 ms`, `rigid_gap=0`; MuJoCo native render and SAP native pose replay.
+- [19 successful pinch](../exp-results/site-video-demos/19_simple_pinch_physical_success.mp4): `m=0.2718 kg`, `mu=0.4`; MuJoCo `r=1.176`, SAP `r=1.212`; both pass the lift gate.
+- [20 Panda mass/friction contrast](../exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4): frame-corrected v3, `m=0.40 kg`, `mu=0.19`; MuJoCo loses finger contact, SAP lifts. Native controllers differ, so this is task-level evidence.
+- [21 Panda pose perturbation](../exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4): common `+2.5 mm` x-offset; MuJoCo passes, SAP crosses the `15°` orientation gate. Cube axes/angle are render-only annotations.
+- [22 Panda long hold](../exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4): common 10-s final-hold phase; MuJoCo crosses the `5 mm` hand-relative drift gate, SAP stays below it.
+
 ## Validation performed for generated clips
 
 - Both source files existed locally and were decoded by `ffmpeg`.
@@ -246,7 +264,8 @@ MuJoCo--SAP 对比视频。raw mesh、capacity overflow 或不同 collision
 representation 的录像也可以保留，但只能明确叫 failure/representation
 control，不能拿来宣称谁更准确。
 
-目前网站上每个实验家族都已有至少一个代表性 demo；rolling、Panda success/
-failure、round socket 与 broad concave 都包含原生或原生+pose-replay 画面。需要
+目前 rolling 暂时从网站撤下，原始录像与结果仍在仓库等待参数对齐复核。其他实验
+家族在对应章节有 demo；Panda success/failure、round socket 与 broad concave
+都包含原生或原生+pose-replay 画面。需要
 逐帧可追溯的力、速度、能量或 slip 的案例使用已有 CSV 的 trace replay，并在上面
 明确标出来；每个视频所用参数均已写入本表。

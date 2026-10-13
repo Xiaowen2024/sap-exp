@@ -122,6 +122,15 @@
               <p class="video-note">This is a telemetry replay. The MuJoCo pane is a native anti-slip control, not a matched-contact-model claim. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/04_static_friction_hold_trace_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D companion: three-box 4-N hold.</strong> The blocks replay the same hold at <code>dt=0.5 ms</code>; SAP/Warp uses pair <code>k<sub>e</sub>=1e4 N/m</code> and <code>τ=3 ms</code>.</p>
+              <p class="video-note">Body poses are reconstructed from logged interface slip and vertical velocity, not directly recorded absolute poses. Use the telemetry clip above for force, duty, and friction utilization. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
         </section>
 
         <section id="kinetic" class="subsection">
@@ -143,7 +152,16 @@
             </video>
             <figcaption>
               <p><strong>Video: reference-speed kinetic-friction replay.</strong> Both traces use a 1-kg block, <code>μ=0.5</code>, initial <code>v<sub>x</sub>=1 m/s</code>, and <code>dt=0.5 ms</code>; the animation replays <code>ρ</code> and the recorded force/velocity telemetry.</p>
-              <p class="video-note">This is a trace-driven replay rather than a renderer-native 3-D comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/03_kinetic_friction_trace_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+              <p class="video-note">This is a trace-driven replay. Blank <code>ρ</code> intervals mean no active normal contact, not zero utilization. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/03_kinetic_friction_trace_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/12_kinetic_friction_physical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D companion: free-sliding blocks.</strong> Both panes replay the recorded block positions after release at <code>v<sub>x</sub>=1 m/s</code>, <code>μ=0.5</code>, and <code>dt=0.5 ms</code>.</p>
+              <p class="video-note">This shows object motion; the force and velocity evidence remains in the telemetry clip above. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/12_kinetic_friction_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>
@@ -170,6 +188,24 @@
             <figcaption>
               <p><strong>Video: force-matched pinch boundary.</strong> At <code>m=0.3262 kg</code>, SAP/Warp succeeds with 57.96 mm final lift follow while MuJoCo reaches 2.59 mm; both traces pass the normal-contact gate.</p>
               <p class="video-note">Playback clocks are normalized separately over each native lift duration. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/05_simple_pinch_force_matched_boundary.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D control: SAP below versus above the support threshold.</strong> Both panes use SAP/Warp with measured preload <code>N=4.040 N/side</code> and <code>μ=0.4</code>. The heavier cube has <code>r=0.808</code> and slips as expected; the lighter cube has <code>r=1.010</code> and passes.</p>
+              <p class="video-note">This is an SAP-only threshold sanity check, not a MuJoCo–SAP ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/19_simple_pinch_physical_success.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D control: both engines lift successfully.</strong> At <code>m=0.2718 kg</code> and <code>μ=0.4</code>, measured margins are <code>r=1.176</code> for MuJoCo and <code>r=1.212</code> for SAP/Warp; both retain the cube through the lift.</p>
+              <p class="video-note">A representative task-success comparison, distinct from the near-threshold case above. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/19_simple_pinch_physical_success.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>
@@ -199,6 +235,15 @@
               <p class="video-note">This is a controlled restitution-transfer demo, not an absolute-material ground-truth comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/06_impact_equal_timescale_coarse_dt.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/15_impact_restitution_physical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D companion: sphere–plane impact.</strong> The two recorded trajectories show the equal-timescale, <code>e<sub>eff</sub>=0.8</code>-calibrated comparison at evaluation <code>dt=0.5 ms</code>.</p>
+              <p class="video-note">Offline pose replay; use the telemetry clip above for restitution, force, and impulse. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/15_impact_restitution_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
           <p>A broader methodological lesson follows:</p>
           <div class="equation">static stiffness matching ≠ dynamic contact-timescale matching</div>
         </section>
@@ -223,6 +268,15 @@
             <figcaption>
               <p><strong>Video: repeated elastic bounce.</strong> At <code>dt=0.5 ms</code>, MuJoCo retains a final energy ratio of 1.00485, while SAP/Warp reaches 0.83403 in the selected native configurations.</p>
               <p class="video-note">The animated sphere is ball 0; the energy plot is the complete 49-ball system. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/07_repeated_elastic_bounce_energy_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/16_repeated_elastic_bounce_physical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D companion: repeated elastic bounce.</strong> Both panels visualize the repeated-impact trajectories at <code>dt=0.5 ms</code>.</p>
+              <p class="video-note">The 49 identical balls are visual replicas of the recorded representative ball-0 height, not 49 separately logged pose tracks. System-energy evidence remains in the telemetry clip above. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/16_repeated_elastic_bounce_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>
@@ -351,6 +405,33 @@
             <p class="video-note">This is qualitative failure diagnosis, not a pure contact-solver ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/11_panda_pick_0p5kg_failure_modes.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
+        <figure class="video-demo inline-video">
+          <video controls preload="metadata" playsinline>
+            <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <p><strong>Panda v3: MuJoCo fails, SAP/Warp lifts.</strong> At <code>m=0.40 kg</code>, <code>μ=0.19</code>, and nominal pose, MuJoCo loses bilateral finger contact while SAP/Warp retains it and lifts the cube.</p>
+            <p class="video-note">These are frame-corrected native task traces, with different native controllers and <code>dt</code>; this is not an isolated contact-solver comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+          </figcaption>
+        </figure>
+        <figure class="video-demo inline-video">
+          <video controls preload="metadata" playsinline>
+            <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <p><strong>Panda v3: pose perturbation favors MuJoCo.</strong> With a <code>+2.5 mm</code> initial x-offset, MuJoCo passes while SAP/Warp exceeds the <code>15°</code> orientation gate.</p>
+            <p class="video-note">The cube-local axes and live angle display are render-only annotations of the recorded pose drift; they do not change either trajectory. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+          </figcaption>
+        </figure>
+        <figure class="video-demo inline-video">
+          <video controls preload="metadata" playsinline>
+            <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <p><strong>Panda v3: 10-s final hold.</strong> The closer camera and live hand-relative slip readout show MuJoCo crossing the <code>5 mm</code> drift gate while SAP/Warp remains below it in this frozen native setup.</p>
+            <p class="video-note">Only the common hold phase is shown; both panels replay recorded engine poses. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+          </figcaption>
+        </figure>
       </section>
 
       <section id="comparison" class="report-section">
@@ -375,6 +456,24 @@
           </tbody>
         </table>
         <p id="findings"><strong>Contact parameter interpretation.</strong> In the stable compliant regime, SAP/Warp's pair <code>k_e</code> approximately follows <code>F<sub>n</sub> ≈ k<sub>e</sub>δ</code>. MuJoCo's <code>solref</code> controls constraint dynamics, so its effective contact stiffness also depends on mass, impedance, and the contact manifold; the body–plane calibration required an effective-mass correction for body–body contact. In the tested high-stiffness stacks, SAP/Warp developed contact switching and vertical jitter while MuJoCo remained stable. These observations are why the comparison uses measured forces, penetration, and stability rather than matching native parameter numbers.</p>
+        <figure class="video-demo inline-video">
+          <video controls preload="metadata" playsinline>
+            <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <p><strong>Low-stiffness body–body stack.</strong> Five dynamic boxes transmit load across four inter-box contacts at <code>dt=0.5 ms</code>; the SAP/Warp pair setting is <code>k<sub>e</sub>=1e4 N/m</code>.</p>
+            <p class="video-note">MuJoCo is a native render; SAP/Warp is a replay of its native pose trace. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+          </figcaption>
+        </figure>
+        <figure class="video-demo inline-video">
+          <video controls preload="metadata" playsinline>
+            <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/18_layered_box_high_stiffness_body_body.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <p><strong>High-stiffness body–body stack.</strong> The same five-box task with SAP/Warp pair <code>k<sub>e</sub>=1e6 N/m</code> exposes the contact-switching and vertical-jitter contrast described above.</p>
+            <p class="video-note">The low/high pair isolates the tested stiffness regime; these are not identical native contact parameterizations. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/18_layered_box_high_stiffness_body_body.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+          </figcaption>
+        </figure>
       </section>
 
       <section id="robotics" class="report-section">
