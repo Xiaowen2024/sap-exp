@@ -32,7 +32,6 @@
               <li><a href="#sticking">Sticking and creep</a></li>
               <li><a href="#kinetic">Kinetic friction</a></li>
               <li><a href="#pinch">Force-matched pinch</a></li>
-              <li><a href="#rolling">Coupled rolling</a></li>
             </ol>
           </li>
           <li>
@@ -175,22 +174,6 @@
           </figure>
         </section>
 
-        <section id="rolling" class="subsection">
-          <h3>2.4 Coupled rolling: an analytic task-level check</h3>
-          <p>The 25-ball rolling benchmark combines sustained normal support, frictional traction, and simultaneous contacts. Its analytic reference assumes symmetric, no-slip pure rolling, so velocity MSE measures whether the complete configured simulation follows that trajectory.</p>
-          <p>At <code>dt=1 ms</code>, the MuJoCo SimBenchmark reproduction gives velocity MSE <code>0.00693 (m/s)²</code>. The SAP/Warp setting shown below gives <code>0.360 (m/s)²</code>; the lowest MSE among the tested SAP Drake settings was <code>0.347</code>. These are specific configurations with unequal tuning coverage.</p>
-          <p>This extends the simpler sticking and sliding tests above: agreement in those settings does not guarantee accurate force allocation and pure rolling across 25 balls. The aggregate MSE does not identify which contribution—friction, normal compliance, contact geometry, or time stepping—caused the deviation.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> In this tested multi-contact rolling task, MuJoCo follows the analytic pure-rolling trajectory more closely. The result does not establish a general solver ranking.</div>
-          <figure class="video-demo inline-video">
-            <video controls preload="metadata" playsinline>
-              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/01_rolling_25ball_native.mp4" type="video/mp4">
-            </video>
-            <figcaption>
-              <p><strong>Video: 25-ball rolling comparison.</strong> MuJoCo and SAP/Warp use <code>dt=1 ms</code> and the documented native contact settings.</p>
-              <p class="video-note">The video shows one SAP setting, not the best of its tested sweep. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-rolling-contact-report.md" target="_blank" rel="noreferrer">Methods and results ↗</a></p>
-            </figcaption>
-          </figure>
-        </section>
       </section>
 
       <section id="dynamics" class="report-section">
@@ -439,7 +422,6 @@
         <ul class="source-list">
           <li><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">Experiment repository: Xiaowen2024/sap-exp ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-calibrated-layered-stack.md" target="_blank" rel="noreferrer">Calibrated layered box stack ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-vs-sap-rolling-contact-report.md" target="_blank" rel="noreferrer">Rolling contact benchmark ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/dynamic-impact-restitution-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Dynamic impact and restitution ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/kinetic-friction-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Kinetic friction ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/peg-in-hole-mujoco-vs-sap-master.md" target="_blank" rel="noreferrer">Peg-in-hole and concave geometry ↗</a></li>
