@@ -31,15 +31,14 @@ report with numbered sections, tables, and source links:
 The report follows the progression:
 
 1. Executive summary
-2. Main findings
-3. Friction
-4. Dynamic contact
-5. Collision representation and contact geometry
-6. Panda manipulation
-7. Overall comparison
-8. Implications for robotics
-9. Final conclusion
-10. Sources
+2. Friction
+3. Dynamic contact
+4. Collision representation and contact geometry
+5. Panda manipulation
+6. Overall comparison and contact parameter interpretation
+7. Implications for robotics
+8. Final conclusion
+9. Sources
 
 ## Repository structure
 
