@@ -42,11 +42,18 @@
             </ol>
           </li>
           <li>
-            <a href="#geometry">Collision geometry</a>
+            <a href="#geometry">Peg-in-hole</a>
             <ol>
               <li><a href="#analytic-cavity">Analytic cavity</a></li>
               <li><a href="#round-socket">Round socket</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#thin-stacking">Thin-shape stacking</a>
+            <ol>
               <li><a href="#broad-settling">Broad settling</a></li>
+              <li><a href="#thin-discs">Thin-disc sweeps</a></li>
+              <li><a href="#matched-thickness">Matched-thickness shapes</a></li>
             </ol>
           </li>
           <li><a href="#manipulation">Panda manipulation</a></li>
@@ -283,7 +290,7 @@
       </section>
 
       <section id="geometry" class="report-section">
-        <h2>4. Collision Representation and Contact Geometry</h2>
+        <h2>4. Peg-in-Hole: Contact and Collision Representation</h2>
 
         <section id="analytic-cavity" class="subsection">
           <h3>4.1 Analytic cavity: contact solver control</h3>
@@ -329,12 +336,18 @@
           </figure>
         </section>
 
+      </section>
+
+      <section id="thin-stacking" class="report-section">
+        <h2>5. Thin-Shape Stacking and Collision Representation</h2>
+        <p>These are separate gravity-settling tasks, not additional peg-in-hole trials. They test how thickness, concavity, and the collision manifold affect stacked-body behavior. A plate stack settling successfully does not validate tight-clearance insertion.</p>
+
         <section id="broad-settling" class="subsection">
-          <h3>4.3 Broad concave settling</h3>
-          <p>The conclusion changes for less constrained geometry.</p>
-          <p>With the same CoACD dinner-plate representation, SAP/Warp and MuJoCo produced very similar sphere-in-plate equilibria.</p>
+          <h3>5.1 Broad concave settling: original dinner plates</h3>
+          <p>The original dinner plate has a 44.46-mm rim-to-bowl-bottom envelope; it is <strong>not</strong> a thin-disc test. Within this plate task, both engines used the shared 32-piece CoACD dinner-plate representation and produced similar sphere-in-plate equilibria.</p>
           <p>Both also settled a three-plate stack without escape, although the resulting contact manifolds and lateral equilibria differed.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> Broad concave settling is handled consistently by both engines; tight-clearance insertion is the harder representation stress test.</div>
+          <div class="takeaway"><strong>Takeaway.</strong> Both engines can preserve stack order in this broad concave geometry. This is a separate positive settling result, not a counterexample to the round-socket insertion outcome.</div>
+          <p class="video-note">Full protocol and raw-versus-CoACD controls: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">concave-plate report ↗</a>.</p>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
@@ -346,10 +359,25 @@
             </figcaption>
           </figure>
         </section>
+
+        <section id="thin-discs" class="subsection">
+          <h3>5.2 Three thin discs: native contact operating regions</h3>
+          <p>Three free analytic discs, each 202 mm in diameter and 4 mm thick, settle under gravity for 2 s. MuJoCo's 79-run sweep varied <code>dt</code>, <code>solref</code>, damping, impedance, integrator, and solver; SAP/Warp's 65-run sweep varied <code>dt</code>, <code>ke</code>, <code>tau</code>, <code>rigid_gap</code>, and preset.</p>
+          <p>Both have stable, rapidly settling native settings. MuJoCo's balanced tested example used <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settling in 0.178 s. SAP/Warp's balanced tested region used shape <code>ke=1e5 N/m</code>, shape <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code>, settling in about 0.17 s. Softer settings can lose correct layer order; stiffness and timestep also change peak overlap and tail motion.</p>
+          <p class="video-note">The engines' native penetration coordinates and contact parameters are not numerically interchangeable. See the <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> and <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
+        </section>
+
+        <section id="matched-thickness" class="subsection">
+          <h3>5.3 Matched thickness: analytic disc versus shallow concave plate</h3>
+          <p>To separate thickness from shape complexity, a follow-up compared three 4-mm analytic discs with three 4-mm shallow CoACD plates, matching diameter, mass, and initial poses within each engine. The plate's bowl was vertically compressed from the original 44.46-mm envelope; it was not replaced by a cylinder.</p>
+          <p>Within MuJoCo, maximum active contacts increased from 13 (disc) to 121 (plate); within SAP/Warp, maximum contact candidates increased from 12 to 147. These counts have different engine-specific definitions and should not be compared across engines. Both disc stacks met the velocity settling criterion within 2 s, while neither shallow-plate stack did. All four cases preserved layer order without escape, and SAP/Warp had no contact-capacity truncation.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> Making the bowl thin does not make it an easy thin-disc problem. Within both engines, the many-piece concave contact manifold costs more contacts and settles less cleanly than an analytic disc. This is a modeling-choice result, not a cross-engine speed or penetration ranking.</div>
+          <p class="video-note">MuJoCo used <code>dt=0.25 ms</code> on CPU and SAP/Warp <code>dt=0.5 ms</code> on CUDA with different native contact settings, so their wall times and raw overlap values should not be ranked directly. Raw results: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/mujoco/results.csv" target="_blank" rel="noreferrer">MuJoCo CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/sap/results.csv" target="_blank" rel="noreferrer">SAP/Warp CSV ↗</a>.</p>
+        </section>
       </section>
 
       <section id="manipulation" class="report-section">
-        <h2>5. Manipulation: Panda Pick and Transfer</h2>
+        <h2>6. Manipulation: Panda Pick and Transfer</h2>
         <p>The Panda benchmark intentionally compares engine-native task behavior rather than forcing identical controller implementations.</p>
         <p>The robot model, object, trajectory intent, finger effort cap, and task-success criteria are shared, while each engine uses its native controller/contact stack.</p>
 
@@ -435,7 +463,7 @@
       </section>
 
       <section id="comparison" class="report-section">
-        <h2>6. Overall Comparison</h2>
+        <h2>7. Overall Comparison</h2>
         <table class="comparison-table">
           <thead><tr><th>Property</th><th>MuJoCo</th><th>SAP/Warp</th></tr></thead>
           <tbody>
@@ -477,7 +505,7 @@
       </section>
 
       <section id="robotics" class="report-section">
-        <h2>7. What This Means for Robotics</h2>
+        <h2>8. What This Means for Robotics</h2>
         <div class="two-column">
           <div>
             <h3>Where SAP/Warp currently looks attractive</h3>
@@ -503,7 +531,7 @@
       </section>
 
       <section id="conclusion" class="report-section">
-        <h2>8. Final Conclusion</h2>
+        <h2>9. Final Conclusion</h2>
         <p>The experiments do not support a simple statement that either SAP/Warp or MuJoCo is universally more accurate.</p>
         <p>Instead, they reveal different modeling tradeoffs.</p>
         <p>SAP/Warp provides more directly interpretable compliant-contact parameters and, in several controlled friction benchmarks, behavior closer to ideal Coulomb contact. Its current limitations appear most clearly when contact becomes very stiff or collision geometry becomes tight and representation-sensitive.</p>
@@ -516,7 +544,7 @@
       </section>
 
       <section id="sources" class="report-section sources-section">
-        <h2>9. Sources</h2>
+        <h2>10. Sources</h2>
         <p>The full experiment repository contains the run scripts, raw summaries, videos, plots, and experiment-level reports supporting this synthesis. Complete video settings and coverage notes are listed in the <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/site-video-demo-catalog.md" target="_blank" rel="noreferrer">site video catalog ↗</a>.</p>
         <ul class="source-list">
           <li><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">Experiment repository: Xiaowen2024/sap-exp ↗</a></li>
@@ -524,6 +552,9 @@
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/dynamic-impact-restitution-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Dynamic impact and restitution ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/kinetic-friction-sap-vs-mujoco.md" target="_blank" rel="noreferrer">Kinetic friction ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/peg-in-hole-mujoco-vs-sap-master.md" target="_blank" rel="noreferrer">Peg-in-hole and concave geometry ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">Original concave-plate settling ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo thin-disc sweep ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp thin-disc sweep ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/panda-pick-v3-frame-corrected-robustness.md" target="_blank" rel="noreferrer">Panda pick-and-transfer ↗</a></li>
           <li><a href="https://sap-sim.github.io/sap_warp/benchmarking/index.html" target="_blank" rel="noreferrer">SAP/Warp benchmarking documentation ↗</a></li>
         </ul>
