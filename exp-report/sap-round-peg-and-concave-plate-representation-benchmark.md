@@ -8,6 +8,12 @@ to each other for two concave-geometry tasks:
 1. round peg insertion into the original concave blind socket; and
 2. a concave dinner plate with a dropped sphere and a three-plate stack.
 
+The dinner plate is included as an **other concave-geometry comparison**.
+It tests native concave mesh versus shared CoACD in a more open settling
+task, asking whether representation sensitivity appears beyond a tight
+socket. It is not a peg-geometry ablation: plate settling cannot establish
+the cause of an insertion failure or predict peg-in-hole success.
+
 It is a **collision-representation benchmark**, not a blanket SAP-versus-
 MuJoCo accuracy ranking. Raw concave mesh witness gaps are known to be 
 unreliable inside a cavity. Therefore raw and watertight meshes are retained

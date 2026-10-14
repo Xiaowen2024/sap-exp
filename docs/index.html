@@ -42,16 +42,16 @@
             </ol>
           </li>
           <li>
-            <a href="#geometry">Peg-in-hole</a>
+            <a href="#geometry">Peg-in-hole &amp; other concave contact</a>
             <ol>
               <li><a href="#analytic-cavity">Analytic cavity</a></li>
               <li><a href="#round-socket">Round socket</a></li>
+              <li><a href="#broad-settling">Other concave comparison</a></li>
             </ol>
           </li>
           <li>
             <a href="#thin-stacking">Thin-shape stacking</a>
             <ol>
-              <li><a href="#broad-settling">Broad settling</a></li>
               <li><a href="#thin-discs">Thin-disc sweeps</a></li>
               <li><a href="#matched-thickness">Matched-thickness shapes</a></li>
             </ol>
@@ -290,7 +290,7 @@
       </section>
 
       <section id="geometry" class="report-section">
-        <h2>4. Peg-in-Hole: Contact and Collision Representation</h2>
+        <h2>4. Peg-in-Hole and Other Concave Contact</h2>
 
         <section id="analytic-cavity" class="subsection">
           <h3>4.1 Analytic cavity: contact solver control</h3>
@@ -336,16 +336,11 @@
           </figure>
         </section>
 
-      </section>
-
-      <section id="thin-stacking" class="report-section">
-        <h2>5. Thin-Shape Stacking and Collision Representation</h2>
-        <p>These gravity-settling tests separate contact-parameter operating regions from the effect of thin and concave collision geometry.</p>
-
         <section id="broad-settling" class="subsection">
-          <h3>5.1 Broad concave settling: original dinner plates</h3>
+          <h3>4.3 Other concave comparison: broad plate settling</h3>
+          <p>Why include plates alongside peg insertion? Both tasks probe concave collision representation, but the plate provides a more open settling case. Comparing its native concave-mesh path with shared CoACD shows whether representation sensitivity also appears outside a tight socket. It is a contextual comparison, <strong>not</strong> a matched peg-geometry ablation.</p>
           <p>The original dinner plate has a 44.46-mm rim-to-bowl-bottom envelope; it is <strong>not</strong> a thin-disc test. Within this plate task, both engines used the shared 32-piece CoACD dinner-plate representation and produced similar sphere-in-plate equilibria.</p>
-          <p>Both also settled a three-plate stack without escape, although the resulting contact manifolds and lateral equilibria differed.</p>
+          <p>Both also settled a three-plate stack without escape. Switching between native mesh and shared CoACD changed the settled plate heights and contact manifolds; the raw-mesh witness gaps are not a geometric-penetration ground truth inside the bowl.</p>
           <p>This plate comparison used one frozen native contact setting per engine (<code>dt=0.5 ms</code> for both), plus raw-mesh versus shared-CoACD representation controls. It did <strong>not</strong> sweep plate contact parameters, so it establishes a stable tested outcome but no plate-specific failure boundary or parameter-robustness winner.</p>
           <div class="takeaway"><strong>Takeaway.</strong> Both tested CoACD plate configurations preserved layer order. The plate data alone do not tell us which engine tolerates a wider range of <code>dt</code> or contact softness.</div>
           <p class="video-note">Full protocol and raw-versus-CoACD controls: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">concave-plate report ↗</a>.</p>
@@ -361,8 +356,14 @@
           </figure>
         </section>
 
+      </section>
+
+      <section id="thin-stacking" class="report-section">
+        <h2>5. Thin-Shape Stacking and Collision Representation</h2>
+        <p>These thin-shape studies separate native contact-parameter operating regions from the cost of a many-piece shallow concave collision manifold.</p>
+
         <section id="thin-discs" class="subsection">
-          <h3>5.2 Three thin discs: native contact operating regions</h3>
+          <h3>5.1 Three thin discs: native contact operating regions</h3>
           <p>Three free analytic discs, each 202 mm in diameter and 4 mm thick, settle under gravity for 2 s. MuJoCo's 79-run sweep varied <code>dt</code>, <code>solref</code>, damping, impedance, integrator, and solver; SAP/Warp's 65-run sweep varied <code>dt</code>, <code>ke</code>, <code>tau</code>, <code>rigid_gap</code>, and preset.</p>
           <p>Both have stable, rapidly settling native settings. MuJoCo's balanced tested example used <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settling in 0.178 s. SAP/Warp's balanced tested region used shape <code>ke=1e5 N/m</code>, shape <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code>, settling in about 0.17 s. Softer settings can lose correct layer order; stiffness and timestep also change peak overlap and tail motion.</p>
           <ul>
@@ -375,7 +376,7 @@
         </section>
 
         <section id="matched-thickness" class="subsection">
-          <h3>5.3 Matched thickness: analytic disc versus shallow concave plate</h3>
+          <h3>5.2 Matched thickness: analytic disc versus shallow concave plate</h3>
           <p>To separate thickness from shape complexity, a follow-up compared three 4-mm analytic discs with three 4-mm shallow CoACD plates, matching diameter, mass, and initial poses within each engine. The plate's bowl was vertically compressed from the original 44.46-mm envelope; it was not replaced by a cylinder.</p>
           <p>Within MuJoCo, maximum active contacts increased from 13 (disc) to 121 (plate); within SAP/Warp, maximum contact candidates increased from 12 to 147. These counts have different engine-specific definitions and should not be compared across engines. Both disc stacks met the velocity settling criterion within 2 s, while neither shallow-plate stack did. All four cases preserved layer order without escape, and SAP/Warp had no contact-capacity truncation.</p>
           <div class="takeaway"><strong>Takeaway.</strong> Making the bowl thin does not make it an easy thin-disc problem. Within both engines, the many-piece concave contact manifold costs more contacts and settles less cleanly than an analytic disc. This is a modeling-choice result, not a cross-engine speed or penetration ranking.</div>
