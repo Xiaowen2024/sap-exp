@@ -340,13 +340,14 @@
 
       <section id="thin-stacking" class="report-section">
         <h2>5. Thin-Shape Stacking and Collision Representation</h2>
-        <p>These are separate gravity-settling tasks, not additional peg-in-hole trials. They test how thickness, concavity, and the collision manifold affect stacked-body behavior. A plate stack settling successfully does not validate tight-clearance insertion.</p>
+        <p>These gravity-settling tests separate contact-parameter operating regions from the effect of thin and concave collision geometry.</p>
 
         <section id="broad-settling" class="subsection">
           <h3>5.1 Broad concave settling: original dinner plates</h3>
           <p>The original dinner plate has a 44.46-mm rim-to-bowl-bottom envelope; it is <strong>not</strong> a thin-disc test. Within this plate task, both engines used the shared 32-piece CoACD dinner-plate representation and produced similar sphere-in-plate equilibria.</p>
           <p>Both also settled a three-plate stack without escape, although the resulting contact manifolds and lateral equilibria differed.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> Both engines can preserve stack order in this broad concave geometry. This is a separate positive settling result, not a counterexample to the round-socket insertion outcome.</div>
+          <p>This plate comparison used one frozen native contact setting per engine (<code>dt=0.5 ms</code> for both), plus raw-mesh versus shared-CoACD representation controls. It did <strong>not</strong> sweep plate contact parameters, so it establishes a stable tested outcome but no plate-specific failure boundary or parameter-robustness winner.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> Both tested CoACD plate configurations preserved layer order. The plate data alone do not tell us which engine tolerates a wider range of <code>dt</code> or contact softness.</div>
           <p class="video-note">Full protocol and raw-versus-CoACD controls: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">concave-plate report ↗</a>.</p>
 
           <figure class="video-demo inline-video">
@@ -364,6 +365,12 @@
           <h3>5.2 Three thin discs: native contact operating regions</h3>
           <p>Three free analytic discs, each 202 mm in diameter and 4 mm thick, settle under gravity for 2 s. MuJoCo's 79-run sweep varied <code>dt</code>, <code>solref</code>, damping, impedance, integrator, and solver; SAP/Warp's 65-run sweep varied <code>dt</code>, <code>ke</code>, <code>tau</code>, <code>rigid_gap</code>, and preset.</p>
           <p>Both have stable, rapidly settling native settings. MuJoCo's balanced tested example used <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settling in 0.178 s. SAP/Warp's balanced tested region used shape <code>ke=1e5 N/m</code>, shape <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code>, settling in about 0.17 s. Softer settings can lose correct layer order; stiffness and timestep also change peak overlap and tail motion.</p>
+          <ul>
+            <li><strong>MuJoCo failure boundary:</strong> overly soft <code>solref</code> is the dominant tested failure mode. At <code>8 ms</code>, layer order fails at several timesteps; at <code>16 ms</code>, it fails at every valid tested timestep. Changing Newton/CG or Euler/implicitfast/RK4 does not rescue the <code>16 ms</code> cases. At <code>dt=0.5 ms, solref=1 ms</code>, increasing damping from <code>0.5</code> to <code>2</code> markedly improves settling.</li>
+            <li><strong>SAP/Warp failure boundary:</strong> shape <code>ke=1e3 N/m</code> fails across the primary <code>dt</code> grid through wrong order or escape; <code>1e4</code> preserves order but does not meet the 2-s settling criterion. At <code>1e5</code>, <code>dt=0.25–0.5 ms</code> is the balanced tested region; peak overlap rises sharply by <code>dt=1 ms</code>, and coarser steps degrade settling.</li>
+            <li><strong>Other SAP/Warp controls:</strong> at <code>ke=1e5</code>, <code>dt=0.5 ms</code>, setting <code>rigid_gap=0</code> gives more peak overlap and residual motion than <code>0.05–0.1 mm</code>; the tested <code>drake</code> preset also has lower peak overlap than <code>approx32/64</code>. These are task-local tuning results.</li>
+          </ul>
+          <div class="takeaway"><strong>Parameter robustness.</strong> Both engines have useful native operating bands, and both fail outside them, but in different parameter regimes. The 79 and 65 native sweeps do not provide a physically matched measure of which engine has the wider robustness envelope.</div>
           <p class="video-note">The engines' native penetration coordinates and contact parameters are not numerically interchangeable. See the <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> and <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
         </section>
 
@@ -372,6 +379,7 @@
           <p>To separate thickness from shape complexity, a follow-up compared three 4-mm analytic discs with three 4-mm shallow CoACD plates, matching diameter, mass, and initial poses within each engine. The plate's bowl was vertically compressed from the original 44.46-mm envelope; it was not replaced by a cylinder.</p>
           <p>Within MuJoCo, maximum active contacts increased from 13 (disc) to 121 (plate); within SAP/Warp, maximum contact candidates increased from 12 to 147. These counts have different engine-specific definitions and should not be compared across engines. Both disc stacks met the velocity settling criterion within 2 s, while neither shallow-plate stack did. All four cases preserved layer order without escape, and SAP/Warp had no contact-capacity truncation.</p>
           <div class="takeaway"><strong>Takeaway.</strong> Making the bowl thin does not make it an easy thin-disc problem. Within both engines, the many-piece concave contact manifold costs more contacts and settles less cleanly than an analytic disc. This is a modeling-choice result, not a cross-engine speed or penetration ranking.</div>
+          <p>Only one native parameter setting per engine was tested in this matched-thickness comparison. The result isolates shape complexity within each engine; it cannot locate a shallow-plate failure boundary or rank parameter robustness between engines.</p>
           <p class="video-note">MuJoCo used <code>dt=0.25 ms</code> on CPU and SAP/Warp <code>dt=0.5 ms</code> on CUDA with different native contact settings, so their wall times and raw overlap values should not be ranked directly. Raw results: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/mujoco/results.csv" target="_blank" rel="noreferrer">MuJoCo CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/sap/results.csv" target="_blank" rel="noreferrer">SAP/Warp CSV ↗</a>.</p>
         </section>
       </section>
