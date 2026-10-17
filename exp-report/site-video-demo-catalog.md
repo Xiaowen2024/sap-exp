@@ -259,7 +259,8 @@ same 1.5-s gate plus 60-mm lift/0.25-s hold. Only cube mass varies.
 | First passed | 0.307698926 kg | 1.040904 | 57.01329 mm | pass |
 
 The rendered cube height is logged directly; pad height is reconstructed by
-integrating logged vertical pad velocity. Object motion is **not** magnified.
+integrating logged vertical pad velocity. Orientation was not logged and stays
+nominal for display. The recorded vertical motion is **not** magnified.
 The last three seconds magnify only the measurement scale to 56.90–57.10 mm,
 because the two actual 3-D poses are nearly indistinguishable. The source
 traces and metrics are stored under
