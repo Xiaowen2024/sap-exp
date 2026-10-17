@@ -21,7 +21,7 @@ generated clip.
 | Rolling benchmark | native 25-ball task-level comparison | **archived; removed from website pending parameter-alignment review** |
 | Sub-Coulomb friction / creep | 4-N sub-threshold hold, matched compliance; optional MuJoCo NoSlip control | **telemetry and 3-D reconstruction** |
 | Kinetic friction | free sliding, reference `v0 = 1 m/s` | **telemetry and 3-D pose replay** |
-| Force-matched simple pinch | threshold and successful-lift controls | **telemetry and 3-D physical-object replay** |
+| Force-matched simple pinch | SAP sanity control, MuJoCo refined boundary, successful-lift control | **3-D physical-object replays; old 05 clip archived off-site** |
 | Dynamic impact / restitution | calibrated `e_eff=0.8` reference impact; coarse-dt bottleneck | **telemetry and 3-D pose replay** |
 | Repeated elastic bounce | energy-retention representative and dissipative bottleneck | **telemetry and 3-D visual replication** |
 | Layered box contact semantics | five dynamic boxes; low and high pair stiffness | **low/high body–body pose replays** |
@@ -94,25 +94,23 @@ than a matched-contact-model claim.  It demonstrates the special anti-slip
 mechanism; the matched-compliance MuJoCo baseline remains documented in the
 friction report and should be used for solver-formulation conclusions.
 
-### 05. Force-matched simple pinch — threshold boundary
+### 05. Force-matched simple pinch — archived off-site
 
 Video: [05_simple_pinch_force_matched_boundary.mp4](../exp-results/site-video-demos/05_simple_pinch_force_matched_boundary.mp4)
 
-This telemetry replay uses the boundary mass `m=0.3262 kg`, at which the
-measured grasp capacity is almost exactly the object weight.  Both traces pass
-the normal-contact gate and have no SAP contact truncation; the comparison is
-therefore valid for the measured-force grasp experiment.
+This older telemetry replay uses a coarse-grid mass `m=0.3262 kg`, not the
+later refined pass/fail boundary. It is retained for provenance but **removed
+from the website** because its cross-engine meaning was unclear and its old
+caption could be mistaken for the actual task threshold.
 
 | Engine | Settings | Observed result |
 |---|---|---|
 | MuJoCo | `dt=0.5 ms`, `mu=0.4`, 0.2-mm geometric compression/side, measured preload 3.931 N/side | fails: final lift follow 2.59 mm; mean lift `rho` 0.998 |
 | SAP/Warp | `dt=0.5 ms`, Drake preset, pair `ke=1e4 N/m`, pair `tau=3 ms`, 0.001-mm geometric compression/side, measured preload 4.040 N/side, capacity 128 / no truncation | succeeds: final lift follow 57.96 mm; mean lift `rho` 0.980 |
 
-The playback fraction is normalized separately over each engine's native
-lift-phase duration (1.25 s for MuJoCo, 2.75 s for SAP); the in-video clock
-prints both source times.  This makes the force-matched success-boundary
-behavior visible without claiming that the two controllers execute the same
-trajectory duration.
+Its normalized playback was a presentation choice, not evidence of a measured
+boundary. The replacement website explanation uses the separately refined
+SAP and MuJoCo boundaries and a MuJoCo 3-D nearest-fail/first-pass replay.
 
 ### 06. Dynamic impact / restitution — equal-timescale coarse-step control
 
@@ -246,6 +244,26 @@ success metrics come from the reports and telemetry clips, not the renderings.
 - [20 Panda mass/friction contrast](../exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4): frame-corrected v3, `m=0.40 kg`, `mu=0.19`; MuJoCo loses finger contact, SAP lifts. Native controllers differ, so this is task-level evidence.
 - [21 Panda pose perturbation](../exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4): common `+2.5 mm` x-offset; MuJoCo passes, SAP crosses the `15°` orientation gate. Cube axes/angle are render-only annotations.
 - [22 Panda long hold](../exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4): common 10-s final-hold phase; MuJoCo crosses the `5 mm` hand-relative drift gate, SAP stays below it.
+
+### 23. MuJoCo simple-pinch N4 refined task boundary
+
+Video: [23_mujoco_pinch_refined_boundary_3d.mp4](../exp-results/site-video-demos/23_mujoco_pinch_refined_boundary_3d.mp4)
+
+Both panes replay recorded MuJoCo N4 lift traces at `dt=0.5 ms`, `mu=0.4`,
+0.20-mm pad compression per side, `implicitfast`/Newton/elliptic, and the
+same 1.5-s gate plus 60-mm lift/0.25-s hold. Only cube mass varies.
+
+| Pane | Cube mass | Gate-measured `r` | Final cube follow | 57-mm gate |
+|---|---:|---:|---:|---|
+| Last failed | 0.307706524 kg | 1.040878 | 56.97316 mm | fail |
+| First passed | 0.307698926 kg | 1.040904 | 57.01329 mm | pass |
+
+The rendered cube height is logged directly; pad height is reconstructed by
+integrating logged vertical pad velocity. Object motion is **not** magnified.
+The last three seconds magnify only the measurement scale to 56.90–57.10 mm,
+because the two actual 3-D poses are nearly indistinguishable. The source
+traces and metrics are stored under
+`exp-results/simple-pinch-v3/mujoco/refined-boundary-20261017/N4/`.
 
 ## Validation performed for generated clips
 

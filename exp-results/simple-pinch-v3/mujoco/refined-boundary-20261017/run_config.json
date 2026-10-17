@@ -1,0 +1,24 @@
+{
+  "runner": "mujoco-sim/learn_mujoco/pinch_grasp_experiments/run_simple_pinch_v2.py",
+  "mu": 0.4,
+  "dt_ms": 0.5,
+  "gate_s": 1.5,
+  "lift_duration_s": 1.0,
+  "hold_duration_s": 0.25,
+  "success_follow_mm": 57.0,
+  "grid_intervals": 20,
+  "mass_tolerance_kg": 1e-05,
+  "validation_repeats": 2,
+  "series": {
+    "N4": {
+      "compression_m": 0.0002,
+      "pass_mass_kg": 0.2718,
+      "fail_mass_kg": 0.3107
+    },
+    "N6": {
+      "compression_m": 0.0003,
+      "pass_mass_kg": 0.40775,
+      "fail_mass_kg": 0.466
+    }
+  }
+}

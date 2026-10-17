@@ -6,11 +6,13 @@ This document combines the earlier compression-matched v2 study and the
 measured-force-matched v3 study. It is the **single source of truth** for the
 simple-pinch benchmark.
 
-**Final answer.** Both engines reproduce the expected static Coulomb grasp
-threshold qualitatively when compared at the same *measured* normal preload.
-For the particular native configurations tested here, SAP changes from failure
-to pass closer to the ideal margin `r = 1` than MuJoCo. This is a task-level
-result, **not** a universal ranking of the two engines.
+**Final answer.** Both engines reproduce the broad expected grasp-margin
+trend when compared at similar *measured* normal preload. Mass-only
+refinements locate the tested 57-mm task-gate transitions near `r=0.990`
+(SAP N4), `1.001` (SAP N6), `1.041` (MuJoCo N4), and `1.048` (MuJoCo N6).
+SAP passes this finite-time task at lower *gate-measured* `r` in both series.
+This is a task-level result, **not** a universal static-friction or engine
+accuracy ranking.
 
 The crucial methodological lesson is simple:
 
@@ -95,15 +97,15 @@ contact.
 ## 4. Main result: transition around the Coulomb threshold
 
 The table shows the bracketing cases: the highest failed margin and lowest
-passed margin. The interval, rather than a single sample, is the honest
-resolution of this discrete sweep.
+passed margin. Both engines now have mass-only refinements. The interval,
+rather than a single sample, is the honest resolution of each sweep.
 
 | preload regime | engine | highest failed r | lowest passed r | reading |
 |---|---|---:|---:|---|
-| N4 | MuJoCo | 1.031 | 1.176 | needs measurable extra margin under this gate |
-| N4 | SAP Warp | 0.959 | 1.010 | transition is close to ideal `r=1` |
-| N6 | MuJoCo | 1.036 | 1.182 | same qualitative pattern |
-| N6 | SAP Warp | 1.000 | 1.050 | `r=1` misses the 57 mm gate by only 0.08 mm |
+| N4 | MuJoCo | 1.040878 | 1.040904 | refined task-gate boundary near 1.041 |
+| N4 | SAP Warp | 0.989910 | 0.989935 | refined 57-mm task-gate boundary near 0.990 |
+| N6 | MuJoCo | 1.048455 | 1.048468 | refined task-gate boundary near 1.048 |
+| N6 | SAP Warp | 1.001137 | 1.001149 | refined task-gate boundary near 1.001 |
 
 Both engines have the expected broad behavior:
 
@@ -112,12 +114,25 @@ r clearly below 1  -> slip / loss of support
 r sufficiently above 1 -> stable lift
 ```
 
-The difference is in the near-threshold band. In these configurations SAP
-passes at a smaller excess load margin. Near `r=1`, both engines generally
+The difference is in the near-threshold band. SAP's tested task boundary is
+lower than MuJoCo's in both N4 and N6. Near `r=1`, both engines generally
 reach `rho = |Ft| / (mu Fn)` close to one and accumulate relative tangential
-motion; that accumulated slip is what causes a 95%-follow failure.
+motion; that accumulated slip is what causes a 95%-follow failure. SAP's N4
+pass at gate-measured `r<1` is **not** an indefinite static equilibrium: its
+normal force rises during lifting, and the object retains downward tail
+velocity. The 0.25-s hold cannot establish long-term sticking.
 
-### Representative v3 boundary data
+The MuJoCo refinement left its model, controller, preload gate and 57-mm
+criterion unchanged; only cube mass varied. The old `r≈1.18` points below
+remain valid **coarse-grid pass samples**, but they are not the boundary.
+See [the refined MuJoCo boundary report](simple-pinch-v3-mujoco-refined-boundary.md)
+for the 59 new cases and repeat checks.
+The same-model SAP CPU refinement changed only cube mass; its four old GPU
+endpoints reproduced within `0.00021 mm` of lift-following. See
+[the refined SAP boundary report](simple-pinch-v3-sap-refined-boundary.md) for
+35 new cases and repeat checks.
+
+### Representative original v3 coarse-grid data
 
 | regime | engine | r | lift-following (mm) | slip (mm) | result |
 |---|---|---:|---:|---:|---|
@@ -165,7 +180,7 @@ contact-model study, not a silent parameter change.
 | engine | native setup used in final v3 curve |
 |---|---|
 | MuJoCo | Newton, elliptic cone, `implicitfast`; pair `solref=(4 ms, 1)`, `solimp=(.95,.99,.001,.5,2)` |
-| SAP Warp | `drake` preset; `k_pair=1e4 N/m`, `tau_pair=3 ms`, `rigid_gap=0`; CUDA RTX 3090 |
+| SAP Warp | `drake` preset; `k_pair=1e4 N/m`, `tau_pair=3 ms`, `rigid_gap=0`; original coarse sweep on CUDA RTX 3090, mass refinement on local CPU |
 
 These are native contact models, not a parameter-by-parameter physical
 equivalence. The comparison is fairer because it matches observable preload
@@ -179,8 +194,9 @@ configurations on this task.
 - Normal force, not geometric compression, is the appropriate cross-engine
   calibration target for this grasp.
 - Both engines recover the qualitative Coulomb threshold.
-- SAP's tested configuration has a narrower transition interval nearer `r=1`
-  than the tested MuJoCo configuration under the same 95%-follow criterion.
+- For the frozen native setups and 95%-follow criterion, SAP's refined
+  gate-measured `r` boundaries (`0.990`, `1.001`) are lower than MuJoCo's
+  (`1.041`, `1.048`) for N4 and N6 respectively.
 - SAP's stable contact coordinate has a repeatable 0.1 mm `phi0`–geometry
   offset in this task.
 
@@ -216,14 +232,19 @@ MuJoCo 只产生约 0.95 N/side，而 SAP 产生约 6 N/side；这根本不是�
 
 ### 最终结果怎么读？
 
-两边都符合大方向：`r < 1` 会掉，`r` 足够大就抓住。区别只出现在非常靠近
-边界的位置：SAP 在 N4 时大约 `r=1.01` 已过 95% lift gate；本次 MuJoCo
-在 N4 需要到约 `r=1.18` 才过。N6 的趋势一样。
+两边都符合大方向：`r` 远低于 1 时会掉，足够大时能跟随。把双方旧粗扫的
+通过/失败区间都加密后，SAP 的任务成功边界在 N4 约 `r=0.990`、N6 约
+`r=1.001`；MuJoCo 则分别约为 `1.041`、`1.048`。旧的 SAP `1.010/1.050`
+和 MuJoCo `1.176/1.182` 都只是粗扫中第一个通过的点，不是边界。
+这里的 `r` 用的是 **lift 前实测法向预载**。SAP N4 在 `r<1` 时通过短时
+57 mm 跟随判据，并不意味着能无限期静止抓住：lift 中法向力略增，且物体
+仍有向下尾速度和累计滑移。
 
 这句话的正确表述是：
 
 > 在这个 simple-pinch、这些 native parameter、这个 1 s lift 与 95% gate 下，
-> SAP 的失抓边界更接近理想 Coulomb 边界。
+> SAP 在 N4 与 N6 两档均能以比 MuJoCo 更低的 gate-measured 抓取裕度
+> 通过；这是有限时长任务的结果，不是静态摩擦极限或普适精度排名。
 
 不是：
 
@@ -258,6 +279,9 @@ SAP internal (-phi0) = measured geometric overlap + 0.1 mm.
 - Final raw curves:
   `exp-results/simple-pinch-v3/{mujoco,sap}/matched-N4/` and
   `exp-results/simple-pinch-v3/{mujoco,sap}/matched-N6/`
+- Refined boundary data:
+  `exp-results/simple-pinch-v3/mujoco/refined-boundary-20261017/` and
+  `exp-results/simple-pinch-v3/sap/refined-boundary-20261017-cpu/`
 - Historical v2 raw data: `exp-results/simple-pinch-v2/{mujoco,sap}/`
 
 The full 28-row v3 machine-readable table, calibration traces, and preliminary

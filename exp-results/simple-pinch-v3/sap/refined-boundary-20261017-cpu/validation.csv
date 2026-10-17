@@ -1,0 +1,5 @@
+series,status,repeat,mass_kg,r,lift_follow_mm,normal_gate_pass,grasp_success,follow_delta_from_original_mm,same_outcome
+N4,last_failed,1,0.332817969,0.9899103890279294,56.99984649191947,True,False,0.0,True
+N4,first_passed,1,0.33280957,0.9899353710540094,57.00152580396889,True,True,0.0,True
+N6,last_failed,1,0.48873684,1.0011374770689214,56.99889958914639,True,False,0.0,True
+N6,first_passed,1,0.488731152,1.0011491286076994,57.00038597741752,True,True,0.0,True

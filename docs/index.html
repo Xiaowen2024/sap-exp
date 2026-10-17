@@ -175,35 +175,32 @@
 
         <section id="pinch" class="subsection">
           <h3>2.3 Force-matched simple pinch</h3>
-          <p>Simple pinch provides the cleanest cross-engine friction test because the actual measured normal preload is matched instead of geometric compression.</p>
+          <p>Simple pinch compares approximately matched measured normal preload instead of identical geometric pad compression.</p>
           <p>For an ideal symmetric pinch:</p>
           <div class="equation">r = 2μN/(mg)</div>
           <p>The theoretical support threshold is:</p>
           <div class="equation">r = 1</div>
-          <p>Both engines recover the expected transition:</p>
-          <div class="equation">r &lt; 1 → slip &nbsp;&nbsp;&nbsp; r &gt; 1 → support</div>
-          <p>In the tested native configurations, SAP/Warp transitions closer to the ideal boundary:</p>
-          <div class="equation">r<sub>SAP</sub> ≈ 1.01–1.05</div>
-          <p>while MuJoCo requires approximately:</p>
-          <div class="equation">r<sub>MJ</sub> ≈ 1.18</div>
-          <div class="takeaway"><strong>Takeaway.</strong> Under measured-force-matched conditions, SAP/Warp's tested configuration reproduces the ideal Coulomb pinch-support threshold more closely. This is a configuration-level result, not a universal friction ranking.</div>
-
-          <figure class="video-demo inline-video">
-            <video controls preload="metadata" playsinline>
-              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/05_simple_pinch_force_matched_boundary.mp4" type="video/mp4">
-            </video>
-            <figcaption>
-              <p><strong>Video: force-matched pinch boundary.</strong> At <code>m=0.3262 kg</code>, SAP/Warp succeeds with 57.96 mm final lift follow while MuJoCo reaches 2.59 mm; both traces pass the normal-contact gate.</p>
-              <p class="video-note">Playback clocks are normalized separately over each native lift duration. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/05_simple_pinch_force_matched_boundary.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
-            </figcaption>
-          </figure>
+          <p>In the 1-second lift plus 0.25-second hold, success requires at least 57 mm of the commanded 60 mm cube lift. Mass-only boundary refinements give:</p>
+          <div class="equation">N4: r<sub>SAP</sub> ≈ 0.990, r<sub>MJ</sub> ≈ 1.041</div>
+          <div class="equation">N6: r<sub>SAP</sub> ≈ 1.001, r<sub>MJ</sub> ≈ 1.048</div>
+          <p>Here <code>r</code> uses normal force measured before lifting. SAP's N4 pass below <code>r=1</code> is a finite-time task outcome, not a static sub-Coulomb equilibrium: normal force rises during the lift and the cube retains slip and downward tail velocity.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> With these frozen native settings, SAP/Warp passes the short-lift task at a lower gate-measured grasp margin in both preload series. This does not establish a universal static-friction accuracy ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/simple-pinch-sap-vs-mujoco-final.md" target="_blank" rel="noreferrer">Methods and boundary data ↗</a></div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>3-D control: SAP below versus above the support threshold.</strong> Both panes use SAP/Warp with measured preload <code>N=4.040 N/side</code> and <code>μ=0.4</code>. The heavier cube has <code>r=0.808</code> and slips as expected; the lighter cube has <code>r=1.010</code> and passes.</p>
-              <p class="video-note">This is an SAP-only threshold sanity check, not a MuJoCo–SAP ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+              <p><strong>3-D control: SAP clearly failing versus passing.</strong> Both panes use SAP/Warp with measured preload <code>N=4.040 N/side</code> and <code>μ=0.4</code>. The heavier cube has <code>r=0.808</code> and slips; the lighter cube has <code>r=1.010</code> and passes.</p>
+              <p class="video-note">This is a visually separated SAP-only sanity check, not the refined boundary or a MuJoCo–SAP ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/23_mujoco_pinch_refined_boundary_3d.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>3-D MuJoCo N4 boundary: nearest failure versus minimum sampled success.</strong> The same model and contact settings give <code>r=1.040878</code>, 56.973 mm follow (fail) versus <code>r=1.040904</code>, 57.013 mm (pass). Only cube mass changes.</p>
+              <p class="video-note">The recorded 3-D motions are almost indistinguishable. Only the final 56.90–57.10 mm measurement scale is magnified; object poses are not. The pads' replayed height is integrated from logged velocity. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/23_mujoco_pinch_refined_boundary_3d.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
           <figure class="video-demo inline-video">

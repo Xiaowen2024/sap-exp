@@ -14,6 +14,20 @@ compression, which produced very different normal preloads in the two
 engines. V2 remains useful as a pipeline / sanity-check record, but it is not
 a fair grasp-robustness comparison.
 
+**2026-10-17 boundary correction:** the MuJoCo `r=1.176/1.182` rows below
+were the first passes in this original *coarse* sweep, not precise thresholds.
+A same-setup, MuJoCo-only mass refinement located the 57-mm task-gate
+transitions near `r=1.041` (N4) and `r=1.048` (N6). See
+[the refinement report](simple-pinch-v3-mujoco-refined-boundary.md). The
+original rows below are retained as measured data, not rewritten.
+
+**2026-10-17 SAP correction:** the SAP `r=1.010/1.050` rows below were likewise
+only first passes on the coarse grid. A same-model CPU mass refinement finds
+task-gate transitions near `r=0.990` (N4) and `r=1.001` (N6); see
+[the SAP refinement report](simple-pinch-v3-sap-refined-boundary.md). In both
+series SAP passes the tested short lift at lower *gate-measured* `r` than
+MuJoCo. N4's value below one is a finite-time outcome, not static support.
+
 All raw results are retained in
 `exp-results/simple-pinch-v3/{mujoco,sap}/`. Every case directory contains the
 scene/model, a time trace, and `metrics.json`; each sweep directory has its
@@ -154,15 +168,15 @@ after loss of support, not a penetration measurement.
 
 ## What the results do and do not show
 
-1. **The expected static threshold is recovered.** Both engines fail clearly
-   below `r=1` and pass at sufficient margin. This validates the measured-force
-   normalization and confirms that the initial normal contact is not the
-   reason for the observed transition.
-2. **Threshold intervals differ in this task/configuration.** SAP changes
-   from failure to pass between `r=.959` and `1.010` at N4, and between `1.000`
-   and `1.050` at N6. MuJoCo changes between `1.031` and `1.176` (N4), and
-   between `1.036` and `1.182` (N6). SAP is closer to the ideal `r=1` boundary
-   under this particular native setup and 95%-follow metric.
+1. **The broad grasp-margin trend is recovered.** Both engines fail far below
+   `r=1` and pass at sufficient margin. The exact finite-time task boundary
+   need not equal the ideal static threshold. The normal gate confirms that
+   missing or chattering initial contact is not the reason for this transition.
+2. **The original MuJoCo grid was too coarse to locate its threshold.** SAP
+   also needed refinement. The later mass-only runs find SAP transitions near
+   `0.990` (N4) and `1.001` (N6), versus MuJoCo's `1.041` and `1.048`. Thus
+   SAP passes this finite-time, 95%-follow task at a lower gate-measured
+   grasp margin in both series. These are not steady static-friction limits.
 3. **This is not a universal engine ranking.** The engines use different
    contact formulations and native solver settings. The result is a
    force-matched, task-level comparison of these configurations; it does not

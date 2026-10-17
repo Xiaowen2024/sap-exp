@@ -1,0 +1,27 @@
+{
+  "source_runner": "sap-sim/scripts/run_simple_pinch_v2_sap.py",
+  "device": "cpu",
+  "mu": 0.4,
+  "dt_ms": 0.5,
+  "gate_s": 1.5,
+  "lift_s": 1.0,
+  "hold_s": 0.25,
+  "pair_ke_N_m": 10000.0,
+  "pair_tau_ms": 3.0,
+  "success_follow_mm": 57.0,
+  "grid_intervals": 8,
+  "mass_tolerance_kg": 1e-05,
+  "validation_repeats": 1,
+  "series": {
+    "N4": {
+      "compression_m": 1e-06,
+      "pass_mass_kg": 0.3262,
+      "fail_mass_kg": 0.3434
+    },
+    "N6": {
+      "compression_m": 5e-05,
+      "pass_mass_kg": 0.466,
+      "fail_mass_kg": 0.4893
+    }
+  }
+}
