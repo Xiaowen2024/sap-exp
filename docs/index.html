@@ -109,33 +109,31 @@
           <p>Under ideal Coulomb friction,</p>
           <div class="equation">|F<sub>t</sub>| &lt; μF<sub>n</sub></div>
           <p>should permit zero-velocity sticking.</p>
-          <p>In the matched soft-friction baseline, SAP/Warp exhibited much less pre-slip and steady drift than MuJoCo.</p>
-          <p>However, a dedicated MuJoCo anti-slip ablation showed that this is not an engine-level limitation. MuJoCo's creep strongly depends on:</p>
+          <p><strong>Baseline</strong> here does not mean factory defaults. It means the frozen primary task configurations: SAP/Warp uses its stable native contact setting; MuJoCo is deliberately calibrated to a similarly soft box--plane normal response, but has <code>NoSlip=0</code> and no elevated <code>impratio</code> anti-slip tuning.</p>
+          <figure class="result-figure">
+            <img src="assets/friction-baseline-vs-sap.png" alt="Baseline sub-Coulomb creep comparison. SAP retains contact at 1 to 4 newtons with low measured tail creep, while the soft calibrated MuJoCo baseline only provides a valid one-newton tail metric and loses its middle-top contact at higher force holds.">
+            <figcaption><strong>Frozen primary baseline.</strong> A cross marks contact loss before a steady tail-creep metric can be defined. This is a matched-softness task comparison, not an out-of-the-box-default comparison.</figcaption>
+          </figure>
+          <p>However, this is not an engine-level limitation. A dedicated MuJoCo anti-slip ablation at the same 4-N hold shows that residual creep strongly depends on:</p>
           <ul>
             <li><code>impratio</code></li>
             <li><code>solreffriction</code></li>
             <li>NoSlip post-processing</li>
             <li>Contact-manifold and solver settings</li>
           </ul>
-          <p>Increasing <code>impratio</code> reduced baseline creep by roughly one order of magnitude for each decade increase in the tested regime, while NoSlip could suppress residual drift by several additional orders of magnitude.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp's tested baseline formulation produces low sub-Coulomb drift without aggressive anti-slip tuning. MuJoCo exposes stronger native controls for trading compliant friction regularization against drift suppression.</div>
-
-          <figure class="video-demo inline-video">
-            <video controls preload="metadata" playsinline>
-              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/04_static_friction_hold_trace_replay.mp4" type="video/mp4">
-            </video>
-            <figcaption>
-              <p><strong>Video: 4-N static-friction hold.</strong> MuJoCo uses <code>impratio=10</code> and <code>NoSlip=3</code>; SAP/Warp uses <code>k<sub>e</sub>=1e4 N/m</code>, <code>τ=3 ms</code>, and <code>μ=0.5</code>.</p>
-              <p class="video-note">This is a telemetry replay. The MuJoCo pane is a native anti-slip control, not a matched-contact-model claim. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/04_static_friction_hold_trace_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
-            </figcaption>
+          <figure class="result-figure">
+            <img src="assets/friction-anti-slip-vs-sap.png" alt="Four-newton hold comparison on a logarithmic tail-creep scale. SAP baseline is compared with MuJoCo native configurations at impratio one, ten, one hundred, and NoSlip three.">
+            <figcaption><strong>MuJoCo native anti-slip controls at 4 N.</strong> SAP/Warp remains at its baseline setting. The NoSlip bar is a friction-only post-process, so it demonstrates a control capability rather than a physically matched contact-model ranking.</figcaption>
           </figure>
+          <p>Increasing <code>impratio</code> reduced MuJoCo residual creep by about one order of magnitude per tested decade; NoSlip suppressed it by several further orders of magnitude.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp's tested baseline formulation gives low sub-Coulomb drift without extra anti-slip tuning. MuJoCo's matched-soft baseline is less stable here, but its native anti-slip controls can reduce drift below the SAP baseline. The result distinguishes baseline contact behavior from tunable drift-suppression capability; it is not a universal engine ranking.</div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" type="video/mp4">
             </video>
             <figcaption>
               <p><strong>3-D companion: three-box 4-N hold.</strong> The blocks replay the same hold at <code>dt=0.5 ms</code>; SAP/Warp uses pair <code>k<sub>e</sub>=1e4 N/m</code> and <code>τ=3 ms</code>.</p>
-              <p class="video-note">Body poses are reconstructed from logged interface slip and vertical velocity, not directly recorded absolute poses. Use the telemetry clip above for force, duty, and friction utilization. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+              <p class="video-note">Body poses are reconstructed from logged interface slip and vertical velocity, not directly recorded absolute poses. Use the two figures above and the friction report for force, contact-duty, and creep metrics. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>

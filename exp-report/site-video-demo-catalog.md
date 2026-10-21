@@ -74,25 +74,23 @@ The video shows `vx(t)` and conditional `rho = |Ft| / (mu Fn)` after release.
 Blank `rho` intervals mean `Fn=Ft=0` (no active normal contact), not zero
 friction utilization. The source CSVs remain the audit trail.
 
-### 04. Sub-Coulomb static friction — 4-N force hold
+### 04. Sub-Coulomb static friction — static figures replace the video
 
-Video: [04_static_friction_hold_trace_replay.mp4](../exp-results/site-video-demos/04_static_friction_hold_trace_replay.mp4)
+The four-panel telemetry replay has been retired from the public demo list.
+It compared MuJoCo with `NoSlip=3` against SAP/Warp, which answers a narrow
+native anti-slip-control question rather than the baseline comparison and was
+too easy to misread as one.
 
-This is an annotated **telemetry replay** of the three-box force-hold traces.
-It begins after the 4-N command has completed its ramp and shows the 5.5-s
-hold window.  The source animation displays the middle--top relative slip and
-the aggregate friction utilization `rho` in lockstep with the stack motion.
+The website now uses two labelled static figures instead:
 
-| Engine | Settings | Interpretation of this selection |
-|---|---|---|
-| MuJoCo | `dt=1 ms`, `mu=0.5`, elliptic cone, `impratio=10`, `NoSlip=3`; 4-N hold | native anti-slip control: tail creep 0.00347 um/s |
-| SAP/Warp | `dt=0.5 ms`, Drake preset, pair `ke=1e4 N/m`, pair `tau=3 ms`, `mu=0.5`, `rigid_gap=0`; 4-N hold | stable-normal-compliance reference: tail creep 2.516 um/s, `rho=0.830` |
+1. [Frozen baseline versus SAP/Warp](../docs/assets/friction-baseline-vs-sap.png): SAP/Warp's stable native baseline versus MuJoCo's deliberately soft, compliance-matched baseline with `NoSlip=0` and no elevated `impratio`. Crosses denote contact loss before a tail metric exists.
+2. [MuJoCo anti-slip controls versus SAP/Warp](../docs/assets/friction-anti-slip-vs-sap.png): a separate 4-N control ablation. MuJoCo changes `impratio` and then adds `NoSlip=3`; SAP/Warp remains at its baseline.
 
-The target 4 N is below the ideal top-interface static limit of 4.905 N.
-The MuJoCo pane is deliberately a **native best-control** (`NoSlip`) rather
-than a matched-contact-model claim.  It demonstrates the special anti-slip
-mechanism; the matched-compliance MuJoCo baseline remains documented in the
-friction report and should be used for solver-formulation conclusions.
+Thus “baseline” does **not** mean that both engines were run with untouched
+factory defaults. It means the frozen main-task settings used before the
+MuJoCo-specific anti-slip controls are introduced. The raw replay remains an
+audit artifact in `exp-results/site-video-demos/`, but is not a recommended
+public comparison.
 
 ### 05. Force-matched simple pinch — archived off-site
 

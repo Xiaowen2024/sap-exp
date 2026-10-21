@@ -19,6 +19,26 @@ All 24 cases passed the pre-release normal gate: True. The gate requires contact
 
 This gate validates the initial condition only. It deliberately does **not** assume that normal force remains `mg` after a tangential velocity is imposed; that is a measured outcome below.
 
+### Important correction for the old utilization animation
+
+The original trace-replay plot converted the mathematically undefined value
+`rho = 0/0` into zero whenever the normal contact was absent.  This created a
+misleading square-wave `0 <-> 1` visualization.  The revised video leaves
+those intervals blank and labels them as **no active normal contact**.
+
+For the representative `v0=1 m/s`, `dt=0.5 ms` replay, the post-release
+normal-contact duty is 52.5% in MuJoCo and 40.0% in SAP.  In the active
+intervals, `|Ft|/(mu Fn)` is essentially one: each solver is at the kinetic
+Coulomb limit.  The time-averaged normal force over both contact and flight
+intervals remains close to `mg` (MuJoCo 9.86 N; SAP 9.76 N), while the
+conditional active-contact forces are impulsive (18.79 N and 24.38 N).
+
+So this pulse train is a **post-release normal contact mode-switch/chatter**
+in the finite-compliance setup, not a friction coefficient that oscillates
+between zero and `mu`.  It also means this particular trace is useful for
+exposing normal--tangential coupling, but is not a clean continuous-contact
+kinetic-friction validation without an additional sliding-phase normal gate.
+
 ## Metrics
 
 - `a_mean`: mean numerical acceleration while `0.05v0 < vx` and `t≤t_stop`.
