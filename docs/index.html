@@ -318,16 +318,11 @@
 
         <section id="round-socket" class="subsection">
           <h3>4.2 Round concave socket</h3>
-          <p>The round socket exposes a different issue: collision representation.</p>
-          <p>Raw concave contact cannot be judged from final depth or reported penetration alone.</p>
-          <p>MuJoCo mesh-SDF produced many apparent insertions:</p>
-          <div class="equation">22/25</div>
-          <p>but none passed the project's strict physical screening. SAP raw/watertight mesh also produced invalid cavity witness behavior.</p>
-          <p>Using a shared 32-piece CoACD representation:</p>
-          <div class="equation">MuJoCo: 2/25 credible cases</div>
-          <div class="equation">SAP/Warp: 0/10 credible cases</div>
-          <p>under the currently tested parameter coverage.</p>
-          <p>MuJoCo received a substantially broader contact-parameter search, so this is not yet an engine-best comparison.</p>
+          <p>We tested the round socket with both each engine’s <strong>native concave-mesh path</strong> and a shared <strong>32-piece CoACD</strong> collision representation. The native-path results are not scored from final depth or from a reported witness/penetration alone.</p>
+          <p>A round-socket trial is called <strong>credible</strong> only when it satisfies all of the following:</p>
+          <div class="equation">entered &and; within clearance &and; no truncation &and; p<sub>max</sub>, p<sub>final</sub> &le; 0.1c</div>
+          <p>Here <code>c</code> is the one-sided clearance, and <code>p<sub>max</sub></code>/<code>p<sub>final</sub></code> are the peak/final geometric penetration measures used by that experiment. Thus, an <em>apparent entry</em> is not automatically a valid insertion: it can be inside the socket in pose while violating clearance, overflowing contact capacity, or reporting excessive/ambiguous overlap.</p>
+          <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP/Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. With shared CoACD, MuJoCo had 2/25 credible cases and SAP/Warp had 0/10 in the tested native configuration. MuJoCo received a broader parameter search, so these are tested outcomes—not an engine-best comparison.</p>
           <h4>Native mesh versus shared CoACD in the tight socket</h4>
           <table class="result-table compact">
             <thead><tr><th>Representation</th><th>MuJoCo</th><th>SAP/Warp</th><th>What it shows</th></tr></thead>
