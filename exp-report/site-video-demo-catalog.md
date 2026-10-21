@@ -167,6 +167,14 @@ The 0.1-mm gap is intentional: at the original 1-mm `rigid_gap` (equal to
 the remaining lateral clearance) SAP escaped/fell through. The clip therefore
 shows the valid primitive-control setting, not the invalid gap=1-mm failure.
 
+**Companion rigid-gap ablation:**
+[sap_square_cavity_rigid_gap_comparison.mp4](../exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/sap_square_cavity_rigid_gap_comparison.mp4)
+holds the same 1-mm-offset task fixed and compares SAP `rigid_gap=0.5 mm`
+(stable insertion) to `1.0 mm` (side-wall early activation, lateral escape,
+then fall-through). `rigid_gap` is an activation skin for collision candidates,
+not physical clearance or penetration; the failure appears when its 1-mm scale
+matches the remaining 1-mm side clearance.
+
 ### 09. Round concave socket — shared-CoACD attempt
 
 Video: [09_round_socket_coacd_attempt.mp4](../exp-results/site-video-demos/09_round_socket_coacd_attempt.mp4)

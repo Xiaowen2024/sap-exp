@@ -292,8 +292,18 @@
           <p>The analytic square cavity uses primitive box contacts and therefore provides a clean multi-contact insertion control.</p>
           <p>Both engines successfully insert a centered peg.</p>
           <p>For SAP/Warp, the initially failing 1-mm-offset case became stable after reducing <code>rigid_gap</code> from 1 mm to 0.1–0.5 mm.</p>
-          <p>The key lesson is that <code>rigid_gap</code> is not merely a numerical tolerance: when its scale approaches the physical clearance, early contact activation can change the trajectory.</p>
+          <p><code>rigid_gap</code> is a contact-activation skin: it determines how far apart two surfaces may be before SAP/Warp creates a contact candidate for the solver. It is <strong>not</strong> physical clearance, geometric penetration, or material deformation. When it approaches the remaining physical side clearance, contact can be activated on the wall before the intended insertion motion has entered the cavity; that early impulse changes the trajectory.</p>
           <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp does not exhibit a generic multi-contact insertion failure. Contact activation relative to geometric clearance matters.</div>
+
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/sap_square_cavity_rigid_gap_comparison.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>Video: SAP/Warp rigid-gap ablation, same 1-mm-offset task.</strong> Only <code>rigid_gap</code> changes. Left: <code>0.5 mm</code>, which is below the 1-mm remaining side clearance, enters and rests. Right: <code>1.0 mm</code>, equal to that clearance, activates side-wall contact too early; the peg is laterally ejected and falls through.</p>
+              <p class="video-note">This does not make 1 mm universally invalid. It shows that the activation distance must be chosen relative to the smallest intended geometric clearance of the task. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/sap_square_cavity_rigid_gap_comparison.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
