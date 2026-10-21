@@ -615,6 +615,12 @@ figure.result-figure img {
   background: #fff;
 }
 
+/* Keep the two compact static-friction summaries readable without spanning the
+   full report column. */
+figure.result-figure.friction-figure {
+  max-width: 680px;
+}
+
 figure.result-figure figcaption {
   margin-top: 0.65rem;
   color: var(--muted);

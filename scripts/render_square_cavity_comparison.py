@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
 SAP_TRACE=ROOT/'exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/square_offset_1mm_gap_0.1mm_trace.csv'
-OUT=ROOT/'exp-results/site-video-demos/08_square_cavity_offset_native_vs_sap_pose_replay.mp4'
+OUT=ROOT/'exp-results/site-video-demos/08_square_cavity_offset_labelled.mp4'
 DT=.0005
 def xml():
  grid = "\n".join(
