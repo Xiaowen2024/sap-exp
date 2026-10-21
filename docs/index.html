@@ -328,6 +328,15 @@
           <div class="equation">SAP/Warp: 0/10 credible cases</div>
           <p>under the currently tested parameter coverage.</p>
           <p>MuJoCo received a substantially broader contact-parameter search, so this is not yet an engine-best comparison.</p>
+          <h4>Native mesh versus shared CoACD in the tight socket</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Representation</th><th>MuJoCo</th><th>SAP/Warp</th><th>What it shows</th></tr></thead>
+            <tbody>
+              <tr><td>Native concave mesh path</td><td>Mesh-SDF: 22/25 <em>apparent</em> entries; 0/25 credible</td><td>Raw/watertight mesh controls cannot provide a valid inner-cavity witness</td><td>Pose/depth or native witness alone is not a valid insertion metric inside the concavity.</td></tr>
+              <tr><td>Shared 32-piece CoACD</td><td>7/25 entered; 2/25 credible (both 2-mm-clearance cases)</td><td>0/10 entered; 0/10 credible in the tested native configuration</td><td>The piecewise-convex geometry yields interpretable primitive contacts, but tight tilted insertion remains representation- and setting-sensitive.</td></tr>
+            </tbody>
+          </table>
+          <p class="video-note">“Native mesh path” does not mean the same algorithm: MuJoCo uses mesh-SDF while SAP/Warp's raw/watertight path uses its own mesh witness/SDF machinery. The unequal sweep coverage means this table compares tested outcomes, not engine-best performance.</p>
           <div class="takeaway"><strong>Takeaway.</strong> Tight manipulation can be limited more by collision representation and contact activation than by the contact solver itself.</div>
 
           <figure class="video-demo inline-video">
@@ -348,6 +357,15 @@
           <p>It does <strong>not</strong> establish that either representation is valid for tight insertion. Native mesh and CoACD still changed settled heights and contact manifolds in the plate task, and a raw-mesh witness gap is not a geometric-penetration ground truth inside the bowl. CoACD is only operationally validated here in the weak sense that it produced stable broad support and ordering; it is still an approximation to the original concave surface.</p>
           <p><strong>Meaning for peg-in-hole.</strong> The plate comparison rules out the overly broad claim that an engine simply “cannot handle concave geometry.” It does not weaken the socket result: under the tested representation and contact settings, neither engine has yet demonstrated uniformly reliable <em>tight-clearance</em> round-socket insertion. The missing capability is not merely final support; it is robust, geometrically correct contact activation along the socket wall.</p>
           <p>The original dinner plate has a 44.46-mm rim-to-bowl-bottom envelope and is <strong>not</strong> a thin-disc test. This plate study used one frozen native contact setting per engine (<code>dt=0.5 ms</code> for both) and representation controls, not a plate parameter sweep; it makes no parameter-robustness ranking.</p>
+          <h4>Native mesh versus shared CoACD in the open plate</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Representation</th><th>Sphere-in-plate equilibrium</th><th>Three-plate stack</th><th>What changes</th></tr></thead>
+            <tbody>
+              <tr><td>Native concave mesh path</td><td>Both stable/no escape. Ball <code>z/r</code>: MuJoCo 26.397/19.587 mm; SAP 26.751/19.561 mm.</td><td>Both preserve order/no escape. Heights: MuJoCo −.055, 21.769, 50.968 mm; SAP −.010, 8.334, 16.678 mm.</td><td>Broad support succeeds, but the multi-contact equilibrium is not the same across engines.</td></tr>
+              <tr><td>Shared 32-piece CoACD</td><td>Both stable/no escape and closely agree. Ball <code>z/r</code>: MuJoCo 27.238/33.524 mm; SAP 27.444/33.667 mm.</td><td>Both preserve order/no escape. Heights: MuJoCo −.030, 10.714, 22.201 mm; SAP .064, 11.251, 22.414 mm.</td><td>CoACD shifts the support surface/manifold. It improves the interpretability of contacts, not equality with the original smooth bowl.</td></tr>
+            </tbody>
+          </table>
+          <p class="video-note">The raw-mesh and CoACD position values are meaningful as representation-specific outcomes. Their witness/gap values are <strong>not</strong> a common geometric-penetration scale inside the bowl.</p>
           <p class="video-note">Full protocol and raw-versus-CoACD controls: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">concave-plate report ↗</a>.</p>
 
           <figure class="video-demo inline-video">
