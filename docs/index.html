@@ -212,7 +212,7 @@
           <div class="equation">e<sub>eff</sub> = 0.8, &nbsp;&nbsp; t<sub>c</sub> = 30 ms</div>
           <p>The native parameters were then frozen. Both engines retain <code>e≈0.8</code> across the tested impact-speed range, so the observed difference below is a timestep-transfer effect in this linear single-contact setup.</p>
           <p>With the contact timescale controlled, MuJoCo remains near its calibrated restitution as timestep increases: <code>e=0.7999 → 0.8027</code> from <code>dt=0.01 → 0.5 ms</code>. SAP/Warp falls from <code>e=0.8019</code> to <code>0.7452</code> over the same range, despite both measured impulse episodes remaining approximately 30 ms.</p>
-          <blockquote class="result-quote">For this calibrated frictionless sphere–plane contact and the tested native settings, MuJoCo is materially more robust to timestep in restitution transfer; SAP/Warp becomes increasingly dissipative at larger <code>dt</code>. This is not a universal engine ranking.</blockquote>
+          <blockquote class="result-quote">After matching restitution and contact duration, the tested MuJoCo configuration preserves its calibrated rebound ratio through <code>dt=0.5 ms</code>; the tested SAP/Warp configuration loses rebound energy as <code>dt</code> increases. This is a calibrated transfer result for one frictionless scalar contact, not a general ranking of physical accuracy.</blockquote>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
