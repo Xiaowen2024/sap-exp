@@ -256,6 +256,32 @@ because the two actual 3-D poses are nearly indistinguishable. The source
 traces and metrics are stored under
 `exp-results/simple-pinch-v3/mujoco/refined-boundary-20261017/N4/`.
 
+### 24 & 25. Thin-disc native operating point versus failure boundary
+
+Videos:
+- [24_mujoco_thin_disc_success_failure.mp4](../exp-results/site-video-demos/24_mujoco_thin_disc_success_failure.mp4)
+- [25_sap_thin_disc_success_failure.mp4](../exp-results/site-video-demos/25_sap_thin_disc_success_failure.mp4)
+
+Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s.
+Clip 24 compares MuJoCo's balanced operating point (`dt=0.25 ms, solref=1 ms`,
+pass) with its soft-contact failure regime (`dt=0.5 ms, solref=16 ms`, wrong
+layer order). Clip 25 replays SAP/Warp native pose traces (`exp-results/thin-disc-video/`)
+comparing `ke=1e5 N/m` (pass) with `ke=1e3 N/m` (wrong layer order) under the
+Drake preset (`dt=0.5 ms, tau=3 ms, rigid_gap=0.1 mm`).
+
+### 26 & 27. Matched-thickness analytic disc versus shallow CoACD plate
+
+Videos:
+- [26_mujoco_thin_shape_disc_vs_plate.mp4](../exp-results/site-video-demos/26_mujoco_thin_shape_disc_vs_plate.mp4)
+- [27_sap_thin_shape_disc_vs_plate.mp4](../exp-results/site-video-demos/27_sap_thin_shape_disc_vs_plate.mp4)
+
+Within-engine comparisons of three 4-mm analytic discs against three 4-mm
+shallow concave plates (32-piece CoACD collision decomposition, matched
+202-mm diameter, 333-g mass, and initial poses). Clip 26 is rendered from
+MuJoCo (`dt=0.25 ms, solref=1 ms`); Clip 27 replays native SAP/Warp pose traces
+(`exp-results/thin-shape-video/`, `dt=0.5 ms, drake, ke=1e5 N/m, tau=3 ms, rigid_gap=0.1 mm`)
+without re-simulating SAP dynamics.
+
 ## Validation performed for generated clips
 
 - Both source files existed locally and were decoded by `ffmpeg`.

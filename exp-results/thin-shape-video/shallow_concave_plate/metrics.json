@@ -1,0 +1,41 @@
+{
+  "engine": "sap_warp",
+  "shape": "shallow_concave_plate",
+  "representation": "shared_32_piece_CoACD",
+  "device": "cuda:0",
+  "dt_ms": 0.5,
+  "duration_s": 2.0,
+  "diameter_mm": 202.0,
+  "vertical_envelope_mm": 4.0,
+  "mass_kg_target": 0.333,
+  "mass_kg_actual": [
+    0.3329993486404419,
+    0.3330003619194031,
+    0.3330005705356598
+  ],
+  "mu": 0.8,
+  "ke_shape_N_m": 100000.0,
+  "tau_shape_ms": 3.0,
+  "rigid_gap_mm": 0.1,
+  "final_z_mm": [
+    0.07490404095733538,
+    1.1935164220631123,
+    2.3049490991979837
+  ],
+  "final_radial_mm": [
+    2.8718849214865287e-05,
+    3.563639083592495,
+    2.899760055640353
+  ],
+  "max_phi0_penetration_mm": 0.9820740669965744,
+  "tail_com_jitter_pp_mm": 0.0008916419271069991,
+  "settling_time_s": 2.0,
+  "max_candidate_contacts": 147,
+  "max_active_contacts": 147,
+  "truncated_contacts": 0,
+  "order_preserved": true,
+  "escaped": false,
+  "finite": true,
+  "failure": false,
+  "stepping_wall_s": 138.8588713221252
+}

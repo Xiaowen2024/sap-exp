@@ -13,15 +13,17 @@ into one statement such as “SAP succeeds/fails at peg insertion”.
 | test | contact geometry | SAP conclusion | MuJoCo conclusion | what it establishes |
 |---|---|---|---|---|
 | **analytic square cavity** | four box walls + a bottom; known-valid primitive contacts | centered peg is stable for all six tested `ke/tau` points; a 1-mm offset is also stable once `rigid_gap` is reduced from 1 mm to 0.1–0.5 mm | centered and 1-mm offset both settle for all four tested `solref` time constants | SAP can handle a clean multi-contact insertion topology; `rigid_gap` is an important activation parameter |
-| **round concave blind socket** | raw mesh/SDF or shared 32-piece CoACD | raw/watertight mesh has invalid internal witness behavior; shared CoACD did not insert in any of the current 10-case clearance × offset matrix | mesh-SDF gives many apparent entries but none pass the task screening; shared CoACD gives 2 credible cases of 25 | collision representation, not only contact solver parameters, is the limiting issue |
+| **round concave blind socket** | raw mesh/SDF or shared 32-piece CoACD | raw/watertight mesh has invalid internal witness behavior; untuned CoACD (`rigid_gap=1 mm`) gave 0/10, while **48-run equal-budget CoACD tuning gives 6/48 entered and 1/48 credible** (`dt=0.25 ms, kpair=1e4 N/m, taupair=3 ms, rigid_gap=0.1 mm, drake`), and 1/10 credible (2/10 entered) on the frozen clearance × offset matrix | mesh-SDF gives many apparent entries but none pass the task screening; shared CoACD gives **23/48 credible in equal-budget tuning** and **2/10 credible** on the frozen clearance × offset matrix (both at 2-mm clearance) | both engines can achieve credible 2-mm CoACD insertion when tuned, MuJoCo has a wider 2-mm parameter region, and neither generalizes to `c <= 1.5 mm` |
 
 So the defensible current claim is:
 
 > In a clean analytic cavity, both engines can complete the insertion. In the
-> tilted, gravity-driven *round concave socket*, MuJoCo has two tested credible
-> CoACD configurations at 2-mm clearance, whereas the currently tested SAP
-> CoACD native configuration has none. Raw concave mesh/SDF poses must not be
-> treated as proof of physical insertion in either engine.
+> tilted, gravity-driven *round concave socket* with shared 32-piece CoACD, an
+> equal 48-candidate tuning budget produces credible 2-mm-clearance insertion in
+> **both** engines (23/48 candidates in MuJoCo, best `pmax=0.056 mm`; 1/48 in
+> SAP/Warp, `pmax=0.061 mm`), while neither engine's frozen best setting
+> generalizes to `c <= 1.5 mm` (0/8 entered in both). Raw concave mesh/SDF poses
+> must not be treated as proof of physical insertion in either engine.
 
 This is evidence about the **tested configurations**, not an engine-best or
 universal ranking.
@@ -158,9 +160,21 @@ mesh results depend on an invalid witness/contact path and cannot serve as a
 physical insertion measurement.
 
 All later SAP matrix cases had `truncated_contacts=0`; the CoACD failure is not
-a 2048-contact-capacity failure. It is a current collision representation /
-contact-activation / native-dynamics behavior that needs a dedicated
-`ke × tau × rigid_gap × dt` search if we want an SAP-best round-socket result.
+a 2048-contact-capacity failure.
+
+### Equal-budget 48-candidate shared-CoACD tuning and frozen matrix
+
+To replace the single untuned SAP point with an equal tuning budget, both
+engines ran a pre-registered 48-candidate search on the nominal hard case
+(`c=2.0 mm`, `1.0-mm` offset, `1°` tilt, `2.0 s` duration, shared 32-piece
+CoACD), ranked by `credible -> pmax/c -> final_radial_mm -> stepping_wall_s`,
+followed by evaluating each frozen best setting on the 10-case
+`c in {2.0, 1.5, 1.0, 0.5, 0.25} mm × offset in {0, 1} mm` matrix:
+
+| Engine | 48-candidate tuning (`c=2 mm, offset=1 mm, 1°`) | Best selected configuration | Frozen 10-case matrix (`5 clearances × 2 offsets`) |
+|---|---|---|---|
+| MuJoCo | 48/48 entered; **23/48 credible** | `dt=0.25 ms, timeconst=0.75 ms, dampratio=1.0, d0=0.70, dwidth=0.995, Newton, implicitfast` (`pmax=0.0557 mm`, `pmax/c=0.0278`, `r_final=0.500 mm`) | 2/10 entered, **2/10 credible**: passes `c=2.0 mm` at `offset=0 mm` (`pmax=0.1745 mm`) and `offset=1 mm` (`pmax=0.0557 mm`); 0/8 entered for `c <= 1.5 mm` |
+| SAP/Warp | 6/48 entered; **1/48 credible** | `dt=0.25 ms, kpair=1e4 N/m, taupair=3.0 ms, rigid_gap=0.1 mm, preset=drake` (`pmax=0.0613 mm`, `pmax/c=0.0307`, `r_final=0.170 mm`, `truncated=0`) | 2/10 entered, **1/10 credible**: `c=2.0 mm, offset=1 mm` is credible (`pmax=0.0613 mm`); `c=2.0 mm, offset=0 mm` enters and settles (`z=38.31 mm, r=0.431 mm, pfinal=0.0085 mm`) but has a transient `pmax=15.09 mm` spike; 0/8 entered for `c <= 1.5 mm` |
 
 ## 5. Cross-engine conclusions that are safe today
 
@@ -171,14 +185,15 @@ contact-activation / native-dynamics behavior that needs a dedicated
    stable when centered, and can be stable when offset after tuning
    `rigid_gap`; this isolates the round task as more than a generic SAP solver
    failure.
-3. **For the tested tilted round socket, MuJoCo currently has the better
-   demonstrated CoACD outcome.** Its 2-mm, 1–2-ms cases pass the project's
-   strict screen; SAP's one tested native CoACD configuration does not enter at
-   any clearance/offset point.
-4. **This is not yet “engine-best versus engine-best.”** MuJoCo received a
-   broad `solref/solimp` search. SAP's round CoACD received only a single
-   `ke/tau/gap` material point in the formal matrix. SAP must receive an equal
-   tuning budget before a stronger engine ranking.
+3. **Under equal 48-candidate tuning on shared CoACD, both engines achieve
+   credible 2-mm-clearance insertion, with a wider feasible region in MuJoCo.**
+   MuJoCo passes 23/48 tuning candidates and 2/10 frozen matrix cases; SAP/Warp
+   passes 1/48 tuning candidates (`pmax=0.0613 mm`, `pmax/c=0.0307`) and 1/10
+   frozen matrix cases (with both `c=2 mm` cases entering).
+4. **Neither engine generalizes its frozen 2-mm CoACD setting to `c <= 1.5 mm`
+   (0/8 entered in both).** Below 2-mm clearance, the 32-piece CoACD collision
+   representation and rim/wall contact activation dominate over contact-solver
+   tuning.
 5. **Raw mesh vs CoACD is a modeling choice, not a mere solver toggle.** It
    changes where contacts are permitted. Tune collision representation first;
    then tune `solref/solimp` or `ke/tau/rigid_gap`.
@@ -189,12 +204,9 @@ contact-activation / native-dynamics behavior that needs a dedicated
 - square 是干净的 analytic control：SAP centered 六组都能进去；offset 失败不是 `ke`
   或 `tau` 怎么调都不行，而是最初 `rigid_gap=1 mm` 刚好等于剩余 side clearance。
   改成 `.1–.5 mm` 后 offset case 稳定。
-- round socket 才是难点：SAP raw/watertight 的 centered “进去”不能算成功，因为空腔
-  内仍报约 12 mm 的假 witness overlap；共享 CoACD 则 centered/offset 全部没有插进去。
-- MuJoCo round mesh-SDF 的很多 “进去”同样不能信；共享 CoACD 只有 2-mm clearance
-  的 1/2-ms `solref` 两组通过项目筛选。
-- 所以最准确的当前说法是：**square control 两边均可用；round concave insertion
-  在目前调参覆盖下 MuJoCo 有两组可信 CoACD 结果，SAP 尚没有。**
+- round socket 在补齐 **48 组等预算 CoACD 调参 + 10 组冻结泛化矩阵** 后：
+  - **两边都能在 2-mm clearance 下做出通过严格筛选（`credible`）的 CoACD 插入**：MuJoCo 48 组中 23 组 credible（最佳 `pmax=0.0557 mm`），冻结后 10 组矩阵过 2 组（`c=2 mm, offset=0/1 mm`）；SAP 48 组中 6 组进入、1 组 credible（`dt=0.25 ms, kpair=1e4 N/m, taupair=3 ms, rigid_gap=0.1 mm, drake`，`pmax=0.0613 mm, pmax/c=0.0307`），冻结后 10 组矩阵 2 组进入、1 组 credible（`c=2 mm, offset=0 mm` 进入并落底但有瞬态 `pmax=15.09 mm` 尖峰）。
+  - **两边冻结配置在 `c <= 1.5 mm` 的 8 个更紧间隙 case 上全部为 0/8 进入**，说明在更小间隙下瓶颈是 32-piece CoACD 的分段凸几何流形与孔口接触激活，而非单纯的接触求解器参数。
 
 ## Source reports and raw data
 

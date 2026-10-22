@@ -308,17 +308,20 @@
           <p>A round-socket trial is called <strong>credible</strong> only when it satisfies all of the following:</p>
           <div class="equation">entered &and; within clearance &and; no truncation &and; p<sub>max</sub>, p<sub>final</sub> &le; 0.1c</div>
           <p>Here <code>c</code> is the one-sided clearance, and <code>p<sub>max</sub></code>/<code>p<sub>final</sub></code> are the peak/final geometric penetration measures used by that experiment. Thus, an <em>apparent entry</em> is not automatically a valid insertion: it can be inside the socket in pose while violating clearance, overflowing contact capacity, or reporting excessive/ambiguous overlap.</p>
-          <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP/Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. With shared CoACD, MuJoCo had 2/25 credible cases and SAP/Warp had 0/10 in the tested native configuration. MuJoCo received a broader parameter search, so these are tested outcomes—not an engine-best comparison.</p>
-          <h4>Native mesh versus shared CoACD in the tight socket</h4>
+          <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP/Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. In the initial shared-CoACD sweep, MuJoCo had 2/25 credible cases and SAP/Warp had 0/10 at its single untuned native setting (<code>rigid_gap=1 mm</code>).</p>
+          <p>To remove unequal tuning coverage, a follow-up gave both engines an <strong>equal 48-candidate native tuning budget</strong> on the shared 32-piece CoACD nominal hard case (<code>c=2 mm</code>, <code>1-mm</code> offset, <code>1°</code> tilt, 2 s), ranked by <code>credible → p<sub>max</sub>/c → final radial → stepping time</code>, then froze each engine’s best candidate across the 10-case <code>5 clearance × 2 offset</code> matrix:</p>
+          <h4>Native mesh, initial CoACD matrix, and equal-budget CoACD tuning</h4>
           <table class="result-table compact">
-            <thead><tr><th>Representation</th><th>MuJoCo</th><th>SAP/Warp</th><th>What it shows</th></tr></thead>
+            <thead><tr><th>Protocol / representation</th><th>MuJoCo</th><th>SAP/Warp</th><th>What it shows</th></tr></thead>
             <tbody>
               <tr><td>Native concave mesh path</td><td>Mesh-SDF: 22/25 <em>apparent</em> entries; 0/25 credible</td><td>Raw/watertight mesh controls cannot provide a valid inner-cavity witness</td><td>Pose/depth or native witness alone is not a valid insertion metric inside the concavity.</td></tr>
-              <tr><td>Shared 32-piece CoACD</td><td>7/25 entered; 2/25 credible (both 2-mm-clearance cases)</td><td>0/10 entered; 0/10 credible in the tested native configuration</td><td>The piecewise-convex geometry yields interpretable primitive contacts, but tight tilted insertion remains representation- and setting-sensitive.</td></tr>
+              <tr><td>Initial shared 32-piece CoACD matrix</td><td>7/25 entered; 2/25 credible (both 2-mm-clearance cases)</td><td>0/10 entered; 0/10 credible at untuned <code>rigid_gap=1 mm</code></td><td>Untuned 1-mm activation gap blocks SAP entry; piecewise-convex geometry remains setting-sensitive.</td></tr>
+              <tr><td>Equal-budget CoACD tuning (48 candidates at <code>c=2 mm, x=1 mm, 1°</code>)</td><td>48/48 entered; <strong>23/48 credible</strong> (best <code>p<sub>max</sub>=0.056 mm</code>, <code>p<sub>max</sub>/c=0.028</code>)</td><td>6/48 entered; <strong>1/48 credible</strong> at <code>dt=0.25 ms, k<sub>pair</sub>=1e4 N/m, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code> (<code>p<sub>max</sub>=0.061 mm</code>, <code>p<sub>max</sub>/c=0.031</code>)</td><td>SAP/Warp can also achieve a credible 2-mm CoACD insertion once <code>rigid_gap</code> and <code>dt</code> are tuned, though with a narrower feasible parameter band than MuJoCo.</td></tr>
+              <tr><td>Frozen best across 10-case clearance × offset matrix</td><td>2/10 entered; <strong>2/10 credible</strong> (passes <code>c=2 mm</code> at 0- and 1-mm offset; 0/8 for <code>c &le; 1.5 mm</code>)</td><td>2/10 entered; <strong>1/10 credible</strong> (<code>c=2 mm, x=1 mm</code> credible; <code>c=2 mm, x=0 mm</code> enters and settles but has a transient <code>p<sub>max</sub>=15.09 mm</code> spike; 0/8 for <code>c &le; 1.5 mm</code>)</td><td>Neither frozen setting generalizes to <code>c &le; 1.5 mm</code>; below 2-mm clearance, the 32-piece CoACD rim/wall manifold dominates over solver tuning in both engines.</td></tr>
             </tbody>
           </table>
-          <p class="video-note">“Native mesh path” does not mean the same algorithm: MuJoCo uses mesh-SDF while SAP/Warp's raw/watertight path uses its own mesh witness/SDF machinery. The unequal sweep coverage means this table compares tested outcomes, not engine-best performance.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> Tight manipulation can be limited more by collision representation and contact activation than by the contact solver itself.</div>
+          <p class="video-note">“Native mesh path” does not mean the same algorithm: MuJoCo uses mesh-SDF while SAP/Warp's raw/watertight path uses its own mesh witness/SDF machinery. Equal-budget tuning data: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/mujoco-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">MuJoCo 48-run CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/sap-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">SAP/Warp 48-run CSV ↗</a>.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> Under equal 48-candidate tuning, both engines achieve credible 2-mm-clearance CoACD insertion (with a wider feasible parameter region in MuJoCo), and both fail to generalize to <code>c &le; 1.5 mm</code>. Tight tilted insertion is ultimately limited by the piecewise-convex collision manifold and contact activation rather than the contact solver alone.</div>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
@@ -406,11 +409,31 @@
 
         <section id="matched-thickness" class="subsection">
           <h3>5.2 Matched thickness: analytic disc versus shallow concave plate</h3>
-          <p>To separate thickness from shape complexity, a follow-up compared three 4-mm analytic discs with three 4-mm shallow CoACD plates, matching diameter, mass, and initial poses within each engine. The plate's bowl was vertically compressed from the original 44.46-mm envelope; it was not replaced by a cylinder.</p>
-          <p>Within MuJoCo, maximum active contacts increased from 13 (disc) to 121 (plate); within SAP/Warp, maximum contact candidates increased from 12 to 147. These counts have different engine-specific definitions and should not be compared across engines. Both disc stacks met the velocity settling criterion within 2 s, while neither shallow-plate stack did. All four cases preserved layer order without escape, and SAP/Warp had no contact-capacity truncation.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> Making the bowl thin does not make it an easy thin-disc problem. Within both engines, the many-piece concave contact manifold costs more contacts and settles less cleanly than an analytic disc. This is a modeling-choice result, not a cross-engine speed or penetration ranking.</div>
-          <p>Only one native parameter setting per engine was tested in this matched-thickness comparison. The result isolates shape complexity within each engine; it cannot locate a shallow-plate failure boundary or rank parameter robustness between engines.</p>
-          <p class="video-note">MuJoCo used <code>dt=0.25 ms</code> on CPU and SAP/Warp <code>dt=0.5 ms</code> on CUDA with different native contact settings, so their wall times and raw overlap values should not be ranked directly. Raw results: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/mujoco/results.csv" target="_blank" rel="noreferrer">MuJoCo CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/thin-shape-comparison/sap/results.csv" target="_blank" rel="noreferrer">SAP/Warp CSV ↗</a>.</p>
+          <p>This is a controlled <strong>within-engine</strong> shape-complexity test: three analytic 4-mm discs are compared with three 4-mm shallow concave plates. Diameter, mass, gravity, friction, and initial poses are matched within each engine. The original plate bowl was compressed from a 44.46-mm vertical envelope to 4 mm; it remains a concave bowl represented by 32 CoACD collision pieces, rather than becoming a cylinder.</p>
+          <table class="result-table">
+            <thead><tr><th>Engine</th><th>shape</th><th>max contact count*</th><th>peak native overlap (mm)</th><th>tail COM jitter (mm)</th><th>settled within 2 s?</th><th>order / escape</th></tr></thead>
+            <tbody>
+              <tr><td>MuJoCo</td><td>analytic disc</td><td>13</td><td>0.366</td><td>0.000062</td><td>yes, 0.274 s</td><td>preserved / no</td></tr>
+              <tr><td>MuJoCo</td><td>shallow CoACD plate</td><td>121</td><td>0.815</td><td>0.00357</td><td>no</td><td>preserved / no</td></tr>
+              <tr><td>SAP/Warp</td><td>analytic disc</td><td>12</td><td>0.356</td><td>0</td><td>yes, 0.170 s</td><td>preserved / no</td></tr>
+              <tr><td>SAP/Warp</td><td>shallow CoACD plate</td><td>147</td><td>0.981</td><td>0.00104</td><td>no</td><td>preserved / no; no truncation</td></tr>
+            </tbody>
+          </table>
+          <p class="video-note">*The contact-count and native-overlap definitions differ by engine. Read each disc-to-plate change within one engine; do not rank the two engines by these raw values.</p>
+          <p><strong>Result.</strong> Reducing bowl thickness alone does not turn the plate into an easy thin-disc contact problem. In both engines, the shallow CoACD bowl produces about 9–12× more simultaneous contacts, 2.2–2.8× larger native peak overlap, and residual motion beyond 2 s. The analytic-disc stack settles rapidly. Yet all four runs preserve layer order and avoid escape.</p>
+          <div class="takeaway"><strong>Meaning.</strong> The remaining difficulty is the many-piece concave contact manifold—simultaneous contact activation and nested bowl support—not the plate's thickness. This is a modeling-choice result: when a concave bowl is not required, an analytic thin disc is the cleaner and more stable representation. It is not a cross-engine speed, overlap, or robustness ranking; only one frozen native setting per engine was tested.</div>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/26_mujoco_thin_shape_disc_vs_plate.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>MuJoCo: analytic discs versus shallow CoACD plates.</strong> Same 4-mm thickness, mass, initial poses, and frozen native contact setting; the plate uses many collision pieces and remains visibly active after the disc stack settles.</figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/27_sap_thin_shape_disc_vs_plate.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>SAP/Warp: analytic discs versus shallow CoACD plates.</strong> Both panes replay native SAP/Warp pose traces at the same frozen SAP setting; rendering is for visualization only and does not re-simulate SAP dynamics.</figcaption>
+          </figure>
         </section>
       </section>
 
@@ -512,7 +535,7 @@
             <tr><th scope="row">Native anti-slip capability</th><td>Very strong</td><td>Baseline already low-drift</td></tr>
             <tr><th scope="row">Kinetic friction</th><td>Approaches ideal at higher speed</td><td>Near-saturated across tested range</td></tr>
             <tr><th scope="row">Restitution vs absolute timestep</th><td>Stronger in current tests</td><td>More timestep-sensitive</td></tr>
-            <tr><th scope="row">Tight concave insertion</th><td>Small credible CoACD success region</td><td>No current credible round-CoACD success</td></tr>
+            <tr><th scope="row">Tight concave insertion</th><td>Credible CoACD at 2-mm clearance (23/48 tuned; 2/10 frozen matrix)</td><td>Narrower credible CoACD region at 2-mm clearance (1/48 tuned; 1/10 frozen matrix)</td></tr>
             <tr><th scope="row">Broad concave settling</th><td>Stable</td><td>Stable</td></tr>
             <tr><th scope="row">Panda mass/friction envelope</th><td>Narrower in current frozen setup</td><td>Much wider</td></tr>
             <tr><th scope="row">Panda pose perturbation</th><td>Better</td><td>More sensitive</td></tr>

@@ -1,0 +1,82 @@
+schema_version: 1
+name: thin_disc
+simulation:
+  dt: 0.0005
+  num_worlds: 1
+  max_rigid_contact: 4096
+  solver:
+    contact_preset_variant: drake
+    line_search_variant: armijo_decay
+builder:
+  gravity: -9.81
+  rigid_gap: 0.0001
+  defaults:
+    shape:
+      ke: 100000.0
+      tau: 0.003
+      mu: 0.8
+ground:
+  enabled: true
+bodies:
+- id: body_0
+  transform:
+    p:
+    - 0.0
+    - 0.0
+    - 0.03
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+- id: body_1
+  transform:
+    p:
+    - 0.003
+    - -0.002
+    - 0.07
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+- id: body_2
+  transform:
+    p:
+    - -0.002
+    - 0.002
+    - 0.11
+    q: identity
+  shapes:
+  - type: cylinder
+    radius: 0.101
+    half_height: 0.002
+    cfg:
+      density: 2598.0
+joints:
+- id: body_0_free
+  type: free
+  parent: world
+  child: body_0
+- id: body_1_free
+  type: free
+  parent: world
+  child: body_1
+- id: body_2_free
+  type: free
+  parent: world
+  child: body_2
+articulations:
+- id: body_0_art
+  joints:
+  - body_0_free
+- id: body_1_art
+  joints:
+  - body_1_free
+- id: body_2_art
+  joints:
+  - body_2_free
