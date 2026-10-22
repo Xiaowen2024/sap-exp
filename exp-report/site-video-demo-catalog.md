@@ -56,10 +56,6 @@ Video: [02_panda_pick_native_success.mp4](../exp-results/site-video-demos/02_pan
 The controller and collision representations are intentionally engine-native;
 the clip demonstrates task behavior, not a one-to-one solver-only comparison.
 
-The video shows `vx(t)` and conditional `rho = |Ft| / (mu Fn)` after release.
-Blank `rho` intervals mean `Fn=Ft=0` (no active normal contact), not zero
-friction utilization. The source CSVs remain the audit trail.
-
 ### 04. Sub-Coulomb static friction — static figures replace the video
 
 The four-panel telemetry replay has been retired from the public demo list.
