@@ -239,6 +239,31 @@
 
         <section id="kinetic" class="subsection">
           <h3>2.2 Kinetic friction</h3>
+          <h4>Task protocol and physical reference</h4>
+          <p>One <code>1 kg</code>, <code>40 mm</code> cube rests on a plane with rotation and y motion locked; gravity is on, <code>μ=0.5</code>, and margin/gap are zero. It settles for 1 s. The final 0.5 s must pass the same initial normal-contact check before release: continuous contact, <code>F̄<sub>n</sub>≈mg=9.81 N</code>, low force variation, and negligible vertical velocity.</p>
+          <p>At release, the cube is assigned <code>v<sub>x</sub>(0)=v<sub>0</sub></code> and receives <strong>no horizontal force</strong> afterward. If normal contact remained continuous and ideal Coulomb friction applied, then <code>F<sub>t</sub>=−μmg</code>, <code>a<sub>x</sub>=−μg=−4.905 m/s²</code>, <code>t<sub>stop</sub>=v<sub>0</sub>/(μg)</code>, and <code>x<sub>stop</sub>=v<sub>0</sub>²/(2μg)</code>.</p>
+
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Metric</th><th>Variable and calculation</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Deceleration accuracy</td><td><code>a<sub>mean</sub>=mean(dv<sub>x</sub>/dt)</code>, evaluated while <code>t≤t<sub>stop</sub></code> and <code>v<sub>x</sub>&gt;0.05v<sub>0</sub></code>. Report <code>|a<sub>mean</sub>+μg|/(μg)</code>.</td><td>Primary kinetic-friction metric: how close the moving-phase deceleration is to the analytic Coulomb value.</td></tr>
+              <tr><td>Position at ideal stop time</td><td><code>x(t<sub>stop</sub>)</code>, compared with <code>x<sub>stop</sub></code>.</td><td>Integrated sliding error before the difficult near-zero-speed stick transition begins.</td></tr>
+              <tr><td>Near-stop time</td><td><code>t<sub>near</sub>=first{t:v<sub>x</sub>(t)≤0.01v<sub>0</sub>}</code>.</td><td>Secondary diagnostic only: it is sensitive to the simulator's static-friction transition, not just kinetic sliding.</td></tr>
+              <tr><td>Normal--tangential telemetry</td><td>During the same moving window, log <code>F<sub>n</sub>(t)</code>, <code>F<sub>t</sub>(t)</code>, <code>ρ(t)=|F<sub>t</sub>|/(μF<sub>n</sub>)</code>, and <code>D<sub>slide</sub>=mean 1[F<sub>n</sub>(t)&gt;0]</code>.</td><td>Separates a tangential friction-law error from changing normal support. Here both engines show post-release contact switching, so the experiment is not a pure continuous-contact Coulomb test.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Parameters tested and what changed</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Engine / parameter</th><th>Values or frozen choice</th><th>Observed effect / scope</th></tr></thead>
+            <tbody>
+              <tr><td>Shared external sweep</td><td><strong>Only variables changed across the main grid:</strong> <code>v<sub>0</sub>={0.25,0.5,1.0} m/s</code> and <code>dt={0.1,0.25,0.5,1.0} ms</code>.</td><td>At <code>dt=0.5 ms</code>, SAP Warp stays within 1.5% deceleration error across the tested speeds; MuJoCo improves from 9.84% at 0.25 m/s to 0.15% at 1 m/s.</td></tr>
+              <tr><td>SAP Warp baseline<br><em>frozen</em></td><td><strong>Held fixed across the entire grid:</strong> pair <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, pair <code>τ=3 ms</code>, Drake preset, <code>rigid_gap=0</code>, <code>μ=0.5</code>.</td><td>This stiffness/time-scale point was inherited from the matched normal-compliance baseline. No kinetic-friction <code>k<sub>e</sub>×τ</code> sweep or preset sweep has been run.</td></tr>
+              <tr><td>MuJoCo baseline<br><em>frozen</em></td><td><strong>Held fixed across the entire grid:</strong> direct <code>solref=(−1000,−63.2456)</code>, constant <code>solimp=(.9,.9,.001,.5,2)</code>, elliptic cone, Newton, implicitfast, <code>μ=0.5</code>, zero margin/gap, NoSlip off.</td><td>The direct <code>solref</code> was calibrated to the same nominal soft normal regime. No kinetic-friction <code>solref×solimp</code> sweep or elliptic-versus-pyramidal cone ablation has been run.</td></tr>
+              <tr><td>Friction-cone scope</td><td>MuJoCo uses its selectable <code>elliptic</code> cone. SAP Warp uses its native smooth isotropic SAP friction formulation; the tested SAP Warp scene exposes <code>μ</code> but no elliptic/pyramidal cone switch.</td><td>The present comparison therefore holds each engine's native friction representation fixed; it does not isolate cone representation as a causal factor.</td></tr>
+            </tbody>
+          </table>
           <p>For ideal Coulomb sliding under continuous contact,</p>
           <div class="equation">F<sub>t</sub> = −μF<sub>n</sub>, &nbsp;&nbsp; ρ = |F<sub>t</sub>|/(μF<sub>n</sub>) ≈ 1</div>
           <p>In this benchmark, both engines show intermittent post-release normal-contact switching, so the result is not a pure friction-law comparison.</p>
