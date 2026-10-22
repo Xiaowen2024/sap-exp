@@ -65,7 +65,6 @@
             </ol>
           </li>
           <li><a href="#manipulation">Panda manipulation</a></li>
-          <li><a href="#metric-guide">Metrics &amp; parameter guide</a></li>
           <li><a href="#comparison">Overall comparison</a></li>
           <li><a href="#robotics">Implications for robotics</a></li>
           <li><a href="#conclusion">Final conclusion</a></li>
@@ -121,7 +120,7 @@
         <p>Across the study, <strong>collision representation and contact-manifold behavior often matter as much as the nominal contact formulation itself.</strong></p>
       </section>
 
-      <section id="metric-guide" class="report-section">
+      <template id="metric-guide-archived">
         <h2>How to read the experiments: metrics and parameter levers</h2>
         <p>This is an index of the <strong>measurements actually used</strong> in each task and the parameter changes that were actually tested. “Observed effect” means a result in this repository; “not systematically swept” means it is deliberately <em>not</em> presented as a conclusion.</p>
 
@@ -166,13 +165,49 @@
         </table>
 
         <div class="takeaway"><strong>How parameter changes are used.</strong> First select a valid contact state (no truncation and task-appropriate force/duty/tail-motion checks). Then tune the native mechanism that controls the observable: <code>solref/solimp</code> and anti-slip controls in MuJoCo; pair-level <code>k<sub>e</sub></code>, <code>τ</code>, <code>rigid_gap</code>, and preset in SAP Warp. Native parameter numbers are not treated as equivalent material constants. Cross-engine comparisons use observable matching—normal force/compliance, restitution and contact duration, or grasp margin—where that calibration was actually completed.</div>
-      </section>
+      </template>
 
       <section id="friction" class="report-section">
         <h2>2. Friction</h2>
 
         <section id="sticking" class="subsection">
           <h3>2.1 Sub-Coulomb sticking and creep</h3>
+          <p>This first task separates two questions: <strong>can the three interfaces remain in a stable normal equilibrium?</strong> Only then, <strong>how does the top--middle interface respond to a sub-Coulomb horizontal load?</strong></p>
+
+          <h4>Task protocol and physical reference</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Item</th><th>Definition</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr><td>Geometry / material</td><td>Three <code>1 kg</code>, <code>40 mm</code> cubes under gravity; pair friction <code>μ=0.5</code>; <code>dt=0.5 ms</code>.</td><td>The static normal loads from bottom to top are 29.43, 19.62, and 9.81 N.</td></tr>
+              <tr><td>Normal gate</td><td>No horizontal force; 3-s run, measured over the final 1 s.</td><td>Prevents a normal-contact chatter artifact from being misread as a friction result.</td></tr>
+              <tr><td>Friction ramp</td><td>After 1.5-s settle, apply horizontal force to the <strong>top</strong> cube: 0→8 N over 5 s, then hold 8 N for 1.5 s.</td><td>The top--middle interface is limiting: <code>μF<sub>n</sub>=0.5×9.81=4.905 N</code>.</td></tr>
+              <tr><td>Sub-Coulomb holds</td><td>After settle, ramp to <code>F={1,2,3,4} N</code> in 1 s and hold for 8 s.</td><td>All are below 4.905 N, so ideal Coulomb friction permits sticking; any tail motion is measurable creep rather than expected gross sliding.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Metric</th><th>Definition here</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Normal-force error / CV</td><td>Compare tail mean <code>F̄<sub>n</sub></code> to the static load <code>F*</code>; <code>CV=std(F<sub>n</sub>)/F̄<sub>n</sub></code>.</td><td>A correct mean alone is insufficient: a switching contact can average to the correct load through intermittent impulses.</td></tr>
+              <tr><td>Contact count and duty</td><td><code>C(t)</code> is active contact-point count. <code>D=mean 1[C(t)&gt;0]</code> is the fraction of logged samples with contact.</td><td>For this continuously supported stack, duty close to 100% is required. It is a trace-level diagnostic defined in this study, not a universal engine metric; more points are not automatically better.</td></tr>
+              <tr><td>Vertical stability</td><td>Tail gap standard deviation and each box's <code>v<sub>z,RMS</sub></code>.</td><td>Detects bounce/chatter that can contaminate tangential friction telemetry.</td></tr>
+              <tr><td>Relative slip</td><td><code>x<sub>rel</sub></code>: tangential displacement of top relative to middle since ramp start. <code>v<sub>t</sub></code>: instantaneous relative tangential velocity.</td><td>In ideal sticking, <code>x<sub>rel</sub></code> stops growing and tail <code>v<sub>t</sub>≈0</code>. Under compliant contact, finite pre-slip displacement alone is not breakaway.</td></tr>
+              <tr><td>Friction utilisation</td><td><code>ρ=||ΣF<sub>t</sub>||/(μΣF<sub>n</sub>)</code>, aggregated over the interface; undefined if there is no normal contact.</td><td>At a 4-N sticking hold, ideal <code>ρ≈4/4.905=0.815</code>, not zero. In saturated sliding, <code>ρ≈1</code>.</td></tr>
+              <tr><td>Macroscopic sustained slip / creep</td><td>Slip proxy: <code>|v<sub>t</sub>|≥10 mm/s</code> continuously for ≥50 ms with contact. Creep: OLS slope of <code>x<sub>rel</sub>(t)</code> in the final hold window.</td><td>The 10-mm/s rule avoids calling low-stiffness tangential loading “breakaway”; the tail slope measures persistent sub-Coulomb drift.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Parameters tested and what changed</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Engine / parameter</th><th>Values or frozen choice</th><th>Observed effect</th></tr></thead>
+            <tbody>
+              <tr><td>SAP Warp <code>k<sub>pair</sub></code> normal-gate sweep</td><td><code>10<sup>4</sup>, 10<sup>5</sup>, 10<sup>6</sup> N/m</code>; fixed pair <code>τ=3 ms</code>, Drake preset, <code>rigid_gap=0</code>.</td><td><code>10<sup>4</sup></code> passes: every interface has 100% duty and negligible force/velocity variation. At <code>10<sup>5</sup></code> and <code>10<sup>6</sup></code>, internal contacts switch despite correct mean load.</td></tr>
+              <tr><td>SAP Warp friction baseline</td><td>The gate-passing point: pair <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, pair <code>τ=3 ms</code>, Drake preset, <code>dt=0.5 ms</code>.</td><td>It yields sustained-slip proxy 4.528 N, near the ideal 4.905-N limit, and 4-N tail creep of 2.516 μm/s. A post-gate <code>k<sub>e</sub>×τ×dt</code> friction sweep has <strong>not</strong> yet been run.</td></tr>
+              <tr><td>MuJoCo matched-soft baseline</td><td>Direct <code>solref</code>: ground–bottom <code>(−1000,−63.2456)</code>; box–box <code>(−2000,−89.4427)</code>. Constant <code>solimp=(.9,.9,.001,.5,2)</code>; elliptic cone, Newton, implicitfast, zero margin/gap.</td><td>Chosen by four-point interface calibration to approximate the SAP low-stiffness compliance. It passes the pre-ramp normal check, but its sustained-slip proxy is 3.940 N and it loses contact in higher force holds. This exact task did not sweep MuJoCo <code>solref×dt×solimp</code>.</td></tr>
+              <tr><td>MuJoCo anti-slip ablation</td><td>Native positive <code>solref</code> time constant, <code>impratio=1,10,100</code>, <code>solreffriction</code>, and NoSlip iterations.</td><td>At 4 N, higher <code>impratio</code> reduced creep by about an order of magnitude per tested decade; NoSlip suppresses it further. These controls show tunable drift suppression, not an identical compliant-contact-model comparison with SAP Warp.</td></tr>
+            </tbody>
+          </table>
           <p>Under ideal Coulomb friction,</p>
           <div class="equation">|F<sub>t</sub>| &lt; μF<sub>n</sub></div>
           <p>should permit zero-velocity sticking.</p>
