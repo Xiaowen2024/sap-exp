@@ -286,15 +286,33 @@
 
         <section id="pinch" class="subsection">
           <h3>2.3 Force-matched simple pinch</h3>
-          <p>Simple pinch compares approximately matched measured normal preload instead of identical geometric pad compression.</p>
-          <p>For an ideal symmetric pinch:</p>
-          <div class="equation">r = 2μN/(mg)</div>
-          <p>The theoretical support threshold is:</p>
-          <div class="equation">r = 1</div>
-          <p>In the 1-second lift plus 0.25-second hold, success requires at least 57 mm of the commanded 60 mm cube lift. Mass-only boundary refinements give:</p>
-          <div class="equation">N4: r<sub>SAP</sub> ≈ 0.990, r<sub>MJ</sub> ≈ 1.041</div>
-          <div class="equation">N6: r<sub>SAP</sub> ≈ 1.001, r<sub>MJ</sub> ≈ 1.048</div>
-          <p>Here <code>r</code> uses normal force measured before lifting. SAP's N4 pass below <code>r=1</code> is a finite-time task outcome, not a static sub-Coulomb equilibrium: normal force rises during the lift and the cube retains slip and downward tail velocity.</p>
+          <h4>Task protocol and physical reference</h4>
+          <p>A <code>40 mm</code> cube is pinched between two opposed pads. Gravity is off; during the commanded vertical lift, the cube alone receives a known downward load <code>mg</code>. Each pad supplies a measured normal preload <code>N</code>, with <code>μ=0.4</code>. The pad compression is deliberately <strong>not</strong> matched between engines: it is calibrated separately to produce comparable measured <code>N</code>.</p>
+          <p>The physical reference is the symmetric Coulomb grasp margin <code>r=2μN/(mg)</code>. Ideal static support requires <code>r≥1</code>. Each case has a 1.5-s preload gate, a 60-mm lift over 1.0 s, and a 0.25-s hold at <code>dt=0.5 ms</code>. It passes if both initial contacts are stable and the cube follows at least 57 mm (95% of the command). The short hold diagnoses task retention only; it is not a long-term creep test.</p>
+
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Metric</th><th>Variable and calculation</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Measured preload and grasp margin</td><td><code>N<sub>L</sub>,N<sub>R</sub></code> are mean pad--cube normal forces during the preload gate. Use <code>N=(N<sub>L</sub>+N<sub>R</sub>)/2</code> and <code>r=2μN/(mg)</code>.</td><td>This is the cross-engine calibration variable. Equal pad compression is not physically comparable because it produces different <code>N</code>.</td></tr>
+              <tr><td>Preload validity</td><td>Per side: <code>D=mean 1[C(t)&gt;0]</code>, <code>CV(F<sub>n</sub>)=std(F<sub>n</sub>)/mean(F<sub>n</sub>)</code>, mean contact count, and SAP capacity truncation.</td><td>Requires four force-bearing points, duty ≥99.9%, <code>CV(F<sub>n</sub>)≤1%</code>, and zero truncation. Otherwise later slip cannot be assigned cleanly to grasp friction.</td></tr>
+              <tr><td>Lift following / pass gate</td><td><code>Δz<sub>cube</sub>=z<sub>cube</sub>(T)−z<sub>cube</sub>(0)</code>; pass if <code>Δz<sub>cube</sub>≥57 mm</code> for a 60-mm command.</td><td>Primary task result: whether the object remains carried through the commanded lift. Near the boundary, a few millimetres of slip changes pass/fail.</td></tr>
+              <tr><td>Relative slip and tangential speed</td><td><code>s<sub>L/R</sub>(t)</code> is cube displacement relative to each pad along the slip direction; <code>v<sub>t,L/R</sub>(t)</code> is corresponding relative tangential speed.</td><td>Shows whether failure is progressive pad--cube slip rather than loss of controller motion. This short task reports lift-phase motion, not a steady creep rate.</td></tr>
+              <tr><td>Friction utilisation and lift duty</td><td><code>ρ<sub>L/R</sub>=|F<sub>t,L/R</sub>|/(μF<sub>n,L/R</sub>)</code>; lift duty <code>D<sub>lift</sub>=mean 1[C<sub>L/R</sub>(t)&gt;0]</code>.</td><td><code>ρ≈1</code> means a pad has reached its friction limit. Low duty means contact was lost; it must not be misread as a low-friction-force result.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Parameters tested and what changed</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Engine / parameter</th><th>Values or frozen choice</th><th>Observed effect / scope</th></tr></thead>
+            <tbody>
+              <tr><td>Observable-matching calibration</td><td>Two preload regimes: N4 and N6. MuJoCo uses 0.20 / 0.30 mm compression per side, producing about 3.88–3.96 / 5.87–5.95 N. SAP Warp uses 0.001 / 0.050 mm, producing 4.040 / 6.000 N.</td><td>Different compression is intentional: it matches physical normal force and hence grasp margin, rather than matching an engine-specific geometric overlap.</td></tr>
+              <tr><td>External boundary sweep</td><td>For each preload regime, vary cube mass to sweep <code>r</code> around one; the original v3 grid also includes friction/mass cases. The refined boundaries vary only mass.</td><td>Refined 57-mm task-gate transitions: MuJoCo N4/N6 near <code>r=1.041/1.048</code>; SAP Warp N4/N6 near <code>r=0.990/1.001</code>.</td></tr>
+              <tr><td>MuJoCo native setup<br><em>frozen</em></td><td><strong>Held fixed for every v3 MuJoCo rollout:</strong> <code>dt=0.5 ms</code>, Newton, elliptic cone, implicitfast, pair <code>solref=(4 ms,1)</code>, <code>solimp=(.95,.99,.001,.5,2)</code>.</td><td>Only preload regime and external mass/friction condition change. This benchmark does not sweep MuJoCo <code>solref</code>, <code>solimp</code>, cone, or NoSlip after force matching.</td></tr>
+              <tr><td>SAP Warp native setup<br><em>frozen</em></td><td><strong>Held fixed for every v3 SAP Warp rollout:</strong> <code>dt=0.5 ms</code>, Drake preset, pair <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, pair <code>τ=3 ms</code>, <code>rigid_gap=0</code>.</td><td>Only preload regime and external mass/friction condition change. This benchmark does not sweep SAP Warp <code>k<sub>e</sub></code>, <code>τ</code>, <code>rigid_gap</code>, or preset after force matching.</td></tr>
+            </tbody>
+          </table>
+          <p>SAP's N4 pass below <code>r=1</code> is a finite-time task outcome, not an indefinite static equilibrium: normal force rises during lifting and the cube retains downward tail velocity.</p>
           <div class="takeaway"><strong>Takeaway.</strong> With these frozen native settings, SAP Warp passes the short-lift task at a lower gate-measured grasp margin in both preload series. This does not establish a universal static-friction accuracy ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/simple-pinch-sap-vs-mujoco-final.md" target="_blank" rel="noreferrer">Methods and boundary data ↗</a></div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
