@@ -94,10 +94,10 @@
         <div class="callout">
           <p>SAP Warp and MuJoCo show complementary strengths rather than a consistent accuracy ordering.</p>
         </div>
-        <p>SAP Warp exposes more material-like contact parameters and, in the tested compliant-contact regime, follows ideal Coulomb friction more directly near the sticking/sliding boundary.</p>
-        <p>MuJoCo is more robust in near-rigid, high-stiffness multi-contact and provides stronger native controls for suppressing frictional drift.</p>
-        <p>Dynamic impact currently favors MuJoCo when comparing the same absolute timestep, but the two engines exhibit substantially different contact timescales; this difference must be controlled before attributing the result purely to numerical integration.</p>
-        <p>In manipulation, low-level contact advantages do not translate directly into task-level dominance. SAP Warp showed more Coulomb-like friction behavior in several controlled tests, but a complete grasp also depends on control, geometry, and motion. In the tested Panda setups, SAP Warp handled a wider range of object masses and friction values and drifted less during long holds, while MuJoCo tolerated pose errors better and kept successful short transfers more tightly aligned. The stronger choice therefore depends on the task outcome being measured.</p>
+        <p>In the tested stable compliant-contact regime, SAP Warp exposes directly tunable pair-level compliance and had lower drift in the selected matched-soft friction baselines. These are configuration-specific observations: MuJoCo's native anti-slip controls can reduce drift further.</p>
+        <p>MuJoCo was more stable in the tested near-rigid, high-stiffness multi-contact cases. In frictionless scalar impact, after matching both restitution (<code>e=0.8</code>) and contact duration (<code>t<sub>c</sub>=30 ms</code>), it preserved restitution more robustly through <code>dt=0.5 ms</code>; SAP Warp became increasingly dissipative as timestep increased.</p>
+        <p>In equal-budget shared-CoACD round-socket tuning at 2-mm clearance, both engines obtained a credible insertion, but MuJoCo had a wider tested feasible band (23/48 configurations versus 1/48 for SAP Warp).</p>
+        <p>In manipulation, low-level contact advantages do not translate directly into task-level dominance. Under the frozen native Panda setups, SAP Warp handled a wider range of object masses and friction values and drifted less during long holds, while MuJoCo tolerated pose errors better and kept successful short transfers more tightly aligned. The stronger choice therefore depends on the task outcome being measured.</p>
         <p>Across the study, <strong>collision representation and contact-manifold behavior often matter as much as the nominal contact formulation itself.</strong></p>
       </section>
 
@@ -538,23 +538,23 @@
         <table class="comparison-table">
           <thead><tr><th>Property</th><th>MuJoCo</th><th>SAP Warp</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Contact stiffness semantics</th><td>Constraint/effective-mass dependent</td><td>More pair/material-like</td></tr>
-            <tr><th scope="row">Low/moderate compliant contact</th><td>Requires observable-based calibration</td><td>Strong parameter interpretability</td></tr>
+            <tr><th scope="row">Contact stiffness semantics</th><td>Constraint-, effective-mass-, and impedance-dependent</td><td>Pair-level compliant input; shape values combine into a pair</td></tr>
+            <tr><th scope="row">Low/moderate compliant contact</th><td>Requires observable-based calibration</td><td>Direct pair-level target, but still requires force/overlap validation</td></tr>
             <tr><th scope="row">Near-rigid high-stiffness multi-contact</th><td>Very stable in tested stacks</td><td>Switching/jitter appeared</td></tr>
-            <tr><th scope="row">Baseline Coulomb friction</th><td>More regularized near zero velocity</td><td>Closer to Coulomb limit</td></tr>
-            <tr><th scope="row">Native anti-slip capability</th><td>Very strong</td><td>Baseline already low-drift</td></tr>
-            <tr><th scope="row">Kinetic friction</th><td>Approaches ideal at higher speed</td><td>Near-saturated across tested range</td></tr>
-            <tr><th scope="row">Restitution vs absolute timestep</th><td>Stronger in current tests</td><td>More timestep-sensitive</td></tr>
-            <tr><th scope="row">Tight concave insertion</th><td>Credible CoACD at 2-mm clearance (23/48 tuned; 2/10 frozen matrix)</td><td>Narrower credible CoACD region at 2-mm clearance (1/48 tuned; 1/10 frozen matrix)</td></tr>
+            <tr><th scope="row">Static friction (tested matched-soft baseline)</th><td>More pre-slip/contact loss; tuning can change this</td><td>Lower drift in the frozen baseline</td></tr>
+            <tr><th scope="row">Native anti-slip capability</th><td>Dedicated <code>impratio</code> / NoSlip controls</td><td>Low-drift baseline without a separate anti-slip pass</td></tr>
+            <tr><th scope="row">Kinetic friction</th><td>Error decreases as initial speed rises</td><td>More consistent over the tested speed range</td></tr>
+            <tr><th scope="row">Restitution after matching <i>e</i> and <i>t</i><sub>c</sub></th><td>Near calibrated <i>e</i> through 0.5 ms</td><td>Increasing dissipation at coarser <i>dt</i></td></tr>
+            <tr><th scope="row">Tight CoACD insertion, equal budget at 2 mm</th><td>Wider tested credible band (23/48 tuning; 2/10 frozen matrix)</td><td>Narrower tested credible band (1/48 tuning; 1/10 frozen matrix)</td></tr>
             <tr><th scope="row">Broad concave settling</th><td>Stable</td><td>Stable</td></tr>
             <tr><th scope="row">Panda mass/friction envelope</th><td>Narrower in current frozen setup</td><td>Much wider</td></tr>
             <tr><th scope="row">Panda pose perturbation</th><td>Better</td><td>More sensitive</td></tr>
             <tr><th scope="row">Panda long hold</th><td>More steady creep</td><td>Lower tail drift</td></tr>
             <tr><th scope="row">Parameter interpretation</th><td>Numerical constraint controls</td><td>More constitutive contact controls</td></tr>
-            <tr><th scope="row">GPU/batched potential</th><td>Requires a separate comparable benchmark</td><td>GPU-native Warp architecture</td></tr>
+            <tr><th scope="row">GPU/batched potential</th><td>Requires a separate comparable benchmark</td><td>GPU-native Warp architecture; throughput not yet fairly compared</td></tr>
           </tbody>
         </table>
-        <p id="findings"><strong>Contact parameter interpretation.</strong> In the stable compliant regime, SAP Warp's pair <code>k_e</code> approximately follows <code>F<sub>n</sub> ≈ k<sub>e</sub>δ</code>. MuJoCo's <code>solref</code> controls constraint dynamics, so its effective contact stiffness also depends on mass, impedance, and the contact manifold; the body–plane calibration required an effective-mass correction for body–body contact. In the tested high-stiffness stacks, SAP Warp developed contact switching and vertical jitter while MuJoCo remained stable. These observations are why the comparison uses measured forces, penetration, and stability rather than matching native parameter numbers.</p>
+        <p id="findings"><strong>Contact parameter interpretation.</strong> In a stable compliant scalar contact, SAP Warp's pair-level <code>k<sub>e</sub></code> can approximately follow <code>F<sub>n</sub> ≈ k<sub>e</sub>δ</code>; pair combination, <code>tau</code>, and <code>rigid_gap</code> still affect the realized response. MuJoCo's <code>solref</code> controls constraint dynamics, so effective stiffness also depends on mass, impedance, and the contact manifold; the body–plane calibration required an effective-mass correction for body–body contact. In the tested high-stiffness stacks, SAP Warp developed contact switching and vertical jitter while MuJoCo remained stable. These observations are why the comparison uses measured forces, penetration, and stability rather than matching native parameter numbers.</p>
         <figure class="video-demo inline-video">
           <video controls preload="metadata" playsinline>
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" type="video/mp4">
@@ -605,8 +605,9 @@
         <h2>9. Final Conclusion</h2>
         <p>The experiments do not support a simple statement that either SAP Warp or MuJoCo is universally more accurate.</p>
         <p>Instead, they reveal different modeling tradeoffs.</p>
-        <p>SAP Warp provides more directly interpretable compliant-contact parameters and, in several controlled friction benchmarks, behavior closer to ideal Coulomb contact. Its current limitations appear most clearly when contact becomes very stiff or collision geometry becomes tight and representation-sensitive.</p>
-        <p>MuJoCo provides a highly tunable soft-constraint formulation with strong near-rigid stability, effective anti-slip controls, and robust dynamic behavior in the tested impact regimes, but its parameters are less directly transferable as physical material properties.</p>
+        <p>In the tested stable compliant settings, SAP Warp offers directly adjustable pair-level compliance and low-drift behavior in selected friction baselines. It still requires calibration when energy retention, contact activation, or tight collision geometry matters: higher stiffness and representation-sensitive geometry exposed switching, jitter, or a narrow feasible region in the tested configurations.</p>
+        <p>MuJoCo's <code>solref</code>/<code>solimp</code> settings are constraint controls rather than transferable material constants, so meaningful comparison requires observable-based calibration. With that calibration, MuJoCo was stable in the tested near-rigid stacks, had a broader equal-budget 2-mm socket-insertion band, and transferred calibrated restitution more reliably across the tested timesteps; its dedicated anti-slip controls also substantially reduce residual drift.</p>
+        <p>At task level the trade-off remains mixed: SAP Warp had a wider mass/friction feasible region and lower long-hold drift in the frozen Panda setup, whereas MuJoCo was more robust to pose perturbations and retained successful short transfers more tightly.</p>
         <div class="callout conclusion">
           <p><strong>Contact-law fidelity ≠ task-level performance.</strong></p>
           <p><strong>Collision representation and contact manifold can dominate nominal solver differences.</strong></p>
