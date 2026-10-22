@@ -1,0 +1,776 @@
+[
+  {
+    "family": "slope slider",
+    "subtask": "task-1",
+    "material": "wood",
+    "frames": 9,
+    "base_rmse_mm": 0.59,
+    "base_dtw_mm": 0.59,
+    "paper_isaac_nrmse": 0.019,
+    "paper_genesis_nrmse": 0.074,
+    "paper_newton_nrmse": 24.68,
+    "mj_default_6dof": {
+      "rmse_mm": 0.10188466125254256,
+      "nrmse": 0.17268586652973317,
+      "dtw_mm": 0.06816874897168317,
+      "ndtw": 0.11554025249437826,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0347109169815667
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 0.10188466125254256,
+      "nrmse": 0.17268586652973317,
+      "dtw_mm": 0.06816874897168317,
+      "ndtw": 0.11554025249437826,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0347109169815667
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-1",
+    "material": "plastic",
+    "frames": 9,
+    "base_rmse_mm": 1.9,
+    "base_dtw_mm": 1.9,
+    "paper_isaac_nrmse": 0.013,
+    "paper_genesis_nrmse": 0.016,
+    "paper_newton_nrmse": 6.24,
+    "mj_default_6dof": {
+      "rmse_mm": 0.07939761494058963,
+      "nrmse": 0.04178821838978401,
+      "dtw_mm": 0.06097816010104654,
+      "ndtw": 0.03209376847423502,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0018624580116011202
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 0.07939761494058963,
+      "nrmse": 0.04178821838978401,
+      "dtw_mm": 0.06097816010104654,
+      "ndtw": 0.03209376847423502,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0018624580116011202
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-1",
+    "material": "metal",
+    "frames": 9,
+    "base_rmse_mm": 0.86,
+    "base_dtw_mm": 0.86,
+    "paper_isaac_nrmse": 0.078,
+    "paper_genesis_nrmse": 0.062,
+    "paper_newton_nrmse": 15.08,
+    "mj_default_6dof": {
+      "rmse_mm": 0.11218328975335362,
+      "nrmse": 0.13044568575971352,
+      "dtw_mm": 0.09337573705111316,
+      "ndtw": 0.10857643843152692,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0016602080431766808
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 0.11218328975335362,
+      "nrmse": 0.13044568575971352,
+      "dtw_mm": 0.09337573705111316,
+      "ndtw": 0.10857643843152692,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0016602080431766808
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-2",
+    "material": "wood",
+    "frames": 19,
+    "base_rmse_mm": 18.0,
+    "base_dtw_mm": 7.7,
+    "paper_isaac_nrmse": 1.23,
+    "paper_genesis_nrmse": 0.53,
+    "paper_newton_nrmse": 1.71,
+    "mj_default_6dof": {
+      "rmse_mm": 9.350886831835895,
+      "nrmse": 0.519493712879772,
+      "dtw_mm": 8.393608644961322,
+      "ndtw": 1.0900790448001716,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002002958965022117
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 9.350886831835895,
+      "nrmse": 0.519493712879772,
+      "dtw_mm": 8.393608644961322,
+      "ndtw": 1.0900790448001716,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002002958965022117
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-2",
+    "material": "plastic",
+    "frames": 17,
+    "base_rmse_mm": 25.01,
+    "base_dtw_mm": 9.13,
+    "paper_isaac_nrmse": 0.48,
+    "paper_genesis_nrmse": 0.82,
+    "paper_newton_nrmse": 0.51,
+    "mj_default_6dof": {
+      "rmse_mm": 18.498850337092584,
+      "nrmse": 0.7396581502236139,
+      "dtw_mm": 10.335024090587677,
+      "ndtw": 1.1319851139745538,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0018766670254990458
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 18.498850337092584,
+      "nrmse": 0.7396581502236139,
+      "dtw_mm": 10.335024090587677,
+      "ndtw": 1.1319851139745538,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0018766670254990458
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-2",
+    "material": "metal",
+    "frames": 19,
+    "base_rmse_mm": 32.06,
+    "base_dtw_mm": 10.87,
+    "paper_isaac_nrmse": 1.0,
+    "paper_genesis_nrmse": 0.83,
+    "paper_newton_nrmse": 1.15,
+    "mj_default_6dof": {
+      "rmse_mm": 21.654813721529756,
+      "nrmse": 0.6754464666727933,
+      "dtw_mm": 8.737584260595437,
+      "ndtw": 0.8038255989508222,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0015871250070631504
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 21.654813721529756,
+      "nrmse": 0.6754464666727933,
+      "dtw_mm": 8.737584260595437,
+      "ndtw": 0.8038255989508222,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0015871250070631504
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-3",
+    "material": "wood",
+    "frames": 46,
+    "base_rmse_mm": 24.27,
+    "base_dtw_mm": 6.73,
+    "paper_isaac_nrmse": 2.62,
+    "paper_genesis_nrmse": 2.62,
+    "paper_newton_nrmse": 1.35,
+    "mj_default_6dof": {
+      "rmse_mm": 45.322041824230375,
+      "nrmse": 1.867410046321812,
+      "dtw_mm": 10.469390407355752,
+      "ndtw": 1.5556300753871843,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "6dof",
+      "wall_s": 0.011661958997137845
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 17.388536394954993,
+      "nrmse": 0.716462150595591,
+      "dtw_mm": 8.101683189491593,
+      "ndtw": 1.2038162242929558,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge",
+      "wall_s": 0.005148249969352037
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-3",
+    "material": "plastic",
+    "frames": 46,
+    "base_rmse_mm": 49.96,
+    "base_dtw_mm": 12.97,
+    "paper_isaac_nrmse": 1.58,
+    "paper_genesis_nrmse": 1.46,
+    "paper_newton_nrmse": 0.67,
+    "mj_default_6dof": {
+      "rmse_mm": 28.580583424511293,
+      "nrmse": 0.5720693239493854,
+      "dtw_mm": 9.366707508103882,
+      "ndtw": 0.7221825372477935,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "6dof",
+      "wall_s": 0.011346667015459388
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 52.31779916162037,
+      "nrmse": 1.047193738222986,
+      "dtw_mm": 15.355650058428486,
+      "ndtw": 1.183936010672975,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge",
+      "wall_s": 0.005232958006672561
+    }
+  },
+  {
+    "family": "slope slider",
+    "subtask": "task-3",
+    "material": "metal",
+    "frames": 60,
+    "base_rmse_mm": 38.01,
+    "base_dtw_mm": 9.54,
+    "paper_isaac_nrmse": 0.61,
+    "paper_genesis_nrmse": 0.58,
+    "paper_newton_nrmse": 1.95,
+    "mj_default_6dof": {
+      "rmse_mm": 27.000998176442334,
+      "nrmse": 0.710365645262887,
+      "dtw_mm": 9.27225929297577,
+      "ndtw": 0.9719349363706259,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "6dof",
+      "wall_s": 0.014368292002473027
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 95.37161916239432,
+      "nrmse": 2.5091191571269227,
+      "dtw_mm": 26.68503971365915,
+      "ndtw": 2.7971739741781083,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge",
+      "wall_s": 0.006198209011927247
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-1",
+    "material": "wood",
+    "frames": 95,
+    "base_rmse_mm": 2.01,
+    "base_dtw_mm": 1.4,
+    "paper_isaac_nrmse": 0.32,
+    "paper_genesis_nrmse": 0.83,
+    "paper_newton_nrmse": 34.37,
+    "mj_default_6dof": {
+      "rmse_mm": 4.203698368267302,
+      "nrmse": 2.0913922230185586,
+      "dtw_mm": 3.8461433142317354,
+      "ndtw": 2.7472452244512398,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0097957500256598
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 4.203698368267302,
+      "nrmse": 2.0913922230185586,
+      "dtw_mm": 3.8461433142317354,
+      "ndtw": 2.7472452244512398,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0097957500256598
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-1",
+    "material": "plastic",
+    "frames": 95,
+    "base_rmse_mm": 2.0,
+    "base_dtw_mm": 0.97,
+    "paper_isaac_nrmse": 1.22,
+    "paper_genesis_nrmse": 1.12,
+    "paper_newton_nrmse": 36.04,
+    "mj_default_6dof": {
+      "rmse_mm": 4.056658236009587,
+      "nrmse": 2.0283291180047933,
+      "dtw_mm": 3.734245996300701,
+      "ndtw": 3.849738140516187,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009148290962912142
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 4.056658236009587,
+      "nrmse": 2.0283291180047933,
+      "dtw_mm": 3.734245996300701,
+      "ndtw": 3.849738140516187,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009148290962912142
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-1",
+    "material": "metal",
+    "frames": 95,
+    "base_rmse_mm": 3.17,
+    "base_dtw_mm": 1.53,
+    "paper_isaac_nrmse": 0.42,
+    "paper_genesis_nrmse": 0.51,
+    "paper_newton_nrmse": 17.19,
+    "mj_default_6dof": {
+      "rmse_mm": 4.214500215672261,
+      "nrmse": 1.3294953361742148,
+      "dtw_mm": 3.8699124002577094,
+      "ndtw": 2.529354509972359,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009284666972234845
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 4.214500215672261,
+      "nrmse": 1.3294953361742148,
+      "dtw_mm": 3.8699124002577094,
+      "ndtw": 2.529354509972359,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009284666972234845
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-2",
+    "material": "wood",
+    "frames": 18,
+    "base_rmse_mm": 6.76,
+    "base_dtw_mm": 4.7,
+    "paper_isaac_nrmse": 4.82,
+    "paper_genesis_nrmse": 3.69,
+    "paper_newton_nrmse": 2.88,
+    "mj_default_6dof": {
+      "rmse_mm": 13.238384112422885,
+      "nrmse": 1.9583408450329713,
+      "dtw_mm": 8.396738984811778,
+      "ndtw": 1.7865402095344207,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002801041991915554
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 13.238384112422885,
+      "nrmse": 1.9583408450329713,
+      "dtw_mm": 8.396738984811778,
+      "ndtw": 1.7865402095344207,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002801041991915554
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-2",
+    "material": "plastic",
+    "frames": 17,
+    "base_rmse_mm": 7.86,
+    "base_dtw_mm": 3.92,
+    "paper_isaac_nrmse": 3.61,
+    "paper_genesis_nrmse": 1.57,
+    "paper_newton_nrmse": 1.92,
+    "mj_default_6dof": {
+      "rmse_mm": 12.891517364869246,
+      "nrmse": 1.640142158380311,
+      "dtw_mm": 7.958205894677904,
+      "ndtw": 2.030154564968853,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0029624169692397118
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 12.891517364869246,
+      "nrmse": 1.640142158380311,
+      "dtw_mm": 7.958205894677904,
+      "ndtw": 2.030154564968853,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.0029624169692397118
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-2",
+    "material": "metal",
+    "frames": 17,
+    "base_rmse_mm": 5.76,
+    "base_dtw_mm": 3.6,
+    "paper_isaac_nrmse": 5.7,
+    "paper_genesis_nrmse": 3.09,
+    "paper_newton_nrmse": 1.97,
+    "mj_default_6dof": {
+      "rmse_mm": 13.61907466389777,
+      "nrmse": 2.3644226847044743,
+      "dtw_mm": 8.943644952811141,
+      "ndtw": 2.484345820225317,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002570417011156678
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 13.61907466389777,
+      "nrmse": 2.3644226847044743,
+      "dtw_mm": 8.943644952811141,
+      "ndtw": 2.484345820225317,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.002570417011156678
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-3",
+    "material": "wood",
+    "frames": 95,
+    "base_rmse_mm": 27.15,
+    "base_dtw_mm": 14.36,
+    "paper_isaac_nrmse": 1.55,
+    "paper_genesis_nrmse": 1.75,
+    "paper_newton_nrmse": 9.5,
+    "mj_default_6dof": {
+      "rmse_mm": 46.80766844493328,
+      "nrmse": 1.7240393534045406,
+      "dtw_mm": 20.818183641621886,
+      "ndtw": 1.449734236881747,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.008962708991020918
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 46.80766844493328,
+      "nrmse": 1.7240393534045406,
+      "dtw_mm": 20.818183641621886,
+      "ndtw": 1.449734236881747,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.008962708991020918
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-3",
+    "material": "plastic",
+    "frames": 95,
+    "base_rmse_mm": 12.5,
+    "base_dtw_mm": 3.48,
+    "paper_isaac_nrmse": 2.37,
+    "paper_genesis_nrmse": 2.47,
+    "paper_newton_nrmse": 21.76,
+    "mj_default_6dof": {
+      "rmse_mm": 16.789716251144704,
+      "nrmse": 1.3431773000915763,
+      "dtw_mm": 10.803843345679876,
+      "ndtw": 3.1045526855401944,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009586416010279208
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 16.789716251144704,
+      "nrmse": 1.3431773000915763,
+      "dtw_mm": 10.803843345679876,
+      "ndtw": 3.1045526855401944,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009586416010279208
+    }
+  },
+  {
+    "family": "turntable",
+    "subtask": "task-3",
+    "material": "metal",
+    "frames": 95,
+    "base_rmse_mm": 13.26,
+    "base_dtw_mm": 3.33,
+    "paper_isaac_nrmse": 0.17,
+    "paper_genesis_nrmse": 0.57,
+    "paper_newton_nrmse": 20.04,
+    "mj_default_6dof": {
+      "rmse_mm": 17.16646183124034,
+      "nrmse": 1.2946049646485929,
+      "dtw_mm": 12.53837469708191,
+      "ndtw": 3.7652776868113844,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009906625025905669
+    },
+    "mj_default_hinge": {
+      "rmse_mm": 17.16646183124034,
+      "nrmse": 1.2946049646485929,
+      "dtw_mm": 12.53837469708191,
+      "ndtw": 3.7652776868113844,
+      "engine": "mujoco",
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "solver": "Newton",
+      "slope3_driver": "hinge_or_static",
+      "wall_s": 0.009906625025905669
+    }
+  }
+]

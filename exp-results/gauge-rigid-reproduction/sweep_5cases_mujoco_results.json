@@ -1,0 +1,4402 @@
+[
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.7106696246606081,
+    "max_nrmse": 3.8644311913445493,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.831702597685355,
+        "nrmse": 0.5462056998714087,
+        "dtw_mm": 8.657938753231427,
+        "ndtw": 1.1244076302897956
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.341087487053701,
+        "nrmse": 0.19313568763624578,
+        "dtw_mm": 4.37477527690802,
+        "ndtw": 0.45857183196100837
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.7675066946025435,
+        "nrmse": 3.8644311913445493,
+        "dtw_mm": 6.740596981278259,
+        "ndtw": 4.81471212948447
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 7.250983656598786,
+        "nrmse": 1.2588513292706225,
+        "dtw_mm": 5.103167584599504,
+        "ndtw": 1.41754655127764
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 35.67900309328964,
+        "nrmse": 2.690724215180214,
+        "dtw_mm": 29.27262300563406,
+        "ndtw": 8.790577479169388
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1091479920225606,
+    "max_nrmse": 2.9152870453323416,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 7.989393457590767,
+        "nrmse": 0.4438551920883759,
+        "dtw_mm": 7.312880049977702,
+        "ndtw": 0.9497246818152859
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.860952886766146,
+        "nrmse": 0.2857393550846132,
+        "dtw_mm": 4.540689143538496,
+        "ndtw": 0.47596322259313384
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.274912237552002,
+        "nrmse": 1.1317971331104488,
+        "dtw_mm": 2.1899021720914735,
+        "ndtw": 1.5642158372081956
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.792053381114286,
+        "nrmse": 2.9152870453323416,
+        "dtw_mm": 10.662978862596102,
+        "ndtw": 2.9619385729433616
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.197751969430529,
+        "nrmse": 0.7690612344970233,
+        "dtw_mm": 5.182246927070152,
+        "ndtw": 1.556230308429475
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1041947023132899,
+    "max_nrmse": 2.9123619333043003,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.11062023654669,
+        "nrmse": 0.45059001314148284,
+        "dtw_mm": 7.422080135868228,
+        "ndtw": 0.9639065111517179
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.306934326941708,
+        "nrmse": 0.376399219335483,
+        "dtw_mm": 4.852079155414722,
+        "ndtw": 0.5086036850539541
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.972968960137528,
+        "nrmse": 0.9815765970833473,
+        "dtw_mm": 1.8827126036084394,
+        "ndtw": 1.344794716863171
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.77520473583277,
+        "nrmse": 2.9123619333043003,
+        "dtw_mm": 10.961648318815964,
+        "ndtw": 3.044902310782212
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.608606627786337,
+        "nrmse": 0.8000457487018353,
+        "dtw_mm": 5.3579953689776145,
+        "ndtw": 1.609007618311596
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.099887094901493,
+    "max_nrmse": 2.5255441182187846,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.192941246608266,
+        "nrmse": 0.45516340258934807,
+        "dtw_mm": 7.4802408804029765,
+        "ndtw": 0.9714598545977892
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.372237200530325,
+        "nrmse": 0.7201325230342102,
+        "dtw_mm": 6.762799683641387,
+        "ndtw": 0.7088888557276088
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.0175924366168436,
+        "nrmse": 1.003777331650171,
+        "dtw_mm": 1.9272623146265602,
+        "ndtw": 1.3766159390189716
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.547134120940198,
+        "nrmse": 2.5255441182187846,
+        "dtw_mm": 9.428574296022973,
+        "ndtw": 2.6190484155619367
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.539287992938242,
+        "nrmse": 0.7948180990149504,
+        "dtw_mm": 5.168851055212815,
+        "ndtw": 1.5522075240879323
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.2414242669849849,
+    "max_nrmse": 2.8765016924464377,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.135039624112611,
+        "nrmse": 0.451946645784034,
+        "dtw_mm": 7.438335336727811,
+        "ndtw": 0.966017576198417
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 43.15886597889745,
+        "nrmse": 1.135460825543211,
+        "dtw_mm": 10.541320112885428,
+        "ndtw": 1.1049601795477388
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.9186115105611725,
+        "nrmse": 0.9545330898314293,
+        "dtw_mm": 1.827042130850008,
+        "ndtw": 1.3050300934642916
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.56864974849148,
+        "nrmse": 2.8765016924464377,
+        "dtw_mm": 10.739985513617881,
+        "ndtw": 2.9833293093383
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.457884618300694,
+        "nrmse": 0.788679081319811,
+        "dtw_mm": 5.04584364237441,
+        "ndtw": 1.5152683610733964
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.7106696246606081,
+    "max_nrmse": 3.8644311913445493,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.831702597685355,
+        "nrmse": 0.5462056998714087,
+        "dtw_mm": 8.657938753231427,
+        "ndtw": 1.1244076302897956
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.341087487053701,
+        "nrmse": 0.19313568763624578,
+        "dtw_mm": 4.37477527690802,
+        "ndtw": 0.45857183196100837
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.7675066946025435,
+        "nrmse": 3.8644311913445493,
+        "dtw_mm": 6.740596981278259,
+        "ndtw": 4.81471212948447
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 7.250983656598786,
+        "nrmse": 1.2588513292706225,
+        "dtw_mm": 5.103167584599504,
+        "ndtw": 1.41754655127764
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 35.67900309328964,
+        "nrmse": 2.690724215180214,
+        "dtw_mm": 29.27262300563406,
+        "ndtw": 8.790577479169388
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1091479920225606,
+    "max_nrmse": 2.9152870453323416,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 7.989393457590767,
+        "nrmse": 0.4438551920883759,
+        "dtw_mm": 7.312880049977702,
+        "ndtw": 0.9497246818152859
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.860952886766146,
+        "nrmse": 0.2857393550846132,
+        "dtw_mm": 4.540689143538496,
+        "ndtw": 0.47596322259313384
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.274912237552002,
+        "nrmse": 1.1317971331104488,
+        "dtw_mm": 2.1899021720914735,
+        "ndtw": 1.5642158372081956
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.792053381114286,
+        "nrmse": 2.9152870453323416,
+        "dtw_mm": 10.662978862596102,
+        "ndtw": 2.9619385729433616
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.197751969430529,
+        "nrmse": 0.7690612344970233,
+        "dtw_mm": 5.182246927070152,
+        "ndtw": 1.556230308429475
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1041947023132899,
+    "max_nrmse": 2.9123619333043003,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.11062023654669,
+        "nrmse": 0.45059001314148284,
+        "dtw_mm": 7.422080135868228,
+        "ndtw": 0.9639065111517179
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.306934326941708,
+        "nrmse": 0.376399219335483,
+        "dtw_mm": 4.852079155414722,
+        "ndtw": 0.5086036850539541
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.972968960137528,
+        "nrmse": 0.9815765970833473,
+        "dtw_mm": 1.8827126036084394,
+        "ndtw": 1.344794716863171
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.77520473583277,
+        "nrmse": 2.9123619333043003,
+        "dtw_mm": 10.961648318815964,
+        "ndtw": 3.044902310782212
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.608606627786337,
+        "nrmse": 0.8000457487018353,
+        "dtw_mm": 5.3579953689776145,
+        "ndtw": 1.609007618311596
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.099887094901493,
+    "max_nrmse": 2.5255441182187846,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.192941246608266,
+        "nrmse": 0.45516340258934807,
+        "dtw_mm": 7.4802408804029765,
+        "ndtw": 0.9714598545977892
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.372237200530325,
+        "nrmse": 0.7201325230342102,
+        "dtw_mm": 6.762799683641387,
+        "ndtw": 0.7088888557276088
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.0175924366168436,
+        "nrmse": 1.003777331650171,
+        "dtw_mm": 1.9272623146265602,
+        "ndtw": 1.3766159390189716
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.547134120940198,
+        "nrmse": 2.5255441182187846,
+        "dtw_mm": 9.428574296022973,
+        "ndtw": 2.6190484155619367
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.539287992938242,
+        "nrmse": 0.7948180990149504,
+        "dtw_mm": 5.168851055212815,
+        "ndtw": 1.5522075240879323
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.2414242669849849,
+    "max_nrmse": 2.8765016924464377,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.135039624112611,
+        "nrmse": 0.451946645784034,
+        "dtw_mm": 7.438335336727811,
+        "ndtw": 0.966017576198417
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 43.15886597889745,
+        "nrmse": 1.135460825543211,
+        "dtw_mm": 10.541320112885428,
+        "ndtw": 1.1049601795477388
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.9186115105611725,
+        "nrmse": 0.9545330898314293,
+        "dtw_mm": 1.827042130850008,
+        "ndtw": 1.3050300934642916
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.56864974849148,
+        "nrmse": 2.8765016924464377,
+        "dtw_mm": 10.739985513617881,
+        "ndtw": 2.9833293093383
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.457884618300694,
+        "nrmse": 0.788679081319811,
+        "dtw_mm": 5.04584364237441,
+        "ndtw": 1.5152683610733964
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.7106696246606081,
+    "max_nrmse": 3.8644311913445493,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.831702597685355,
+        "nrmse": 0.5462056998714087,
+        "dtw_mm": 8.657938753231427,
+        "ndtw": 1.1244076302897956
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.341087487053701,
+        "nrmse": 0.19313568763624578,
+        "dtw_mm": 4.37477527690802,
+        "ndtw": 0.45857183196100837
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.7675066946025435,
+        "nrmse": 3.8644311913445493,
+        "dtw_mm": 6.740596981278259,
+        "ndtw": 4.81471212948447
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 7.250983656598786,
+        "nrmse": 1.2588513292706225,
+        "dtw_mm": 5.103167584599504,
+        "ndtw": 1.41754655127764
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 35.67900309328964,
+        "nrmse": 2.690724215180214,
+        "dtw_mm": 29.27262300563406,
+        "ndtw": 8.790577479169388
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1091479920225606,
+    "max_nrmse": 2.9152870453323416,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 7.989393457590767,
+        "nrmse": 0.4438551920883759,
+        "dtw_mm": 7.312880049977702,
+        "ndtw": 0.9497246818152859
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.860952886766146,
+        "nrmse": 0.2857393550846132,
+        "dtw_mm": 4.540689143538496,
+        "ndtw": 0.47596322259313384
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.274912237552002,
+        "nrmse": 1.1317971331104488,
+        "dtw_mm": 2.1899021720914735,
+        "ndtw": 1.5642158372081956
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.792053381114286,
+        "nrmse": 2.9152870453323416,
+        "dtw_mm": 10.662978862596102,
+        "ndtw": 2.9619385729433616
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.197751969430529,
+        "nrmse": 0.7690612344970233,
+        "dtw_mm": 5.182246927070152,
+        "ndtw": 1.556230308429475
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1041947023132899,
+    "max_nrmse": 2.9123619333043003,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.11062023654669,
+        "nrmse": 0.45059001314148284,
+        "dtw_mm": 7.422080135868228,
+        "ndtw": 0.9639065111517179
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.306934326941708,
+        "nrmse": 0.376399219335483,
+        "dtw_mm": 4.852079155414722,
+        "ndtw": 0.5086036850539541
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.972968960137528,
+        "nrmse": 0.9815765970833473,
+        "dtw_mm": 1.8827126036084394,
+        "ndtw": 1.344794716863171
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.77520473583277,
+        "nrmse": 2.9123619333043003,
+        "dtw_mm": 10.961648318815964,
+        "ndtw": 3.044902310782212
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.608606627786337,
+        "nrmse": 0.8000457487018353,
+        "dtw_mm": 5.3579953689776145,
+        "ndtw": 1.609007618311596
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.099887094901493,
+    "max_nrmse": 2.5255441182187846,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.192941246608266,
+        "nrmse": 0.45516340258934807,
+        "dtw_mm": 7.4802408804029765,
+        "ndtw": 0.9714598545977892
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.372237200530325,
+        "nrmse": 0.7201325230342102,
+        "dtw_mm": 6.762799683641387,
+        "ndtw": 0.7088888557276088
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.0175924366168436,
+        "nrmse": 1.003777331650171,
+        "dtw_mm": 1.9272623146265602,
+        "ndtw": 1.3766159390189716
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.547134120940198,
+        "nrmse": 2.5255441182187846,
+        "dtw_mm": 9.428574296022973,
+        "ndtw": 2.6190484155619367
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.539287992938242,
+        "nrmse": 0.7948180990149504,
+        "dtw_mm": 5.168851055212815,
+        "ndtw": 1.5522075240879323
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.2414242669849849,
+    "max_nrmse": 2.8765016924464377,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.135039624112611,
+        "nrmse": 0.451946645784034,
+        "dtw_mm": 7.438335336727811,
+        "ndtw": 0.966017576198417
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 43.15886597889745,
+        "nrmse": 1.135460825543211,
+        "dtw_mm": 10.541320112885428,
+        "ndtw": 1.1049601795477388
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.9186115105611725,
+        "nrmse": 0.9545330898314293,
+        "dtw_mm": 1.827042130850008,
+        "ndtw": 1.3050300934642916
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.56864974849148,
+        "nrmse": 2.8765016924464377,
+        "dtw_mm": 10.739985513617881,
+        "ndtw": 2.9833293093383
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.457884618300694,
+        "nrmse": 0.788679081319811,
+        "dtw_mm": 5.04584364237441,
+        "ndtw": 1.5152683610733964
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.7106696246606081,
+    "max_nrmse": 3.8644311913445493,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.831702597685355,
+        "nrmse": 0.5462056998714087,
+        "dtw_mm": 8.657938753231427,
+        "ndtw": 1.1244076302897956
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.341087487053701,
+        "nrmse": 0.19313568763624578,
+        "dtw_mm": 4.37477527690802,
+        "ndtw": 0.45857183196100837
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.7675066946025435,
+        "nrmse": 3.8644311913445493,
+        "dtw_mm": 6.740596981278259,
+        "ndtw": 4.81471212948447
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 7.250983656598786,
+        "nrmse": 1.2588513292706225,
+        "dtw_mm": 5.103167584599504,
+        "ndtw": 1.41754655127764
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 35.67900309328964,
+        "nrmse": 2.690724215180214,
+        "dtw_mm": 29.27262300563406,
+        "ndtw": 8.790577479169388
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1091479920225606,
+    "max_nrmse": 2.9152870453323416,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 7.989393457590767,
+        "nrmse": 0.4438551920883759,
+        "dtw_mm": 7.312880049977702,
+        "ndtw": 0.9497246818152859
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.860952886766146,
+        "nrmse": 0.2857393550846132,
+        "dtw_mm": 4.540689143538496,
+        "ndtw": 0.47596322259313384
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.274912237552002,
+        "nrmse": 1.1317971331104488,
+        "dtw_mm": 2.1899021720914735,
+        "ndtw": 1.5642158372081956
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.792053381114286,
+        "nrmse": 2.9152870453323416,
+        "dtw_mm": 10.662978862596102,
+        "ndtw": 2.9619385729433616
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.197751969430529,
+        "nrmse": 0.7690612344970233,
+        "dtw_mm": 5.182246927070152,
+        "ndtw": 1.556230308429475
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1041947023132899,
+    "max_nrmse": 2.9123619333043003,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.11062023654669,
+        "nrmse": 0.45059001314148284,
+        "dtw_mm": 7.422080135868228,
+        "ndtw": 0.9639065111517179
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.306934326941708,
+        "nrmse": 0.376399219335483,
+        "dtw_mm": 4.852079155414722,
+        "ndtw": 0.5086036850539541
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.972968960137528,
+        "nrmse": 0.9815765970833473,
+        "dtw_mm": 1.8827126036084394,
+        "ndtw": 1.344794716863171
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.77520473583277,
+        "nrmse": 2.9123619333043003,
+        "dtw_mm": 10.961648318815964,
+        "ndtw": 3.044902310782212
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.608606627786337,
+        "nrmse": 0.8000457487018353,
+        "dtw_mm": 5.3579953689776145,
+        "ndtw": 1.609007618311596
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.099887094901493,
+    "max_nrmse": 2.5255441182187846,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.192941246608266,
+        "nrmse": 0.45516340258934807,
+        "dtw_mm": 7.4802408804029765,
+        "ndtw": 0.9714598545977892
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.372237200530325,
+        "nrmse": 0.7201325230342102,
+        "dtw_mm": 6.762799683641387,
+        "ndtw": 0.7088888557276088
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.0175924366168436,
+        "nrmse": 1.003777331650171,
+        "dtw_mm": 1.9272623146265602,
+        "ndtw": 1.3766159390189716
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.547134120940198,
+        "nrmse": 2.5255441182187846,
+        "dtw_mm": 9.428574296022973,
+        "ndtw": 2.6190484155619367
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.539287992938242,
+        "nrmse": 0.7948180990149504,
+        "dtw_mm": 5.168851055212815,
+        "ndtw": 1.5522075240879323
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.2414242669849849,
+    "max_nrmse": 2.8765016924464377,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.135039624112611,
+        "nrmse": 0.451946645784034,
+        "dtw_mm": 7.438335336727811,
+        "ndtw": 0.966017576198417
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 43.15886597889745,
+        "nrmse": 1.135460825543211,
+        "dtw_mm": 10.541320112885428,
+        "ndtw": 1.1049601795477388
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.9186115105611725,
+        "nrmse": 0.9545330898314293,
+        "dtw_mm": 1.827042130850008,
+        "ndtw": 1.3050300934642916
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.56864974849148,
+        "nrmse": 2.8765016924464377,
+        "dtw_mm": 10.739985513617881,
+        "ndtw": 2.9833293093383
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.457884618300694,
+        "nrmse": 0.788679081319811,
+        "dtw_mm": 5.04584364237441,
+        "ndtw": 1.5152683610733964
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.171708241696865,
+    "max_nrmse": 2.139564655424069,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.613678331065476,
+        "nrmse": 0.4785376850591931,
+        "dtw_mm": 7.82154542928191,
+        "ndtw": 1.0157851206859623
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 6.675561669839796,
+        "nrmse": 0.1756264580331438,
+        "dtw_mm": 5.149941489115644,
+        "ndtw": 0.5398261518989145
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 3.6407405309828493,
+        "nrmse": 1.811313697006393,
+        "dtw_mm": 3.348490885824098,
+        "ndtw": 2.3917792041600703
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 12.323892415242636,
+        "nrmse": 2.139564655424069,
+        "dtw_mm": 7.952328377483312,
+        "ndtw": 2.2089801048564754
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.621392933869835,
+        "nrmse": 1.253498712961526,
+        "dtw_mm": 12.304194701705093,
+        "ndtw": 3.694953363875403
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.1887447403934888,
+    "max_nrmse": 2.593204536533066,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.10898613185597,
+        "nrmse": 0.561610340658665,
+        "dtw_mm": 9.008879384092324,
+        "ndtw": 1.1699843355964057
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.20125542930023,
+        "nrmse": 0.3210011951933763,
+        "dtw_mm": 5.2929701568477245,
+        "ndtw": 0.5548186747219838
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.9901105847470864,
+        "nrmse": 1.4876172063418343,
+        "dtw_mm": 2.804317623865774,
+        "ndtw": 2.0030840170469815
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.93685813043046,
+        "nrmse": 2.593204536533066,
+        "dtw_mm": 9.690601428989364,
+        "ndtw": 2.691833730274823
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.998651012169057,
+        "nrmse": 0.9802904232405021,
+        "dtw_mm": 8.55391900652723,
+        "ndtw": 2.568744446404574
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.217888675530673,
+    "max_nrmse": 2.695291838744411,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.865233840104024,
+        "nrmse": 0.4925129911168902,
+        "dtw_mm": 8.030032237156487,
+        "ndtw": 1.0428613295008424
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 18.767109880900552,
+        "nrmse": 0.49374138071298485,
+        "dtw_mm": 6.758461572620919,
+        "ndtw": 0.7084341271091111
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.871941803892412,
+        "nrmse": 1.4288267681056777,
+        "dtw_mm": 2.6779263527308936,
+        "ndtw": 1.912804537664924
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 15.524880991167807,
+        "nrmse": 2.695291838744411,
+        "dtw_mm": 10.051049880964486,
+        "ndtw": 2.791958300267913
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.982473490387301,
+        "nrmse": 0.9790703989734013,
+        "dtw_mm": 8.31635384607823,
+        "ndtw": 2.4974035573808497
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.3285490963206958,
+    "max_nrmse": 2.735825507857587,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.360544047964646,
+        "nrmse": 0.46447466933136927,
+        "dtw_mm": 7.634533569464547,
+        "ndtw": 0.9914978661642269
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 39.66019927598093,
+        "nrmse": 1.043414871770085,
+        "dtw_mm": 10.753389582193044,
+        "ndtw": 1.1271896836680342
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8700002333038728,
+        "nrmse": 1.4278608125889916,
+        "dtw_mm": 2.6764457098852286,
+        "ndtw": 1.9117469356323062
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 15.7583549252597,
+        "nrmse": 2.735825507857587,
+        "dtw_mm": 10.330226246252387,
+        "ndtw": 2.869507290625663
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.877709161935222,
+        "nrmse": 0.9711696200554466,
+        "dtw_mm": 8.18996096109101,
+        "ndtw": 2.4594477360633666
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.4495550599997964,
+    "max_nrmse": 2.6712244906048426,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.75161977825421,
+        "nrmse": 0.48620109879190054,
+        "dtw_mm": 7.9504618737269075,
+        "ndtw": 1.0325275160684295
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 64.36181898682706,
+        "nrmse": 1.6932864768962659,
+        "dtw_mm": 18.694267358084065,
+        "ndtw": 1.9595668090234872
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8692575096854243,
+        "nrmse": 1.4274912983509576,
+        "dtw_mm": 2.6760753118363616,
+        "ndtw": 1.9114823655974014
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 15.386253065883892,
+        "nrmse": 2.6712244906048426,
+        "dtw_mm": 10.0728141724835,
+        "ndtw": 2.7980039368009724
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.856523862807512,
+        "nrmse": 0.969571935355016,
+        "dtw_mm": 7.994176009753135,
+        "ndtw": 2.4006534563823227
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.4343948793205301,
+    "max_nrmse": 2.5913156068802405,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.16205856046168,
+        "nrmse": 0.5645588089145378,
+        "dtw_mm": 9.054642926946471,
+        "ndtw": 1.175927652850191
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.9111047058763,
+        "nrmse": 0.20813219431403054,
+        "dtw_mm": 5.485132386039298,
+        "ndtw": 0.5749614660418553
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 5.208544369829283,
+        "nrmse": 2.5913156068802405,
+        "dtw_mm": 4.7434174972899115,
+        "ndtw": 3.38815535520708
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 12.78820784607702,
+        "nrmse": 2.2201749732772607,
+        "dtw_mm": 8.269167790783573,
+        "ndtw": 2.296991052995437
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 21.054132703251867,
+        "nrmse": 1.5877928132165813,
+        "dtw_mm": 16.316246176794923,
+        "ndtw": 4.899773626665142
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.2570812289055642,
+    "max_nrmse": 2.091926301408774,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.039900103079868,
+        "nrmse": 0.502216672393326,
+        "dtw_mm": 8.181860463046922,
+        "ndtw": 1.0625792809151846
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.482415193787308,
+        "nrmse": 0.4336336541380507,
+        "dtw_mm": 7.326670329604703,
+        "ndtw": 0.7679947934596125
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.204771865831635,
+        "nrmse": 2.091926301408774,
+        "dtw_mm": 3.846811011426556,
+        "ndtw": 2.747722151018969
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 11.388538321540217,
+        "nrmse": 1.9771767919340655,
+        "dtw_mm": 7.584949978727587,
+        "ndtw": 2.106930549646552
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.9788031289068,
+        "nrmse": 1.2804527246536048,
+        "dtw_mm": 12.52089820483789,
+        "ndtw": 3.7600294909423093
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.396055846102857,
+    "max_nrmse": 2.3644226847044743,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.350886831835895,
+        "nrmse": 0.519493712879772,
+        "dtw_mm": 8.393608644961322,
+        "ndtw": 1.0900790448001716
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.000998176442334,
+        "nrmse": 0.710365645262887,
+        "dtw_mm": 9.27225929297577,
+        "ndtw": 0.9719349363706259
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.203698368267302,
+        "nrmse": 2.0913922230185586,
+        "dtw_mm": 3.8461433142317354,
+        "ndtw": 2.7472452244512398
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 13.61907466389777,
+        "nrmse": 2.3644226847044743,
+        "dtw_mm": 8.943644952811141,
+        "ndtw": 2.484345820225317
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 17.16646183124034,
+        "nrmse": 1.2946049646485929,
+        "dtw_mm": 12.53837469708191,
+        "ndtw": 3.7652776868113844
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.5593112893383538,
+    "max_nrmse": 2.3430090864536206,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.658057713589175,
+        "nrmse": 0.5365587618660652,
+        "dtw_mm": 8.661017021368297,
+        "ndtw": 1.1248074053725061
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 59.60945616588255,
+        "nrmse": 1.5682571998390569,
+        "dtw_mm": 18.660929025133672,
+        "ndtw": 1.9560722248567792
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.202221381725744,
+        "nrmse": 2.090657403843654,
+        "dtw_mm": 3.8457452653452604,
+        "ndtw": 2.746960903818043
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 13.495732337972854,
+        "nrmse": 2.3430090864536206,
+        "dtw_mm": 9.0739449582463,
+        "ndtw": 2.5205402661795273
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.682061169581083,
+        "nrmse": 1.2580739946893729,
+        "dtw_mm": 12.164495578079956,
+        "ndtw": 3.6530016750990857
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 2.8123516718191377,
+    "max_nrmse": 7.516318446172055,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.545818079325132,
+        "nrmse": 0.47476767107361845,
+        "dtw_mm": 7.7673133303154245,
+        "ndtw": 1.008741990950055
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 285.6952641389998,
+        "nrmse": 7.516318446172055,
+        "dtw_mm": 266.971537635886,
+        "ndtw": 27.98443790732558
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.201151403425139,
+        "nrmse": 2.090125076330915,
+        "dtw_mm": 3.845719930080671,
+        "ndtw": 2.7469428072004796
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 15.499008384690194,
+        "nrmse": 2.690800066786492,
+        "dtw_mm": 10.085433649590172,
+        "ndtw": 2.801509347108381
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 17.102046529194357,
+        "nrmse": 1.289747098732606,
+        "dtw_mm": 12.455323291098997,
+        "ndtw": 3.7403373246543534
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 2.040768119009398,
+    "max_nrmse": 4.281800463728995,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.244392244409381,
+        "nrmse": 0.45802179135607674,
+        "dtw_mm": 7.544267365931385,
+        "ndtw": 0.9797749825884916
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.316817978888237,
+        "nrmse": 0.3240415148352601,
+        "dtw_mm": 8.084625970965892,
+        "ndtw": 0.8474450703318546
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 8.606418932095279,
+        "nrmse": 4.281800463728995,
+        "dtw_mm": 7.685536063963149,
+        "ndtw": 5.489668617116536
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.331526388600558,
+        "nrmse": 2.4881122202431527,
+        "dtw_mm": 9.02916179445207,
+        "ndtw": 2.5081004984589086
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 35.163724660755264,
+        "nrmse": 2.651864604883504,
+        "dtw_mm": 28.677103405347086,
+        "ndtw": 8.611742764368493
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 1.8234228985448424,
+    "max_nrmse": 3.576625420288369,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.532093415790527,
+        "nrmse": 0.47400518976614037,
+        "dtw_mm": 7.78232203689342,
+        "ndtw": 1.010691173622522
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 29.63205758037943,
+        "nrmse": 0.7795858347903034,
+        "dtw_mm": 12.426731624858112,
+        "ndtw": 1.3025924135071398
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.18901709477962,
+        "nrmse": 3.576625420288369,
+        "dtw_mm": 6.284250591881774,
+        "ndtw": 4.4887504227726955
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 12.952899068936937,
+        "nrmse": 2.2487671994682183,
+        "dtw_mm": 8.544938055895065,
+        "ndtw": 2.3735939044152956
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.02561504993226,
+        "nrmse": 2.038130848411181,
+        "dtw_mm": 21.847123014298887,
+        "ndtw": 6.560697601891557
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 3.240071854646522,
+    "max_nrmse": 7.537577580967103,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.546544035703418,
+        "nrmse": 0.47480800198352324,
+        "dtw_mm": 7.799767495506993,
+        "ndtw": 1.0129568175983108
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 286.50332385255956,
+        "nrmse": 7.537577580967103,
+        "dtw_mm": 268.19258457703,
+        "ndtw": 28.11243024916457
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.188805413053751,
+        "nrmse": 3.576520105996891,
+        "dtw_mm": 6.284247189711078,
+        "ndtw": 4.48874799265077
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 14.678980070360076,
+        "nrmse": 2.5484340399930687,
+        "dtw_mm": 9.636824426362674,
+        "ndtw": 2.6768956739896317
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.355639157312226,
+        "nrmse": 2.063019544292023,
+        "dtw_mm": 22.08769277783379,
+        "ndtw": 6.632940774124261
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 3.3104726487640606,
+    "max_nrmse": 7.61600491363468,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.502236222887133,
+        "nrmse": 0.5279020123826185,
+        "dtw_mm": 8.542246957606197,
+        "ndtw": 1.1093827217670387
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 289.4843467672542,
+        "nrmse": 7.61600491363468,
+        "dtw_mm": 273.74070133132346,
+        "ndtw": 28.69399385024355
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.1860428182426155,
+        "nrmse": 3.5751456807177195,
+        "dtw_mm": 6.283090987975289,
+        "ndtw": 4.4879221342680635
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 15.853113584067907,
+        "nrmse": 2.7522766639006786,
+        "dtw_mm": 10.454079227330881,
+        "ndtw": 2.9039108964808005
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.594510484427857,
+        "nrmse": 2.0810339731846046,
+        "dtw_mm": 22.21401874308038,
+        "ndtw": 6.670876499423538
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 3.3102773178056815,
+    "max_nrmse": 7.642066916551802,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.220994469709757,
+        "nrmse": 0.4567219149838754,
+        "dtw_mm": 7.524334045974498,
+        "ndtw": 0.9771862397369477
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 290.474963498134,
+        "nrmse": 7.642066916551802,
+        "dtw_mm": 275.07871002622977,
+        "ndtw": 28.834246333986354
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.18152665013813,
+        "nrmse": 3.5728988309144927,
+        "dtw_mm": 6.280423474960629,
+        "ndtw": 4.486016767829021
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 16.073951613112108,
+        "nrmse": 2.79061659949863,
+        "dtw_mm": 10.524709611460393,
+        "ndtw": 2.9235304476278867
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.701231657075574,
+        "nrmse": 2.089082327079606,
+        "dtw_mm": 22.26537652819017,
+        "ndtw": 6.686299257714766
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 0.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 4.219995556693577,
+    "max_nrmse": 11.883996232918602,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.320165140210989,
+        "nrmse": 0.46223139667838825,
+        "dtw_mm": 7.60953355703195,
+        "ndtw": 0.9882511113028507
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 22.102062307228426,
+        "nrmse": 0.5814801975066674,
+        "dtw_mm": 13.814719062831502,
+        "ndtw": 1.4480837592066564
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.328656800444055,
+        "nrmse": 6.631172537534356,
+        "dtw_mm": 10.854415376888909,
+        "ndtw": 7.753153840634935
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 8.87672113246006,
+        "nrmse": 1.5410974188298716,
+        "dtw_mm": 5.757795972313706,
+        "ndtw": 1.5993877700871404
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 157.58179004850066,
+        "nrmse": 11.883996232918602,
+        "dtw_mm": 91.07567290283606,
+        "ndtw": 27.35005192277359
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 0.8,
+    "cone": "pyramidal",
+    "mean_nrmse": 5.235340941548526,
+    "max_nrmse": 9.598133914546855,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.308038678588028,
+        "nrmse": 0.5171132599215571,
+        "dtw_mm": 8.411390572723601,
+        "ndtw": 1.0923883860680002
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 290.3504072315537,
+        "nrmse": 7.638789982413935,
+        "dtw_mm": 275.8222814806411,
+        "ndtw": 28.912188834448756
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.32933161499497,
+        "nrmse": 6.6315082661666525,
+        "dtw_mm": 10.854940850941837,
+        "ndtw": 7.75352917924417
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 10.317077479835321,
+        "nrmse": 1.7911592846936322,
+        "dtw_mm": 6.877725893988907,
+        "ndtw": 1.9104794149969184
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 127.2712557068913,
+        "nrmse": 9.598133914546855,
+        "dtw_mm": 76.44286462667289,
+        "ndtw": 22.95581520320507
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 1.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 5.287541510034076,
+    "max_nrmse": 9.747840016854942,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.942820167402248,
+        "nrmse": 0.49682334263345823,
+        "dtw_mm": 8.134530930974726,
+        "ndtw": 1.0564325884382761
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 291.94008602791115,
+        "nrmse": 7.680612628990033,
+        "dtw_mm": 277.86020656912433,
+        "ndtw": 29.125807816470058
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.32966167119017,
+        "nrmse": 6.631672473228941,
+        "dtw_mm": 10.855188735346383,
+        "ndtw": 7.753706239533131
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 10.833172349546915,
+        "nrmse": 1.880759088463006,
+        "dtw_mm": 7.285263768837911,
+        "ndtw": 2.023684380232753
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 129.25635862349654,
+        "nrmse": 9.747840016854942,
+        "dtw_mm": 78.25481122322388,
+        "ndtw": 23.49994331027744
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 1.5,
+    "cone": "pyramidal",
+    "mean_nrmse": 5.2004961603078455,
+    "max_nrmse": 8.956860877668895,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.891070607136745,
+        "nrmse": 0.5495039226187081,
+        "dtw_mm": 8.906695897989115,
+        "ndtw": 1.1567137529855993
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 294.629007900285,
+        "nrmse": 7.751355114451066,
+        "dtw_mm": 280.8716034386082,
+        "ndtw": 29.441467865682203
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.329035189747437,
+        "nrmse": 6.631360790919123,
+        "dtw_mm": 10.854688312665472,
+        "ndtw": 7.7533487947610515
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 12.17318455227707,
+        "nrmse": 2.1134000958814356,
+        "dtw_mm": 8.205092809682231,
+        "ndtw": 2.279192447133953
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 118.76797523788954,
+        "nrmse": 8.956860877668895,
+        "dtw_mm": 72.3182717547321,
+        "ndtw": 21.717198725144772
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 2.0,
+    "cone": "pyramidal",
+    "mean_nrmse": 5.406670959442127,
+    "max_nrmse": 9.863898750359855,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.147530197820796,
+        "nrmse": 0.5637516776567109,
+        "dtw_mm": 9.113458659820536,
+        "ndtw": 1.1835660597169526
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 297.9301871367582,
+        "nrmse": 7.838205396915502,
+        "dtw_mm": 284.27458702196947,
+        "ndtw": 29.798174740248374
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.325032498031542,
+        "nrmse": 6.629369402005743,
+        "dtw_mm": 10.851657896476468,
+        "ndtw": 7.751184211768906
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 12.315626324771472,
+        "nrmse": 2.138129570272825,
+        "dtw_mm": 8.284277381318626,
+        "ndtw": 2.301188161477396
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 130.79529742977167,
+        "nrmse": 9.863898750359855,
+        "dtw_mm": 78.55078084025163,
+        "ndtw": 23.58882307515064
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.2930573966098449,
+    "max_nrmse": 3.9239846552195714,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.847653471421312,
+        "nrmse": 0.6026474150789618,
+        "dtw_mm": 9.487217356584564,
+        "ndtw": 1.2321061502057875
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.2558999362827015,
+        "nrmse": 0.19089449977065778,
+        "dtw_mm": 4.225741943419742,
+        "ndtw": 0.4429498892473524
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.038797366724823,
+        "nrmse": 1.0143270481218027,
+        "dtw_mm": 1.9577829780337672,
+        "ndtw": 1.3984164128812624
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 22.60215161406473,
+        "nrmse": 3.9239846552195714,
+        "dtw_mm": 13.83564444512268,
+        "ndtw": 3.8432345680896334
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 9.72532641802014,
+        "nrmse": 0.7334333648582307,
+        "dtw_mm": 4.786201688732532,
+        "ndtw": 1.4372978044241835
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6374962744348227,
+    "max_nrmse": 5.709355488808798,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.466656700717747,
+        "nrmse": 0.47036981670654154,
+        "dtw_mm": 7.684716355742381,
+        "ndtw": 0.9980151111353741
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.803235260169993,
+        "nrmse": 0.2842208697755852,
+        "dtw_mm": 4.401026879151489,
+        "ndtw": 0.46132357223810166
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8579350010815276,
+        "nrmse": 0.9243457716823522,
+        "dtw_mm": 1.7656312237410892,
+        "ndtw": 1.2611651598150637
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.88588761553868,
+        "nrmse": 5.709355488808798,
+        "dtw_mm": 20.78807955339978,
+        "ndtw": 5.77446654261105
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.597251778163098,
+        "nrmse": 0.799189425200837,
+        "dtw_mm": 4.979754098124913,
+        "ndtw": 1.4954216510885625
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6969682274628846,
+    "max_nrmse": 5.927497657495685,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.153750703753904,
+        "nrmse": 0.4529861502085502,
+        "dtw_mm": 7.449612344506582,
+        "ndtw": 0.9674821226631924
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.220137650909008,
+        "nrmse": 0.37411569720886634,
+        "dtw_mm": 4.658897097904892,
+        "ndtw": 0.48835399349107883
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.857523765706093,
+        "nrmse": 0.9241411769682055,
+        "dtw_mm": 1.7653727251400673,
+        "ndtw": 1.260980517957191
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.14238650717515,
+        "nrmse": 5.927497657495685,
+        "dtw_mm": 21.53535986692643,
+        "ndtw": 5.982044407479564
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.688892039043097,
+        "nrmse": 0.8061004554331144,
+        "dtw_mm": 4.987384942922857,
+        "ndtw": 1.49771319607293
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.7754617647279722,
+    "max_nrmse": 5.899412792723023,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.449927239232279,
+        "nrmse": 0.5249959577351266,
+        "dtw_mm": 8.488764155811424,
+        "ndtw": 1.1024369033521328
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.130055078243487,
+        "nrmse": 0.7137609860100892,
+        "dtw_mm": 6.532923779836495,
+        "ndtw": 0.6847928490394649
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8591071804269448,
+        "nrmse": 0.9249289454860423,
+        "dtw_mm": 1.767561888332918,
+        "ndtw": 1.2625442059520844
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 33.980617686084614,
+        "nrmse": 5.899412792723023,
+        "dtw_mm": 21.433214630968813,
+        "ndtw": 5.95367073082467
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.7964264787508,
+        "nrmse": 0.8142101416855807,
+        "dtw_mm": 5.102364952871157,
+        "ndtw": 1.532241727588936
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.002,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.8905458578494678,
+    "max_nrmse": 5.954894126200849,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 11.544802246324634,
+        "nrmse": 0.6413779025735908,
+        "dtw_mm": 10.025670933279907,
+        "ndtw": 1.3020351861402475
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 42.67404559874763,
+        "nrmse": 1.1227057510851786,
+        "dtw_mm": 10.304555670262813,
+        "ndtw": 1.0801421038011336
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8625939520527066,
+        "nrmse": 0.9266636577376651,
+        "dtw_mm": 1.7717830214251615,
+        "ndtw": 1.2655593010179726
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.30019016691689,
+        "nrmse": 5.954894126200849,
+        "dtw_mm": 21.642512695139185,
+        "ndtw": 6.011809081983107
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.701984912879713,
+        "nrmse": 0.8070878516500538,
+        "dtw_mm": 4.946069927881981,
+        "ndtw": 1.4853062846492433
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.2930573966098449,
+    "max_nrmse": 3.9239846552195714,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.847653471421312,
+        "nrmse": 0.6026474150789618,
+        "dtw_mm": 9.487217356584564,
+        "ndtw": 1.2321061502057875
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.2558999362827015,
+        "nrmse": 0.19089449977065778,
+        "dtw_mm": 4.225741943419742,
+        "ndtw": 0.4429498892473524
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.038797366724823,
+        "nrmse": 1.0143270481218027,
+        "dtw_mm": 1.9577829780337672,
+        "ndtw": 1.3984164128812624
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 22.60215161406473,
+        "nrmse": 3.9239846552195714,
+        "dtw_mm": 13.83564444512268,
+        "ndtw": 3.8432345680896334
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 9.72532641802014,
+        "nrmse": 0.7334333648582307,
+        "dtw_mm": 4.786201688732532,
+        "ndtw": 1.4372978044241835
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6374962744348227,
+    "max_nrmse": 5.709355488808798,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.466656700717747,
+        "nrmse": 0.47036981670654154,
+        "dtw_mm": 7.684716355742381,
+        "ndtw": 0.9980151111353741
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.803235260169993,
+        "nrmse": 0.2842208697755852,
+        "dtw_mm": 4.401026879151489,
+        "ndtw": 0.46132357223810166
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8579350010815276,
+        "nrmse": 0.9243457716823522,
+        "dtw_mm": 1.7656312237410892,
+        "ndtw": 1.2611651598150637
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.88588761553868,
+        "nrmse": 5.709355488808798,
+        "dtw_mm": 20.78807955339978,
+        "ndtw": 5.77446654261105
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.597251778163098,
+        "nrmse": 0.799189425200837,
+        "dtw_mm": 4.979754098124913,
+        "ndtw": 1.4954216510885625
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6969682274628846,
+    "max_nrmse": 5.927497657495685,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.153750703753904,
+        "nrmse": 0.4529861502085502,
+        "dtw_mm": 7.449612344506582,
+        "ndtw": 0.9674821226631924
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.220137650909008,
+        "nrmse": 0.37411569720886634,
+        "dtw_mm": 4.658897097904892,
+        "ndtw": 0.48835399349107883
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.857523765706093,
+        "nrmse": 0.9241411769682055,
+        "dtw_mm": 1.7653727251400673,
+        "ndtw": 1.260980517957191
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.14238650717515,
+        "nrmse": 5.927497657495685,
+        "dtw_mm": 21.53535986692643,
+        "ndtw": 5.982044407479564
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.688892039043097,
+        "nrmse": 0.8061004554331144,
+        "dtw_mm": 4.987384942922857,
+        "ndtw": 1.49771319607293
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.7754617647279722,
+    "max_nrmse": 5.899412792723023,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.449927239232279,
+        "nrmse": 0.5249959577351266,
+        "dtw_mm": 8.488764155811424,
+        "ndtw": 1.1024369033521328
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.130055078243487,
+        "nrmse": 0.7137609860100892,
+        "dtw_mm": 6.532923779836495,
+        "ndtw": 0.6847928490394649
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8591071804269448,
+        "nrmse": 0.9249289454860423,
+        "dtw_mm": 1.767561888332918,
+        "ndtw": 1.2625442059520844
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 33.980617686084614,
+        "nrmse": 5.899412792723023,
+        "dtw_mm": 21.433214630968813,
+        "ndtw": 5.95367073082467
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.7964264787508,
+        "nrmse": 0.8142101416855807,
+        "dtw_mm": 5.102364952871157,
+        "ndtw": 1.532241727588936
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.004,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.8905458578494678,
+    "max_nrmse": 5.954894126200849,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 11.544802246324634,
+        "nrmse": 0.6413779025735908,
+        "dtw_mm": 10.025670933279907,
+        "ndtw": 1.3020351861402475
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 42.67404559874763,
+        "nrmse": 1.1227057510851786,
+        "dtw_mm": 10.304555670262813,
+        "ndtw": 1.0801421038011336
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8625939520527066,
+        "nrmse": 0.9266636577376651,
+        "dtw_mm": 1.7717830214251615,
+        "ndtw": 1.2655593010179726
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.30019016691689,
+        "nrmse": 5.954894126200849,
+        "dtw_mm": 21.642512695139185,
+        "ndtw": 6.011809081983107
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.701984912879713,
+        "nrmse": 0.8070878516500538,
+        "dtw_mm": 4.946069927881981,
+        "ndtw": 1.4853062846492433
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.2930573966098449,
+    "max_nrmse": 3.9239846552195714,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.847653471421312,
+        "nrmse": 0.6026474150789618,
+        "dtw_mm": 9.487217356584564,
+        "ndtw": 1.2321061502057875
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.2558999362827015,
+        "nrmse": 0.19089449977065778,
+        "dtw_mm": 4.225741943419742,
+        "ndtw": 0.4429498892473524
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.038797366724823,
+        "nrmse": 1.0143270481218027,
+        "dtw_mm": 1.9577829780337672,
+        "ndtw": 1.3984164128812624
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 22.60215161406473,
+        "nrmse": 3.9239846552195714,
+        "dtw_mm": 13.83564444512268,
+        "ndtw": 3.8432345680896334
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 9.72532641802014,
+        "nrmse": 0.7334333648582307,
+        "dtw_mm": 4.786201688732532,
+        "ndtw": 1.4372978044241835
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6374962744348227,
+    "max_nrmse": 5.709355488808798,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.466656700717747,
+        "nrmse": 0.47036981670654154,
+        "dtw_mm": 7.684716355742381,
+        "ndtw": 0.9980151111353741
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.803235260169993,
+        "nrmse": 0.2842208697755852,
+        "dtw_mm": 4.401026879151489,
+        "ndtw": 0.46132357223810166
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8579350010815276,
+        "nrmse": 0.9243457716823522,
+        "dtw_mm": 1.7656312237410892,
+        "ndtw": 1.2611651598150637
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.88588761553868,
+        "nrmse": 5.709355488808798,
+        "dtw_mm": 20.78807955339978,
+        "ndtw": 5.77446654261105
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.597251778163098,
+        "nrmse": 0.799189425200837,
+        "dtw_mm": 4.979754098124913,
+        "ndtw": 1.4954216510885625
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6969682274628846,
+    "max_nrmse": 5.927497657495685,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.153750703753904,
+        "nrmse": 0.4529861502085502,
+        "dtw_mm": 7.449612344506582,
+        "ndtw": 0.9674821226631924
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.220137650909008,
+        "nrmse": 0.37411569720886634,
+        "dtw_mm": 4.658897097904892,
+        "ndtw": 0.48835399349107883
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.857523765706093,
+        "nrmse": 0.9241411769682055,
+        "dtw_mm": 1.7653727251400673,
+        "ndtw": 1.260980517957191
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.14238650717515,
+        "nrmse": 5.927497657495685,
+        "dtw_mm": 21.53535986692643,
+        "ndtw": 5.982044407479564
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.688892039043097,
+        "nrmse": 0.8061004554331144,
+        "dtw_mm": 4.987384942922857,
+        "ndtw": 1.49771319607293
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.7754617647279722,
+    "max_nrmse": 5.899412792723023,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.449927239232279,
+        "nrmse": 0.5249959577351266,
+        "dtw_mm": 8.488764155811424,
+        "ndtw": 1.1024369033521328
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.130055078243487,
+        "nrmse": 0.7137609860100892,
+        "dtw_mm": 6.532923779836495,
+        "ndtw": 0.6847928490394649
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8591071804269448,
+        "nrmse": 0.9249289454860423,
+        "dtw_mm": 1.767561888332918,
+        "ndtw": 1.2625442059520844
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 33.980617686084614,
+        "nrmse": 5.899412792723023,
+        "dtw_mm": 21.433214630968813,
+        "ndtw": 5.95367073082467
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.7964264787508,
+        "nrmse": 0.8142101416855807,
+        "dtw_mm": 5.102364952871157,
+        "ndtw": 1.532241727588936
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.006,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.8905458578494678,
+    "max_nrmse": 5.954894126200849,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 11.544802246324634,
+        "nrmse": 0.6413779025735908,
+        "dtw_mm": 10.025670933279907,
+        "ndtw": 1.3020351861402475
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 42.67404559874763,
+        "nrmse": 1.1227057510851786,
+        "dtw_mm": 10.304555670262813,
+        "ndtw": 1.0801421038011336
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8625939520527066,
+        "nrmse": 0.9266636577376651,
+        "dtw_mm": 1.7717830214251615,
+        "ndtw": 1.2655593010179726
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.30019016691689,
+        "nrmse": 5.954894126200849,
+        "dtw_mm": 21.642512695139185,
+        "ndtw": 6.011809081983107
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.701984912879713,
+        "nrmse": 0.8070878516500538,
+        "dtw_mm": 4.946069927881981,
+        "ndtw": 1.4853062846492433
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.2930573966098449,
+    "max_nrmse": 3.9239846552195714,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.847653471421312,
+        "nrmse": 0.6026474150789618,
+        "dtw_mm": 9.487217356584564,
+        "ndtw": 1.2321061502057875
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.2558999362827015,
+        "nrmse": 0.19089449977065778,
+        "dtw_mm": 4.225741943419742,
+        "ndtw": 0.4429498892473524
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.038797366724823,
+        "nrmse": 1.0143270481218027,
+        "dtw_mm": 1.9577829780337672,
+        "ndtw": 1.3984164128812624
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 22.60215161406473,
+        "nrmse": 3.9239846552195714,
+        "dtw_mm": 13.83564444512268,
+        "ndtw": 3.8432345680896334
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 9.72532641802014,
+        "nrmse": 0.7334333648582307,
+        "dtw_mm": 4.786201688732532,
+        "ndtw": 1.4372978044241835
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6374962744348227,
+    "max_nrmse": 5.709355488808798,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.466656700717747,
+        "nrmse": 0.47036981670654154,
+        "dtw_mm": 7.684716355742381,
+        "ndtw": 0.9980151111353741
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.803235260169993,
+        "nrmse": 0.2842208697755852,
+        "dtw_mm": 4.401026879151489,
+        "ndtw": 0.46132357223810166
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8579350010815276,
+        "nrmse": 0.9243457716823522,
+        "dtw_mm": 1.7656312237410892,
+        "ndtw": 1.2611651598150637
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.88588761553868,
+        "nrmse": 5.709355488808798,
+        "dtw_mm": 20.78807955339978,
+        "ndtw": 5.77446654261105
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.597251778163098,
+        "nrmse": 0.799189425200837,
+        "dtw_mm": 4.979754098124913,
+        "ndtw": 1.4954216510885625
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6969682274628846,
+    "max_nrmse": 5.927497657495685,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.153750703753904,
+        "nrmse": 0.4529861502085502,
+        "dtw_mm": 7.449612344506582,
+        "ndtw": 0.9674821226631924
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 14.220137650909008,
+        "nrmse": 0.37411569720886634,
+        "dtw_mm": 4.658897097904892,
+        "ndtw": 0.48835399349107883
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.857523765706093,
+        "nrmse": 0.9241411769682055,
+        "dtw_mm": 1.7653727251400673,
+        "ndtw": 1.260980517957191
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.14238650717515,
+        "nrmse": 5.927497657495685,
+        "dtw_mm": 21.53535986692643,
+        "ndtw": 5.982044407479564
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.688892039043097,
+        "nrmse": 0.8061004554331144,
+        "dtw_mm": 4.987384942922857,
+        "ndtw": 1.49771319607293
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.7754617647279722,
+    "max_nrmse": 5.899412792723023,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.449927239232279,
+        "nrmse": 0.5249959577351266,
+        "dtw_mm": 8.488764155811424,
+        "ndtw": 1.1024369033521328
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 27.130055078243487,
+        "nrmse": 0.7137609860100892,
+        "dtw_mm": 6.532923779836495,
+        "ndtw": 0.6847928490394649
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8591071804269448,
+        "nrmse": 0.9249289454860423,
+        "dtw_mm": 1.767561888332918,
+        "ndtw": 1.2625442059520844
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 33.980617686084614,
+        "nrmse": 5.899412792723023,
+        "dtw_mm": 21.433214630968813,
+        "ndtw": 5.95367073082467
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.7964264787508,
+        "nrmse": 0.8142101416855807,
+        "dtw_mm": 5.102364952871157,
+        "ndtw": 1.532241727588936
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.01,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.8905458578494678,
+    "max_nrmse": 5.954894126200849,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 11.544802246324634,
+        "nrmse": 0.6413779025735908,
+        "dtw_mm": 10.025670933279907,
+        "ndtw": 1.3020351861402475
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 42.67404559874763,
+        "nrmse": 1.1227057510851786,
+        "dtw_mm": 10.304555670262813,
+        "ndtw": 1.0801421038011336
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 1.8625939520527066,
+        "nrmse": 0.9266636577376651,
+        "dtw_mm": 1.7717830214251615,
+        "ndtw": 1.2655593010179726
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 34.30019016691689,
+        "nrmse": 5.954894126200849,
+        "dtw_mm": 21.642512695139185,
+        "ndtw": 6.011809081983107
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 10.701984912879713,
+        "nrmse": 0.8070878516500538,
+        "dtw_mm": 4.946069927881981,
+        "ndtw": 1.4853062846492433
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.472460578344077,
+    "max_nrmse": 4.209121549323363,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.66455831779322,
+        "nrmse": 0.5369199065440678,
+        "dtw_mm": 8.686790285836013,
+        "ndtw": 1.1281545825761055
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 6.516968055444299,
+        "nrmse": 0.17145403986962113,
+        "dtw_mm": 5.048742782731704,
+        "ndtw": 0.5292183210410591
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8577513585286214,
+        "nrmse": 1.4217668450391152,
+        "dtw_mm": 2.6798633118809705,
+        "ndtw": 1.914188079914979
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 24.24454012410257,
+        "nrmse": 4.209121549323363,
+        "dtw_mm": 15.006300681248,
+        "ndtw": 4.168416855902222
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 13.565517705520312,
+        "nrmse": 1.0230405509442166,
+        "dtw_mm": 8.517006144249903,
+        "ndtw": 2.5576595027777485
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.7739436912953663,
+    "max_nrmse": 5.6625561900733015,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.589779089503438,
+        "nrmse": 0.5327655049724132,
+        "dtw_mm": 8.596382363439215,
+        "ndtw": 1.1164132939531448
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 11.983985194794379,
+        "nrmse": 0.3152850616888813,
+        "dtw_mm": 5.151935520542667,
+        "ndtw": 0.5400351698682041
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8121091839739445,
+        "nrmse": 1.3990592955094252,
+        "dtw_mm": 2.6164082746876125,
+        "ndtw": 1.8688630533482948
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.61632365482222,
+        "nrmse": 5.6625561900733015,
+        "dtw_mm": 20.547119334330272,
+        "ndtw": 5.7075331484250755
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.730294880127076,
+        "nrmse": 0.9600524042328111,
+        "dtw_mm": 7.800939073475104,
+        "ndtw": 2.34262434638892
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.8093736408420658,
+    "max_nrmse": 5.619348829884173,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.25431030819798,
+        "nrmse": 0.5696839060109988,
+        "dtw_mm": 9.11301182949158,
+        "ndtw": 1.1835080298041012
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 18.395434146688775,
+        "nrmse": 0.4839630135934958,
+        "dtw_mm": 6.550735950501282,
+        "ndtw": 0.686659952882734
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8120782078255786,
+        "nrmse": 1.3990438844903377,
+        "dtw_mm": 2.6168463361594982,
+        "ndtw": 1.8691759543996418
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.36744926013284,
+        "nrmse": 5.619348829884173,
+        "dtw_mm": 20.347602055272375,
+        "ndtw": 5.652111682020104
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.926226841267335,
+        "nrmse": 0.9748285702313224,
+        "dtw_mm": 7.7926698711199185,
+        "ndtw": 2.340141102438414
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.9223997051623372,
+    "max_nrmse": 5.671909647477674,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.723452467879174,
+        "nrmse": 0.5401918037710652,
+        "dtw_mm": 8.730329561338193,
+        "ndtw": 1.133809033940025
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 39.187560895110764,
+        "nrmse": 1.0309802918997835,
+        "dtw_mm": 10.48623418623409,
+        "ndtw": 1.0991859733998
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.8144031946739605,
+        "nrmse": 1.4002005943651545,
+        "dtw_mm": 2.621041823300938,
+        "ndtw": 1.8721727309292415
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 32.6701995694714,
+        "nrmse": 5.671909647477674,
+        "dtw_mm": 20.448322300277916,
+        "ndtw": 5.680089527854976
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.845176656831596,
+        "nrmse": 0.9687161882980088,
+        "dtw_mm": 7.815696547229663,
+        "ndtw": 2.347056020189088
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.015,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 2.064524250261891,
+    "max_nrmse": 5.741386413511859,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.31464821700117,
+        "nrmse": 0.517480456500065,
+        "dtw_mm": 8.360384962540694,
+        "ndtw": 1.0857642808494408
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 63.915262459507446,
+        "nrmse": 1.6815380810183491,
+        "dtw_mm": 18.423478262653454,
+        "ndtw": 1.9311822078253098
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 2.818740510244763,
+        "nrmse": 1.4023584628083399,
+        "dtw_mm": 2.628073873406439,
+        "ndtw": 1.8771956238617422
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 33.070385741828304,
+        "nrmse": 5.741386413511859,
+        "dtw_mm": 20.74114264523948,
+        "ndtw": 5.761428512566522
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.992914924863333,
+        "nrmse": 0.9798578374708397,
+        "dtw_mm": 7.842161610609804,
+        "ndtw": 2.355003486669611
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 1.6480984049886913,
+    "max_nrmse": 4.322837282959255,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.477907198956364,
+        "nrmse": 0.47099484438646466,
+        "dtw_mm": 7.715451956485077,
+        "ndtw": 1.0020067475954646
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 7.693349549040036,
+        "nrmse": 0.2024033030528818,
+        "dtw_mm": 5.277818897243081,
+        "ndtw": 0.5532304923734885
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.079558418428498,
+        "nrmse": 2.0296310539445264,
+        "dtw_mm": 3.7381237383664785,
+        "ndtw": 2.6700883845474848
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 24.89954274984531,
+        "nrmse": 4.322837282959255,
+        "dtw_mm": 15.059877008224495,
+        "ndtw": 4.183299168951248
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.10593466836036,
+        "nrmse": 1.2146255406003288,
+        "dtw_mm": 12.033041233366161,
+        "ndtw": 3.613525895905754
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 1.9379416059063896,
+    "max_nrmse": 5.46160914274361,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.407047910386899,
+        "nrmse": 0.5226137727992721,
+        "dtw_mm": 8.483589482861687,
+        "ndtw": 1.1017648679041152
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.188098581769278,
+        "nrmse": 0.42589051780503234,
+        "dtw_mm": 6.992747750971882,
+        "ndtw": 0.7329924267266124
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.068470042449494,
+        "nrmse": 2.024114448979848,
+        "dtw_mm": 3.723776515555434,
+        "ndtw": 2.6598403682538816
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 31.458868662203194,
+        "nrmse": 5.46160914274361,
+        "dtw_mm": 19.51464920366541,
+        "ndtw": 5.420735889907058
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.64766675192749,
+        "nrmse": 1.2554801472041848,
+        "dtw_mm": 12.066805750396627,
+        "ndtw": 3.6236653905094975
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 1.9865358372208206,
+    "max_nrmse": 5.380957241833215,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.019816839873213,
+        "nrmse": 0.5566564911040675,
+        "dtw_mm": 8.970887591493296,
+        "ndtw": 1.1650503365575708
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.65323253256567,
+        "nrmse": 0.7012163255081735,
+        "dtw_mm": 8.971752719761783,
+        "ndtw": 0.940435295572514
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.068664195051629,
+        "nrmse": 2.0242110423142434,
+        "dtw_mm": 3.7241220203072705,
+        "ndtw": 2.6600871573623364
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 30.99431371295932,
+        "nrmse": 5.380957241833215,
+        "dtw_mm": 19.17428901113565,
+        "ndtw": 5.326191391982125
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.83540101166679,
+        "nrmse": 1.2696380853444034,
+        "dtw_mm": 12.136642223099985,
+        "ndtw": 3.6446373042342297
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 2.166892672133118,
+    "max_nrmse": 5.504178682559851,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.806623644420341,
+        "nrmse": 0.4892568691344634,
+        "dtw_mm": 8.002868973152971,
+        "ndtw": 1.039333632877009
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 59.05813249020719,
+        "nrmse": 1.5537524990846407,
+        "dtw_mm": 18.53195293845112,
+        "ndtw": 1.9425527189152119
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.069499273979834,
+        "nrmse": 2.0246265044675793,
+        "dtw_mm": 3.7270527261088673,
+        "ndtw": 2.662180518649191
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 31.70406921154474,
+        "nrmse": 5.504178682559851,
+        "dtw_mm": 19.661846133427154,
+        "ndtw": 5.461623925951987
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.742723159856688,
+        "nrmse": 1.2626488054190563,
+        "dtw_mm": 11.989910144138959,
+        "ndtw": 3.6005736168585463
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.02,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 3.373039415903836,
+    "max_nrmse": 7.526305942648216,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.693984044401422,
+        "nrmse": 0.5385546691334123,
+        "dtw_mm": 8.702833408827724,
+        "ndtw": 1.1302381050425614
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 286.07488888005867,
+        "nrmse": 7.526305942648216,
+        "dtw_mm": 267.3508162664016,
+        "ndtw": 28.024194577190944
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 4.068581939089237,
+        "nrmse": 2.0241701189498693,
+        "dtw_mm": 3.7304985104043715,
+        "ndtw": 2.66464179314598
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 31.7679842436348,
+        "nrmse": 5.515275042297708,
+        "dtw_mm": 19.739246857271002,
+        "ndtw": 5.483124127019723
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 16.719418724057032,
+        "nrmse": 1.2608913064899723,
+        "dtw_mm": 11.97528501864093,
+        "ndtw": 3.5961816872795587
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 2.251910188498122,
+    "max_nrmse": 4.8954038503918405,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.812569439364474,
+        "nrmse": 0.5451427466313596,
+        "dtw_mm": 8.844530603082244,
+        "ndtw": 1.148640338062629
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 12.115410066155693,
+        "nrmse": 0.3187427010301419,
+        "dtw_mm": 7.724380705684728,
+        "ndtw": 0.8096835121262818
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.022987317295366,
+        "nrmse": 3.4940235409429685,
+        "dtw_mm": 6.22330732952085,
+        "ndtw": 4.4452195210863215
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 28.197526178257,
+        "nrmse": 4.8954038503918405,
+        "dtw_mm": 17.260957346411796,
+        "ndtw": 4.794710374003277
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.602717252334404,
+        "nrmse": 2.006238103494299,
+        "dtw_mm": 21.412060829749514,
+        "ndtw": 6.4300482972220765
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 2.3486537337137223,
+    "max_nrmse": 4.942435726721956,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.368832672705425,
+        "nrmse": 0.5204907040391903,
+        "dtw_mm": 8.429347080940596,
+        "ndtw": 1.0947204001221553
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 29.256085292922968,
+        "nrmse": 0.7696944302268606,
+        "dtw_mm": 12.054205117032392,
+        "ndtw": 1.2635435133157644
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.022890681553109,
+        "nrmse": 3.493975463459259,
+        "dtw_mm": 6.224961689844654,
+        "ndtw": 4.4464012070318955
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 28.468429785918467,
+        "nrmse": 4.942435726721956,
+        "dtw_mm": 17.376973764214725,
+        "ndtw": 4.826937156726312
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.74107528304905,
+        "nrmse": 2.0166723441213463,
+        "dtw_mm": 21.33092780182507,
+        "ndtw": 6.405684024572093
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 3.698188181996909,
+    "max_nrmse": 7.545375149020678,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.988733166607645,
+        "nrmse": 0.49937406481153584,
+        "dtw_mm": 8.173359342365758,
+        "ndtw": 1.0614752392682802
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 286.799709414276,
+        "nrmse": 7.545375149020678,
+        "dtw_mm": 268.4832307854899,
+        "ndtw": 28.142896308751567
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.019978797601374,
+        "nrmse": 3.4925267649758087,
+        "dtw_mm": 6.224385775689719,
+        "ndtw": 4.445989839778371
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 28.445597235908437,
+        "nrmse": 4.938471742345215,
+        "dtw_mm": 17.36069582574847,
+        "ndtw": 4.8224155071523525
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.721461683903165,
+        "nrmse": 2.0151931888313097,
+        "dtw_mm": 21.324821968840922,
+        "ndtw": 6.40385044109337
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 3.753948279397116,
+    "max_nrmse": 7.628003199079883,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.85122743177876,
+        "nrmse": 0.6028459684321533,
+        "dtw_mm": 9.685021394072303,
+        "ndtw": 1.257794986243156
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 289.9404015970263,
+        "nrmse": 7.628003199079883,
+        "dtw_mm": 274.19643115691184,
+        "ndtw": 28.741764272212983
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 7.000666651326527,
+        "nrmse": 3.4829187320032475,
+        "dtw_mm": 6.214553314685504,
+        "ndtw": 4.438966653346789
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 29.042759348125454,
+        "nrmse": 5.042145720160669,
+        "dtw_mm": 17.842447739794558,
+        "ndtw": 4.956235483276266
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.703356327125693,
+        "nrmse": 2.01382777730963,
+        "dtw_mm": 21.229995648669718,
+        "ndtw": 6.375374068669585
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.03,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 3.730317525669302,
+    "max_nrmse": 7.6599269231661085,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.539560410139314,
+        "nrmse": 0.4744200227855175,
+        "dtw_mm": 7.788590774675848,
+        "ndtw": 1.0115052954124477
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 291.15382234954376,
+        "nrmse": 7.6599269231661085,
+        "dtw_mm": 275.74763061215884,
+        "ndtw": 28.90436379582378
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 6.979869918953015,
+        "nrmse": 3.4725720989816,
+        "dtw_mm": 6.203931916611165,
+        "ndtw": 4.431379940436546
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 29.033299871449763,
+        "nrmse": 5.040503449904473,
+        "dtw_mm": 17.835636486551724,
+        "ndtw": 4.95434346848659
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 26.575229670326873,
+        "nrmse": 2.004165133508814,
+        "dtw_mm": 21.122541499462493,
+        "ndtw": 6.343105555394142
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 0.5,
+    "cone": "elliptic",
+    "mean_nrmse": 3.8767061138025105,
+    "max_nrmse": 7.927765400888504,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 9.686551629532397,
+        "nrmse": 0.5381417571962444,
+        "dtw_mm": 8.710672021323584,
+        "ndtw": 1.1312561066654003
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 21.91751041473711,
+        "nrmse": 0.57662484648085,
+        "dtw_mm": 13.637106905192343,
+        "ndtw": 1.4294661326197426
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.271683785964854,
+        "nrmse": 6.60282775421137,
+        "dtw_mm": 10.815654882977991,
+        "ndtw": 7.7254677735557085
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 21.531863866956968,
+        "nrmse": 3.738170810235585,
+        "dtw_mm": 13.147986664361751,
+        "ndtw": 3.6522185178782642
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 105.12216921578155,
+        "nrmse": 7.927765400888504,
+        "dtw_mm": 63.94931555608151,
+        "ndtw": 19.20399866548994
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 0.8,
+    "cone": "elliptic",
+    "mean_nrmse": 5.2778091002245375,
+    "max_nrmse": 7.747356442239704,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 11.352947449514424,
+        "nrmse": 0.6307193027508013,
+        "dtw_mm": 10.048027900766845,
+        "ndtw": 1.3049386884112786
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 290.93687382688455,
+        "nrmse": 7.654219253535506,
+        "dtw_mm": 276.3775433956089,
+        "ndtw": 28.970392389476824
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.232904489185678,
+        "nrmse": 6.583534571734169,
+        "dtw_mm": 10.789119646679604,
+        "ndtw": 7.706514033342574
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 21.733723761768054,
+        "nrmse": 3.7732159308625097,
+        "dtw_mm": 13.28668754222879,
+        "ndtw": 3.6907465395079972
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 102.72994642409847,
+        "nrmse": 7.747356442239704,
+        "dtw_mm": 63.10993116729448,
+        "ndtw": 18.95193128146981
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 1.0,
+    "cone": "elliptic",
+    "mean_nrmse": 5.289710175895804,
+    "max_nrmse": 7.823538825906131,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.479756298318911,
+        "nrmse": 0.5822086832399395,
+        "dtw_mm": 9.370573316947004,
+        "ndtw": 1.216957573629481
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 292.46104391287935,
+        "nrmse": 7.694318440223082,
+        "dtw_mm": 278.37748390716285,
+        "ndtw": 29.18002975966068
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.191181210791267,
+        "nrmse": 6.562776721786701,
+        "dtw_mm": 10.758887445317361,
+        "ndtw": 7.684919603798115
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 21.80567927994144,
+        "nrmse": 3.785708208323167,
+        "dtw_mm": 13.35531862678718,
+        "ndtw": 3.7098107296631055
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 103.7401248315153,
+        "nrmse": 7.823538825906131,
+        "dtw_mm": 63.20989854000769,
+        "ndtw": 18.981951513515824
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 1.5,
+    "cone": "elliptic",
+    "mean_nrmse": 5.28741986810649,
+    "max_nrmse": 7.853357838595953,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 8.698446759738697,
+        "nrmse": 0.4832470422077054,
+        "dtw_mm": 7.934110246121718,
+        "ndtw": 1.0304039280677555
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 295.66085290380494,
+        "nrmse": 7.778501786472112,
+        "dtw_mm": 281.8769425610764,
+        "ndtw": 29.546849325060425
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.126669772964489,
+        "nrmse": 6.530681479086811,
+        "dtw_mm": 10.716943231493198,
+        "ndtw": 7.654959451066571
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 21.837952478418455,
+        "nrmse": 3.7913111941698707,
+        "dtw_mm": 14.212797886583019,
+        "ndtw": 3.947999412939727
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 104.13552493978233,
+        "nrmse": 7.853357838595953,
+        "dtw_mm": 63.085778276117736,
+        "ndtw": 18.944678160996318
+      }
+    ]
+  },
+  {
+    "engine": "mujoco",
+    "tref_s": 0.05,
+    "dampratio": 2.0,
+    "cone": "elliptic",
+    "mean_nrmse": 5.3144370987981855,
+    "max_nrmse": 7.887431500115897,
+    "cases": [
+      {
+        "family": "slope slider",
+        "subtask": "task-2",
+        "material": "wood",
+        "rmse_mm": 10.625194320063377,
+        "nrmse": 0.5902885733368542,
+        "dtw_mm": 9.53506721726203,
+        "ndtw": 1.2383204178262377
+      },
+      {
+        "family": "slope slider",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 299.80127131940526,
+        "nrmse": 7.887431500115897,
+        "dtw_mm": 286.0517365655347,
+        "ndtw": 29.984458759490014
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-1",
+        "material": "wood",
+        "rmse_mm": 13.162725591471665,
+        "nrmse": 6.548619697249585,
+        "dtw_mm": 10.763027047589532,
+        "ndtw": 7.687876462563952
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-2",
+        "material": "metal",
+        "rmse_mm": 21.8181004995788,
+        "nrmse": 3.787864670065764,
+        "dtw_mm": 14.222718523459356,
+        "ndtw": 3.9507551454053766
+      },
+      {
+        "family": "turntable",
+        "subtask": "task-3",
+        "material": "metal",
+        "rmse_mm": 102.8708287657347,
+        "nrmse": 7.757981053222828,
+        "dtw_mm": 62.67145801934505,
+        "ndtw": 18.820257663466982
+      }
+    ]
+  }
+]
