@@ -282,6 +282,20 @@ MuJoCo (`dt=0.25 ms, solref=1 ms`); Clip 27 replays native SAP/Warp pose traces
 (`exp-results/thin-shape-video/`, `dt=0.5 ms, drake, ke=1e5 N/m, tau=3 ms, rigid_gap=0.1 mm`)
 without re-simulating SAP dynamics.
 
+### 28 & 29. Shared-CoACD round socket: entered & credible versus entered but not credible
+
+Videos:
+- [28_mujoco_round_socket_credible_vs_not.mp4](../exp-results/site-video-demos/28_mujoco_round_socket_credible_vs_not.mp4)
+- [29_sap_round_socket_credible_vs_not.mp4](../exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4)
+
+Both clips show the 2-mm-clearance, 1-mm-offset, 1-degree-tilt shared 32-piece
+CoACD round socket over 2.0 s. In both clips, the left and right panes
+physically enter the socket and settle near `z=38.1–38.3 mm`, illustrating why
+final pose (`entered`) is not sufficient without the `p_max <= 0.1c = 0.200 mm`
+overlap screen:
+- Clip 28 (MuJoCo): `run_id=1` (`dt=0.25 ms, solref=0.75 ms, d0=0.70`, `p_max=0.056 mm <= 0.200 mm`, credible) versus `run_id=7` (`dt=0.25 ms, solref=4.0 ms, d0=0.70`, `p_max=1.349 mm > 0.200 mm`, entered but not credible).
+- Clip 29 (SAP/Warp offline pose + telemetry replay): `run_id=4` (`dt=0.25 ms, k_pair=1e4 N/m, tau_pair=3 ms, rigid_gap=0.1 mm, drake`, `p_max=0.061 mm <= 0.200 mm`, credible) versus `run_id=8` (`dt=0.25 ms, k_pair=1e5 N/m, tau_pair=3 ms, rigid_gap=0.1 mm, drake`, `p_max=5.384 mm > 0.200 mm`, entered but not credible).
+
 ## Validation performed for generated clips
 
 - Both source files existed locally and were decoded by `ffmpeg`.

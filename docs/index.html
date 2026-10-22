@@ -325,11 +325,31 @@
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/28_mujoco_round_socket_credible_vs_not.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>MuJoCo shared-CoACD (<code>c=2 mm, x=1 mm, 1°</code>): entered &amp; credible versus entered but not credible.</strong> Both configurations physically enter the socket and settle near <code>z≈38.1–38.2 mm</code>. Only <code>solref</code> time constant changes: <code>0.75 ms</code> keeps peak overlap at <code>p<sub>max</sub>=0.056 mm &le; 0.1c</code> (credible), whereas <code>4.0 ms</code> reaches <code>p<sub>max</sub>=1.349 mm &gt; 0.1c</code> during entry (fails screen).</p>
+              <p class="video-note">This illustrates why final pose/depth alone (“entered”) is insufficient without the <code>p<sub>max</sub> &le; 0.1c</code> overlap screen. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/28_mujoco_round_socket_credible_vs_not.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <p><strong>SAP/Warp shared-CoACD (<code>c=2 mm, x=1 mm, 1°</code>): entered &amp; credible versus entered but not credible.</strong> Both panes replay native SAP/Warp trajectories at <code>dt=0.25 ms, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code>. Both enter and settle near <code>z≈38.3 mm</code> with near-zero final overlap, but <code>k<sub>pair</sub>=1e4 N/m</code> stays at <code>p<sub>max</sub>=0.061 mm &le; 0.1c</code> (credible) while <code>k<sub>pair</sub>=1e5 N/m</code> experiences a transient <code>p<sub>max</sub>=5.384 mm</code> overlap spike during entry.</p>
+              <p class="video-note">Offline pose and telemetry replay from native SAP/Warp traces; MuJoCo is used only as the visual renderer. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/09_round_socket_coacd_attempt.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: shared-CoACD round-socket attempt.</strong> Both panes use the shared 32-piece CoACD representation; MuJoCo is native and SAP/Warp is rendered from its recorded pose trace.</p>
-              <p class="video-note">This is not the full 25-case matrix verdict or an engine-best ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/09_round_socket_coacd_attempt.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+              <p><strong>Video: initial untuned shared-CoACD attempt.</strong> At the initial untuned SAP setting (<code>rigid_gap=1 mm, dt=0.5 ms</code>), SAP is deflected at the rim while MuJoCo (<code>solref=1 ms, dt=0.5 ms</code>) enters.</p>
+              <p class="video-note">Retained as the pre-tuning baseline control showing the effect of an oversized 1-mm activation gap. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/09_round_socket_coacd_attempt.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>
