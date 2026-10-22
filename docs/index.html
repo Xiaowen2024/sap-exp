@@ -208,21 +208,18 @@
 
         <section id="impact" class="subsection">
           <h3>3.1 Impact and restitution</h3>
-          <p>Both engines were independently calibrated to:</p>
-          <div class="equation">e<sub>eff</sub> = 0.8</div>
-          <p>at one reference impact condition.</p>
-          <p>After calibration, both transferred restitution very well across incident speed. Their timestep transfer differed substantially at the same absolute timestep: MuJoCo retained approximately the calibrated restitution, whereas SAP/Warp became increasingly dissipative as timestep increased.</p>
-          <p>However, the measured contact duration also differed substantially:</p>
-          <div class="equation">t<sub>c,MJ</sub> ≈ 3.3 t<sub>c,SAP</sub></div>
-          <p>Therefore the same absolute timestep gives SAP/Warp significantly fewer integration steps per contact event.</p>
-          <blockquote class="result-quote">MuJoCo preserves calibrated restitution over a wider absolute timestep range in the tested parameterizations, but a contact-timescale-matched experiment is still required before attributing the difference purely to timestep robustness.</blockquote>
+          <p>A 1-kg, frictionless sphere impacts a plane through one normal degree of freedom. At the reference condition, each engine was independently calibrated to:</p>
+          <div class="equation">e<sub>eff</sub> = 0.8, &nbsp;&nbsp; t<sub>c</sub> = 30 ms</div>
+          <p>The native parameters were then frozen. Both engines retain <code>e≈0.8</code> across the tested impact-speed range, so the observed difference below is a timestep-transfer effect in this linear single-contact setup.</p>
+          <p>With the contact timescale controlled, MuJoCo remains near its calibrated restitution as timestep increases: <code>e=0.7999 → 0.8027</code> from <code>dt=0.01 → 0.5 ms</code>. SAP/Warp falls from <code>e=0.8019</code> to <code>0.7452</code> over the same range, despite both measured impulse episodes remaining approximately 30 ms.</p>
+          <blockquote class="result-quote">For this calibrated frictionless sphere–plane contact and the tested native settings, MuJoCo is materially more robust to timestep in restitution transfer; SAP/Warp becomes increasingly dissipative at larger <code>dt</code>. This is not a universal engine ranking.</blockquote>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/06_impact_equal_timescale_coarse_dt.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: equal-timescale coarse-step impact.</strong> Both engines are calibrated to <code>e<sub>eff</sub>=0.8</code> and a contact duration near 30 ms, then tested at <code>dt=0.5 ms</code>. MuJoCo gives 0.8027; SAP/Warp gives 0.7452.</p>
+              <p><strong>Video: equal-timescale coarse-step impact.</strong> A 1.5-second opening card gives the complete timestep-transfer table; the slow-motion replay then shows the <code>dt=0.5 ms</code> condition. Both engines have <code>t<sub>c</sub>≈30 ms</code>; MuJoCo gives <code>e=0.8027</code>, SAP/Warp <code>e=0.7452</code>.</p>
               <p class="video-note">This is a controlled restitution-transfer demo, not an absolute-material ground-truth comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/06_impact_equal_timescale_coarse_dt.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -231,7 +228,7 @@
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/15_impact_restitution_physical.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>3-D companion: sphere–plane impact.</strong> The two recorded trajectories show the equal-timescale, <code>e<sub>eff</sub>=0.8</code>-calibrated comparison at evaluation <code>dt=0.5 ms</code>.</p>
+              <p><strong>3-D companion: sphere–plane impact.</strong> A compact 3-second slow-motion replay of the equal-timescale, <code>e<sub>eff</sub>=0.8</code>-calibrated comparison at evaluation <code>dt=0.5 ms</code>.</p>
               <p class="video-note">Offline pose replay; use the telemetry clip above for restitution, force, and impulse. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/15_impact_restitution_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
