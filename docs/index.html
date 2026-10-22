@@ -376,12 +376,19 @@
 
         <section id="thin-discs" class="subsection">
           <h3>5.1 Three thin discs: native contact operating regions</h3>
-          <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The native sweeps cover 79 MuJoCo configurations and 65 SAP/Warp configurations.</p>
-          <ul>
-            <li><strong>MuJoCo:</strong> a balanced tested point, <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settles in 0.178 s. Excessively soft contact is the tested failure mode: <code>solref=16 ms</code> fails throughout the valid grid.</li>
-            <li><strong>SAP/Warp:</strong> shape <code>ke=1e5 N/m</code>, <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code> settle in about 0.17 s. Low stiffness is the tested failure mode: <code>ke=1e3 N/m</code> causes wrong order or escape; coarser <code>dt</code> increases overlap and residual motion.</li>
-          </ul>
-          <div class="takeaway"><strong>Takeaway.</strong> Both engines have stable native operating regions and distinct soft-contact failure boundaries. These native sweeps identify task-local tuning ranges; they do not rank which engine has the wider physically matched robustness envelope.</div>
+          <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The figures below summarize all recorded native sweeps: 79 MuJoCo and 65 SAP/Warp configurations. Green means the intended layer order settled within the 2-s window; amber retained the order but still had tail motion; red is wrong order or escape.</p>
+
+          <figure class="result-figure friction-figure">
+            <img src="assets/thin-disc-mujoco-sweep.svg" alt="MuJoCo thin-disc sweep. A solref-timeconstant by timestep status map, peak-overlap trends, damping-ratio settling curves, and solimp settling curves.">
+            <figcaption><strong>MuJoCo parameter trends.</strong> <code>solref</code> is the first-order control: increasing its time constant makes contact softer, raises peak overlap, and reaches qualitative layer-order failure at 8–16 ms. Reducing it toward the <code>timeconst=2dt</code> limit reduces peak overlap but can leave a long ring-down. At an adequate 1-ms contact time scale, <code>dampratio=0.5</code> is under-damped; raising it to 1–2 mostly improves settling rather than making the contact intrinsically stiffer. The <code>solimp</code> ablation is non-monotonic: it trades peak overlap against ring-down, so it cannot rescue an excessively soft <code>solref</code>. In the stable regime, Euler/implicitfast/RK4 produced similar layer outcomes; Newton achieved that with far fewer contact iterations than CG.</figcaption>
+          </figure>
+
+          <figure class="result-figure friction-figure">
+            <img src="assets/thin-disc-sap-sweep.svg" alt="SAP Warp thin-disc sweep. A stiffness by timestep status map, peak-overlap trends versus timestep and tau, rigid-gap behavior, and preset comparison.">
+            <figcaption><strong>SAP/Warp parameter trends.</strong> Shape <code>ke</code> and <code>dt</code> jointly set the operating region. At <code>ke=1e3 N/m</code>, the stack loses order or escapes; at <code>1e4 N/m</code> it can preserve order but is usually still moving at 2 s; around <code>1e5 N/m</code>, <code>dt=0.25–0.5 ms</code> is the balanced tested region. At a fixed <code>ke</code>, coarser <code>dt</code> raises peak overlap and tail motion. For this gravity-settling path, increasing <code>tau</code> (and therefore <code>kd=ke·tau</code>) reduces peak overlap and tilt over the sampled range, but that is a transient-damping result—not a universal rule that larger <code>tau</code> is better. At <code>ke=1e5</code>, <code>rigid_gap=0</code> is the notable outlier with residual motion; 0.05–0.5 mm behaved similarly. The tested Drake preset had lower peak overlap than <code>approx32/64</code> at the sampled higher stiffnesses.</figcaption>
+          </figure>
+
+          <div class="takeaway"><strong>What this sweep does—and does not—say.</strong> Each engine has a task-local native operating band, but their contact parameters have different meanings and were not calibrated to a common physical compliance target. These charts explain how to tune this stack within each engine; they do not establish which engine has the larger physically matched robustness envelope.</div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/24_mujoco_thin_disc_success_failure.mp4" type="video/mp4">
@@ -394,7 +401,7 @@
             </video>
             <figcaption><strong>SAP/Warp: representative operating point versus low-stiffness failure.</strong> Both use the Drake preset at <code>dt=0.5 ms</code>; reducing shape <code>ke</code> from <code>1e5</code> to <code>1e3 N/m</code> loses the intended layer order.</figcaption>
           </figure>
-          <p class="video-note">The engines' native penetration coordinates and contact parameters are not numerically interchangeable. See the <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> and <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
+          <p class="video-note">The engines' native overlap coordinates and contact parameters are not numerically interchangeable. Full tables and definitions: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
         </section>
 
         <section id="matched-thickness" class="subsection">
