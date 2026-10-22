@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A controlled comparison of SAP/Warp and MuJoCo across contact parameterization, friction, dynamic impact, collision representation, and manipulation robustness.">
-  <title>SAP/Warp vs MuJoCo — Contact-Rich Simulation Benchmark</title>
+  <meta name="description" content="A controlled comparison of SAP Warp and MuJoCo across contact parameterization, friction, dynamic impact, collision representation, and manipulation robustness.">
+  <title>SAP Warp vs MuJoCo — Contact-Rich Simulation Benchmark</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
   <div class="site-shell">
     <aside class="sidebar" aria-label="Report navigation">
       <div class="brand">
-        <a href="#top" class="brand-title">SAP/Warp</a>
+        <a href="#top" class="brand-title">SAP Warp</a>
         <span class="brand-subtitle">× MuJoCo</span>
       </div>
       <p class="sidebar-description">Contact-rich simulation benchmark</p>
@@ -66,17 +66,17 @@
 
       <div class="sidebar-footer">
         <a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a>
-        <a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP/Warp documentation ↗</a>
+        <a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a>
       </div>
     </aside>
 
     <main id="main-content" class="content">
       <header id="top" class="page-header">
-        <p class="breadcrumb"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP/Warp</a> / Benchmarking / Cross-simulator study</p>
+        <p class="breadcrumb"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp</a> / Benchmarking / Cross-simulator study</p>
         <div class="header-grid">
           <div>
             <p class="eyebrow">Research report · September 2026</p>
-            <h1>SAP/Warp vs MuJoCo:<br>contact-rich simulation benchmark</h1>
+            <h1>SAP Warp vs MuJoCo:<br>contact-rich simulation benchmark</h1>
             <p class="lede">A controlled comparison of contact parameterization, friction, dynamic impact, collision representation, and manipulation robustness.</p>
           </div>
           <dl class="report-meta">
@@ -92,12 +92,12 @@
         <h2>1. Executive Summary</h2>
         <h3>Bottom line</h3>
         <div class="callout">
-          <p>SAP/Warp and MuJoCo show complementary strengths rather than a consistent accuracy ordering.</p>
+          <p>SAP Warp and MuJoCo show complementary strengths rather than a consistent accuracy ordering.</p>
         </div>
-        <p>SAP/Warp exposes more material-like contact parameters and, in the tested compliant-contact regime, follows ideal Coulomb friction more directly near the sticking/sliding boundary.</p>
+        <p>SAP Warp exposes more material-like contact parameters and, in the tested compliant-contact regime, follows ideal Coulomb friction more directly near the sticking/sliding boundary.</p>
         <p>MuJoCo is more robust in near-rigid, high-stiffness multi-contact and provides stronger native controls for suppressing frictional drift.</p>
         <p>Dynamic impact currently favors MuJoCo when comparing the same absolute timestep, but the two engines exhibit substantially different contact timescales; this difference must be controlled before attributing the result purely to numerical integration.</p>
-        <p>In manipulation, low-level contact advantages do not translate directly into task-level dominance. SAP/Warp showed more Coulomb-like friction behavior in several controlled tests, but a complete grasp also depends on control, geometry, and motion. In the tested Panda setups, SAP/Warp handled a wider range of object masses and friction values and drifted less during long holds, while MuJoCo tolerated pose errors better and kept successful short transfers more tightly aligned. The stronger choice therefore depends on the task outcome being measured.</p>
+        <p>In manipulation, low-level contact advantages do not translate directly into task-level dominance. SAP Warp showed more Coulomb-like friction behavior in several controlled tests, but a complete grasp also depends on control, geometry, and motion. In the tested Panda setups, SAP Warp handled a wider range of object masses and friction values and drifted less during long holds, while MuJoCo tolerated pose errors better and kept successful short transfers more tightly aligned. The stronger choice therefore depends on the task outcome being measured.</p>
         <p>Across the study, <strong>collision representation and contact-manifold behavior often matter as much as the nominal contact formulation itself.</strong></p>
       </section>
 
@@ -109,13 +109,13 @@
           <p>Under ideal Coulomb friction,</p>
           <div class="equation">|F<sub>t</sub>| &lt; μF<sub>n</sub></div>
           <p>should permit zero-velocity sticking.</p>
-          <p><strong>Baseline</strong> here does not mean factory defaults. It means the frozen primary task configurations: SAP/Warp uses its stable native contact setting; MuJoCo is deliberately calibrated to a similarly soft box--plane normal response, but has <code>NoSlip=0</code> and no elevated <code>impratio</code> anti-slip tuning.</p>
+          <p><strong>Baseline</strong> here does not mean factory defaults. It means the frozen primary task configurations: SAP Warp uses its stable native contact setting; MuJoCo is deliberately calibrated to a similarly soft box--plane normal response, but has <code>NoSlip=0</code> and no elevated <code>impratio</code> anti-slip tuning.</p>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>3-D companion: three-box 4-N hold.</strong> The blocks replay the same hold at <code>dt=0.5 ms</code>; SAP/Warp uses pair <code>k<sub>e</sub>=1e4 N/m</code> and <code>τ=3 ms</code>.</p>
+              <p><strong>3-D companion: three-box 4-N hold.</strong> The blocks replay the same hold at <code>dt=0.5 ms</code>; SAP Warp uses pair <code>k<sub>e</sub>=1e4 N/m</code> and <code>τ=3 ms</code>.</p>
               <p class="video-note">Body poses are reconstructed from logged interface slip and vertical velocity, not directly recorded absolute poses. Use the figures below and the friction report for force, contact-duty, and creep metrics. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/13_static_friction_three_box_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -132,10 +132,10 @@
           </ul>
           <figure class="result-figure friction-figure">
             <img src="assets/friction-anti-slip-vs-sap.png" alt="Four-newton hold comparison on a logarithmic tail-creep scale. SAP baseline is compared with MuJoCo native configurations at impratio one, ten, one hundred, and NoSlip three.">
-            <figcaption><strong>MuJoCo native anti-slip controls at 4 N.</strong> SAP/Warp remains at its baseline setting. The NoSlip bar is a friction-only post-process, so it demonstrates a control capability rather than a physically matched contact-model ranking.</figcaption>
+            <figcaption><strong>MuJoCo native anti-slip controls at 4 N.</strong> SAP Warp remains at its baseline setting. The NoSlip bar is a friction-only post-process, so it demonstrates a control capability rather than a physically matched contact-model ranking.</figcaption>
           </figure>
           <p>Increasing <code>impratio</code> reduced MuJoCo residual creep by about one order of magnitude per tested decade; NoSlip suppressed it by several further orders of magnitude.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp's tested baseline formulation gives low sub-Coulomb drift without extra anti-slip tuning. MuJoCo's matched-soft baseline is less stable here, but its native anti-slip controls can reduce drift below the SAP baseline. The result distinguishes baseline contact behavior from tunable drift-suppression capability; it is not a universal engine ranking.</div>
+          <div class="takeaway"><strong>Takeaway.</strong> SAP Warp's tested baseline formulation gives low sub-Coulomb drift without extra anti-slip tuning. MuJoCo's matched-soft baseline is less stable here, but its native anti-slip controls can reduce drift below the SAP baseline. The result distinguishes baseline contact behavior from tunable drift-suppression capability; it is not a universal engine ranking.</div>
         </section>
 
         <section id="kinetic" class="subsection">
@@ -143,12 +143,12 @@
           <p>For ideal Coulomb sliding under continuous contact,</p>
           <div class="equation">F<sub>t</sub> = −μF<sub>n</sub>, &nbsp;&nbsp; ρ = |F<sub>t</sub>|/(μF<sub>n</sub>) ≈ 1</div>
           <p>In this benchmark, both engines show intermittent post-release normal-contact switching, so the result is not a pure friction-law comparison.</p>
-          <p>At <code>dt=0.5 ms</code>, SAP/Warp remains close to the ideal constant-deceleration trajectory across all tested speeds. MuJoCo shows larger deviation at low speed, improves as the initial sliding speed increases, and reaches comparable accuracy at <code>v<sub>0</sub>=1 m/s</code>. Its deceleration error decreases from <code>9.84%</code> at <code>0.25 m/s</code> to <code>4.89%</code> at <code>0.5 m/s</code> and <code>0.15%</code> at <code>1.0 m/s</code>.</p>
+          <p>At <code>dt=0.5 ms</code>, SAP Warp remains close to the ideal constant-deceleration trajectory across all tested speeds. MuJoCo shows larger deviation at low speed, improves as the initial sliding speed increases, and reaches comparable accuracy at <code>v<sub>0</sub>=1 m/s</code>. Its deceleration error decreases from <code>9.84%</code> at <code>0.25 m/s</code> to <code>4.89%</code> at <code>0.5 m/s</code> and <code>0.15%</code> at <code>1.0 m/s</code>.</p>
           <figure class="result-figure friction-figure">
-            <img src="assets/kinetic-friction-deceleration-error-vs-v0.png" alt="Deceleration error versus initial speed at a half-millisecond timestep. SAP/Warp stays below 1.5 percent error, while MuJoCo drops from 9.84 percent at 0.25 metres per second to 0.15 percent at 1 metre per second.">
+            <img src="assets/kinetic-friction-deceleration-error-vs-v0.png" alt="Deceleration error versus initial speed at a half-millisecond timestep. SAP Warp stays below 1.5 percent error, while MuJoCo drops from 9.84 percent at 0.25 metres per second to 0.15 percent at 1 metre per second.">
             <figcaption><strong>Velocity dependence at a fixed timestep.</strong> Error is measured against the ideal Coulomb deceleration magnitude, <code>μg</code>.</figcaption>
           </figure>
-          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp is more consistent across the tested velocity range, while MuJoCo becomes increasingly accurate at higher sliding speed. The observed difference reflects both friction regularization and normal–tangential contact coupling.</div>
+          <div class="takeaway"><strong>Takeaway.</strong> SAP Warp is more consistent across the tested velocity range, while MuJoCo becomes increasingly accurate at higher sliding speed. The observed difference reflects both friction regularization and normal–tangential contact coupling.</div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/12_kinetic_friction_physical.mp4" type="video/mp4">
@@ -171,13 +171,13 @@
           <div class="equation">N4: r<sub>SAP</sub> ≈ 0.990, r<sub>MJ</sub> ≈ 1.041</div>
           <div class="equation">N6: r<sub>SAP</sub> ≈ 1.001, r<sub>MJ</sub> ≈ 1.048</div>
           <p>Here <code>r</code> uses normal force measured before lifting. SAP's N4 pass below <code>r=1</code> is a finite-time task outcome, not a static sub-Coulomb equilibrium: normal force rises during the lift and the cube retains slip and downward tail velocity.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> With these frozen native settings, SAP/Warp passes the short-lift task at a lower gate-measured grasp margin in both preload series. This does not establish a universal static-friction accuracy ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/simple-pinch-sap-vs-mujoco-final.md" target="_blank" rel="noreferrer">Methods and boundary data ↗</a></div>
+          <div class="takeaway"><strong>Takeaway.</strong> With these frozen native settings, SAP Warp passes the short-lift task at a lower gate-measured grasp margin in both preload series. This does not establish a universal static-friction accuracy ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/simple-pinch-sap-vs-mujoco-final.md" target="_blank" rel="noreferrer">Methods and boundary data ↗</a></div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>3-D control: SAP clearly failing versus passing.</strong> Both panes use SAP/Warp with measured preload <code>N=4.040 N/side</code> and <code>μ=0.4</code>. The heavier cube has <code>r=0.808</code> and slips; the lighter cube has <code>r=1.010</code> and passes.</p>
+              <p><strong>3-D control: SAP clearly failing versus passing.</strong> Both panes use SAP Warp with measured preload <code>N=4.040 N/side</code> and <code>μ=0.4</code>. The heavier cube has <code>r=0.808</code> and slips; the lighter cube has <code>r=1.010</code> and passes.</p>
               <p class="video-note">This is a visually separated SAP-only sanity check, not the refined boundary or a MuJoCo–SAP ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/14_simple_pinch_physical.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -195,7 +195,7 @@
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/19_simple_pinch_physical_success.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>3-D control: both engines lift successfully.</strong> At <code>m=0.2718 kg</code> and <code>μ=0.4</code>, measured margins are <code>r=1.176</code> for MuJoCo and <code>r=1.212</code> for SAP/Warp; both retain the cube through the lift.</p>
+              <p><strong>3-D control: both engines lift successfully.</strong> At <code>m=0.2718 kg</code> and <code>μ=0.4</code>, measured margins are <code>r=1.176</code> for MuJoCo and <code>r=1.212</code> for SAP Warp; both retain the cube through the lift.</p>
               <p class="video-note">A representative task-success comparison, distinct from the near-threshold case above. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/19_simple_pinch_physical_success.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -211,15 +211,15 @@
           <p>A 1-kg, frictionless sphere impacts a plane through one normal degree of freedom. At the reference condition, each engine was independently calibrated to:</p>
           <div class="equation">e<sub>eff</sub> = 0.8, &nbsp;&nbsp; t<sub>c</sub> = 30 ms</div>
           <p>The native parameters were then frozen. Both engines retain <code>e≈0.8</code> across the tested impact-speed range, so the observed difference below is a timestep-transfer effect in this linear single-contact setup.</p>
-          <p>With the contact timescale controlled, MuJoCo remains near its calibrated restitution as timestep increases: <code>e=0.7999 → 0.8027</code> from <code>dt=0.01 → 0.5 ms</code>. SAP/Warp falls from <code>e=0.8019</code> to <code>0.7452</code> over the same range, despite both measured impulse episodes remaining approximately 30 ms.</p>
-          <blockquote class="result-quote">After matching restitution and contact duration, the tested MuJoCo configuration preserves its calibrated rebound ratio through <code>dt=0.5 ms</code>; the tested SAP/Warp configuration loses rebound energy as <code>dt</code> increases. This is a calibrated transfer result for one frictionless scalar contact, not a general ranking of physical accuracy.</blockquote>
+          <p>With the contact timescale controlled, MuJoCo remains near its calibrated restitution as timestep increases: <code>e=0.7999 → 0.8027</code> from <code>dt=0.01 → 0.5 ms</code>. SAP Warp falls from <code>e=0.8019</code> to <code>0.7452</code> over the same range, despite both measured impulse episodes remaining approximately 30 ms.</p>
+          <blockquote class="result-quote">After matching restitution and contact duration, the tested MuJoCo configuration preserves its calibrated rebound ratio through <code>dt=0.5 ms</code>; the tested SAP Warp configuration loses rebound energy as <code>dt</code> increases. This is a calibrated transfer result for one frictionless scalar contact, not a general ranking of physical accuracy.</blockquote>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/06_impact_equal_timescale_coarse_dt.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: equal-timescale coarse-step impact.</strong> A 1.5-second opening card gives the complete timestep-transfer table; the slow-motion replay then shows the <code>dt=0.5 ms</code> condition. Both engines have <code>t<sub>c</sub>≈30 ms</code>; MuJoCo gives <code>e=0.8027</code>, SAP/Warp <code>e=0.7452</code>.</p>
+              <p><strong>Video: equal-timescale coarse-step impact.</strong> A 1.5-second opening card gives the complete timestep-transfer table; the slow-motion replay then shows the <code>dt=0.5 ms</code> condition. Both engines have <code>t<sub>c</sub>≈30 ms</code>; MuJoCo gives <code>e=0.8027</code>, SAP Warp <code>e=0.7452</code>.</p>
               <p class="video-note">This is a controlled restitution-transfer demo, not an absolute-material ground-truth comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/06_impact_equal_timescale_coarse_dt.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -238,7 +238,7 @@
 
         <section id="bouncing" class="subsection">
           <h3>3.2 Repeated elastic impact</h3>
-          <p>In repeated bouncing, SAP/Warp accumulated finite-step dissipation even with nominally non-dissipative material settings, while MuJoCo retained substantially more mechanical energy in the tested configuration.</p>
+          <p>In repeated bouncing, SAP Warp accumulated finite-step dissipation even with nominally non-dissipative material settings, while MuJoCo retained substantially more mechanical energy in the tested configuration.</p>
           <p>This suggests particular caution for:</p>
           <ul>
             <li>High-restitution collisions</li>
@@ -247,14 +247,14 @@
             <li>Energy-sensitive control</li>
             <li>Stiff contact with short contact duration</li>
           </ul>
-          <p>The result does not imply that SAP/Warp is physically incorrect. It shows that its finite-step compliant contact model can materially affect rebound and energy retention and therefore should be calibrated when those quantities matter.</p>
+          <p>The result does not imply that SAP Warp is physically incorrect. It shows that its finite-step compliant contact model can materially affect rebound and energy retention and therefore should be calibrated when those quantities matter.</p>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/07_repeated_elastic_bounce_energy_replay.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: repeated elastic bounce.</strong> The right-hand curve now samples energy only at free-flight rebound apexes, avoiding misleading contact-compression valleys. At <code>dt=0.5 ms</code>, MuJoCo retains a final energy ratio of 1.00485, while SAP/Warp reaches 0.83403 in the selected native configurations.</p>
+              <p><strong>Video: repeated elastic bounce.</strong> The right-hand curve now samples energy only at free-flight rebound apexes, avoiding misleading contact-compression valleys. At <code>dt=0.5 ms</code>, MuJoCo retains a final energy ratio of 1.00485, while SAP Warp reaches 0.83403 in the selected native configurations.</p>
               <p class="video-note">The animated sphere is ball 0; the apex curve uses the complete 49-ball system. The terminal star is the final 20-s energy ratio. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/07_repeated_elastic_bounce_energy_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -277,16 +277,16 @@
           <h3>4.1 Analytic cavity: contact solver control</h3>
           <p>The analytic square cavity uses primitive box contacts and therefore provides a clean multi-contact insertion control.</p>
           <p>Both engines successfully insert a centered peg.</p>
-          <p>For SAP/Warp, the initially failing 1-mm-offset case became stable after reducing <code>rigid_gap</code> from 1 mm to 0.1–0.5 mm.</p>
-          <p><code>rigid_gap</code> is a contact-activation skin: it determines how far apart two surfaces may be before SAP/Warp creates a contact candidate for the solver. It is <strong>not</strong> physical clearance, geometric penetration, or material deformation. When it approaches the remaining physical side clearance, contact can be activated on the wall before the intended insertion motion has entered the cavity; that early impulse changes the trajectory.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp does not exhibit a generic multi-contact insertion failure. Contact activation relative to geometric clearance matters.</div>
+          <p>For SAP Warp, the initially failing 1-mm-offset case became stable after reducing <code>rigid_gap</code> from 1 mm to 0.1–0.5 mm.</p>
+          <p><code>rigid_gap</code> is a contact-activation skin: it determines how far apart two surfaces may be before SAP Warp creates a contact candidate for the solver. It is <strong>not</strong> physical clearance, geometric penetration, or material deformation. When it approaches the remaining physical side clearance, contact can be activated on the wall before the intended insertion motion has entered the cavity; that early impulse changes the trajectory.</p>
+          <div class="takeaway"><strong>Takeaway.</strong> SAP Warp does not exhibit a generic multi-contact insertion failure. Contact activation relative to geometric clearance matters.</div>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/sap_square_cavity_rigid_gap_comparison.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: SAP/Warp rigid-gap ablation, same 1-mm-offset task.</strong> Only <code>rigid_gap</code> changes. Left: <code>0.5 mm</code>, which is below the 1-mm remaining side clearance, enters and rests. Right: <code>1.0 mm</code>, equal to that clearance, activates side-wall contact too early; the peg is laterally ejected and falls through.</p>
+              <p><strong>Video: SAP Warp rigid-gap ablation, same 1-mm-offset task.</strong> Only <code>rigid_gap</code> changes. Left: <code>0.5 mm</code>, which is below the 1-mm remaining side clearance, enters and rests. Right: <code>1.0 mm</code>, equal to that clearance, activates side-wall contact too early; the peg is laterally ejected and falls through.</p>
               <p class="video-note">This does not make 1 mm universally invalid. It shows that the activation distance must be chosen relative to the smallest intended geometric clearance of the task. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/sap_square_cavity_rigid_gap_comparison.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -296,7 +296,7 @@
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/08_square_cavity_offset_labelled.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>Video: 1-mm-offset analytic cavity insertion.</strong> Both panes show the primitive cavity with 2-mm one-sided clearance; SAP/Warp uses <code>rigid_gap=0.1 mm</code> and enters/rests without truncation.</p>
+              <p><strong>Video: 1-mm-offset analytic cavity insertion.</strong> Both panes show the primitive cavity with 2-mm one-sided clearance; SAP Warp uses <code>rigid_gap=0.1 mm</code> and enters/rests without truncation.</p>
               <p class="video-note">The SAP pane is an offline pose-trace rendering, not a MuJoCo re-simulation. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/08_square_cavity_offset_labelled.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
@@ -308,19 +308,19 @@
           <p>A round-socket trial is called <strong>credible</strong> only when it satisfies all of the following:</p>
           <div class="equation">entered &and; within clearance &and; no truncation &and; p<sub>max</sub>, p<sub>final</sub> &le; 0.1c</div>
           <p>Here <code>c</code> is the one-sided clearance, and <code>p<sub>max</sub></code>/<code>p<sub>final</sub></code> are the peak/final geometric penetration measures used by that experiment. Thus, an <em>apparent entry</em> is not automatically a valid insertion: it can be inside the socket in pose while violating clearance, overflowing contact capacity, or reporting excessive/ambiguous overlap.</p>
-          <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP/Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. In the initial shared-CoACD sweep, MuJoCo had 2/25 credible cases and SAP/Warp had 0/10 at its single untuned native setting (<code>rigid_gap=1 mm</code>).</p>
+          <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. In the initial shared-CoACD sweep, MuJoCo had 2/25 credible cases and SAP Warp had 0/10 at its single untuned native setting (<code>rigid_gap=1 mm</code>).</p>
           <p>To remove unequal tuning coverage, a follow-up gave both engines an <strong>equal 48-candidate native tuning budget</strong> on the shared 32-piece CoACD nominal hard case (<code>c=2 mm</code>, <code>1-mm</code> offset, <code>1°</code> tilt, 2 s), ranked by <code>credible → p<sub>max</sub>/c → final radial → stepping time</code>, then froze each engine’s best candidate across the 10-case <code>5 clearance × 2 offset</code> matrix:</p>
           <h4>Native mesh, initial CoACD matrix, and equal-budget CoACD tuning</h4>
           <table class="result-table compact">
-            <thead><tr><th>Protocol / representation</th><th>MuJoCo</th><th>SAP/Warp</th><th>What it shows</th></tr></thead>
+            <thead><tr><th>Protocol / representation</th><th>MuJoCo</th><th>SAP Warp</th><th>What it shows</th></tr></thead>
             <tbody>
               <tr><td>Native concave mesh path</td><td>Mesh-SDF: 22/25 <em>apparent</em> entries; 0/25 credible</td><td>Raw/watertight mesh controls cannot provide a valid inner-cavity witness</td><td>Pose/depth or native witness alone is not a valid insertion metric inside the concavity.</td></tr>
               <tr><td>Initial shared 32-piece CoACD matrix</td><td>7/25 entered; 2/25 credible (both 2-mm-clearance cases)</td><td>0/10 entered; 0/10 credible at untuned <code>rigid_gap=1 mm</code></td><td>Untuned 1-mm activation gap blocks SAP entry; piecewise-convex geometry remains setting-sensitive.</td></tr>
-              <tr><td>Equal-budget CoACD tuning (48 candidates at <code>c=2 mm, x=1 mm, 1°</code>)</td><td>48/48 entered; <strong>23/48 credible</strong> (best <code>p<sub>max</sub>=0.056 mm</code>, <code>p<sub>max</sub>/c=0.028</code>)</td><td>6/48 entered; <strong>1/48 credible</strong> at <code>dt=0.25 ms, k<sub>pair</sub>=1e4 N/m, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code> (<code>p<sub>max</sub>=0.061 mm</code>, <code>p<sub>max</sub>/c=0.031</code>)</td><td>SAP/Warp can also achieve a credible 2-mm CoACD insertion once <code>rigid_gap</code> and <code>dt</code> are tuned, though with a narrower feasible parameter band than MuJoCo.</td></tr>
+              <tr><td>Equal-budget CoACD tuning (48 candidates at <code>c=2 mm, x=1 mm, 1°</code>)</td><td>48/48 entered; <strong>23/48 credible</strong> (best <code>p<sub>max</sub>=0.056 mm</code>, <code>p<sub>max</sub>/c=0.028</code>)</td><td>6/48 entered; <strong>1/48 credible</strong> at <code>dt=0.25 ms, k<sub>pair</sub>=1e4 N/m, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code> (<code>p<sub>max</sub>=0.061 mm</code>, <code>p<sub>max</sub>/c=0.031</code>)</td><td>SAP Warp can also achieve a credible 2-mm CoACD insertion once <code>rigid_gap</code> and <code>dt</code> are tuned, though with a narrower feasible parameter band than MuJoCo.</td></tr>
               <tr><td>Frozen best across 10-case clearance × offset matrix</td><td>2/10 entered; <strong>2/10 credible</strong> (passes <code>c=2 mm</code> at 0- and 1-mm offset; 0/8 for <code>c &le; 1.5 mm</code>)</td><td>2/10 entered; <strong>1/10 credible</strong> (<code>c=2 mm, x=1 mm</code> credible; <code>c=2 mm, x=0 mm</code> enters and settles but has a transient <code>p<sub>max</sub>=15.09 mm</code> spike; 0/8 for <code>c &le; 1.5 mm</code>)</td><td>Neither frozen setting generalizes to <code>c &le; 1.5 mm</code>; below 2-mm clearance, the 32-piece CoACD rim/wall manifold dominates over solver tuning in both engines.</td></tr>
             </tbody>
           </table>
-          <p class="video-note">“Native mesh path” does not mean the same algorithm: MuJoCo uses mesh-SDF while SAP/Warp's raw/watertight path uses its own mesh witness/SDF machinery. Equal-budget tuning data: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/mujoco-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">MuJoCo 48-run CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/sap-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">SAP/Warp 48-run CSV ↗</a>.</p>
+          <p class="video-note">“Native mesh path” does not mean the same algorithm: MuJoCo uses mesh-SDF while SAP Warp's raw/watertight path uses its own mesh witness/SDF machinery. Equal-budget tuning data: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/mujoco-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">MuJoCo 48-run CSV ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/peg-in-hole/sap-round-socket-equal-budget/tuning_results.csv" target="_blank" rel="noreferrer">SAP Warp 48-run CSV ↗</a>.</p>
           <div class="takeaway"><strong>Takeaway.</strong> Under equal 48-candidate tuning, both engines achieve credible 2-mm-clearance CoACD insertion (with a wider feasible parameter region in MuJoCo), and both fail to generalize to <code>c &le; 1.5 mm</code>. Tight tilted insertion is ultimately limited by the piecewise-convex collision manifold and contact activation rather than the contact solver alone.</div>
 
           <figure class="video-demo inline-video">
@@ -338,8 +338,8 @@
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4" type="video/mp4">
             </video>
             <figcaption>
-              <p><strong>SAP/Warp shared-CoACD (<code>c=2 mm, x=1 mm, 1°</code>): entered &amp; credible versus entered but not credible.</strong> Both panes replay native SAP/Warp trajectories at <code>dt=0.25 ms, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code>. Both enter and settle near <code>z≈38.3 mm</code> with near-zero final overlap, but <code>k<sub>pair</sub>=1e4 N/m</code> stays at <code>p<sub>max</sub>=0.061 mm &le; 0.1c</code> (credible) while <code>k<sub>pair</sub>=1e5 N/m</code> experiences a transient <code>p<sub>max</sub>=5.384 mm</code> overlap spike during entry.</p>
-              <p class="video-note">Offline pose and telemetry replay from native SAP/Warp traces; MuJoCo is used only as the visual renderer. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+              <p><strong>SAP Warp shared-CoACD (<code>c=2 mm, x=1 mm, 1°</code>): entered &amp; credible versus entered but not credible.</strong> Both panes replay native SAP Warp trajectories at <code>dt=0.25 ms, τ<sub>pair</sub>=3 ms, rigid_gap=0.1 mm, drake</code>. Both enter and settle near <code>z≈38.3 mm</code> with near-zero final overlap, but <code>k<sub>pair</sub>=1e4 N/m</code> stays at <code>p<sub>max</sub>=0.061 mm &le; 0.1c</code> (credible) while <code>k<sub>pair</sub>=1e5 N/m</code> experiences a transient <code>p<sub>max</sub>=5.384 mm</code> overlap spike during entry.</p>
+              <p class="video-note">Offline pose and telemetry replay from native SAP Warp traces; MuJoCo is used only as the visual renderer. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/29_sap_round_socket_credible_vs_not.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
             </figcaption>
           </figure>
         </section>
@@ -389,7 +389,7 @@
 
         <section id="thin-discs" class="subsection">
           <h3>5.1 Three thin discs: native contact operating regions</h3>
-          <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The figures below summarize all recorded native sweeps: 79 MuJoCo and 65 SAP/Warp configurations. Green means the intended layer order settled within the 2-s window; amber retained the order but still had tail motion; red is wrong order or escape.</p>
+          <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The figures below summarize all recorded native sweeps: 79 MuJoCo and 65 SAP Warp configurations. Green means the intended layer order settled within the 2-s window; amber retained the order but still had tail motion; red is wrong order or escape.</p>
 
           <figure class="result-figure friction-figure">
             <img src="assets/thin-disc-mujoco-sweep.svg" alt="MuJoCo thin-disc sweep. A solref-timeconstant by timestep status map, peak-overlap trends, damping-ratio settling curves, and solimp settling curves.">
@@ -398,7 +398,7 @@
 
           <figure class="result-figure friction-figure">
             <img src="assets/thin-disc-sap-sweep.svg" alt="SAP Warp thin-disc sweep. A stiffness by timestep status map, peak-overlap trends versus timestep and tau, rigid-gap behavior, and preset comparison.">
-            <figcaption><strong>SAP/Warp parameter trends.</strong> Shape <code>ke</code> and <code>dt</code> jointly set the operating region. At <code>ke=1e3 N/m</code>, the stack loses order or escapes; at <code>1e4 N/m</code> it can preserve order but is usually still moving at 2 s; around <code>1e5 N/m</code>, <code>dt=0.25–0.5 ms</code> is the balanced tested region. At a fixed <code>ke</code>, coarser <code>dt</code> raises peak overlap and tail motion. For this gravity-settling path, increasing <code>tau</code> (and therefore <code>kd=ke·tau</code>) reduces peak overlap and tilt over the sampled range, but that is a transient-damping result—not a universal rule that larger <code>tau</code> is better. At <code>ke=1e5</code>, <code>rigid_gap=0</code> is the notable outlier with residual motion; 0.05–0.5 mm behaved similarly. The tested Drake preset had lower peak overlap than <code>approx32/64</code> at the sampled higher stiffnesses.</figcaption>
+            <figcaption><strong>SAP Warp parameter trends.</strong> Shape <code>ke</code> and <code>dt</code> jointly set the operating region. At <code>ke=1e3 N/m</code>, the stack loses order or escapes; at <code>1e4 N/m</code> it can preserve order but is usually still moving at 2 s; around <code>1e5 N/m</code>, <code>dt=0.25–0.5 ms</code> is the balanced tested region. At a fixed <code>ke</code>, coarser <code>dt</code> raises peak overlap and tail motion. For this gravity-settling path, increasing <code>tau</code> (and therefore <code>kd=ke·tau</code>) reduces peak overlap and tilt over the sampled range, but that is a transient-damping result—not a universal rule that larger <code>tau</code> is better. At <code>ke=1e5</code>, <code>rigid_gap=0</code> is the notable outlier with residual motion; 0.05–0.5 mm behaved similarly. The tested Drake preset had lower peak overlap than <code>approx32/64</code> at the sampled higher stiffnesses.</figcaption>
           </figure>
 
           <div class="takeaway"><strong>What this sweep does—and does not—say.</strong> Each engine has a task-local native operating band, but their contact parameters have different meanings and were not calibrated to a common physical compliance target. These charts explain how to tune this stack within each engine; they do not establish which engine has the larger physically matched robustness envelope.</div>
@@ -412,9 +412,9 @@
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/25_sap_thin_disc_success_failure.mp4" type="video/mp4">
             </video>
-            <figcaption><strong>SAP/Warp: representative operating point versus low-stiffness failure.</strong> Both use the Drake preset at <code>dt=0.5 ms</code>; reducing shape <code>ke</code> from <code>1e5</code> to <code>1e3 N/m</code> loses the intended layer order.</figcaption>
+            <figcaption><strong>SAP Warp: representative operating point versus low-stiffness failure.</strong> Both use the Drake preset at <code>dt=0.5 ms</code>; reducing shape <code>ke</code> from <code>1e5</code> to <code>1e3 N/m</code> loses the intended layer order.</figcaption>
           </figure>
-          <p class="video-note">The engines' native overlap coordinates and contact parameters are not numerically interchangeable. Full tables and definitions: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
+          <p class="video-note">The engines' native overlap coordinates and contact parameters are not numerically interchangeable. Full tables and definitions: <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> · <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP Warp sweep ↗</a>.</p>
         </section>
 
         <section id="matched-thickness" class="subsection">
@@ -425,8 +425,8 @@
             <tbody>
               <tr><td>MuJoCo</td><td>analytic disc</td><td>13</td><td>0.366</td><td>0.000062</td><td>yes, 0.274 s</td><td>preserved / no</td></tr>
               <tr><td>MuJoCo</td><td>shallow CoACD plate</td><td>121</td><td>0.815</td><td>0.00357</td><td>no</td><td>preserved / no</td></tr>
-              <tr><td>SAP/Warp</td><td>analytic disc</td><td>12</td><td>0.356</td><td>0</td><td>yes, 0.170 s</td><td>preserved / no</td></tr>
-              <tr><td>SAP/Warp</td><td>shallow CoACD plate</td><td>147</td><td>0.981</td><td>0.00104</td><td>no</td><td>preserved / no; no truncation</td></tr>
+              <tr><td>SAP Warp</td><td>analytic disc</td><td>12</td><td>0.356</td><td>0</td><td>yes, 0.170 s</td><td>preserved / no</td></tr>
+              <tr><td>SAP Warp</td><td>shallow CoACD plate</td><td>147</td><td>0.981</td><td>0.00104</td><td>no</td><td>preserved / no; no truncation</td></tr>
             </tbody>
           </table>
           <p class="video-note">*The contact-count and native-overlap definitions differ by engine. Read each disc-to-plate change within one engine; do not rank the two engines by these raw values.</p>
@@ -442,7 +442,7 @@
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/27_sap_thin_shape_disc_vs_plate.mp4" type="video/mp4">
             </video>
-            <figcaption><strong>SAP/Warp: analytic discs versus shallow CoACD plates.</strong> Both panes replay native SAP/Warp pose traces at the same frozen SAP setting; rendering is for visualization only and does not re-simulate SAP dynamics.</figcaption>
+            <figcaption><strong>SAP Warp: analytic discs versus shallow CoACD plates.</strong> Both panes replay native SAP Warp pose traces at the same frozen SAP setting; rendering is for visualization only and does not re-simulate SAP dynamics.</figcaption>
           </figure>
         </section>
       </section>
@@ -453,12 +453,12 @@
         <p>The robot model, object, trajectory intent, finger effort cap, and task-success criteria are shared, while each engine uses its native controller/contact stack.</p>
 
         <table class="result-table">
-          <thead><tr><th>Evaluation</th><th>MuJoCo</th><th>SAP/Warp</th><th>Interpretation</th></tr></thead>
+          <thead><tr><th>Evaluation</th><th>MuJoCo</th><th>SAP Warp</th><th>Interpretation</th></tr></thead>
           <tbody>
-            <tr><td>Mass/friction robustness</td><td>4/46 passes</td><td>32/46 passes</td><td>SAP/Warp exhibits a substantially larger observed mass/friction feasible region under the frozen 15-N-per-finger configuration.</td></tr>
+            <tr><td>Mass/friction robustness</td><td>4/46 passes</td><td>32/46 passes</td><td>SAP Warp exhibits a substantially larger observed mass/friction feasible region under the frozen 15-N-per-finger configuration.</td></tr>
             <tr><td>Pose robustness</td><td>14/19 passes</td><td>10/19 passes</td><td>MuJoCo is more tolerant to the tested position/yaw perturbations.</td></tr>
             <tr><td>Transfer dynamics</td><td>7/7 passes</td><td>6/7 passes</td><td>Both engines pass the tested direction changes; MuJoCo is perfect in this sweep.</td></tr>
-            <tr><td>Long-horizon retention</td><td>Approximately 0.465 mm/s tail slip; fails the 10-s drift gate</td><td>Approximately 43 µm/s; remains inside the hold gate, although transient rotation is larger</td><td>SAP/Warp retains the object better over the tested long hold, while MuJoCo is tighter when the short-horizon grasp succeeds.</td></tr>
+            <tr><td>Long-horizon retention</td><td>Approximately 0.465 mm/s tail slip; fails the 10-s drift gate</td><td>Approximately 43 µm/s; remains inside the hold gate, although transient rotation is larger</td><td>SAP Warp retains the object better over the tested long hold, while MuJoCo is tighter when the short-horizon grasp succeeds.</td></tr>
           </tbody>
         </table>
 
@@ -467,7 +467,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/02_panda_pick_native_success.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Video: successful native Panda pick-and-transfer.</strong> MuJoCo uses <code>dt=1 ms</code> with inverse-dynamics PD and <code>solref="0.005 1.5"</code>; SAP/Warp uses <code>dt=5 ms</code> with the Drake preset and native controller stack.</p>
+            <p><strong>Video: successful native Panda pick-and-transfer.</strong> MuJoCo uses <code>dt=1 ms</code> with inverse-dynamics PD and <code>solref="0.005 1.5"</code>; SAP Warp uses <code>dt=5 ms</code> with the Drake preset and native controller stack.</p>
             <p class="video-note">Controllers and collision representations remain engine-native, so this demonstrates task behavior rather than an isolated solver comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/02_panda_pick_native_success.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -477,7 +477,7 @@
         <div class="equation">microbenchmark superiority does not directly predict manipulation robustness</div>
         <div class="two-column">
           <div>
-            <h3>SAP/Warp exhibits</h3>
+            <h3>SAP Warp exhibits</h3>
             <ul>
               <li>Larger mass/friction feasible region</li>
               <li>Stronger long-hold retention</li>
@@ -500,7 +500,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/11_panda_pick_0p5kg_failure_modes.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Video: 0.5-kg Panda failure modes.</strong> Both native task stacks fail the retention gate, but by different mechanisms: MuJoCo shows bilateral normal-contact instability, while SAP/Warp shows static slip with bilateral contact duty.</p>
+            <p><strong>Video: 0.5-kg Panda failure modes.</strong> Both native task stacks fail the retention gate, but by different mechanisms: MuJoCo shows bilateral normal-contact instability, while SAP Warp shows static slip with bilateral contact duty.</p>
             <p class="video-note">This is qualitative failure diagnosis, not a pure contact-solver ranking. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/11_panda_pick_0p5kg_failure_modes.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -509,7 +509,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Panda v3: MuJoCo fails, SAP/Warp lifts.</strong> At <code>m=0.40 kg</code>, <code>μ=0.19</code>, and nominal pose, MuJoCo loses bilateral finger contact while SAP/Warp retains it and lifts the cube.</p>
+            <p><strong>Panda v3: MuJoCo fails, SAP Warp lifts.</strong> At <code>m=0.40 kg</code>, <code>μ=0.19</code>, and nominal pose, MuJoCo loses bilateral finger contact while SAP Warp retains it and lifts the cube.</p>
             <p class="video-note">These are frame-corrected native task traces, with different native controllers and <code>dt</code>; this is not an isolated contact-solver comparison. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/20_panda_v3_mass_friction_mujoco_fail_sap_pass.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -518,7 +518,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Panda v3: pose perturbation favors MuJoCo.</strong> With a <code>+2.5 mm</code> initial x-offset, MuJoCo passes while SAP/Warp exceeds the <code>15°</code> orientation gate.</p>
+            <p><strong>Panda v3: pose perturbation favors MuJoCo.</strong> With a <code>+2.5 mm</code> initial x-offset, MuJoCo passes while SAP Warp exceeds the <code>15°</code> orientation gate.</p>
             <p class="video-note">The cube-local axes and live angle display are render-only annotations of the recorded pose drift; they do not change either trajectory. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/21_panda_v3_pose_mujoco_better.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -527,7 +527,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Panda v3: 10-s final hold.</strong> The closer camera and live hand-relative slip readout show MuJoCo crossing the <code>5 mm</code> drift gate while SAP/Warp remains below it in this frozen native setup.</p>
+            <p><strong>Panda v3: 10-s final hold.</strong> The closer camera and live hand-relative slip readout show MuJoCo crossing the <code>5 mm</code> drift gate while SAP Warp remains below it in this frozen native setup.</p>
             <p class="video-note">Only the common hold phase is shown; both panels replay recorded engine poses. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/22_panda_v3_hold_mujoco_creep.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -536,7 +536,7 @@
       <section id="comparison" class="report-section">
         <h2>7. Overall Comparison</h2>
         <table class="comparison-table">
-          <thead><tr><th>Property</th><th>MuJoCo</th><th>SAP/Warp</th></tr></thead>
+          <thead><tr><th>Property</th><th>MuJoCo</th><th>SAP Warp</th></tr></thead>
           <tbody>
             <tr><th scope="row">Contact stiffness semantics</th><td>Constraint/effective-mass dependent</td><td>More pair/material-like</td></tr>
             <tr><th scope="row">Low/moderate compliant contact</th><td>Requires observable-based calibration</td><td>Strong parameter interpretability</td></tr>
@@ -554,14 +554,14 @@
             <tr><th scope="row">GPU/batched potential</th><td>Requires a separate comparable benchmark</td><td>GPU-native Warp architecture</td></tr>
           </tbody>
         </table>
-        <p id="findings"><strong>Contact parameter interpretation.</strong> In the stable compliant regime, SAP/Warp's pair <code>k_e</code> approximately follows <code>F<sub>n</sub> ≈ k<sub>e</sub>δ</code>. MuJoCo's <code>solref</code> controls constraint dynamics, so its effective contact stiffness also depends on mass, impedance, and the contact manifold; the body–plane calibration required an effective-mass correction for body–body contact. In the tested high-stiffness stacks, SAP/Warp developed contact switching and vertical jitter while MuJoCo remained stable. These observations are why the comparison uses measured forces, penetration, and stability rather than matching native parameter numbers.</p>
+        <p id="findings"><strong>Contact parameter interpretation.</strong> In the stable compliant regime, SAP Warp's pair <code>k_e</code> approximately follows <code>F<sub>n</sub> ≈ k<sub>e</sub>δ</code>. MuJoCo's <code>solref</code> controls constraint dynamics, so its effective contact stiffness also depends on mass, impedance, and the contact manifold; the body–plane calibration required an effective-mass correction for body–body contact. In the tested high-stiffness stacks, SAP Warp developed contact switching and vertical jitter while MuJoCo remained stable. These observations are why the comparison uses measured forces, penetration, and stability rather than matching native parameter numbers.</p>
         <figure class="video-demo inline-video">
           <video controls preload="metadata" playsinline>
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>Low-stiffness body–body stack.</strong> Five dynamic boxes transmit load across four inter-box contacts at <code>dt=0.5 ms</code>; the SAP/Warp pair setting is <code>k<sub>e</sub>=1e4 N/m</code>.</p>
-            <p class="video-note">MuJoCo is a native render; SAP/Warp is a replay of its native pose trace. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
+            <p><strong>Low-stiffness body–body stack.</strong> Five dynamic boxes transmit load across four inter-box contacts at <code>dt=0.5 ms</code>; the SAP Warp pair setting is <code>k<sub>e</sub>=1e4 N/m</code>.</p>
+            <p class="video-note">MuJoCo is a native render; SAP Warp is a replay of its native pose trace. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/17_layered_box_low_stiffness_body_body.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
         <figure class="video-demo inline-video">
@@ -569,7 +569,7 @@
             <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/18_layered_box_high_stiffness_body_body.mp4" type="video/mp4">
           </video>
           <figcaption>
-            <p><strong>High-stiffness body–body stack.</strong> The same five-box task with SAP/Warp pair <code>k<sub>e</sub>=1e6 N/m</code> exposes the contact-switching and vertical-jitter contrast described above.</p>
+            <p><strong>High-stiffness body–body stack.</strong> The same five-box task with SAP Warp pair <code>k<sub>e</sub>=1e6 N/m</code> exposes the contact-switching and vertical-jitter contrast described above.</p>
             <p class="video-note">The low/high pair isolates the tested stiffness regime; these are not identical native contact parameterizations. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/18_layered_box_high_stiffness_body_body.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
           </figcaption>
         </figure>
@@ -579,7 +579,7 @@
         <h2>8. What This Means for Robotics</h2>
         <div class="two-column">
           <div>
-            <h3>Where SAP/Warp currently looks attractive</h3>
+            <h3>Where SAP Warp currently looks attractive</h3>
             <ul>
               <li>Physically interpretable compliant-contact parameters</li>
               <li>Coulomb-like friction near the sticking/sliding transition</li>
@@ -603,9 +603,9 @@
 
       <section id="conclusion" class="report-section">
         <h2>9. Final Conclusion</h2>
-        <p>The experiments do not support a simple statement that either SAP/Warp or MuJoCo is universally more accurate.</p>
+        <p>The experiments do not support a simple statement that either SAP Warp or MuJoCo is universally more accurate.</p>
         <p>Instead, they reveal different modeling tradeoffs.</p>
-        <p>SAP/Warp provides more directly interpretable compliant-contact parameters and, in several controlled friction benchmarks, behavior closer to ideal Coulomb contact. Its current limitations appear most clearly when contact becomes very stiff or collision geometry becomes tight and representation-sensitive.</p>
+        <p>SAP Warp provides more directly interpretable compliant-contact parameters and, in several controlled friction benchmarks, behavior closer to ideal Coulomb contact. Its current limitations appear most clearly when contact becomes very stiff or collision geometry becomes tight and representation-sensitive.</p>
         <p>MuJoCo provides a highly tunable soft-constraint formulation with strong near-rigid stability, effective anti-slip controls, and robust dynamic behavior in the tested impact regimes, but its parameters are less directly transferable as physical material properties.</p>
         <div class="callout conclusion">
           <p><strong>Contact-law fidelity ≠ task-level performance.</strong></p>
@@ -625,14 +625,14 @@
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/peg-in-hole-mujoco-vs-sap-master.md" target="_blank" rel="noreferrer">Peg-in-hole and concave geometry ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-round-peg-and-concave-plate-representation-benchmark.md" target="_blank" rel="noreferrer">Original concave-plate settling ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo thin-disc sweep ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp thin-disc sweep ↗</a></li>
+          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP Warp thin-disc sweep ↗</a></li>
           <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/panda-pick-v3-frame-corrected-robustness.md" target="_blank" rel="noreferrer">Panda pick-and-transfer ↗</a></li>
-          <li><a href="https://sap-sim.github.io/sap_warp/benchmarking/index.html" target="_blank" rel="noreferrer">SAP/Warp benchmarking documentation ↗</a></li>
+          <li><a href="https://sap-sim.github.io/sap_warp/benchmarking/index.html" target="_blank" rel="noreferrer">SAP Warp benchmarking documentation ↗</a></li>
         </ul>
       </section>
 
       <footer class="page-footer">
-        <span>SAP/Warp × MuJoCo contact-rich simulation benchmark</span>
+        <span>SAP Warp × MuJoCo contact-rich simulation benchmark</span>
         <a href="#top">Back to top ↑</a>
       </footer>
     </main>
