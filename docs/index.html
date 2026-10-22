@@ -376,14 +376,24 @@
 
         <section id="thin-discs" class="subsection">
           <h3>5.1 Three thin discs: native contact operating regions</h3>
-          <p>Three free analytic discs, each 202 mm in diameter and 4 mm thick, settle under gravity for 2 s. MuJoCo's 79-run sweep varied <code>dt</code>, <code>solref</code>, damping, impedance, integrator, and solver; SAP/Warp's 65-run sweep varied <code>dt</code>, <code>ke</code>, <code>tau</code>, <code>rigid_gap</code>, and preset.</p>
-          <p>Both have stable, rapidly settling native settings. MuJoCo's balanced tested example used <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settling in 0.178 s. SAP/Warp's balanced tested region used shape <code>ke=1e5 N/m</code>, shape <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code>, settling in about 0.17 s. Softer settings can lose correct layer order; stiffness and timestep also change peak overlap and tail motion.</p>
+          <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The native sweeps cover 79 MuJoCo configurations and 65 SAP/Warp configurations.</p>
           <ul>
-            <li><strong>MuJoCo failure boundary:</strong> overly soft <code>solref</code> is the dominant tested failure mode. At <code>8 ms</code>, layer order fails at several timesteps; at <code>16 ms</code>, it fails at every valid tested timestep. Changing Newton/CG or Euler/implicitfast/RK4 does not rescue the <code>16 ms</code> cases. At <code>dt=0.5 ms, solref=1 ms</code>, increasing damping from <code>0.5</code> to <code>2</code> markedly improves settling.</li>
-            <li><strong>SAP/Warp failure boundary:</strong> shape <code>ke=1e3 N/m</code> fails across the primary <code>dt</code> grid through wrong order or escape; <code>1e4</code> preserves order but does not meet the 2-s settling criterion. At <code>1e5</code>, <code>dt=0.25–0.5 ms</code> is the balanced tested region; peak overlap rises sharply by <code>dt=1 ms</code>, and coarser steps degrade settling.</li>
-            <li><strong>Other SAP/Warp controls:</strong> at <code>ke=1e5</code>, <code>dt=0.5 ms</code>, setting <code>rigid_gap=0</code> gives more peak overlap and residual motion than <code>0.05–0.1 mm</code>; the tested <code>drake</code> preset also has lower peak overlap than <code>approx32/64</code>. These are task-local tuning results.</li>
+            <li><strong>MuJoCo:</strong> a balanced tested point, <code>dt=0.25 ms</code> and <code>solref=1 ms</code>, settles in 0.178 s. Excessively soft contact is the tested failure mode: <code>solref=16 ms</code> fails throughout the valid grid.</li>
+            <li><strong>SAP/Warp:</strong> shape <code>ke=1e5 N/m</code>, <code>tau=3 ms</code>, and <code>dt=0.25–0.5 ms</code> settle in about 0.17 s. Low stiffness is the tested failure mode: <code>ke=1e3 N/m</code> causes wrong order or escape; coarser <code>dt</code> increases overlap and residual motion.</li>
           </ul>
-          <div class="takeaway"><strong>Parameter robustness.</strong> Both engines have useful native operating bands, and both fail outside them, but in different parameter regimes. The 79 and 65 native sweeps do not provide a physically matched measure of which engine has the wider robustness envelope.</div>
+          <div class="takeaway"><strong>Takeaway.</strong> Both engines have stable native operating regions and distinct soft-contact failure boundaries. These native sweeps identify task-local tuning ranges; they do not rank which engine has the wider physically matched robustness envelope.</div>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/24_mujoco_thin_disc_success_failure.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>MuJoCo: representative operating point versus soft-contact failure.</strong> The stable case settles into the intended blue–orange–green layer order; the 16-ms <code>solref</code> case does not.</figcaption>
+          </figure>
+          <figure class="video-demo inline-video">
+            <video controls preload="metadata" playsinline>
+              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/25_sap_thin_disc_success_failure.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>SAP/Warp: representative operating point versus low-stiffness failure.</strong> Both use the Drake preset at <code>dt=0.5 ms</code>; reducing shape <code>ke</code> from <code>1e5</code> to <code>1e3 N/m</code> loses the intended layer order.</figcaption>
+          </figure>
           <p class="video-note">The engines' native penetration coordinates and contact parameters are not numerically interchangeable. See the <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/mujoco-thin-discs-comprehensive-sweep.md" target="_blank" rel="noreferrer">MuJoCo sweep ↗</a> and <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/sap-thin-discs-native-contact-sweep.md" target="_blank" rel="noreferrer">SAP/Warp sweep ↗</a>.</p>
         </section>
 
