@@ -126,12 +126,11 @@ energy comparison**, not an equal-contact-timescale calibration.
 | SAP/Warp | CPU, `approx32` preset, `dt=0.5 ms`, `ke=1e4 N/m`, `tau=0` | first rebound-height ratio 0.98194; final energy ratio 0.83403 |
 
 All 49 balls share the same initial condition in the benchmark; the animated
-sphere is ball 0 while the curve is system kinetic plus gravitational energy.
-It excludes temporarily stored compliant-contact energy, so narrow collision
-dips are not interpreted as permanent energy loss; rebound apexes and final
-energy provide the retention result. The clip highlights energy behavior, not
-performance: the source SAP run was CPU and substantially slower than the
-MuJoCo run.
+sphere is ball 0 while the main curve is the system energy sampled at
+free-flight rebound apexes. This avoids mistaking temporarily stored contact
+energy for permanent loss. A terminal star shows the full-system energy at
+20 s. The clip highlights energy behavior, not performance: the source SAP
+run was CPU and substantially slower than the MuJoCo run.
 
 ### 08. Analytic square cavity — 1-mm offset insertion
 
