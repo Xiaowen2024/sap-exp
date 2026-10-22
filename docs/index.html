@@ -238,16 +238,16 @@
 
         <section id="bouncing" class="subsection">
           <h3>3.2 Repeated elastic impact</h3>
-          <p>In repeated bouncing, SAP Warp accumulated finite-step dissipation even with nominally non-dissipative material settings, while MuJoCo retained substantially more mechanical energy in the tested configuration.</p>
+          <p>This is not an untouched SAP Warp default. The rolling-style Drake setting with <code>τ=4 ms</code> was strongly dissipative, so the study screened <code>τ=0</code>, <code>dt=1/0.5 ms</code>, <code>k<sub>e</sub>=1e4/1e5 N/m</code>, and three contact presets. The selected SAP Warp candidate—<code>approx32</code>, <code>dt=0.5 ms</code>, <code>k<sub>e</sub>=1e4 N/m</code>, <code>τ=0</code>—is therefore an improved sampled native configuration, not a full engine-best or timestep-convergence search.</p>
+          <p>That candidate makes the first rebound close to the ideal 5-m height (<code>4.910 m</code>, −1.81%), yet its rebound-apex energy envelope still decays to <code>E/E<sub>0</sub>=0.834</code> after 20 s. MuJoCo's tested zero-damping direct-contact configuration retains <code>E/E<sub>0</sub>=1.005</code>. The apex metric excludes temporary contact-compression energy and therefore measures cumulative loss across repeated rebounds.</p>
           <p>This suggests particular caution for:</p>
           <ul>
             <li>High-restitution collisions</li>
             <li>Repeated impacts</li>
             <li>Hopping and bouncing</li>
             <li>Energy-sensitive control</li>
-            <li>Stiff contact with short contact duration</li>
           </ul>
-          <p>The result does not imply that SAP Warp is physically incorrect. It shows that its finite-step compliant contact model can materially affect rebound and energy retention and therefore should be calibrated when those quantities matter.</p>
+          <p>This does not show that SAP Warp is physically incorrect or unable to model elastic contact. It shows that, for the tested repeated-impact configuration, removing explicit <code>τ</code> damping and improving the first rebound is not sufficient to guarantee long-horizon energy retention. Restitution and apex-energy decay should be calibrated—and checked at smaller <code>dt</code>—when those quantities matter.</p>
 
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
