@@ -20,7 +20,7 @@ generated clip.
 |---|---|---|
 | Rolling benchmark | native 25-ball task-level comparison | **archived; removed from website pending parameter-alignment review** |
 | Sub-Coulomb friction / creep | 4-N sub-threshold hold, matched compliance; optional MuJoCo NoSlip control | **telemetry and 3-D reconstruction** |
-| Kinetic friction | free sliding, reference `v0 = 1 m/s` | **telemetry and 3-D pose replay** |
+| Kinetic friction | free sliding, representative `v0 = 1 m/s` 3-D replay plus a velocity-error figure | **3-D pose replay and static comparison figure** |
 | Force-matched simple pinch | SAP sanity control, MuJoCo refined boundary, successful-lift control | **3-D physical-object replays; old 05 clip archived off-site** |
 | Dynamic impact / restitution | calibrated `e_eff=0.8` reference impact; coarse-dt bottleneck | **telemetry and 3-D pose replay** |
 | Repeated elastic bounce | energy-retention representative and dissipative bottleneck | **telemetry and 3-D visual replication** |
@@ -55,20 +55,6 @@ Video: [02_panda_pick_native_success.mp4](../exp-results/site-video-demos/02_pan
 
 The controller and collision representations are intentionally engine-native;
 the clip demonstrates task behavior, not a one-to-one solver-only comparison.
-
-### 03. Kinetic friction — trace-driven comparison
-
-Video: [03_kinetic_friction_trace_replay.mp4](../exp-results/site-video-demos/03_kinetic_friction_trace_replay.mp4)
-
-This is an annotated **telemetry replay** rather than a renderer-native 3-D
-clip. The block position, horizontal velocity, normal force and tangential
-force in the animation are interpolated directly from the two recorded CSV
-traces.
-
-| Engine | Settings | Why selected |
-|---|---|---|
-| MuJoCo | free 1-kg block, `mu=0.5`, initial `vx=1 m/s`, `dt=0.5 ms` | reference-speed sliding trace |
-| SAP/Warp | same task-level mass/friction/initial speed, Drake preset, `dt=0.5 ms` | same reference-speed sliding trace |
 
 The video shows `vx(t)` and conditional `rho = |Ft| / (mu Fn)` after release.
 Blank `rho` intervals mean `Fn=Ft=0` (no active normal contact), not zero

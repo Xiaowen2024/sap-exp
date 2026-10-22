@@ -140,26 +140,15 @@
 
         <section id="kinetic" class="subsection">
           <h3>2.2 Kinetic friction</h3>
-          <p>For ideal Coulomb sliding,</p>
+          <p>For ideal Coulomb sliding under continuous contact,</p>
           <div class="equation">F<sub>t</sub> = −μF<sub>n</sub>, &nbsp;&nbsp; ρ = |F<sub>t</sub>|/(μF<sub>n</sub>) ≈ 1</div>
-          <p>In the controlled free-sliding benchmark, SAP/Warp remained close to the friction-cone limit over the tested velocity range.</p>
-          <p>MuJoCo approached the same limit at higher sliding speed but showed stronger low-speed regularization. At the reference timestep,</p>
-          <div class="equation">ρ<sub>SAP</sub> ≈ 0.99</div>
-          <p>throughout the tested range, whereas MuJoCo increased from approximately</p>
-          <div class="equation">0.89 → 0.99</div>
-          <p>as sliding speed increased.</p>
-          <p>A remaining open question is the transient increase in measured normal force after horizontal velocity initialization. This must be separated into true normal–tangential coupling, contact duty, and telemetry aggregation before drawing a stronger conclusion.</p>
-          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp more directly reproduces saturated Coulomb kinetic friction in the tested baseline; MuJoCo shows stronger velocity-dependent regularization near the sticking transition.</div>
-
-          <figure class="video-demo inline-video">
-            <video controls preload="metadata" playsinline>
-              <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/03_kinetic_friction_trace_replay.mp4" type="video/mp4">
-            </video>
-            <figcaption>
-              <p><strong>Video: reference-speed kinetic-friction replay.</strong> Both traces use a 1-kg block, <code>μ=0.5</code>, initial <code>v<sub>x</sub>=1 m/s</code>, and <code>dt=0.5 ms</code>; the animation replays <code>ρ</code> and the recorded force/velocity telemetry.</p>
-              <p class="video-note">This is a trace-driven replay. Blank <code>ρ</code> intervals mean no active normal contact, not zero utilization. <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/site-video-demos/03_kinetic_friction_trace_replay.mp4" target="_blank" rel="noreferrer">Source video ↗</a></p>
-            </figcaption>
+          <p>In this benchmark, both engines show intermittent post-release normal-contact switching, so the result is not a pure friction-law comparison.</p>
+          <p>At <code>dt=0.5 ms</code>, SAP/Warp remains close to the ideal constant-deceleration trajectory across all tested speeds. MuJoCo shows larger deviation at low speed, improves as the initial sliding speed increases, and reaches comparable accuracy at <code>v<sub>0</sub>=1 m/s</code>. Its deceleration error decreases from <code>9.84%</code> at <code>0.25 m/s</code> to <code>4.89%</code> at <code>0.5 m/s</code> and <code>0.15%</code> at <code>1.0 m/s</code>.</p>
+          <figure class="result-figure friction-figure">
+            <img src="assets/kinetic-friction-deceleration-error-vs-v0.png" alt="Deceleration error versus initial speed at a half-millisecond timestep. SAP/Warp stays below 1.5 percent error, while MuJoCo drops from 9.84 percent at 0.25 metres per second to 0.15 percent at 1 metre per second.">
+            <figcaption><strong>Velocity dependence at a fixed timestep.</strong> Error is measured against the ideal Coulomb deceleration magnitude, <code>μg</code>.</figcaption>
           </figure>
+          <div class="takeaway"><strong>Takeaway.</strong> SAP/Warp is more consistent across the tested velocity range, while MuJoCo becomes increasingly accurate at higher sliding speed. The observed difference reflects both friction regularization and normal–tangential contact coupling.</div>
           <figure class="video-demo inline-video">
             <video controls preload="metadata" playsinline>
               <source src="https://raw.githubusercontent.com/Xiaowen2024/sap-exp/main/exp-results/site-video-demos/12_kinetic_friction_physical.mp4" type="video/mp4">
