@@ -175,15 +175,12 @@
           <p>This first task separates two questions: <strong>can the three interfaces remain in a stable normal equilibrium?</strong> Only then, <strong>how does the top--middle interface respond to a sub-Coulomb horizontal load?</strong></p>
 
           <h4>Task protocol and physical reference</h4>
-          <table class="result-table compact">
-            <thead><tr><th>Item</th><th>Definition</th><th>Why it matters</th></tr></thead>
-            <tbody>
-              <tr><td>Geometry / material</td><td>Three <code>1 kg</code>, <code>40 mm</code> cubes under gravity; pair friction <code>μ=0.5</code>; <code>dt=0.5 ms</code>.</td><td>The static normal loads from bottom to top are 29.43, 19.62, and 9.81 N.</td></tr>
-              <tr><td>Normal gate</td><td>No horizontal force; 3-s run, measured over the final 1 s.</td><td>Prevents a normal-contact chatter artifact from being misread as a friction result.</td></tr>
-              <tr><td>Friction ramp</td><td>After 1.5-s settle, apply horizontal force to the <strong>top</strong> cube: 0→8 N over 5 s, then hold 8 N for 1.5 s.</td><td>The top--middle interface is limiting: <code>μF<sub>n</sub>=0.5×9.81=4.905 N</code>.</td></tr>
-              <tr><td>Sub-Coulomb holds</td><td>After settle, ramp to <code>F={1,2,3,4} N</code> in 1 s and hold for 8 s.</td><td>All are below 4.905 N, so ideal Coulomb friction permits sticking; any tail motion is measurable creep rather than expected gross sliding.</td></tr>
-            </tbody>
-          </table>
+          <p>Three <code>1 kg</code>, <code>40 mm</code> cubes are stacked under gravity with pair friction <code>μ=0.5</code> and <code>dt=0.5 ms</code>. Their static interface loads, from ground upward, are 29.43, 19.62, and 9.81 N. The top--middle interface is therefore the limiting one: its ideal Coulomb limit is <code>μF<sub>n</sub>=0.5×9.81=4.905 N</code>.</p>
+          <p>First, the stack runs without horizontal force for 3 s; the final second must pass the normal-contact gate so normal chatter is not mistaken for friction. Then the top cube is pulled from 0 to 8 N over 5 s after a 1.5-s settle. Separate 1-, 2-, 3-, and 4-N holds ramp in 1 s and hold for 8 s. Since all are below 4.905 N, ideal Coulomb friction permits sticking; persistent tail motion is measured as creep.</p>
+          <figure class="result-figure friction-figure">
+            <img src="assets/static-friction-three-box-setup.jpg" alt="Three stacked boxes with a horizontal 4-newton force applied to the top box, shown side by side for MuJoCo and SAP Warp.">
+            <figcaption><strong>Task schematic from the 4-N hold.</strong> The hand and cyan arrow denote the applied force on the top cube. The left panel shows the matched-soft MuJoCo baseline after contact loss; the right panel shows the SAP Warp baseline retaining the stack.</figcaption>
+          </figure>
 
           <h4>Metrics actually used</h4>
           <table class="result-table compact">
