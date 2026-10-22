@@ -471,6 +471,28 @@ li { margin: 5px 0; }
 .result-table.compact { font-size: 12px; }
 .result-table td:first-child { width: 19%; }
 
+/* Study index: deliberately compact, but keep its four-column evidence tables legible. */
+.guide-table {
+  table-layout: fixed;
+  font-size: 11.5px;
+  line-height: 1.48;
+}
+.guide-table th:nth-child(1),
+.guide-table td:nth-child(1) { width: 15%; }
+.guide-table th:nth-child(2),
+.guide-table td:nth-child(2) { width: 30%; }
+.guide-table th:nth-child(3),
+.guide-table td:nth-child(3) { width: 24%; }
+.guide-table th:nth-child(4),
+.guide-table td:nth-child(4) { width: 31%; }
+.guide-table td { vertical-align: top; }
+.guide-definitions th:nth-child(1),
+.guide-definitions td:nth-child(1) { width: 19%; }
+.guide-definitions th:nth-child(2),
+.guide-definitions td:nth-child(2) { width: 45%; }
+.guide-definitions th:nth-child(3),
+.guide-definitions td:nth-child(3) { width: 36%; }
+
 .result-line {
   margin: 18px 0 0 !important;
   padding: 10px 13px;
