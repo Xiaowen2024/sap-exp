@@ -733,3 +733,40 @@ figure.result-figure figcaption {
   font-weight: 700;
 }
 
+.task-setup-box {
+  margin: 18px 0 22px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border: 1px solid #dbe3eb;
+  border-left: 3.5px solid var(--link);
+  border-radius: 4px;
+}
+
+.task-setup-box h4 {
+  margin: 0 0 10px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--link-dark);
+  letter-spacing: -0.01em;
+}
+
+.task-setup-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.task-setup-box li {
+  margin-bottom: 7px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.task-setup-box li:last-child {
+  margin-bottom: 0;
+}
+
+.task-setup-box li strong {
+  color: var(--link-dark);
+}
+

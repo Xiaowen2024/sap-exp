@@ -6,6 +6,9 @@
   <meta name="description" content="Mechanism-Aware, Calibration-Budgeted Simulator Evaluation framework comparing SAP Warp and MuJoCo across Physical Fidelity, Calibration Efficiency, Predictability, and Configuration Robustness.">
   <title>Mechanism-Aware Simulator Evaluation — SAP Warp vs MuJoCo</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -93,7 +96,7 @@
             <div><dt>Physical regimes</dt><dd>Sliding, rotation, breakaway, &amp; impact</dd></div>
           </dl>
         </div>
-        <blockquote class="research-question"><strong>Research question.</strong> Instead of judging simulators by uncalibrated defaults or brute-force parameter sweeps, how do we evaluate whether an engine responds monotonically to first-principles tuning, unlocks native optimization mechanisms with a modest evaluation budget ($B \le 5$), and retains stability in a wide parameter plateau?</blockquote>
+        <blockquote class="research-question"><strong>Research question.</strong> Instead of judging simulators by uncalibrated defaults or brute-force parameter sweeps, how do we evaluate whether an engine responds monotonically to first-principles tuning, unlocks native optimization mechanisms with a modest evaluation budget (<i>B</i> &le; 5), and retains stability in a wide parameter plateau?</blockquote>
       </header>
 
       <section id="motivation" class="report-section">
@@ -101,11 +104,11 @@
         <h3>The limitations of Evaluation Paradigm 1 (Default vs. Brute-Force Sweep)</h3>
         <p>Existing simulator benchmarks generally follow one of two extremes:</p>
         <ul>
-          <li><strong>Extreme A: Out-of-the-Box Zero-Shot Default ($B=1$).</strong> Simulators are run with factory default settings. While reproducible, this paradigm unfairly penalizes engines with intentionally compliant/safe default choices (e.g. SAP Warp's default soft contact <code>k<sub>e</sub>=2500 N/m</code>, which sags under dynamic tilting) and completely ignores dedicated native optimization mechanisms designed specifically for that contact regime (e.g. MuJoCo's <code>noslip_iterations</code>, <code>impratio</code>, or <code>&lt;pair solreffriction&gt;</code>).</li>
-          <li><strong>Extreme B: Brute-Force Grid Sweep / Oracle Best ($B \ge 100$).</strong> Simulators are swept over hundreds of parameter combinations to find the global minimum error. While this demonstrates peak potential, it is highly labor-intensive and misleading: an engine might find an accidental knife-edge optimum through non-physical parameter compensation (e.g., compensating for missing static friction using an anisotropic 4-sided pyramid cone artifact), yet be practically unusable because human engineers cannot reach that optimum without exhausting hundreds of trials.</li>
+          <li><strong>Extreme A: Out-of-the-Box Zero-Shot Default (<i>B</i> = 1).</strong> Simulators are run with factory default settings. While reproducible, this paradigm unfairly penalizes engines with intentionally compliant/safe default choices (e.g. SAP Warp's default soft contact <code>k<sub>e</sub>=2500 N/m</code>, which sags under dynamic tilting) and completely ignores dedicated native optimization mechanisms designed specifically for that contact regime (e.g. MuJoCo's <code>noslip_iterations</code>, <code>impratio</code>, or <code>&lt;pair solreffriction&gt;</code>).</li>
+          <li><strong>Extreme B: Brute-Force Grid Sweep / Oracle Best (<i>B</i> &ge; 100).</strong> Simulators are swept over hundreds of parameter combinations to find the global minimum error. While this demonstrates peak potential, it is highly labor-intensive and misleading: an engine might find an accidental knife-edge optimum through non-physical parameter compensation (e.g., compensating for missing static friction using an anisotropic 4-sided pyramid cone artifact), yet be practically unusable because human engineers cannot reach that optimum without exhausting hundreds of trials.</li>
         </ul>
         <div class="callout">
-          <p><strong>Core Thesis.</strong> A fair, unified simulator evaluation should not force artificial parameter-name matching, nor should it reward accidental brute-force optima. It must evaluate how a simulator responds to <strong>first-principles physical mechanisms</strong> under a <strong>strict, realistic calibration budget ($B \le 5$)</strong>.</p>
+          <p><strong>Core Thesis.</strong> A fair, unified simulator evaluation should not force artificial parameter-name matching, nor should it reward accidental brute-force optima. It must evaluate how a simulator responds to <strong>first-principles physical mechanisms</strong> under a <strong>strict, realistic calibration budget (<i>B</i> &le; 5)</strong>.</p>
         </div>
       </section>
 
@@ -137,17 +140,15 @@
               </tr>
               <tr>
                 <td><strong>3. Usability (可用性与可控性)</strong></td>
-                <td>• Real-to-sim calibration budget ($B \le 5$ runs)<br>• Iteration cost &amp; sensor dependency</td>
-                <td>• <strong>Parameter interpretability</strong> (physical units vs. tuning knobs)<br>• <strong>Mechanism-aware tuning predictability</strong> (monotonicity $|\rho_s|$)</td>
+                <td>• Real-to-sim calibration budget (<i>B</i> &le; 5 runs)<br>• Iteration cost &amp; sensor dependency</td>
+                <td>• <strong>Parameter interpretability</strong> (physical units vs. tuning knobs)<br>• <strong>Mechanism-aware tuning predictability</strong> (monotonicity |<i>&rho;<sub>s</sub></i>|)</td>
               </tr>
             </tbody>
           </table>
 
           <div class="callout">
             <p><strong>First-Principles Bridge.</strong> Mechanism-aware evaluation serves as the structural bridge across this 2D matrix:</p>
-            <div class="equation">
-              \text{Physical Mechanism} \;\longrightarrow\; \text{Expected Behavior} \;\longrightarrow\; \text{Native Controls} \;\longrightarrow\; \text{Observable Diagnostics} \;\longrightarrow\; \text{Real-World Validation}
-            </div>
+            <div class="equation">$$\text{Physical Mechanism} \longrightarrow \text{Expected Behavior} \longrightarrow \text{Native Controls} \longrightarrow \text{Observable Diagnostics} \longrightarrow \text{Real-World Validation}$$</div>
             <p>It does not pretend that simulators can be proven absolutely true without real data; rather, it guarantees that a simulator is physically consistent, monotonic, and controllable <em>before</em> spending expensive real-robot trials.</p>
           </div>
         </section>
@@ -156,10 +157,10 @@
           <h3>2.2 Three structured calibration stages</h3>
           <p>For every atomic physical regime, we evaluate simulators along three progressive stages:</p>
           <ol>
-            <li><strong>Stage 1 — Out-of-the-Box Default ($B = 1$):</strong> Factory default configuration without any task-specific tuning. Measures baseline usability.</li>
-            <li><strong>Stage 2 — First-Principles Mechanism-Guided Calibration ($B \le 5$):</strong> The user diagnoses the governing physical mechanism from theory (e.g., normal support bandwidth, tangential regularization decoupling, or impact restitution damping), sets an analytical prior, and performs at most 3 one-dimensional bisection/gradient steps along that single physical knob.</li>
-            <li><strong>Stage 3 — Brute-Force Grid Oracle ($B \approx 100$):</strong> Exhaustive grid search over all available solver parameters. Used solely as a theoretical benchmark to compute small-budget regret:
-              <div class="equation">\text{Regret}_{B \le 5} = \text{nRMSE}_{B \le 5} - \text{nRMSE}_{\text{oracle}}</div>
+            <li><strong>Stage 1 — Out-of-the-Box Default (<i>B</i> = 1):</strong> Factory default configuration without any task-specific tuning. Measures baseline usability.</li>
+            <li><strong>Stage 2 — First-Principles Mechanism-Guided Calibration (<i>B</i> &le; 5):</strong> The user diagnoses the governing physical mechanism from theory (e.g., normal support bandwidth, tangential regularization decoupling, or impact restitution damping), sets an analytical prior, and performs at most 3 one-dimensional bisection/gradient steps along that single physical knob.</li>
+            <li><strong>Stage 3 — Brute-Force Grid Oracle (<i>B</i> &approx; 100):</strong> Exhaustive grid search over all available solver parameters. Used solely as a theoretical benchmark to compute small-budget regret:
+              <div class="equation">$$\text{Regret}_{B \le 5} = \text{nRMSE}_{B \le 5} - \text{nRMSE}_{\text{oracle}}$$</div>
             </li>
           </ol>
         </section>
@@ -196,7 +197,7 @@
 
           <figure class="result-figure">
             <img src="assets/mechanism-aware-evaluation-comparison.png" alt="Three-panel figure showing Calibration Efficiency on Slope Slider task-3, Configuration Robustness on Turntable task-3, and Physical Fidelity vs Energy Safety on Bouncing Ball.">
-            <figcaption><strong>Mechanism-Aware, Calibration-Budgeted Evaluation across three representative regimes.</strong> (A) Calibration Efficiency: First-principles calibration ($B \le 5$) achieves $\ge 95\%$ of the 100-run oracle ceiling in both engines, eliminating the need for brute-force sweeps. (B) Configuration Robustness: SAP Warp native decoupling maintains a tight plateau across $\pm 2\times$ parameter variations; default coupled MuJoCo degrades significantly, but unlocking <code>solreffriction</code> restores a 100% stable plateau. (C) Physical Fidelity vs. Energy Safety in Impact: Both axes plot in the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>; bottom: MuJoCo <code>dampratio</code> $0.2 \to 1.0$, top: SAP Warp $\tau$ $0 \to 10\text{ ms}$). Both curves decay monotonically with increasing damping. At low damping, MuJoCo risks knife-edge energy explosion ($e > 1.0$) to reach target $e_{\text{real}}=0.73$, while SAP Warp unconditionally guarantees energy safety ($e \le 0.68 < 1.0$) at the cost of a numerical dissipation ceiling.</figcaption>
+            <figcaption><strong>Mechanism-Aware, Calibration-Budgeted Evaluation across three representative regimes.</strong> (A) Calibration Efficiency: First-principles calibration (<i>B</i> &le; 5) achieves &ge; 95% of the 100-run oracle ceiling in both engines, eliminating the need for brute-force sweeps. (B) Configuration Robustness: SAP Warp native decoupling maintains a tight plateau across &plusmn;2&times; parameter variations; default coupled MuJoCo degrades significantly, but unlocking <code>solreffriction</code> restores a 100% stable plateau. (C) Physical Fidelity vs. Energy Safety in Impact: Both axes plot in the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>; bottom: MuJoCo <code>dampratio</code> 0.2 &rarr; 1.0, top: SAP Warp <i>&tau;</i> 0 &rarr; 10 ms). Both curves decay monotonically with increasing damping. At low damping, MuJoCo risks knife-edge energy explosion (<i>e</i> &gt; 1.0) to reach target <i>e</i><sub>real</sub> = 0.73, while SAP Warp unconditionally guarantees energy safety (<i>e</i> &le; 0.68 &lt; 1.0) at the cost of a numerical dissipation ceiling.</figcaption>
           </figure>
         </section>
       </section>
@@ -206,17 +207,28 @@
 
         <section id="regime-sliding" class="subsection">
           <h3>3.1 Regime I: Inclined sliding &amp; dynamic tilting (<code>Slope Slider task-2 wood</code> &amp; <code>task-3 metal</code>)</h3>
-          <p><strong>First-principles mechanism:</strong> Normal contact compliance bandwidth $(\tau_n, k_n)$ relative to external tilting rate ($180\text{ Hz}$). On dynamically tilting inclines, normal contact must be stiff enough to prevent gravity sag and respond faster than the tilting rate ($\tau_n \le 5\text{ ms}$).</p>
+          <p><strong>First-principles mechanism:</strong> Normal contact compliance bandwidth (<i>&tau;<sub>n</sub></i>, <i>k<sub>n</sub></i>) relative to external tilting rate (180 Hz). On dynamically tilting inclines, normal contact must be stiff enough to prevent gravity sag and respond faster than the tilting rate (<i>&tau;<sub>n</sub></i> &le; 5 ms).</p>
+
+                    <div class="task-setup-box">
+            <h4>3D Task Setup: Dynamically Tilting Plate &amp; Free-Sliding Block</h4>
+            <ul>
+              <li><strong>Three-Dimensional Spatial Geometry:</strong> A rectangular rigid board (30 cm &times; 20 cm &times; 2 cm) is mounted in 3D space. A solid 3D test cube (wood or metal, mass = 339.7 g, 5 cm edge) rests freely on the plate surface under gravity without any artificial rail or kinematic constraint.</li>
+              <li><strong>Dynamic 3D Kinematics (180 Hz):</strong> Rather than resting at a static inclination, the plate undergoes high-speed 3D pitching and angular acceleration up to &sim;30&deg;, driven by dynamic robot motions and tracked by optical motion capture at 180 Hz (&Delta;<i>t</i> = 5.56 ms). This high-frequency rotation creates continuously changing 3D normal forces <b>N</b>(<i>t</i>) and multi-axis tangential shear forces.</li>
+              <li><strong>3D Stick-Slip Friction Transition:</strong> The block is governed by 3D Coulomb friction at the plate-block contact interface. When the 3D inertial and gravity force vectors exceed the static friction cone limit, the block transitions from sticking to 3D sliding.</li>
+              <li><strong>Sim-to-Real Prediction Target:</strong> Simulators replay the identical 6-DoF 3D rigid trajectory of the board, and must predict the unconstrained 3D motion trajectory [<i>x</i>(<i>t</i>), <i>y</i>(<i>t</i>), <i>z</i>(<i>t</i>)] of the sliding block. Accuracy is evaluated against the ground-truth 3D Mocap trajectory (reporting 3D position RMSE in mm and normalized nRMSE).</li>
+              <li><strong>Why Task-3 (Metal) Is Extremely Demanding:</strong> <code>task-2 wood</code> has higher surface friction (<i>&mu;</i> &approx; 0.45) providing forgiving traction margin. In contrast, <code>task-3 metal</code> has low friction (<i>&mu;</i> &approx; 0.26) combined with heavy block mass (340 g). If normal contact compliance is too soft or reacts slower than the 180 Hz tilting motion (<i>&tau;<sub>n</sub></i> &gt; 5.56 ms), 3D normal support lags behind, causing instantaneous friction collapse and runaway 3D drift (577.7 mm).</li>
+            </ul>
+          </div>
 
           <table class="result-table">
             <thead>
               <tr>
                 <th>Engine &amp; Setup</th>
-                <th>Stage 1: Default ($B=1$)</th>
-                <th>Stage 2: 1st-Principles ($B \le 5$)</th>
-                <th>Stage 3: Oracle ($B \approx 100$)</th>
-                <th>Monotonicity $|\rho_s|$</th>
-                <th>$\pm 2\times$ Neighborhood Pass Rate (max)</th>
+                <th>Stage 1: Default (<i>B</i> = 1)</th>
+                <th>Stage 2: 1st-Principles (<i>B</i> &le; 5)</th>
+                <th>Stage 3: Oracle (<i>B</i> &approx; 100)</th>
+                <th>Monotonicity |<i>&rho;<sub>s</sub></i>|</th>
+                <th>&plusmn;2&times; Neighborhood Pass Rate (max)</th>
               </tr>
             </thead>
             <tbody>
@@ -254,27 +266,24 @@
               </tr>
             </tbody>
           </table>
-          <p class="takeaway"><strong>Key Finding.</strong> SAP's soft literal default (<code>k<sub>e</sub>=2500 N/m, τ=10 ms</code>) fails on <code>task-3 metal</code> ($B=1$), but its <strong>Calibration Efficiency and Predictability are exceptional</strong>: setting rigid-body compliance directly from first principles (<code>drake: k<sub>e</sub>=10<sup>5</sup> N/m, τ=3 ms</code>) in just 1 step ($B=2$) drops error from <code>577.7 mm</code> down to <strong><code>7.49 mm</code> (<code>nRMSE = 0.20</code>)</strong>, forming a completely flat plateau where all 16 neighboring configurations satisfy <code>nRMSE ≤ 0.25</code>.</p>
+          <p class="takeaway"><strong>Key Finding.</strong> SAP's soft literal default (<code>k<sub>e</sub>=2500 N/m, τ=10 ms</code>) fails on <code>task-3 metal</code> (<i>B</i> = 1), but its <strong>Calibration Efficiency and Predictability are exceptional</strong>: setting rigid-body compliance directly from first principles (<code>drake: k<sub>e</sub>=10<sup>5</sup> N/m, τ=3 ms</code>) in just 1 step (<i>B</i> = 2) drops error from <code>577.7 mm</code> down to <strong><code>7.49 mm</code> (<code>nRMSE = 0.20</code>)</strong>, forming a completely flat plateau where all 16 neighboring configurations satisfy <code>nRMSE ≤ 0.25</code>.</p>
 
-          <figure class="result-figure">
-            <img src="assets/slope_slider_contact_bandwidth_mechanism.png" alt="Schematic illustration showing why compliance bandwidth governs dynamic tilting accuracy on Slope Slider Task-3">
-            <figcaption><strong>Physical Mechanism of Dynamic Tilting (Slope Slider Task-3).</strong> (A) Soft &amp; lagging contact ($k_e=2,500\text{ N/m}, \tau_n=10\text{ ms}$): Contact response is slower than the 180 Hz tilting rate ($\tau_n > \Delta t_{\text{step}}=5.56\text{ ms}$), causing severe gravity penetration and a ~9.2 ms force phase lag, collapsing friction ($F_f = \mu N$) and resulting in 577.7 mm uncontrolled drift. (B) First-principles rigid preset ($k_e=10^5\text{ N/m}, \tau_n=3\text{ ms}$): Fast compliance tracking eliminates penetration and synchronizes normal force in real time ($\tau_n < \Delta t_{\text{step}}$), maintaining stable Coulomb friction and matching ground-truth mocap within 5.8 mm. (C) Time-domain comparison of normal force tracking waveforms.</figcaption>
-          </figure>
+
         </section>
 
         <section id="regime-rotation" class="subsection">
           <h3>3.2 Regime II: Planar rotating friction &amp; reversal (<code>Turntable task-1 wood</code> &amp; <code>task-3 metal</code>)</h3>
-          <p><strong>First-principles mechanism:</strong> On a horizontal rotating plate, normal load is constant ($mg$). Accuracy is governed entirely by whether tangential friction tracking damping $\tau_t$ is decoupled from normal compliance $(k_n, \tau_n)$.</p>
+          <p><strong>First-principles mechanism:</strong> On a horizontal rotating plate, normal load is constant (<i>mg</i>). Accuracy is governed entirely by whether tangential friction tracking damping <i>&tau;<sub>t</sub></i> is decoupled from normal compliance (<i>k<sub>n</sub></i>, <i>&tau;<sub>n</sub></i>).</p>
 
           <table class="result-table">
             <thead>
               <tr>
                 <th>Engine &amp; Decoupling Mechanism</th>
-                <th>Stage 1: Default ($B=1$)</th>
-                <th>Stage 2: 1st-Principles ($B \le 5$)</th>
-                <th>Stage 3: Oracle ($B \approx 100$)</th>
-                <th>Monotonicity $|\rho_s|$</th>
-                <th>$\pm 2\times$ Neighborhood Pass Rate (max)</th>
+                <th>Stage 1: Default (<i>B</i> = 1)</th>
+                <th>Stage 2: 1st-Principles (<i>B</i> &le; 5)</th>
+                <th>Stage 3: Oracle (<i>B</i> &approx; 100)</th>
+                <th>Monotonicity |<i>&rho;<sub>s</sub></i>|</th>
+                <th>&plusmn;2&times; Neighborhood Pass Rate (max)</th>
               </tr>
             </thead>
             <tbody>
@@ -295,7 +304,7 @@
                 <td><strong><code>16 / 16 (100%)</code></strong> (<strong><code>max=0.83</code></strong>)</td>
               </tr>
               <tr>
-                <td><strong>SAP Warp</strong> (Native decoupled $R_t = \sigma w_i$)</td>
+                <td><strong>SAP Warp</strong> (Native decoupled <i>R<sub>t</sub></i> = <i>&sigma; w<sub>i</sub></i>)</td>
                 <td><strong><code>1.13</code></strong> (<code>15.0 mm</code>)</td>
                 <td><code>0.85</code> (<code>11.2 mm</code>)</td>
                 <td><code>0.82</code> (<code>10.8 mm</code>)</td>
@@ -304,18 +313,18 @@
               </tr>
             </tbody>
           </table>
-          <p class="takeaway"><strong>Native vs. Configurable Decoupling.</strong> SAP Warp decouples tangential friction regularization $R_t = \sigma w_i$ natively in the solver, delivering <code>16 / 16</code> configuration robustness out of the box. MuJoCo couples normal and tangential directions by default (failing 7 of 16 neighborhood configs), but achieves identical <code>16 / 16</code> robustness once the user unlocks its native mechanism (<code>cone="elliptic"</code> + <code>&lt;pair solreffriction="0.004 1.0"/&gt;</code>).</p>
+          <p class="takeaway"><strong>Native vs. Configurable Decoupling.</strong> SAP Warp decouples tangential friction regularization <i>R<sub>t</sub></i> = <i>&sigma; w<sub>i</sub></i> natively in the solver, delivering <code>16 / 16</code> configuration robustness out of the box. MuJoCo couples normal and tangential directions by default (failing 7 of 16 neighborhood configs), but achieves identical <code>16 / 16</code> robustness once the user unlocks its native mechanism (<code>cone="elliptic"</code> + <code>&lt;pair solreffriction="0.004 1.0"/&gt;</code>).</p>
         </section>
 
         <section id="regime-breakaway" class="subsection">
           <h3>3.3 Regime III: High-speed centrifugal breakaway (<code>Turntable task-2 metal</code>, 6 rad/s)</h3>
-          <p><strong>First-principles diagnosis:</strong> Under 6 rad/s acceleration, the block undergoes high-speed centrifugal breakaway ($v_{\text{rel}} \sim 1\text{ m/s}$). Sweeping contact solver compliance ($k_n, \tau_n$) across 80–96 configurations is the <strong>wrong physical knob</strong>. Only calibrating high-speed kinetic friction $\mu_k$ directly addresses the physical mechanism:</p>
+          <p><strong>First-principles diagnosis:</strong> Under 6 rad/s acceleration, the block undergoes high-speed centrifugal breakaway (<i>v</i><sub>rel</sub> &sim; 1 m/s). Sweeping contact solver compliance (<i>k<sub>n</sub></i>, <i>&tau;<sub>n</sub></i>) across 80–96 configurations is the <strong>wrong physical knob</strong>. Only calibrating high-speed kinetic friction <i>&mu;<sub>k</sub></i> directly addresses the physical mechanism:</p>
 
           <table class="result-table">
             <thead>
               <tr>
                 <th>Calibration Strategy</th>
-                <th>Evaluation Budget $B$</th>
+                <th>Evaluation Budget <i>B</i></th>
                 <th>MuJoCo (<code>cone="elliptic"</code>)</th>
                 <th>SAP Warp (<code>drake</code>)</th>
                 <th>Physical Interpretation</th>
@@ -324,24 +333,24 @@
             <tbody>
               <tr>
                 <td><strong>Strategy A: Blind Contact Compliance Sweep</strong> (<code>ke, tau</code> / <code>solref</code>)</td>
-                <td>$B = 80\text{--}96$ runs</td>
+                <td><i>B</i> = 80&ndash;96 runs</td>
                 <td>❌ <code>5.38</code> (<code>31.0 mm</code>)</td>
                 <td>❌ <code>4.65</code> (<code>26.8 mm</code>)</td>
                 <td>Wrong mechanism: contact stiffness does not govern breakaway slip distance.</td>
               </tr>
               <tr>
                 <td><strong>Strategy B: Relying on 4-sided Pyramid Artifact</strong> (<code>cone="pyramidal"</code>)</td>
-                <td>$B = 1\text{--}40$ runs</td>
+                <td><i>B</i> = 1&ndash;40 runs</td>
                 <td><code>2.36</code> → <code>1.26</code> (<code>7.25 mm</code>)</td>
                 <td>—</td>
-                <td>Non-isotropic $\sqrt{2}\mu$ diagonal force accidentally mimics higher friction.</td>
+                <td>Non-isotropic &radic;2<i>&mu;</i> diagonal force accidentally mimics higher friction.</td>
               </tr>
               <tr>
-                <td><strong>Strategy C: First-Principles Kinetic Friction Calibration</strong> ($\mu_k \to 0.230$)</td>
-                <td><strong>Only $B = 4$ runs</strong></td>
+                <td><strong>Strategy C: First-Principles Kinetic Friction Calibration</strong> (<i>&mu;<sub>k</sub></i> &rarr; 0.230)</td>
+                <td><strong>Only <i>B</i> = 4 runs</strong></td>
                 <td><strong><code>0.80</code> (<code>4.61 mm</code>)</strong></td>
                 <td><strong><code>0.78</code> (<code>4.48 mm</code>)</strong></td>
-                <td><strong>Strictly monotonic ($|\rho_s|=1.00$). Both engines match reality within 4.6 mm.</strong></td>
+                <td><strong>Strictly monotonic (|<i>&rho;<sub>s</sub></i>| = 1.00). Both engines match reality within 4.6 mm.</strong></td>
               </tr>
             </tbody>
           </table>
@@ -349,8 +358,8 @@
 
         <section id="regime-impact" class="subsection">
           <h3>3.4 Regime IV: Energetic normal impact restitution (<code>GAUGE Bouncing Ball</code> at 180 Hz)</h3>
-          <p><strong>First-principles mechanism:</strong> A 121g rubber ball bounces off a wooden board with real restitution $e_{\text{real}} \approx 0.727$ (baseline RMSE <code>6.01 mm</code>). Simulating at coarse timestep $\Delta t = 5.56\text{ ms}$ tests how each solver balances restitution fidelity against energy conservation:</p>
-          <p>As visualized in <strong>Figure 1(C)</strong>, both engines' damping parameters are mapped along the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>: MuJoCo <code>dampratio</code> $0.2 \to 1.0$; SAP Warp $\tau$ $0 \to 10\text{ ms}$). In both engines, restitution decays strictly monotonically with damping ($|\rho_s|=1.00$). However, their boundary behaviors diverge radically:</p>
+          <p><strong>First-principles mechanism:</strong> A 121g rubber ball bounces off a wooden board with real restitution <i>e</i><sub>real</sub> &approx; 0.727 (baseline RMSE <code>6.01 mm</code>). Simulating at coarse timestep &Delta;<i>t</i> = 5.56 ms tests how each solver balances restitution fidelity against energy conservation:</p>
+          <p>As visualized in <strong>Figure 1(C)</strong>, both engines' damping parameters are mapped along the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>: MuJoCo <code>dampratio</code> 0.2 &rarr; 1.0; SAP Warp <i>&tau;</i> 0 &rarr; 10 ms). In both engines, restitution decays strictly monotonically with damping (|<i>&rho;<sub>s</sub></i>| = 1.00). However, their boundary behaviors diverge radically:</p>
 
           <table class="result-table">
             <thead>
@@ -363,27 +372,27 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>Stage 1: Default ($B=1$)</strong></td>
-                <td>❌ <code>RMSE = 110.7 mm</code> ($e_{\text{sim}} = 0.00$)</td>
-                <td>❌ <code>RMSE = 119.1 mm</code> ($e_{\text{sim}} = 0.00$)</td>
+                <td><strong>Stage 1: Default (<i>B</i> = 1)</strong></td>
+                <td>❌ <code>RMSE = 110.7 mm</code> (<i>e</i><sub>sim</sub> = 0.00)</td>
+                <td>❌ <code>RMSE = 119.1 mm</code> (<i>e</i><sub>sim</sub> = 0.00)</td>
                 <td>Both engines default to critically damped / inelastic impact.</td>
               </tr>
               <tr>
-                <td><strong>Stage 2: 1st-Principles ($B \le 5$)</strong></td>
-                <td><strong><code>RMSE = 7.86 mm</code></strong> ($e_{\text{sim}} = 0.729$)</td>
-                <td><code>RMSE = 29.40 mm</code> ($e_{\text{sim}} = 0.678$)</td>
+                <td><strong>Stage 2: 1st-Principles (<i>B</i> &le; 5)</strong></td>
+                <td><strong><code>RMSE = 7.86 mm</code></strong> (<i>e</i><sub>sim</sub> = 0.729)</td>
+                <td><code>RMSE = 29.40 mm</code> (<i>e</i><sub>sim</sub> = 0.678)</td>
                 <td>MuJoCo matches apex height; SAP is bounded by numerical dissipation ceiling.</td>
               </tr>
               <tr>
-                <td><strong>Mechanism Monotonicity $|\rho_s|$</strong></td>
-                <td><strong><code>1.00</code></strong> ($d_{\text{ref}} \downarrow \implies e_{\text{sim}} \uparrow$)</td>
-                <td><strong><code>1.00</code></strong> ($\tau \downarrow \implies e_{\text{sim}} \uparrow$)</td>
+                <td><strong>Mechanism Monotonicity |<i>&rho;<sub>s</sub></i>|</strong></td>
+                <td><strong><code>1.00</code></strong> (<i>d</i><sub>ref</sub> &darr; &rArr; <i>e</i><sub>sim</sub> &uarr;)</td>
+                <td><strong><code>1.00</code></strong> (<i>&tau;</i> &darr; &rArr; <i>e</i><sub>sim</sub> &uarr;)</td>
                 <td>Both engines respond strictly monotonically along their damping knob.</td>
               </tr>
               <tr>
                 <td><strong>Configuration Robustness around optimum</strong></td>
-                <td>❌ <strong>Knife-edge fragile:</strong><br>• <code>dr=0.37</code>: <code>7.86 mm</code> ($e=0.73$)<br>• <code>dr=0.30</code>: 💥 <strong><code>105.1 mm</code> ($e=1.08 > 1.0$)</strong></td>
-                <td>✅ <strong>Unconditionally energy-safe:</strong><br>• Monotonically saturates at $e \le 0.678 < 1.0$<br>• <strong>Zero risk of non-physical energy creation</strong></td>
+                <td>❌ <strong>Knife-edge fragile:</strong><br>• <code>dr=0.37</code>: <code>7.86 mm</code> (<i>e</i> = 0.73)<br>• <code>dr=0.30</code>: 💥 <strong><code>105.1 mm</code> (<i>e</i> = 1.08 &gt; 1.0)</strong></td>
+                <td>✅ <strong>Unconditionally energy-safe:</strong><br>• Monotonically saturates at <i>e</i> &le; 0.678 &lt; 1.0<br>• <strong>Zero risk of non-physical energy creation</strong></td>
                 <td>MuJoCo uses under-damped spring recoil to cancel Euler integration dissipation, risking energy explosion; SAP Warp is dissipative by design.</td>
               </tr>
             </tbody>
@@ -407,12 +416,12 @@
             <tr>
               <th scope="row">Slope Slider task-3</th>
               <td>Concludes SAP Warp is broken out of the box (<code>nRMSE = 15.20</code>) while MuJoCo is accurate (<code>0.71</code>).</td>
-              <td>Reveals that setting the rigid-body preset <code>drake</code> ($B=2$) restores SAP Warp to <strong><code>0.20</code></strong>, and SAP Warp possesses a significantly wider, flatter plateau (<code>16 / 16</code> vs <code>15 / 16</code>).</td>
+              <td>Reveals that setting the rigid-body preset <code>drake</code> (<i>B</i> = 2) restores SAP Warp to <strong><code>0.20</code></strong>, and SAP Warp possesses a significantly wider, flatter plateau (<code>16 / 16</code> vs <code>15 / 16</code>).</td>
             </tr>
             <tr>
               <th scope="row">Turntable task-2 breakaway</th>
               <td>Concludes MuJoCo is superior (<code>nRMSE = 1.26–2.36</code> vs SAP <code>4.65–5.75</code>) across 100-run sweeps.</td>
-              <td>Proves that both engines fail when solving true isotropic Coulomb friction, and MuJoCo only won due to a 4-sided pyramid cone artifact ($\sqrt{2}\mu$). Calibrating kinetic friction directly ($B=4$) brings both to <strong><code>0.78–0.80</code></strong>.</td>
+              <td>Proves that both engines fail when solving true isotropic Coulomb friction, and MuJoCo only won due to a 4-sided pyramid cone artifact (&radic;2<i>&mu;</i>). Calibrating kinetic friction directly (<i>B</i> = 4) brings both to <strong><code>0.78–0.80</code></strong>.</td>
             </tr>
             <tr>
               <th scope="row">Turntable rotating friction</th>
@@ -422,7 +431,7 @@
             <tr>
               <th scope="row">Dynamic Impact Restitution</th>
               <td>Reports that both engines under-bounce at default and MuJoCo tunes closer to target apex height.</td>
-              <td>Reveals the fundamental trade-off: MuJoCo achieves higher restitution ($e=0.73$) via knife-edge under-damping that risks energy explosion ($e>1.0$), while SAP Warp guarantees unconditional energy stability ($e<1.0$).</td>
+              <td>Reveals the fundamental trade-off: MuJoCo achieves higher restitution (<i>e</i> = 0.73) via knife-edge under-damping that risks energy explosion (<i>e</i> &gt; 1.0), while SAP Warp guarantees unconditional energy stability (<i>e</i> &lt; 1.0).</td>
             </tr>
           </tbody>
         </table>
@@ -442,25 +451,25 @@
           <tbody>
             <tr>
               <th scope="row">1. Physical Fidelity Ceiling</th>
-              <td>• <strong>Sliding &amp; Rotation:</strong> Exceptional (<code>nRMSE = 0.13–0.85</code>).<br>• <strong>Impact:</strong> Capped at $e \approx 0.68$ at 180 Hz by numerical dissipation.</td>
-              <td>• <strong>Sliding &amp; Rotation:</strong> Exceptional (<code>nRMSE = 0.17–0.80</code>).<br>• <strong>Impact:</strong> Tunable to arbitrary restitution ($e=0.73$, <code>RMSE = 7.9 mm</code>).</td>
+              <td>• <strong>Sliding &amp; Rotation:</strong> Exceptional (<code>nRMSE = 0.13–0.85</code>).<br>• <strong>Impact:</strong> Capped at <i>e</i> &approx; 0.68 at 180 Hz by numerical dissipation.</td>
+              <td>• <strong>Sliding &amp; Rotation:</strong> Exceptional (<code>nRMSE = 0.17–0.80</code>).<br>• <strong>Impact:</strong> Tunable to arbitrary restitution (<i>e</i> = 0.73, <code>RMSE = 7.9 mm</code>).</td>
               <td><strong>Tied on friction</strong>; MuJoCo achieves higher restitution in coarse-step impact.</td>
             </tr>
             <tr>
               <th scope="row">2. Calibration Efficiency</th>
-              <td><strong>Exceptional ($B \le 2$):</strong> Parameters are physical ($k_e, \tau$); switching to <code>drake</code> reaches $\ge 95\%$ oracle accuracy in 1 step.</td>
-              <td><strong>Moderate ($B \le 5$):</strong> Effective when using positive <code>solref</code>; direct stiffness <code>(-k,-b)</code> requires mass-scaling knowledge.</td>
+              <td><strong>Exceptional (<i>B</i> &le; 2):</strong> Parameters are physical (<i>k<sub>e</sub></i>, <i>&tau;</i>); switching to <code>drake</code> reaches &ge; 95% oracle accuracy in 1 step.</td>
+              <td><strong>Moderate (<i>B</i> &le; 5):</strong> Effective when using positive <code>solref</code>; direct stiffness <code>(-k,-b)</code> requires mass-scaling knowledge.</td>
               <td><strong>SAP Warp is faster &amp; more direct to calibrate.</strong></td>
             </tr>
             <tr>
               <th scope="row">3. Mechanism Monotonicity</th>
-              <td><strong>Strictly monotonic ($|\rho_s| \ge 0.83$):</strong> Normal and tangential regularization are natively decoupled in solver.</td>
-              <td><strong>High ($|\rho_s| \ge 0.88$):</strong> But pyramidal cone couples normal and tangential compliance unless manually overridden.</td>
+              <td><strong>Strictly monotonic (|<i>&rho;<sub>s</sub></i>| &ge; 0.83):</strong> Normal and tangential regularization are natively decoupled in solver.</td>
+              <td><strong>High (|<i>&rho;<sub>s</sub></i>| &ge; 0.88):</strong> But pyramidal cone couples normal and tangential compliance unless manually overridden.</td>
               <td><strong>SAP Warp provides cleaner orthogonal decoupling.</strong></td>
             </tr>
             <tr>
               <th scope="row">4. Configuration Robustness</th>
-              <td><strong>Wide flat plateau:</strong> Passes $\pm 2\times$ neighborhood in <code>16 / 16</code> friction tests; unconditional energy stability in impact.</td>
+              <td><strong>Wide flat plateau:</strong> Passes &plusmn;2&times; neighborhood in <code>16 / 16</code> friction tests; unconditional energy stability in impact.</td>
               <td><strong>Mixed:</strong> Wide plateau under mass-scaled <code>solref</code> and <code>solreffriction</code>; knife-edge sensitivity in low-damping impact.</td>
               <td><strong>SAP Warp has a broader default robustness window</strong>; MuJoCo requires specific configuration overrides.</td>
             </tr>
