@@ -410,6 +410,17 @@
         <section id="bouncing" class="subsection">
           <h3>3.2 Repeated elastic impact</h3>
           <p><strong>Parameter provenance.</strong> This task did not inherit the 30-ms impact calibration above: repeated bounce has a different 49-ball, long-horizon objective. MuJoCo uses its tested direct zero-damping contact setting. SAP Warp first screened <code>τ</code>, <code>dt</code>, <code>k<sub>e</sub></code>, and preset; the displayed candidate was then frozen for the 20-s energy run. It is the best sampled candidate here, not a full engine-best or convergence result.</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Why it matters</th></tr></thead><tbody>
+            <tr><td>First rebound height</td><td>Maximum free-flight height after the first impact, compared with the 5-m elastic reference.</td><td>Checks whether the first collision is approximately elastic.</td></tr>
+            <tr><td>Rebound-apex energy <code>E/E<sub>0</sub></code></td><td>Mechanical energy sampled only at each free-flight apex and normalized by initial energy.</td><td>Excludes temporary compliant-contact compression, revealing cumulative energy loss across repeated impacts.</td></tr>
+            <tr><td>Final apex-energy ratio</td><td>Last 20-s apex value of <code>E/E<sub>0</sub></code>.</td><td>Primary long-horizon retention metric; ideal non-dissipative behavior remains near one.</td></tr>
+          </tbody></table>
+          <h4>Parameters tested and frozen evaluation point</h4>
+          <table class="result-table compact"><thead><tr><th>Engine</th><th>Sweep / selected setting</th><th>Scope</th></tr></thead><tbody>
+            <tr><td>MuJoCo</td><td>Direct contact with zero damping for the reported run, <code>dt=0.5 ms</code>.</td><td>Reference tested configuration; no matching SAP-material parameter is implied.</td></tr>
+            <tr><td>SAP Warp</td><td>Screened <code>τ={0,4} ms</code>, <code>dt={1,0.5} ms</code>, <code>k<sub>e</sub>={10<sup>4</sup>,10<sup>5</sup>}</code> N/m, and Drake/<code>approx32</code>/<code>approx64</code>. Frozen candidate: <code>approx32</code>, <code>dt=0.5 ms</code>, <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, <code>τ=0</code>.</td><td>Selected from this limited screen for first-rebound quality; not a complete convergence or engine-best sweep.</td></tr>
+          </tbody></table>
           <p>This is not an untouched SAP Warp default. The rolling-style Drake setting with <code>τ=4 ms</code> was strongly dissipative, so the study screened <code>τ=0</code>, <code>dt=1/0.5 ms</code>, <code>k<sub>e</sub>=1e4/1e5 N/m</code>, and three contact presets. The selected SAP Warp candidate—<code>approx32</code>, <code>dt=0.5 ms</code>, <code>k<sub>e</sub>=1e4 N/m</code>, <code>τ=0</code>—is therefore an improved sampled native configuration, not a full engine-best or timestep-convergence search.</p>
           <p>That candidate makes the first rebound close to the ideal 5-m height (<code>4.910 m</code>, −1.81%), yet its rebound-apex energy envelope still decays to <code>E/E<sub>0</sub>=0.834</code> after 20 s. MuJoCo's tested zero-damping direct-contact configuration retains <code>E/E<sub>0</sub>=1.005</code>. The apex metric excludes temporary contact-compression energy and therefore measures cumulative loss across repeated rebounds.</p>
           <p>This suggests particular caution for:</p>
@@ -448,6 +459,17 @@
         <section id="analytic-cavity" class="subsection">
           <h3>4.1 Analytic cavity: contact solver control</h3>
           <p><strong>Parameter provenance.</strong> This is an ablation rather than a single frozen-setting comparison. At <code>dt=0.5 ms</code>, MuJoCo swept <code>solref</code> time constant <code>{1,2,4,10} ms</code>. SAP Warp swept <code>k<sub>e</sub>={10<sup>3</sup>,10<sup>4</sup>,10<sup>5</sup>}</code> N/m at <code>τ=10 ms</code>, then <code>τ={1,3,30} ms</code> at <code>k<sub>e</sub>=10<sup>4</sup></code>. The offset follow-up fixes the working SAP point and changes <code>rigid_gap</code> only.</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Pass reading</th></tr></thead><tbody>
+            <tr><td>Entered and settled</td><td>Peg reaches the cavity bottom and remains there at the end of the 2-s gravity run.</td><td>Basic insertion success.</td></tr>
+            <tr><td>Final lateral offset / height</td><td>Final peg center relative to cavity center and bottom-rest height.</td><td>Detects ejection, fall-through, or a supported but misaligned insertion.</td></tr>
+            <tr><td>Contact state / peak overlap</td><td>Primitive contact count and largest primitive geometric overlap during the run.</td><td>Primitive geometry makes these diagnostics interpretable; they are not cross-engine material-stiffness equivalents.</td></tr>
+          </tbody></table>
+          <h4>Parameters tested</h4>
+          <table class="result-table compact"><thead><tr><th>Engine</th><th>What changes</th><th>Observed use</th></tr></thead><tbody>
+            <tr><td>MuJoCo</td><td><code>solref</code> time constant <code>{1,2,4,10} ms</code>, at <code>dt=.5 ms</code>.</td><td>All centered and 1-mm-offset primitive cases enter and rest.</td></tr>
+            <tr><td>SAP Warp</td><td><code>k<sub>e</sub></code>, <code>τ</code>, then <code>rigid_gap={0,.1,.5,1} mm</code> for the 1-mm-offset case.</td><td><code>rigid_gap=.1–.5 mm</code> is below the remaining side clearance and gives stable entry; 1 mm activates the wall too early.</td></tr>
+          </tbody></table>
           <p>The analytic square cavity uses primitive box contacts and therefore provides a clean multi-contact insertion control.</p>
           <p>Both engines successfully insert a centered peg.</p>
           <p>For SAP Warp, the initially failing 1-mm-offset case became stable after reducing <code>rigid_gap</code> from 1 mm to 0.1–0.5 mm.</p>
@@ -483,6 +505,18 @@
           <p>Here <code>c</code> is the one-sided clearance, and <code>p<sub>max</sub></code>/<code>p<sub>final</sub></code> are the peak/final geometric penetration measures used by that experiment. Thus, an <em>apparent entry</em> is not automatically a valid insertion: it can be inside the socket in pose while violating clearance, overflowing contact capacity, or reporting excessive/ambiguous overlap.</p>
           <p>Under this screen, MuJoCo’s native mesh-SDF produced 22/25 apparent entries but 0/25 credible cases; SAP Warp’s raw/watertight mesh controls likewise did not provide a valid inner-cavity witness. In the initial shared-CoACD sweep, MuJoCo had 2/25 credible cases and SAP Warp had 0/10 at its single untuned native setting (<code>rigid_gap=1 mm</code>).</p>
           <p>To remove unequal tuning coverage, a follow-up gave both engines an <strong>equal 48-candidate native tuning budget</strong> on the shared 32-piece CoACD nominal hard case (<code>c=2 mm</code>, <code>1-mm</code> offset, <code>1°</code> tilt, 2 s), ranked by <code>credible → p<sub>max</sub>/c → final radial → stepping time</code>, then froze each engine’s best candidate across the 10-case <code>5 clearance × 2 offset</code> matrix:</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Role</th></tr></thead><tbody>
+            <tr><td>Entered / within clearance</td><td>Peg reaches the socket cavity and final radial position remains within the one-sided clearance <code>c</code>.</td><td>Checks task completion and final geometric fit.</td></tr>
+            <tr><td>Peak and final penetration</td><td><code>p<sub>max</sub></code> and <code>p<sub>final</sub></code>; credible runs require each ≤<code>0.1c</code>.</td><td>Rejects trajectories that look inserted only because of excessive transient or final overlap.</td></tr>
+            <tr><td>Capacity truncation</td><td>Whether the engine reached its configured contact-capacity limit.</td><td>A truncated solve cannot be treated as a credible insertion result.</td></tr>
+            <tr><td>Credible insertion</td><td><code>entered ∧ within clearance ∧ no truncation ∧ p<sub>max</sub>,p<sub>final</sub>≤0.1c</code>.</td><td>Primary pass/fail score; final depth alone is insufficient.</td></tr>
+          </tbody></table>
+          <h4>Parameters tested and frozen generalization test</h4>
+          <table class="result-table compact"><thead><tr><th>Engine</th><th>Equal 48-candidate tuning budget</th><th>Frozen candidate for 5-clearance × 2-offset matrix</th></tr></thead><tbody>
+            <tr><td>MuJoCo</td><td><code>dt</code>, <code>solref</code> time constant/damping ratio, <code>solimp</code>, solver, integrator.</td><td><code>dt=.25 ms</code>, time constant <code>.75 ms</code>, damping ratio 1, <code>d0=.70</code>, <code>dwidth=.995</code>, Newton + implicitfast.</td></tr>
+            <tr><td>SAP Warp</td><td><code>dt</code>, pair <code>k<sub>e</sub></code>, pair <code>τ</code>, <code>rigid_gap</code>, preset.</td><td><code>dt=.25 ms</code>, pair <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, pair <code>τ=3 ms</code>, <code>rigid_gap=.1 mm</code>, Drake.</td></tr>
+          </tbody></table>
           <h4>Native mesh, initial CoACD matrix, and equal-budget CoACD tuning</h4>
           <table class="result-table compact">
             <thead><tr><th>Protocol / representation</th><th>MuJoCo</th><th>SAP Warp</th><th>What it shows</th></tr></thead>
@@ -520,6 +554,17 @@
         <section id="broad-settling" class="subsection">
           <h3>4.3 Other concave comparison: broad plate settling</h3>
           <p><strong>Parameter provenance.</strong> This is a representation control, not a plate-contact sweep: each engine uses one frozen native setting for both native mesh and shared CoACD. MuJoCo uses <code>dt=0.5 ms</code>, Newton + implicitfast, and <code>solref=(8 ms,1)</code>; SAP Warp uses <code>dt=0.5 ms</code>, Drake, shape <code>k<sub>e</sub>=10<sup>5</sup> N/m</code>, <code>τ=10 ms</code>, and <code>rigid_gap=2 mm</code>.</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Interpretation</th></tr></thead><tbody>
+            <tr><td>Sphere equilibrium pose</td><td>Final ball height and radial position in the bowl.</td><td>Tests broad concave support; it is representation-specific, not a socket-insertion score.</td></tr>
+            <tr><td>Stack order / escape</td><td>Whether three plates retain bottom–middle–top ordering and remain in the bowl.</td><td>Primary qualitative settling outcome.</td></tr>
+            <tr><td>Tail motion and contact load</td><td>Settling time, terminal vertical jitter, active/candidate contact count, and SAP Warp truncation.</td><td>Diagnoses whether apparent support is stable and whether capacity limited the result.</td></tr>
+          </tbody></table>
+          <h4>Parameters tested</h4>
+          <table class="result-table compact"><thead><tr><th>Control</th><th>What changes</th><th>What stays fixed</th></tr></thead><tbody>
+            <tr><td>Native concave mesh vs shared CoACD</td><td>Only collision representation.</td><td>The one frozen native contact setting per engine above, gravity, geometry, and initial condition.</td></tr>
+            <tr><td>Contact-parameter scope</td><td>No <code>solref</code>/<code>solimp</code> or <code>k<sub>e</sub>/<code>τ</code> sweep.</td><td>This establishes representation-sensitive stable support, not a plate-specific robustness boundary.</td></tr>
+          </tbody></table>
           <p><strong>Why include plates?</strong> Plate settling is an <em>open</em> concave task: an object can be supported at many locations in a wide bowl. It is a small scope check alongside the tight-clearance peg--socket task, not an insertion validation.</p>
           <p>Both representations produced stable sphere settling and preserved three-plate order without escape. However, native mesh and shared 32-piece CoACD changed the ball’s supported position, stack heights, and contact manifold. CoACD therefore provides a more interpretable piecewise-convex contact representation, but it remains an approximation to the smooth bowl.</p>
           <p><strong>Meaning for peg-in-hole.</strong> First, stable plate settling rules out the broad claim that either engine “cannot handle concave geometry.” Second, the native-mesh/CoACD differences show that collision representation changes where and how support contacts are formed. The round peg--socket result is therefore more specific: at small clearance, the unresolved requirement is robust, geometrically correct contact activation along the inner wall—not merely whether the object ultimately receives support.</p>
@@ -564,6 +609,18 @@
         <section id="thin-discs" class="subsection">
           <h3>5.1 Three thin discs: native contact operating regions</h3>
           <p><strong>Parameter provenance.</strong> Unlike the matched-baseline friction tasks, this is explicitly a native-parameter sweep: each plotted point is a separate configuration, not a perturbation of one frozen cross-engine setting. The reported balanced examples are selected from those sweeps; they are useful operating points, not physically calibrated equivalents across engines.</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Pass reading</th></tr></thead><tbody>
+            <tr><td>Layer order / escape</td><td>Final bottom–middle–top order and whether any disc leaves the stack.</td><td>Primary qualitative success condition.</td></tr>
+            <tr><td>Settling time</td><td>First time after which tail velocity remains below the task threshold; 2 s is the run limit.</td><td>Separates a correct but still-moving stack from a settled one.</td></tr>
+            <tr><td>Peak overlap and tail motion</td><td>Largest native overlap coordinate, COM-height error, tilt, and tail vertical velocity/jitter.</td><td>Diagnoses softness, transient ringing, and residual activity; raw overlap is not cross-engine comparable.</td></tr>
+            <tr><td>Solver/contact work</td><td>MuJoCo solver iterations; SAP Warp candidate contacts and truncation.</td><td>Within-engine cost/diagnostic telemetry only; counts use different definitions.</td></tr>
+          </tbody></table>
+          <h4>Parameters swept</h4>
+          <table class="result-table compact"><thead><tr><th>Engine</th><th>Primary sweep</th><th>Secondary controls</th></tr></thead><tbody>
+            <tr><td>MuJoCo (79 runs)</td><td><code>dt=.1,.25,.5,1,2,5 ms</code>; <code>solref</code> time constant from near-rigid to soft.</td><td>Damping ratio, <code>solimp</code>, Euler/implicitfast/RK4, Newton/CG.</td></tr>
+            <tr><td>SAP Warp (65 runs)</td><td><code>dt</code>, shape <code>k<sub>e</sub></code>, and <code>τ</code>.</td><td><code>rigid_gap</code> and Drake/<code>approx32</code>/<code>approx64</code> preset.</td></tr>
+          </tbody></table>
           <p>Three 202-mm-diameter, 4-mm-thick analytic discs settle under gravity for 2 s. The figures below summarize all recorded native sweeps: 79 MuJoCo and 65 SAP Warp configurations. Green means the intended layer order settled within the 2-s window; amber retained the order but still had tail motion; red is wrong order or escape.</p>
 
           <figure class="result-figure friction-figure">
@@ -595,6 +652,18 @@
         <section id="matched-thickness" class="subsection">
           <h3>5.2 Matched thickness: analytic disc versus shallow concave plate</h3>
           <p><strong>Parameter provenance.</strong> The disc and shallow-plate pair reuse one balanced setting selected from the preceding thin-disc sweeps, then hold it fixed to isolate shape complexity: MuJoCo uses <code>dt=0.25 ms</code>, Newton + implicitfast, elliptic cone, <code>solref=1 ms</code>, damping ratio 1, and <code>solimp=(.95,.99,.002,.5,2)</code>; SAP Warp uses <code>dt=0.5 ms</code>, Drake, shape <code>k<sub>e</sub>=10<sup>5</sup> N/m</code>, <code>τ=3 ms</code>, and <code>rigid_gap=.1 mm</code>. No plate-specific re-tuning was performed.</p>
+          <h4>Metrics actually used</h4>
+          <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Use</th></tr></thead><tbody>
+            <tr><td>Maximum contact count</td><td>Largest active (MuJoCo) or candidate (SAP Warp) contact count.</td><td>Compare disc versus plate only within one engine; the engine definitions differ.</td></tr>
+            <tr><td>Peak native overlap / tail COM jitter</td><td>Largest reported overlap coordinate and residual center-of-mass motion.</td><td>Measures the increased transient and settling burden of the many-piece bowl.</td></tr>
+            <tr><td>Settled within 2 s; order / escape</td><td>Velocity-based settling criterion and final layer ordering.</td><td>Separates stable support from rapid settling.</td></tr>
+            <tr><td>SAP capacity truncation</td><td>Whether candidate contacts exceeded capacity.</td><td>Required to rule out capacity loss as the cause of an outcome.</td></tr>
+          </tbody></table>
+          <h4>Parameter scope</h4>
+          <table class="result-table compact"><thead><tr><th>Variable</th><th>Compared values</th><th>What is held fixed</th></tr></thead><tbody>
+            <tr><td>Collision shape</td><td>Analytic 4-mm disc versus 4-mm shallow 32-piece CoACD bowl.</td><td>Within each engine: diameter, mass, gravity, friction, initial pose, and the frozen setting above.</td></tr>
+            <tr><td>Contact settings</td><td>No further parameter sweep.</td><td>This is a shape-complexity control, not a thin-plate engine-best comparison.</td></tr>
+          </tbody></table>
           <p>This is a controlled <strong>within-engine</strong> shape-complexity test: three analytic 4-mm discs are compared with three 4-mm shallow concave plates. Diameter, mass, gravity, friction, and initial poses are matched within each engine. The original plate bowl was compressed from a 44.46-mm vertical envelope to 4 mm; it remains a concave bowl represented by 32 CoACD collision pieces, rather than becoming a cylinder.</p>
           <table class="result-table">
             <thead><tr><th>Engine</th><th>shape</th><th>max contact count*</th><th>peak native overlap (mm)</th><th>tail COM jitter (mm)</th><th>settled within 2 s?</th><th>order / escape</th></tr></thead>
@@ -628,6 +697,20 @@
         <p>The Panda benchmark intentionally compares engine-native task behavior rather than forcing identical controller implementations.</p>
         <p>The robot model, object, trajectory intent, finger effort cap, and task-success criteria are shared, while each engine uses its native controller/contact stack.</p>
         <p><strong>Parameter provenance.</strong> Both task stacks are frozen native configurations carried through the mass/friction, pose, transfer, and hold sweeps—there is no per-case contact retuning. MuJoCo uses <code>dt=1 ms</code>, Newton + implicitfast + elliptic cone, and <code>solref=(3 ms,0.75)</code>. SAP Warp uses <code>dt=5 ms</code>, Drake, pair <code>k<sub>e</sub>=5×10<sup>4</sup> N/m</code>, and <code>τ=1 ms</code>. The shared grasp command has a 15-N per-finger cap. These are native task baselines, not a controller-matched or engine-best comparison.</p>
+        <h3>Metrics actually used</h3>
+        <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Pass / interpretation</th></tr></thead><tbody>
+          <tr><td>Bilateral contact duty</td><td>Fraction of the evaluation window in which both fingers contact the cube.</td><td>Must be ≥0.9; distinguishes loss of grasp from mere tracking error.</td></tr>
+          <tr><td>Hand-relative slip and rotation</td><td>Cube displacement and symmetry-aware orientation relative to the hand.</td><td>Pass gate: slip ≤5 mm and relative rotation ≤15°.</td></tr>
+          <tr><td>Drop / overlap</td><td>Whether cube drops; maximum reported overlap.</td><td>No drop and overlap ≤5 mm are required.</td></tr>
+          <tr><td>Mass/friction feasible region</td><td>Number of sampled <code>(m,μ)</code> cases passing all task gates.</td><td>Task-level robustness under the frozen grasp setting, not a pure solver metric.</td></tr>
+          <tr><td>Pose, transfer, and long-hold robustness</td><td>Pass counts under initial position/yaw offsets, transfer-rate/direction changes, and a 10-s final hold; hold reports tail slip rate.</td><td>Separates grasp-pose tolerance, dynamic transfer tolerance, and residual creep.</td></tr>
+        </tbody></table>
+        <h3>Parameters swept and held fixed</h3>
+        <table class="result-table compact"><thead><tr><th>Sweep</th><th>What changes</th><th>What remains frozen</th></tr></thead><tbody>
+          <tr><td>Mass / friction</td><td>Cube mass and pad–cube friction across the shared 46-point grid.</td><td>Robot, controller implementation, 16-mm closed-finger target, 15-N per-finger cap, and each engine's native contact stack.</td></tr>
+          <tr><td>Pose robustness</td><td>Initial cube translation and yaw perturbations.</td><td>Mass/friction reference, trajectory intent, grasp command, and native configurations.</td></tr>
+          <tr><td>Transfer and hold</td><td>Transfer acceleration/direction; 10-s hold duration.</td><td>Same frozen grasp/controller/contact configuration—no case-specific contact tuning.</td></tr>
+        </tbody></table>
 
         <table class="result-table">
           <thead><tr><th>Evaluation</th><th>MuJoCo</th><th>SAP Warp</th><th>Interpretation</th></tr></thead>
