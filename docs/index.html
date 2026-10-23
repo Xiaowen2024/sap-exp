@@ -350,7 +350,32 @@
 
         <section id="impact" class="subsection">
           <h3>3.1 Impact and restitution</h3>
-          <p>A 1-kg, frictionless sphere impacts a plane through one normal degree of freedom. At the reference condition, each engine was independently calibrated to:</p>
+          <h4>Task protocol</h4>
+          <p>A 1-kg sphere is constrained to vertical translation and launched directly at a plane. Gravity and friction are off; <code>margin=gap=0</code>; the sphere starts 1 mm above the plane. Thus this is one normal contact and one normal degree of freedom—there is no face–face contact manifold, tangential friction, or drop-height ambiguity. Each rollout starts with <code>v<sub>z</sub><sup>−</sup>=−v<sub>impact</sub></code>.</p>
+          <p>The reference rollout uses <code>v<sub>impact</sub>=0.5 m/s</code> and <code>dt=0.025 ms</code>. Each engine is independently calibrated there, then its parameters are frozen before testing impact speed and timestep transfer.</p>
+
+          <h4>Metrics</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Metric</th><th>Measured quantity</th><th>Physical check</th></tr></thead>
+            <tbody>
+              <tr><td>Restitution <code>e</code></td><td><code>e=−v<sup>+</sup>/v<sup>−</sup></code>, using velocity immediately before and after the nonzero normal-force episode.</td><td>How much normal speed is recovered after the collision; the reference target is <code>e=0.8</code>.</td></tr>
+              <tr><td>Contact duration <code>t<sub>c</sub></code></td><td>Time from first to last nonzero normal impulse.</td><td>The dynamic softness / collision timescale. The stronger comparison matches <code>t<sub>c</sub>=30 ms</code>, so both contacts receive the same number of steps at a given <code>dt</code>.</td></tr>
+              <tr><td>Overlap and peak force</td><td><code>δ<sub>max</sub></code> is the largest geometric sphere–plane overlap; <code>F<sub>n,max</sub></code> is the largest normal force.</td><td>Describes how the selected compliant contact realizes the impact; neither is itself an accuracy score here.</td></tr>
+              <tr><td>Impulse closure</td><td><code>J=ΣF<sub>n</sub>dt</code>, checked against <code>m(v<sup>+</sup>−v<sup>−</sup>)</code>.</td><td>With gravity off, normal impulse must account for the entire momentum change.</td></tr>
+              <tr><td>Energy loss</td><td><code>E<sub>loss</sub>/E<sub>in</sub>=1−e²</code>.</td><td>A derived restatement of restitution for this frictionless one-DOF collision.</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Frozen calibrated settings and transfer sweep</h4>
+          <table class="result-table compact">
+            <thead><tr><th>Engine / phase</th><th>Fixed native contact setting</th><th>What changes after calibration</th></tr></thead>
+            <tbody>
+              <tr><td>MuJoCo<br><em>frozen after calibration</em></td><td>Newton + implicitfast; one explicit frictionless <code>condim=1</code> pair; constant <code>solimp=(.9,.9,…)</code>; direct <code>solref</code> stiffness <code>11027.6 s<sup>−2</sup></code> and damping scale <code>0.0744171</code>.</td><td>Only <code>dt={.01,.025,.05,.1,.25,.5} ms</code> and <code>v<sub>impact</sub>={.1,.5,1,2} m/s</code>. No re-tuning at each point.</td></tr>
+              <tr><td>SAP Warp<br><em>frozen after calibration</em></td><td>Drake preset; pair <code>k<sub>e</sub>=10<sup>4</sup> N/m</code>, pair <code>τ=1.46094 ms</code>. Equal shape materials use <code>k<sub>e,shape</sub>=2×10<sup>4</sup> N/m</code> and <code>τ<sub>shape</sub>=0.730469 ms</code>, yielding those pair values.</td><td>The same <code>dt</code> and impact-speed grid; no re-tuning of <code>k<sub>e</sub></code>, <code>τ</code>, or preset.</td></tr>
+              <tr><td>Reference behavior match</td><td>At <code>v=0.5 m/s</code>, <code>dt=.025 ms</code>, independently choose native parameters so both engines give <code>e=0.8</code> and <code>t<sub>c</sub>≈30 ms</code>.</td><td>This matches observed rebound and dynamic timescale—not parameter names, material constants, or an external real-world ground truth.</td></tr>
+            </tbody>
+          </table>
+          <p>At the reference condition, each engine was independently calibrated to:</p>
           <div class="equation">e<sub>eff</sub> = 0.8, &nbsp;&nbsp; t<sub>c</sub> = 30 ms</div>
           <p>The native parameters were then frozen. Both engines retain <code>e≈0.8</code> across the tested impact-speed range, so the observed difference below is a timestep-transfer effect in this linear single-contact setup.</p>
           <p>With the contact timescale controlled, MuJoCo remains near its calibrated restitution as timestep increases: <code>e=0.7999 → 0.8027</code> from <code>dt=0.01 → 0.5 ms</code>. SAP Warp falls from <code>e=0.8019</code> to <code>0.7452</code> over the same range, despite both measured impulse episodes remaining approximately 30 ms.</p>
