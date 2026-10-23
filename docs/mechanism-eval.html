@@ -131,9 +131,9 @@
                 <td>• Analytic conservation laws &amp; MDP dissipation<br>• Signorini / contact complementarity consistency diagnostics</td>
               </tr>
               <tr>
-                <td><strong>2. Generalization (泛化性与失效边界)</strong></td>
-                <td>• Zero-shot transfer to held-out real scenes / objects<br>• Accuracy under real physical perturbations</td>
-                <td>• <strong>Configuration portability</strong> across mass/geometry scales<br>• <strong>Failure boundary creation</strong>: cleanly isolating physical failure from numerical breakdown</td>
+                <td><strong>2. Generalization (泛化性)</strong></td>
+                <td>• Zero-shot transfer to held-out real scenes / materials / disturbances</td>
+                <td>• <strong>Mechanism coverage</strong> across physical regimes<br>• <strong>Parameter controllability</strong> &amp; configuration portability</td>
               </tr>
               <tr>
                 <td><strong>3. Usability (可用性与可控性)</strong></td>
@@ -198,41 +198,6 @@
             <img src="assets/mechanism-aware-evaluation-comparison.png" alt="Three-panel figure showing Calibration Efficiency on Slope Slider task-3, Configuration Robustness on Turntable task-3, and Physical Fidelity vs Energy Safety on Bouncing Ball.">
             <figcaption><strong>Mechanism-Aware, Calibration-Budgeted Evaluation across three representative regimes.</strong> (A) Calibration Efficiency: First-principles calibration ($B \le 5$) achieves $\ge 95\%$ of the 100-run oracle ceiling in both engines, eliminating the need for brute-force sweeps. (B) Configuration Robustness: SAP Warp native decoupling maintains a tight plateau across $\pm 2\times$ parameter variations; default coupled MuJoCo degrades significantly, but unlocking <code>solreffriction</code> restores a 100% stable plateau. (C) Physical Fidelity vs. Energy Safety in Impact: Both axes plot in the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>; bottom: MuJoCo <code>dampratio</code> $0.2 \to 1.0$, top: SAP Warp $\tau$ $0 \to 10\text{ ms}$). Both curves decay monotonically with increasing damping. At low damping, MuJoCo risks knife-edge energy explosion ($e > 1.0$) to reach target $e_{\text{real}}=0.73$, while SAP Warp unconditionally guarantees energy safety ($e \le 0.68 < 1.0$) at the cost of a numerical dissipation ceiling.</figcaption>
           </figure>
-        </section>
-
-        <section id="generalizability-failures" class="subsection">
-          <h3>2.4 Generalizability &amp; Failure Boundary Creation (泛化性与失效边界构建)</h3>
-          <p>A simulator that succeeds only within a calibrated comfort zone is dangerous for robot learning. Evaluating a simulator requires testing whether it can <strong>accurately predict failure boundaries</strong> and maintain physical plausibility under adversarial conditions, rather than collapsing into numerical pathologies. We evaluate failure generalizability across three key stress dimensions:</p>
-
-          <div class="cards-grid">
-            <div class="card">
-              <h4>1. Configuration Portability Failures</h4>
-              <p><strong>Mass &amp; inertia scale invariance:</strong> If an object's mass changes from $100\text{ g}$ to $1\text{ kg}$, do the tuned parameters still hold, or do they trigger catastrophic instability?</p>
-              <ul>
-                <li><strong>MuJoCo:</strong> When configured with raw spring coefficients <code>solref=(-k, -b)</code>, effective damping depends on mass ($d = b / (2\sqrt{km})$). Changing mass without re-tuning leads to violent numerical blow-up. Conversely, dimensionless parameters <code>solref=(timeconst, dampratio)</code> scale automatically with mass.</li>
-                <li><strong>SAP Warp:</strong> Uses physical contact stiffness $k_e$ ($\text{N/m}$). Default soft compliance ($k_e = 2500\text{ N/m}$) sags under heavy loads ($>500\text{ g}$), but the rigid preset <code>drake</code> ($k_e = 10^5\text{ N/m}, \tau = 3\text{ ms}$) transfers cleanly across diverse geometries.</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h4>2. Dynamic &amp; Geometric Stress Failures</h4>
-              <p><strong>Adversarial contact geometry:</strong> Probing solver stability under extreme geometric aspect ratios and high-frequency excitation:</p>
-              <ul>
-                <li><strong>Thin disc penetration ($0.5\text{ mm}$):</strong> Evaluates whether high contact forces cause solver tunneling through the ground surface or chatter.</li>
-                <li><strong>Tight-clearance peg-in-hole ($2\text{ mm}$):</strong> Evaluates whether multi-point contact clustering causes artificial jamming or solver divergence.</li>
-                <li><strong>High-frequency dynamic tilting ($180\text{ Hz}$):</strong> Tests whether contact compliance bandwidth can track rapid normal load fluctuations without delay-induced lift-off.</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h4>3. Physical vs. Numerical Failure Decoupling</h4>
-              <p><strong>Clean separation of physical limits from solver bugs:</strong> When a task fails, is the failure physical or numerical?</p>
-              <ul>
-                <li><strong>Physical Failure:</strong> Slipping or dropping an object because the applied grip force falls below the Coulomb threshold ($\mu N < mg$), or sliding off an incline when $\tan\theta > \mu$. Both engines must faithfully predict this boundary.</li>
-                <li><strong>Numerical Pathological Failure:</strong> Non-physical energy injection ($e > 1.0$), lateral drift on symmetric straight-line sliding, artificial sticking/adhesion at separation, or interpenetration tunneling. A high-quality engine must exhibit <strong>zero numerical failures</strong> when crossing physical failure boundaries.</li>
-              </ul>
-            </div>
-          </div>
         </section>
       </section>
 
