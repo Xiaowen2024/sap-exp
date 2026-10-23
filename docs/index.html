@@ -553,11 +553,9 @@
 
         <section id="broad-settling" class="subsection">
           <h3>4.3 Other concave comparison: broad plate settling</h3>
-          <p><strong>Two separate plate subtests are reported here:</strong> first, a single sphere is dropped into one dinner plate to measure broad-bowl support; second, three dinner plates settle under gravity to test concave stacking. The sphere is not part of the three-plate stack.</p>
           <p><strong>Parameter provenance.</strong> This is a representation control, not a plate-contact sweep: each engine uses one frozen native setting for both native mesh and shared CoACD. MuJoCo uses <code>dt=0.5 ms</code>, Newton + implicitfast, and <code>solref=(8 ms,1)</code>; SAP Warp uses <code>dt=0.5 ms</code>, Drake, shape <code>k<sub>e</sub>=10<sup>5</sup> N/m</code>, <code>τ=10 ms</code>, and <code>rigid_gap=2 mm</code>.</p>
           <h4>Metrics actually used</h4>
           <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Interpretation</th></tr></thead><tbody>
-            <tr><td>Sphere-in-plate equilibrium<br><em>single-sphere subtest</em></td><td>Final sphere height and radial position in one bowl.</td><td>Tests broad concave support; it is representation-specific, not a socket-insertion score.</td></tr>
             <tr><td>Stack order / escape</td><td>Whether three plates retain bottom–middle–top ordering and remain in the bowl.</td><td>Primary qualitative settling outcome.</td></tr>
             <tr><td>Tail motion and contact load</td><td>Settling time, terminal vertical jitter, active/candidate contact count, and SAP Warp truncation.</td><td>Diagnoses whether apparent support is stable and whether capacity limited the result.</td></tr>
           </tbody></table>
@@ -567,14 +565,14 @@
             <tr><td>Contact-parameter scope</td><td>No <code>solref</code>/<code>solimp</code> or <code>k<sub>e</sub>/<code>τ</code> sweep.</td><td>This establishes representation-sensitive stable support, not a plate-specific robustness boundary.</td></tr>
           </tbody></table>
           <p><strong>Why include plates?</strong> Plate settling is an <em>open</em> concave task: an object can be supported at many locations in a wide bowl. It is a small scope check alongside the tight-clearance peg--socket task, not an insertion validation.</p>
-          <p>Both representations produced stable sphere settling and preserved three-plate order without escape. However, native mesh and shared 32-piece CoACD changed the ball’s supported position, stack heights, and contact manifold. CoACD therefore provides a more interpretable piecewise-convex contact representation, but it remains an approximation to the smooth bowl.</p>
+          <p>Both representations preserved three-plate order without escape. Native mesh and shared 32-piece CoACD changed settled stack heights and the contact manifold. CoACD therefore provides a more interpretable piecewise-convex contact representation, but it remains an approximation to the smooth bowl.</p>
           <p><strong>Meaning for peg-in-hole.</strong> First, stable plate settling rules out the broad claim that either engine “cannot handle concave geometry.” Second, the native-mesh/CoACD differences show that collision representation changes where and how support contacts are formed. The round peg--socket result is therefore more specific: at small clearance, the unresolved requirement is robust, geometrically correct contact activation along the inner wall—not merely whether the object ultimately receives support.</p>
           <h4>Native mesh versus shared CoACD in the open plate</h4>
           <table class="result-table compact">
-            <thead><tr><th>Representation</th><th>Sphere-in-plate equilibrium</th><th>Three-plate stack</th><th>What changes</th></tr></thead>
+            <thead><tr><th>Representation</th><th>Three-plate stack</th><th>What changes</th></tr></thead>
             <tbody>
-              <tr><td>Native concave mesh path</td><td>Both stable/no escape. Ball <code>z/r</code>: MuJoCo 26.397/19.587 mm; SAP 26.751/19.561 mm.</td><td>Both preserve order/no escape. Heights: MuJoCo −.055, 21.769, 50.968 mm; SAP −.010, 8.334, 16.678 mm.</td><td>Broad support succeeds, but the multi-contact equilibrium is not the same across engines.</td></tr>
-              <tr><td>Shared 32-piece CoACD</td><td>Both stable/no escape and closely agree. Ball <code>z/r</code>: MuJoCo 27.238/33.524 mm; SAP 27.444/33.667 mm.</td><td>Both preserve order/no escape. Heights: MuJoCo −.030, 10.714, 22.201 mm; SAP .064, 11.251, 22.414 mm.</td><td>CoACD shifts the support surface/manifold. It improves the interpretability of contacts, not equality with the original smooth bowl.</td></tr>
+              <tr><td>Native concave mesh path</td><td>Both preserve order/no escape. Heights: MuJoCo −.055, 21.769, 50.968 mm; SAP −.010, 8.334, 16.678 mm.</td><td>Broad support succeeds, but the multi-contact equilibrium is not the same across engines.</td></tr>
+              <tr><td>Shared 32-piece CoACD</td><td>Both preserve order/no escape. Heights: MuJoCo −.030, 10.714, 22.201 mm; SAP .064, 11.251, 22.414 mm.</td><td>CoACD shifts the support surface/manifold. It improves the interpretability of contacts, not equality with the original smooth bowl.</td></tr>
             </tbody>
           </table>
           <p class="video-note">The raw-mesh and CoACD position values are meaningful as representation-specific outcomes. Their witness/gap values are <strong>not</strong> a common geometric-penetration scale inside the bowl.</p>
