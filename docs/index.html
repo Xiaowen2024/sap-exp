@@ -553,10 +553,11 @@
 
         <section id="broad-settling" class="subsection">
           <h3>4.3 Other concave comparison: broad plate settling</h3>
+          <p><strong>Two separate plate subtests are reported here:</strong> first, a single sphere is dropped into one dinner plate to measure broad-bowl support; second, three dinner plates settle under gravity to test concave stacking. The sphere is not part of the three-plate stack.</p>
           <p><strong>Parameter provenance.</strong> This is a representation control, not a plate-contact sweep: each engine uses one frozen native setting for both native mesh and shared CoACD. MuJoCo uses <code>dt=0.5 ms</code>, Newton + implicitfast, and <code>solref=(8 ms,1)</code>; SAP Warp uses <code>dt=0.5 ms</code>, Drake, shape <code>k<sub>e</sub>=10<sup>5</sup> N/m</code>, <code>τ=10 ms</code>, and <code>rigid_gap=2 mm</code>.</p>
           <h4>Metrics actually used</h4>
           <table class="result-table compact"><thead><tr><th>Metric</th><th>Definition</th><th>Interpretation</th></tr></thead><tbody>
-            <tr><td>Sphere equilibrium pose</td><td>Final ball height and radial position in the bowl.</td><td>Tests broad concave support; it is representation-specific, not a socket-insertion score.</td></tr>
+            <tr><td>Sphere-in-plate equilibrium<br><em>single-sphere subtest</em></td><td>Final sphere height and radial position in one bowl.</td><td>Tests broad concave support; it is representation-specific, not a socket-insertion score.</td></tr>
             <tr><td>Stack order / escape</td><td>Whether three plates retain bottom–middle–top ordering and remain in the bowl.</td><td>Primary qualitative settling outcome.</td></tr>
             <tr><td>Tail motion and contact load</td><td>Settling time, terminal vertical jitter, active/candidate contact count, and SAP Warp truncation.</td><td>Diagnoses whether apparent support is stable and whether capacity limited the result.</td></tr>
           </tbody></table>
