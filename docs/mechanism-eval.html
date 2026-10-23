@@ -110,10 +110,50 @@
       </section>
 
       <section id="framework" class="report-section">
-        <h2>2. The 3-Axis Evaluation Framework</h2>
+        <h2>2. The Unified 2D Evaluation Framework</h2>
+
+        <section id="matrix-overview" class="subsection">
+          <h3>2.1 The 2D evaluation matrix: Ground truth vs. Diagnostic first-principles</h3>
+          <p>Traditional simulator benchmarking assumes that high-precision real-world mocap or sensor data is always available. However, in robotic manipulation and sim-to-real transfer, real datasets are expensive, sparse, or noisy. A complete simulator evaluation framework must systematically assess engines in both regimes:</p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Evaluation Dimension</th>
+                <th>With Real-World Reference (有真实参考)</th>
+                <th>Without Real Reference (First-Principles &amp; Diagnostics)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Fidelity (保真度)</strong></td>
+                <td>• Task transfer &amp; trajectory tracking (mocap <code>nRMSE</code>)<br>• Slip / breakaway / impact failure agreement</td>
+                <td>• Analytic conservation laws &amp; MDP dissipation<br>• Signorini / contact complementarity consistency diagnostics</td>
+              </tr>
+              <tr>
+                <td><strong>2. Generalization (泛化性与失效边界)</strong></td>
+                <td>• Zero-shot transfer to held-out real scenes / objects<br>• Accuracy under real physical perturbations</td>
+                <td>• <strong>Configuration portability</strong> across mass/geometry scales<br>• <strong>Failure boundary creation</strong>: cleanly isolating physical failure from numerical breakdown</td>
+              </tr>
+              <tr>
+                <td><strong>3. Usability (可用性与可控性)</strong></td>
+                <td>• Real-to-sim calibration budget ($B \le 5$ runs)<br>• Iteration cost &amp; sensor dependency</td>
+                <td>• <strong>Parameter interpretability</strong> (physical units vs. tuning knobs)<br>• <strong>Mechanism-aware tuning predictability</strong> (monotonicity $|\rho_s|$)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <p><strong>First-Principles Bridge.</strong> Mechanism-aware evaluation serves as the structural bridge across this 2D matrix:</p>
+            <div class="equation">
+              \text{Physical Mechanism} \;\longrightarrow\; \text{Expected Behavior} \;\longrightarrow\; \text{Native Controls} \;\longrightarrow\; \text{Observable Diagnostics} \;\longrightarrow\; \text{Real-World Validation}
+            </div>
+            <p>It does not pretend that simulators can be proven absolutely true without real data; rather, it guarantees that a simulator is physically consistent, monotonic, and controllable <em>before</em> spending expensive real-robot trials.</p>
+          </div>
+        </section>
 
         <section id="three-stages" class="subsection">
-          <h3>2.1 Three structured calibration stages</h3>
+          <h3>2.2 Three structured calibration stages</h3>
           <p>For every atomic physical regime, we evaluate simulators along three progressive stages:</p>
           <ol>
             <li><strong>Stage 1 — Out-of-the-Box Default ($B = 1$):</strong> Factory default configuration without any task-specific tuning. Measures baseline usability.</li>
@@ -125,7 +165,7 @@
         </section>
 
         <section id="three-axes" class="subsection">
-          <h3>2.2 The three evaluation axes &amp; metrics</h3>
+          <h3>2.3 The three quantitative evaluation axes</h3>
           <p>Rather than conflating different aspects of simulator quality into a single score, we evaluate three orthogonal axes:</p>
           <table class="data-table">
             <thead>
@@ -156,8 +196,43 @@
 
           <figure class="result-figure">
             <img src="assets/mechanism-aware-evaluation-comparison.png" alt="Three-panel figure showing Calibration Efficiency on Slope Slider task-3, Configuration Robustness on Turntable task-3, and Physical Fidelity vs Energy Safety on Bouncing Ball.">
-            <figcaption><strong>Mechanism-Aware, Calibration-Budgeted Evaluation across three representative regimes.</strong> (A) Calibration Efficiency: First-principles calibration ($B \le 5$) achieves $\ge 95\%$ of the 100-run oracle ceiling in both engines, eliminating the need for brute-force sweeps. (B) Configuration Robustness: SAP Warp native decoupling maintains a tight plateau across $\pm 2\times$ parameter variations; default coupled MuJoCo degrades significantly, but unlocking <code>solreffriction</code> restores a 100% stable plateau. (C) Physical Fidelity vs. Energy Safety in Impact: MuJoCo achieves higher restitution fidelity ($e=0.73$) via under-damped compensation, but risks knife-edge energy explosion ($e>1.0$); SAP Warp guarantees unconditional energy safety ($e \le 0.68 < 1.0$) at the cost of a numerical dissipation ceiling.</figcaption>
+            <figcaption><strong>Mechanism-Aware, Calibration-Budgeted Evaluation across three representative regimes.</strong> (A) Calibration Efficiency: First-principles calibration ($B \le 5$) achieves $\ge 95\%$ of the 100-run oracle ceiling in both engines, eliminating the need for brute-force sweeps. (B) Configuration Robustness: SAP Warp native decoupling maintains a tight plateau across $\pm 2\times$ parameter variations; default coupled MuJoCo degrades significantly, but unlocking <code>solreffriction</code> restores a 100% stable plateau. (C) Physical Fidelity vs. Energy Safety in Impact: Both axes plot in the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>; bottom: MuJoCo <code>dampratio</code> $0.2 \to 1.0$, top: SAP Warp $\tau$ $0 \to 10\text{ ms}$). Both curves decay monotonically with increasing damping. At low damping, MuJoCo risks knife-edge energy explosion ($e > 1.0$) to reach target $e_{\text{real}}=0.73$, while SAP Warp unconditionally guarantees energy safety ($e \le 0.68 < 1.0$) at the cost of a numerical dissipation ceiling.</figcaption>
           </figure>
+        </section>
+
+        <section id="generalizability-failures" class="subsection">
+          <h3>2.4 Generalizability &amp; Failure Boundary Creation (泛化性与失效边界构建)</h3>
+          <p>A simulator that succeeds only within a calibrated comfort zone is dangerous for robot learning. Evaluating a simulator requires testing whether it can <strong>accurately predict failure boundaries</strong> and maintain physical plausibility under adversarial conditions, rather than collapsing into numerical pathologies. We evaluate failure generalizability across three key stress dimensions:</p>
+
+          <div class="cards-grid">
+            <div class="card">
+              <h4>1. Configuration Portability Failures</h4>
+              <p><strong>Mass &amp; inertia scale invariance:</strong> If an object's mass changes from $100\text{ g}$ to $1\text{ kg}$, do the tuned parameters still hold, or do they trigger catastrophic instability?</p>
+              <ul>
+                <li><strong>MuJoCo:</strong> When configured with raw spring coefficients <code>solref=(-k, -b)</code>, effective damping depends on mass ($d = b / (2\sqrt{km})$). Changing mass without re-tuning leads to violent numerical blow-up. Conversely, dimensionless parameters <code>solref=(timeconst, dampratio)</code> scale automatically with mass.</li>
+                <li><strong>SAP Warp:</strong> Uses physical contact stiffness $k_e$ ($\text{N/m}$). Default soft compliance ($k_e = 2500\text{ N/m}$) sags under heavy loads ($>500\text{ g}$), but the rigid preset <code>drake</code> ($k_e = 10^5\text{ N/m}, \tau = 3\text{ ms}$) transfers cleanly across diverse geometries.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>2. Dynamic &amp; Geometric Stress Failures</h4>
+              <p><strong>Adversarial contact geometry:</strong> Probing solver stability under extreme geometric aspect ratios and high-frequency excitation:</p>
+              <ul>
+                <li><strong>Thin disc penetration ($0.5\text{ mm}$):</strong> Evaluates whether high contact forces cause solver tunneling through the ground surface or chatter.</li>
+                <li><strong>Tight-clearance peg-in-hole ($2\text{ mm}$):</strong> Evaluates whether multi-point contact clustering causes artificial jamming or solver divergence.</li>
+                <li><strong>High-frequency dynamic tilting ($180\text{ Hz}$):</strong> Tests whether contact compliance bandwidth can track rapid normal load fluctuations without delay-induced lift-off.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>3. Physical vs. Numerical Failure Decoupling</h4>
+              <p><strong>Clean separation of physical limits from solver bugs:</strong> When a task fails, is the failure physical or numerical?</p>
+              <ul>
+                <li><strong>Physical Failure:</strong> Slipping or dropping an object because the applied grip force falls below the Coulomb threshold ($\mu N < mg$), or sliding off an incline when $\tan\theta > \mu$. Both engines must faithfully predict this boundary.</li>
+                <li><strong>Numerical Pathological Failure:</strong> Non-physical energy injection ($e > 1.0$), lateral drift on symmetric straight-line sliding, artificial sticking/adhesion at separation, or interpenetration tunneling. A high-quality engine must exhibit <strong>zero numerical failures</strong> when crossing physical failure boundaries.</li>
+              </ul>
+            </div>
+          </div>
         </section>
       </section>
 
@@ -305,6 +380,7 @@
         <section id="regime-impact" class="subsection">
           <h3>3.4 Regime IV: Energetic normal impact restitution (<code>GAUGE Bouncing Ball</code> at 180 Hz)</h3>
           <p><strong>First-principles mechanism:</strong> A 121g rubber ball bounces off a wooden board with real restitution $e_{\text{real}} \approx 0.727$ (baseline RMSE <code>6.01 mm</code>). Simulating at coarse timestep $\Delta t = 5.56\text{ ms}$ tests how each solver balances restitution fidelity against energy conservation:</p>
+          <p>As visualized in <strong>Figure 1(C)</strong>, both engines' damping parameters are mapped along the unified physical direction (<strong>Low Damping &rarr; High Damping</strong>: MuJoCo <code>dampratio</code> $0.2 \to 1.0$; SAP Warp $\tau$ $0 \to 10\text{ ms}$). In both engines, restitution decays strictly monotonically with damping ($|\rho_s|=1.00$). However, their boundary behaviors diverge radically:</p>
 
           <table class="result-table">
             <thead>
