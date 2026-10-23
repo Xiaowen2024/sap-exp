@@ -290,6 +290,11 @@
             </tbody>
           </table>
           <p class="takeaway"><strong>Key Finding.</strong> SAP's soft literal default (<code>k<sub>e</sub>=2500 N/m, τ=10 ms</code>) fails on <code>task-3 metal</code> ($B=1$), but its <strong>Calibration Efficiency and Predictability are exceptional</strong>: setting rigid-body compliance directly from first principles (<code>drake: k<sub>e</sub>=10<sup>5</sup> N/m, τ=3 ms</code>) in just 1 step ($B=2$) drops error from <code>577.7 mm</code> down to <strong><code>7.49 mm</code> (<code>nRMSE = 0.20</code>)</strong>, forming a completely flat plateau where all 16 neighboring configurations satisfy <code>nRMSE ≤ 0.25</code>.</p>
+
+          <figure class="result-figure">
+            <img src="assets/slope_slider_contact_bandwidth_mechanism.png" alt="Schematic illustration showing why compliance bandwidth governs dynamic tilting accuracy on Slope Slider Task-3">
+            <figcaption><strong>Physical Mechanism of Dynamic Tilting (Slope Slider Task-3).</strong> (A) Soft &amp; lagging contact ($k_e=2,500\text{ N/m}, \tau_n=10\text{ ms}$): Contact response is slower than the 180 Hz tilting rate ($\tau_n > \Delta t_{\text{step}}=5.56\text{ ms}$), causing severe gravity penetration and a ~9.2 ms force phase lag, collapsing friction ($F_f = \mu N$) and resulting in 577.7 mm uncontrolled drift. (B) First-principles rigid preset ($k_e=10^5\text{ N/m}, \tau_n=3\text{ ms}$): Fast compliance tracking eliminates penetration and synchronizes normal force in real time ($\tau_n < \Delta t_{\text{step}}$), maintaining stable Coulomb friction and matching ground-truth mocap within 5.8 mm. (C) Time-domain comparison of normal force tracking waveforms.</figcaption>
+          </figure>
         </section>
 
         <section id="regime-rotation" class="subsection">
