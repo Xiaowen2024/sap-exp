@@ -28,12 +28,13 @@ Use a common contact aggregation rule per engine (per-finger resultant, not raw 
 
 ## 3. Mechanism-aware usability
 
-Apply the shared \(B=1\), \(B\leq5\), and \(B\approx100\) calibration stages in the [composite protocol](../README.md). The native settings selected on calibration trials are frozen for all held-out trials.
+The task first selects native engine settings on calibration trials, then freezes them before every held-out score and sweep.
 
 | Check | Definition |
 |---|---|
-| **Setup-variant robustness** | With frozen native settings, repeat over held-out object mass/shape, surface/material condition, initial object pose, and applied-load or motion profiles. Report slip/no-slip prediction and pose drift by variant. |
-| **Grasp-stability boundary** | Map the retained/slip boundary over physical task controls: commanded tendon/grip force versus object weight and external load. Compare the simulated boundary with held-out physical trials when available; otherwise report it only as simulation-level controllability. |
-| **Bounded mechanism-aware tuning** | State which native controls were varied, the physical mechanism motivating each candidate, \(\mathrm{Pass}@B\), and \(B_{\rm first\ pass}\). Contrast with same-budget blind search if run. |
+| **Bounded tuning budget** | Compare default \(B=1\), up to \(B\leq5\) mechanism-motivated native candidates, and—if run—a disclosed \(B\approx100\) blind-grid ceiling. Report \(\mathrm{Pass}@B\) and \(B_{\rm first\ pass}\) for a preregistered retention criterion. |
+| **Plausible-range controllability** | With native settings and material parameters frozen, map the hold/slip boundary over *physical task controls*: commanded tendon/grip force versus object weight and external load. A plausible grasp should retain the object above, and slip below, the expected boundary. Compare this boundary with held-out physical trials when available; otherwise label it simulation-only. |
+| **Numerical local robustness** | At each frozen configuration, perturb timestep, initial object pose, and seed under a preregistered distribution. Report mean/SD across \(R\geq20\) draws. |
+| **Setup-variant robustness** | With frozen native settings, repeat on held-out object mass/shape, surface/material condition, initial object pose, and applied-load or motion profiles. Report slip/no-slip prediction and pose drift by variant. |
 
-The stability boundary changes **environment/task controls**, not the frozen material parameters or native solver settings. It asks whether one calibrated simulator can generate the expected transition between stable and unstable grasps.
+The boundary sweep changes task conditions—not native solver settings or per-trial material fits.
