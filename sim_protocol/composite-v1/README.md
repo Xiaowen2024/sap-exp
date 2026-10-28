@@ -26,7 +26,7 @@ For closed-loop tasks, distinguish:
 
 Use a real-world metric only when a synchronized reference exists. The task file defines the observable state and fixed evaluation window. Report held-out mean, SD, and 95% CI.
 
-There is intentionally no universal composite-task trajectory score. A pelvis state, an insertion pose, and a manipulated object state have different physically meaningful observables.
+There is intentionally no universal composite-task trajectory score. A pelvis state, an insertion pose, and a grasped-object state have different physically meaningful observables.
 
 ### 3. Simulation consistency
 
@@ -36,7 +36,7 @@ Do not compare raw contact-point counts or unaggregated contact-force traces acr
 
 ### 4. Mechanism-aware usability
 
-All composite tasks use the common calibration stages below. A budget unit is one complete native parameter-configuration evaluation over all training rollouts.
+A budget unit is one complete native parameter-configuration evaluation over all training rollouts.
 
 | Stage | Budget | Rule |
 |---|---:|---|
@@ -44,7 +44,16 @@ All composite tasks use the common calibration stages below. A budget unit is on
 | First-principles calibration | \(B\leq5\) | Predeclared mechanism-motivated native candidates selected on training conditions only. |
 | Brute-force upper bound | \(B\approx100\) | Disclosed native grid on training conditions only; an oracle ceiling, not a usability claim. |
 
-Freeze the selected engine configuration before held-out scoring. Local robustness uses predeclared perturbations of timestep, initial state, and seed; repeated identical deterministic replays are reproducibility checks, not robustness samples.
+For every composite task, freeze the selected engine configuration before held-out scoring. Then report:
+
+| Check | Definition |
+|---|---|
+| **Bounded tuning** | \(\mathrm{Pass}@B\) and \(B_{\rm first\ pass}\) for a preregistered criterion; compare first-principles calibration with the same-budget brute-force baseline where feasible. |
+| **Setup-variant robustness** | Freeze native settings, vary meaningful task conditions (e.g. object mass, geometry, surface, initial pose, or command), and report whether the conclusion transfers. |
+| **Task-specific stability boundary** | For a task with a well-defined transition, map the boundary using the task's physical controls. This is a characterization of controllability, not a native-parameter fit. For a grasp, it is the hold/slip boundary over grip force, load, and object condition. |
+| **Numerical local robustness** | With physics and tuning frozen, perturb timestep, initial state, and seed under a predeclared distribution. Report per-condition mean/SD across \(R\geq20\) draws. |
+
+Repeated identical deterministic replays are reproducibility checks, not robustness samples.
 
 ## Task registry
 
@@ -52,4 +61,4 @@ Freeze the selected engine configuration before held-out scoring. Local robustne
 |---|---|---|
 | [Cassie landing](task-metrics/cassie-landing.md) | impact, closed linkages, multi-foot contact, articulated dynamics | Yes |
 | [Peg-in-hole](task-metrics/peg-in-hole.md) | clearance, contact manifold, friction, geometric validity | Not in v1 |
-| [Panda manipulation](task-metrics/panda-manipulation.md) | actuator control, object contact, task outcome | When a matched physical rollout is available |
+| [DENSE EZGripper grasp](task-metrics/dense-ezgripper-grasp.md) | underactuated tendon-driven grasp, frictional retention, contact switching | Planned physical data |
