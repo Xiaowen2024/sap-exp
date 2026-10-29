@@ -70,7 +70,7 @@ Never infer robustness from a single nominal rollout. If candidate-level `R=20` 
 
 ## Inventory and publication gate
 
-The page begins with a small inventory of all registered tasks, including completed, complete-negative, pending, blocked, and not-comparable entries. Only a task with both SAP Warp and MuJoCo Warp evidence can make the main comparison card. If one backend is still running (for example round socket Warp), retain it in the inventory rather than publishing a partial comparison.
+The page begins with a small inventory of all registered tasks, including completed, complete-negative, pending, blocked, and not-comparable entries. Only a task with both SAP Warp and MuJoCo Warp evidence can make the main comparison card. If one backend is still running, retain it in the inventory rather than publishing a partial comparison.
 
 Before publishing a card:
 
