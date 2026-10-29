@@ -34,27 +34,29 @@ For every task, publish one compact result block in this exact order.
 
 Use one row per `engine × budget`.
 
-| Engine | Budget | Exact selected configuration | Evaluation denominator | Task success rate | Outcome accuracy / agreement | Balanced accuracy | FPR / FNR | 95% interval | Validity status |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| MuJoCo CPU | B=1 | literal compiled default | ... | ... | ... | ... | ... | ... | ... |
-| MuJoCo CPU | B=5 | frozen selected candidate | ... | ... | ... | ... | ... | ... | ... |
-| MuJoCo Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... | ... | ... |
-| MuJoCo Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... | ... | ... |
-| SAP Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... | ... | ... |
-| SAP Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... | ... | ... |
+| Engine | Budget | Exact selected configuration | Evaluation denominator | Task success rate | Optional discriminative outcome metric | 95% interval | Validity status |
+| --- | --- | --- | ---: | ---: | --- | --- | --- |
+| MuJoCo CPU | B=1 | literal compiled default | ... | ... | ... | ... | ... |
+| MuJoCo CPU | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
+| MuJoCo Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... |
+| MuJoCo Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
+| SAP Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... |
+| SAP Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
 
 Definitions:
 
 - **Task success rate** is the fraction of rollouts satisfying that task's
   preregistered pass criterion (for example retain, settled, credible insertion,
   or trajectory gate). It is mandatory even when a classification metric exists.
-- **Outcome accuracy/agreement** compares predicted and expected discrete task
-  outcomes. Report its denominator and confusion matrix `TP/FP/FN/TN` whenever
-  an expected outcome label exists.
-- **Balanced accuracy, FPR, FNR** are mandatory only if both outcome classes
-  exist. If one class has denominator zero, write `not identifiable: no
-  expected-retain` or `no expected-release`; do not present 100% accuracy as a
-  discriminative result.
+- **Outcome accuracy/agreement** is optional. Include it only if discrete
+  expected outcomes exist *and* it adds information beyond success rate. When
+  used, report its denominator and confusion matrix `TP/FP/FN/TN` in the linked
+  artifact rather than crowding the public card.
+- **Balanced accuracy, FPR, and FNR** are optional diagnostics, not default
+  display fields. Show them only where they explain a material engine
+  difference. If one class has denominator zero, label the accuracy as `not
+  discriminative: no expected-retain` or `no expected-release`; do not present
+  100% agreement as task success.
 - Use Wilson 95% intervals for binomial success/accuracy metrics. For continuous
   metrics report mean, SD (or median/IQR when predeclared), sample count, and
   units.
@@ -90,7 +92,9 @@ different questions:
 
 1. **Candidate usability:** across the five predeclared configurations
    (including literal B=1), which candidates pass the selection health/task
-   gate under `R=20`? Report all five candidates, not only the winner.
+   gate under `R=20`? The artifact must retain all five candidates, but the
+   public summary shows B=1, the selected B=5 winner, and at most one or two
+   representative candidates that make a material trend visible.
 2. **Frozen-setting robustness:** after selection, does the single frozen B=5
    winner retain validity and task performance on the held-out physical grid
    (mass, friction, geometry, dt, pose, trajectory, or material variants as
@@ -98,13 +102,14 @@ different questions:
 
 Required table:
 
-| Engine | Candidate index/configuration | Selection pass fraction | Selection primary loss | Health-gate result | Selected? | Held-out condition coverage | Held-out pass fraction/range | Worst representative metric | Robustness status |
+| Engine | Displayed configuration(s) | Success rate / primary loss when informative | Health-gate result | Selected? | Held-out condition coverage | Held-out success range | One representative metric or worst value | Robustness status |
 | --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
 
 Rules:
 
-- Candidate indices must preserve the declared B=1...B=5 order. B=1 is part of
-  the candidate table.
+- The underlying artifact must preserve the declared B=1...B=5 order. The
+  public table must identify B=1 and the selected winner exactly, but does not
+  need to display every candidate.
 - `Held-out condition coverage` is `evaluated valid conditions / preregistered
   held-out conditions`, followed by the reason for every missing condition.
 - Report the range and worst held-out value, not only the mean. Also report the
