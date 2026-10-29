@@ -131,3 +131,40 @@ Do not start the full sweep until the task owner has checked and saved:
 
 Any later expansion of the matrix is a new declared evaluation revision. Keep
 the original matrix and results; do not overwrite its coverage claim.
+
+## 6. Current website-card alignment audit (2026-10-29)
+
+This is a run queue, not a result table. A row remains `needs common rerun`
+until both engines have completed the declared matrix from a runner that
+reproduces its frozen B=5 selection point.
+
+| Website task | Existing SAP coverage | Existing MuJoCo Warp coverage | Required next common frozen matrix | State |
+| --- | --- | --- | --- | --- |
+| Three-box push | 14 force/target cells × R=20 | 22 force, friction, mass and `dt` cells × R=20 | Force/target, friction, mass, `dt`, and one geometry/push-height axis; same cells and seeds | needs common rerun |
+| Simple pinch | Five masses at fixed `mu=0.4`, 0.2-mm compression and fixed `dt`, R=20 | 17 mass/preload/friction/`dt` cells × R=20 | The declared 17-cell MuJoCo matrix for both engines, plus a preregistered geometry/surface-transfer axis | blocked at reproducibility preflight |
+| Three-plate stack | Same eight held-out thickness/`dt` cells as the paired artifact | Same eight held-out thickness/`dt` cells | Add mass/load, placement-offset, and geometry/setup-transfer axes; retain the matched thickness/`dt` cells | needs expanded common rerun |
+| GAUGE ball bounce | Same 11 held-out trajectory IDs × R=20 | Same 11 held-out trajectory IDs × R=20 | Add drop height/impact speed, angle, mass/material, and three `dt` values, while retaining the held-out trajectory split | needs expanded common rerun |
+| ContactNets cube toss | Same 32 held-out state/trajectory IDs × R=20 | Same 32 held-out state/trajectory IDs × R=20 | Add impact speed, orientation, mass/material, and three `dt` values, while retaining the held-out state split | needs expanded common rerun |
+| Round socket | Nine clearance/offset cells × R=20 at SAP `dt=.25 ms` | Nine clearance/offset cells × R=20 at MuJoCo `dt=.5 ms` | Same clearance/offset, tilt, insertion speed/force, and three common `dt` values; add a geometry/surface transfer cell | needs common rerun |
+
+### 6.1 Reproducibility preflight for an old frozen artifact
+
+Before running any row above, recover the exact runner revision and parameter
+mapping, then rerun the excluded selection condition for R=20. It passes the
+preflight only when all of the following agree with the published artifact:
+
+- the frozen configuration has the same complete parameter values and units;
+- the selection outcome count matches exactly;
+- the reported mechanism metric is within the task's preregistered tolerance;
+- all validity gates (finite state, contact capacity, overflow/truncation) are
+  the same; and
+- the artifact records the runner commit/version, engine version, device, and
+  selection trace hash.
+
+For the currently published SAP simple-pinch artifact, this preflight fails:
+the available runner with the recorded labels (`ke=1e5 N/m`, `tau=3 ms`,
+0.2-mm compression) measures roughly 120 N/side, while the published B=5
+selection artifact reports 3.636 N/side. Do not start its common 17-cell
+sweep or publish substitute results until this parameter/runner mismatch is
+resolved. The historical five-mass SAP result remains reportable only as its
+own explicitly asymmetric coverage.
