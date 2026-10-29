@@ -4,7 +4,7 @@
 
 This is the publishing protocol for the mechanism-aware result library. It does not replace a task's metric specification or `UNIFIED-B5-SOP.md`. Its job is to prevent a task page from becoming a short conclusion without the physical setup, the actual B=1/B=5 configurations, or the evidence for transfer.
 
-The public comparison is **SAP Warp versus MuJoCo Warp**. MuJoCo CPU may be kept in raw artifacts or an appendix, but it is not a required row on the website card. `pending`, `not comparable`, `not discriminative`, and `complete-negative` are legitimate outcomes and must never be silently rendered as a zero or a success.
+The public comparison is **SAP Warp versus MuJoCo Warp**. `pending`, `not comparable`, `not discriminative`, and `complete-negative` are legitimate outcomes and must never be silently rendered as a zero or a success.
 
 ## Mandatory structure: one task card, three sections
 
@@ -70,7 +70,7 @@ Never infer robustness from a single nominal rollout. If candidate-level `R=20` 
 
 ## Inventory and publication gate
 
-The page begins with a small inventory of all registered tasks, including completed, complete-negative, pending, blocked, and not-comparable entries. Only a task with both SAP Warp and MuJoCo Warp evidence can make the main comparison card. If one backend is still running (for example round socket Warp), retain it in the inventory without substituting CPU evidence.
+The page begins with a small inventory of all registered tasks, including completed, complete-negative, pending, blocked, and not-comparable entries. Only a task with both SAP Warp and MuJoCo Warp evidence can make the main comparison card. If one backend is still running (for example round socket Warp), retain it in the inventory rather than publishing a partial comparison.
 
 Before publishing a card:
 
