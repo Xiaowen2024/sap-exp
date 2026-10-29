@@ -1,0 +1,150 @@
+schema_version: 1
+name: simple_pinch_b1_b5
+simulation:
+  dt: 0.0005
+  num_worlds: 20
+  nconmax: 1024
+builder:
+  gravity: 0.0
+  rigid_gap: 0.0
+  defaults:
+    shape:
+      density: 1000.0
+      mu: 0.5
+      ke: 100000.0
+      tau: 0.003
+ground:
+  enabled: false
+bodies:
+- id: left_stage
+  transform:
+    p:
+    - -0.0298
+    - 0
+    - 0
+    q: identity
+  mass: 1.0
+  shapes: []
+- id: left
+  transform:
+    p:
+    - -0.0298
+    - 0
+    - 0
+    q: identity
+  mass: 1.0
+  shapes:
+  - type: box
+    hx: 0.01
+    hy: 0.04
+    hz: 0.04
+- id: right_stage
+  transform:
+    p:
+    - 0.0298
+    - 0
+    - 0
+    q: identity
+  mass: 1.0
+  shapes: []
+- id: right
+  transform:
+    p:
+    - 0.0298
+    - 0
+    - 0
+    q: identity
+  mass: 1.0
+  shapes:
+  - type: box
+    hx: 0.01
+    hy: 0.04
+    hz: 0.04
+- id: cube
+  transform:
+    p:
+    - 0
+    - 0
+    - 0
+    q: identity
+  mass: 0.34
+  shapes:
+  - type: box
+    hx: 0.02
+    hy: 0.02
+    hz: 0.02
+joints:
+- id: left_x
+  type: prismatic
+  parent: world
+  child: left_stage
+  axis:
+  - 1
+  - 0
+  - 0
+  parent_xform:
+    p:
+    - -0.0298
+    - 0
+    - 0
+    q: identity
+  child_xform: identity
+  target_ke: 20000.0
+  target_kd: 300.0
+  actuator_mode: 1
+- id: left_z
+  type: prismatic
+  parent: left_stage
+  child: left
+  axis:
+  - 0
+  - 0
+  - 1
+  target_ke: 20000.0
+  target_kd: 300.0
+  actuator_mode: 1
+- id: right_x
+  type: prismatic
+  parent: world
+  child: right_stage
+  axis:
+  - 1
+  - 0
+  - 0
+  parent_xform:
+    p:
+    - 0.0298
+    - 0
+    - 0
+    q: identity
+  child_xform: identity
+  target_ke: 20000.0
+  target_kd: 300.0
+  actuator_mode: 1
+- id: right_z
+  type: prismatic
+  parent: right_stage
+  child: right
+  axis:
+  - 0
+  - 0
+  - 1
+  target_ke: 20000.0
+  target_kd: 300.0
+  actuator_mode: 1
+- id: cube_free
+  type: free
+  parent: world
+  child: cube
+articulations:
+- id: left_a
+  joints:
+  - left_x
+  - left_z
+- id: right_a
+  joints:
+  - right_x
+  - right_z
+- id: cube_a
+  joints:
+  - cube_free
