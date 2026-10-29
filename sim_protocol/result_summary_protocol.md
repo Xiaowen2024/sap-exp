@@ -1,181 +1,82 @@
-# Result-summary SOP: mechanism-aware B=1 / B=5 reporting
+# Website result-summary protocol (v2)
 
-## Purpose and scope
+## Purpose
 
-This document governs the result summary shown to reviewers and the public
-website. It does not replace the per-task metric specification or
-[`UNIFIED-B5-SOP.md`](UNIFIED-B5-SOP.md). Its purpose is to ensure that every
-task is reported in the same order and that a high aggregate score never hides
-an invalid contact regime, an uninformative class balance, or a brittle B=5
-choice.
+This is the publishing protocol for the mechanism-aware result library. It does not replace a task's metric specification or `UNIFIED-B5-SOP.md`. Its job is to prevent a task page from becoming a short conclusion without the physical setup, the actual B=1/B=5 configurations, or the evidence for transfer.
 
-Every report must cover **MuJoCo CPU, MuJoCo Warp, and SAP Warp separately**.
-`Not run`, `not comparable`, `pending audit`, and `invalid` are valid status
-values; they must never be rendered as zero, a failure, or silently omitted.
+The public comparison is **SAP Warp versus MuJoCo Warp**. MuJoCo CPU may be kept in raw artifacts or an appendix, but it is not a required row on the website card. `pending`, `not comparable`, `not discriminative`, and `complete-negative` are legitimate outcomes and must never be silently rendered as a zero or a success.
 
-## 1. Required per-task result block
+## Mandatory structure: one task card, three sections
 
-For every task, publish one compact result block in this exact order.
+Every published task must appear once and must use the following order. A task without enough evidence for all three sections belongs in the inventory, not among the result cards.
 
-### A. Task identity and validity
+### 1. Task setup — explain and show the physical experiment
 
-- protocol family, task name, task version, and reference type
-  (`analytic`, `simulation-consistency`, or `real-data fidelity`);
-- physical condition grid, selection-only cases, frozen held-out cases, and
-  local-repeat count `R`;
-- per-engine version/device and geometry/asset identity;
-- result status for each engine: `complete`, `complete-negative`,
-  `pending-audit`, `not-run`, `invalid`, or `not-comparable`;
-- validity/health gates relevant to the task: finite state, contact duty,
-  contact capacity/truncation, force-readout validity, support/normal-load
-  closure, and any task-specific state/asset audit.
+Start with a concise description of:
 
-### B. B=1 and B=5 scorecard — mandatory for every available engine
+- the bodies, contacts, command/initial state, and the expected physical behaviour or reference;
+- the condition grid, selection versus frozen held-out split, repeat count `R`, and geometry/reference asset identity;
+- the task's primary outcome definition and its health gates.
 
-Use one row per `engine × budget`.
+Every card must include a **clear setup schematic** (photo/render/SVG is acceptable) with labelled bodies, direction of motion/load, and the measured mechanism. It must also include one result visual that makes the B=1 to B=5 change visible. A decorative image is not a substitute for either figure.
 
-| Engine | Budget | Exact selected configuration | Evaluation denominator | Task success rate | Optional discriminative outcome metric | 95% interval | Validity status |
-| --- | --- | --- | ---: | ---: | --- | --- | --- |
-| MuJoCo CPU | B=1 | literal compiled default | ... | ... | ... | ... | ... |
-| MuJoCo CPU | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
-| MuJoCo Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... |
-| MuJoCo Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
-| SAP Warp | B=1 | literal compiled default | ... | ... | ... | ... | ... |
-| SAP Warp | B=5 | frozen selected candidate | ... | ... | ... | ... | ... |
+### 2. B=1 → B=5 core evidence — exact settings, result, and failure mode
 
-Definitions:
+Use one table with these four rows whenever both engines are available:
 
-- **Task success rate** is the fraction of rollouts satisfying that task's
-  preregistered pass criterion (for example retain, settled, credible insertion,
-  or trajectory gate). It is mandatory even when a classification metric exists.
-- **Outcome accuracy/agreement** is optional. Include it only if discrete
-  expected outcomes exist *and* it adds information beyond success rate. When
-  used, report its denominator and confusion matrix `TP/FP/FN/TN` in the linked
-  artifact rather than crowding the public card.
-- **Balanced accuracy, FPR, and FNR** are optional diagnostics, not default
-  display fields. Show them only where they explain a material engine
-  difference. If one class has denominator zero, label the accuracy as `not
-  discriminative: no expected-retain` or `no expected-release`; do not present
-  100% agreement as task success.
-- Use Wilson 95% intervals for binomial success/accuracy metrics. For continuous
-  metrics report mean, SD (or median/IQR when predeclared), sample count, and
-  units.
+| Engine | B=1: literal compiled/default setting and primary result | B=5: frozen selected setting, what changed, and primary result | One or two mechanism metrics and main failure case |
+| --- | --- | --- | --- |
+| SAP Warp | ... | ... | ... |
+| MuJoCo Warp | ... | ... | ... |
 
-### C. Discriminative mechanism metrics — mandatory
+Requirements:
 
-In addition to the scorecard, report **one to three task-specific metrics**
-that expose the dominant contact mechanism. Choose them from the task metric
-file before looking at cross-engine results; do not choose them after seeing
-which engine looks better.
+1. Spell out the actual B=1 and B=5 parameters, including native options such as `NoSlip`, solver/friction settings, SAP `ke`, `tau`, gap, or the task-specific control/geometry parameter. “Tuned” is not a setting.
+2. State **what changed from B=1 to B=5** and the corresponding observed change. Do not imply causal certainty beyond this controlled candidate comparison.
+3. Report accuracy/agreement and denominator when the task has discrete, preregistered expected outcomes. For example: `260/280 = 92.9%`. If a class is absent, write `not discriminative: no expected-retain/release`; never present a 100% one-class agreement as a meaningful accuracy.
+4. If the task is continuous rather than a classification task, explicitly write `no binary accuracy is defined` and report its actual primary fidelity measure (e.g. valid-apex rate and apex loss, trajectory loss, position RMSE). Do not invent a success percentage.
+5. Report one to three predeclared, mechanism-specific metrics with units:
+   - friction/grasp: preload or normal force, friction margin, tail creep, lift-follow error, contact duty;
+   - sustained contact: overlap/penetration, normal-load error, settling, contact duty;
+   - impact: valid rebound/apex, loss, contact duration, finite/capacity status;
+   - trajectory/toss: held-out position/orientation/velocity error and contact/finite status;
+   - insertion: credible-insertion rate, depth/alignment/penetration and force/capacity health.
+6. Name the dominant failure explicitly (for example false slip at a threshold, no rebound apex, lost contact, excessive overlap, or a failing mass/dt condition). A mean must not hide it.
 
-| Task family | Required representative metrics (in addition to success/accuracy) |
-| --- | --- |
-| Static friction / grasp | measured preload or normal force, friction/support margin, hold creep or lift-follow error, contact duty |
-| Static friction / stacked push | tail creep, breakaway/force threshold, normal-load/support health, contact capacity |
-| Dynamic friction / slope | travel or trajectory nRMSE, terminal velocity/displacement, contact and normal-support duty |
-| Dynamic friction / push | final translation/orientation error, wrench and twist error, pusher/table duty, normal-load error |
-| Dynamic impact / bounce | restitution/apex or impulse/closure residual, contact duration, finite/capacity status |
-| Dynamic impact / toss | held-out position/orientation error, angular/linear momentum or impact-loss diagnostic, finite/capacity status |
-| Sustained contact / stack | force/load error, settling/tail motion, contact duty, penetration/overlap where defined |
-| Sustained contact / resting tail | tail pose/velocity, support-force closure, force coefficient of variation, contact duty |
-| Energy | maximum energy drift/envelope error, retained energy, finite state, contact/constraint health |
-| Composite insertion | credible-insertion/pass rate, depth/alignment/penetration metrics, force/torque and capacity health |
+The website may show only B=1, the frozen B=5 winner, and at most one representative intermediate candidate. The raw artifact must retain the full B=1…B=5 candidate ordering.
 
-If a task's specification has another more diagnostic metric, report that
-metric instead of forcing an inapplicable one. Each value must carry units and
-the condition over which it was computed.
+### 3. Generalizability and mechanism-aware usability
 
-### D. B=5 mechanism-aware usability and robustness — mandatory
+This is a separate subsection on every result card. It answers two questions and must give numbers for both when they exist:
 
-This is a separate section, not an optional tuning footnote. It answers two
-different questions:
+1. **Candidate usability.** Which B=1…B=5 configurations pass the selection task/health gate under the declared repeats? The public card can summarize this as `B=1 fails; B=3 and B=5 pass; B=5 selected`, but must identify the selected configuration exactly.
+2. **Frozen-setting robustness.** With B=5 frozen, what happens on the preregistered held-out mass/friction/dt/geometry/pose/trajectory grid? Give coverage, denominator, range or worst case, representative mechanism metric, and the failed condition if any.
 
-1. **Candidate usability:** across the five predeclared configurations
-   (including literal B=1), which candidates pass the selection health/task
-   gate under `R=20`? The artifact must retain all five candidates, but the
-   public summary shows B=1, the selected B=5 winner, and at most one or two
-   representative candidates that make a material trend visible.
-2. **Frozen-setting robustness:** after selection, does the single frozen B=5
-   winner retain validity and task performance on the held-out physical grid
-   (mass, friction, geometry, dt, pose, trajectory, or material variants as
-   applicable)?
+Use a compact table or a precise sentence in this form:
 
-Required table:
+| Engine | Candidate-usability evidence | Frozen held-out coverage | Held-out result/range | Robustness status |
+| --- | --- | --- | --- | --- |
+| SAP Warp | ... | ... | ... | robust / complete-negative / pending |
+| MuJoCo Warp | ... | ... | ... | robust / complete-negative / pending |
 
-| Engine | Displayed configuration(s) | Success rate / primary loss when informative | Health-gate result | Selected? | Held-out condition coverage | Held-out success range | One representative metric or worst value | Robustness status |
-| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
+Never infer robustness from a single nominal rollout. If candidate-level `R=20` evidence, a frozen grid, or a necessary force/contact audit is absent, say `unavailable` or `pending audit`. A nominal winner that fails dt or geometry transfer is a reportable **complete-negative** result, not a reason to omit the subsection.
 
-Rules:
+## Metric and comparability rules
 
-- The underlying artifact must preserve the declared B=1...B=5 order. The
-  public table must identify B=1 and the selected winner exactly, but does not
-  need to display every candidate.
-- `Held-out condition coverage` is `evaluated valid conditions / preregistered
-  held-out conditions`, followed by the reason for every missing condition.
-- Report the range and worst held-out value, not only the mean. Also report the
-  fraction of held-out conditions satisfying the task gate.
-- If candidate-level `R=20` data or the held-out grid is absent, label
-  `robustness: unavailable` or `pending audit`; never infer robustness from a
-  single winning rollout.
-- A completed negative robustness result is reportable. For example, a winner
-  may pass the nominal case but fail dt variants; this must be displayed as
-  `complete-negative`, not hidden.
+- Use the task metric specification chosen before cross-engine inspection; every displayed number carries a denominator or sample count and units.
+- Balanced accuracy, FPR/FNR, and confusion matrices are diagnostic details, not default website fields. Add them only when they clarify a material difference; link the raw artifact for the full matrix.
+- Cross-engine deltas may be stated only if reference, physical condition, validity gates, and metric definition match. Never turn a B=5 selected configuration into a universal simulator ranking.
+- A force-, friction-margin-, or penetration-based conclusion requires the relevant telemetry/health audit. Before it is audited, the task remains in the inventory as pending even if numerical candidates exist.
 
-### E. Cross-engine deltas — only when comparable
+## Inventory and publication gate
 
-After the six-row scorecard and robustness table, list at most three
-cross-engine observations that meet all of the following requirements:
+The page begins with a small inventory of all registered tasks, including completed, complete-negative, pending, blocked, and not-comparable entries. Only a task with both SAP Warp and MuJoCo Warp evidence can make the main comparison card. If one backend is still running (for example round socket Warp), retain it in the inventory without substituting CPU evidence.
 
-- same physical condition and reference type;
-- both values pass their required validity gates;
-- metric definition and denominator are the same;
-- the magnitude, unit, and direction are stated.
+Before publishing a card:
 
-Example format: `At 4 N/side, SAP B=5 tail creep = ... µm/s versus MuJoCo CPU
-B=5 = ... µm/s (Δ=... µm/s).` A difference that is large but has failed force
-health or mismatched geometry belongs in the validity note, not in a ranking.
-
-## 2. Whole-benchmark summary required before task-by-task presentation
-
-Before presenting individual task cards, publish an inventory table covering
-every registered task:
-
-| Family | Task | CPU status | Warp status | SAP status | B=1/B=5 scorecard complete? | Robustness evidence | Main blocker or audit note |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-
-The table must include completed, negative, pending, blocked, and planned tasks.
-Only after this table may the report drill into one task at a time. Do not use a
-single task's result to imply benchmark-wide completion.
-
-## 3. Publishing and audit gate
-
-1. Extract the result block from numerical artifacts, not prose summaries.
-2. Verify each displayed value against the raw artifact and record the artifact
-   path/commit.
-3. Check scorecard denominators and class balance before computing accuracy or
-   balanced accuracy.
-4. Check the B=5 candidate table and held-out coverage before claiming
-   mechanism-aware usability.
-5. Have a second pass audit contact/force telemetry for any task whose
-   conclusion depends on force balance, friction margin, or penetration.
-6. Mark the task card publishable only when its result block, robustness row,
-   and artifact links are complete. Otherwise report only its inventory status.
-
-## 4. Current implementation note
-
-Existing artifacts do not yet expose candidate/held-out robustness in a fully
-uniform schema. The following evidence exists and must be carried into the
-whole-benchmark inventory rather than omitted:
-
-- three-plate stack: complete SAP B=1/B=5 robustness matrix; MuJoCo Warp has a
-  completed negative robustness result across thickness/dt variants;
-- round socket: CPU and SAP candidate lists plus frozen clearance/offset
-  matrices exist; MuJoCo Warp was not run;
-- pendulum/Newton cradle: strict B=1/B=5 selection robustness exists, but
-  frozen held-out amplitude/dt transfer is pending;
-- impact tasks: candidate lists and held-out artifacts exist, but legacy
-  artifacts that lack `R=20` per candidate cannot be relabeled as compliant;
-- GAUGE slope, MIT Push, cube-toss sustained tail: numerical B=5 runs exist,
-  but force/contact-health audit is still required before a mechanism/force
-  conclusion is publishable.
-
+1. extract all displayed numbers from the raw artifact, not prose;
+2. verify B=1 is literal default and B=5 is the frozen selected candidate;
+3. verify denominators, class balance, units, and validity/health flags;
+4. confirm that both figures and all three required sections are present;
+5. link the source artifact and record the repository commit;
+6. have an independent pass audit any conclusion that depends on contact force, force balance, friction margin, or penetration.
