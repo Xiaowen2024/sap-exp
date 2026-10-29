@@ -3,803 +3,245 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Real-to-Sim benchmark comparing SAP Warp and MuJoCo on the GAUGE dataset (Slope Slider and Turntable) across 358 real motion-capture trajectories, matched physical compliance grids, and normal-tangential friction decoupling.">
-  <title>GAUGE Real-to-Sim Benchmark — SAP Warp vs MuJoCo</title>
+  <meta name="description" content="Mechanism Aware Experiment Protocol for SAP Warp and MuJoCo Warp contact-rich simulation evaluation.">
+  <title>Mechanism Aware Experiment Protocol — SAP Warp vs MuJoCo</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .protocol-note { margin: 14px 0 22px; color: var(--muted); line-height: 1.6; }
+    .protocol-table td:first-child { width: 19%; }
+    .protocol-table td:nth-child(2) { width: 27%; }
+    .protocol-table td:nth-child(3) { width: 54%; }
+    .family-intro { max-width: 860px; line-height: 1.65; }
+    .scope-tag { display:inline-block; margin-left:7px; padding:2px 7px; border:1px solid var(--border); border-radius:99px; color:var(--muted); font-size:11px; font-weight:400; vertical-align:middle; }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-
   <div class="site-shell">
-    <aside class="sidebar" aria-label="Report navigation">
+    <aside class="sidebar" aria-label="Protocol navigation">
       <div class="brand">
         <a href="#top" class="brand-title">SAP Warp</a>
-        <span class="brand-subtitle">× MuJoCo</span>
+        <span class="brand-subtitle">× MuJoCo Warp</span>
       </div>
       <p class="sidebar-description">Contact-rich simulation benchmark</p>
-
       <div class="sidebar-page-switch" aria-label="Benchmark pages">
         <p class="nav-label">Benchmark Pages</p>
         <div class="sidebar-page-links">
           <a href="index.html" class="sidebar-page-link">1. Controlled Contact &amp; Manipulation</a>
-          <a href="real-to-sim.html" class="sidebar-page-link is-active" aria-current="page">2. GAUGE Real-to-Sim Benchmark</a>
+          <a href="real-to-sim.html" class="sidebar-page-link is-active" aria-current="page">2. Experiment Protocol</a>
           <a href="mechanism-eval.html" class="sidebar-page-link">3. Mechanism-Aware Evaluation</a>
         </div>
       </div>
-
-      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="report-nav">
-        Contents
-      </button>
-
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="report-nav">Contents</button>
       <nav id="report-nav" class="report-nav">
-        <p class="nav-label">Contents</p>
+        <p class="nav-label">Protocol families</p>
         <ol>
-          <li><a href="#summary">Executive summary</a></li>
-          <li>
-            <a href="#dataset">Real data &amp; protocol</a>
-            <ol>
-              <li><a href="#data-source">GAUGE dataset &amp; mocap</a></li>
-              <li><a href="#metrics">Evaluation metrics (Eq. 2)</a></li>
-            </ol>
-          </li>
-          <li>
-            <a href="#table5">18-condition reproduction</a>
-            <ol>
-              <li><a href="#aggregate-results">Aggregate Table 3 comparison</a></li>
-              <li><a href="#full-table5">Full 18-case Table 5 breakdown</a></li>
-              <li><a href="#newton-diagnosis">Why paper Newton (v1.3.0) failed</a></li>
-            </ol>
-          </li>
-          <li>
-            <a href="#cone-and-best">Default vs. Engine Best</a>
-            <ol>
-              <li><a href="#five-case-sweep">Native parameter sweeps</a></li>
-              <li><a href="#pyramidal-artifact">Pyramidal vs. elliptic cone effect</a></li>
-            </ol>
-          </li>
-          <li>
-            <a href="#matched-robustness">Matched physical robustness</a>
-            <ol>
-              <li><a href="#parameter-mapping">Physical (k<sub>pair</sub>, τ<sub>pair</sub>) mapping</a></li>
-              <li><a href="#matched-grid-results">Matched grid operating windows</a></li>
-              <li><a href="#mujoco-decoupling">Unlocking MuJoCo decoupling</a></li>
-            </ol>
-          </li>
-          <li><a href="#conclusion">Final conclusion</a></li>
-          <li><a href="#sources">Sources &amp; artifacts</a></li>
+          <li><a href="#reading">Reading this protocol</a></li>
+          <li><a href="#static-friction">Static friction</a></li>
+          <li><a href="#dynamic-friction">Dynamic friction</a></li>
+          <li><a href="#dynamic-impact">Dynamic impact</a></li>
+          <li><a href="#energy">Energy conservation</a></li>
+          <li><a href="#sustained-contact">Sustained contact</a></li>
+          <li><a href="#composite">Composite tasks</a></li>
+          <li><a href="#records">Required records</a></li>
         </ol>
       </nav>
-
       <div class="sidebar-footer">
         <a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a>
-        <a href="https://huggingface.co/datasets/InternRobotics/GAUGE-Dataset" target="_blank" rel="noreferrer">GAUGE Dataset (HF) ↗</a>
-        <a href="https://arxiv.org/html/2608.05948" target="_blank" rel="noreferrer">GAUGE Paper (arXiv) ↗</a>
       </div>
     </aside>
 
     <main id="main-content" class="content">
       <nav class="top-tab-bar" aria-label="Benchmark study selector">
-        <p class="breadcrumb" style="margin:0;"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp</a> / Benchmarking / Real-to-Sim Ground-Truth Study</p>
+        <p class="breadcrumb" style="margin:0;"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp</a> / Benchmarking / Experiment Protocol</p>
         <div class="top-tab-list" role="tablist">
-          <a href="index.html" class="top-tab-link">
-            <span>Part I · Controlled Contact &amp; Manipulation</span>
-          </a>
-          <a href="real-to-sim.html" class="top-tab-link is-active" aria-current="page">
-            <span>Part II · GAUGE Real-to-Sim</span>
-          </a>
-          <a href="mechanism-eval.html" class="top-tab-link">
-            <span>Part III · Mechanism-Aware Evaluation</span>
-            <span class="top-tab-badge">New Framework</span>
-          </a>
+          <a href="index.html" class="top-tab-link"><span>Part I · Controlled Contact &amp; Manipulation</span></a>
+          <a href="real-to-sim.html" class="top-tab-link is-active" aria-current="page"><span>Part II · Experiment Protocol</span></a>
+          <a href="mechanism-eval.html" class="top-tab-link"><span>Part III · Mechanism-Aware Evaluation</span></a>
         </div>
       </nav>
-      <header id="top" class="page-header">
 
+      <header id="top" class="page-header">
         <div class="header-grid">
           <div>
-            <p class="eyebrow">Real-to-Sim Benchmark · October 2026</p>
-            <h1>Real-world trajectory reproduction:<br>SAP Warp vs MuJoCo on GAUGE</h1>
-            <p class="lede">A ground-truth Real-to-Sim comparison across 358 real motion-capture trajectories (18 task–material conditions), evaluating out-of-the-box defaults, tuned engine bests, physically matched compliance windows, and normal–tangential friction decoupling.</p>
+            <p class="eyebrow">Protocol specification · October 2026</p>
+            <h1>Mechanism Aware<br>Experiment Protocol</h1>
+            <p class="lede">A compact, task-first protocol for evaluating contact-rich simulation. It separates physical fidelity, internal simulation health, and the usability of a frozen native configuration.</p>
           </div>
           <dl class="report-meta">
-            <div><dt>Real-world ground truth</dt><dd>358 optical mocap trials (18 conditions)</dd></div>
-            <div><dt>Physical regimes</dt><dd>Inclined sliding &amp; non-inertial rotating contact</dd></div>
-            <div><dt>Comparison basis</dt><dd>Default, Engine Best, &amp; matched (k<sub>pair</sub>, τ<sub>pair</sub>) robustness</dd></div>
+            <div><dt>Families</dt><dd>Five atomic families + composite tasks</dd></div>
+            <div><dt>Selection rule</dt><dd>Literal B=1 and declared B=5</dd></div>
+            <div><dt>Robustness rule</dt><dd>Freeze first; evaluate held-out second</dd></div>
           </dl>
         </div>
-        <blockquote class="research-question"><strong>Research question.</strong> When anchored against real physical motion-capture trajectories rather than synthetic analytical targets, how closely do SAP Warp and MuJoCo match reality out of the box, how much does parameter tuning help, and why does one formulation maintain accuracy across a much wider physical compliance range?</blockquote>
+        <blockquote class="research-question"><strong>Protocol principle.</strong> A task may report any metric that has the required evidence. Missing physical data invalidate only the corresponding physical-fidelity claim—not otherwise healthy simulation-level or frozen-setting evidence.</blockquote>
       </header>
 
-      <section id="summary" class="report-section">
-        <h2>1. Executive Summary</h2>
-        <h3>Bottom line</h3>
-        <div class="callout">
-          <p>On real-world frictional sliding trajectories (<code>Slope Slider</code> and <code>Turntable</code>), both SAP Warp and standalone MuJoCo achieve human-repeatability-level accuracy (<code>nRMSE &lt; 1.0</code> on 15 of 18 conditions) out of the box—resolving the severe anomalies reported for <code>Newton (v1.3.0)</code> in the GAUGE paper. Under physically matched compliance sweeps, however, <strong>SAP Warp maintains real-world trajectory accuracy across a significantly broader operating window in rotating tangential contact</strong> because its solver decouples tangential friction regularization from normal contact compliance by default.</p>
-        </div>
-
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>Evaluation dimension</th>
-              <th>SAP Warp (v1.16.0)</th>
-              <th>Standalone MuJoCo (v3.12.0)</th>
-              <th>Key finding</th>
-            </tr>
-          </thead>
+      <section id="reading" class="report-section">
+        <h2>1. How to read every family</h2>
+        <p class="protocol-note">Each family begins with the same three shared layers. Its task table then adds only the metrics that answer that task's distinct physical question. “Real-world fidelity” is reported only with a synchronized physical reference; otherwise the result is explicitly simulation-level.</p>
+        <table class="summary-table protocol-table">
+          <thead><tr><th>Shared layer</th><th>Question</th><th>Minimum reporting rule</th></tr></thead>
           <tbody>
-            <tr>
-              <th scope="row">Baseline data verification</th>
-              <td colspan="2"><code>0.00 mm</code> discrepancy across all 36 <code>RMSE</code> and <code>DTW</code> real-trial baseline means and standard deviations against GAUGE Table 5 (358 real mocap trials).</td>
-              <td>100% exact alignment with the published benchmark protocol.</td>
-            </tr>
-            <tr>
-              <th scope="row">Slope Slider (9 conditions, Default)</th>
-              <td>Mean <code>nRMSE = 0.65</code> with standard <code>drake</code> preset (<code>k<sub>e</sub>=1e5 N/m, τ=3 ms</code>); <code>0.51</code> on <code>task-1/2</code>.</td>
-              <td>Mean <code>nRMSE = 0.60</code>, <code>nDTW = 0.87</code> (outperforms Isaac Sim <code>0.85</code> and Genesis <code>0.78</code>).</td>
-              <td>Both engines reproduce static holding and inclined sliding within human trial variance.</td>
-            </tr>
-            <tr>
-              <th scope="row">Turntable (9 conditions, Default)</th>
-              <td>Mean <code>nRMSE = 2.33</code> (<code>drake</code>) / <code>2.46</code> (<code>approx32</code>); <code>1.24</code> on <code>task-1/3</code>, <code>4.53</code> on <code>task-2</code>.</td>
-              <td>Mean <code>nRMSE = 1.75</code> with <code>pyramidal</code> cone (<code>1.63</code> on <code>task-1/3</code>, <code>1.99</code> on <code>task-2</code>); matches SAP under <code>elliptic</code> cone.</td>
-              <td>Apparent <code>task-2</code> advantage of default MuJoCo comes from the <code>√2</code> diagonal inflation of its 4-sided pyramid cone compensating for unmodeled <code>μ<sub>s</sub> &gt; μ<sub>k</sub></code>.</td>
-            </tr>
-            <tr>
-              <th scope="row">Matched physical grid (Slope Slider task-3)</th>
-              <td>High-accuracy plateau (<code>nRMSE = 0.15–0.36</code>) across all <code>k<sub>pair</sub> ≥ 500 N/m, τ<sub>pair</sub> ≤ 20 ms</code> (75% of native <code>drake</code> grid).</td>
-              <td>Comparable operating window size (62.5%–75% of native grid), but <code>solref=(-k,-b)</code> blows up at <code>k<sub>pair</sub> ≥ 10000 N/m</code> without <code>2Δt</code> clamping.</td>
-              <td>Both engines fail at <code>k<sub>pair</sub> ≤ 250 N/m</code> due to normal gravity sag and at slow <code>τ<sub>pair</sub></code> due to tilting lag.</td>
-            </tr>
-            <tr>
-              <th scope="row">Matched physical grid (Turntable task-3)</th>
-              <td><strong><code>36 / 42</code> configs pass</strong> (<code>100%</code> of <code>k<sub>pair</sub> ≥ 100 N/m</code> across all <code>τ<sub>pair</sub> ∈ [5, 100] ms</code> achieve <code>nRMSE ≤ 1.00</code>).</td>
-              <td><code>6 / 42</code> pass in coupled direct mode (<code>12 / 35</code> in standard mode); rises to <strong><code>19 / 42</code></strong> (and <strong><code>35 / 35 = 100%</code></strong> in standard mode) via <code>cone="elliptic"</code> + <code>&lt;pair solreffriction="0.004 1.0"/&gt;</code>.</td>
-              <td>SAP decouples tangential friction compliance natively; MuJoCo couples them by default and requires explicit elliptic pair overrides to decouple.</td>
-            </tr>
+            <tr><th scope="row">1. Physical fidelity</th><td>Does simulation match a physical trajectory, event, force, or outcome?</td><td>Use registered frames and a declared window. Report only metrics supported by released or measured reference data.</td></tr>
+            <tr><th scope="row">2. Simulation consistency</th><td>Is the simulated mechanism internally healthy?</td><td>Check the task-relevant contact, force, geometry, impulse, equilibrium, or conservation quantity; report capacity truncation and invalid states.</td></tr>
+            <tr><th scope="row">3. Frozen-setting usability</th><td>Can an engine's native setup be selected and transferred responsibly?</td><td>Compare literal default <code>B=1</code> with up to four declared native candidates (<code>B=5</code>), choose only on calibration data, freeze the winner, then report repeats and held-out coverage.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Repeated trials.</strong> For discrete outcomes, state the positive class, numerator/denominator, and confusion matrix. For continuous measures, report the unit, window, and variation across declared samples or local perturbations. Do not turn a continuous task into an arbitrary success percentage.</div>
+      </section>
+
+      <section id="static-friction" class="report-section">
+        <h2>2. Static friction <span class="scope-tag">stick / retain</span></h2>
+        <p class="family-intro">Use when tangential load remains below the static friction limit and the object should stay fixed relative to its support or gripper.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Support-frame trajectory RMSE, DTW, relative displacement and tangential-velocity error</td><td>Use only with synchronized physical motion; DTW accompanies, never replaces, time-aligned RMSE.</td></tr>
+            <tr><th>Simulation consistency</th><td>Tail relative displacement, tail creep, friction utilization <code>ρ</code>, contact duty, normal-load error/CV, gap fluctuation</td><td>Sticking needs persistent support; a reasonable mean normal force alone does not rule out intermittent impulse support.</td></tr>
+            <tr><th>Frozen-setting usability</th><td><code>Pass@B</code>, first passing budget, physical-range sweep, local <code>dt</code>/pose/seed robustness, setup transfer</td><td>Freeze native contact settings before varying mass, friction, load ratio, or geometry.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Three-box push</th><td>Expected retain/eject agreement; <code>TP/FP/FN/TN</code>, FPR/FNR, balanced accuracy, confidence intervals</td><td>Does the selected contact model predict the static breakaway boundary of a stacked contact interface?</td></tr>
+            <tr><th>Two-finger simple pinch</th><td>Minimum measured per-finger hold force; grip-force error; final lift-height error</td><td>Does the gripper establish enough normal force to retain and lift the object without slip?</td></tr>
           </tbody>
         </table>
       </section>
 
-      <section id="dataset" class="report-section">
-        <h2>2. Real-World Data Source &amp; Experimental Protocol</h2>
-
-        <section id="data-source" class="subsection">
-          <h3>2.1 Where the real data comes from: the GAUGE dataset</h3>
-          <p>All real-world ground-truth trajectories and physical parameters in this study come directly from the open-source <strong>GAUGE (Ground-truth Aligned Unified Physics Evaluation)</strong> benchmark introduced by InternRobotics / Shanghai AI Lab (<a href="https://arxiv.org/html/2608.05948" target="_blank" rel="noreferrer">arXiv:2608.05948 ↗</a>, dataset hosted at <a href="https://huggingface.co/datasets/InternRobotics/GAUGE-Dataset" target="_blank" rel="noreferrer">HuggingFace <code>InternRobotics/GAUGE-Dataset</code> ↗</a>).</p>
-          <p>From the seven rigid-body tasks in GAUGE, we selected <strong><code>Slope Slider</code></strong> and <strong><code>Turntable</code></strong> as the cleanest, most diagnostic benchmarks for contact and friction modeling because they avoid multi-body chaotic collisions while probing complementary physical regimes:</p>
-          <ul>
-            <li><strong>Slope Slider (gravity-driven planar contact):</strong> A <code>40 × 40 × 40 mm</code> cube rests or slides on a <code>500 × 250 × 12 mm</code> wooden board across three subtasks: <code>task-1</code> (static <code>10°</code> incline where friction should hold the cube), <code>task-2</code> (static <code>20°</code> incline where gravity exceeds the friction cone and drives constant-acceleration sliding), and <code>task-3</code> (dynamic incline where the board is manually tilted from <code>0°</code> to <code>~25°</code>, testing the static-to-kinetic sticking/sliding transition).</li>
-            <li><strong>Turntable (non-inertial rotating planar contact):</strong> The same <code>40 mm</code> cube rests at radius <code>r ≈ 104 mm</code> on a <code>R = 150 mm</code> rotating wooden plate across three subtasks: <code>task-1</code> (low angular velocity, near-sticking), <code>task-2</code> (high angular acceleration burst where centrifugal and Euler forces trigger breakaway slip), and <code>task-3</code> (intermediate rotation with controlled spiral drift).</li>
-          </ul>
-
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Component / Material</th>
-                <th>Geometry &amp; Mesh</th>
-                <th>Measured Mass (kg)</th>
-                <th>Density (kg/m<sup>3</sup>)</th>
-                <th>Measured Friction μ</th>
-                <th>Pair Friction μ<sub>pair</sub> (vs. wood base)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Fixed Base (<code>board</code> / <code>plate</code> — Wood)</td>
-                <td><code>500×250×12 mm</code> box / <code>R=150, h=12 mm</code> cylinder</td>
-                <td><code>0.858</code> / <code>0.440</code></td>
-                <td><code>572.0</code> / <code>519.1</code></td>
-                <td><code>0.230</code></td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Sliding Cube — <strong>Wood</strong></td>
-                <td><code>40 × 40 × 40 mm</code> box (<code>cube.obj</code>)</td>
-                <td><code>0.044</code></td>
-                <td><code>687.5</code></td>
-                <td><code>0.230</code></td>
-                <td><code>0.2300</code></td>
-              </tr>
-              <tr>
-                <td>Sliding Cube — <strong>Plastic</strong></td>
-                <td><code>40 × 40 × 40 mm</code> box (<code>cube.obj</code>)</td>
-                <td><code>0.044</code></td>
-                <td><code>687.5</code></td>
-                <td><code>0.160</code></td>
-                <td><code>0.1887</code></td>
-              </tr>
-              <tr>
-                <td>Sliding Cube — <strong>Metal</strong></td>
-                <td><code>40 × 40 × 40 mm</code> box (<code>cube.obj</code>)</td>
-                <td><code>0.070</code></td>
-                <td><code>1093.75</code></td>
-                <td><code>0.200</code></td>
-                <td><code>0.2140</code></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <p><strong>Real-world motion capture acquisition.</strong> In the physical experiments, retro-reflective markers were attached to both the cube and the driven base (<code>board</code> or <code>plate</code>) and tracked by an optical motion-capture system at <code>120 Hz</code>, then downsampled to <code>30 Hz</code> (<code>Δt<sub>frame</sub> = 1/30 s</code>). Each of the 18 conditions (2 families × 3 subtasks × 3 materials) was repeated for <strong>20 real physical trials</strong> (18 trials for <code>Slope Slider task-3 metal</code>, totaling <strong>358 real trajectories</strong>). Following the GAUGE protocol, effective pair friction combines the measured material coefficients via the harmonic mean <code>μ<sub>pair</sub> = 2 μ<sub>1</sub> μ<sub>2</sub> / (μ<sub>1</sub> + μ<sub>2</sub>)</code>, simulation runs at <code>dt = 1/180 s</code> (6 substeps per 30 Hz mocap frame), and kinematic base motion (in <code>Slope Slider task-3</code> and all <code>Turntable</code> tasks) is driven directly from the mean real mocap trajectory of the base.</p>
-        </section>
-
-        <section id="metrics" class="subsection">
-          <h3>2.2 Evaluation metrics and human-repeatability normalization (GAUGE Eq. 2)</h3>
-          <p>A central challenge in comparing simulators across tasks with different trajectory lengths and speeds is scale ambiguity: a <code>2 mm</code> error on a stationary incline is large, whereas a <code>15 mm</code> error on a <code>400 mm</code> slide is smaller than the variance between two human trials. GAUGE resolves this by normalizing simulator error against the <strong>empirical human trial-to-trial repeatability baseline</strong>.</p>
-          <p>Given <code>N</code> real trials <code>{g<sub>real, i</sub>(t)}<sub>i=1..N</sub></code> of length <code>T</code> frames (in <code>mm</code>), let the mean real trajectory be <code>ḡ<sub>real</sub>(t) = (1/N) ∑<sub>i</sub> g<sub>real, i</sub>(t)</code>. Each trial's deviation from the empirical mean defines the real-world repeatability baseline:</p>
-          <div class="equation">
-            E<sub>RMSE</sub>(g<sub>sim</sub>, ḡ<sub>real</sub>) = √( (1/T) ∑<sub>t=1..T</sub> ‖g<sub>sim</sub>(t) − ḡ<sub>real</sub>(t)‖<sub>2</sub><sup>2</sup> ), &nbsp;&nbsp;
-            nRMSE = E<sub>RMSE</sub>(g<sub>sim</sub>, ḡ<sub>real</sub>) / Baseline<sub>RMSE</sub>
-          </div>
-          <p>alongside Dynamic Time Warping distance <code>E<sub>DTW</sub>(g<sub>sim</sub>, ḡ<sub>real</sub>)</code> normalized by <code>Baseline<sub>DTW</sub></code> (normalized by path step count <code>L</code>). Consequently:</p>
-          <ul>
-            <li><strong><code>nRMSE &lt; 1.0</code></strong> means the simulator's trajectory is closer to the real-world mean trajectory than the average deviation of a single real physical trial.</li>
-            <li><strong><code>nRMSE ≤ 1.20</code></strong> indicates high-fidelity trajectory agreement within ~1.2× of human physical repeatability.</li>
-          </ul>
-          <div class="takeaway"><strong>100% Baseline Reproduction Check.</strong> Before running simulator comparisons, we recomputed <code>Baseline<sub>RMSE</sub></code> and <code>Baseline<sub>DTW</sub></code> (mean ± std) from the 358 raw mocap JSON files in <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/gauge-rigid-reproduction/run_turntable_slope_slider_benchmark.py" target="_blank" rel="noreferrer"><code>run_turntable_slope_slider_benchmark.py</code> ↗</a>. Across all 18 conditions (36 mean/std pairs), our computed baselines match Table 5 of the GAUGE paper to <strong><code>0.00 mm</code></strong>.</div>
-        </section>
+      <section id="dynamic-friction" class="report-section">
+        <h2>3. Dynamic friction <span class="scope-tag">sustained sliding</span></h2>
+        <p class="family-intro">Use when the intended mechanism is sustained kinetic sliding in a declared support frame.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Trajectory RMSE, DTW, fitted tangential acceleration error, terminal displacement error</td><td>Fit acceleration over a predeclared sliding window; do not differentiate noisy mocap samples frame by frame.</td></tr>
+            <tr><th>Simulation consistency</th><td>Analytic acceleration and terminal-displacement error, <code>ρ</code>, contact duty, normal-gap/height error</td><td>For continuous Coulomb sliding, <code>ρ</code> should be near one and support must remain present.</td></tr>
+            <tr><th>Frozen-setting usability</th><td><code>Pass@B</code>, frozen mass/friction/slope/speed ranges, local robustness, setup transfer</td><td>Expected binary outcomes and thresholds are task-specific and preregistered before repeats.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Slope Slider</th><td>No extra scalar: it uses the full shared trajectory, acceleration, support and friction diagnostics</td><td>Does the model reproduce gravity-driven sliding and the stick-to-slip transition against physical trajectories?</td></tr>
+            <tr><th>MIT Push</th><td>Final planar pose error; stable-window wrench error and twist error</td><td>Does a recorded pusher motion yield the correct object pose and coupled force–motion response?</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <section id="table5" class="report-section">
-        <h2>3. Full 18-Condition Reproduction vs. Paper Baselines</h2>
-
-        <section id="aggregate-results" class="subsection">
-          <h3>3.1 Aggregate Table 3 comparison</h3>
-          <p>We evaluated out-of-the-box <strong>Standalone MuJoCo Default</strong> (<code>solref=(0.02, 1.0)</code>, <code>impratio=1.0</code>, <code>cone="pyramidal"</code>, <code>Newton</code> solver) and <strong>SAP Warp Default</strong> (<code>k<sub>e</sub>=2500 N/m</code>, <code>τ=0.01 s</code>, <code>approx32</code> preset) across all 18 conditions and compared them against the three engines reported in GAUGE Table 3 and Table 5 (<code>Isaac Sim 5.1.0</code>, <code>Genesis 0.3.10</code>, and <code>Newton v1.3.0</code>):</p>
-
-          <table class="result-table">
-            <thead>
-              <tr>
-                <th>Task Family (9 conditions each)</th>
-                <th>Metric</th>
-                <th>Paper: Isaac Sim</th>
-                <th>Paper: Genesis</th>
-                <th>Paper: Newton (v1.3.0)</th>
-                <th>Ours: MuJoCo Default</th>
-                <th>Ours: SAP Warp (<code>drake</code> / <code>approx32</code>)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Slope Slider</strong> (mean of 9)</td>
-                <td>Normalized RMSE ↓</td>
-                <td><code>0.85</code></td>
-                <td><code>0.78</code></td>
-                <td><code>5.93</code></td>
-                <td><strong><code>0.60</code></strong></td>
-                <td><strong><code>0.65</code></strong> (<code>approx32</code>: <code>2.29</code>*)</td>
-              </tr>
-              <tr>
-                <td><strong>Turntable</strong> (mean of 9)</td>
-                <td>Normalized RMSE ↓</td>
-                <td><code>2.24</code></td>
-                <td><code>1.73</code></td>
-                <td><code>16.19</code></td>
-                <td><strong><code>1.75</code></strong> (elliptic: <code>2.30</code>)</td>
-                <td><strong><code>2.33</code></strong> (<code>approx32</code>: <code>2.46</code>)</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="note">*In <code>Slope Slider (task-3, metal)</code>, SAP's soft literal default (<code>k<sub>e</sub>=2.5e3 N/m, τ=10 ms</code>) sits right on the tilting-board relaxation boundary; using SAP's standard rigid-contact preset <code>drake</code> (<code>k<sub>e</sub>=1e5 N/m, τ=3 ms</code>) drops <code>task-3 metal</code> error from <code>15.20</code> to <strong><code>0.20</code> (<code>7.49 mm</code>)</strong> and yields <code>0.65</code> mean <code>nRMSE</code> across all 9 Slope Slider conditions.</p>
-
-          <figure class="result-figure">
-            <img src="assets/gauge-table5-18cases-comparison.png" alt="Bar chart comparing Normalized RMSE across all 18 Table 5 conditions for Slope Slider and Turntable between Paper Isaac Sim, Genesis, Newton v1.3.0, and our reproduced MuJoCo Default and SAP Warp (drake).">
-            <figcaption><strong>All 18 Table 5 conditions (Normalized RMSE).</strong> Values below the green dashed line (<code>nRMSE = 1.0</code>) have lower error than human trial-to-trial variance. Both standalone MuJoCo Default and SAP Warp (<code>drake</code>) eliminate the <code>6×–36×</code> error spikes seen in the paper's <code>Newton (v1.3.0)</code> baseline.</figcaption>
-          </figure>
-        </section>
-
-        <section id="full-table5" class="subsection">
-          <h3>3.2 Complete 18-condition breakdown (GAUGE Table 5)</h3>
-          <p>The table below reports the exact real-data baseline (<code>mm</code>), paper baseline <code>nRMSE</code>, and our reproduced <code>nRMSE (mm)</code> for every subtask and material:</p>
-
-          <table class="result-table compact">
-            <thead>
-              <tr>
-                <th>Family &amp; Subtask</th>
-                <th>Material</th>
-                <th>Real Baseline RMSE (mm)</th>
-                <th>Paper Isaac</th>
-                <th>Paper Genesis</th>
-                <th>Paper Newton</th>
-                <th>Ours: MuJoCo Default <code>nRMSE (mm)</code></th>
-                <th>Ours: SAP Literal Default <code>nRMSE (mm)</code></th>
-                <th>Ours: SAP <code>drake (1e5, 3ms)</code> <code>nRMSE (mm)</code></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Slope Slider · <code>task-1</code> (10° static)</td>
-                <td>Wood</td>
-                <td><code>0.59 ± 0.28</code></td>
-                <td><code>0.019</code></td>
-                <td><code>0.074</code></td>
-                <td><code>24.68</code></td>
-                <td><strong><code>0.17</code></strong> (<code>0.10</code>)</td>
-                <td><strong><code>0.12</code></strong> (<code>0.07</code>)</td>
-                <td><strong><code>0.69</code></strong> (<code>0.41</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-1</code> (10° static)</td>
-                <td>Plastic</td>
-                <td><code>1.90 ± 2.17</code></td>
-                <td><code>0.013</code></td>
-                <td><code>0.016</code></td>
-                <td><code>6.24</code></td>
-                <td><strong><code>0.04</code></strong> (<code>0.08</code>)</td>
-                <td><strong><code>0.09</code></strong> (<code>0.17</code>)</td>
-                <td><strong><code>0.20</code></strong> (<code>0.38</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-1</code> (10° static)</td>
-                <td>Metal</td>
-                <td><code>0.86 ± 0.69</code></td>
-                <td><code>0.078</code></td>
-                <td><code>0.062</code></td>
-                <td><code>15.08</code></td>
-                <td><strong><code>0.13</code></strong> (<code>0.11</code>)</td>
-                <td><strong><code>0.54</code></strong> (<code>0.46</code>)</td>
-                <td><strong><code>0.49</code></strong> (<code>0.42</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-2</code> (30° slide)</td>
-                <td>Wood</td>
-                <td><code>18.00 ± 15.89</code></td>
-                <td><code>1.23</code></td>
-                <td><code>0.53</code></td>
-                <td><code>1.71</code></td>
-                <td><strong><code>0.52</code></strong> (<code>9.35</code>)</td>
-                <td><strong><code>0.58</code></strong> (<code>10.41</code>)</td>
-                <td><strong><code>0.36</code></strong> (<code>6.41</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-2</code> (30° slide)</td>
-                <td>Plastic</td>
-                <td><code>25.01 ± 25.45</code></td>
-                <td><code>0.48</code></td>
-                <td><code>0.82</code></td>
-                <td><code>0.51</code></td>
-                <td><strong><code>0.74</code></strong> (<code>18.50</code>)</td>
-                <td><strong><code>0.75</code></strong> (<code>18.72</code>)</td>
-                <td><strong><code>0.68</code></strong> (<code>17.12</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-2</code> (30° slide)</td>
-                <td>Metal</td>
-                <td><code>32.06 ± 21.93</code></td>
-                <td><code>1.00</code></td>
-                <td><code>0.83</code></td>
-                <td><code>1.15</code></td>
-                <td><strong><code>0.68</code></strong> (<code>21.65</code>)</td>
-                <td><strong><code>0.74</code></strong> (<code>23.57</code>)</td>
-                <td><strong><code>0.81</code></strong> (<code>25.81</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-3</code> (dynamic tilt)</td>
-                <td>Wood</td>
-                <td><code>24.27 ± 16.85</code></td>
-                <td><code>2.62</code></td>
-                <td><code>2.62</code></td>
-                <td><code>1.35</code></td>
-                <td><strong><code>1.87</code></strong> (<code>45.32</code>)</td>
-                <td><strong><code>2.00</code></strong> (<code>48.65</code>)</td>
-                <td><strong><code>1.87</code></strong> (<code>45.34</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-3</code> (dynamic tilt)</td>
-                <td>Plastic</td>
-                <td><code>49.96 ± 20.37</code></td>
-                <td><code>1.58</code></td>
-                <td><code>1.46</code></td>
-                <td><code>0.67</code></td>
-                <td><strong><code>0.57</code></strong> (<code>28.58</code>)</td>
-                <td><strong><code>0.55</code></strong> (<code>27.35</code>)</td>
-                <td><strong><code>0.54</code></strong> (<code>26.84</code>)</td>
-              </tr>
-              <tr>
-                <td>Slope Slider · <code>task-3</code> (dynamic tilt)</td>
-                <td>Metal</td>
-                <td><code>38.01 ± 28.53</code></td>
-                <td><code>0.61</code></td>
-                <td><code>0.58</code></td>
-                <td><code>1.95</code></td>
-                <td><strong><code>0.71</code></strong> (<code>27.00</code>)</td>
-                <td><code>15.20</code> (<code>577.65</code>)</td>
-                <td><strong><code>0.20</code></strong> (<code>7.49</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-1</code> (2 rad/s spin)</td>
-                <td>Wood</td>
-                <td><code>2.01 ± 1.45</code></td>
-                <td><code>0.32</code></td>
-                <td><code>0.83</code></td>
-                <td><code>34.37</code></td>
-                <td><code>2.09</code> (<code>4.20</code>)</td>
-                <td><code>1.72</code> (<code>3.46</code>)</td>
-                <td><strong><code>1.46</code></strong> (<code>2.93</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-1</code> (2 rad/s spin)</td>
-                <td>Plastic</td>
-                <td><code>2.00 ± 2.48</code></td>
-                <td><code>1.22</code></td>
-                <td><code>1.12</code></td>
-                <td><code>36.04</code></td>
-                <td><code>2.03</code> (<code>4.06</code>)</td>
-                <td><code>1.68</code> (<code>3.36</code>)</td>
-                <td><strong><code>1.40</code></strong> (<code>2.80</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-1</code> (2 rad/s spin)</td>
-                <td>Metal</td>
-                <td><code>3.17 ± 1.74</code></td>
-                <td><code>0.42</code></td>
-                <td><code>0.51</code></td>
-                <td><code>17.19</code></td>
-                <td><code>1.33</code> (<code>4.21</code>)</td>
-                <td><code>1.13</code> (<code>3.58</code>)</td>
-                <td><strong><code>0.85</code></strong> (<code>2.71</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-2</code> (6 rad/s burst)</td>
-                <td>Wood</td>
-                <td><code>6.76 ± 4.65</code></td>
-                <td><code>4.82</code></td>
-                <td><code>3.69</code></td>
-                <td><code>2.88</code></td>
-                <td><strong><code>1.96</code></strong> (<code>13.24</code>)</td>
-                <td><code>4.27</code> (<code>28.88</code>)</td>
-                <td><code>4.42</code> (<code>29.87</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-2</code> (6 rad/s burst)</td>
-                <td>Plastic</td>
-                <td><code>7.86 ± 5.21</code></td>
-                <td><code>3.61</code></td>
-                <td><code>1.57</code></td>
-                <td><code>1.92</code></td>
-                <td><strong><code>1.64</code></strong> (<code>12.89</code>)</td>
-                <td><code>3.48</code> (<code>27.35</code>)</td>
-                <td><code>3.55</code> (<code>27.90</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-2</code> (6 rad/s burst)</td>
-                <td>Metal</td>
-                <td><code>5.76 ± 4.17</code></td>
-                <td><code>5.70</code></td>
-                <td><code>3.09</code></td>
-                <td><code>1.97</code></td>
-                <td><strong><code>2.36</code></strong> (<code>13.62</code>) / ell: <code>5.57</code> (<code>32.09</code>)</td>
-                <td><code>5.75</code> (<code>33.14</code>)</td>
-                <td><code>5.61</code> (<code>32.31</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-3</code> (±4 rad/s reverse)</td>
-                <td>Wood</td>
-                <td><code>27.15 ± 27.08</code></td>
-                <td><code>1.55</code></td>
-                <td><code>1.75</code></td>
-                <td><code>9.50</code></td>
-                <td><code>1.72</code> (<code>46.81</code>)</td>
-                <td><code>1.71</code> (<code>46.48</code>)</td>
-                <td><strong><code>1.67</code></strong> (<code>45.45</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-3</code> (±4 rad/s reverse)</td>
-                <td>Plastic</td>
-                <td><code>12.50 ± 6.49</code></td>
-                <td><code>2.37</code></td>
-                <td><code>2.47</code></td>
-                <td><code>21.76</code></td>
-                <td><code>1.34</code> (<code>16.79</code>)</td>
-                <td><code>1.23</code> (<code>15.42</code>)</td>
-                <td><strong><code>1.12</code></strong> (<code>13.94</code>)</td>
-              </tr>
-              <tr>
-                <td>Turntable · <code>task-3</code> (±4 rad/s reverse)</td>
-                <td>Metal</td>
-                <td><code>13.26 ± 7.43</code></td>
-                <td><code>0.17</code></td>
-                <td><code>0.57</code></td>
-                <td><code>20.04</code></td>
-                <td><code>1.29</code> (<code>17.17</code>)</td>
-                <td><code>1.13</code> (<code>14.98</code>)</td>
-                <td><strong><code>0.93</code></strong> (<code>12.27</code>)</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="newton-diagnosis" class="subsection">
-          <h3>3.3 Root-cause diagnosis: why the paper's Newton (v1.3.0) baseline failed</h3>
-          <p>In the GAUGE paper, <code>Newton (v1.3.0)</code> (which used an early <code>warp.sim</code> / MuJoCo-Warp bridge) reported catastrophic errors on two subsets where standalone MuJoCo and SAP Warp are actually near-perfect:</p>
-          <ol>
-            <li><strong><code>Slope Slider task-1</code> (Paper Newton <code>nRMSE = 15.33</code> vs. Our MuJoCo <code>0.057</code> / SAP <code>0.087</code>):</strong> On the <code>10°</code> incline (<code>tan 10° = 0.1763 &lt; μ<sub>pair</sub></code>), the physical cube stays completely stationary (real displacement <code>&lt; 0.05 mm</code>). However, <code>Newton v1.3.0</code> reported an error of <code>11.8–14.6 mm</code> across all three materials because <code>warp.sim</code>'s default mesh shape thickness / collision margin (<code>1e-2 m = 10 mm</code>) caused the cube to pop up by ~12 mm along the board normal on frame 1 and hover there. With zero artificial thickness inflation in standalone MuJoCo and SAP Warp, static equilibrium error is <code>0.03–0.11 mm</code>.</li>
-            <li><strong><code>Slope Slider task-3</code> kinematic driver (<code>6-DoF</code> vs. <code>1-DoF hinge</code>):</strong> In <code>Slope Slider task-3</code>, a human experimenter manually tilts the board from <code>0°</code> to <code>~25°</code>. Driving the board with its full 6-DoF mocap pose/velocity (instead of a pure 1-DoF hinge about the origin) reduces <code>nRMSE</code> from <code>1.56 → 0.93</code> in MuJoCo and <code>1.46 → 0.85</code> in SAP Warp because the real rotation pivot is offset from the board's local origin, inducing a <code>15–20 mm</code> translational arc.</li>
-            <li><strong><code>Turntable task-1 &amp; task-3</code> (Paper Newton <code>nRMSE = 28.05</code> and <code>17.10</code> vs. Our MuJoCo <code>0.84</code> / SAP <code>0.78</code>):</strong> As documented in Section 4.3 of the GAUGE paper, the cube in <code>Newton v1.3.0</code> experienced contact instability or lacked the rotating plate's angular velocity <code>qvel = ω<sub>plate</sub></code> at the contact interface, causing the cube to either remain stationary in world space or fly off the turntable (<code>70–270 mm</code> error). When the revolute joint velocity is properly supplied at each substep, both MuJoCo and SAP Warp track the real rotating cube with <code>1.5–11.6 mm</code> RMSE (<code>nRMSE = 0.43–0.89</code>).</li>
-          </ol>
-        </section>
+      <section id="dynamic-impact" class="report-section">
+        <h2>4. Dynamic impact <span class="scope-tag">impulse / rebound</span></h2>
+        <p class="family-intro">Use for short normal-contact transitions where pre- and post-impact state, restitution, and impulse validity matter.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Support-frame trajectory RMSE and DTW</td><td>Use a registered physical event window; pair RMSE with DTW rather than using phase-tolerant distance alone.</td></tr>
+            <tr><th>Simulation consistency</th><td>Effective restitution, contact duration, impulse closure where a unique resultant wrench is defined</td><td>Check post-impact energy behavior and momentum consistency; do not sum ambiguous multi-contact rows as a physical wrench.</td></tr>
+            <tr><th>Frozen-setting usability</th><td><code>Pass@B</code>, mass/velocity/drop-height/geometry transfer, <code>R≥20</code> local draws, setup transfer</td><td>Default, mechanism-guided B=5, and any disclosed historical brute-force ceiling are separate stages.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Bouncing ball</th><td>Per-bounce apex-height error and normalized apex-decay error</td><td>Does normal impact reproduce the observed sequence of energy loss?</td></tr>
+            <tr><th>Cube toss</th><td>Final position/orientation/resting-face error; post-bounce linear and angular speed-decay error</td><td>Does the simulator reproduce a coupled edge/corner impact outcome?</td></tr>
+            <tr><th>Cassie landing (impact profile)</th><td>Landing success; foot re-liftoff/chatter; residual torso oscillation; weighted 50-ms state error</td><td>Does a touchdown transient remain stable under the declared robot and controller convention?</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <section id="cone-and-best" class="report-section">
-        <h2>4. Default vs. Engine Best &amp; The Friction-Cone Effect</h2>
-
-        <section id="five-case-sweep" class="subsection">
-          <h3>4.1 Native parameter sweeps (80 MuJoCo × 96 SAP configurations)</h3>
-          <p>To evaluate how much parameter tuning can improve over out-of-the-box defaults, we swept <strong>80 native MuJoCo configurations</strong> (<code>solref timeconst ∈ [0.002, 0.050] s</code>, <code>dampratio ∈ [0.5, 2.0]</code>, <code>cone ∈ {pyramidal, elliptic}</code>) and <strong>96 native SAP Warp configurations</strong> (<code>k<sub>e</sub> ∈ [1000, 500000] N/m</code>, <code>τ ∈ [0.001, 0.020] s</code>, <code>preset ∈ {approx32, drake}</code>) across the five representative conditions:</p>
-
-          <table class="result-table">
-            <thead>
-              <tr>
-                <th>Condition</th>
-                <th>Real Baseline</th>
-                <th>MuJoCo Default <code>nRMSE (mm)</code></th>
-                <th>SAP Default (<code>approx32</code> / <code>drake</code>)</th>
-                <th>MuJoCo Best <code>nRMSE (mm)</code></th>
-                <th>SAP Best <code>nRMSE (mm)</code></th>
-                <th>MuJoCo Pass Rate (<code>≤1.0 / ≤1.5</code>)</th>
-                <th>SAP <code>drake</code> Pass Rate (<code>≤1.0 / ≤1.5</code>)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>1. Slope Slider · task-2 · wood</code></td>
-                <td><code>18.00 mm</code></td>
-                <td><code>0.52</code> (<code>9.35</code>)</td>
-                <td><code>0.58</code> / <strong><code>0.36</code> (<code>6.41</code>)</strong></td>
-                <td><code>0.44</code> (<code>7.99</code>)</td>
-                <td><strong><code>0.27</code> (<code>4.93</code>)</strong></td>
-                <td><strong><code>100% / 100%</code></strong></td>
-                <td><strong><code>100% / 100%</code></strong></td>
-              </tr>
-              <tr>
-                <td><code>2. Slope Slider · task-3 · metal</code></td>
-                <td><code>38.01 mm</code></td>
-                <td><code>0.71</code> (<code>27.0</code>)</td>
-                <td><code>15.20</code> / <strong><code>0.20</code> (<code>7.49</code>)</strong></td>
-                <td><code>0.17</code> (<code>6.52</code>)</td>
-                <td><strong><code>0.13</code> (<code>5.06</code>)</strong></td>
-                <td><code>62.5% / 75.0%</code></td>
-                <td><strong><code>75.0% / 75.0%</code></strong></td>
-              </tr>
-              <tr>
-                <td><code>3. Turntable · task-1 · wood</code></td>
-                <td><code>2.01 mm</code></td>
-                <td><code>2.09</code> (<code>4.20</code>)</td>
-                <td><code>1.72</code> / <strong><code>1.46</code> (<code>2.93</code>)</strong></td>
-                <td><code>0.92</code> (<code>1.86</code>)</td>
-                <td><strong><code>0.90</code> (<code>1.80</code>)</strong></td>
-                <td><code>30.0% / 56.2%</code></td>
-                <td><code>27.1% / </code><strong><code>91.7%</code></strong></td>
-              </tr>
-              <tr>
-                <td><code>4. Turntable · task-2 · metal</code></td>
-                <td><code>5.76 mm</code></td>
-                <td><strong><code>2.36</code> (<code>13.6</code>)</strong></td>
-                <td><code>5.75</code> / <code>5.61</code> (<code>32.3</code>)</td>
-                <td><strong><code>1.26</code> (<code>7.25</code>)</strong></td>
-                <td><code>4.65</code> (<code>26.8</code>)</td>
-                <td><code>0.0% / 5.0%</code></td>
-                <td><code>0.0% / 0.0%</code></td>
-              </tr>
-              <tr>
-                <td><code>5. Turntable · task-3 · metal</code></td>
-                <td><code>13.26 mm</code></td>
-                <td><code>1.29</code> (<code>17.2</code>)</td>
-                <td><code>1.13</code> / <strong><code>0.93</code> (<code>12.3</code>)</strong></td>
-                <td><strong><code>0.73</code> (<code>9.73</code>)</strong></td>
-                <td><code>0.82</code> (<code>10.8</code>)</td>
-                <td><code>55.0% / 68.8%</code></td>
-                <td><strong><code>95.8% / 100.0%</code></strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <figure class="result-figure">
-            <img src="assets/gauge-trajectories-real-vs-sim.png" alt="Three-panel trajectory comparison showing real mocap trials (grey lines), real mean trajectory (black), MuJoCo Default, and SAP Warp Default on Slope Slider task-3 plastic, Turntable task-3 metal, and Turntable task-2 metal.">
-            <figcaption><strong>Real-world motion capture vs. simulated trajectories.</strong> Grey curves show the 20 individual physical mocap trials; the solid black curve is the empirical real mean <code>ḡ<sub>real</sub>(t)</code>. On <code>Slope Slider task-3</code> (A) and <code>Turntable task-3</code> (B), SAP Warp and MuJoCo follow nearly identical trajectories well inside the real trial bundle. On <code>Turntable task-2 metal</code> (C), MuJoCo's elliptic cone and SAP Warp's elliptic cone overlap completely (<code>32.1 mm</code> vs <code>32.3 mm</code>), while MuJoCo's default pyramidal cone slips less (<code>13.6 mm</code>) due to diagonal friction cone inflation.</figcaption>
-          </figure>
-        </section>
-
-        <section id="pyramidal-artifact" class="subsection">
-          <h3>4.2 Why <code>Turntable task-2 metal</code> differs: the pyramidal vs. elliptic cone artifact</h3>
-          <p>Across 17 of the 18 conditions, SAP Warp Default and MuJoCo Default agree within 1–5%. The single conspicuous outlier is <strong><code>Turntable (task-2, metal)</code></strong>, where MuJoCo Default achieves <code>13.61 mm</code> (<code>nRMSE = 2.36</code>) while SAP Warp Default gets <code>32.33 mm</code> (<code>nRMSE = 5.61</code>) and Paper Isaac Sim gets <code>32.83 mm</code> (<code>nRMSE = 5.70</code>).</p>
-          <p>Our ablation proves that this gap has <strong>nothing to do with contact stiffness or solver accuracy</strong>, and is entirely caused by the geometry of the friction cone:</p>
-          <ul>
-            <li><strong>True isotropic elliptic cone (<code>f<sub>t1</sub><sup>2</sup> + f<sub>t2</sub><sup>2</sup> ≤ (μ f<sub>n</sub>)<sup>2</sup></code>):</strong> Used by SAP Warp, Isaac Sim, and MuJoCo when set to <code>cone="elliptic"</code>. All three engines yield virtually the exact same error: <strong><code>32.09 mm</code></strong> (MuJoCo <code>elliptic</code>), <strong><code>32.33 mm</code></strong> (SAP Warp), and <strong><code>32.83 mm</code></strong> (Isaac Sim).</li>
-            <li><strong>4-sided pyramidal approximation (<code>|f<sub>t1</sub>| ≤ μ f<sub>n</sub></code> and <code>|f<sub>t2</sub>| ≤ μ f<sub>n</sub></code>):</strong> Used by MuJoCo's default <code>cone="pyramidal"</code>. Along the diagonal of the tangent frame (<code>|f<sub>t1</sub>| = |f<sub>t2</sub>| = μ f<sub>n</sub></code>), the maximum total tangential friction force is <strong><code>√2 μ f<sub>n</sub> ≈ 1.414 μ f<sub>n</sub></code></strong>.</li>
-            <li><strong>Why a <code>√2</code> error helps on <code>Turntable task-2</code>:</strong> In <code>task-2</code>, the turntable undergoes a sudden angular acceleration burst where centrifugal + Euler tangential forces briefly exceed the single kinetic friction coefficient <code>μ<sub>pair</sub> = 0.214</code> measured in GAUGE, but remain close to the real metal-on-wood <em>static</em> breakaway friction coefficient <code>μ<sub>s</sub> ≈ 0.25–0.28 &gt; μ<sub>k</sub></code>. Because neither simulator models a two-parameter Stribeck (<code>μ<sub>s</sub> &gt; μ<sub>k</sub></code>) law, the true elliptic cone breaks away at <code>μ<sub>pair</sub> = 0.214</code> and slides 32 mm, whereas MuJoCo's 4-sided pyramid accidentally inflates the breakaway threshold up to <code>1.414 × 0.214 ≈ 0.303</code> along the diagonal! Confirming this, setting <code>μ<sub>eff</sub> = 0.265</code> in SAP Warp or MuJoCo <code>elliptic</code> immediately drops both engines' error from <code>32.3 mm</code> down to <strong><code>8.25 mm</code> (<code>nRMSE = 1.43</code>)</strong>.</li>
-          </ul>
-          <div class="takeaway"><strong>Takeaway.</strong> Default parameters in both engines are already within <code>2%–5%</code> of their global bests across the benchmark. When both simulators solve the exact same isotropic elliptic Coulomb cone, their trajectories on all 18 conditions are nearly indistinguishable.</div>
-        </section>
+      <section id="energy" class="report-section">
+        <h2>5. Energy conservation <span class="scope-tag">long-horizon dynamics</span></h2>
+        <p class="family-intro">Use for conservative or near-conservative systems where numerical drift, dissipation, and momentum transfer are the core mechanism.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Trajectory RMSE and DTW, when synchronized physical motion is available</td><td>Otherwise compare against the declared analytical Hamiltonian or conservation law.</td></tr>
+            <tr><th>Simulation consistency</th><td>Relative mechanical-energy drift/loss against the theoretical profile</td><td>Conservative systems target zero drift; passive systems must not exhibit unphysical energy growth.</td></tr>
+            <tr><th>Frozen-setting usability</th><td><code>Pass@B</code>, amplitude/initial-energy/scale transfer, energy-drift versus <code>dt</code>, setup transfer</td><td>State integrator, substeps, damping/friction, and solver tolerances explicitly.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Pendulum</th><td>Period duration from dominant-frequency analysis; period error or ratio</td><td>Does the integrator retain the nonlinear oscillation timing over a long horizon?</td></tr>
+            <tr><th>Newton's cradle</th><td>Momentum transfer efficiency; longest stationary duration of intermediate balls</td><td>Does impulse transfer reach the outgoing ball without artificial intermediate-ball jitter?</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <section id="matched-robustness" class="report-section">
-        <h2>5. Physically Matched Parameter Robustness &amp; Normal–Tangential Decoupling</h2>
-
-        <section id="parameter-mapping" class="subsection">
-          <h3>5.1 Exact physical parameter mapping between SAP Warp and MuJoCo</h3>
-          <p>Comparing parameter robustness across simulators is only meaningful if both engines are swept over the <strong>exact same physical range</strong> of pair contact stiffness <code>k<sub>pair</sub></code> (in <code>N/m</code>) and relaxation time constant <code>τ<sub>pair</sub></code> (in <code>s</code>). We established the exact analytical bijection between the two engines:</p>
-          <ol>
-            <li><strong>SAP Warp material-to-pair harmonic series law:</strong> In <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/sap-sim/sim/collision/narrowphase.py" target="_blank" rel="noreferrer"><code>sap-sim/sim/collision/narrowphase.py</code> ↗</a>, SAP combines two bodies' material stiffnesses <code>k<sub>e,A</sub> = k<sub>e,B</sub> = k<sub>e,mat</sub></code> in series:
-              <div class="equation">k<sub>pair</sub> = k<sub>e,mat</sub> / 2, &nbsp;&nbsp; c<sub>pair</sub> = τ<sub>pair</sub> · k<sub>pair</sub> &nbsp;&nbsp; (R<sub>n</sub> = 1 / (h<sup>2</sup> k<sub>pair</sub> + h c<sub>pair</sub>))</div>
-              Thus,SAP's native sweep <code>k<sub>e,mat</sub> ∈ [500, 100000] N/m</code> corresponds to pair stiffness <code>k<sub>pair</sub> ∈ [250, 50000] N/m</code>.
-            </li>
-            <li><strong>MuJoCo standard mass-scaled mode <code>solref = (+t<sub>ref</sub>, +d<sub>ref</sub>)</code>:</strong> MuJoCo scales stiffness automatically by the contact's effective inverse mass <code>m<sub>eff</sub> = (1/m<sub>cube</sub>)<sup>−1</sup> / 4</code> (per vertex of the 4-corner box contact) and <code>solimp</code> impedance <code>d<sub>0</sub> = 0.95</code>:
-              <div class="equation">k<sub>pair</sub><sup>MJ</sup>(t<sub>ref</sub>) = m<sub>eff</sub> / (d<sub>0</sub> · t<sub>ref</sub><sup>2</sup>), &nbsp;&nbsp; τ<sub>pair</sub><sup>MJ</sup> = d<sub>0</sub> · t<sub>ref</sub> · d<sub>ref</sub></div>
-              Because <code>t<sub>ref</sub> ∈ [4, 100] ms</code> is squared in the denominator, MuJoCo's standard sweep spans 4 orders of magnitude in stiffness (<code>k<sub>pair</sub> ∈ [1.8, 1150] N/m</code>) and drops into extreme under-stiffness (<code>k<sub>pair</sub> &lt; 20 N/m</code>, causing centimeters of gravity sag) whenever <code>t<sub>ref</sub> ≥ 30 ms</code>.
-            </li>
-            <li><strong>MuJoCo direct stiffness mode <code>solref = (−k<sub>MJ</sub>, −b<sub>MJ</sub>)</code>:</strong> To decouple <code>k<sub>pair</sub></code> and <code>τ<sub>pair</sub></code> on an identical 2D physical grid, MuJoCo's negative <code>solref</code> convention specifies reference acceleration <code>a<sub>ref</sub> = −d<sub>0</sub> (b<sub>MJ</sub> v + k<sub>MJ</sub> x)</code> directly, yielding:
-              <div class="equation">k<sub>MJ</sub> = k<sub>pair</sub> / (m<sub>eff</sub> · d<sub>0</sub>), &nbsp;&nbsp; b<sub>MJ</sub> = 2 / (d<sub>0</sub> · τ<sub>pair</sub>)</div>
-            </li>
-          </ol>
-        </section>
-
-        <section id="matched-grid-results" class="subsection">
-          <h3>5.2 Matched 42-point physical grid comparison (<code>k<sub>pair</sub> × τ<sub>pair</sub></code>)</h3>
-          <p>We evaluated both engines on the exact same <strong>7 × 6 = 42-point physical grid</strong> spanning <code>k<sub>pair</sub> ∈ {35, 100, 250, 500, 2500, 10000, 50000} N/m</code> and <code>τ<sub>pair</sub> ∈ {5, 10, 20, 40, 60, 100} ms</code> on both <code>Slope Slider (metal, task-3)</code> and <code>Turntable (metal, task-3)</code>:</p>
-
-          <table class="result-table">
-            <thead>
-              <tr>
-                <th>Task &amp; Physical Regime</th>
-                <th>Parameter Sub-region</th>
-                <th>SAP Warp (<code>drake</code>) Pass Rate (<code>nRMSE ≤ 1.20</code>)</th>
-                <th>MuJoCo Coupled Pass Rate (<code>nRMSE ≤ 1.20</code>)</th>
-                <th>MuJoCo Decoupled Pass Rate (<code>elliptic + solreffriction</code>)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Slope Slider · task-3</strong> (tilting incline)</td>
-                <td>Native grid / Matched <code>(k<sub>pair</sub>, τ<sub>pair</sub>)</code></td>
-                <td><strong><code>75.0%</code> native</strong> (<code>9 / 42</code> on extended <code>τ ≤ 100 ms</code> grid)</td>
-                <td><strong><code>75.0%</code> native</strong> (<code>9 / 42</code> on extended <code>(-k, -b)</code> grid)</td>
-                <td><strong><code>75.0%</code> native</strong> (normal tilting dominates)</td>
-              </tr>
-              <tr>
-                <td><strong>Turntable · task-3</strong> (rotating plate)</td>
-                <td>Full 42-point grid (<code>k<sub>pair</sub> ∈ [35, 50000] N/m</code>)</td>
-                <td><strong><code>36 / 42</code></strong> (<code>85.7%</code>, all <code>≤ 1.00</code>)</td>
-                <td><code>6 / 42</code> (<code>14.3%</code>)</td>
-                <td><strong><code>19 / 42</code></strong> (<code>45.2%</code>)</td>
-              </tr>
-              <tr>
-                <td><strong>Turntable · task-3</strong> (rotating plate)</td>
-                <td>All non-sagging stiffnesses (<code>k<sub>pair</sub> ≥ 100 N/m</code>, 36 pts)</td>
-                <td><strong><code>36 / 36</code> (<code>100.0%</code>)</strong></td>
-                <td><code>5 / 36</code> (<code>13.9%</code>)</td>
-                <td><strong><code>14 / 36</code></strong> (<code>38.9%</code>; <code>100%</code> for <code>k<sub>pair</sub> ≤ 250 N/m, τ ≥ 10 ms</code>)</td>
-              </tr>
-              <tr>
-                <td><strong>Turntable · task-3</strong> (standard <code>(t<sub>ref</sub>, d<sub>ref</sub>)</code> mode)</td>
-                <td>35-point native grid (<code>t<sub>ref</sub> ∈ [5, 100] ms</code>, <code>d<sub>ref</sub> ∈ [0.5, 2.0]</code>)</td>
-                <td>—</td>
-                <td><code>12 / 35</code> (<code>34.3%</code>)</td>
-                <td><strong><code>35 / 35</code> (<code>100.0%</code>)</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <p>The contrast between the two tasks reveals a fundamental architectural mechanism:</p>
-          <ul>
-            <li><strong>Why both engines fail at <code>k<sub>pair</sub> ≤ 250 N/m</code> on <code>Slope Slider task-3</code>:</strong> When the board tilts dynamically, a soft normal spring (<code>k<sub>pair</sub> ≤ 100 N/m</code>) allows <code>2–8 mm</code> of normal penetration under gravity. Both SAP Warp and MuJoCo degrade similarly at very low stiffness, and both achieve <code>~80%</code> pass rates in the practical stiffness range <code>k<sub>pair</sub> ∈ [250, 5600] N/m</code>.</li>
-            <li><strong>Why SAP Warp achieves <code>36 / 36</code> (<code>100%</code>) for <code>k<sub>pair</sub> ≥ 100 N/m</code> on <code>Turntable task-3</code> while default MuJoCo drops to <code>9 / 48</code>:</strong> On a horizontal turntable, normal penetration is constant and harmless, so accuracy depends entirely on <strong>tangential friction tracking</strong>. In <a href="https://github.com/Xiaowen2024/sap-exp/blob/main/sap-sim/sim/contact_solve.py#L798-L802" target="_blank" rel="noreferrer"><code>sap-sim/sim/contact_solve.py</code> (lines 798–802) ↗</a>, SAP Warp uses <code>(k<sub>e</sub>, k<sub>d</sub>)</code> <em>only</em> for the normal regularization <code>R<sub>n</sub></code>, while hard-coding tangential friction regularization to a small mass-scaled constant <code>R<sub>t1</sub> = R<sub>t2</sub> = σ · w<sub>i</sub></code> (<code>σ = 10<sup>−3</sup></code>). Consequently, softening normal contact or increasing <code>τ<sub>pair</sub></code> to <code>50 ms</code> in SAP Warp does not introduce tangential slip lag.</li>
-          </ul>
-        </section>
-
-        <section id="mujoco-decoupling" class="subsection">
-          <h3>5.3 Can MuJoCo decouple tangential friction from normal compliance?</h3>
-          <p>In default MuJoCo, all rows of a contact constraint share the same <code>solref</code> reference acceleration <code>a<sub>ref</sub> = −b v − k x</code>. When <code>τ<sub>pair</sub></code> is increased to <code>30–50 ms</code>, the tangential velocity damping rate <code>b<sub>t</sub> = 2 / (d<sub>0</sub> τ<sub>pair</sub>)</code> slows down proportionally, causing the cube on the turntable to lag behind the rotating plate and slide outward.</p>
-          <p>We tested all three candidate mechanisms in MuJoCo for decoupling tangential friction from normal compliance on <code>Turntable (metal, task-3)</code>:</p>
-          <ol>
-            <li><strong><code>&lt;option impratio="100"/&gt;</code> (Insufficient):</strong> Only scales the diagonal constraint regularization <code>R<sub>t</sub> = R<sub>n</sub> / impratio</code>, leaving the tangential reference velocity damping <code>b<sub>t</sub></code> untouched. At <code>τ<sub>n</sub> = 50 ms</code>, <code>nRMSE</code> only improves from <code>9.75 → 7.13</code>.</li>
-            <li><strong><code>&lt;option noslip_iterations="10"/&gt;</code> (Insufficient):</strong> Runs a post-hoc PGS pass with <code>R<sub>t</sub> → 0</code> to suppress static creep, but still targets the main solver's slow tangential reference acceleration <code>a<sub>ref, t</sub> = −b<sub>t</sub> v<sub>t</sub></code>. At <code>τ<sub>n</sub> = 50 ms</code>, <code>nRMSE</code> remains <code>7.26–9.63</code>.</li>
-            <li><strong><code>cone="elliptic"</code> + explicit <code>&lt;pair solreffriction="0.004 1.0"/&gt;</code> (True Decoupling):</strong> MuJoCo provides a dedicated <code>solreffriction</code> attribute on explicit <code>&lt;pair&gt;</code> elements that assigns an independent reference damping time constant <code>τ<sub>t</sub></code> to tangential friction rows. Crucially, this mechanism has two strict requirements:
-              <ul>
-                <li>It <strong>requires <code>cone="elliptic"</code></strong>. Under MuJoCo's default <code>cone="pyramidal"</code>, each facet mixes normal and tangential directions (<code>n ± μ t<sub>i</sub></code>), so <code>solreffriction</code> is <strong>completely ignored</strong> (<code>129.26 mm</code> error with or without <code>solreffriction</code>).</li>
-                <li>It <strong>cannot be set on <code>&lt;geom&gt;</code></strong>; it must be declared on explicit <code>&lt;contact&gt;&lt;pair ... solreffriction="..."/&gt;&lt;/contact&gt;</code> elements (or <code>&lt;default&gt;&lt;pair/&gt;&lt;/default&gt;</code>).</li>
-              </ul>
-            </li>
-          </ol>
-
-          <table class="result-table">
-            <thead>
-              <tr>
-                <th>MuJoCo Configuration on <code>Turntable (metal, task-3)</code></th>
-                <th>Soft Normal <code>τ<sub>n</sub> = 30 ms</code></th>
-                <th>Soft Normal <code>τ<sub>n</sub> = 50 ms</code></th>
-                <th>Direct Mode <code>k<sub>pair</sub>=500 N/m, τ<sub>n</sub>=50 ms</code></th>
-                <th>Standard Mode 35-Grid Pass Rate (<code>nRMSE ≤ 1.00</code>)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1. Default <code>cone="pyramidal"</code> (<code>impratio=1</code>)</td>
-                <td><code>27.36 mm</code> (<code>2.06</code>)</td>
-                <td><code>129.26 mm</code> (<code>9.75</code>)</td>
-                <td><code>37.06 mm</code> (<code>2.79</code>)</td>
-                <td><code>12 / 35</code> (<code>34.3%</code>)</td>
-              </tr>
-              <tr>
-                <td>2. <code>cone="elliptic"</code> (<code>impratio=1</code>)</td>
-                <td><code>26.72 mm</code> (<code>2.02</code>)</td>
-                <td><code>103.74 mm</code> (<code>7.82</code>)</td>
-                <td><code>27.09 mm</code> (<code>2.04</code>)</td>
-                <td><code>14 / 35</code> (<code>40.0%</code>)</td>
-              </tr>
-              <tr>
-                <td>3. <code>cone="elliptic"</code> + <code>impratio=100</code></td>
-                <td><code>25.86 mm</code> (<code>1.95</code>)</td>
-                <td><code>94.56 mm</code> (<code>7.13</code>)</td>
-                <td><code>26.08 mm</code> (<code>1.97</code>)</td>
-                <td><code>14 / 35</code> (<code>40.0%</code>)</td>
-              </tr>
-              <tr>
-                <td>4. <code>cone="elliptic"</code> + <code>noslip_iterations=10</code></td>
-                <td><code>25.87 mm</code> (<code>1.95</code>)</td>
-                <td><code>96.30 mm</code> (<code>7.26</code>)</td>
-                <td><code>26.13 mm</code> (<code>1.97</code>)</td>
-                <td><code>14 / 35</code> (<code>40.0%</code>)</td>
-              </tr>
-              <tr>
-                <td>5. <code>cone="pyramidal"</code> + <code>solreffriction="0.004 1.0"</code></td>
-                <td><code>27.36 mm</code> (<code>2.06</code>)</td>
-                <td><code>129.26 mm</code> (<code>9.75</code>)</td>
-                <td><code>37.06 mm</code> (<code>2.79</code>)</td>
-                <td><code>12 / 35</code> (<em>ignored by pyramidal cone</em>)</td>
-              </tr>
-              <tr>
-                <td><strong>6. <code>cone="elliptic"</code> + <code>solreffriction="0.004 1.0"</code></strong></td>
-                <td><strong><code>11.02 mm</code> (<code>0.83</code>)</strong></td>
-                <td><strong><code>10.68 mm</code> (<code>0.81</code>)</strong></td>
-                <td><strong><code>14.28 mm</code> (<code>1.08</code>)</strong></td>
-                <td><strong><code>35 / 35</code> (<code>100.0%</code>)</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <figure class="result-figure">
-            <img src="assets/gauge-matched-grid-heatmaps.png" alt="Three-panel heatmap of Normalized RMSE over the 42-point physical stiffness and relaxation time grid on Turntable task-3 metal, comparing SAP Warp, MuJoCo Default coupled pyramidal, and MuJoCo Decoupled elliptic + solreffriction.">
-            <figcaption><strong>Operating window across the matched 42-point physical <code>(k<sub>pair</sub>, τ<sub>pair</sub>)</code> grid on <code>Turntable (metal, task-3)</code>.</strong> Green cells indicate real-world trajectory agreement (<code>nRMSE ≤ 1.20</code>). SAP Warp (A) passes across all <code>36 / 36</code> non-sagging stiffnesses (<code>k<sub>pair</sub> ≥ 100 N/m</code>) because tangential regularization is decoupled by default. Default MuJoCo (B) passes only <code>6 / 42</code> cells. Enabling <code>cone="elliptic"</code> + explicit <code>&lt;pair solreffriction="0.004 1.0"/&gt;</code> in MuJoCo (C) rescues all medium-stiffness / slow-relaxation cells (<code>19 / 42</code> in direct <code>(-k, -b)</code> mode, and <code>35 / 35</code> in mass-scaled <code>(t<sub>ref</sub>, d<sub>ref</sub>)</code> mode).</figcaption>
-          </figure>
-
-          <div class="takeaway"><strong>Architectural Takeaway.</strong> SAP Warp decouples normal compliance <code>R<sub>n</sub>(k<sub>e</sub>, k<sub>d</sub>)</code> from tangential friction regularization <code>R<sub>t</sub> = σ w<sub>i</sub></code> natively at the solver level. MuJoCo couples them by default under <code>cone="pyramidal"</code> and auto-generated <code>&lt;geom&gt;</code> contacts, but can achieve full tangential decoupling when configured with <strong><code>cone="elliptic"</code> + explicit <code>&lt;pair solreffriction="..."/&gt;</code></strong>.</div>
-        </section>
+      <section id="sustained-contact" class="report-section">
+        <h2>6. Sustained contact <span class="scope-tag">settled equilibrium</span></h2>
+        <p class="family-intro">Use after transients have ended and the contact system should remain settled, supported, and geometrically valid.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Steady position/height error; aggregated static normal-force error</td><td>Requires synchronized resting-state geometry and, for force fidelity, calibrated load-cell/force-plate data.</td></tr>
+            <tr><th>Simulation consistency</th><td>Signed-gap/equilibrium overlap, normal-load balance error, contact duty, normal-force CV</td><td>Evaluate only after a declared settled window begins. A run that never settles is a task failure.</td></tr>
+            <tr><th>Frozen-setting usability</th><td><code>Pass@B</code>, stack/load-ratio sweep, <code>R=20</code> local and <code>dt</code> robustness, support-geometry transfer</td><td>Save the contact witness/gap convention and exclude all impact frames from this family.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Cube toss (settled tail)</th><td>Planar drift rate and yaw-drift rate over the steady window</td><td>Does the final resting object creep or rotate under nominally static gravity support?</td></tr>
+            <tr><th>Three-plate stack</th><td>Stack-order preservation; gap-aware center-of-mass height bias; thresholded stack success; thickness breakdown sweep</td><td>Can a thin multi-contact stack retain order, load closure, and geometric validity?</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <section id="conclusion" class="report-section">
-        <h2>6. Final Conclusion</h2>
-        <p>Anchoring the SAP Warp vs. MuJoCo comparison on the 358 real-world motion-capture trajectories of GAUGE (<code>Slope Slider</code> and <code>Turntable</code>) yields three concrete conclusions for real-to-sim robotics benchmarking:</p>
-        <ol>
-          <li><strong>Out-of-the-box real-to-sim accuracy is high and nearly tied when scene setup is faithful:</strong> Once collision thickness inflation (<code>10 mm</code> margin in <code>warp.sim</code>) and missing kinematic surface velocities are eliminated, both standalone MuJoCo Default and SAP Warp Default achieve <code>nRMSE ≈ 0.60</code> on <code>Slope Slider</code> and <code>nRMSE ≈ 0.78</code> on <code>Turntable task-1/3</code>—well below human trial-to-trial variance (<code>nRMSE = 1.0</code>).</li>
-          <li><strong>Friction-cone geometry explains apparent single-task discrepancies:</strong> On high-acceleration breakaway tasks where real static friction exceeds kinetic friction (<code>μ<sub>s</sub> &gt; μ<sub>k</sub></code>, as in <code>Turntable task-2</code>), MuJoCo's default 4-sided <code>pyramidal</code> cone appears more accurate only because its <code>√2</code> diagonal over-approximation accidentally mimics a higher static friction coefficient. Under the true isotropic <code>elliptic</code> cone, MuJoCo, SAP Warp, and Isaac Sim produce identical trajectories within 2%.</li>
-          <li><strong>Normal–tangential decoupling governs parameter robustness:</strong> When users tune normal contact stiffness or damping across a broad physical range, SAP Warp preserves sliding and rotating trajectory accuracy automatically because tangential friction compliance is decoupled by design. To obtain comparable parameter robustness in MuJoCo, practitioners should switch from default <code>pyramidal</code> contacts to <code>cone="elliptic"</code> with explicit <code>&lt;pair solreffriction="..."/&gt;</code> decoupling.</li>
-        </ol>
-        <div class="callout conclusion">
-          <p><strong>Default accuracy is nearly identical when physical geometry and surface velocities are properly aligned.</strong></p>
-          <p><strong>Parameter-range robustness in frictional sliding is determined by whether tangential friction damping is decoupled from normal contact compliance.</strong></p>
-        </div>
+      <section id="composite" class="report-section">
+        <h2>7. Composite tasks <span class="scope-tag">coupled geometry, actuation &amp; contact</span></h2>
+        <p class="family-intro">Composite tasks intentionally have no universal scalar score. Each retains the same three layers, but selects task-specific diagnostics for coupled geometry, control, contact switching, and mechanisms.</p>
+        <h3>Shared protocol</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Layer</th><th>Shared metrics</th><th>Interpretation / gate</th></tr></thead>
+          <tbody>
+            <tr><th>Physical fidelity</th><td>Use registered task-specific pose/state/outcome errors only where a physical reference exists</td><td>Do not infer real-world fidelity from a simulation-only success rate.</td></tr>
+            <tr><th>Simulation consistency</th><td>Task-defined geometry, penetration, force-closure, constraint, or contact-switching diagnostics</td><td>These are health gates and mechanism explanations, not a universal cross-task ranking.</td></tr>
+            <tr><th>Frozen-setting usability</th><td>Literal B=1 versus fixed B=5; physical-control ranges; <code>R≥20</code> local robustness; held-out setup transfer</td><td>Freeze material, collision representation, and controller conventions before held-out evaluation.</td></tr>
+          </tbody>
+        </table>
+        <h3>Task-specific additions</h3>
+        <table class="data-table protocol-table">
+          <thead><tr><th>Task</th><th>Additional metrics</th><th>Task question</th></tr></thead>
+          <tbody>
+            <tr><th>Round peg-in-hole</th><td>Success rate; peak penetration; penetration/clearance ratio; final contact mode (inserted, unseated, jammed, escaped)</td><td>Can the coupled contact geometry complete insertion without penetration-assisted success?</td></tr>
+            <tr><th>DENSE EZGripper grasp</th><td>Slip/no-slip prediction and balanced accuracy; object-pose drift; friction margin; wrench residual; penetration; contact duty/switching</td><td>Does the underactuated grasp predict retention and the accompanying object motion?</td></tr>
+            <tr><th>Cassie landing (composite profile)</th><td>Impact/recovery weighted state errors; loop-closure residual; normalized foot penetration; tail internal-shear ratio</td><td>Does articulated, closed-chain, multi-foot contact remain physically valid through impact and recovery?</td></tr>
+            <tr><th>GLIDE-inspired tomato plate transfer</th><td>Plate lift, tilt, tomato spill count, contact-capacity health, finite-state checks</td><td>Can a declared GPU surrogate carry a loaded plate without loss of support or excessive tilt?</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <section id="sources" class="report-section sources-section">
-        <h2>7. Sources &amp; Reproducibility Artifacts</h2>
-        <p>All reproduction scripts, downloaded real-world mocap datasets (358 trials), JSON sweep outputs, and deep-dive reports are committed to the repository:</p>
-        <ul class="source-list">
-          <li><a href="https://arxiv.org/html/2608.05948" target="_blank" rel="noreferrer">GAUGE benchmark paper (arXiv:2608.05948) ↗</a></li>
-          <li><a href="https://huggingface.co/datasets/InternRobotics/GAUGE-Dataset" target="_blank" rel="noreferrer">GAUGE real-world mocap dataset (HuggingFace) ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-report/gauge-turntable-slope-slider-deep-dive.md" target="_blank" rel="noreferrer">Full technical report: GAUGE Turntable &amp; Slope Slider deep dive ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/gauge-rigid-reproduction/run_turntable_slope_slider_benchmark.py" target="_blank" rel="noreferrer">Benchmark &amp; sweep script: <code>run_turntable_slope_slider_benchmark.py</code> ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/gauge-rigid-reproduction/table5_full_mujoco_results.json" target="_blank" rel="noreferrer">Full 18-case MuJoCo results JSON ↗</a></li>
-          <li><a href="https://github.com/Xiaowen2024/sap-exp/blob/main/exp-results/gauge-rigid-reproduction/table5_full_sap_results.json" target="_blank" rel="noreferrer">Full 18-case SAP Warp results JSON ↗</a></li>
-        </ul>
+      <section id="records" class="report-section">
+        <h2>8. Records required for every run</h2>
+        <table class="summary-table protocol-table">
+          <thead><tr><th>Record</th><th>What to save</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><th>Scene and inputs</th><td>Geometry/asset identity, mass/inertia, friction/material convention, gravity, controls, initial state, timestep, duration, reference frame</td><td>Makes the physical task and collision representation recoverable.</td></tr>
+            <tr><th>Selection and evaluation split</th><td>Literal B=1, all B=5 candidates, calibration-only data, frozen setting, held-out cases, repeat/seed distribution</td><td>Prevents selection evidence from being presented as transfer evidence.</td></tr>
+            <tr><th>Metric validity</th><td>Windows, contact aggregation/witness rule, force or impulse closure where needed, capacity-truncation flags, missing telemetry</td><td>Makes each reported metric auditable at its own scope.</td></tr>
+          </tbody>
+        </table>
+        <p class="protocol-note">Full definitions, equations, and task pre-registration fields remain in the versioned <a href="https://github.com/Xiaowen2024/sap-exp/tree/main/sim_protocol" target="_blank" rel="noreferrer">protocol source files ↗</a>. This page is the concise reader-facing index.</p>
       </section>
 
-      <footer class="page-footer">
-        <span>SAP Warp × MuJoCo · Part II: GAUGE Real-to-Sim Benchmark</span>
-        <a href="#top">Back to top ↑</a>
-      </footer>
+      <footer class="page-footer"><span>SAP Warp × MuJoCo Warp · Part II: Mechanism Aware Experiment Protocol</span><span>Shared layers + task-specific metrics</span></footer>
     </main>
   </div>
-
-  <script src="app.js" defer></script>
+  <script src="report.js"></script>
 </body>
 </html>
