@@ -49,7 +49,7 @@ def validate(path, manifest_path, box=False):
             count += cell['pass_count']
     total = data['heldout_accuracy_total'] if box else data['heldout_pass_total']
     assert total == [count, 20 * len(data['heldout'])], path
-    print('PASS', path.relative_to(ROOT), total)
+    print('PASS', path.relative_to(ROOT) if path.is_relative_to(ROOT) else path, total)
 
 
 def main():

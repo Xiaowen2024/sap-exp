@@ -29,11 +29,11 @@ held-out run has zero recorded capacity-overflow worlds and zero overflow
 flags. Peak active contacts over those runs: **231**.
 
 The new SAP selection still chooses `ke=1e6, tau=3 ms`; its selection pass
-counts are 0, 0, 20, 20, 20 /20. Its frozen sweep was confirmed live, but
-the SSH connection subsequently timed out. **The new SAP output has not been
-retrieved or certified complete.** The prior SAP 240/240 at the same μ=0.8
-remains clearly labelled historical in the task card. The raw new MuJoCo
-artifact and manifest hash are verified locally. The old 121/240 and new
+counts are 0, 0, 20, 20, 20 /20. The restored server's new SAP output was
+retrieved on 2026-11-10 and validated: **240/240 (100%)**. Both artifacts
+match the friction-aligned manifest, all 12 held-out cells, R=20 raw rows,
+the frozen candidate, and reconstructed totals. This completes the aligned
+pair: SAP 240/240 versus MuJoCo Warp 128/240. The old 121/240 and new
 128/240 are separate runs; their difference is not isolated causal evidence
 of a friction effect, given GPU run-to-run variation and the different winner.
 
@@ -69,12 +69,17 @@ evaluation horizon, SAP has 500/500 valid and correct outcomes; MuJoCo has
 are included in the 500 denominator. The phrase “500/500 classifications
 correct” is withdrawn. Historical capacity telemetry is unavailable.
 
-Capacity-instrumented frozen MuJoCo replay was confirmed launched as PID
-11023. Its final artifact is **pending retrieval** after SSH connection
-timeouts; current execution state cannot be verified. Do not treat the
-historical zero placeholder as a measured zero or certify this replay
-complete. The original frozen configuration is retained:
-`k=1e5, impratio=100, noslip=2`.
+The capacity-instrumented frozen MuJoCo replay was retrieved on 2026-11-10
+and passes the matrix/raw-row/provenance validation: **485/500 (97%) valid
+and correct**. The original frozen configuration remains
+`k=1e5, impratio=100, noslip=2`; its two selection-cell replays pass 40/40.
+All 499 finite held-out rollouts have correct outcome labels. Fourteen
+finite rollouts fail the pre-event contact-duty gate; one rollout is
+non-finite and has class `invalid`. There are zero measured capacity-overflow
+worlds. The non-finite rollout is included in the 500 denominator, never
+counted as a correct retain outcome. This new replay does not retroactively
+provide capacity telemetry for historical results, and the 478→485 change
+is not a parameter-tuning improvement: settings and seeds were unchanged.
 
 Verification: all three validity/capacity regression tests pass on the
 evaluation GPU. The integration test deliberately allocates two contact

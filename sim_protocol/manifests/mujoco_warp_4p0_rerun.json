@@ -1,0 +1,18 @@
+{
+  "revision": "mujoco-warp-4.0-rerun-20261110",
+  "engine": "MuJoCo Warp",
+  "required_packages": {"mujoco": "4.0.0", "mujoco-core": "4.0.0", "mujoco-warp": "4.0.0"},
+  "requires_cuda": true,
+  "selection_policy": "Rerun native B=1 and all original declared candidates on selection cells only; freeze the new winner before evaluating the unchanged held-out matrix. Do not inherit or tune on the old held-out results.",
+  "comparison_policy": "Preserve the 3.17 artifacts. Compare 4.0 against the friction-aligned Three-plate revision and the validity-corrected Three-box revision. Uncorrected historical results must be labelled separately.",
+  "prerequisite": "Both engines' friction-aligned Three-plate artifacts must be retrieved and pass validate_contact_correction.validate before starting any 4.0 task.",
+  "tasks": [
+    {"id": "three-plate", "manifest": "three_plate_stack_strict_v3p1.json", "sha256": "f14499c0fac251d34fc73bce34ece13ddd6b7bab654abf5d65769d0c8d4aee42", "runner": "run_threeplate_strict_v3_mjwarp.py", "artifact": "mjwarp_three_plate_strict_v3.json"},
+    {"id": "three-box", "manifest": "three_box_push_strict_v4.json", "sha256": "27be759da980b0e8170a886d9e617369324c2c2312132e469c72becc215f25c8", "runner": "run_threebox_strict_v4_mjwarp.py", "artifact": "mjwarp_three_box_strict_v4.json"},
+    {"id": "cube-toss", "manifest": "contactnets_cube_toss_dynamic_impact_v2.json", "sha256": "fbcf8a2a916f7e1c077941555a3611b9e8ad4a84f9884e1d501f04cb22217350", "runner": "run_impact_v2_mjwarp.py", "args": ["--task", "cube"], "artifact": "mjwarp_cube_dynamic_impact_v2.json"},
+    {"id": "simple-pinch", "manifest": "simple_pinch_force_controlled_v3.json", "sha256": "3d46155ce1aa184c3b26cd30f83b5e83403f2590d0ae43f30e6779f38c74c901", "runner": "run_pinch_v3_mjwarp.py", "artifact": "mjwarp_simple_pinch_v3.json"},
+    {"id": "gauge-slope", "manifest": "gauge_slope_slider_dynamic_friction_v3.json", "sha256": "4e95f2a4e92e46452873701bfd354f8249bf7a0802905d94a8a427143c45ea8a", "runner": "run_slope_v3_mjwarp.py", "artifact": "mjwarp_gauge_slope_v3.json"},
+    {"id": "mit-push", "manifest": "mit_push_dynamic_friction_v3.json", "sha256": "76a091104063dbb0ea7d3f2e5fe21246af7b3aad0799ef3c7c2e673505561561", "runner": "run_mitpush_v3_mjwarp.py", "artifact": "mjwarp_mit_push_v3.json"},
+    {"id": "pendulum", "manifest": "pendulum_energy_v2.json", "sha256": "b834b64ae6f622dda7785117fd211e86f6c0697fdfcc4249484fbb6f4513e7de", "runner": "run_pendulum_v2_mjwarp.py", "artifact": "mjwarp_pendulum_v2.json"}
+  ]
+}
