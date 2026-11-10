@@ -1,0 +1,27 @@
+{
+  "date_declared": "2026-11-09",
+  "python": "3.11.17 (main, Oct 21 2026, 17:46:53) [Clang 23.1.3 ]",
+  "mujoco": "3.17.0",
+  "warp": "1.18.0+cu12",
+  "gpu": "RTX 3080 Ti",
+  "driver": "535.104.05",
+  "sap_python_source_tree_sha256": "141b14632c0124dd305ef1f0d24744c09ad8a100254be3f849ee57f4192c64d9",
+  "sap_python_source_file_count": 55,
+  "hash_algorithm": "sha256 of concatenated relative filename + NUL + bytes, sorted *.py under SAP src",
+  "runner_hashes": {
+    "code": {
+      "mujoco_capacity_audit.py": "f2f5d2555a3d25dc5daa159ef5490ba80b6d52ed80b45a38c7cd01784543a848",
+      "native_defaults.py": "c4441998e7d6d0239da5f786f428e20881ae477ef7d2d6b25666164a5b918c29",
+      "run_threeplate_strict_v3_mjwarp.py": "7dab36147e0d41bea3adfecd639e7a275de520d47df9c8b5b4a115e683291223",
+      "strict_v3_common.py": "795421fd41005b9033c932ed3d823f0a00eb821289670d2882c27898de7864f0"
+    },
+    "box-code": {
+      "metrics_common.py": "07524fcb97441ef6f38fd352d3544ea63bc989f3f5e18c0d5399792d57bfc1d3",
+      "mujoco_capacity_audit.py": "41b2e8432edd2f82de80db3664d0157f1a16e6330a98b94402d21d7cc566dc17",
+      "native_defaults.py": "c4441998e7d6d0239da5f786f428e20881ae477ef7d2d6b25666164a5b918c29",
+      "run_static_friction_v2.py": "c704817f4cf720c21668563518cbd5561918de55e44760485ae4e69e25390543",
+      "run_threebox_strict_v4_mjwarp.py": "b974e5901288779715ab722320b0d126a9fe6465c27ac49ef43b51d52aec9b1d",
+      "strict_v3_common.py": "612c17debb72822f4cf984b9257885f8ede4e2b85552625a43b36e4a39dc321a"
+    }
+  }
+}

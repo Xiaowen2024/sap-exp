@@ -1,0 +1,59 @@
+./root/autodl-tmp/venvs/mjwarp317-cu12/lib/python3.11/site-packages/mujoco_warp/_src/io.py:336: UserWarning:
+        CUDA version < 12.4 detected
+        - graph capture may be unreliable for < 12.3
+        - conditional graph nodes are not available for < 12.4
+          Model.opt.graph_conditional should be set to False
+
+  warp_util.check_toolkit_driver()
+narrowphase overflow - please increase nconmax beyond 1 or naconmax beyond 2
+To disable the print warning: m.opt.warn_overflow &= ~mjw.OverflowType.NARROWPHASE (or = 0 for all)
+..
+----------------------------------------------------------------------
+Ran 3 tests in 0.831s
+
+OK
+Warp 1.18.0 initialized:
+   CUDA Toolkit 12.9, Driver 12.2
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 3080 Ti" (12 GiB, sm_86, mempool enabled)
+   Kernel cache:
+     /root/autodl-tmp/warp-cache-cu12/1.18.0
+Module mujoco_warp._src.smooth 11fd811 load on device 'cuda:0' took 1.80 ms  (cached)
+Module _subtree_com_acc__locals__kernel_edcab3a5 edcab3a load on device 'cuda:0' took 0.66 ms  (cached)
+Module _crb_accumulate__locals__kernel_c473801d c473801 load on device 'cuda:0' took 0.66 ms  (cached)
+Module _nxn_broadphase__locals__kernel_f67d158d f67d158 load on device 'cuda:0' took 0.56 ms  (cached)
+Module _nxn_broadphase__locals__kernel_f67d158d 0ef9096 load on device 'cuda:0' took 0.60 ms  (cached)
+Module _primitive_narrowphase__locals__primitive_narrowphase_0b72eca5 0b72eca load on device 'cuda:0' took 0.77 ms  (cached)
+Module mujoco_warp._src.constraint 8d4d513 load on device 'cuda:0' took 0.53 ms  (cached)
+Module _friction_dof__locals__kernel_17c6dde8 17c6dde load on device 'cuda:0' took 0.55 ms  (cached)
+Module _efc_contact_init__locals__kernel_2a59fcea 2a59fce load on device 'cuda:0' took 0.47 ms  (cached)
+Module _efc_contact_jac_dense__locals__kernel_875229a2 564801a load on device 'cuda:0' took 0.60 ms  (cached)
+Module _efc_contact_update__locals__kernel_efb3ac6e efb3ac6 load on device 'cuda:0' took 0.55 ms  (cached)
+Module mujoco_warp._src.passive 051fd2b load on device 'cuda:0' took 0.62 ms  (cached)
+Module _gravity_force__locals__kernel_0a335ab0 0a335ab load on device 'cuda:0' took 0.59 ms  (cached)
+Module _qfrc_passive_kernel__locals__kernel_976399dd 976399d load on device 'cuda:0' took 0.53 ms  (cached)
+Module _cfrc_backward__locals__kernel_2b55454e 2b55454 load on device 'cuda:0' took 0.41 ms  (cached)
+Module _qfrc_smooth__locals__kernel_8b823980 8b82398 load on device 'cuda:0' took 0.57 ms  (cached)
+Module mujoco_warp._src.support 970ef9a load on device 'cuda:0' took 0.58 ms  (cached)
+Module _small_cholesky_factorize_solve_block__locals__kernel_9da335f1 a5c2521 load on device 'cuda:0' took 0.37 ms  (cached)
+Module _solve_init_dof__locals__kernel_60896b56 60896b5 load on device 'cuda:0' took 0.36 ms  (cached)
+Module mujoco_warp._src.solver 38fd86c load on device 'cuda:0' took 0.71 ms  (cached)
+Module _solve_init_jaref_kernel__locals__kernel_50ba5382 50ba538 load on device 'cuda:0' took 0.53 ms  (cached)
+Module mul_m_kernel__locals___mul_m_f3de1cc7 f3de1cc load on device 'cuda:0' took 0.55 ms  (cached)
+Module _update_constraint_efc__locals__kernel_867d7711 867d771 load on device 'cuda:0' took 0.36 ms  (cached)
+Module _update_constraint_init_qfrc_constraint_dense__locals__kernel_bd7ca2ec bd7ca2e load on device 'cuda:0' took 0.52 ms  (cached)
+Module _update_gradient_zero_grad_dot__locals__kernel_b20934d7 b20934d load on device 'cuda:0' took 0.52 ms  (cached)
+Module _update_gradient_grad__locals__kernel_b7028268 b702826 load on device 'cuda:0' took 0.41 ms  (cached)
+Module _update_gradient_JTDAJ_dense_tiled__locals__kernel_a2c3547f fc2777b load on device 'cuda:0' took 0.91 ms  (cached)
+Module _update_gradient_cholesky__locals__kernel_8ccb6386 ab2be5f load on device 'cuda:0' took 41.69 ms  (cached)
+Module _linesearch_iterative_kernel__locals__kernel_b6835c62 7166935 load on device 'cuda:0' took 6.16 ms  (cached)
+Module _update_constraint_efc__locals__kernel_ed0ab50a ed0ab50 load on device 'cuda:0' took 0.68 ms  (cached)
+Module _update_constraint_init_qfrc_constraint_dense__locals__kernel_d92a3413 d92a341 load on device 'cuda:0' took 0.42 ms  (cached)
+Module _update_gradient_zero_grad_dot__locals__kernel_e9f8c963 e9f8c96 load on device 'cuda:0' took 0.43 ms  (cached)
+Module _update_gradient_grad__locals__kernel_a0aed6fb a0aed6f load on device 'cuda:0' took 0.39 ms  (cached)
+Module _update_gradient_cholesky__locals__kernel_79d8a34d 7dcfdc9 load on device 'cuda:0' took 42.95 ms  (cached)
+Module _solve_done__locals__kernel_5c8f0d18 5c8f0d1 load on device 'cuda:0' took 0.46 ms  (cached)
+Module mujoco_warp._src.forward 827bf97 load on device 'cuda:0' took 0.90 ms  (cached)
+Module _next_time_builder__locals___next_time_bc454e15 bc454e1 load on device 'cuda:0' took 0.43 ms  (cached)
+Module mujoco_capacity_audit 4637f21 load on device 'cuda:0' took 0.48 ms  (cached)

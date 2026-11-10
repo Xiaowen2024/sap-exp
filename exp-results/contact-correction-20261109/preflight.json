@@ -1,0 +1,152 @@
+{
+  "sap_warp": "/root/sap-fix-gamma/src/sap_warp/__init__.py",
+  "warp": "1.18.0",
+  "devices": {
+    "cpu": {
+      "static_load": {
+        "pass": true,
+        "detail": [
+          {
+            "dt_ms": 0.25,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          },
+          {
+            "dt_ms": 0.5,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          },
+          {
+            "dt_ms": 1.0,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          }
+        ]
+      },
+      "free_fall": {
+        "pass": true,
+        "detail": {
+          "dz_mm[world][body1,body2]": [
+            [
+              -49.29999923706055,
+              -49.29999923706055
+            ],
+            [
+              -49.29999923706055,
+              -49.29999923706055
+            ]
+          ],
+          "expected_mm": -49.05
+        }
+      },
+      "batch_readout": {
+        "pass": true,
+        "detail": {
+          "alone_B": {
+            "force_per_side_N": [
+              5.4545
+            ],
+            "zero_step_frac": [
+              0.0
+            ],
+            "spring_N": [
+              5.454500198364258
+            ]
+          },
+          "batched_A_B": {
+            "force_per_side_N": [
+              5.4545,
+              5.4545
+            ],
+            "zero_step_frac": [
+              0.0,
+              0.0
+            ],
+            "spring_N": [
+              5.454500198364258,
+              5.454500198364258
+            ]
+          }
+        }
+      }
+    },
+    "cuda:0": {
+      "static_load": {
+        "pass": true,
+        "detail": [
+          {
+            "dt_ms": 0.25,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          },
+          {
+            "dt_ms": 0.5,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          },
+          {
+            "dt_ms": 1.0,
+            "force_N": 9.81,
+            "expected_N": 9.81,
+            "rel_err": 0.0
+          }
+        ]
+      },
+      "free_fall": {
+        "pass": true,
+        "detail": {
+          "dz_mm[world][body1,body2]": [
+            [
+              -49.29999923706055,
+              -49.29999923706055
+            ],
+            [
+              -49.29999923706055,
+              -49.29999923706055
+            ]
+          ],
+          "expected_mm": -49.05
+        }
+      },
+      "batch_readout": {
+        "pass": true,
+        "detail": {
+          "alone_B": {
+            "force_per_side_N": [
+              5.4545
+            ],
+            "zero_step_frac": [
+              0.0
+            ],
+            "spring_N": [
+              5.454500198364258
+            ]
+          },
+          "batched_A_B": {
+            "force_per_side_N": [
+              5.4545,
+              5.4545
+            ],
+            "zero_step_frac": [
+              0.0,
+              0.0
+            ],
+            "spring_N": [
+              5.454500198364258,
+              5.454500198364258
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cpu_gpu": {
+    "pass": true
+  },
+  "all_pass": true
+}

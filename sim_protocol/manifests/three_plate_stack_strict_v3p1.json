@@ -1,0 +1,172 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "three-plate-stack",
+  "revision": "strict-v3.1-friction-aligned",
+  "status": "declared 2026-11-09; before rerun",
+  "R": 20,
+  "seed0": 76100,
+  "duration_s": 2,
+  "selection": {
+    "id": "selection_h4_m0p333_r100_o0_dt0p5",
+    "thickness_mm": 4,
+    "mass_per_plate_kg": 0.3333333333,
+    "radius_mm": 100,
+    "interplate_x_offset_mm": 0,
+    "dt_ms": 0.5,
+    "selection_only": true
+  },
+  "fixed": {
+    "gravity_m_s2": 9.81,
+    "initial_state": "concentric rest stack on support with independent xy/yaw micro-perturbations",
+    "pass_gate": "plate order remains top>middle>bottom>support, every interface overlap <= .05 thickness, maximum normal-load error <=1%, and final 0.2-s tail has |v|<.01 m/s and |omega|<.05 rad/s",
+    "load_readout": "sum(contact_gamma.z)/dt per interface using the step's actual dt, fixed SAP build; preflight required",
+    "tail_windows": {
+      "load_average_s": 1,
+      "settling_s": 0.2
+    },
+    "velocity_gate": "full linear speed |v| and angular speed |omega| of every plate (not vz only)",
+    "perturbation": "per plate xy ~ U(+-0.1 mm), yaw ~ U(+-3 mrad); identical arrays for both engines (strict_v3_common.plate_perturbations)",
+    "offset_convention": "plate i (0=bottom) shifted by i*offset in +x",
+    "friction": "sliding mu=0.8 for every plate and ground in both engines; MuJoCo ground is explicitly assigned mu=0.8"
+  },
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "thickness_mm",
+      "mass_per_plate_kg",
+      "radius_mm",
+      "interplate_x_offset_mm",
+      "dt_ms",
+      "geometry",
+      "duration_s"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=1e4,tau=3ms",
+      "ke=1e5,tau=3ms",
+      "ke=1e6,tau=3ms",
+      "ke=1e6,tau=1ms"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "tc=4ms,dr=1,dmax=.95",
+      "tc=8ms,dr=1,dmax=.95",
+      "tc=8ms,dr=2,dmax=.99",
+      "tc=12ms,dr=2,dmax=.99"
+    ]
+  },
+  "held_out_conditions": [
+    {
+      "id": "thickness_0p5",
+      "thickness_mm": 0.5,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "thickness_5",
+      "thickness_mm": 5,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "thickness_20",
+      "thickness_mm": 20,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "mass_0p167",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.1666666667,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "mass_0p667",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.6666666667,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "radius_75",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 75,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "radius_125",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 125,
+      "interplate_x_offset_mm": 0,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "offset_0p5",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0.5,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "offset_1p0",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 1,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "dt_0p25",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0.5,
+      "dt_ms": 0.25
+    },
+    {
+      "id": "dt_0p5",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0.5,
+      "dt_ms": 0.5
+    },
+    {
+      "id": "dt_1p0",
+      "thickness_mm": 4,
+      "mass_per_plate_kg": 0.3333333333,
+      "radius_mm": 100,
+      "interplate_x_offset_mm": 0.5,
+      "dt_ms": 1
+    }
+  ],
+  "supersedes": "three_plate_stack_strict_v3.json (MuJoCo ground friction was 1.0; SAP ground friction was 0.8)",
+  "outcome_type": "gate",
+  "selection_rule": "pass fraction, then mean max overlap/h, then mean max load error, then mean tail speed, then wall time",
+  "seed_rule": "selection: seed0 for every candidate (common random numbers); held-out cell j: seed0+1000+j",
+  "amendments": [
+    {
+      "date": "2026-11-04",
+      "before_any_run": true,
+      "change": "duration_s 1.0 -> 2.0 to match both existing runners (2-s run, 1-s load tail, 0.2-s settling tail); velocity gate, perturbation, offset convention, selection and seed rules made explicit. Note: held-out dt_0p5 and offset_0p5 are the same physical cell (kept as declared; acts as a replicate)."
+    },
+    {
+      "date": "2026-11-09",
+      "before_any_run": true,
+      "change": "Explicit MuJoCo ground mu=0.8, matching the unchanged SAP ground material. Candidates, perturbations, cells, seeds, gates and duration unchanged. Re-run selection and all held-out cells in both engines; save full-run MuJoCo capacity flags."
+    }
+  ]
+}
