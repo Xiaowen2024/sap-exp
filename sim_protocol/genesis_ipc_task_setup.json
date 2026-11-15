@@ -1,0 +1,242 @@
+{
+  "revision": "genesis-ipc-task-routing-20261114",
+  "scope": "All 14 task families registered in sim_protocol; idealised and real-reference energy tasks are variants, not extra task families.",
+  "meaning_of_both": "Two separately named runs: Genesis native RigidSolver and Genesis with IPCCoupler. It does not mean enabling two independent rigid contact responses on the same pair.",
+  "software": {
+    "genesis_world": "1.4.6",
+    "pyuipc": "0.0.29",
+    "genesis_release_commit": "3975e557a1eb9663a57db2b0990d65a8ecc765a3",
+    "libuipc_release_commit": "ac89e1009c7d8efb72d260790bb5ab31d7460542",
+    "release_policy": "Latest published releases verified against GitHub releases and PyPI on 2026-11-14; fixed versions, not moving main.",
+    "sources": [
+      "https://github.com/Genesis-Embodied-AI/genesis-world/releases/tag/v1.4.6",
+      "https://github.com/spiriMirror/libuipc/releases/tag/v0.0.29"
+    ]
+  },
+  "native_track": {
+    "name": "Genesis native rigid",
+    "backend": "CUDA",
+    "B1": "Literal RigidSolver numerical defaults of the pinned release; set the declared physical scene and actual integration interval only. Record resolved defaults and importer changes.",
+    "mujoco_compatibility": false
+  },
+  "ipc_track": {
+    "name": "Genesis + IPC",
+    "contact_backend": "libuipc CUDA; rigid objects represented as ABD",
+    "B1": "Pinned Genesis IPCCouplerOptions and resolved libuipc defaults. Do not silently tune d_hat, friction regularization, resistance, or coupling strength before B1.",
+    "passive_body_route": "ipc_only",
+    "fixed_base_joint_route": "external_articulation, subject to joint and anchor-geometry probes",
+    "driven_body_route": "Explicit libuipc input adapter or validated two_way_soft_constraint coupling; never assume a Genesis-side setter reaches IPC",
+    "force_and_velocity_telemetry": "Read and validate IPC-side state/contact results. Genesis-side IPC-only velocity is zeroed by the v1.4.6 bridge and is not valid physical velocity telemetry.",
+    "contact_ownership": "One contact owner per pair. Confirm coupled pairs are excluded from the native rigid collider.",
+    "precision": "Record both Genesis precision and IPC internal precision; do not assume they are identical."
+  },
+  "shared_requirements": [
+    "Same physical manifest, seeds, geometry representation, mass/inertia, effective pair friction, gravity and actual substep dt. Importing the same file is insufficient evidence.",
+    "Rigid material friction and IPC coup_friction are separate inputs. The pinned IPC bridge combines entity coup_friction geometrically; set and audit the effective contact-pair value instead of inheriting its default.",
+    "Rebuild IPC scenes for mass/geometry grid cells. Native batched rigid-info randomization is rejected by the pinned bridge; R=20 batches may share topology and physical cell parameters.",
+    "A scene with fixed-base joints must preserve its joint axes, limits and passive forces; free ABD props are not a substitute for an articulated model.",
+    "Validate initial velocity, external force and prescribed trajectory routing before any candidate is scored.",
+    "IPC initial-intersection and thickness checks must pass. Do not silently lift, separate or project a body. Any changed start is a new common physical revision for every engine.",
+    "Match collision surfaces; an IPC triangle mesh must not be compared to a native convex approximation without declaring and auditing the representation difference.",
+    "Keep exactly the approved task metrics and thresholds. Do not invent a new aggregate ranking metric.",
+    "Each named track gets its own declared B<=5 budget and frozen winner. Selecting the better of both tracks is not a B=5 result.",
+    "Do not count a valid environment smoke test as a complete task implementation or an audited B1/B5/generalizability result."
+  ],
+  "tasks": [
+    {
+      "id": "three-box-push",
+      "regime": "static friction",
+      "recommended_tracks": "both",
+      "manifest": "manifests/three_box_push_strict_v4.json",
+      "ipc_setup": "Three separate dynamic boxes and a fixed ground. Force-driven pushed body needs validated force transfer; other boxes may be IPC-only props.",
+      "prerequisites": [
+        "Verify F/m in free space with the identical force API",
+        "Verify effective pair mu and normal resultants",
+        "Check centred-stack initial touching/overlap feasibility"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "simple-pinch",
+      "regime": "static friction",
+      "recommended_tracks": "both",
+      "manifest": "manifests/simple_pinch_force_controlled_v3.json",
+      "ipc_setup": "Preserve pad x/z slide joints, constant inward force and z-PD trajectory. Cube remains a dynamic rigid body; the external weight load must reach IPC. Whole-scene gravity remains zero.",
+      "prerequisites": [
+        "Joint/actuation and external cube-load routing",
+        "IPC force readout supports the existing 5% preload gate",
+        "Initial touching plus pitch perturbations must not create inadmissible intersections"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "three-plate-stack",
+      "regime": "sustained contact",
+      "recommended_tracks": "both",
+      "manifest": "manifests/three_plate_stack_strict_v3p1.json",
+      "ipc_setup": "Three IPC-only dynamic plates and one fixed ground. Match circular collision representation, mass/inertia and common mu=0.8.",
+      "prerequisites": [
+        "Initial plane/plate and plate/plate distances",
+        "d_hat relative to 0.5-mm thin plate cases",
+        "Independent IPC interface load and overlap readout"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "gauge-ball-bounce",
+      "regime": "dynamic impact",
+      "recommended_tracks": "both",
+      "manifest": "manifests/gauge_ball_bounce_dynamic_impact_v3.json",
+      "ipc_setup": "GAUGE ball mesh as a dynamic IPC-only body, fixed floor at the registered height. Use the same release state and 30-Hz sampling clock.",
+      "prerequisites": [
+        "Release velocity perturbations reach the IPC state",
+        "Mass/inertia and floor offset match",
+        "Keep apex/trajectory loss and real references unchanged"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "contactnets-cube-toss",
+      "regime": "dynamic impact",
+      "recommended_tracks": "both",
+      "manifest": "manifests/contactnets_cube_toss_dynamic_impact_v2.json",
+      "ipc_setup": "One dynamic rigid cube and a fixed floor. Initialise both linear velocity and body/world-frame-consistent angular velocity in the IPC world.",
+      "prerequisites": [
+        "Linear and angular velocity routing",
+        "Explicit inertia matches the existing reconstruction",
+        "Retain the 24-symmetry orientation metric and disjoint real trajectory IDs"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "cube-toss-resting-tail",
+      "regime": "sustained contact",
+      "recommended_tracks": "both",
+      "manifest": "manifests/contactnets_cube_tail_sustained_v3.json",
+      "ipc_setup": "Dynamic cube and fixed floor with the same recorded start state; no reset into a settled pose. Measure settling from IPC-side motion and support force.",
+      "prerequisites": [
+        "Initial state and velocity routing",
+        "IPC load readout passes the existing force-health checks",
+        "Do not interpret the bridge's zero velocity getter as settling"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "gauge-slope-slider",
+      "regime": "dynamic friction",
+      "recommended_tracks": "both",
+      "manifest": "manifests/gauge_slope_slider_dynamic_friction_v3.json",
+      "ipc_setup": "Dynamic cube; static board for static-board cells, validated driven/kinematic board for moving-board cells. Match the board mesh pose and prescribed pose/velocity trace.",
+      "prerequisites": [
+        "Board trajectory actually reaches the IPC world",
+        "Tracking error is measured rather than assumed zero",
+        "The same material/friction pairing and sample times are used"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "mit-push",
+      "regime": "dynamic friction",
+      "recommended_tracks": "both",
+      "manifest": "manifests/mit_push_dynamic_friction_v3.json",
+      "ipc_setup": "Dynamic object and fixed table; pusher follows the same registered xy trajectory using validated slide-joint or IPC kinematic input. Preserve separate table/object and pusher/object pair friction.",
+      "prerequisites": [
+        "Pusher tracking within the declared tolerance",
+        "Object explicit inertia and pair friction match",
+        "IPC pusher wrench is validated before reporting wrench errors"
+      ],
+      "readiness": "task_adapter_not_yet_validated"
+    },
+    {
+      "id": "newtons-cradle",
+      "regime": "articulated impact",
+      "recommended_tracks": "both_after_joint_adapter_validation",
+      "manifest": "manifests/newtons_cradle_gauge_real_v1.json",
+      "ipc_setup": "Five fixed-anchor revolute mechanisms, using external_articulation or an explicitly validated joint bridge. Do not replace the suspended balls with free IPC-only bodies.",
+      "prerequisites": [
+        "Massless/collision-free anchor representation is accepted without adding physical contacts",
+        "Hinge position/axis and length remain exact",
+        "Read actual joint/body velocity for the existing energy validity gate"
+      ],
+      "readiness": "articulation_adapter_not_yet_validated"
+    },
+    {
+      "id": "pendulum",
+      "regime": "contact-free articulation",
+      "recommended_tracks": "rigid_only",
+      "manifest": "manifests/pendulum_gauge_real_v1.json",
+      "ipc_setup": "No IPC contact is present in the declared scene. Use native rigid joint dynamics. IPC may later be a separately labelled joint-coupling control, not a required contact benchmark.",
+      "prerequisites": [
+        "Keep GAUGE geometry, release state, damping assumptions and the approved real-reference metric definition explicit"
+      ],
+      "readiness": "native_task_adapter_not_yet_validated"
+    },
+    {
+      "id": "round-socket-peg-in-hole",
+      "regime": "insertion",
+      "recommended_tracks": "both",
+      "manifest": "manifests/round_socket_strict_v4.json",
+      "ipc_setup": "Passive dynamic peg and fixed socket using the same audited bore geometry. This is a strong IPC contact-mechanism comparison once initial geometry and thickness are feasible.",
+      "prerequisites": [
+        "Use a declared socket revision; v6 draft is not silently promoted",
+        "Preserve the bore rather than convexifying it shut",
+        "Barrier thickness/d_hat versus tight clearance and initial contact",
+        "Retain the selected revision's success/penetration definitions"
+      ],
+      "readiness": "geometry_and_task_adapter_validation_required"
+    },
+    {
+      "id": "cassie-landing",
+      "regime": "floating-base articulated impact",
+      "recommended_tracks": "rigid_only_first_ipc_deferred",
+      "manifest": "composite-v1/cassie-generalizability-v1.yaml",
+      "ipc_setup": "A future IPC track would require a validated floating-base joint/torque bridge, potentially two_way_soft_constraint on foot links. The pinned external_articulation setup rejects non-fixed bases; passive IPC-only props cannot represent Cassie.",
+      "prerequisites": [
+        "Native model/state/torque mapping and spring/damping import",
+        "Floating-base and contact-force transfer validation",
+        "Do not substitute compliant link coupling without reporting it",
+        "Keep physical fidelity limited to the released 50-ms window"
+      ],
+      "readiness": "native_import_and_input_mapping_required_ipc_deferred"
+    },
+    {
+      "id": "dense-ezgripper",
+      "regime": "underactuated grasp",
+      "recommended_tracks": "rigid_only_first_ipc_deferred",
+      "manifest": "composite-v1/ezgripper-stock-import-probe.yaml",
+      "ipc_setup": "First preserve the underactuated tendon/joint mechanism in native rigid. An IPC contact track is conditional on a faithful actuation and coupling implementation; independent freely moving fingers are not the same task.",
+      "prerequisites": [
+        "Tendon/underactuation import and command mapping",
+        "Shared object/initial state/reference registration",
+        "Do not claim a real-data replay while the required task registration is absent"
+      ],
+      "readiness": "task_inputs_and_articulation_mapping_incomplete"
+    },
+    {
+      "id": "glide-inspired-plate-transfer",
+      "regime": "driven supports with multiple rigid objects",
+      "recommended_tracks": "both_for_declared_surrogate",
+      "manifest": "composite-v1/task-metrics/glide-tomato-plate-transfer.md",
+      "ipc_setup": "Use the existing two moving fork supports, shallow rigid plate and three rigid spherical tomatoes. Validate support trajectory transfer; plate/tomatoes may be IPC-only props. This remains the declared simulation-only surrogate.",
+      "prerequisites": [
+        "Driven support pose/velocity routing",
+        "Non-convex plate collision surface and initial contacts",
+        "Do not turn tomatoes into FEM or claim actual GLIDE hardware reproduction"
+      ],
+      "readiness": "driven_support_adapter_not_yet_validated"
+    }
+  ],
+  "environment_validation": {
+    "status": "verified_cuda_native_rigid_and_ipc",
+    "record": "../exp-results/genesis-ipc-setup-20261114/environment.json",
+    "positive_physics_probes": 6,
+    "unsupported_genesis_to_ipc_input_routes_demonstrated": 2,
+    "full_task_runners_verified": false,
+    "remaining_input_checks": [
+      "angular initial velocity",
+      "prescribed kinematics",
+      "joint actuation",
+      "contact-force telemetry"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+Initialized CUDA rigid velocity
+Built scene rigid velocity
+{
+  "mode": "rigid",
+  "probe": "velocity",
+  "n_envs": 2,
+  "finite": true,
+  "passed": true,
+  "final_position": [
+    [
+      0.019999999552965164,
+      0.0,
+      0.11999999731779099
+    ],
+    [
+      0.019999999552965164,
+      0.0,
+      0.11999999731779099
+    ]
+  ]
+}

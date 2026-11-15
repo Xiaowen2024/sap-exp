@@ -1,0 +1,202 @@
+{
+  "executed": true,
+  "recorded_at_utc": "2026-11-15T02:00:33Z",
+  "client_date": "2026-11-14",
+  "active_gpu_pids": [
+    18406
+  ],
+  "before": {
+    "/": {
+      "total": 32212254720,
+      "used": 31988355072,
+      "free": 223899648
+    },
+    "/root/autodl-tmp": {
+      "total": 53687091200,
+      "used": 53618794496,
+      "free": 68296704
+    },
+    "/dev/shm": {
+      "total": 42949672960,
+      "used": 4898906112,
+      "free": 38050766848
+    }
+  },
+  "after": {
+    "/": {
+      "total": 32212254720,
+      "used": 31209422848,
+      "free": 1002831872
+    },
+    "/root/autodl-tmp": {
+      "total": 53687091200,
+      "used": 53200592896,
+      "free": 486498304
+    },
+    "/dev/shm": {
+      "total": 42949672960,
+      "used": 202772480,
+      "free": 42746900480
+    }
+  },
+  "deleted": [
+    {
+      "path": "/root/.cache/pip",
+      "logical_bytes": 461,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/.cache/uv",
+      "logical_bytes": 3064,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/.cache/warp",
+      "logical_bytes": 328476953,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/.cache/torch_extensions",
+      "logical_bytes": 20302720,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/.cache/torch/kernels",
+      "logical_bytes": 59952,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/tmp/torchinductor_root",
+      "logical_bytes": 355563,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/dev/shm/genesis-build",
+      "logical_bytes": 0,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/dev/shm/genesis-pip-cache",
+      "logical_bytes": 4694809433,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-cu12",
+      "logical_bytes": 176804211,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-gauge-real-314",
+      "logical_bytes": 16243254,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-gauge-real-317",
+      "logical_bytes": 25813494,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-gauge-real-400",
+      "logical_bytes": 27462872,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/tmp/wp_pch_40iqqrnj",
+      "logical_bytes": 295747584,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/tmp/wp_pch_faoxewsj",
+      "logical_bytes": 4561508,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/tmp/wp_pch_ttcfexbl",
+      "logical_bytes": 73805824,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/tmp/mjwarp-python.tar.gz",
+      "logical_bytes": 49009768,
+      "archive_sha256": "7cc8d9dce9ea23c31267e7f244005c8979da04794b7737a3a30e62b03abeb120",
+      "reason": "download/installer archive; installed runtime preserved"
+    },
+    {
+      "path": "/root/autodl-tmp/genesis-runtime/libc6_2.35-0ubuntu3.18_amd64.deb",
+      "logical_bytes": 3235596,
+      "archive_sha256": "cbed4dfa159019c759edae73ece1af67817e163686ad8925a26c90849ba1660a",
+      "reason": "download/installer archive; installed runtime preserved"
+    },
+    {
+      "path": "/root/autodl-tmp/wheels/warp_lang-1.18.0+cu12-py3-none-manylinux_2_28_x86_64.whl",
+      "logical_bytes": 164625100,
+      "archive_sha256": "6dda3c163dde4edaa7d46ade9fff3ddb1126ee7b147d9d890cd38cc70dafd656",
+      "reason": "download/installer archive; installed runtime preserved"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/20261109/box-code/__pycache__",
+      "logical_bytes": 169660,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/20261109/code/__pycache__",
+      "logical_bytes": 56797,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/gauge-real-314-400-20261110/snapshot/scripts/protocol_v2/__pycache__",
+      "logical_bytes": 106274,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/gauge-real-317-400-20261110/snapshot/scripts/protocol_v2/__pycache__",
+      "logical_bytes": 74589,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/mujoco400-20261110/snapshot/scripts/__pycache__",
+      "logical_bytes": 8422,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/audits/mujoco400-20261110/snapshot/scripts/protocol_v2/__pycache__",
+      "logical_bytes": 273314,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/runners/__pycache__",
+      "logical_bytes": 538761,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/scripts/__pycache__",
+      "logical_bytes": 210467,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/SIM-EXP/scripts/protocol_v2/__pycache__",
+      "logical_bytes": 207516,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/.nv/ComputeCache",
+      "reason": "driver cache deferred while a GPU process is active"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-cu12-mujoco400",
+      "reason": "active GPU process uses this solver cache"
+    }
+  ],
+  "protected": [
+    "all experiment results and raw rollout artifacts",
+    "all authored scripts and audit snapshots",
+    "all manifests and provenance",
+    "raw datasets, models and weights",
+    "all installed runtime libraries and current environments",
+    "/root/autodl-tmp/outputs",
+    "/root/.cache/huggingface",
+    "/root/.cache/torch/hub"
+  ]
+}

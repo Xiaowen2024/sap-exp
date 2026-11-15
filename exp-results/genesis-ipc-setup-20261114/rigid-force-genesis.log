@@ -1,0 +1,21 @@
+Initialized CUDA rigid force
+Built scene rigid force
+{
+  "mode": "rigid",
+  "probe": "force",
+  "n_envs": 2,
+  "finite": true,
+  "passed": true,
+  "final_position": [
+    [
+      0.005100000184029341,
+      0.0,
+      0.11999999731779099
+    ],
+    [
+      0.005100000184029341,
+      0.0,
+      0.11999999731779099
+    ]
+  ]
+}

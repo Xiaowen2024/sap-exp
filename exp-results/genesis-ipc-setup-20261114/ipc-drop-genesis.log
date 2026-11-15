@@ -1,0 +1,22 @@
+Initialized CUDA ipc drop
+CUDA Backend Kernel Console Init Success!
+Built scene ipc drop
+{
+  "mode": "ipc",
+  "probe": "drop",
+  "n_envs": 2,
+  "finite": true,
+  "passed": true,
+  "final_position": [
+    [
+      0.0,
+      0.0,
+      0.028620071709156036
+    ],
+    [
+      0.0,
+      0.0,
+      0.028620071709156036
+    ]
+  ]
+}

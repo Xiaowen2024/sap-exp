@@ -1,0 +1,63 @@
+{
+  "executed": true,
+  "recorded_at_utc": "2026-11-15T02:03:55Z",
+  "client_date": "2026-11-14",
+  "active_gpu_pids": [],
+  "before": {
+    "/": {
+      "total": 32212254720,
+      "used": 31209431040,
+      "free": 1002823680
+    },
+    "/root/autodl-tmp": {
+      "total": 53687091200,
+      "used": 53200592896,
+      "free": 486498304
+    },
+    "/dev/shm": {
+      "total": 42949672960,
+      "used": 202772480,
+      "free": 42746900480
+    }
+  },
+  "after": {
+    "/": {
+      "total": 32212254720,
+      "used": 30137081856,
+      "free": 2075172864
+    },
+    "/root/autodl-tmp": {
+      "total": 53687091200,
+      "used": 53113692160,
+      "free": 573399040
+    },
+    "/dev/shm": {
+      "total": 42949672960,
+      "used": 202772480,
+      "free": 42746900480
+    }
+  },
+  "deleted": [
+    {
+      "path": "/root/.nv/ComputeCache",
+      "logical_bytes": 1069728718,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    },
+    {
+      "path": "/root/autodl-tmp/warp-cache-cu12-mujoco400",
+      "logical_bytes": 85952169,
+      "reason": "regenerable compiler, download, or bytecode cache"
+    }
+  ],
+  "skipped": [],
+  "protected": [
+    "all experiment results and raw rollout artifacts",
+    "all authored scripts and audit snapshots",
+    "all manifests and provenance",
+    "raw datasets, models and weights",
+    "all installed runtime libraries and current environments",
+    "/root/autodl-tmp/outputs",
+    "/root/.cache/huggingface",
+    "/root/.cache/torch/hub"
+  ]
+}

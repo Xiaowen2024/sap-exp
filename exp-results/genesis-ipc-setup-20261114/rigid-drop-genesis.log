@@ -1,0 +1,21 @@
+Initialized CUDA rigid drop
+Built scene rigid drop
+{
+  "mode": "rigid",
+  "probe": "drop",
+  "n_envs": 2,
+  "finite": true,
+  "passed": true,
+  "final_position": [
+    [
+      -1.572001695482328e-10,
+      3.103284018646235e-10,
+      0.01999865286052227
+    ],
+    [
+      -1.572001695482328e-10,
+      3.103284018646235e-10,
+      0.01999865286052227
+    ]
+  ]
+}

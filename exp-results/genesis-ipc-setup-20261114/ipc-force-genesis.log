@@ -1,0 +1,22 @@
+Initialized CUDA ipc force
+CUDA Backend Kernel Console Init Success!
+Built scene ipc force
+{
+  "mode": "ipc",
+  "probe": "force",
+  "n_envs": 2,
+  "finite": true,
+  "passed": false,
+  "final_position": [
+    [
+      4.000000444648322e-06,
+      0.0,
+      0.11999999731779099
+    ],
+    [
+      4.000000444648322e-06,
+      0.0,
+      0.11999999731779099
+    ]
+  ]
+}

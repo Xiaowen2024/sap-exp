@@ -1,0 +1,22 @@
+Initialized CUDA ipc velocity
+CUDA Backend Kernel Console Init Success!
+Built scene ipc velocity
+{
+  "mode": "ipc",
+  "probe": "velocity",
+  "n_envs": 2,
+  "finite": true,
+  "passed": false,
+  "final_position": [
+    [
+      0.0,
+      0.0,
+      0.11999999731779099
+    ],
+    [
+      0.0,
+      0.0,
+      0.11999999731779099
+    ]
+  ]
+}
