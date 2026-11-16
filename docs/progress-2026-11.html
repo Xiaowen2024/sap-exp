@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026-11-03 至 11-17 进展汇总：SAP bug 修复、四引擎统一对比、IPC a3、不穿透与软垫夹取诊断、孔口接触根因。">
+  <title>Progress Update · November 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .status{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:99px;border:1px solid var(--border);background:var(--soft);color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.02em;vertical-align:middle}
+    .status.final{color:#1d6b3f;border-color:#b9dcc6;background:#eef8f1}
+    .status.check{color:#8a5a00;border-color:#ecd3a1;background:var(--note)}
+    .status.diag{color:#4b5a8a;border-color:#c9d0ea;background:#f2f4fb}
+    .status.void{color:#9a2f2f;border-color:#eac2c2;background:#fbf1f1}
+    .table-wrap{overflow-x:auto;margin:20px 0 26px}
+    .table-wrap .data-table{margin:0}
+    .note{margin:0 0 22px;padding:14px 18px;background:var(--note);border-left:3px solid var(--note-border)}
+    .note p{margin:0}
+    .figure{margin:22px 0 26px;border:1px solid var(--border);border-radius:7px;overflow:hidden;background:var(--soft)}
+    .figure img{display:block;width:100%;height:auto;background:#fff}
+    .figure figcaption{padding:10px 13px 13px;font-size:12px;color:var(--muted);line-height:1.55}
+    .compact li{margin:5px 0}
+    .num{font-variant-numeric:tabular-nums}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="site-shell">
+    <aside class="sidebar" aria-label="Report navigation">
+      <div class="brand">
+        <a href="#top" class="brand-title">SAP Warp</a>
+        <span class="brand-subtitle">× MuJoCo</span>
+      </div>
+      <p class="sidebar-description">Contact-rich simulation benchmark</p>
+
+      <div class="sidebar-page-switch" aria-label="Benchmark pages">
+        <p class="nav-label">Benchmark Pages</p>
+        <div class="sidebar-page-links">
+          <a href="index.html" class="sidebar-page-link">1. Controlled Contact &amp; Manipulation</a>
+          <a href="real-to-sim.html" class="sidebar-page-link">2. GAUGE Real-to-Sim Benchmark</a>
+          <a href="mechanism-eval.html" class="sidebar-page-link">3. Mechanism-Aware Evaluation</a>
+          <a href="progress-2026-11.html" class="sidebar-page-link is-active" aria-current="page">4. Progress Update · Nov 2026</a>
+        </div>
+      </div>
+
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="report-nav">
+        Contents
+      </button>
+
+      <nav id="report-nav" class="report-nav">
+        <p class="nav-label">Contents</p>
+        <ol>
+          <li><a href="#summary">一页结论</a></li>
+          <li><a href="#sap-bugs">1. SAP bug 修复</a></li>
+          <li><a href="#alignment">2. 对齐审计与重跑</a></li>
+          <li><a href="#four-engine">3. 四引擎统一对比</a></li>
+          <li><a href="#penetration">4. 不穿透诊断</a></li>
+          <li><a href="#soft-pinch">5. 软垫夹取 smoke</a></li>
+          <li><a href="#rim">6. SAP 孔口根因</a></li>
+          <li><a href="#socket-v8">7. Round socket v8</a></li>
+          <li><a href="#cradle">8. Newton's cradle</a></li>
+          <li><a href="#status">9. 结果状态一览</a></li>
+        </ol>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a>
+        <a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a>
+      </div>
+    </aside>
+
+    <main id="main-content" class="content">
+      <nav class="top-tab-bar" aria-label="Benchmark study selector">
+        <p class="breadcrumb" style="margin:0;"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp</a> / Benchmarking / Progress update</p>
+        <div class="top-tab-list" role="tablist">
+          <a href="index.html" class="top-tab-link">
+            <span>Part I · Controlled Contact &amp; Manipulation</span>
+          </a>
+          <a href="real-to-sim.html" class="top-tab-link">
+            <span>Part II · GAUGE Real-to-Sim</span>
+          </a>
+          <a href="mechanism-eval.html" class="top-tab-link">
+            <span>Part III · Mechanism-Aware Evaluation</span>
+          </a>
+          <a href="progress-2026-11.html" class="top-tab-link is-active" aria-current="page">
+            <span>Part IV · Progress Update</span>
+          </a>
+        </div>
+      </nav>
+
+      <header id="top" class="page-header">
+        <div class="header-grid">
+          <div>
+            <p class="eyebrow">Progress update · 2026-11-03 – 11-17</p>
+            <h1>两周进展汇总</h1>
+            <p class="lede">按时间线整理：从 SAP bug 修复开始，到四引擎统一对比、IPC a3、新增诊断和仍待修订的实验设计问题。每节先给结论，再给数字和出处。</p>
+          </div>
+          <dl class="report-meta">
+            <div><dt>Engines</dt><dd>SAP Warp · MuJoCo Warp 4.0 · Genesis Rigid · Genesis IPC</dd></div>
+            <div><dt>Status tags</dt><dd><span class="status final">正式</span> <span class="status check">初查</span> <span class="status diag">诊断</span></dd></div>
+            <div><dt>Period</dt><dd>2026-11-03 – 2026-11-17</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <section id="summary" class="report-section">
+        <h2>一页结论</h2>
+        <div class="callout">
+          <p>SAP 修复后，在接触稳定性、摩擦和不穿透上整体领先 MuJoCo Warp；它的弱项是碰撞反弹，以及孔口接触生成（根因已定位在碰撞模块）。</p>
+        </div>
+        <ul class="compact">
+          <li><strong>SAP 有两个 bug，已修复。</strong>之前好几个 SAP 结论其实是这两个 bug 造成的，相关结果已撤回或重跑。以后跑 SAP 之前必须先过 preflight。</li>
+          <li><strong>四个引擎已在同一协议下完成主要任务：</strong>SAP、MuJoCo Warp 4.0、Genesis Rigid、Genesis IPC（a3）。SAP 在接触稳定性和摩擦类任务上最好，在 bounce 上明显差；pinch 和 cube-tail 区分不出引擎。</li>
+          <li><strong>SAP 在孔口翻倒的根因找到了，问题在碰撞检测，不在求解器。</strong>SAP 的碰撞模块是上游 Newton 的一份旧快照，而上游已经修了这个问题。只换成新版 Newton 碰撞检测，本地诊断从 2/8 提升到 6/8。</li>
+          <li><strong>IPC 的初版结果作废，修正后的 a3 有 5 个任务可直接比较。</strong>初版的问题是默认 Newton 容差把摩擦变成了粘性。a3 里 cube-toss 冻结的是默认数值设置；cube-tail 因为继承了这套设置，0/5760。</li>
+          <li><strong>新增两组诊断：</strong>不穿透上 IPC 最好，其次 SAP，MuJoCo 最差；软垫夹取 B=5 smoke 15 个配置中 10 个健康，三个引擎都有可用配置。</li>
+        </ul>
+      </section>
+
+      <section id="sap-bugs" class="report-section">
+        <h2>1. SAP 的两个 bug 和撤回的结论 <span class="status final">正式</span></h2>
+        <p class="section-lede">11-03 – 11-04。之前好几个 SAP 结论其实是 bug 造成的，不是物理效应。</p>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>Bug</th><th>范围</th><th>原因</th><th>造成的错误结论</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>只影响 CPU</td><td><code>free_motion.py::_eval_body_force_backward_tiled</code> 没有写 stride 循环，而 CPU 上 block_dim = 1，所以每个 world 只有 body 0 受重力和 <code>body_f</code></td><td>CPU pinch 17 个 cell 全部判为 retain，其实方块没有重量</td></tr>
+            <tr><td>B</td><td>CPU 和 GPU 都有</td><td>batch 中已经收敛的 world 的 <code>contact_gamma</code> 被清零。物理过程不受影响，只是力的读数错了</td><td>pinch 0.3 mm 预载读成 1.3–1.6 N（真值 5.455 N）；cube-tail 的 "67% 支撑脉冲"；three-plate 的载荷闭合</td></tr>
+          </tbody>
+        </table></div>
+        <p>同时修掉了 runner 和指标上的问题：three-plate 的冲量除的是常数 DT，不是实际步长，所以 dt 迁移那组 "50% / 100% 载荷误差" 是假的；cube-toss 的朝向误差没有考虑立方体的 24 重对称。修复后在 CUDA 上重跑，场景、种子和候选参数都不变：</p>
+        <div class="table-wrap"><table class="data-table num">
+          <thead><tr><th>任务</th><th>修复前</th><th>修复后</th></tr></thead>
+          <tbody>
+            <tr><td>three-plate 留出集（8 个 cell）</td><td>h=10 mm 1/20；dt 0.25 / 1 ms 0/20</td><td><strong>8/8 个 cell 全部 20/20</strong>，载荷误差 ≤ 0.05%</td></tr>
+            <tr><td>simple pinch 17 个 cell</td><td>307/340</td><td><strong>340/340</strong></td></tr>
+            <tr><td>cube-tail 静止段（640 个 world）</td><td>闭合误差 33%</td><td><strong>0.0024%</strong></td></tr>
+            <tr><td>cube-toss loss，改用对称朝向后</td><td>SAP 0.119 / MuJoCo 0.123</td><td>SAP <strong>0.059</strong> / MuJoCo <strong>0.074</strong></td></tr>
+          </tbody>
+        </table></div>
+        <p>流程上：任何 SAP sweep 之前必须先通过 <code>sap_preflight.py --compare-devices</code>，已写入 <code>task_runner_sop.md</code> §5。详见 <code>exp-report/sap-force-readout-audit.md</code></p>
+      </section>
+
+      <section id="alignment" class="report-section">
+        <h2>2. 对齐审计与 strict 重跑 <span class="status final">正式</span></h2>
+        <p class="section-lede">11-04 – 11-10。用修好的 SAP、按统一协议把所有任务重跑一遍，途中又修正了一批对齐问题。</p>
+        <ul class="compact">
+          <li>MuJoCo 的载荷读数取错了 efc 行。改正后，原来的 75% 误差其实只有 0.3–0.8%。</li>
+          <li>three-plate 的 yaw 扰动被写进了 quaternion 的 x 分量，实际变成了倾斜。</li>
+          <li>ContactNets 的角速度被多乘了一个尺度因子，小了 19 倍。</li>
+          <li>旧版 GAUGE slope 中 SAP 的板子是固定的；旧版 MIT push 的地面摩擦没有对齐。</li>
+          <li>SAP 会忽略 shape 的 <code>restitution</code> 字段。MuJoCo Warp 在 GPU 上，重复运行结果不完全一致（非确定性）。</li>
+        </ul>
+        <p>两项结论被修正：</p>
+        <ul class="compact">
+          <li><strong>three-plate</strong>：ground 的摩擦系数改成和板子一样的 0.8 后重跑，SAP 240/240，MuJoCo 3.17 128/240。</li>
+          <li><strong>three-box</strong>：撤回 "500/500 全对" 的说法。MuJoCo 的 NaN 之前被默认归为 retain，现在记为 invalid，并逐步检查容量溢出。重放结果为 485/500。</li>
+        </ul>
+      </section>
+
+      <section id="four-engine" class="report-section">
+        <h2>3. 四引擎统一对比</h2>
+        <p class="section-lede">11-10 – 11-16。held-out 结果，同一指标、同一分母。loss 越低越好。</p>
+        <div class="table-wrap"><table class="data-table num">
+          <thead><tr><th>任务</th><th>SAP <span class="status final">正式</span></th><th>MuJoCo Warp 4.0 <span class="status check">待审计</span></th><th>Genesis Rigid <span class="status final">正式</span></th><th>Genesis IPC a3 <span class="status check">初查</span></th></tr></thead>
+          <tbody>
+            <tr><td>three-plate（通过数）</td><td><strong>240/240</strong></td><td>112/240</td><td>224/240</td><td>220/240</td></tr>
+            <tr><td>three-box（有效且正确）</td><td><strong>500/500</strong></td><td>490/500</td><td><strong>500/500</strong></td><td><strong>500/500</strong></td></tr>
+            <tr><td>simple pinch</td><td>380/380</td><td>380/380</td><td>380/380</td><td>380/380</td></tr>
+            <tr><td>cube-tail</td><td>5760/5760</td><td>5760/5760</td><td>5760/5760</td><td>0/5760（见下文）</td></tr>
+            <tr><td>cube-toss loss</td><td><strong>0.0327</strong></td><td>0.0513</td><td>0.0521</td><td>0.0419（见下文）</td></tr>
+            <tr><td>ball bounce v2，dt 1/180 s</td><td><strong>0.165</strong>（8 个 cell 中 7 个有效）</td><td>0.366</td><td>0.328</td><td>未跑</td></tr>
+            <tr><td>ball bounce v3，dt 1/900 s</td><td>0.269</td><td><strong>0.0762</strong></td><td>0.0779</td><td>未跑（决定只报告）</td></tr>
+            <tr><td>GAUGE slope 轨迹 RMSE（m）</td><td>0.0171</td><td>0.0162</td><td><strong>0.0161</strong></td><td>0.0184</td></tr>
+            <tr><td>MIT push loss</td><td><strong>0.0074</strong></td><td>0.0149</td><td>0.0165</td><td>0.0077</td></tr>
+            <tr><td>pendulum v2 能量漂移</td><td>1.5e-3</td><td><strong>5.0e-6</strong>（RK4）</td><td>1.5e-3</td><td>—</td></tr>
+          </tbody>
+        </table></div>
+        <h3>怎么读这张表</h3>
+        <ul class="compact">
+          <li>SAP 在接触稳定性（three-plate）和摩擦或推动类任务（cube-toss、MIT push）上最好。</li>
+          <li>SAP 的 bounce 明显差：它的候选参数都达不到真实的 e≈0.7，而且它会忽略 restitution 字段。</li>
+          <li>pinch 和 cube-tail 在 SAP、MuJoCo 和 Genesis Rigid 上都满分，这两个任务区分不出引擎。IPC 的 cube-tail 是 0/5760，原因见下面的 IPC 说明。</li>
+        </ul>
+        <h3>IPC a3 说明（11-16 跑完）</h3>
+        <div class="note"><p><strong>初版为什么作废。</strong>libuipc 默认的 Newton <code>velocity_tol</code> 是 0.05 m/s，低于这个速度的运动只解一步，摩擦就变成粘性，即 v = r·eps_v/2。初版里看到的"摩擦蠕变"和"摩擦太强"都是这个假象。a3 在候选 2–5 设 <code>newton_tol=1e-4</code>，力改用 IPC 直接读出的接触力，并加了 standoff 镜像 gate（three-plate ≤ 5% h，cube-tail ≤ 1 mm）。</p></div>
+        <ul class="compact">
+          <li><strong>可以直接比的 5 个任务</strong>是 three-box、pinch、three-plate、MIT push、slope，冻结的都是带 <code>newton_tol=1e-4</code> 的候选。</li>
+          <li><strong>three-plate</strong>：12 个 cell 里 11 个是 20/20。唯一失败的是 0.5 mm 薄板：间隙 0.095 mm，超过 gate 要求的 0.025 mm。最小的候选 d_hat 是 0.1 mm，按构造就过不了。Genesis Rigid 也是在这个 cell 上失败的。直接读出的接触力和动量法算出的载荷相差 ≤ 5.5e-4 mg。</li>
+          <li><strong>three-box</strong>：retain cell 有 0.26–0.51 mm/s 的蠕变，和 eps_v = 1 mm/s 的摩擦平滑理论值一致，是模型本身的行为，不是数值问题。</li>
+          <li><strong>slope</strong>：静止 cell 的 RMSE 约 1.2 mm，基本就是 d_hat = 1 mm 造成的悬空间隙。<strong>MIT push</strong>：hex cell 的偏航误差约 0.38 rad，SAP 和 MuJoCo 在这里也有 0.3–0.9 rad，是所有引擎共有的。</li>
+          <li><strong>cube-toss（0.0419）</strong>：selection 选中的是 native default（tol 0.05，d_hat 10 mm），loss 0.0346，略好于第二名的 0.0372。按协议是合法的，但这正是有已知问题的那套配置，解读时要注明。</li>
+          <li><strong>cube-tail（0/5760）</strong>：它继承了 cube-toss 冻结的配置，静止时悬空 8.9 mm，全部只在 standoff 一项上失败。其他 gate 都过了，载荷误差 5.6e-6。这是继承规则和 IPC 悬空间隙之间的冲突。</li>
+        </ul>
+      </section>
+
+      <section id="penetration" class="report-section">
+        <h2>4. 新增诊断：不穿透能力 <span class="status diag">诊断</span></h2>
+        <p class="section-lede">11-17。一次性探测，30 分钟预算，不是协议任务。每个引擎用一套事先定好的参数，没有调参，三个引擎在同一块 RTX 3080 Ti 上运行。</p>
+        <h3>4.1 重物堆叠</h3>
+        <p>地面上放一个 10 g 的轻箱，上面压一个重箱，两个都是 2 cm。dt = 1 ms，模拟 1 s。每格两个数分别是地面–轻箱、轻箱–重箱两处接触；正数是穿透，负数是悬空，单位 mm。</p>
+        <div class="table-wrap"><table class="data-table num">
+          <thead><tr><th>重箱（质量比）</th><th>SAP（ke 1e6，tau 3 ms）</th><th>MuJoCo Warp（solref 0.012 2）</th><th>IPC（d_hat 0.1 mm）</th></tr></thead>
+          <tbody>
+            <tr><td>10 g（1）</td><td>0.003 / 0.002</td><td>0.004 / 0.004</td><td>−0.08 / −0.09</td></tr>
+            <tr><td>1 kg（100）</td><td>0.08 / 0.12</td><td>0.22 / 0.22</td><td>−0.08 / −0.09</td></tr>
+            <tr><td>10 kg（1000）</td><td>0.72 / 1.18</td><td>2.21 / 2.21</td><td>−0.08 / −0.09</td></tr>
+          </tbody>
+        </table></div>
+        <ul class="compact">
+          <li><strong>IPC 完全不穿透。</strong>载荷从 1 倍加到 1000 倍，悬空几乎不变，一直在 0.08 mm 左右。</li>
+          <li><strong>SAP</strong> 的穿透随载荷增大，但只有 MuJoCo 的约 1/3。</li>
+          <li>三个引擎都保持稳定，没有发散。</li>
+        </ul>
+        <h3>4.2 高速撞薄墙</h3>
+        <p>10 mm、10 g 的方块飞向 2 mm 厚的墙，无重力，dt = 1 ms。最高速 20 m/s 时，方块每步移动 20 mm，是墙厚的 10 倍。</p>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>速度（每步移动）</th><th>SAP（ke 1e5，tau 3 ms）</th><th>MuJoCo Warp（MJCF 默认参数）</th><th>IPC（d_hat 1 mm，tol 1e-4）</th></tr></thead>
+          <tbody>
+            <tr><td>1 / 5 / 10 / 20 m/s（1 / 5 / 10 / 20 mm）</td><td>全部挡住，停在墙前</td><td><strong>全部穿过</strong>，连 1 m/s 也穿了</td><td>全部挡住，并反弹</td></tr>
+          </tbody>
+        </table></div>
+        <p>和墙的最大重叠：IPC 是 0，SAP 约 0.0002 mm，MuJoCo 整个穿过去了。MuJoCo 默认的软接触时间常数是 20 ms，穿透深度约 20 mm，法向随之翻转，把方块从墙后推了出去。</p>
+        <div class="callout conclusion"><p class="callout-label">结论</p><p>在不穿透这一项上，IPC &gt; SAP &gt; MuJoCo，SAP 在两项上都明显好于 MuJoCo。</p></div>
+        <div class="note"><p><strong>注意事项：</strong>MuJoCo 撞墙用的是默认参数，不是冻结参数，换更硬的 solref 可能能挡住低速的情况。SAP 的 ke 是按场景设的：撞墙 1e5，堆叠 1e6。每个条件只跑了一次。IPC 的 0.08 mm 悬空本身也是一种位置误差。SAP 撞墙后"停住"、IPC"反弹"，两者都没有和期望的恢复系数做过比较。</p></div>
+        <p>数据：<code>exp-results/ipc-strength-probe-20261117/</code>（脚本为 <code>tunnel_probe.py</code>）</p>
+      </section>
+
+      <section id="soft-pinch" class="report-section">
+        <h2>5. 新增诊断：软垫夹取 B=5 smoke <span class="status diag">诊断</span></h2>
+        <p class="section-lede">11-16。两块 FEM 软垫（使用公开的圆垫几何）夹住一个 3 g 方块，按规定轨迹抬升 10 mm。最终名义间隙 29.9 mm，dt = 1 ms，模拟 0.6 s。每个引擎 5 个候选，R = 1。输入是合成的，所以这不是真实间隙边界的验证；三个引擎的共享输入经核对数值一致（差异 ≤ 1e-20）。</p>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>引擎</th><th>健康</th><th>失败或无效</th><th>健康配置的表现</th></tr></thead>
+          <tbody>
+            <tr><td>SAP（CPU）</td><td>5/5</td><td>—</td><td>全部夹住，抬升 9.999 mm，滑移 &lt; 0.001 mm，静力校核和重力一致（误差 ≤ 1e-5）</td></tr>
+            <tr><td>MuJoCo 4.0（CPU，flex + Stable Neo-Hookean）</td><td>4/5</td><td>native 候选编译失败：SNH 必须用 discrete 积分器</td><td>全部夹住，抬升 9.18 mm，滑移 <strong>0.82 mm</strong>；尾段仍在动，不满足静力校核的前提</td></tr>
+            <tr><td>IPC（GPU）</td><td>1/5</td><td>native：出现翻转单元；robust 100 µm：静力误差 10.85%，超过 5%；20 µm 和 10 µm：超过 300 s 时限</td><td>robust 50 µm：夹住，抬升 9.998 mm，滑移 0.002 mm，静力校核误差 ≤ 1e-5</td></tr>
+          </tbody>
+        </table></div>
+        <ul class="compact">
+          <li>合计 15 个配置，10 个健康。三个引擎都至少有一个健康配置。超时没有物理意义，不能算作 drop。</li>
+          <li>运行时间只供诊断，不能作为速度排名：SAP 和 MuJoCo 在 CPU 上跑，IPC 在 GPU 上，而且是并发执行的。</li>
+          <li>这一轮只说明"三个引擎的软垫夹取都能跑通"。它不评估精度，因为所用的真实数据缺少同步的压入轨迹和夹爪宽度到垫面间隙的标定。</li>
+        </ul>
+        <figure class="figure">
+          <img src="assets/progress-soft-pinch-smoke.png" alt="软垫夹取 smoke：SAP、MuJoCo 和 IPC 代表配置的抬升、滑移和垫面法向力曲线" loading="lazy">
+          <figcaption><strong>软垫夹取 smoke 代表曲线。</strong>完整的 15 个配置见 <code>exp-results/soft-contact-v1/smoke-b5-20261116/results.csv</code>；打包文件为 <code>smoke-results.zip</code>。</figcaption>
+        </figure>
+      </section>
+
+      <section id="rim" class="report-section">
+        <h2>6. SAP 孔口翻倒的根因 <span class="status diag">诊断 · 本地 CPU</span></h2>
+        <p class="section-lede">11-15 – 11-16。问题出在碰撞检测，不在求解器。</p>
+        <ul class="compact">
+          <li><strong>现象</strong>：v6 rim 测试中，SAP 只有 40/160 次站住，MuJoCo 是 160/160。</li>
+          <li><strong>原因 M1（已确认）</strong>：<code>multicontact.py</code> 拿距离平方和 eps = 1e-5 比较，等效的合并距离是 3.16 mm，比 2.36 mm 的孔口边还长，把关键接触点合并掉了。上游 Newton 已在 55caec0e（#4643）中改成 <code>eps*eps</code>。</li>
+          <li><strong>原因 M2（已观测）</strong>：窄重叠区域里，MPR 算出约 0.36 mm 的假间距，于是整对接触被丢掉。</li>
+          <li><strong>验证</strong>：SAP 求解器不变，只把碰撞检测换成新版 Newton（8a656068），2/8 提升到 6/8。剩下 2 个是余量最小的条件。</li>
+          <li><strong>还没做</strong>：移植进 SAP、在 GPU 上按正式协议复测、检查其他任务有没有回归。</li>
+          <li><strong>修复方向</strong>：把 SAP 的碰撞模块同步到上游 Newton。这不只是替换一个文件，还要保留 SAP 自己的改动。</li>
+        </ul>
+        <figure class="figure">
+          <img src="assets/progress-rim-geometries.png" alt="四种孔口摆法的俯视图：圆柱底面、孔口、支撑月牙与质心投影" loading="lazy">
+          <figcaption><strong>四种孔口摆法（俯视）。</strong>绿色月牙是压住实体的支撑区域，粗绿线是支撑边，黑十字是质心投影。四种摆法在理论上都应站住；支撑余量越小，越依赖孔口附近的接触被准确保留。</figcaption>
+        </figure>
+      </section>
+
+      <section id="socket-v8" class="report-section">
+        <h2>7. Round socket v8 draft 试跑 <span class="status check">draft</span></h2>
+        <p>在 46 个有标签的条件上，B=5 结果是 SAP 31/46、MuJoCo 35/46；B=1 是 SAP 24/46、MuJoCo 25/46。这次试跑不作为 headline，主要价值是暴露了 manifest 的问题：</p>
+        <ol class="compact">
+          <li>选择规则把 unstable 排在 wrong 后面，导致 MuJoCo 的 0.6 档（7/8 次站住）输给了 1.2 档（0/8）。</li>
+          <li>MuJoCo 在 dt = 0.5 ms 下够不到 0.15 mm 和 0.3 mm 两档，所以它只有 3 个候选，SAP 有 5 个。</li>
+          <li>SAP 的 gap 等于最小间隙 0.1 mm，疑似导致 SAP 在孔口卡住。</li>
+          <li>W 块的 hold 标准太松；I 块比较的其实是刚度档位，不是引擎（两者穿透约差 6 倍）。</li>
+          <li>SAP 的孔口 bug（第 6 节）让它唯一有区分度的 selection 条件失效，所以 bug 修复后，SAP 的冻结矩阵要整体重跑。</li>
+        </ol>
+      </section>
+
+      <section id="cradle" class="report-section">
+        <h2>8. Newton's cradle <span class="status final">MuJoCo 正式</span><span class="status check">SAP held-out 进行中</span></h2>
+        <ul class="compact">
+          <li><strong>旧结果差的原因是 dt，不是 bug。</strong>用一维 toy chain 推算，在 dt = 1/180 s、接触时间远小于 dt 的情况下，backward Euler 必然给出 MTE≈0.667，和 SAP 实测的 0.678 吻合。只有 dt ≲ 0.01 × 接触时间时，结果才会收敛到 0.94。</li>
+          <li><strong>v4.2 重新设计。</strong>名义 dt 为 1/18000 s；候选参数按两球接触时长 T_c（1 / 2 / 4 ms）和阻尼比 ζ（0.01 / 0.05）对齐。</li>
+          <li><strong>SAP</strong>：5 个候选都过 gate，冻结为 Tc 4 ms、ζ 0.01。名义 MTE 0.809，真实值 0.930；native 为 0.234。</li>
+          <li><strong>MuJoCo 4.0</strong>：没有候选过 gate，停在 selection 阶段。低阻尼候选在第一次碰撞时就增加能量（MTE 0.98–1.42），dt 从 111 µs 降到 7 µs 这个现象都不变，所以不是步长问题，也没有求解器警告。native 有 71/200 出现 NaN。</li>
+        </ul>
+      </section>
+
+      <section id="status" class="report-section">
+        <h2>9. 结果状态一览</h2>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>内容</th><th>状态</th><th>位置</th></tr></thead>
+          <tbody>
+            <tr><td>SAP bug 修复与重跑</td><td><span class="status final">正式</span></td><td><code>exp-results/protocol-v2-native-default/sap-fixed-db8d236-AB-20261104/</code></td></tr>
+            <tr><td>SAP / MuJoCo 3.17 strict 重跑</td><td><span class="status final">正式</span></td><td><code>exp-report/strict-rerun-progress-2026-11.md</code></td></tr>
+            <tr><td>MuJoCo Warp 4.0 的 7 个任务</td><td><span class="status check">跑完，待数值审计</span></td><td><code>exp-results/mujoco-warp-4p0/</code></td></tr>
+            <tr><td>Genesis Rigid</td><td><span class="status final">正式</span></td><td><code>exp-results/genesis-rigid-20261114/</code></td></tr>
+            <tr><td>Genesis IPC a3</td><td><span class="status check">初查</span></td><td><code>exp-results/genesis-ipc-a3-20261116/</code></td></tr>
+            <tr><td>IPC 初版（11-15）</td><td><span class="status void">作废</span></td><td><code>exp-results/genesis-ipc-prelim-20261115/</code></td></tr>
+            <tr><td>不穿透 probe</td><td><span class="status diag">诊断</span></td><td><code>exp-results/ipc-strength-probe-20261117/</code></td></tr>
+            <tr><td>软垫夹取 smoke</td><td><span class="status diag">诊断</span></td><td><code>exp-results/soft-contact-v1/smoke-b5-20261116/</code></td></tr>
+            <tr><td>SAP 孔口根因</td><td><span class="status diag">诊断 · 本地 CPU，R = 1</span></td><td><code>exp-results/round-socket-v6/rim-contact-diag/root-cause/</code></td></tr>
+            <tr><td>Round socket v8</td><td><span class="status check">draft</span></td><td><code>exp-results/round-socket-v8-draft/</code></td></tr>
+            <tr><td>Cradle v4.2</td><td><span class="status final">MuJoCo 正式</span> <span class="status check">SAP 进行中</span></td><td><code>exp-results/gauge-cradle-v42/</code></td></tr>
+          </tbody>
+        </table></div>
+        <p>还没做的检查：MuJoCo 4.0 和 IPC a3 的独立重算；IPC a3 用 manifest sha 逐项核对。</p>
+      </section>
+
+      <footer class="page-footer">
+        <span>SAP Warp × MuJoCo · Part IV: Progress Update, November 2026</span>
+        <a href="#top">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
