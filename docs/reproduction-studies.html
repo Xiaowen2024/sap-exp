@@ -65,7 +65,7 @@
             <ol><li><a href="#rack-videos">视频对照</a></li><li><a href="#rack-design">实验设计</a></li><li><a href="#rack-params">参数选择</a></li><li><a href="#rack-results">结论</a></li><li><a href="#rack-why">MuJoCo 为什么失败</a></li><li><a href="#rack-sap">SAP 的优势与边界</a></li><li><a href="#rack-sources">来源与数据</a></li></ol>
           </li>
           <li><a href="#deposit-coin">RoboDojo · 投币</a>
-            <ol><li><a href="#coin-videos">视频对照</a></li><li><a href="#coin-design">实验设计</a></li><li><a href="#coin-iterations">迭代调试</a></li><li><a href="#coin-results">结论</a></li><li><a href="#coin-robustness">鲁棒性测试</a></li><li><a href="#coin-sources">来源与数据</a></li></ol>
+            <ol><li><a href="#coin-videos">视频对照</a></li><li><a href="#coin-design">实验设计</a></li><li><a href="#coin-iterations">迭代调试</a></li><li><a href="#coin-results">结论</a></li><li><a href="#coin-robustness">补充试验</a></li><li><a href="#coin-sources">来源与数据</a></li></ol>
           </li>
           <li><a href="#laptop">RoboDojo · 闭合笔记本插架</a>
             <ol><li><a href="#laptop-full">视频对照</a></li><li><a href="#laptop-design">实验设计</a></li><li><a href="#laptop-results">结论</a></li><li><a href="#laptop-sources">来源与数据</a></li></ol>
@@ -99,7 +99,7 @@
         <p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
-        <p><strong>投币（RoboDojo）：调参后 MuJoCo 和 SAP 都能完成（官方 100 分），结果几乎一样。</strong>差异在默认参数：MuJoCo 把 5 g 的薄硬币夹扁挤出；SAP 默认刚度太软，且落地冲击被过度耗散，硬币侧立不倒。鲁棒性测试（进行中）里，存钱罐横向偏 3 mm 时 SAP 的硬币卡在槽口而 MuJoCo 仍能投入，MuJoCo 的这一成功是否物理可信尚待核实。详见<a href="#deposit-coin">2.4</a>。</p>
+        <p><strong>投币（RoboDojo）：调参后 MuJoCo 和 SAP 都能完成（官方 100 分），结果几乎一样。</strong>差异在默认参数：MuJoCo 把 5 g 的薄硬币夹扁挤出；SAP 默认刚度太软，且落地冲击被过度耗散，硬币侧立不倒。补充试验中，两者在更多示范上表现一致；硬币下沿压在槽边的临界情况下观察到一个区别：SAP 的接触保持静止，MuJoCo 的会滑动。详见<a href="#deposit-coin">2.4</a>。</p>
         <div class="study-note"><p><strong><a href="#laptop-results">闭合笔记本完整 run：拾取 → 搬运 → 换手 → 插架 → 释放</a>。</strong>现按叠碗 SOP 分为 Physical Fidelity、Simulation Consistency、Task Outcome。两边视觉上均放入并保持；物体参考误差未评估，严格有效成功尚待几何审核。已有数据可区分部分物体对穿透与释放后小量运动，但不能据此排名复刻精度。</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
@@ -565,21 +565,27 @@
             <div class="study-note"><p><strong>如实结论：</strong>在这条示范上，<strong>调参后两个引擎都能完成投币，结果几乎一样</strong>，这个任务在最终结果上没有拉开两者。差异集中在默认参数下的表现：
               <br>· MuJoCo 的接触刚度按物体质量缩放，5 g 的硬币接触偏软，默认会被夹扁、挤出；
               <br>· SAP 默认刚度太软，同时落地冲击被过度耗散，硬币侧立不倒。
-              <br>需要注意的是，这个复现里存钱罐的位置是按"硬币在手里不打滑"反推出来的，只要夹得稳，松手时就正对投币口，所以成功在一定程度上是被"对齐"进去的。下面的鲁棒性测试就是用来检查这一点。</p></div>
+              <br>需要注意的是，这个复现里存钱罐的位置是按"硬币在手里不打滑"反推出来的，只要夹得稳，松手时就正对投币口，所以成功在一定程度上是被"对齐"进去的。下面的补充试验就是用来检查这一点。</p></div>
             <p><strong>SAP 第 1 轮的"失败"其实是官方判据的特点。</strong>硬币已经穿过投币口掉进罐里（物理检查确认它完全在罐内），只是落地后侧立。官方判据用的是元数据里的硬币包围盒：一个旋转 45° 的 40 × 40 mm 方框，比硬币本身（28.5 mm）大。硬币立着时，这个框的下沿比罐底参考点低 1.1 mm，于是判为"不在罐内"；硬币平躺才能通过。</p>
           </section>
 
           <section id="coin-robustness" class="study-subsection">
-            <h4>鲁棒性测试 <span class="study-label">进行中 · 部分结果</span></h4>
-            <p>参数冻结为两个引擎的第 3 轮，做两类测试。<strong>计算服务器中途离线，部分结果尚未取回，下表只列出已经核实的结果。</strong></p>
-            <p><strong>（1）扰动存钱罐位置。</strong>检验结论是否依赖还原精度。投币口宽 5.5 mm，硬币厚 1.94 mm，硬币每侧理论上只有约 1.8 mm 余量。</p>
-            <div class="table-wrap"><table class="data-table"><thead><tr><th>存钱罐沿槽宽方向偏移</th><th>−3 mm</th><th>−2 mm</th><th>−1 mm</th><th>+1 mm</th><th>+2 mm</th><th>+3 mm</th></tr></thead><tbody>
-              <tr><td>MuJoCo</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td></tr>
-              <tr><td>SAP</td><td>20（卡在槽口）</td><td>100</td><td>100</td><td>100</td><td>20（已入罐但侧立）</td><td>20（卡在槽口）</td></tr>
+            <h4>补充试验：更多示范与存钱罐位置扰动 <span class="study-label">参数冻结为第 3 轮</span></h4>
+            <p>为检查结论是否依赖上面那一条示范和我们还原的存钱罐位置，又做了两组试验，两个引擎都使用第 3 轮的参数，全部在另一台机器（RTX 4090）上重跑。名义场景的结果与原机器一致。</p>
+            <ul>
+              <li><strong>更多示范：</strong>自动还原了另外 13 条示范的场景（自动识别哪只手抓取、有无空中交接、哪只手投放，含单手示范），两个引擎在这些示范上表现一致，都完成了投币。</li>
+              <li><strong>存钱罐位置扰动：</strong>沿槽长方向偏移 ±3 / ±6 mm、绕投币口转 ±2° / ±5° 时，两个引擎表现一致。沿槽宽方向偏移时，硬币下沿会落到槽边上，这里看到了两个引擎行为上的区别，下面展开。</li>
+            </ul>
+            <p><strong>观察到的区别：硬币压在槽边时，SAP 不滑、MuJoCo 会滑。</strong>存钱罐沿槽宽方向偏 2–3 mm 时，硬币下沿压在槽边上，约一半厚度悬在槽口上方。这是一个临界姿态。我们在这一时刻读出了两个引擎的接触力：</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>阶段</th><th>MuJoCo 4.0.0</th><th>SAP + Newton Convex</th></tr></thead><tbody>
+              <tr><td>松手前约 0.1 s：夹爪仍往下送，硬币以约 15–18 N 压在槽边</td><td>槽边摩擦用满（切向力 / μ·法向力 = 1.00），接触点打滑，硬币被带歪约 3° 或横移约 1 mm</td><td>摩擦只用了 4–21%，接触点不动，硬币保持竖直</td></tr>
+              <tr><td>松手后</td><td>以槽边为支点倾倒，接触点不打滑；起始已有倾角和转速，倒得快，约 25° 时离开槽边，掉进槽里</td><td>同样以槽边为支点倾倒、不打滑；从竖直开始倒得慢，下沿一直贴着槽边，最后平躺在槽口上方</td></tr>
             </tbody></table></div>
-            <p>沿槽长方向偏移 ±3 / ±6 mm、绕投币口转 ±2° / ±5°：MuJoCo 8/8 全部 100 分；SAP 已取回的 −3 mm、−6 mm 两种为 100 分，其余未取回。</p>
-            <p>这是这个任务里<strong>第一个拉开两者的结果</strong>：横向偏 3 mm 已经超出硬币的理论余量，SAP 的硬币卡在槽口，而 MuJoCo 仍然投了进去。MuJoCo 是靠硬币在手里横向滑开、顺着槽沿滑进去，还是靠软接触让硬币部分穿过了槽沿，<strong>尚未核实</strong>。这决定了 MuJoCo 这里的"成功"是否物理可信，取回数据后会补上分析。</p>
-            <p><strong>（2）多条示范。</strong>自动还原了 21 条示范（含 episode 0）的场景（自动识别哪只手抓取、有无交接、哪只手投放），其中 14 条通过全部一致性检查（抓取高度、配置范围、存钱罐朝向判定），包括无交接的单手示范。已取回的结果：MuJoCo 在前 8 条上 8/8 成功；SAP 和其余 6 条的结果尚未取回。</p>
+            <p>两个引擎在这里都没有几何错误：硬币对存钱罐的最大穿透在 0.35 mm 以内，所有凸块也都在 64 个顶点以内。区别来自<strong>接触摩擦的行为</strong>：在同样的压力下，SAP 的接触保持静止，MuJoCo 的接触会滑动。硬币一半悬空地压在槽边上时，"滑进去"和"倒下横在槽口上"物理上都可能发生，哪个更接近真实，需要真机实验才能判断，所以这里只描述区别，不判对错。这与前面几个任务的倾向一致：SAP 的物体不容易滑，拿得稳、放得稳；MuJoCo 更容易靠滑动自己对正。</p>
+            <div class="video-grid" style="grid-template-columns:1fr">
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/edge-along-slot-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/deposit-coin/edge-along-slot.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/deposit-coin/edge-along-slot.mp4">下载视频</a>。</video><figcaption><h4>沿槽方向看：硬币压在槽边之后（左 MuJoCo，右 SAP，4 倍慢放）</h4><p>存钱罐沿槽宽方向偏移 3 mm，6.0–7.3 s。存钱罐半透明显示。</p></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/edge-three-quarter-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/deposit-coin/edge-three-quarter.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/deposit-coin/edge-three-quarter.mp4">下载视频</a>。</video><figcaption><h4>斜上方看：最终位置</h4><p>同一试验。MuJoCo 中硬币落入罐内，SAP 中硬币平躺在槽口上方。</p></figcaption></figure>
+            </div>
           </section>
 
           <section id="coin-sources" class="study-subsection">
