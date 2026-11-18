@@ -181,8 +181,16 @@
             <li><strong>MIT push：</strong>推杆受力误差 16.7 N，其他引擎为 0.9–1.4 N。</li>
             <li><strong>simple-pinch：</strong>预载误差 19% 到 576%，其他引擎都不超过 0.1%。</li>
             <li><strong>cube tail：</strong>640 个 rollout 一个都静止不下来。</li>
-            <li><strong>收敛：</strong>即使给到 20 次迭代，70–86% 的步仍然不收敛，而且不报警。</li>
           </ul>
+          <p><strong>和 SAP Warp 相比：</strong>算法相同，但 SAP Warp 在这些任务的 held-out 上满分或最好（three-plate 240/240、pinch 380/380、cube tail 5760/5760、cube toss loss 0.033）；Genesis SAP 在选择格上 three-box 20/40、pinch 18/40、cube toss 0.070。两边格子不同（选择格对 held-out），只能比量级。</p>
+          <p><strong>为什么差（按证据强弱）：</strong></p>
+          <ol>
+            <li><strong>求解不收敛（实测）。</strong>迭代次数固定，没收敛也不报警，直接用未收敛的解往下算。迭代上限给到 20 次时，three-box 70%、pinch 86% 的环境步仍达不到 Genesis 自己的收敛标准。摩擦冲量不收敛，静摩擦和滑动就分不干净，这和粘住不滑、预载误差大、停不下来相符；但还没有逐个任务证明因果。</li>
+            <li><strong>接触模型。</strong>hydroelastic 面接触会时有时无：three-box 的 native 物体其实都滑了，却因接触占空比只有 0.95 被判无效。</li>
+            <li><strong>实现缺陷（实测）。</strong>three-plate 在接触检测里崩溃；静止叠放时，读出的接触力系统性偏高约 1%。</li>
+            <li><strong>代价高。</strong>必须用 fp64，迭代收敛后也不会提前退出，20 次迭代比 5 次慢 3–4 倍，所以迭代给不多，而 20 次仍然收敛不了。</li>
+          </ol>
+          <p><strong>结论：</strong>问题出在 Genesis 对 SAP 的实现，不在 SAP 算法本身。按"引擎缺陷就是结果"如实报告，不做修补。</p>
           <p>作为对照，Genesis Rigid 用同一套 Genesis 场景搭建代码，这些任务都正常，所以问题出在 SAP coupler 本身。复合任务方面，<a href="#dish-rack">RH20T 盘子放上碗架</a>的完整任务上，Genesis SAP 5 轮调参全部失败：盘子在手中滑移 36–65 mm 后侧翻，接触刚度从 1e8 一直提高到 1e11 也没有改善。</p>
         </article>
 
