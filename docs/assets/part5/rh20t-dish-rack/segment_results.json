@@ -1,0 +1,140 @@
+{
+ "episode": "RH20T cfg2 task_0050_user_0016_scene_0009",
+ "segment": "t_close+14.30 s .. t_release+2 s, arm frozen after release",
+ "judge": "seg_judge.py (release+2 s)",
+ "runs": {
+  "sap_iter5": {
+   "t_end_rel_release": 1.996000051498413,
+   "touch_rack": true,
+   "in_footprint": true,
+   "aligned": true,
+   "lean_ok": true,
+   "at_rest": true,
+   "success": true,
+   "lean_deg": 15.75777907516749,
+   "axis_vs_rails_deg": 6.577606501632213,
+   "rack_dist_mm": 0.6102369323864564,
+   "table_dist_mm": 22.346989275975616,
+   "leans_on_finger": true,
+   "final_com_z_mm": 155.2228182554245,
+   "peak_table_pen_mm": 0.0,
+   "vs_real_at_release": {
+    "com_dist_mm": 26.85986894267199,
+    "rot_deg": 17.0255542648293
+   },
+   "finger_opening_mm_after_0.5s": 13.7,
+   "params": {
+    "ke": 34695.83,
+    "sigma": 1e-05,
+    "solver": {
+     "contact_stiction_tolerance": 1e-06
+    }
+   },
+   "selected_for_full_task": true
+  },
+  "sap_native": {
+   "t_end_rel_release": 1.996000051498413,
+   "touch_rack": true,
+   "in_footprint": true,
+   "aligned": true,
+   "lean_ok": true,
+   "at_rest": true,
+   "success": true,
+   "lean_deg": 13.195271286893513,
+   "axis_vs_rails_deg": 7.699629472976773,
+   "rack_dist_mm": 0.25376741842600026,
+   "table_dist_mm": 20.702904207595918,
+   "leans_on_finger": true,
+   "final_com_z_mm": 153.97152304649353,
+   "peak_table_pen_mm": 0.0,
+   "vs_real_at_release": {
+    "com_dist_mm": 24.454909517665357,
+    "rot_deg": 16.852999316272523
+   },
+   "finger_opening_mm_after_0.5s": 2.8,
+   "params": {},
+   "selected_for_full_task": false
+  },
+  "mujoco_iter4": {
+   "t_end_rel_release": 1.9954454898834229,
+   "touch_rack": false,
+   "in_footprint": false,
+   "aligned": false,
+   "lean_ok": false,
+   "at_rest": true,
+   "success": false,
+   "lean_deg": 90.0,
+   "axis_vs_rails_deg": 82.4090209795179,
+   "rack_dist_mm": 263.12625708697186,
+   "table_dist_mm": -1.8264551663445857e-06,
+   "leans_on_finger": false,
+   "final_com_z_mm": 16.465467021765182,
+   "peak_table_pen_mm": 0.8233724501349987,
+   "vs_real_at_release": {
+    "com_dist_mm": 428.23179851634507,
+    "rot_deg": 136.10092948488645
+   },
+   "finger_opening_mm_after_0.5s": 2.3,
+   "params": {
+    "solref": [
+     0.003595,
+     1.0
+    ],
+    "impratio": 10
+   },
+   "selected_for_full_task": true
+  },
+  "mujoco_native": {
+   "t_end_rel_release": 1.9954454898834229,
+   "touch_rack": false,
+   "in_footprint": false,
+   "aligned": true,
+   "lean_ok": false,
+   "at_rest": true,
+   "success": false,
+   "lean_deg": 89.99999704244134,
+   "axis_vs_rails_deg": 36.1995438355781,
+   "rack_dist_mm": 141.03801656362688,
+   "table_dist_mm": -0.0006874818613435038,
+   "leans_on_finger": false,
+   "final_com_z_mm": 29.141112928475547,
+   "peak_table_pen_mm": 1.8688212607219172,
+   "vs_real_at_release": {
+    "com_dist_mm": 342.63417267020617,
+    "rot_deg": 170.27910658952405
+   },
+   "finger_opening_mm_after_0.5s": 2.3,
+   "params": {},
+   "selected_for_full_task": false
+  },
+  "mujoco_iter5": {
+   "t_end_rel_release": 1.9954454898834229,
+   "touch_rack": false,
+   "in_footprint": false,
+   "aligned": true,
+   "lean_ok": true,
+   "at_rest": false,
+   "success": false,
+   "lean_deg": 3.836943755936692,
+   "axis_vs_rails_deg": 29.765501783954296,
+   "rack_dist_mm": 248809.55162090395,
+   "table_dist_mm": -248593.31901863273,
+   "leans_on_finger": false,
+   "final_com_z_mm": -248775.25131555018,
+   "peak_table_pen_mm": 245112.88667085688,
+   "vs_real_at_release": {
+    "com_dist_mm": 114275.54299382596,
+    "rot_deg": 57.157824618600735
+   },
+   "finger_opening_mm_after_0.5s": 2.3,
+   "params": {
+    "solref": [
+     0.003595,
+     1.0
+    ],
+    "impratio": 100
+   },
+   "selected_for_full_task": false
+  }
+ }
+}

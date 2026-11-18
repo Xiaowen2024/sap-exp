@@ -1,0 +1,58 @@
+RH20T dish-on-rack, placement-only segment (start t_close+14.30 s), MuJoCo 4.0.0 CPU contact diagnostic
+Frame: TCP frame, x = rim tangent (hinge), y = squeeze axis, z = finger axis. Dish = 25 convex pieces (8-vertex boxes).
+
+1) Collision-only probe at t = 0 (MuJoCo mj_forward, no dynamics). Pad/dish contacts:
+   left_pad  vs bk0   depth  5.9 mm  normal [ 0, 1, 0]   (along squeeze axis)
+   left_pad  vs bk0   depth  6.6 mm  normal [ 0, 1, 0]
+   left_pad  vs bk23  depth  5.9 mm  normal [ 0, 1, 0]
+   left_pad  vs bk23  depth  6.6 mm  normal [ 0, 1, 0]
+   right_pad vs bk0   depth  8.0 mm  normal [+1, 0, 0]   (along the seam between bk0 and bk23)
+   right_pad vs bk0   depth  8.5 mm  normal [+1, 0, 0]
+   right_pad vs bk23  depth 13.6 mm  normal [-1, 0, 0]
+   right_pad vs bk23  depth 13.1 mm  normal [-1, 0, 0]
+   -> the right pad sits on the seam of two wall pieces; MuJoCo's minimum-translation normal for each
+      deeply overlapping box pair is tangential (+-x), with no component that resists finger closing.
+
+2) Dynamics, first 0.3 s (every 1 ms recorded; selected rows):
+   --- MuJoCo native
+   t[ms] n_pad  max_depth[mm]  sum_fn[N]  min|n.y|  net_pad_force_on_dish_TCP[N]  dish_v_TCP[m/s]  finger_opening[mm]
+       2     8          13.6      713.0      0.00  [12.04, 2.25, -0.72]          [0.15, 0.03, 0.011]       8.2
+      10     7          12.9      646.4      0.00  [11.51, 1.21, -1.49]          [0.792, 0.12, 0.026]      8.0
+      20    11          11.9     1651.2      0.03  [-5.83, 0.43, -2.98]          [0.612, 0.242, -0.027]    7.6
+      40     7          11.9      758.2      0.03  [0.68, 4.47, 2.38]            [0.238, 0.055, 0.031]     7.1
+      60    11          11.3     1608.8      0.02  [1.75, 0.48, -2.37]           [0.06, 0.033, 0.033]      5.9
+      80     7          11.0      629.9      0.04  [3.06, -0.27, -1.49]          [-0.013, 0.019, 0.063]    4.6
+     100     3           8.7        1.3      1.00  [-0.65, 1.3, 0.12]            [0.174, 0.099, 0.071]     2.8
+     150     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.129, 0.244, 0.487]     2.3
+     200     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.4, 0.116, 0.114]       2.3
+     250     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.47, 0.095, 0.023]      2.3
+     280     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.457, 0.099, -0.018]    2.3
+     295     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.456, 0.101, 0.045]     2.3
+     300     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.458, 0.102, 0.058]     2.3
+   peak sum of pad normal forces 1656 N; last pad/dish contact at 117 ms (fingers then close to the 2.3 mm target).
+   --- MuJoCo iter4
+   t[ms] n_pad  max_depth[mm]  sum_fn[N]  min|n.y|  net_pad_force_on_dish_TCP[N]  dish_v_TCP[m/s]  finger_opening[mm]
+       2    11          12.5   475991.2      0.03  [-255.59, -9.83, -8.88]       [3.051, 0.277, 0.122]    10.4
+      10     6          11.2   163676.8      0.11  [-480.94, 23.92, 63.62]       [1.006, -0.316, 0.0]     14.6
+      20     8          10.5   461806.5      0.05  [-153.83, -47.46, -37.26]     [-0.714, -0.269, 0.181]   14.8
+      40    10          10.5   458735.6      0.08  [125.03, 2.84, 2.17]          [-0.14, -0.295, 0.381]   13.8
+      60    10          10.2   469718.3      0.05  [94.05, -3.84, -3.4]          [0.853, -0.464, 0.199]   12.7
+      80     7          10.5    87276.9      0.03  [-344.32, 87.18, 18.34]       [-1.333, -0.617, 0.153]   11.8
+     100     4          10.4   134743.0      0.06  [-374.51, -48.63, 4.01]       [0.25, 0.628, -0.205]    12.2
+     150    11          10.3   458732.9      0.07  [175.8, -19.11, -27.28]       [1.163, 0.845, -0.285]   10.0
+     200    10          10.3   454555.4      0.09  [-135.26, -28.9, -37.92]      [-0.629, 0.739, -0.19]    7.6
+     250    11          10.4   469402.5      0.04  [-52.93, -46.32, -18.57]      [0.756, 0.316, -0.188]    5.4
+     280     7          10.6   153657.8      0.10  [495.91, -9.47, 29.21]        [-0.018, 0.887, -0.46]    4.7
+     295     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.348, -0.325, 0.251]    2.3
+     300     0           0.0        0.0         -  [0.0, 0.0, 0.0]               [0.669, -0.011, 0.322]    2.3
+   peak sum of pad normal forces 477761 N; last pad/dish contact at 294 ms (fingers then close to the 2.3 mm target).
+
+3) Finger opening (left+right, mm) in the full segment runs, t = 0 / 0.05 / 0.1 / 0.5 / 3 s:
+   sap_iter5      [8.3, 14.0, 13.8, 13.7, 12.9]
+   sap_native     [8.3, 2.8, 2.9, 2.8, 2.5]
+   mujoco_iter4   [8.3, 13.0, 12.2, 2.3, 2.3]
+   mujoco_native  [8.3, 6.5, 2.8, 2.3, 2.3]
+   wall thickness 8.3 mm; along the squeeze axis the obliquely held wall is ~14-15 mm thick.
+   SAP selected params (iter5): fingers pushed apart to ~14 mm and stay there -> pads clamp the two wall surfaces.
+   SAP native: fingers close to 2.8 mm, i.e. the pads are embedded inside the 8.3 mm wall -> carried by penetrated pads (soft-contact artefact).
+   MuJoCo (all params): fingers close through the wall to 2.3 mm; contact is lost and the dish falls out.

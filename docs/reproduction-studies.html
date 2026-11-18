@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗与插试管轨迹回放：官方示范、MuJoCo 与 SAP 视频对照，实验设计、调试过程、评估结果，以及 SAP 插试管失败的根因分析。">
+  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗与插试管轨迹回放：官方示范、MuJoCo 与 SAP 视频对照，实验设计、调试过程、评估结果，以及 SAP 插试管失败的根因分析；RH20T 真实机器人盘子放上碗架：只回放“放进去”一段，SAP 成功、MuJoCo 失败及其原因。">
   <title>Part V · Atomic Capabilities &amp; Composite Tasks</title>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -58,6 +58,9 @@
           <li><a href="#insert-tubes">RoboDojo · 插试管</a>
             <ol><li><a href="#tubes-videos">视频对照</a></li><li><a href="#tubes-design">实验设计</a></li><li><a href="#tubes-iterations">5 轮迭代调试</a></li><li><a href="#tubes-results">结论</a></li><li><a href="#tubes-why">SAP 为什么失败</a></li><li><a href="#tubes-sources">来源与数据</a></li></ol>
           </li>
+          <li><a href="#dish-rack">RH20T · 盘子放上碗架</a>
+            <ol><li><a href="#rack-videos">视频对照</a></li><li><a href="#rack-design">实验设计</a></li><li><a href="#rack-params">参数选择</a></li><li><a href="#rack-results">结论</a></li><li><a href="#rack-why">MuJoCo 为什么失败</a></li><li><a href="#rack-sap">SAP 的优势与边界</a></li><li><a href="#rack-sources">来源与数据</a></li></ol>
+          </li>
         </ol>
       </nav>
       <div class="sidebar-footer"><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a></div>
@@ -77,14 +80,15 @@
       <header id="top" class="page-header">
         <div class="header-grid">
           <div><p class="eyebrow">Part V · November 2026</p><h1>原子能力与复合任务</h1><p class="lede">从单一接触机制到完整任务轨迹：比较模拟器复现了什么、已有数据能区分什么，以及暂时不能判断的部分。</p></div>
-          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes</dd></div><div><dt>Comparison</dt><dd>MuJoCo 4.0.0 CPU / SAP Internal（legacy 与 Newton Convex）</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
+          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes；RH20T · Dish on Rack（真实机器人）</dd></div><div><dt>Comparison</dt><dd>MuJoCo 4.0.0 CPU / SAP Internal（legacy 与 Newton Convex）</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
         </div>
       </header>
 
       <section id="summary" class="report-section">
         <h2>本页结论</h2>
         <div class="callout"><p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
-        <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p></div>
+        <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
+        <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 把盘子稳稳夹住，放进槽里，静置后的位置与真实接近；MuJoCo 在开始后 0.3 s 内就丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝方向，挡不住手指合拢，手指直接穿过了盘壁。完整任务（从抓起开始）两个引擎都失败，原因相同：真实盘子在手里翻转了约 55°，刚体模型都复现不了。</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
@@ -284,6 +288,122 @@
             <h4>来源、数据与文件</h4>
             <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>；任务定义与成功判据参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>（<code>insert_tubes.py</code>、<code>func_parser.py</code>）。试管资产 <code>Rigid/test_tube/00002</code>，架子资产 <code>Geometry/test_tube_slot/00000</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本节的模拟回放、视频和分析由本实验生成。</p>
             <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/insert_tubes/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/insert_tubes.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/insert-tubes/report.md">详细报告（MD）</a><a href="assets/part5/insert-tubes/tuning_log.json">5 轮迭代记录（JSON）</a><a href="assets/part5/insert-tubes/contact-probe-analysis.txt">孔口接触记录（TXT）</a></div>
+          </section>
+        </article>
+
+        <article id="dish-rack" class="study-subsection">
+          <h3>2.3 RH20T · Dish on Rack 盘子放上碗架 <span class="study-label">真实机器人 · 单 episode · 只回放“放进去”</span></h3>
+          <p>来自 <a href="https://rh20t.github.io/" target="_blank" rel="noreferrer">RH20T</a> 公开数据集的<strong>真实机器人示范</strong>：cfg2（Flexiv 机械臂 + 大寰 AG-95 夹爪）<code>task_0050_user_0016_scene_0009</code>，真实标签为成功。操作者遥操作机械臂，捏住平放在桌上的圆形藤编盘子边缘，抬起、搬到木制碗架上方，竖着插进一格，然后松手、撤离。与前两个 RoboDojo 任务不同，这里的参考是真实世界：物体的形状、位置都要从 7 个固定相机的视频里还原，接触的真实过程也只能从视频里看。</p>
+          <p>这个任务原本要回放完整过程（抓起→搬运→放进去）。完整回放两个引擎都失败，原因是同一个建模局限（见<a href="#rack-design">实验设计</a>），所以本节只比较最后一段：<strong>盘子已经夹在手里，下放、插入、松手</strong>。这一段把两个引擎拉开了。</p>
+
+          <section id="rack-videos" class="study-subsection">
+            <h4>先看原始视频与模拟结果</h4>
+            <p>三段视频时间轴相同，都是抓取后 +14.3 s 到松手后 2 s（+21.95 s），共 7.65 s，原速播放。画面都是同一个真实相机（<code>105422061350</code>，官方分辨率 320×180，放大 3 倍）。中、右两段在真实画面上叠加模拟结果：半透明色块是模拟的盘子，紫色框是模拟的两个指垫，下面透出来的是真实盘子。两个引擎各用整段任务 5 轮调参中最好的那组参数（见<a href="#rack-params">参数选择</a>）。</p>
+            <div class="playback-toolbar" data-group="rack-videos-grid"><button class="play-all" type="button">从头同步播放</button><button class="pause-all" type="button">全部暂停</button><span class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
+            <div class="video-grid" id="rack-videos-grid">
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/rh20t-dish-rack/reference-poster.jpg" style="aspect-ratio:16/9"><source src="assets/part5/rh20t-dish-rack/reference.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/rh20t-dish-rack/reference.mp4">下载真实视频</a>。</video><figcaption><h4>真实示范 · RH20T</h4><p>盘子竖着捏在手里，下放进碗架最边上那一格；+19.95 s 夹爪张开后，盘子立在槽里，靠着一根手指。</p><a href="assets/part5/rh20t-dish-rack/reference.mp4" download>下载视频</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/rh20t-dish-rack/mujoco-poster.jpg" style="aspect-ratio:16/9"><source src="assets/part5/rh20t-dish-rack/mujoco.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/rh20t-dish-rack/mujoco.mp4">下载 MuJoCo 视频</a>。</video><figcaption><h4>MuJoCo 4.0.0 · CPU · 第 4 轮参数</h4><p>开始后 0.3 s 内手指穿过盘壁，盘子（红色）脱手，掉到桌面上，离架子 26 cm。</p><a href="assets/part5/rh20t-dish-rack/mujoco.mp4" download>下载视频</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/rh20t-dish-rack/sap-newton-poster.jpg" style="aspect-ratio:16/9"><source src="assets/part5/rh20t-dish-rack/sap-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/rh20t-dish-rack/sap-newton.mp4">下载 SAP 视频</a>。</video><figcaption><h4>SAP + Newton Convex · 第 5 轮参数</h4><p>盘子（青色）一直夹在手里，被放进同一格；松手后立在槽里、靠着一根手指，与真实一致。</p><a href="assets/part5/rh20t-dish-rack/sap-newton.mp4" download>下载视频</a></figcaption></figure>
+            </div>
+            <details><summary>查看真实示范的完整过程（抓取 → 放入 → 撤手后翻倒）</summary><figure class="video-demo"><video controls muted playsinline preload="metadata" style="width:100%;aspect-ratio:1440/310"><source src="assets/part5/rh20t-dish-rack/reference-full.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/rh20t-dish-rack/reference-full.mp4">下载完整视频</a>。</video><figcaption><p>三个固定相机，原速，从抓取前 2 s 到录像结束（约 30 s）。注意两件事：① 搬运途中，盘子在手里绕边缘向下摆了约 55°，从平躺变成接近竖直；② 松手后盘子已经立在远端那格里，但约 +23 s 机械臂撤离时碰到了盘子，它向前翻倒，最后斜靠在近端那格。</p></figcaption></figure>
+            <figure class="figure-audit"><img src="assets/part5/rh20t-dish-rack/post-release-topple.jpg" alt="真实视频中松手前 1 秒到录像结束的帧序列，每 0.75 秒一帧：盘子先立在碗架远端一格，约 +24.95 秒机械臂撤离时翻倒，+25.7 秒后斜靠在近端一格" loading="lazy"><figcaption>松手前后的真实帧序列（每 0.75 s 一帧）：+19.7 到 +24.2 s 盘子立在远端那格，+24.95 s 翻倒，+25.7 s 起斜靠在近端那格。数据集的“成功”标签对应的是翻倒之后的姿态。</figcaption></figure></details>
+          </section>
+
+          <section id="rack-design" class="study-subsection">
+            <h4>实验设计</h4>
+            <ul>
+              <li><strong>为什么只回放“放进去”：</strong>
+                <ul>
+                  <li>真实盘子在搬运途中，在手里绕边缘切线（夹爪的 x 轴）向下摆了约 55°，捏住的还是同一个点。夹爪开度全程保持 8.3 mm、一点没变，说明这是藤编在捏点处的局部变形，不是盘壁在两指之间整体倾斜（那样手指至少要被撑开约 6 mm）。</li>
+                  <li>两个引擎里的盘子是刚体，指垫是刚性平板，在几何上就转不过去。整段任务 5 轮调参中，盘子在手里只转了 0–9°（SAP 0–1°，MuJoCo 3–9°），最后都平躺在架子钉顶上，两个引擎失败方式相同。</li>
+                  <li>真实机器人撤离时碰翻了盘子（见上方完整视频），这一步属于偶然事件，也不适合作为比较对象。</li>
+                </ul>
+                因此只回放：盘子已经在手里 → 下放 → 插入 → 松手。<strong>松手后机械臂原地不动</strong>，静置 2 s 后判定。
+              </li>
+              <li><strong>起点：</strong>抓取后 +14.30 s，此时夹爪移动最慢（0.002 m/s），盘子在架子上方约 4 mm。手中姿态由 7 个固定相机的轮廓拟合得到，约束条件是“夹爪 TCP 在盘壁上”（5 个自由度：3 个旋转、捏点在壁上的高度、±10 mm 径向偏移），平均 IoU 0.59，两个随机种子结果相差 0.03°。</li>
+              <li><strong>起点有约 2 mm 的指垫重叠，两个引擎相同：</strong>盘壁被斜着捏住，沿夹紧方向的厚度约 14–15 mm，而记录的夹爪开度只有 8.3 mm。真实情况下藤编被压扁了；刚体模型里，在 ±6 mm 平移、手指多张开最多 20 mm 的范围内都找不到零穿透的起点。只有手指多张开 20 mm、再把盘子平移约 7 mm 才行；我们试了这个起点，手指从 28 mm 快速合拢时，两个引擎里都直接穿过了斜着的盘壁，盘子都没夹住，所以放弃。最终两个引擎用完全相同的、带约 2 mm 重叠的起点，引擎怎么处理这个起点，算作引擎自己的结果。</li>
+              <li><strong>输入：</strong>记录的 TCP 位姿（125 Hz）和夹爪开度。夹爪基座用限幅弹簧阻尼跟踪 TCP（<code>K_t=1e5 N/m</code>，上限 300 N）。手指的规则只有一条：目标开度 = 记录开度 − 每指 3 mm，伺服刚度 <code>5e4 N/m</code>，力上限 102.5 N（AG-95 的 100% 力档）。积分步长 0.5 ms。</li>
+              <li><strong>几何与物性（两个引擎完全相同）：</strong>
+                <ul>
+                  <li>盘子：半径 106 mm、高 27 mm、壁厚 8.3 mm（取夹爪夹住时的开度）、0.15 kg，由 25 个凸块组成（每块 8 或 64 个顶点，都不超过 SAP 的 64 顶点上限，不涉及插试管一节的凸包截断问题）。指垫 20×6×32 mm。</li>
+                  <li>碗架：静态，由多视角拟合得到，长 137 mm，钉高 79 mm，槽距 44.7 mm。桌面平面由标定板外参得到。</li>
+                  <li>摩擦：指垫–盘子 <code>μ=0.6</code>，盘子–碗架/桌面 <code>μ=0.5</code>。</li>
+                </ul>
+              </li>
+              <li><strong>成功判据（松手后 2 s）：</strong>碰到碗架（≤3 mm）、质心在碗架范围内、盘子轴线与导轨夹角 ≤45°、倾角 ≤58.5°、静止。“靠在手指上”只记录、不扣分，因为真实盘子同样靠着手指。原协议中“松手那一刻质心在碗架范围内”这一条不用：真实盘子放在最边上那格，松手时质心在 −73 mm，超出 ±69 mm 的范围，连真实数据都不满足。</li>
+              <li><strong>引擎：</strong>MuJoCo 4.0.0（CPU）；SAP 新版（<code>2325082</code>，Newton Convex 碰撞，每个场景接触上限 3000，全程无溢出）。每组参数只跑 1 次确定性回放。</li>
+            </ul>
+            <details><summary>手中姿态拟合叠加图（+14.3 s）</summary><figure class="figure-audit"><img src="assets/part5/rh20t-dish-rack/inhand-fit.jpg" alt="+14.3 秒时四个固定相机的真实画面，青色轮廓是拟合出的盘子在手中的姿态，与真实盘子轮廓吻合" loading="lazy"><figcaption>拟合出的手中姿态（青色轮廓）投影到 4 个固定相机的真实画面上。拟合只用了真实视频和机器人轨迹，没有用任何模拟结果。</figcaption></figure></details>
+          </section>
+
+          <section id="rack-params" class="study-subsection">
+            <h4>参数选择：沿用整段任务的 5 轮调参</h4>
+            <p>整个任务最终要从头到尾回放，所以“放进去”这一段不单独调参，而是直接用整段任务调参中最适合整个任务的那组。整段任务调参的规则：第 1 轮用原生默认参数，之后每轮只根据上一轮的结果调整引擎自身的数值参数（穿透超过 1 mm 加刚度，滑移超过 10 mm 或没搬起来加摩擦，否则二者交替）；几何、质量、摩擦系数、夹持力、轨迹、步长始终不变。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>MuJoCo 4.0.0 设置</th><th>整段结果</th><th>穿透 / 手中滑移</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认</td><td>没搬住</td><td>5.2 mm / 77 mm</td></tr>
+              <tr><td>2</td><td><code>solref=(0.0062,1)</code></td><td rowspan="4">搬到架子上方，但平躺在钉顶上</td><td>1.3 mm / 13 mm</td></tr>
+              <tr><td>3</td><td><code>solref=(0.0036,1)</code></td><td>1.0 mm / 8.1 mm</td></tr>
+              <tr><td><strong>4（选定）</strong></td><td>+ <code>impratio=10</code></td><td><strong>0.9 mm / 2.3 mm</strong></td></tr>
+              <tr><td>5</td><td><code>impratio=100</code></td><td>1.1 mm / 2.5 mm</td></tr>
+            </tbody></table></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>SAP 设置</th><th>整段结果</th><th>穿透 / 手中滑移</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认（pair <code>ke=1250 N/m</code>）</td><td>放下后盘子挂在手指上</td><td>2.8 mm / 1.9 mm</td></tr>
+              <tr><td>2</td><td>pair <code>ke=7.0e3 N/m</code></td><td rowspan="4">搬到架子上方，但平躺在钉顶上</td><td>2.5 mm / 0.9 mm</td></tr>
+              <tr><td>3</td><td>pair <code>ke=3.47e4 N/m</code></td><td>1.0 mm / 1.7 mm</td></tr>
+              <tr><td>4</td><td>+ <code>sigma=1e-4</code>，静摩擦容差 <code>1e-5</code></td><td>1.0 mm / 1.7 mm</td></tr>
+              <tr><td><strong>5（选定）</strong></td><td><code>sigma=1e-5</code>，静摩擦容差 <code>1e-6</code></td><td><strong>0.9 mm / 1.7 mm</strong></td></tr>
+            </tbody></table></div>
+            <p class="scope-line">选法：两个引擎从第 2 轮起都卡在同一关（放置），因此选物理误差最小（穿透和手中滑移最小）的一轮。参数是在同一条回放上调出来的，代表“调参后能达到的最好表现”，不代表泛化能力。</p>
+          </section>
+
+          <section id="rack-results" class="study-subsection">
+            <h4>结论</h4>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>指标（松手后 2 s）</th><th>MuJoCo 4.0.0 · 第 4 轮</th><th>SAP + Newton · 第 5 轮</th></tr></thead><tbody>
+              <tr><td>放进槽里（全部判据）</td><td><strong>失败</strong></td><td><strong>成功</strong></td></tr>
+              <tr><td>盘子何时脱手</td><td>开始后 0.29 s</td><td>未脱手，直到松手</td></tr>
+              <tr><td>离碗架距离</td><td>263 mm（在桌面上）</td><td>0.6 mm（靠在架子上）</td></tr>
+              <tr><td>倾角 / 与导轨夹角</td><td>90°（平躺） / 82°</td><td>16° / 7°</td></tr>
+              <tr><td>松手时与真实拟合位置之差</td><td>428 mm / 136°</td><td>27 mm / 17°</td></tr>
+              <tr><td>是否靠在手指上</td><td>否</td><td>是（与真实一致）</td></tr>
+            </tbody></table></div>
+            <p>同一起点下，另外几组参数的补充结果：MuJoCo 原生默认和第 5 轮也都失败（默认参数 0.12 s 内手指穿过盘壁；第 5 轮数值发散，盘子穿过桌面）。SAP 原生默认按判据也“成功”，但它的两指合拢到只剩 2.8 mm，比 8.3 mm 的盘壁薄得多，是指垫<strong>嵌在盘壁里面</strong>把盘子带走的，属于软接触伪象，<strong>不计为有效成功</strong>。选定参数（第 5 轮）的 SAP 没有这个问题，见下文。</p>
+            <div class="study-note"><p><strong>如实结论：</strong>在“盘子已经在手里、指垫与盘壁有约 2 mm 初始重叠”这个起点上，SAP 能形成稳定的两面夹持并把盘子放进槽里，结果与真实接近；MuJoCo 夹不住，与参数无关（3 组参数都失败）。这是 1 个 episode、每组参数 1 次的结果，而且最难的手中翻转这一步是由视频给定的，没有让引擎去模拟。完整任务上两个引擎都失败，不能据此说 SAP 能完成整个任务。</p></div>
+          </section>
+
+          <section id="rack-why" class="study-subsection">
+            <h4>MuJoCo 为什么失败：接缝处的接触法向是侧向的</h4>
+            <div class="study-note"><p><strong>一句话：</strong>盘壁由多个长方体凸块拼成，右指垫正好压在两块的接缝上。MuJoCo 对深度重叠的凸体对，取“把它推出去最短的方向”作为接触法向，在接缝处最短的是沿接缝的侧向，而不是夹紧方向。于是右指垫受到的接触力只把盘子往侧面推，完全不阻挡手指合拢，手指在力上限内一路合拢，直接穿过 8.3 mm 的盘壁，盘子随即脱手。</p></div>
+            <p>这个结论也是一步步验证出来的（坐标都换到夹爪坐标系：x 为盘子边缘切线方向，y 为夹紧方向，z 为手指方向）：</p>
+            <ol class="process-list">
+              <li><strong>先排除参数。</strong>原生默认、第 4 轮、第 5 轮三组参数，从同一起点出发都失败，而且都是开始后 0.1–0.3 s 内就失败，还没走到“放进去”。</li>
+              <li><strong>只做碰撞检测，看第一帧的接触。</strong>左指垫的 4 个接触，法向都沿夹紧方向（<code>[0, 1, 0]</code>），正常。右指垫跨在凸块 bk0 和 bk23 的接缝上，4 个接触的法向全部沿接缝的切向：对 bk0 是 <code>+x</code>，对 bk23 是 <code>−x</code>，报告深度 8–13.6 mm。也就是说，右指垫没有任何一个接触在顶住手指合拢。</li>
+              <li><strong>逐毫秒记录前 0.3 s 的接触力。</strong>
+                <ul>
+                  <li>原生默认：接触法向与夹紧方向的最小夹角余弦 |n·y| 只有 0.00–0.04。指垫对盘子的合力主要沿 +x，约 12 N，10 ms 内把 0.15 kg 的盘子推到 0.8 m/s。两指开度从 8.2 mm 一路合到 2.8 mm，117 ms 后接触全部消失。</li>
+                  <li>第 4 轮（接触更硬）：两组相反的侧向接触来回顶，法向力合计出现约 47 万 N 的数值尖峰，盘子在指间剧烈振荡（速度通常 0.5–1.5 m/s，最高约 3 m/s），手指同样逐步合拢，295 ms 后接触消失。</li>
+                </ul>
+              </li>
+              <li><strong>最终状态。</strong>三组参数的两指开度最后都是 2.3 mm（手指的目标开度），比 8.3 mm 的盘壁还窄，说明指垫已经整个穿过了盘壁。</li>
+            </ol>
+            <p class="scope-line">结论的性质：起点上的约 2 mm 重叠来自我们的场景还原（刚体模型无法表示被压扁的藤编），两个引擎完全相同；MuJoCo 在接缝处选取侧向法向，属于引擎碰撞检测的默认行为，不是我们的实现错误，照实报告。对照实验：在干净的夹取几何下（没有初始重叠、手指从张开状态正常合拢到竖直的盘壁上），两个引擎都能夹住同一块 8.3 mm 盘壁并提起 10 cm（3 组参数 × 2 种夹持力，各 6/6）。所以 MuJoCo 的问题只在“深度重叠 + 凸块接缝”这种情形下出现。</p>
+          </section>
+
+          <section id="rack-sap" class="study-subsection">
+            <h4>SAP 的优势在哪里，边界在哪里</h4>
+            <ul>
+              <li><strong>优势：从同一个带重叠的起点，形成了物理上合理的夹持。</strong>选定参数下，开始后 50 ms 内，SAP 的两指就被盘壁撑开到约 14 mm，之后一直保持。这正好是被斜着捏住的盘壁沿夹紧方向的厚度（约 14–15 mm），说明 SAP 的接触力顶住了手指合拢，两个指垫夹在盘壁两侧的表面上，而不是穿进去。盘子随后被平稳放下（开始约 0.2 s 后，盘子相对平稳，速度 &lt; 0.05 m/s），松手时离真实拟合位置 27 mm、转角差 17°，最后靠在碗架上、靠着一根手指，和真实画面一致。</li>
+              <li><strong>注意：</strong>SAP 的接触法向我们没有单独探测，“顶住手指合拢”是从手指的运动推断出来的。</li>
+              <li><strong>边界一：SAP 原生默认参数的“成功”不算数。</strong>默认接触很软（pair <code>ke=1250 N/m</code>），102.5 N 的夹持力足以把指垫压进盘壁，两指合到 2.8 mm，盘子是被嵌在里面的指垫带走的。同样是软接触，“能容忍穿透”在这里既帮了 SAP（不会像 MuJoCo 那样把盘子弹开），也会产生不真实的结果。</li>
+              <li><strong>边界二：完整任务两个引擎都失败。</strong>搬运途中真实盘子在手里翻转约 55°，SAP 只转了 0–1°，MuJoCo 3–9°。这一步需要表示藤编的局部变形（例如在捏点加一个带摩擦的软铰链），属于物体建模问题，两个引擎目前都做不到。</li>
+              <li><strong>边界三：证据量。</strong>1 个 episode，每组参数 1 次。</li>
+            </ul>
+            <p><strong>与其他实验的关系：</strong>插试管一节中，SAP 因加载网格时截断凸包而丢失了关键几何；本节相反，是 MuJoCo 在凸块接缝处给出了不利的接触方向。两者的共同点是：<strong>在依赖细节几何的接触里，碰撞层的表示方式（凸包截断、凸块分解的接缝、深重叠时的法向选择）会直接决定任务成败</strong>，而且两个引擎都不会报错或警告。</p>
+          </section>
+
+          <section id="rack-sources" class="study-subsection">
+            <h4>来源、数据与文件</h4>
+            <p>数据来自 RH20T 官方 Hugging Face 仓库 <code>tonyfanggalaxies/RH20T</code>（revision <code>ae13524566502155941720083c9d5921e4100966</code>），cfg2，<code>task_0050_user_0016_scene_0009_cfg_0002</code>：机器人低维数据（TCP 位姿 125 Hz、夹爪开度与力档）、7 个固定相机的彩色视频与标定。场景还原（桌面、碗架、盘子、手中姿态）只用这些真实数据；本节的模拟回放、视频叠加和分析由本实验生成。</p>
+            <div class="source-links"><a href="https://rh20t.github.io/" target="_blank" rel="noreferrer">RH20T 项目主页 ↗</a><a href="https://huggingface.co/datasets/tonyfanggalaxies/RH20T" target="_blank" rel="noreferrer">官方数据 ↗</a><a href="assets/part5/rh20t-dish-rack/report.md">详细报告（MD）</a><a href="assets/part5/rh20t-dish-rack/segment_results.json">片段回放结果（JSON）</a><a href="assets/part5/rh20t-dish-rack/full_task_tuning_log.json">整段任务 5 轮调参记录（JSON）</a><a href="assets/part5/rh20t-dish-rack/contact-probe-analysis.txt">MuJoCo 接触诊断记录（TXT）</a></div>
           </section>
         </article>
       </section>
