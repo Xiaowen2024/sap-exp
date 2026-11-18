@@ -33,6 +33,7 @@ PROTOCOL = REPO_ROOT / "protocol"
 MANIFESTS = PROTOCOL / "manifests"
 RESULTS = REPO_ROOT / "exp-results"
 EXTERNAL = REPO_ROOT / "external"
+ARCHIVE = REPO_ROOT / "archive"   # local-only scripts of tasks outside the current task set
 
 CODE_ROOTS = (COMMON, ENGINES, TASKS, TOOLS)
 _SKIP = {"__pycache__", "assets", "configs", "sop"}
@@ -46,7 +47,9 @@ def _is_package(d: Path) -> bool:
 def module_dirs() -> tuple[Path, ...]:
     """Folders that hold flat modules, plus the parent folder of each package."""
     found: list[Path] = [COMMON]
-    for root in (ENGINES, TASKS, TOOLS):
+    for root in (ENGINES, TASKS, TOOLS, ARCHIVE):
+        if not root.is_dir():
+            continue
         stack = [root]
         while stack:
             d = stack.pop()

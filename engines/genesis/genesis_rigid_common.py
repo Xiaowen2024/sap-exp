@@ -48,7 +48,7 @@ def _find_root() -> Path:
 
 ROOT = _find_root()
 _PROTO = [Path(os.environ["SIMEXP_PROTOCOL_DIR"])] if os.environ.get("SIMEXP_PROTOCOL_DIR") else []
-_PROTO += [ROOT / "tasks/dynamic-impact", ROOT / "runners"]
+_PROTO += [ROOT / "tasks/real-data-simple/shared", ROOT / "runners"]
 PROTOCOL_DIR = next(p for p in _PROTO if (p / "impact_v2_common.py").exists())
 for p in (PROTOCOL_DIR, HERE):
     if str(p) not in sys.path:

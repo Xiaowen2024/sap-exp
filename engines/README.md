@@ -1,7 +1,7 @@
 # Engines
 
 Code shared by every task for one simulator. Task-specific runners live under
-`tasks/<family>/<task>/<engine>/`.
+`tasks/<category>/<task>/<engine>/`.
 
 - [`genesis/`](genesis/) — Genesis Rigid, SAP and IPC adapters (`genesis_*_common.py`),
   preflights, probes, the queue scripts that run all tasks, the cross-engine

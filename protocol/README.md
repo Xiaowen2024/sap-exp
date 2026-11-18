@@ -11,4 +11,8 @@ Cross-task rules and every manifest.
   new revision instead. Some older manifests still name runners by their pre-reorganization
   path (`scripts/...`); see [`../MOVED_PATHS.md`](../MOVED_PATHS.md).
 
+- [`families/`](families/) — family-level protocols (static friction, dynamic friction, dynamic
+  impact, energy conservation, sustained contact, composite, real playback); they define
+  metrics shared by several tasks.
+
 Task SOPs are next to their code under [`tasks/`](../tasks/).

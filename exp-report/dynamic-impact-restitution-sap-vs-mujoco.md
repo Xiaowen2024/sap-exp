@@ -57,7 +57,7 @@ MuJoCo uses `implicitfast` + Newton, a single explicit `condim=1` pair, constant
 
 - MuJoCo runner: `mujoco-sim/learn_mujoco/impact_experiments/run_sphere_plane_impact.py`
 - SAP runner: `sap-sim/scripts/run_sphere_plane_impact.py`
-- This renderer: `tasks/early-studies/impact-sphere-plane/analysis/summarize_dynamic_impact_restitution.py`
+- This renderer: `scripts/summarize_dynamic_impact_restitution.py`
 - Raw summary data and one complete trace per case: `exp-results/dynamic-impact-restitution/`
 
 ---
@@ -147,4 +147,4 @@ in this linear single-contact setup.
 
 - data: `exp-results/dynamic-impact-restitution-time-matched/`
 - joint calibration support: `mujoco-sim/learn_mujoco/impact_experiments/run_sphere_plane_impact.py` and `sap-sim/scripts/run_sphere_plane_impact.py` (`--target-contact-ms 30`)
-- renderer: `tasks/early-studies/impact-sphere-plane/analysis/summarize_dynamic_impact_time_matched.py`
+- renderer: `scripts/summarize_dynamic_impact_time_matched.py`
