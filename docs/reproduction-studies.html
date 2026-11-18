@@ -55,7 +55,7 @@
           </li>
           <li><a href="#composite">2. 复合任务</a></li>
           <li><a href="#stack-bowls">RoboDojo · 叠碗</a>
-            <ol><li><a href="#videos">视频对照</a></li><li><a href="#design">实验设计</a></li><li><a href="#iterations">调试与参数冻结</a></li><li><a href="#results">结果与区分度</a></li><li><a href="#legacy-sap">旧 SAP 也能 work</a></li><li><a href="#sources">来源与数据</a></li></ol>
+            <ol><li><a href="#videos">视频对照</a></li><li><a href="#design">实验设计</a></li><li><a href="#iterations">调试与参数冻结</a></li><li><a href="#results">结果与区分度</a></li><li><a href="#sources">来源与数据</a></li></ol>
           </li>
           <li><a href="#insert-tubes">RoboDojo · 插试管</a>
             <ol><li><a href="#tubes-videos">视频对照</a></li><li><a href="#tubes-design">实验设计</a></li><li><a href="#tubes-iterations">5 轮迭代调试</a></li><li><a href="#tubes-results">结论</a></li><li><a href="#tubes-why">SAP 为什么失败</a></li><li><a href="#tubes-sources">来源与数据</a></li></ol>
@@ -274,20 +274,6 @@
               <tr><td>Task Outcome</td><td>参考和两引擎的视频观察均为释放后保持三碗叠放。</td><td>视觉 outcome agreement 一致；严格 valid success、false success / false failure 暂不判定。</td></tr>
             </tbody></table></div>
             <div class="study-note"><p><strong>如实结论：</strong>这个 episode 对两个模拟器的宏观任务结果区分度有限。已有指标显示“SAP 更静、MuJoCo 末态采样重叠更少”，没有足够参考证据判断谁的轨迹复刻更好，也没有多 episode 的成功率结论。旧 SAP legacy 碰撞路径在同一夹爪场景下同样 work，目前不能用此任务宣称更新后的宏观任务表现更好。</p></div>
-          </section>
-
-          <section id="legacy-sap" class="study-subsection">
-            <h4>补充结论：旧 SAP 碰撞路径也能 work</h4>
-            <p><strong>不是“旧版不行、更新后才行”。</strong>在相同的带关节夹爪 r3、相同场景和输入下，legacy 与 Newton Convex 两条碰撞路径都呈现了抓取、搬运与三碗叠放。这个 episode 没有在宏观任务结果上区分出新路径的优势。</p>
-            <div class="table-wrap"><table class="data-table"><thead><tr><th>现有单次对照</th><th>SAP + legacy 碰撞</th><th>SAP + Newton Convex</th></tr></thead><tbody>
-              <tr><td>左侧碗最大抬升（cm）</td><td>15.14</td><td>15.15</td></tr>
-              <tr><td>右侧碗最大抬升（cm）</td><td>11.86</td><td>11.84</td></tr>
-              <tr><td>视觉上完成搬运和叠放</td><td>是</td><td>是</td></tr>
-              <tr><td>末态最大采样穿透下界（mm）</td><td>0.3312</td><td>1.5766</td></tr>
-            </tbody></table></div>
-            <p>新路径尾段运动较小，但采样几何重叠没有同步改善。这个结果支持的是“旧路径也可用，更新在本任务上的宏观收益尚未体现”，不是“新旧在所有方面都没有差别”。目前也没有参考位姿误差可以判定哪条路径复刻得更准确。</p>
-            <p class="scope-line">对照范围：固定当前 SAP 求解器，切换 legacy／Newton 碰撞路径；不是完整旧构建与新构建全部改动的对照。早期只能抬起约 2 cm 的旧 r2 使用独立手指模型，不能与当前带关节模型混为版本差异。这里的 work 指可见搬运与叠放，严格有效成功仍受几何审计缺项限制。</p>
-            <details><summary>查看 legacy 与 Newton 的已有轨迹视频</summary><figure class="video-demo"><video controls muted playsinline preload="metadata" style="aspect-ratio:8/3"><source src="assets/part5/stack-bowls/legacy-vs-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/legacy-vs-newton.mp4">下载对照视频</a>。</video><figcaption><p>左：legacy；右：Newton Convex。同一套带关节夹爪 r3，回放已有原生状态。视频含额外 1 s 模拟观察尾段，总时长约 10.6 s；本次没有为这项补充结论新增模拟。</p></figcaption></figure></details>
           </section>
 
           <section id="sources" class="study-subsection">
