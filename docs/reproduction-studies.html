@@ -128,7 +128,7 @@
             <tr><td>Ball bounce v3 弹球，dt 1/900（loss ↓）</td><td>0.269</td><td><strong>0.076</strong></td><td>0.078</td><td>未跑</td><td>未跑</td><td>小步长下 MuJoCo 和 Rigid 更好</td></tr>
             <tr><td>Pendulum 理想单摆（能量漂移 ↓）</td><td>1.5e-3</td><td><strong>5.0e-6</strong></td><td>1.5e-3</td><td>—</td><td>—</td><td>MuJoCo 积分器守恒最好</td></tr>
             <tr><td>Pendulum GAUGE 真实单摆</td><td>1.029</td><td>1.029</td><td>1.029</td><td>—</td><td>—</td><td>各引擎一致，无区分度</td></tr>
-            <tr><td>Round socket 圆孔插销（正确 rollout，调参后）</td><td>92.4%</td><td>95.9%</td><td>—</td><td><strong>97.3%</strong></td><td>未跑</td><td>见 1.1；SAP 余量最小的孔沿支撑仍会翻倒</td></tr>
+            <tr><td>Round socket v9 圆孔插销（46 个带标签冻结条件，正确 rollout / 368）</td><td>254（69.0%）<br><span style="color:var(--muted);font-size:12px">Newton Convex：283（76.9%）</span></td><td>313（85.1%）</td><td>—</td><td><strong>358（97.3%）</strong></td><td>未跑</td><td>SAP 最差，主要失败在孔沿支撑（碰撞几何）；换 Newton Convex 后提高 8 个百分点。按问题调参后 SAP 92.4%、MuJoCo 95.9%（见 1.1，非泛化）</td></tr>
             <tr><td>不穿透诊断：重物堆叠，质量比 1000（穿透 mm）</td><td>0.72 / 1.18</td><td>2.21 / 2.21</td><td>—</td><td><strong>悬空 0.08</strong></td><td>—</td><td>IPC 完全不穿透；SAP 的穿透约为 MuJoCo 的 1/3</td></tr>
             <tr><td>不穿透诊断：高速撞 2 mm 薄墙，1–20 m/s</td><td>全部挡住</td><td>全部穿过（默认参数）</td><td>—</td><td><strong>全部挡住并反弹</strong></td><td>—</td><td>IPC > SAP > MuJoCo</td></tr>
             <tr><td>软垫夹取 smoke（健康配置数 / 5）</td><td><strong>5</strong></td><td>4</td><td>—</td><td>1</td><td>—</td><td>三个引擎都有可用配置；只验证能跑通，不评估精度</td></tr>
