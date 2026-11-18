@@ -1,0 +1,81 @@
+
+===== mujoco
+repro check t=7.1: |probe-trace| tube com = 0.00 mm
+t=6.801 tip_z=0.8841 offset= 2.2mm tilt= 0.7 | FINGERS n=8 N= 50.4 T= 0.21 T/(muN)=0.02 F_toCentre= -0.07N
+t=6.831 tip_z=0.8815 offset= 2.4mm tilt= 0.7 | FINGERS n=8 N= 50.4 T= 0.61 T/(muN)=0.05 F_toCentre=  0.00N
+t=6.861 tip_z=0.8759 offset= 3.0mm tilt= 0.8 | FINGERS n=8 N= 50.4 T= 0.59 T/(muN)=0.05 F_toCentre=  0.01N
+t=6.891 tip_z=0.8673 offset= 4.1mm tilt= 0.8 | FINGERS n=8 N= 50.4 T= 0.43 T/(muN)=0.04 F_toCentre= -0.04N
+t=6.921 tip_z=0.8558 offset= 5.9mm tilt= 0.8 | FINGERS n=8 N= 50.4 T= 0.53 T/(muN)=0.05 F_toCentre=  0.13N
+t=6.951 tip_z=0.8440 offset= 7.6mm tilt= 0.8 | FINGERS n=8 N= 50.4 T= 0.65 T/(muN)=0.06 F_toCentre= -0.01N
+t=6.981 tip_z=0.8330 offset= 8.6mm tilt= 0.8 | FINGERS n=8 N= 50.4 T= 0.67 T/(muN)=0.06 F_toCentre= -0.02N
+t=7.011 tip_z=0.8229 offset= 8.6mm tilt= 1.0 | FINGERS n=8 N= 50.4 T= 0.55 T/(muN)=0.05 F_toCentre=  0.07N
+t=7.041 tip_z=0.8125 offset= 2.7mm tilt= 2.5 | RIM n=2 Fz=  2.32N F_toCentre=  2.33N normal_z[0.53,0.53] normal_toCentre[+0.85,+0.85] | FINGERS n=8 N= 51.2 T=11.52 T/(muN)=1.00 F_toCentre= -1.79N
+t=7.071 tip_z=0.8020 offset= 0.6mm tilt= 4.3 | FINGERS n=8 N= 50.3 T= 1.83 T/(muN)=0.16 F_toCentre= -0.01N
+t=7.101 tip_z=0.7925 offset= 1.0mm tilt= 3.9 | RIM n=1 Fz=  0.39N F_toCentre=  2.70N normal_z[-0.08,-0.08] normal_toCentre[+0.95,+0.95] | FINGERS n=8 N= 50.4 T=10.60 T/(muN)=0.93 F_toCentre= -1.90N
+t=7.131 tip_z=0.7860 offset= 1.2mm tilt= 3.4 | FINGERS n=8 N= 37.1 T= 2.00 T/(muN)=0.24 F_toCentre= -0.08N
+t=7.161 tip_z=0.7839 offset= 1.1mm tilt= 3.0
+t=7.191 tip_z=0.7765 offset= 0.7mm tilt= 2.4
+t=7.221 tip_z=0.7711 offset= 0.8mm tilt= 1.8
+t=7.251 tip_z=0.7711 offset= 1.0mm tilt= 1.5 | RIM n=1 Fz= -0.01N F_toCentre=  0.02N normal_z[-0.02,-0.02] normal_toCentre[+0.99,+0.99]
+t=7.281 tip_z=0.7711 offset= 1.0mm tilt= 1.5 | RIM n=1 Fz= -0.01N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.99,+0.99]
+t=7.311 tip_z=0.7711 offset= 1.0mm tilt= 1.5 | RIM n=1 Fz=  0.00N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.99,+0.99]
+t=7.341 tip_z=0.7711 offset= 1.0mm tilt= 1.4 | RIM n=1 Fz=  0.00N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.98,+0.98]
+t=7.371 tip_z=0.7711 offset= 1.0mm tilt= 1.4 | RIM n=1 Fz=  0.00N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.97,+0.97]
+t=7.401 tip_z=0.7711 offset= 1.0mm tilt= 1.4 | RIM n=1 Fz=  0.01N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.95,+0.95]
+t=7.431 tip_z=0.7711 offset= 1.1mm tilt= 1.4 | RIM n=1 Fz=  0.01N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.94,+0.94]
+t=7.461 tip_z=0.7711 offset= 1.1mm tilt= 1.4 | RIM n=1 Fz=  0.00N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.92,+0.92]
+t=7.491 tip_z=0.7711 offset= 1.1mm tilt= 1.4 | RIM n=1 Fz=  0.01N F_toCentre=  0.03N normal_z[-0.02,-0.02] normal_toCentre[+0.92,+0.92]
+
+===== sapold
+repro check t=7.1: |probe-trace| tube com = 0.09 mm
+t=6.801 tip_z=0.8859 offset= 2.5mm tilt= 1.8 | FINGERS n=5 N= 42.9 T= 6.70 T/(muN)=0.69 F_toCentre= -0.02N
+t=6.831 tip_z=0.8832 offset= 2.4mm tilt= 1.8 | FINGERS n=5 N= 42.9 T= 6.78 T/(muN)=0.70 F_toCentre= -0.00N
+t=6.861 tip_z=0.8775 offset= 2.6mm tilt= 1.9 | FINGERS n=5 N= 42.9 T= 6.78 T/(muN)=0.70 F_toCentre=  0.00N
+t=6.891 tip_z=0.8687 offset= 3.4mm tilt= 1.9 | FINGERS n=5 N= 42.9 T= 6.72 T/(muN)=0.70 F_toCentre= -0.04N
+t=6.921 tip_z=0.8572 offset= 5.0mm tilt= 1.9 | FINGERS n=5 N= 42.9 T= 6.75 T/(muN)=0.70 F_toCentre=  0.13N
+t=6.951 tip_z=0.8454 offset= 6.7mm tilt= 1.9 | FINGERS n=5 N= 42.9 T= 6.74 T/(muN)=0.70 F_toCentre= -0.01N
+t=6.981 tip_z=0.8345 offset= 7.5mm tilt= 1.8 | FINGERS n=5 N= 42.9 T= 6.73 T/(muN)=0.70 F_toCentre= -0.02N
+t=7.011 tip_z=0.8244 offset= 7.5mm tilt= 1.9 | FINGERS n=5 N= 42.9 T= 6.71 T/(muN)=0.69 F_toCentre=  0.07N
+t=7.041 tip_z=0.8142 offset= 6.4mm tilt= 2.1 | RIM n=3 Fz=  9.94N F_toCentre= -0.35N normal_z[1.00,1.00] normal_toCentre[+0.01,+0.02] | FINGERS n=6 N= 43.3 T= 9.73 T/(muN)=1.00 F_toCentre=  0.42N
+t=7.071 tip_z=0.8104 offset= 6.3mm tilt= 3.7 | RIM n=2 Fz= 12.80N F_toCentre=  0.75N normal_z[1.00,1.00] normal_toCentre[+0.06,+0.06] | FINGERS n=6 N= 48.0 T=10.79 T/(muN)=1.00 F_toCentre= -0.69N
+t=7.101 tip_z=0.8095 offset= 6.2mm tilt= 5.7 | RIM n=1 Fz= 12.39N F_toCentre=  0.93N normal_z[0.92,0.92] normal_toCentre[+0.10,+0.10] | FINGERS n=6 N= 47.5 T=10.69 T/(muN)=1.00 F_toCentre= -0.90N
+t=7.131 tip_z=0.8093 offset= 6.1mm tilt= 7.7 | RIM n=2 Fz=  8.37N F_toCentre=  1.16N normal_z[0.85,0.99] normal_toCentre[+0.12,+0.13] | FINGERS n=6 N= 31.4 T= 7.06 T/(muN)=1.00 F_toCentre= -1.25N
+t=7.161 tip_z=0.8094 offset= 6.1mm tilt= 8.8 | RIM n=2 Fz=  0.54N F_toCentre=  0.07N normal_z[0.82,0.99] normal_toCentre[+0.13,+0.15]
+t=7.191 tip_z=0.8094 offset= 6.0mm tilt=10.9 | RIM n=2 Fz=  0.57N F_toCentre=  0.06N normal_z[0.75,0.96] normal_toCentre[+0.14,+0.15]
+t=7.221 tip_z=0.8096 offset= 6.0mm tilt=14.5 | RIM n=3 Fz=  0.55N F_toCentre=  0.09N normal_z[0.65,0.97] normal_toCentre[+0.17,+0.25]
+t=7.251 tip_z=0.8100 offset= 6.0mm tilt=19.8 | RIM n=3 Fz=  0.50N F_toCentre=  0.11N normal_z[0.52,0.94] normal_toCentre[+0.20,+0.33]
+t=7.281 tip_z=0.8108 offset= 6.0mm tilt=27.6 | RIM n=3 Fz=  0.43N F_toCentre=  0.13N normal_z[0.39,0.89] normal_toCentre[+0.21,+0.46]
+t=7.311 tip_z=0.8124 offset= 5.9mm tilt=38.6 | RIM n=3 Fz=  0.53N F_toCentre= -0.04N normal_z[0.27,0.68] normal_toCentre[-0.78,+0.39]
+t=7.341 tip_z=0.8186 offset=11.5mm tilt=55.5 | RIM n=2 Fz=  0.33N F_toCentre= -0.13N normal_z[0.20,0.82] normal_toCentre[-0.57,+0.23]
+t=7.371 tip_z=0.8319 offset=54.7mm tilt=77.9 | RIM n=1 Fz=  0.57N F_toCentre= -0.02N normal_z[0.96,0.96] normal_toCentre[-0.21,-0.21]
+t=7.401 tip_z=0.8579 offset=91.9mm tilt=107.4 | RIM n=1 Fz=  0.33N F_toCentre= -0.02N normal_z[0.95,0.95] normal_toCentre[-0.28,-0.28]
+t=7.431 tip_z=0.8803 offset=62.7mm tilt=138.7
+t=7.461 tip_z=0.8843 offset=66.9mm tilt=157.4
+t=7.491 tip_z=0.8843 offset=77.9mm tilt=169.2
+
+===== sapnew
+repro check t=7.1: |probe-trace| tube com = 0.05 mm
+t=6.801 tip_z=0.8775 offset= 4.2mm tilt= 1.4 | FINGERS n=9 N= 49.9 T= 2.99 T/(muN)=0.27 F_toCentre=  0.08N
+t=6.831 tip_z=0.8748 offset= 3.8mm tilt= 1.5 | FINGERS n=9 N= 49.9 T= 2.88 T/(muN)=0.26 F_toCentre= -0.01N
+t=6.861 tip_z=0.8691 offset= 2.9mm tilt= 1.6 | FINGERS n=9 N= 49.9 T= 2.85 T/(muN)=0.25 F_toCentre= -0.02N
+t=6.891 tip_z=0.8603 offset= 1.7mm tilt= 1.8 | FINGERS n=9 N= 49.9 T= 2.84 T/(muN)=0.25 F_toCentre=  0.01N
+t=6.921 tip_z=0.8488 offset= 1.6mm tilt= 2.0 | FINGERS n=9 N= 49.9 T= 2.77 T/(muN)=0.25 F_toCentre=  0.07N
+t=6.951 tip_z=0.8370 offset= 3.4mm tilt= 1.9 | FINGERS n=9 N= 49.9 T= 2.73 T/(muN)=0.24 F_toCentre= -0.01N
+t=6.981 tip_z=0.8261 offset= 4.5mm tilt= 1.5 | FINGERS n=9 N= 49.9 T= 2.69 T/(muN)=0.24 F_toCentre= -0.02N
+t=7.011 tip_z=0.8160 offset= 4.8mm tilt= 0.9 | RIM n=7 Fz=  4.71N F_toCentre= -0.95N normal_z[0.99,1.00] normal_toCentre[-0.03,-0.00] | FINGERS n=9 N= 50.0 T=11.24 T/(muN)=1.00 F_toCentre=  0.60N
+t=7.041 tip_z=0.8106 offset= 4.8mm tilt= 0.8 | RIM n=3 Fz= 12.44N F_toCentre= -0.03N normal_z[1.00,1.00] normal_toCentre[+0.01,+0.04] | FINGERS n=9 N= 52.7 T=11.86 T/(muN)=1.00 F_toCentre=  0.09N
+t=7.071 tip_z=0.8094 offset= 4.8mm tilt= 2.8 | RIM n=3 Fz= 13.13N F_toCentre= -0.15N normal_z[0.95,1.00] normal_toCentre[+0.05,+0.12] | FINGERS n=9 N= 56.3 T=12.67 T/(muN)=1.00 F_toCentre=  0.14N
+t=7.101 tip_z=0.8090 offset= 4.7mm tilt= 4.4 | RIM n=3 Fz= 12.67N F_toCentre=  0.16N normal_z[0.89,1.00] normal_toCentre[+0.08,+0.17] | FINGERS n=10 N= 54.1 T=12.18 T/(muN)=1.00 F_toCentre= -0.12N
+t=7.131 tip_z=0.8090 offset= 4.5mm tilt= 5.6 | RIM n=2 Fz=  8.64N F_toCentre=  0.50N normal_z[0.85,0.94] normal_toCentre[+0.11,+0.22] | FINGERS n=9 N= 36.2 T= 8.15 T/(muN)=1.00 F_toCentre= -0.58N
+t=7.161 tip_z=0.8090 offset= 4.4mm tilt= 5.9 | RIM n=2 Fz=  0.58N F_toCentre=  0.05N normal_z[0.73,0.84] normal_toCentre[+0.20,+0.25]
+t=7.191 tip_z=0.8090 offset= 4.3mm tilt= 6.9 | RIM n=2 Fz=  0.58N F_toCentre=  0.06N normal_z[0.68,0.80] normal_toCentre[+0.21,+0.29]
+t=7.221 tip_z=0.8090 offset= 4.3mm tilt= 9.0 | RIM n=2 Fz=  0.56N F_toCentre=  0.08N normal_z[0.57,0.72] normal_toCentre[+0.23,+0.34]
+t=7.251 tip_z=0.8089 offset= 3.9mm tilt=12.1 | RIM n=3 Fz=  0.53N F_toCentre=  0.10N normal_z[0.37,0.98] normal_toCentre[+0.21,+0.37]
+t=7.281 tip_z=0.8086 offset= 3.1mm tilt=16.7 | RIM n=3 Fz=  0.49N F_toCentre=  0.12N normal_z[0.09,0.89] normal_toCentre[+0.33,+0.36]
+t=7.311 tip_z=0.8082 offset= 1.9mm tilt=23.9 | RIM n=4 Fz=  0.53N F_toCentre=  0.02N normal_z[0.00,0.65] normal_toCentre[-0.91,+0.55]
+t=7.341 tip_z=0.8103 offset= 2.7mm tilt=34.4 | RIM n=2 Fz=  0.20N F_toCentre= -0.14N normal_z[0.28,0.56] normal_toCentre[-0.82,+0.46]
+t=7.371 tip_z=0.8154 offset= 6.4mm tilt=47.6 | RIM n=4 Fz=  0.26N F_toCentre= -0.12N normal_z[0.33,0.74] normal_toCentre[-0.67,+0.30]
+t=7.401 tip_z=0.8247 offset=22.0mm tilt=66.6 | RIM n=3 Fz=  0.37N F_toCentre= -0.07N normal_z[0.91,0.91] normal_toCentre[-0.40,-0.40]
+t=7.431 tip_z=0.8439 offset=344.7mm tilt=92.9 | RIM n=2 Fz=  0.51N F_toCentre= -0.14N normal_z[1.00,1.00] normal_toCentre[-0.04,-0.04]
+t=7.461 tip_z=0.8713 offset=67.8mm tilt=122.4 | RIM n=1 Fz=  0.12N F_toCentre= -0.04N normal_z[0.78,0.78] normal_toCentre[-0.50,-0.50]
+t=7.491 tip_z=0.8838 offset=60.0mm tilt=149.0

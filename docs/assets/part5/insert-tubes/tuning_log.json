@@ -1,0 +1,484 @@
+{
+ "mujoco_4.0": {
+  "iterations": [
+   {
+    "iter": 1,
+    "params": {},
+    "why": "native defaults",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "never lifted (grasp failed)",
+     "tube1": "tilted >30 deg",
+     "tube2": "tilted >30 deg"
+    },
+    "depth_mm": {
+     "tube0": 75.2,
+     "tube1": 9.5,
+     "tube2": 15.2
+    },
+    "tilt_deg": {
+     "tube0": 93.4,
+     "tube1": 89.6,
+     "tube2": 93.4
+    },
+    "wall_s": 44.9978179782629,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 5.57
+   },
+   {
+    "iter": 2,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 10,
+      "solref": [
+       0.004,
+       1
+      ]
+     }
+    },
+    "why": "it1: grasp slip 20-58 mm / 11-39 deg in hand, tube0 knocked away, peak overlap 5.6 mm -> elliptic cone + impratio 10 (stiffer friction), stiffer solref",
+    "n_inserted": 2,
+    "official_score": 40,
+    "modes": {
+     "tube0": "never lifted (grasp failed)",
+     "tube1": "inserted",
+     "tube2": "inserted"
+    },
+    "depth_mm": {
+     "tube0": 69.1,
+     "tube1": 54.4,
+     "tube2": 54.3
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 1.3,
+     "tube2": 1.0
+    },
+    "wall_s": 33.39115733653307,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.83
+   },
+   {
+    "iter": 3,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 10,
+      "solref": [
+       0.004,
+       1
+      ],
+      "flags": {
+       "multiccd": "enable"
+      }
+     }
+    },
+    "why": "it2: tubes 1,2 inserted; tube0 rolls on the table from t=0.16 s before any gripper contact (single-contact mesh-box support line) -> enable multiccd multi-contact",
+    "n_inserted": 2,
+    "official_score": 40,
+    "modes": {
+     "tube0": "never lifted (grasp failed)",
+     "tube1": "inserted",
+     "tube2": "inserted"
+    },
+    "depth_mm": {
+     "tube0": 69.1,
+     "tube1": 54.4,
+     "tube2": 54.3
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 1.3,
+     "tube2": 1.0
+    },
+    "wall_s": 43.81536342203617,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.83
+   },
+   {
+    "iter": 4,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 10,
+      "solref": [
+       0.004,
+       1
+      ],
+      "noslip_iterations": 10
+     }
+    },
+    "why": "it3 was a no-op (MuJoCo 4.0 has multiccd on by default; result bit-identical to it2). tube0 creeps/rolls on the table before the grasp -> noslip post-solver to remove soft-contact creep",
+    "n_inserted": 1,
+    "official_score": 20,
+    "modes": {
+     "tube0": "never lifted (grasp failed)",
+     "tube1": "inserted",
+     "tube2": "never lifted (grasp failed)"
+    },
+    "depth_mm": {
+     "tube0": 65.1,
+     "tube1": 57.9,
+     "tube2": 109205.7
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 12.7,
+     "tube2": 168.2
+    },
+    "wall_s": 36.09565459936857,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.65
+   },
+   {
+    "iter": 5,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 100,
+      "solref": [
+       0.004,
+       1
+      ]
+     }
+    },
+    "why": "it4 noslip destabilised (tube2 fell through the table; 1/3). Back to best it2 (2/3); tube0 still creeps on the table before the grasp -> stiffer friction constraint impratio 10 -> 100",
+    "n_inserted": 2,
+    "official_score": 40,
+    "modes": {
+     "tube0": "never lifted (grasp failed)",
+     "tube1": "inserted",
+     "tube2": "inserted"
+    },
+    "depth_mm": {
+     "tube0": 70.1,
+     "tube1": 54.4,
+     "tube2": 54.4
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 1.4,
+     "tube2": 1.3
+    },
+    "wall_s": 46.32875046133995,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.76
+   }
+  ],
+  "best_iter": 2,
+  "best_n_inserted": 2,
+  "best_score": 40
+ },
+ "sap_old_fix-gamma_legacy": {
+  "iterations": [
+   {
+    "iter": 1,
+    "params": {},
+    "why": "native defaults",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 70.6,
+     "tube1": 67.3,
+     "tube2": 65.6
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 87.9,
+     "tube2": 87.5
+    },
+    "wall_s": 41.614871345460415,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 7.07
+   },
+   {
+    "iter": 2,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000
+     }
+    },
+    "why": "it1: carry OK but in-hand slip 4-11 mm and peak overlap ~7 mm; tube jams at hole mouth (1 mm clearance) -> raise contact stiffness 40x (native pair ke 1250 N/m)",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 5.1,
+     "tube1": 70.5,
+     "tube2": 70.5
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.5,
+     "tube2": 87.7
+    },
+    "wall_s": 43.470912784338,
+    "drive_gate_pass": false,
+    "peak_overlap_mm": 0.71
+   },
+   {
+    "iter": 3,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "solver_kwargs": {
+       "contact_stiction_tolerance": 0.001
+      }
+     }
+    },
+    "why": "it2: penetration fixed (0.4-0.7 mm) but tubes stop at hole mouth with 4-12 mm lateral offset and do not self-center in the grasp (MuJoCo slid to 1 mm) -> allow more regularized slip: stiction tolerance 1e-4 -> 1e-3 m/s",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 5.1,
+     "tube1": 67.2,
+     "tube2": 69.6
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.9,
+     "tube2": 87.6
+    },
+    "wall_s": 44.07251727581024,
+    "drive_gate_pass": false,
+    "peak_overlap_mm": 0.71
+   },
+   {
+    "iter": 4,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "solver_kwargs": {
+       "contact_stiction_tolerance": 0.01
+      }
+     }
+    },
+    "why": "it3: stiction 1e-3 barely changed anything; still jammed at mouth with 4-12 mm offset -> stronger test of the over-sticky-friction hypothesis: 1e-2 m/s",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 5.1,
+     "tube1": 70.5,
+     "tube2": 68.1
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.5,
+     "tube2": 87.8
+    },
+    "wall_s": 44.32686102390289,
+    "drive_gate_pass": false,
+    "peak_overlap_mm": 0.71
+   },
+   {
+    "iter": 5,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "gap": 0.002
+     }
+    },
+    "why": "it4: stiction tolerance (1e-4..1e-2) has no effect, so friction regularisation is not the jam cause. Native rigid_gap is 0.1 m (~2000 speculative contacts incl. every hole sector) -> gap 2 mm",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "not in rack (dropped/missed)",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 65.6,
+     "tube1": 69.9,
+     "tube2": 70.5
+    },
+    "tilt_deg": {
+     "tube0": 87.4,
+     "tube1": 0.0,
+     "tube2": 87.5
+    },
+    "wall_s": 25.3489463403821,
+    "drive_gate_pass": false,
+    "peak_overlap_mm": 0.73
+   }
+  ],
+  "best_iter": 1,
+  "best_n_inserted": 0,
+  "best_score": 0
+ },
+ "sap_new_2325082_newton": {
+  "iterations": [
+   {
+    "iter": 1,
+    "params": {},
+    "why": "native defaults",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 10.0,
+     "tube1": 64.4,
+     "tube2": 70.6
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.7,
+     "tube2": 87.6
+    },
+    "wall_s": 43.531468100845814,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 6.94
+   },
+   {
+    "iter": 2,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000
+     }
+    },
+    "why": "it1: carry OK but in-hand slip 4-11 mm and peak overlap ~7 mm; tube jams at hole mouth (1 mm clearance) -> raise contact stiffness 40x (native pair ke 1250 N/m)",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 6.0,
+     "tube1": 69.9,
+     "tube2": 69.9
+    },
+    "tilt_deg": {
+     "tube0": 89.5,
+     "tube1": 87.7,
+     "tube2": 87.7
+    },
+    "wall_s": 44.186699107289314,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.4
+   },
+   {
+    "iter": 3,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "solver_kwargs": {
+       "contact_stiction_tolerance": 0.001
+      }
+     }
+    },
+    "why": "it2: penetration fixed (0.4-0.7 mm) but tubes stop at hole mouth with 4-12 mm lateral offset and do not self-center in the grasp (MuJoCo slid to 1 mm) -> allow more regularized slip: stiction tolerance 1e-4 -> 1e-3 m/s",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 5.1,
+     "tube1": 69.6,
+     "tube2": 70.5
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.6,
+     "tube2": 87.5
+    },
+    "wall_s": 44.76484011113644,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.4
+   },
+   {
+    "iter": 4,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "solver_kwargs": {
+       "contact_stiction_tolerance": 0.01
+      }
+     }
+    },
+    "why": "it3: stiction 1e-3 barely changed anything; still jammed at mouth with 4-12 mm offset -> stronger test of the over-sticky-friction hypothesis: 1e-2 m/s",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "tilted >30 deg",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 5.1,
+     "tube1": 69.6,
+     "tube2": 69.9
+    },
+    "tilt_deg": {
+     "tube0": 89.3,
+     "tube1": 87.6,
+     "tube2": 87.7
+    },
+    "wall_s": 45.70805737376213,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.4
+   },
+   {
+    "iter": 5,
+    "params": {
+     "sap_parameters": {
+      "pair_ke": 50000,
+      "gap": 0.002
+     }
+    },
+    "why": "it4: stiction tolerance (1e-4..1e-2) has no effect, so friction regularisation is not the jam cause. Native rigid_gap is 0.1 m (~2000 speculative contacts incl. every hole sector) -> gap 2 mm",
+    "n_inserted": 0,
+    "official_score": 0,
+    "modes": {
+     "tube0": "not in rack (dropped/missed)",
+     "tube1": "not in rack (dropped/missed)",
+     "tube2": "not in rack (dropped/missed)"
+    },
+    "depth_mm": {
+     "tube0": 66.0,
+     "tube1": 69.9,
+     "tube2": 70.5
+    },
+    "tilt_deg": {
+     "tube0": 87.7,
+     "tube1": 87.7,
+     "tube2": 87.5
+    },
+    "wall_s": 24.551449850201607,
+    "drive_gate_pass": true,
+    "peak_overlap_mm": 0.4
+   }
+  ],
+  "best_iter": 1,
+  "best_n_inserted": 0,
+  "best_score": 0
+ }
+}

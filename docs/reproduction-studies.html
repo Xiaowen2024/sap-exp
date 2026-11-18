@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗轨迹回放：官方示范、MuJoCo 与 SAP + Newton Convex 视频对照，实验设计、调试过程和现有评估结果。">
+  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗与插试管轨迹回放：官方示范、MuJoCo 与 SAP 视频对照，实验设计、调试过程、评估结果，以及 SAP 插试管失败的根因分析。">
   <title>Part V · Atomic Capabilities &amp; Composite Tasks</title>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -55,6 +55,9 @@
           <li><a href="#stack-bowls">RoboDojo · 叠碗</a>
             <ol><li><a href="#videos">视频对照</a></li><li><a href="#design">实验设计</a></li><li><a href="#iterations">调试与参数冻结</a></li><li><a href="#results">结果与区分度</a></li><li><a href="#legacy-sap">旧 SAP 也能 work</a></li><li><a href="#sources">来源与数据</a></li></ol>
           </li>
+          <li><a href="#insert-tubes">RoboDojo · 插试管</a>
+            <ol><li><a href="#tubes-videos">视频对照</a></li><li><a href="#tubes-design">实验设计</a></li><li><a href="#tubes-iterations">5 轮迭代调试</a></li><li><a href="#tubes-results">结论</a></li><li><a href="#tubes-why">SAP 为什么失败</a></li><li><a href="#tubes-sources">来源与数据</a></li></ol>
+          </li>
         </ol>
       </nav>
       <div class="sidebar-footer"><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a></div>
@@ -74,13 +77,14 @@
       <header id="top" class="page-header">
         <div class="header-grid">
           <div><p class="eyebrow">Part V · November 2026</p><h1>原子能力与复合任务</h1><p class="lede">从单一接触机制到完整任务轨迹：比较模拟器复现了什么、已有数据能区分什么，以及暂时不能判断的部分。</p></div>
-          <dl class="report-meta"><div><dt>Latest task</dt><dd>RoboDojo · Stack Bowls</dd></div><div><dt>Comparison</dt><dd>MuJoCo 4.0.0 CPU / SAP Internal + Newton Convex</dd></div><div><dt>Evidence</dt><dd>1 episode · 同一初始场景与运动输入</dd></div></dl>
+          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes</dd></div><div><dt>Comparison</dt><dd>MuJoCo 4.0.0 CPU / SAP Internal（legacy 与 Newton Convex）</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
         </div>
       </header>
 
       <section id="summary" class="report-section">
         <h2>本页结论</h2>
-        <div class="callout"><p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p></div>
+        <div class="callout"><p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
+        <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
@@ -99,8 +103,8 @@
           <section id="videos" class="study-subsection">
             <h4>先看原示范与模拟结果</h4>
             <p>三段视频使用相同时间轴，均展示 0–9.56 s 的录制时间范围。模拟画面由已记录的原生物体状态回放生成；只显示分离夹爪和共同碰撞几何，未显示完整机器人手臂，也未复刻纹理。</p>
-            <div class="playback-toolbar"><button id="play-all" type="button">从头同步播放</button><button id="pause-all" type="button">全部暂停</button><span id="playback-status" class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
-            <div class="video-grid">
+            <div class="playback-toolbar" data-group="stack-bowls-videos"><button class="play-all" type="button">从头同步播放</button><button class="pause-all" type="button">全部暂停</button><span class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
+            <div class="video-grid" id="stack-bowls-videos">
               <figure class="video-demo"><video id="reference-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/reference-poster.jpg"><source src="assets/part5/stack-bowls/reference.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/reference.mp4">下载官方示范</a>。</video><figcaption><h4>原始示范 · RoboDojo</h4><p>官方头部相机；三只碗、双臂 ARX X5。</p><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/stack_bowls/arx_x5/preview_video/episode_0000000_cam_head.mp4" target="_blank" rel="noreferrer">官方视频来源 ↗</a></figcaption></figure>
               <figure class="video-demo"><video id="mujoco-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/mujoco-poster.jpg"><source src="assets/part5/stack-bowls/mujoco.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/mujoco.mp4">下载 MuJoCo 视频</a>。</video><figcaption><h4>MuJoCo 4.0.0 · CPU</h4><p>带关节的夹爪 r3；原生求解器记录状态。不是 MuJoCo Warp。</p><a href="assets/part5/stack-bowls/mujoco.mp4" download>下载视频</a></figcaption></figure>
               <figure class="video-demo"><video id="sap-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/sap-newton-poster.jpg"><source src="assets/part5/stack-bowls/sap-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/sap-newton.mp4">下载 SAP 视频</a>。</video><figcaption><h4>SAP Internal + Newton Convex</h4><p><code>2325082</code> · Warp 1.18.0 / CUDA；同一夹爪 r3。</p><a href="assets/part5/stack-bowls/sap-newton.mp4" download>下载视频</a></figcaption></figure>
@@ -180,6 +184,106 @@
             <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>。机器人／夹爪配置参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本页模拟回放及指标由本实验生成。</p>
             <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/stack_bowls/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/stack_bowls.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/stack-bowls/sop.md">评估 SOP（MD）</a><a href="assets/part5/stack-bowls/report.md">详细报告（MD）</a><a href="assets/part5/stack-bowls/metrics.json">完整指标（JSON）</a><a href="assets/part5/stack-bowls/settling.csv">稳定性数据（CSV）</a></div>
             <details><summary>参考视频可观测性检查</summary><p>上层碗和部分搬运过程可见，有估计位置／轴线的潜力；叠放后的下层碗遮挡明显。可见性审查未把遮挡位姿补成可靠参考。</p><figure class="figure-audit"><img src="assets/part5/stack-bowls/reference_multiview_contact_sheet.jpg" alt="官方示范在 0、3、5、7、8.4、9 和 9.56 秒的头部、左腕和右腕三视角，显示搬运和最终叠放时的遮挡情况" loading="lazy"><figcaption>仅使用参考视频的多视角检查；未依据模拟结果拟合参考位姿。</figcaption></figure></details>
+          </section>
+        </article>
+
+        <article id="insert-tubes" class="study-subsection">
+          <h3>2.2 RoboDojo · Insert Tubes 插试管 <span class="study-label">单 episode · 每引擎 5 轮迭代</span></h3>
+          <p>同样来自 <a href="https://github.com/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">RoboDojo 官方项目</a>及其<a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">公开数据集</a>：<code>insert_tubes / arx_x5 / episode_0000000</code>，是官方自动生成的<strong>仿真示范</strong>。任务要求把桌上平躺的三支离心管依次竖直插进架子的孔里：管子要真正进入开口、达到规定深度、保持直立，松手后由架子支撑，不能停在孔口、斜靠或卡住。示范中左臂插第 1、3 支，右臂插第 2 支。</p>
+          <p>选这个任务，是为了检验持续接触下的插入、孔壁摩擦和卡滞。孔的径向间隙只有约 1 mm，而且示范在管尖离孔底约 19 mm 时就松手，管子必须自己沿孔滑到底。SAP 接触稳定，这可能有帮助；但若耗散或摩擦过大，也可能更难插入，所以这是一个有价值的反向检验。</p>
+
+          <section id="tubes-videos" class="study-subsection">
+            <h4>先看原示范与模拟结果</h4>
+            <p>三段视频时间轴相同。官方示范时长 12.76 s。模拟视频 1280×960，相机取官方头部相机位姿，在 12.72 s 的回放后追加 2 s 静置观察，总长 14.72 s。两个引擎各展示 5 轮中最好的一轮。模拟画面是用已记录的状态回放生成的，只显示分离夹爪，未显示机器人手臂和纹理。</p>
+            <div class="playback-toolbar" data-group="tubes-videos-grid"><button class="play-all" type="button">从头同步播放</button><button class="pause-all" type="button">全部暂停</button><span class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
+            <div class="video-grid" id="tubes-videos-grid">
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/insert-tubes/reference-poster.jpg"><source src="assets/part5/insert-tubes/reference.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/insert-tubes/reference.mp4">下载官方示范</a>。</video><figcaption><h4>原始示范 · RoboDojo</h4><p>官方头部相机，640×480（官方原始分辨率）。三支管都插进前排孔中。</p><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/insert_tubes/arx_x5/preview_video/episode_0000000_cam_head.mp4" target="_blank" rel="noreferrer">官方视频来源 ↗</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/insert-tubes/mujoco-poster.jpg"><source src="assets/part5/insert-tubes/mujoco.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/insert-tubes/mujoco.mp4">下载 MuJoCo 视频</a>。</video><figcaption><h4>MuJoCo 4.0.0 · 第 2 轮（最好）</h4><p>第 2、3 支插到底（倾斜约 1°）。第 1 支在夹爪到达前就在桌面上滚走了。</p><a href="assets/part5/insert-tubes/mujoco.mp4" download>下载视频</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/insert-tubes/sap-newton-poster.jpg"><source src="assets/part5/insert-tubes/sap-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/insert-tubes/sap-newton.mp4">下载 SAP 视频</a>。</video><figcaption><h4>SAP + Newton Convex · 第 2 轮</h4><p>三支都能抓起、搬运，但都卡在孔口，松手后倒下。</p><a href="assets/part5/insert-tubes/sap-newton.mp4" download>下载视频</a></figcaption></figure>
+            </div>
+            <figure class="video-demo" style="margin-top:22px"><video controls muted playsinline preload="metadata" poster="assets/part5/insert-tubes/closeup-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/insert-tubes/closeup.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/insert-tubes/closeup.mp4">下载特写视频</a>。</video><figcaption><h4>孔口特写：第 2 支管下降入孔（6.7–7.7 s，4 倍慢放）</h4><p>左：MuJoCo，管子碰到孔沿后在手里横向滑动、对中，然后滑到底。右：SAP，管子停在孔口，松手后倒下。画面中横躺在架子上的是 SAP 里先前倒下的第 1 支。注意：渲染统一使用真实的管子形状，所以 SAP 画面里锥尖看起来"插进"了顶板。这正是问题所在：SAP 内部的管子没有这段锥尖（见下文分析）。</p><a href="assets/part5/insert-tubes/closeup.mp4" download>下载视频</a></figcaption></figure>
+            <details><summary>查看 SAP 旧版（legacy 碰撞路径）第 2 轮视频</summary><figure class="video-demo"><video controls muted playsinline preload="metadata" style="aspect-ratio:4/3;max-width:640px"><source src="assets/part5/insert-tubes/sap-legacy.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/insert-tubes/sap-legacy.mp4">下载视频</a>。</video><figcaption><p>旧版 SAP（<code>sap-fix-gamma</code>，legacy 凸体碰撞）使用相同参数，失败过程与新版一致：三支都卡在孔口后倒下。</p></figcaption></figure></details>
+          </section>
+
+          <section id="tubes-design" class="study-subsection">
+            <h4>实验设计</h4>
+            <ul>
+              <li><strong>输入固定：</strong>319 帧、25 Hz 的双臂末端位姿和夹爪指令（12.72 s），与叠碗任务相同的插值、控制映射和带关节夹爪 r3（官方手指凸包、滑动关节、PD 2300/100、上限 100 N；手臂由分离夹爪基座伺服代替）。积分步长 1 ms，回放后追加 2 s 观察。</li>
+              <li><strong>场景还原：</strong>数据集只有机器人数据，没有物体位姿，所以由我们自己还原：
+                <ul>
+                  <li>架子：三次松手时的夹爪位置正好落在官方架子前排 0/2/4 号孔上（孔距 72 mm），拟合残差 &lt; 0.25 mm。把 x 也放开拟合得到 0.0000，与官方配置 x=0 一致，可作独立检验。</li>
+                  <li>试管：横向位置和朝向来自抓取时的夹爪几何；沿管轴的位置由首帧图像中橙色管盖确定，重投影误差 0.7–2.7 px。三次抓取的接近深度（0.145 m）和"管尖到抓取点"距离（0.071 m）互相吻合。</li>
+                </ul>
+              </li>
+              <li><strong>几何与物性（两个引擎完全相同）：</strong>
+                <ul>
+                  <li>试管：官方碰撞网格切成两块精确凸体，管身半径 14.0–14.6 mm（下端是 15.9 mm 长的锥尖），管盖 17.5 mm，质量 0.06 kg。</li>
+                  <li>架子：静态。顶板厚 4 mm，孔为直孔，半径 15 mm（已核对官方网格，没有倒角）；孔由 16 个凸扇区围成，只会比真实孔略大（≤0.29 mm），不会变小。孔底比顶板上表面低 54 mm。</li>
+                  <li>所有接触统一摩擦系数 <code>μ=0.225</code>，即官方试管 0.45 与架子 0 的 PhysX 平均值。</li>
+                </ul>
+              </li>
+              <li><strong>成功判据：</strong>照搬官方代码。每支管须同时满足：插入深度 &gt; 45 mm（管尖距孔底 ≤ 9 mm），管尖在架子范围内，管轴与竖直方向夹角 &lt; 30°。插进 1/2/3 支分别计 20/40/100 分。</li>
+              <li><strong>引擎：</strong>MuJoCo 4.0.0（CPU）；SAP 旧版（<code>sap-fix-gamma</code>，legacy 凸体碰撞）；SAP 新版（<code>2325082</code>，Newton Convex 碰撞）。Genesis IPC 本次未跑。</li>
+            </ul>
+            <details><summary>场景还原叠加图</summary><figure class="figure-audit"><img src="assets/part5/insert-tubes/reconstruction-overlay.jpg" alt="官方首帧头部相机图像上叠加还原出的三支试管轮廓（绿色）、架子轮廓（青色）和十个孔位（红色）" loading="lazy"><figcaption>还原出的试管（绿）、架子（青）和孔位（红）投影到官方首帧图像上。还原只使用机器人轨迹和首帧图像，没有用任何模拟结果。</figcaption></figure></details>
+          </section>
+
+          <section id="tubes-iterations" class="study-subsection">
+            <h4>5 轮迭代调试</h4>
+            <p>规则：第 1 轮用各引擎原生默认参数；之后每轮只根据上一轮暴露的问题，调整引擎自身的数值参数。几何、质量、摩擦、轨迹、步长始终不变。SAP 新旧两版每轮暴露的问题相同，所以每轮用同一组参数。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>MuJoCo 4.0.0 设置</th><th>插入数</th><th>为什么这样改 / 结果</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认</td><td>0/3</td><td>第 1 支在桌面上滚走；另两支在手里滑移 20–58 mm、转 11–39°，最终倾斜超限。</td></tr>
+              <tr><td>2</td><td>椭圆摩擦锥、<code>impratio=10</code>、<code>solref=(0.004,1)</code></td><td><strong>2/3</strong></td><td>针对抓取打滑和 5.6 mm 穿透。第 2、3 支插到底；第 1 支仍在抓取前滚走。</td></tr>
+              <tr><td>3</td><td>+ <code>multiccd</code></td><td>2/3</td><td>结果与第 2 轮逐位相同：MuJoCo 4.0 默认已开启多点接触，这一轮实际没有改动，照实计入次数。</td></tr>
+              <tr><td>4</td><td>+ <code>noslip_iterations=10</code></td><td>1/3</td><td>想抑制管子在桌面上的蠕动，反而变差：第 3 支穿过桌面掉落。</td></tr>
+              <tr><td>5</td><td>回到第 2 轮，<code>impratio=100</code></td><td>2/3</td><td>与第 2 轮相同。</td></tr>
+            </tbody></table></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>SAP 设置（新旧两版相同）</th><th>旧版</th><th>新版</th><th>为什么这样改 / 结果</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认（pair <code>ke=1250 N/m</code>）</td><td>0/3</td><td>0/3</td><td>能抓起、搬运，但手指压进管子约 7 mm；三支都卡在孔口，松手后倒下。</td></tr>
+              <tr><td>2</td><td>pair <code>ke=5e4 N/m</code></td><td>0/3</td><td>0/3</td><td>穿透降到 0.4–0.7 mm，仍卡在孔口：偏心停在 4–12 mm，管子没有对中。</td></tr>
+              <tr><td>3</td><td>+ 静摩擦容差 <code>1e-3 m/s</code></td><td>0/3</td><td>0/3</td><td>检验"摩擦太黏、管子在手里滑不开"的假设，几乎没有变化。</td></tr>
+              <tr><td>4</td><td>静摩擦容差 <code>1e-2 m/s</code></td><td>0/3</td><td>0/3</td><td>放大到默认值的 100 倍仍不变，排除了摩擦正则化的原因。</td></tr>
+              <tr><td>5</td><td>pair <code>ke=5e4</code>，接触检测距离 0.1 m → 2 mm</td><td>0/3</td><td>0/3</td><td>旧版有一支通过了孔口，但随后穿透底板和桌面（漏碰撞），不算成功；新版仍卡在孔口。</td></tr>
+            </tbody></table></div>
+            <p class="scope-line">参数是在同一条回放上调出来的，结果代表"调参后能达到的最好表现"，不代表泛化能力。我们自己的一个建模错误（试管凸块切分阈值写错）已在第 1 轮之前修正，那次无效运行不计入 5 轮。</p>
+          </section>
+
+          <section id="tubes-results" class="study-subsection">
+            <h4>结论</h4>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>引擎</th><th>5 轮中最好的结果</th><th>主要问题</th></tr></thead><tbody>
+              <tr><td>MuJoCo 4.0.0</td><td><strong>2/3，官方 40 分</strong>（第 2 轮）</td><td>平躺的管子在软接触下会在桌面上缓慢滚动；第 1 支在夹爪到达前已滚走。单独测试中，只放桌面和一支管时同样会滚，说明与该管的初始位姿无关。</td></tr>
+              <tr><td>SAP 旧版</td><td>0/3</td><td rowspan="2">卡在孔口后倒下。根因在加载网格这一步：SAP 截断凸包，丢掉了试管的锥形尖端（见下文）。</td></tr>
+              <tr><td>SAP 新版（Newton Convex）</td><td>0/3</td></tr>
+            </tbody></table></div>
+            <p>其他细粒度指标（轨迹误差、静置速度、穿透等）这里不再列出：SAP 没有一支插入成功，这些指标没有比较价值。</p>
+          </section>
+
+          <section id="tubes-why" class="study-subsection">
+            <h4>SAP 为什么失败：锥尖在加载时被截掉了</h4>
+            <div class="study-note"><p><strong>一句话：</strong>SAP 加载凸网格时，若一块超过 64 个顶点，就会提前终止凸包计算，得到一个不完整的形状。试管下端 15.9 mm 的锥尖因此整段消失，管子在 SAP 里变成平底圆柱。平底圆柱一旦偏离孔心超过约 1 mm，底边就落在顶板上，只能被竖直托住，没有任何力把它推向孔心，于是卡在孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p></div>
+            <figure class="figure-audit"><img src="assets/part5/insert-tubes/sap-hull-truncation.png" alt="三栏示意图。(a) 试管管身凸块的侧面轮廓：蓝色实线是实际形状，带 15.9 mm 锥尖；橙色虚线是 SAP 截断后的形状，底部是平的。(b) 真实几何：管轴偏离孔心 6 mm，锥面压在孔沿上，接触力沿锥面法向，有指向孔心的分量。(c) SAP：平底落在顶板上，接触力竖直向上，没有对中分量。" loading="lazy"><figcaption>(a) 管身凸块：实际形状（蓝）与 SAP 截断后的形状（橙）。(b) 真实几何下，锥面压在孔沿，推力有指向孔心的分量。(c) SAP 中，平底落在顶板上，推力竖直向上。</figcaption></figure>
+            <p>这个结论是一步步验证出来的，每一步都排除了一部分可能：</p>
+            <ol class="process-list">
+              <li><strong>先排除"摩擦或耗散太大"。</strong>5 轮迭代中，提高刚度把穿透降到 0.5 mm 以下，把静摩擦容差放大 100 倍，都没有改变结果。在卡住的那 0.7 s 内逐个记录接触力，发现两个引擎的手指摩擦都已经用到上限（切向力 / μ·法向力 = 1.00），管子在两个引擎的手里都在滑。所以差别不在摩擦大小。</li>
+              <li><strong>差别在孔沿推力的方向。</strong>管尖碰到孔沿时，三个引擎里的管子都偏离孔心约 5–9 mm，起点相近。
+                <ul>
+                  <li>MuJoCo：孔沿接触法向沿锥面倾斜（竖直分量 0.53，指向孔心分量 0.85），给出 2.3 N 指向孔心的力。管子在手里横向滑动，30 ms 内从偏 8.6 mm 对中到 0.6 mm，然后滑到底。</li>
+                  <li>SAP 旧版、新版：法向几乎竖直（竖直分量 0.99–1.00，指向孔心分量 ≤ 0.06）。孔沿只把管子往上顶（10–13 N），横向力约为 0；管子在手里向上滑，横向不动，偏心一直停在 4–6 mm。</li>
+                </ul>
+              </li>
+              <li><strong>单独测碰撞检测，SAP 看不到锥面。</strong>只做碰撞检测、不做动力学，把管子摆成偏心 6 mm、锥面刚碰孔沿的姿态，逐步下压。MuJoCo 报告锥面与孔沿接触，法向倾斜，与解析值（竖直分量 0.66、指向孔心 0.75）接近。SAP 新旧两版完全看不到这个接触，只报告"管底在顶板上方 5.7 mm"，法向竖直。</li>
+              <li><strong>立在空桌面上，SAP 的距离多出整整一段锥尖。</strong>把管子竖直立在桌面上方，管尖离桌面 10 mm 到 −1 mm。MuJoCo 从管尖算距离；SAP 在每个高度上都多出 <strong>15.88 mm</strong>，正好是锥尖的长度。说明 SAP 里的管子没有锥尖。</li>
+              <li><strong>定位到代码。</strong>SAP 加载内联凸网格时（<code>sap_warp/loader/scene.py</code>），若一块超过 <code>MAX_HULL_VERTICES = 64</code> 个顶点，就调用 qhull、选项为 <code>Qt TA60</code>，意思是"加入 60 个顶点后停止"。得到的是一个没有算完的凸包，不是均匀简化后的形状。我们的管身凸块有 218 个顶点；用同样的选项复算，凸包最低点在真实管尖上方 15.88 mm，与第 4 步的测量完全一致。新旧两版都是这段代码，所以表现相同。MuJoCo 默认不限制凸包顶点数，保留了完整形状。</li>
+            </ol>
+            <p><strong>这样整个失败过程就能完整解释：</strong>在 SAP 里，一个半径 14 mm 的平底圆柱对着半径 15 mm 的孔下降，偏心稍大，底边就压在顶板上。接触只能是竖直的面对面接触，没有锥面把它导向孔心。竖直推力超过手指摩擦上限后，管子在手里往上滑，横向不动。松手时它偏心地立在孔沿上，随即倒下。调刚度、调摩擦都改变不了几何形状，所以 5 轮迭代都无效。</p>
+            <p><strong>与原子能力实验的关系：</strong>这和 Part I round socket 中"孔口支撑"的问题属于同一类：都是 SAP 碰撞层在锐利孔沿附近给出了错误的几何，而 SAP 求解器本身工作正常。那次是接触点去重容差过大、MPR 距离偏差，漏掉了孔口的关键接触点，导致本应站住的圆柱翻倒；Newton Convex 碰撞路径修复了其中一部分。这次的问题更早一步，出在加载网格时，新路径也没有修复。共同点是：<strong>在间隙小、依赖细节几何引导的接触中，SAP 会悄悄丢失关键几何，而且不报错、不警告。</strong></p>
+            <p class="scope-line">结论的性质：两个引擎读入的是同一份网格文件，截断发生在 SAP 内部，属于引擎的默认行为，不是我们的实现错误；按约定不修改引擎，照实报告。若要做"形状一致"的补充对照，只需预先把凸块切成每块不超过 64 个顶点，不用改 SAP 代码。其他 SAP 实验中凡是超过 64 个顶点的凸块，都可能存在同样的问题，值得逐一核查。</p>
+          </section>
+
+          <section id="tubes-sources" class="study-subsection">
+            <h4>来源、数据与文件</h4>
+            <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>；任务定义与成功判据参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>（<code>insert_tubes.py</code>、<code>func_parser.py</code>）。试管资产 <code>Rigid/test_tube/00002</code>，架子资产 <code>Geometry/test_tube_slot/00000</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本节的模拟回放、视频和分析由本实验生成。</p>
+            <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/insert_tubes/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/insert_tubes.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/insert-tubes/report.md">详细报告（MD）</a><a href="assets/part5/insert-tubes/tuning_log.json">5 轮迭代记录（JSON）</a><a href="assets/part5/insert-tubes/contact-probe-analysis.txt">孔口接触记录（TXT）</a></div>
           </section>
         </article>
       </section>
