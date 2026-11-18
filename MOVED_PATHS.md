@@ -1,12 +1,12 @@
 # Moved paths
 
-On 2026-11-18 `scripts/`, `sim_protocol/` and `assets/` were reorganized: task code and
-SOPs now live under [`tasks/`](tasks/README.md) in four categories (simulation only ·
-atomic, simulation only · composite, real data · simple, robot playback), family
-protocols under `protocol/families/`, and manifests under `protocol/manifests/`. This
-table maps each old path to its new one, for result files, reports and manifests that
-still name the old location. Scripts of tasks outside the current task set are not
-listed; they are not in this repository yet.
+On 2026-11-18 `scripts/`, `sim_protocol/` and `assets/` were reorganized by task:
+each task folder under [`tasks/`](tasks/README.md) holds its SOP, manifests and per-engine
+runners; code shared by several tasks is in `common/`; cross-task reruns are in `tools/`;
+family protocols, Genesis runner SOPs and rerun registries are in `protocol/`. This table
+maps each old path to its new one, for result files, reports and manifests that still name
+the old location. Scripts of tasks outside the current task set are not listed; they are
+not in this repository yet.
 
 Whole folders that moved unchanged:
 
@@ -15,7 +15,6 @@ Whole folders that moved unchanged:
 | `scripts/real_playback/` | `tasks/robot-playback/rh20t-dish-on-rack/real_playback/` |
 | `scripts/robodojo_playback/` | `tasks/robot-playback/robodojo/robodojo_playback/` |
 | `assets/round_socket_exact/` | `tasks/simulation-only-composite/round-socket/assets/round_socket_exact/` |
-| `sim_protocol/manifests/` | `protocol/manifests/` |
 
 ## `scripts/`
 
@@ -30,38 +29,38 @@ Whole folders that moved unchanged:
 | `scripts/debug_cube_warp_force.py` | `tasks/real-data-simple/cube-toss/mjwarp/debug_cube_warp_force.py` |
 | `scripts/finish_math_and_setup.py` | `tools/finish_math_and_setup.py` |
 | `scripts/fix_contactnets_angular_velocity.py` | `tasks/real-data-simple/cube-toss/prep/fix_contactnets_angular_velocity.py` |
-| `scripts/genesis/compare_genesis_ipc.py` | `engines/genesis/compare_genesis_ipc.py` |
-| `scripts/genesis/compare_genesis_rigid.py` | `engines/genesis/compare_genesis_rigid.py` |
-| `scripts/genesis/compare_genesis_sap.py` | `engines/genesis/compare_genesis_sap.py` |
-| `scripts/genesis/compare_genesis_sap_selection.py` | `engines/genesis/compare_genesis_sap_selection.py` |
-| `scripts/genesis/environment_probe.py` | `engines/genesis/environment_probe.py` |
-| `scripts/genesis/genesis_ipc_batch_probe.py` | `engines/genesis/genesis_ipc_batch_probe.py` |
-| `scripts/genesis/genesis_ipc_cforce_creep_tol.py` | `engines/genesis/genesis_ipc_cforce_creep_tol.py` |
-| `scripts/genesis/genesis_ipc_cforce_probe.py` | `engines/genesis/genesis_ipc_cforce_probe.py` |
-| `scripts/genesis/genesis_ipc_cforce_smoke.py` | `engines/genesis/genesis_ipc_cforce_smoke.py` |
-| `scripts/genesis/genesis_ipc_common.py` | `engines/genesis/genesis_ipc_common.py` |
-| `scripts/genesis/genesis_ipc_preflight.py` | `engines/genesis/genesis_ipc_preflight.py` |
-| `scripts/genesis/genesis_rigid_common.py` | `engines/genesis/genesis_rigid_common.py` |
-| `scripts/genesis/genesis_rigid_preflight.py` | `engines/genesis/genesis_rigid_preflight.py` |
-| `scripts/genesis/genesis_sap_buffer_probe.py` | `engines/genesis/genesis_sap_buffer_probe.py` |
-| `scripts/genesis/genesis_sap_buffers.py` | `engines/genesis/genesis_sap_buffers.py` |
-| `scripts/genesis/genesis_sap_common.py` | `engines/genesis/genesis_sap_common.py` |
-| `scripts/genesis/genesis_sap_preflight.py` | `engines/genesis/genesis_sap_preflight.py` |
-| `scripts/genesis/genesis_sap_reverse_worker.py` | `engines/genesis/genesis_sap_reverse_worker.py` |
-| `scripts/genesis/genesis_sap_selection_only.py` | `engines/genesis/genesis_sap_selection_only.py` |
-| `scripts/genesis/manage_genesis_sap.py` | `engines/genesis/manage_genesis_sap.py` |
+| `scripts/genesis/compare_genesis_ipc.py` | `tools/genesis/compare_genesis_ipc.py` |
+| `scripts/genesis/compare_genesis_rigid.py` | `tools/genesis/compare_genesis_rigid.py` |
+| `scripts/genesis/compare_genesis_sap.py` | `tools/genesis/compare_genesis_sap.py` |
+| `scripts/genesis/compare_genesis_sap_selection.py` | `tools/genesis/compare_genesis_sap_selection.py` |
+| `scripts/genesis/environment_probe.py` | `tools/genesis/environment_probe.py` |
+| `scripts/genesis/genesis_ipc_batch_probe.py` | `tools/genesis/genesis_ipc_batch_probe.py` |
+| `scripts/genesis/genesis_ipc_cforce_creep_tol.py` | `tools/genesis/genesis_ipc_cforce_creep_tol.py` |
+| `scripts/genesis/genesis_ipc_cforce_probe.py` | `tools/genesis/genesis_ipc_cforce_probe.py` |
+| `scripts/genesis/genesis_ipc_cforce_smoke.py` | `tools/genesis/genesis_ipc_cforce_smoke.py` |
+| `scripts/genesis/genesis_ipc_common.py` | `common/genesis_ipc_common.py` |
+| `scripts/genesis/genesis_ipc_preflight.py` | `tools/genesis/genesis_ipc_preflight.py` |
+| `scripts/genesis/genesis_rigid_common.py` | `common/genesis_rigid_common.py` |
+| `scripts/genesis/genesis_rigid_preflight.py` | `tools/genesis/genesis_rigid_preflight.py` |
+| `scripts/genesis/genesis_sap_buffer_probe.py` | `tools/genesis/genesis_sap_buffer_probe.py` |
+| `scripts/genesis/genesis_sap_buffers.py` | `common/genesis_sap_buffers.py` |
+| `scripts/genesis/genesis_sap_common.py` | `common/genesis_sap_common.py` |
+| `scripts/genesis/genesis_sap_preflight.py` | `tools/genesis/genesis_sap_preflight.py` |
+| `scripts/genesis/genesis_sap_reverse_worker.py` | `tools/genesis/genesis_sap_reverse_worker.py` |
+| `scripts/genesis/genesis_sap_selection_only.py` | `tools/genesis/genesis_sap_selection_only.py` |
+| `scripts/genesis/manage_genesis_sap.py` | `tools/genesis/manage_genesis_sap.py` |
 | `scripts/genesis/rerun_socket_v8_crashed.sh` | `tasks/simulation-only-composite/round-socket/genesis/rerun_socket_v8_crashed.sh` |
 | `scripts/genesis/run_gauge_pendulum_real_genesis_rigid.py` | `tasks/real-data-simple/gauge-pendulum/genesis/run_gauge_pendulum_real_genesis_rigid.py` |
-| `scripts/genesis/run_genesis_ipc_queue.sh` | `engines/genesis/run_genesis_ipc_queue.sh` |
-| `scripts/genesis/run_genesis_ipc_queue2.sh` | `engines/genesis/run_genesis_ipc_queue2.sh` |
-| `scripts/genesis/run_genesis_ipc_queue3.sh` | `engines/genesis/run_genesis_ipc_queue3.sh` |
-| `scripts/genesis/run_genesis_ipc_queue4.sh` | `engines/genesis/run_genesis_ipc_queue4.sh` |
-| `scripts/genesis/run_genesis_ipc_queue_a3.sh` | `engines/genesis/run_genesis_ipc_queue_a3.sh` |
-| `scripts/genesis/run_genesis_rigid_queue.sh` | `engines/genesis/run_genesis_rigid_queue.sh` |
-| `scripts/genesis/run_genesis_sap_queue.sh` | `engines/genesis/run_genesis_sap_queue.sh` |
-| `scripts/genesis/run_impact_genesis_ipc.py` | `tasks/real-data-simple/shared/genesis/run_impact_genesis_ipc.py` |
-| `scripts/genesis/run_impact_genesis_rigid.py` | `tasks/real-data-simple/shared/genesis/run_impact_genesis_rigid.py` |
-| `scripts/genesis/run_impact_genesis_sap.py` | `tasks/real-data-simple/shared/genesis/run_impact_genesis_sap.py` |
+| `scripts/genesis/run_genesis_ipc_queue.sh` | `tools/genesis/run_genesis_ipc_queue.sh` |
+| `scripts/genesis/run_genesis_ipc_queue2.sh` | `tools/genesis/run_genesis_ipc_queue2.sh` |
+| `scripts/genesis/run_genesis_ipc_queue3.sh` | `tools/genesis/run_genesis_ipc_queue3.sh` |
+| `scripts/genesis/run_genesis_ipc_queue4.sh` | `tools/genesis/run_genesis_ipc_queue4.sh` |
+| `scripts/genesis/run_genesis_ipc_queue_a3.sh` | `tools/genesis/run_genesis_ipc_queue_a3.sh` |
+| `scripts/genesis/run_genesis_rigid_queue.sh` | `tools/genesis/run_genesis_rigid_queue.sh` |
+| `scripts/genesis/run_genesis_sap_queue.sh` | `tools/genesis/run_genesis_sap_queue.sh` |
+| `scripts/genesis/run_impact_genesis_ipc.py` | `common/run_impact_genesis_ipc.py` |
+| `scripts/genesis/run_impact_genesis_rigid.py` | `common/run_impact_genesis_rigid.py` |
+| `scripts/genesis/run_impact_genesis_sap.py` | `common/run_impact_genesis_sap.py` |
 | `scripts/genesis/run_mitpush_genesis_ipc.py` | `tasks/real-data-simple/mit-push/genesis/run_mitpush_genesis_ipc.py` |
 | `scripts/genesis/run_mitpush_genesis_rigid.py` | `tasks/real-data-simple/mit-push/genesis/run_mitpush_genesis_rigid.py` |
 | `scripts/genesis/run_mitpush_genesis_sap.py` | `tasks/real-data-simple/mit-push/genesis/run_mitpush_genesis_sap.py` |
@@ -85,7 +84,7 @@ Whole folders that moved unchanged:
 | `scripts/genesis/run_threeplate_genesis_rigid.py` | `tasks/simulation-only-atomic/three-plate-stack/genesis/run_threeplate_genesis_rigid.py` |
 | `scripts/genesis/run_threeplate_genesis_sap.py` | `tasks/simulation-only-atomic/three-plate-stack/genesis/run_threeplate_genesis_sap.py` |
 | `scripts/genesis/run_threeplate_ipc_parallel.sh` | `tasks/simulation-only-atomic/three-plate-stack/genesis/run_threeplate_ipc_parallel.sh` |
-| `scripts/genesis/tunnel_probe.py` | `engines/genesis/tunnel_probe.py` |
+| `scripts/genesis/tunnel_probe.py` | `tools/genesis/tunnel_probe.py` |
 | `scripts/maintenance/clean_sim_intermediates.py` | `tools/maintenance/clean_sim_intermediates.py` |
 | `scripts/prepare_contactnets_cube_toss.py` | `tasks/real-data-simple/cube-toss/prep/prepare_contactnets_cube_toss.py` |
 | `scripts/protocol_v2/build_round_socket_v8_manifest.py` | `tasks/simulation-only-composite/round-socket/prep/build_round_socket_v8_manifest.py` |
@@ -93,10 +92,10 @@ Whole folders that moved unchanged:
 | `scripts/protocol_v2/diag_socket_rim_contacts_mjwarp.py` | `tasks/simulation-only-composite/round-socket/analysis/diag_socket_rim_contacts_mjwarp.py` |
 | `scripts/protocol_v2/gauge_pendulum_v3_common.py` | `tasks/real-data-simple/gauge-pendulum/gauge_pendulum_v3_common.py` |
 | `scripts/protocol_v2/generate_protocol_v2_reports.py` | `tools/generate_protocol_v2_reports.py` |
-| `scripts/protocol_v2/impact_v2_common.py` | `tasks/real-data-simple/shared/impact_v2_common.py` |
+| `scripts/protocol_v2/impact_v2_common.py` | `common/impact_v2_common.py` |
 | `scripts/protocol_v2/metrics_common.py` | `common/metrics_common.py` |
 | `scripts/protocol_v2/mitpush_v3_common.py` | `tasks/real-data-simple/mit-push/mitpush_v3_common.py` |
-| `scripts/protocol_v2/mujoco_capacity_audit.py` | `engines/mujoco/mujoco_capacity_audit.py` |
+| `scripts/protocol_v2/mujoco_capacity_audit.py` | `common/mujoco_capacity_audit.py` |
 | `scripts/protocol_v2/native_defaults.py` | `common/native_defaults.py` |
 | `scripts/protocol_v2/peg_hole_statics.py` | `tasks/simulation-only-composite/round-socket/peg_hole_statics.py` |
 | `scripts/protocol_v2/pendulum_v2_common.py` | `tasks/simulation-only-atomic/pendulum-ideal/pendulum_v2_common.py` |
@@ -109,16 +108,16 @@ Whole folders that moved unchanged:
 | `scripts/protocol_v2/render_socket_rim_support.py` | `tasks/simulation-only-composite/round-socket/analysis/render_socket_rim_support.py` |
 | `scripts/protocol_v2/replay_threebox_v4_capacity.py` | `tasks/simulation-only-atomic/three-box-push/mujoco/replay_threebox_v4_capacity.py` |
 | `scripts/protocol_v2/run_box_capacity_audit_20261109.sh` | `tasks/simulation-only-atomic/three-box-push/run_box_capacity_audit_20261109.sh` |
-| `scripts/protocol_v2/run_dynamic_friction_v2.py` | `tasks/real-data-simple/shared/run_dynamic_friction_v2.py` |
+| `scripts/protocol_v2/run_dynamic_friction_v2.py` | `common/run_dynamic_friction_v2.py` |
 | `scripts/protocol_v2/run_energy_cpu_b1_b5.py` | `tasks/simulation-only-atomic/pendulum-ideal/mujoco/run_energy_cpu_b1_b5.py` |
 | `scripts/protocol_v2/run_energy_pendulum_mjwarp.py` | `tasks/simulation-only-atomic/pendulum-ideal/mjwarp/run_energy_pendulum_mjwarp.py` |
 | `scripts/protocol_v2/run_friction_audit_20261109.sh` | `tasks/simulation-only-atomic/three-plate-stack/run_friction_audit_20261109.sh` |
 | `scripts/protocol_v2/run_gauge_pendulum_v3_mjwarp.py` | `tasks/real-data-simple/gauge-pendulum/mjwarp/run_gauge_pendulum_v3_mjwarp.py` |
 | `scripts/protocol_v2/run_gauge_real_oscillations_mjwarp.py` | `tasks/real-data-simple/gauge-pendulum/mjwarp/run_gauge_real_oscillations_mjwarp.py` |
 | `scripts/protocol_v2/run_gauge_real_versions.sh` | `tasks/real-data-simple/gauge-pendulum/run_gauge_real_versions.sh` |
-| `scripts/protocol_v2/run_impact_v2_mjwarp.py` | `tasks/real-data-simple/shared/mjwarp/run_impact_v2_mjwarp.py` |
+| `scripts/protocol_v2/run_impact_v2_mjwarp.py` | `common/run_impact_v2_mjwarp.py` |
 | `scripts/protocol_v2/run_mitpush_v3_mjwarp.py` | `tasks/real-data-simple/mit-push/mjwarp/run_mitpush_v3_mjwarp.py` |
-| `scripts/protocol_v2/run_mujoco4_rerun.py` | `engines/mujoco/run_mujoco4_rerun.py` |
+| `scripts/protocol_v2/run_mujoco4_rerun.py` | `tools/run_mujoco4_rerun.py` |
 | `scripts/protocol_v2/run_pendulum_v2_mjwarp.py` | `tasks/simulation-only-atomic/pendulum-ideal/mjwarp/run_pendulum_v2_mjwarp.py` |
 | `scripts/protocol_v2/run_pinch_v3_mjwarp.py` | `tasks/simulation-only-atomic/simple-pinch/mjwarp/run_pinch_v3_mjwarp.py` |
 | `scripts/protocol_v2/run_round_socket_b1_b5_mjwarp.py` | `tasks/simulation-only-composite/round-socket/mjwarp/run_round_socket_b1_b5_mjwarp.py` |
@@ -129,14 +128,14 @@ Whole folders that moved unchanged:
 | `scripts/protocol_v2/run_round_socket_sap_internal_aligned.py` | `tasks/simulation-only-composite/round-socket/sap/run_round_socket_sap_internal_aligned.py` |
 | `scripts/protocol_v2/run_round_socket_sap_public_selection.py` | `tasks/simulation-only-composite/round-socket/sap/run_round_socket_sap_public_selection.py` |
 | `scripts/protocol_v2/run_round_socket_sap_strict.py` | `tasks/simulation-only-composite/round-socket/sap/run_round_socket_sap_strict.py` |
-| `scripts/protocol_v2/run_sap_frozen_b5.py` | `engines/sap/run_sap_frozen_b5.py` |
+| `scripts/protocol_v2/run_sap_frozen_b5.py` | `tools/run_sap_frozen_b5.py` |
 | `scripts/protocol_v2/run_simple_pinch_mjwarp_force_matched.py` | `tasks/simulation-only-atomic/simple-pinch/mjwarp/run_simple_pinch_mjwarp_force_matched.py` |
 | `scripts/protocol_v2/run_simple_pinch_sap_aligned.py` | `tasks/simulation-only-atomic/simple-pinch/sap/run_simple_pinch_sap_aligned.py` |
 | `scripts/protocol_v2/run_simple_pinch_sap_force_matched.py` | `tasks/simulation-only-atomic/simple-pinch/sap/run_simple_pinch_sap_force_matched.py` |
 | `scripts/protocol_v2/run_slope_v3_mjwarp.py` | `tasks/real-data-simple/slope-slider/mjwarp/run_slope_v3_mjwarp.py` |
 | `scripts/protocol_v2/run_socket_v4_mjwarp.py` | `tasks/simulation-only-composite/round-socket/mjwarp/run_socket_v4_mjwarp.py` |
 | `scripts/protocol_v2/run_socket_v8_mjwarp.py` | `tasks/simulation-only-composite/round-socket/mjwarp/run_socket_v8_mjwarp.py` |
-| `scripts/protocol_v2/run_static_friction_v2.py` | `tasks/simulation-only-atomic/shared/run_static_friction_v2.py` |
+| `scripts/protocol_v2/run_static_friction_v2.py` | `common/run_static_friction_v2.py` |
 | `scripts/protocol_v2/run_sustained_contact_v1.py` | `tasks/simulation-only-atomic/three-plate-stack/run_sustained_contact_v1.py` |
 | `scripts/protocol_v2/run_tail_v2_mjwarp.py` | `tasks/real-data-simple/cube-toss-tail/mjwarp/run_tail_v2_mjwarp.py` |
 | `scripts/protocol_v2/run_threebox_mjwarp_frozen_generalization.py` | `tasks/simulation-only-atomic/three-box-push/mjwarp/run_threebox_mjwarp_frozen_generalization.py` |
@@ -157,7 +156,7 @@ Whole folders that moved unchanged:
 | `scripts/protocol_v2/strict_v3_common.py` | `common/strict_v3_common.py` |
 | `scripts/protocol_v2/tail_v2_common.py` | `tasks/real-data-simple/cube-toss-tail/tail_v2_common.py` |
 | `scripts/protocol_v2/test_box_v4_validity.py` | `tasks/simulation-only-atomic/three-box-push/mujoco/test_box_v4_validity.py` |
-| `scripts/protocol_v2/test_mujoco_capacity_audit.py` | `engines/mujoco/test_mujoco_capacity_audit.py` |
+| `scripts/protocol_v2/test_mujoco_capacity_audit.py` | `common/test_mujoco_capacity_audit.py` |
 | `scripts/protocol_v2/validate_contact_correction.py` | `tools/validate_contact_correction.py` |
 | `scripts/protocol_v2/validate_generalizability_manifest.py` | `tools/validate_generalizability_manifest.py` |
 | `scripts/protocol_v2/verify_result_artifacts.py` | `tools/verify_result_artifacts.py` |
@@ -183,8 +182,8 @@ Whole folders that moved unchanged:
 | `scripts/run_dynamic_impact_ball_budget_mjwarp.py` | `tasks/real-data-simple/ball-bounce/mjwarp/run_dynamic_impact_ball_budget_mjwarp.py` |
 | `scripts/run_dynamic_impact_cube_budget.py` | `tasks/real-data-simple/cube-toss/mujoco/run_dynamic_impact_cube_budget.py` |
 | `scripts/run_dynamic_impact_cube_budget_mjwarp.py` | `tasks/real-data-simple/cube-toss/mjwarp/run_dynamic_impact_cube_budget_mjwarp.py` |
-| `scripts/run_impact_b5_r20_selection.py` | `tasks/real-data-simple/shared/mujoco/run_impact_b5_r20_selection.py` |
-| `scripts/run_impact_b5_r20_selection_mjwarp.py` | `tasks/real-data-simple/shared/mjwarp/run_impact_b5_r20_selection_mjwarp.py` |
+| `scripts/run_impact_b5_r20_selection.py` | `common/run_impact_b5_r20_selection.py` |
+| `scripts/run_impact_b5_r20_selection_mjwarp.py` | `common/run_impact_b5_r20_selection_mjwarp.py` |
 | `scripts/run_round_socket_mujoco_equal_budget.py` | `tasks/simulation-only-composite/round-socket/mujoco/run_round_socket_mujoco_equal_budget.py` |
 | `scripts/summarize_frictional_stack_force_holds_native.py` | `tasks/simulation-only-atomic/three-box-push/analysis/summarize_frictional_stack_force_holds_native.py` |
 | `scripts/summarize_frictional_stack_force_holds_v3.py` | `tasks/simulation-only-atomic/three-box-push/analysis/summarize_frictional_stack_force_holds_v3.py` |
@@ -211,11 +210,48 @@ Whole folders that moved unchanged:
 | `sim_protocol/energy-conservation-v1/README.md` | `protocol/families/energy-conservation.md` |
 | `sim_protocol/energy-conservation-v1/task-metrics/pendulum.md` | `tasks/simulation-only-atomic/pendulum-ideal/SOP.md` |
 | `sim_protocol/generalizability_rerun_register.md` | `protocol/generalizability_rerun_register.md` |
-| `sim_protocol/genesis_ipc_runner_sop.md` | `engines/genesis/sop/genesis_ipc_runner_sop.md` |
-| `sim_protocol/genesis_ipc_setup.md` | `engines/genesis/sop/genesis_ipc_setup.md` |
-| `sim_protocol/genesis_ipc_task_setup.json` | `engines/genesis/sop/genesis_ipc_task_setup.json` |
-| `sim_protocol/genesis_rigid_runner_sop.md` | `engines/genesis/sop/genesis_rigid_runner_sop.md` |
-| `sim_protocol/genesis_sap_runner_sop.md` | `engines/genesis/sop/genesis_sap_runner_sop.md` |
+| `sim_protocol/genesis_ipc_runner_sop.md` | `protocol/runner-sops/genesis_ipc_runner_sop.md` |
+| `sim_protocol/genesis_ipc_setup.md` | `protocol/runner-sops/genesis_ipc_setup.md` |
+| `sim_protocol/genesis_ipc_task_setup.json` | `protocol/runner-sops/genesis_ipc_task_setup.json` |
+| `sim_protocol/genesis_rigid_runner_sop.md` | `protocol/runner-sops/genesis_rigid_runner_sop.md` |
+| `sim_protocol/genesis_sap_runner_sop.md` | `protocol/runner-sops/genesis_sap_runner_sop.md` |
+| `sim_protocol/manifests/contactnets_cube_tail_sustained_v2.json` | `tasks/real-data-simple/cube-toss-tail/manifests/contactnets_cube_tail_sustained_v2.json` |
+| `sim_protocol/manifests/contactnets_cube_tail_sustained_v3.json` | `tasks/real-data-simple/cube-toss-tail/manifests/contactnets_cube_tail_sustained_v3.json` |
+| `sim_protocol/manifests/contactnets_cube_toss_dynamic_impact_v2.json` | `tasks/real-data-simple/cube-toss/manifests/contactnets_cube_toss_dynamic_impact_v2.json` |
+| `sim_protocol/manifests/gauge_ball_bounce_dynamic_impact_v2.json` | `tasks/real-data-simple/ball-bounce/manifests/gauge_ball_bounce_dynamic_impact_v2.json` |
+| `sim_protocol/manifests/gauge_ball_bounce_dynamic_impact_v3.json` | `tasks/real-data-simple/ball-bounce/manifests/gauge_ball_bounce_dynamic_impact_v3.json` |
+| `sim_protocol/manifests/gauge_slope_slider_dynamic_friction_v3.json` | `tasks/real-data-simple/slope-slider/manifests/gauge_slope_slider_dynamic_friction_v3.json` |
+| `sim_protocol/manifests/genesis_ipc_rerun.json` | `protocol/registries/genesis_ipc_rerun.json` |
+| `sim_protocol/manifests/genesis_rigid_rerun.json` | `protocol/registries/genesis_rigid_rerun.json` |
+| `sim_protocol/manifests/genesis_sap_rerun.json` | `protocol/registries/genesis_sap_rerun.json` |
+| `sim_protocol/manifests/mit_push_dynamic_friction_v3.json` | `tasks/real-data-simple/mit-push/manifests/mit_push_dynamic_friction_v3.json` |
+| `sim_protocol/manifests/mujoco_warp_4p0_rerun.json` | `protocol/registries/mujoco_warp_4p0_rerun.json` |
+| `sim_protocol/manifests/pendulum_energy_v2.json` | `tasks/simulation-only-atomic/pendulum-ideal/manifests/pendulum_energy_v2.json` |
+| `sim_protocol/manifests/pendulum_gauge_real_v1.json` | `tasks/real-data-simple/gauge-pendulum/manifests/pendulum_gauge_real_v1.json` |
+| `sim_protocol/manifests/pendulum_gauge_v3.json` | `tasks/real-data-simple/gauge-pendulum/manifests/pendulum_gauge_v3.json` |
+| `sim_protocol/manifests/rh20t_dish_rack_playback_v1_draft.json` | `tasks/robot-playback/rh20t-dish-on-rack/manifests/rh20t_dish_rack_playback_v1_draft.json` |
+| `sim_protocol/manifests/rh20t_dish_rack_playback_v1_pilot_c3.json` | `tasks/robot-playback/rh20t-dish-on-rack/manifests/rh20t_dish_rack_playback_v1_pilot_c3.json` |
+| `sim_protocol/manifests/round_socket_aligned_frozen_v1.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_aligned_frozen_v1.json` |
+| `sim_protocol/manifests/round_socket_clearance_2p0.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_clearance_2p0.json` |
+| `sim_protocol/manifests/round_socket_internal_selection_preflight.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_internal_selection_preflight.json` |
+| `sim_protocol/manifests/round_socket_selection_dt025.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_selection_dt025.json` |
+| `sim_protocol/manifests/round_socket_strict_v2.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v2.json` |
+| `sim_protocol/manifests/round_socket_strict_v3.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v3.json` |
+| `sim_protocol/manifests/round_socket_strict_v4.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v4.json` |
+| `sim_protocol/manifests/round_socket_strict_v5_exploratory.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v5_exploratory.json` |
+| `sim_protocol/manifests/round_socket_strict_v6.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v6.json` |
+| `sim_protocol/manifests/round_socket_strict_v7_draft.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v7_draft.json` |
+| `sim_protocol/manifests/round_socket_strict_v8_draft.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json` |
+| `sim_protocol/manifests/round_socket_strict_v9_draft.json` | `tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v9_draft.json` |
+| `sim_protocol/manifests/simple_pinch_force_controlled_v3.json` | `tasks/simulation-only-atomic/simple-pinch/manifests/simple_pinch_force_controlled_v3.json` |
+| `sim_protocol/manifests/simple_pinch_force_matched_v1.json` | `tasks/simulation-only-atomic/simple-pinch/manifests/simple_pinch_force_matched_v1.json` |
+| `sim_protocol/manifests/simple_pinch_force_matched_v2.json` | `tasks/simulation-only-atomic/simple-pinch/manifests/simple_pinch_force_matched_v2.json` |
+| `sim_protocol/manifests/three_box_push_strict_v2.json` | `tasks/simulation-only-atomic/three-box-push/manifests/three_box_push_strict_v2.json` |
+| `sim_protocol/manifests/three_box_push_strict_v3.json` | `tasks/simulation-only-atomic/three-box-push/manifests/three_box_push_strict_v3.json` |
+| `sim_protocol/manifests/three_box_push_strict_v4.json` | `tasks/simulation-only-atomic/three-box-push/manifests/three_box_push_strict_v4.json` |
+| `sim_protocol/manifests/three_plate_stack_strict_v2.json` | `tasks/simulation-only-atomic/three-plate-stack/manifests/three_plate_stack_strict_v2.json` |
+| `sim_protocol/manifests/three_plate_stack_strict_v3.json` | `tasks/simulation-only-atomic/three-plate-stack/manifests/three_plate_stack_strict_v3.json` |
+| `sim_protocol/manifests/three_plate_stack_strict_v3p1.json` | `tasks/simulation-only-atomic/three-plate-stack/manifests/three_plate_stack_strict_v3p1.json` |
 | `sim_protocol/real-playback-v1/README.md` | `protocol/families/real-playback.md` |
 | `sim_protocol/real-playback-v1/task-metrics/rh20t-dish-on-rack.md` | `tasks/robot-playback/rh20t-dish-on-rack/SOP.md` |
 | `sim_protocol/real_playback_runner_sop.md` | `tasks/robot-playback/rh20t-dish-on-rack/runner-sop.md` |

@@ -57,12 +57,12 @@ def validate(path, manifest_path, box=False):
 
 
 def main():
-    plate_manifest = ROOT / 'protocol/manifests/three_plate_stack_strict_v3p1.json'
+    plate_manifest = ROOT / 'tasks/simulation-only-atomic/three-plate-stack/manifests/three_plate_stack_strict_v3p1.json'
     for name in ['sap', 'mujoco']:
         prefix = 'sap' if name == 'sap' else 'mjwarp'
         validate(BASE / f'three-plate/{name}/{prefix}_three_plate_strict_v3.json', plate_manifest)
     validate(BASE / 'three-box/mujoco/mjwarp_three_box_strict_v4.json',
-             ROOT / 'protocol/manifests/three_box_push_strict_v4.json', box=True)
+             ROOT / 'tasks/simulation-only-atomic/three-box-push/manifests/three_box_push_strict_v4.json', box=True)
 
 
 if __name__ == '__main__':

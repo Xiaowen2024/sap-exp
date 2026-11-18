@@ -1,5 +1,8 @@
 import json, hashlib, sys
-M='protocol/manifests/'
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import find_manifest  # noqa: E402
 T={
 'three-plate v3.1':('three_plate_stack_strict_v3p1.json',{'SAP':'exp-results/contact-correction-20261109/three-plate/sap/sap_three_plate_strict_v3.json','MJ3.17':'exp-results/contact-correction-20261109/three-plate/mujoco/mjwarp_three_plate_strict_v3.json','MJ4.0':'exp-results/mujoco-warp-4p0/three-plate/mjwarp_three_plate_strict_v3.json'}),
 'three-box v4':('three_box_push_strict_v4.json',{'SAP':'exp-results/aligned-generalizability-strict-v3/v4/sap_three_box_strict_v4.json','MJ3.17':'exp-results/contact-correction-20261109/three-box/mujoco/mjwarp_three_box_strict_v4.json','MJ4.0':'exp-results/mujoco-warp-4p0/three-box/mjwarp_three_box_strict_v4.json'}),
@@ -23,7 +26,7 @@ def hid(h):
         if isinstance(v,dict) and 'id' in v: return v['id']
     return h.get('id')
 for t,(mf,E) in T.items():
-    raw=open(M+mf,'rb').read(); sha=hashlib.sha256(raw).hexdigest(); m=json.loads(raw)
+    raw=open(find_manifest(mf),'rb').read(); sha=hashlib.sha256(raw).hexdigest(); m=json.loads(raw)
     held_ids=[c['id'] for c in m['held_out_conditions']]; seeds={}
     print(f'===== {t}  [{mf}]')
     for e,f in E.items():

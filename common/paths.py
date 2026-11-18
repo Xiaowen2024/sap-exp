@@ -1,6 +1,6 @@
 """Repository paths and import setup shared by every runner.
 
-Scripts live at different depths under tasks/, engines/, tools/ and common/, so
+Scripts live at different depths under tasks/, tools/ and common/, so
 none of them should compute the repository root with ``parents[N]``.  Each
 script starts with the bootstrap below and then uses the constants here::
 
@@ -27,16 +27,15 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 COMMON = REPO_ROOT / "common"
 TASKS = REPO_ROOT / "tasks"
-ENGINES = REPO_ROOT / "engines"
 TOOLS = REPO_ROOT / "tools"
 PROTOCOL = REPO_ROOT / "protocol"
-MANIFESTS = PROTOCOL / "manifests"
+REGISTRIES = PROTOCOL / "registries"   # cross-task rerun registries
 RESULTS = REPO_ROOT / "exp-results"
 EXTERNAL = REPO_ROOT / "external"
 ARCHIVE = REPO_ROOT / "archive"   # local-only scripts of tasks outside the current task set
 
-CODE_ROOTS = (COMMON, ENGINES, TASKS, TOOLS)
-_SKIP = {"__pycache__", "assets", "configs", "sop"}
+CODE_ROOTS = (COMMON, TASKS, TOOLS)
+_SKIP = {"__pycache__", "assets", "configs", "sop", "manifests"}
 
 
 def _is_package(d: Path) -> bool:
@@ -47,7 +46,7 @@ def _is_package(d: Path) -> bool:
 def module_dirs() -> tuple[Path, ...]:
     """Folders that hold flat modules, plus the parent folder of each package."""
     found: list[Path] = [COMMON]
-    for root in (ENGINES, TASKS, TOOLS, ARCHIVE):
+    for root in (TASKS, TOOLS, ARCHIVE):
         if not root.is_dir():
             continue
         stack = [root]
@@ -67,6 +66,37 @@ def find_script(name: str) -> Path:
     if len(hits) != 1:
         raise FileNotFoundError(f"{name}: expected exactly one match under {', '.join(str(r) for r in CODE_ROOTS)}, got {hits}")
     return hits[0]
+
+
+@lru_cache(maxsize=None)
+def find_manifest(name: str) -> Path:
+    """Locate a manifest or registry by file name.
+
+    Each task keeps its manifests in ``tasks/<category>/<task>/manifests/``;
+    cross-task rerun registries are in ``protocol/registries/``.  Manifests are
+    looked up by name because results and registries record them by name and
+    SHA-256 (moving a file does not change its hash).
+    """
+    name = Path(name).name
+    hits = [p for p in TASKS.glob(f"*/*/manifests/{name}")] + [p for p in (REGISTRIES / name,) if p.is_file()]
+    if ARCHIVE.is_dir():
+        hits += list(ARCHIVE.glob(f"**/{name}"))
+    if len(hits) != 1:
+        raise FileNotFoundError(f"manifest {name}: expected exactly one match, got {hits}")
+    return hits[0]
+
+
+class _ManifestIndex:
+    """``MANIFESTS / "name.json"`` resolves a manifest by name wherever its task keeps it."""
+
+    def __truediv__(self, name) -> Path:
+        return find_manifest(str(name))
+
+    def __repr__(self) -> str:
+        return "MANIFESTS(tasks/*/*/manifests, protocol/registries)"
+
+
+MANIFESTS = _ManifestIndex()
 
 
 def _install() -> None:

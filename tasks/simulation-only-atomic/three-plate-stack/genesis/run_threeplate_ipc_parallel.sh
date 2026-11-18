@@ -3,7 +3,7 @@
 # held-out cells (at most $PAR at once, longest first), then merge into the standard artifact.
 set -u
 OUT=${1:-/root/genesis_ipc/a3/results}; PAR=${PAR:-8}
-PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; ROOT=/root/SIM-EXP; M=$ROOT/protocol/manifests/three_plate_stack_strict_v3p1.json
+PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; ROOT=/root/SIM-EXP; M=$ROOT/tasks/simulation-only-atomic/three-plate-stack/manifests/three_plate_stack_strict_v3p1.json
 T=$OUT/three-plate; mkdir -p $T/shards $T/logs; cd $ROOT
 log() { echo "$(date -Is) $*" >> "$OUT/status.txt"; }
 log "three-plate parallel start (RTX 4080 32 GB; 5 selection shards)"

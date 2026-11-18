@@ -16,7 +16,7 @@ declared and how results are selected and reported, after the v8 pilot review:
   5. supplementary tests (hardness of each candidate, reachable hardness versus time step, attribution, robustness) explain the main
      result and never change it.
 
-Usage: python3 build_round_socket_v9_manifest.py [--out protocol/manifests/round_socket_strict_v9_draft.json]
+Usage: python3 build_round_socket_v9_manifest.py [--out tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v9_draft.json]
 """
 from __future__ import annotations
 import sys as _sys
@@ -33,7 +33,7 @@ from pathlib import Path
 import build_round_socket_v8_manifest as v8
 
 ROOT = REPO_ROOT
-V8_FILE = ROOT / "protocol/manifests/round_socket_strict_v8_draft.json"
+V8_FILE = ROOT / "tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json"
 HARDNESS_DT_MS = [0.125, 0.25, 0.5, 1.0, 2.0]
 HARDNESS_MARKS_MM = [0.15, 0.3, 0.6, 1.2]
 
@@ -229,7 +229,7 @@ CHANGES = [
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=ROOT / "protocol/manifests/round_socket_strict_v9_draft.json")
+    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=ROOT / "tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v9_draft.json")
     a = ap.parse_args(); cells, geom = v8.build()
     for c in cells:
         c["role"] = "selection" if c["id"] in v8.SELECTION_IDS else "frozen"

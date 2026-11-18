@@ -44,14 +44,16 @@ The report follows the progression:
 
 - [`tasks/`](tasks/) — the current task set in four categories: simulation only · atomic,
   simulation only · composite (round socket), real data · simple, and robot playback.
-  Each task folder holds its SOP, assets and one runner folder per simulator
-  (`mujoco/`, `mjwarp/`, `sap/`, `genesis/`); see the [task index](tasks/README.md)
-- [`engines/`](engines/) — cross-task simulator infrastructure (Genesis adapters and queues,
-  the MuJoCo Warp 4.0 rerun, the SAP frozen-B5 rerun)
-- [`common/`](common/) — shared helpers, including [`paths.py`](common/paths.py), which every
-  runner imports for `REPO_ROOT` and the shared-module import path
-- [`protocol/`](protocol/) — cross-task SOPs, [family protocols](protocol/families/) and all [manifests](protocol/manifests/)
-- [`tools/`](tools/) — report generation, validation, website assets and maintenance
+  Each task folder holds its SOP (how it is measured and judged), its manifests, assets
+  and one runner folder per simulator (`mujoco/`, `mjwarp/`, `sap/`, `genesis/`);
+  see the [task index](tasks/README.md)
+- [`common/`](common/) — code shared by several tasks: [`paths.py`](common/paths.py) (which every
+  runner imports for `REPO_ROOT`, `find_manifest` and the shared-module import path), the
+  Genesis adapters, and runners that serve more than one task
+- [`protocol/`](protocol/) — cross-task SOPs, [family protocols](protocol/families/),
+  Genesis [runner SOPs](protocol/runner-sops/) and rerun [registries](protocol/registries/)
+- [`tools/`](tools/) — cross-task reruns and queues, comparisons, report generation,
+  validation and maintenance
 - [`docs/`](docs/) — source files for the full report website
 - [`exp-report/`](exp-report/) — experiment-level reports and interpretations
 - [`exp-results/`](exp-results/) — raw CSV/JSON traces, plots, videos, and scene files

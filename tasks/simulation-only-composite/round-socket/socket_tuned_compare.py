@@ -12,7 +12,7 @@ import json, sys
 from pathlib import Path
 
 ROOT = REPO_ROOT; E = ROOT / "exp-results"
-MAN = json.loads((ROOT / "protocol/manifests/round_socket_strict_v9_draft.json").read_text())
+MAN = json.loads((ROOT / "tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v9_draft.json").read_text())
 LAB = [c for c in MAN["conditions"] if c["role"] == "frozen" and c.get("expected") is not None]
 RUNS = [("SAP old code, v8-pilot B5 (ke=57255,tau=1.5ms,gap=.1mm)", E / "round-socket-v8-draft/sap/result.json"),
         ("SAP Newton-convex, same old B5", E / "sap-newton-convex-b5-20261118/socket/result.json"),

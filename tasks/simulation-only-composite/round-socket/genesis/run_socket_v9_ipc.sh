@@ -4,11 +4,11 @@
 # arrives first. PAR=3 on the 12-GB RTX 3080 Ti (the v8 pilot re-run showed no crash at 3; 18 processes did crash).
 set -u
 OUT=${1:-/root/genesis_ipc/socket_v9/run}; PAR=${PAR:-3}
-PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; M=/root/SIM-EXP/protocol/manifests/round_socket_strict_v9_draft.json
+PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; M=/root/SIM-EXP/tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v9_draft.json
 R="$PY -u tasks/simulation-only-composite/round-socket/genesis/run_socket_v8_genesis_ipc.py --manifest $M --out $OUT"
 mkdir -p $OUT/logs; cd /root/SIM-EXP
 log() { echo "$(date -Is) $*" >> "$OUT/status.txt"; }
-sha256sum $M > $OUT/manifest.sha256; md5sum tasks/simulation-only-composite/round-socket/genesis/run_socket_v8_genesis_ipc.py engines/genesis/genesis_ipc_common.py /root/SIM-EXP/runners/socket_v8_common.py > $OUT/code.md5
+sha256sum $M > $OUT/manifest.sha256; md5sum tasks/simulation-only-composite/round-socket/genesis/run_socket_v8_genesis_ipc.py common/genesis_ipc_common.py /root/SIM-EXP/runners/socket_v8_common.py > $OUT/code.md5
 log "socket v9 IPC start (PAR=$PAR)"
 SEL="W_c0p3_shallow_slide2 W_c0p3_shallow_hold1 R_c0p3_x1p10"
 for k in 1 2 3 4 5; do for c in $SEL; do echo "$k $c"; done; done | \

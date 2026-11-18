@@ -21,8 +21,8 @@ from typing import Any
 import numpy as np
 
 ROOT = REPO_ROOT
-DEFAULT_MANIFEST = ROOT / "protocol/manifests/simple_pinch_force_matched_v1.json"
-DEFAULT_SOURCE = ROOT / "tasks/simulation-only-atomic/shared/run_static_friction_v2.py"
+DEFAULT_MANIFEST = ROOT / "tasks/simulation-only-atomic/simple-pinch/manifests/simple_pinch_force_matched_v1.json"
+DEFAULT_SOURCE = ROOT / "common/run_static_friction_v2.py"
 
 
 def source_module(path: Path) -> Any:
