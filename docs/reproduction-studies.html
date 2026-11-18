@@ -67,7 +67,7 @@
             <ol><li><a href="#coin-videos">视频对照</a></li><li><a href="#coin-design">实验设计</a></li><li><a href="#coin-iterations">迭代调试</a></li><li><a href="#coin-results">结论</a></li><li><a href="#coin-robustness">鲁棒性测试</a></li><li><a href="#coin-sources">来源与数据</a></li></ol>
           </li>
           <li><a href="#laptop">RoboDojo · 闭合笔记本插架</a>
-            <ol><li><a href="#laptop-short">插入短片段与调参</a></li><li><a href="#laptop-full">拾取到插架 · 参数迁移</a></li><li><a href="#laptop-design">评估口径</a></li><li><a href="#laptop-difference">与放盘子的区别</a></li><li><a href="#laptop-sources">来源与数据</a></li></ol>
+            <ol><li><a href="#laptop-full">完整 run · 拾取到释放</a></li><li><a href="#laptop-short">补充：短片段调参</a></li><li><a href="#laptop-design">评估口径</a></li><li><a href="#laptop-difference">与放盘子的区别</a></li><li><a href="#laptop-sources">来源与数据</a></li></ol>
           </li>
         </ol>
       </nav>
@@ -99,7 +99,7 @@
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
         <p><strong>投币（RoboDojo）：调参后 MuJoCo 和 SAP 都能完成（官方 100 分），结果几乎一样。</strong>差异在默认参数：MuJoCo 把 5 g 的薄硬币夹扁挤出；SAP 默认刚度太软，且落地冲击被过度耗散，硬币侧立不倒。鲁棒性测试（进行中）里，存钱罐横向偏 3 mm 时 SAP 的硬币卡在槽口而 MuJoCo 仍能投入，MuJoCo 的这一成功是否物理可信尚待核实。详见<a href="#deposit-coin">2.4</a>。</p>
-        <div class="study-note"><p><strong>新增：<a href="#laptop">闭合笔记本插竖架（Warp vs Warp）</a>。</strong>短片段 SAP 用 2 组配置、MuJoCo 用 3 组，两边都放入并释放；将参数原样迁移到拾取、换手、插架的连续流程后，宏观仍都放入，但接触、穿透和输入跟踪存在差异。完整流程两边未通过原先的夹爪姿态检查，作为诊断报告，不能据此排名复刻精度。</p></div>
+        <div class="study-note"><p><strong><a href="#laptop-full">闭合笔记本完整 run：拾取 → 搬运 → 换手 → 插架 → 释放</a>。</strong>沿用已选定参数，各连续回放一次，两边都宏观完成，二元成败没有拉开。SAP 接触更连续、末态更静；MuJoCo 的架子穿透更小（0.077–0.129 mm，对比 SAP 1.369–1.396 mm）。完整流程两边都未通过原先的夹爪姿态跟踪检查，不能直接排名复刻精度；短片段调参记录保留为补充。</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
@@ -622,12 +622,34 @@
         </article>
 
         <article id="laptop" class="study-subsection">
-          <h3>2.5 RoboDojo · 闭合笔记本插竖架 <span class="study-label">2026-11-18 · Warp vs Warp · 单 episode</span></h3>
-          <p>来自 RoboDojo 的 <strong>Store Laptop And Headphones</strong>。本实验只取已关闭的笔记本，不做耳机或关盖；比较 <strong>MuJoCo 4.0.0 Warp</strong> 与 <strong>SAP Internal + Newton Convex（2325082）</strong>。先回放插架短片段、最多调 5 组参数，再把选定参数原样用于“拾取 → 搬运 → 换手 → 插架 → 释放”的连续流程，各跑一次。</p>
-          <div class="study-note"><p><strong>目前结果：</strong>两边都观察到最终放入并撤手，尚未形成一成一败的宏观区分。短片段经过调参，穿透已较小；完整流程则有接触连续性、手中相对运动和穿透差异，且<strong>两边都未通过原先的夹爪姿态跟踪检查</strong>。这些完整流程结果是迁移诊断，不能直接作为严格复刻精度或成功率排名。</p></div>
+          <h3>2.5 RoboDojo · 闭合笔记本完整拾取与插架 <span class="study-label">2026-11-18 · Warp vs Warp · 单 episode</span></h3>
+          <p>本节以 RoboDojo <strong>Store Laptop And Headphones 的闭合笔记本完整 run</strong> 为主结果：笔记本从原支架上开始，由左手拾取、搬运，换给右手插架，最后张爪撤离。比较 <strong>MuJoCo 4.0.0 Warp</strong> 与 <strong>SAP Internal + Newton Convex（2325082）</strong>，沿用已选定参数，各连续回放一次。未模拟耳机和关盖，因此不是整个官方任务。短片段调参仅作为下方补充记录。</p>
+          <div class="study-note"><p><strong>完整 run 的结论：</strong>两边都观察到拾取、搬运、换手、最终放入和撤手，<strong>二元任务结果没有区分度</strong>。过程指标有差异：SAP 接触更连续、末态更静，MuJoCo 的架子穿透更小；<strong>两边都未通过原先的夹爪姿态跟踪检查</strong>。因此这次完整回放提供过程诊断，不能直接作为严格复刻精度或成功率排名。</p></div>
 
-          <section id="laptop-short" class="study-subsection">
-            <h4>A. 插入短片段：SAP 用 2 组配置，MuJoCo 用 3 组</h4>
+          <section id="laptop-full" class="study-subsection">
+            <h4>完整 run：从拾取到释放，参数不变，各跑一次</h4>
+            <p>本次主结果覆盖源时间 9.00–21.96 s：闭合笔记本放在原支架上，左手拾取、搬运，再换给右手插架。追加 1.5 s，共 14460 步。<strong>沿用已选定参数：MuJoCo solref=(0.002,1)，SAP pair ke=100000 N/m、pair tau=0.02 s；没有为完整流程调参，也没有在换手时重置物体。</strong>这仍是闭合笔记本流程，不包含官方任务里的耳机或关盖。</p>
+            <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/laptop/full/poster.jpg" style="aspect-ratio:4/1"><source src="assets/part5/laptop/full/comparison.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/laptop/full/comparison.mp4">下载连续流程视频</a>。</video><figcaption><h4>主结果视频：原始示范 / MuJoCo Warp / SAP Warp · 完整 run</h4><p>两边都观察到拾取、换手和最终放入，末尾夹爪完全撤离。画面中的初始平台与插入竖架是两件不同的静态物体。颜色仅用于区分碰撞几何，不是纹理重建。末尾参考冻结段已标注。</p><a href="assets/part5/laptop/full/comparison.mp4" download>下载三栏视频</a></figcaption></figure>
+            <div class="source-links"><a href="assets/part5/laptop/full/mujoco.mp4">单看 MuJoCo Warp</a><a href="assets/part5/laptop/full/sap.mp4">单看 SAP Warp</a><a href="assets/part5/laptop/full/closeup.mp4">插架特写 · 4 倍慢放</a></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>连续流程指标</th><th>MuJoCo · 沿用配置 3</th><th>SAP · 沿用配置 2</th></tr></thead><tbody>
+              <tr><td>最大 COM 抬升</td><td>0.1650 m</td><td>0.1661 m</td></tr>
+              <tr><td>左手窗口内，COM 在夹爪系的最大变化</td><td>14.32 mm</td><td>8.82 mm</td></tr>
+              <tr><td>左手双指承载 duty / 最长不完整间隔</td><td>98.795% / 45 ms</td><td>100% / 0 ms</td></tr>
+              <tr><td>右手窗口内，COM 在夹爪系的最大变化</td><td>1.99 mm</td><td>0.70 mm</td></tr>
+              <tr><td>笔记本—竖架最大采样穿透区间</td><td>0.077–0.129 mm</td><td><strong>1.369–1.396 mm</strong></td></tr>
+              <tr><td>笔记本—初始支架最大采样穿透区间</td><td>0.108–0.109 mm</td><td>2.414–2.504 mm</td></tr>
+              <tr><td>最终追加窗线速度 RMS</td><td>4.019 mm/s</td><td>0.851 mm/s</td></tr>
+              <tr><td>最终追加窗角速度 RMS</td><td>0.08771 rad/s</td><td>0.01479 rad/s</td></tr>
+              <tr><td>撤手后的夹爪承载力</td><td>0 N</td><td>0 N</td></tr>
+              <tr><td>左夹爪最大位置误差</td><td>4.11 mm</td><td>4.43 mm</td></tr>
+              <tr><td><strong>左夹爪最大姿态误差 / 原 5° 检查</strong></td><td><strong>8.33° / 未通过</strong></td><td><strong>5.10° / 未通过</strong></td></tr>
+            </tbody></table></div>
+            <p class="scope-line">左手窗口 [3.2,7.6] s，右手窗口 [8.3,11.6] s，最终追加窗 [13.96,14.46] s。COM 在夹爪系的变化包括手中转动与调整，不冒充纯滑移或参考轨迹误差；双指承载不完整不等于物体脱手。</p>
+            <div class="study-note"><p><strong>完整流程的结论范围：</strong>SAP 接触更连续、末态更静，但架子和初始支架穿透更大；MuJoCo 有更多短暂断触和手中相对运动。两边都未过原先的姿态跟踪检查，没有放宽门槛让它们通过。拾取时左指还与原支架接触，原生法向力峰值约为 MuJoCo 122 N、SAP 75 N；新增支架接触、几何重建和输入跟踪误差都会影响结果。因此这条流程能提供诊断数据，<strong>不能只凭“都放进去了”或“SAP 更静”作严格物理保真度排名</strong>。</p></div>
+          </section>
+
+          <details id="laptop-short" class="study-subsection"><summary>补充：插入短片段的参数选择与历史结果（展开）</summary>
+            <h4>参数来源：SAP 用 2 组配置，MuJoCo 用 3 组</h4>
             <p>源时间 18.00–21.96 s，笔记本已在右手中；追加 1.5 s 保持，共 5460 个 1 ms 步。只调整引擎的数值接触参数，足够好即停止，没有用满 5 组预算。每配置一次回放。</p>
             <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/laptop/short/poster.jpg" style="aspect-ratio:4/1"><source src="assets/part5/laptop/short/comparison.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/laptop/short/comparison.mp4">下载对比视频</a>。</video><figcaption><h4>原始示范 / MuJoCo Warp 配置 3 / SAP Warp 配置 2</h4><p>原速、同一时间轴。最后 1.5 s 为追加观察段，左侧参考画面停在最后一帧，视频已标注。模拟画面只回放记录状态，未推进物理。</p><a href="assets/part5/laptop/short/comparison.mp4" download>下载三栏视频</a></figcaption></figure>
             <div class="source-links"><a href="assets/part5/laptop/short/mujoco.mp4">单看 MuJoCo Warp</a><a href="assets/part5/laptop/short/sap.mp4">单看 SAP Warp</a><a href="assets/part5/laptop/short/closeup.mp4">接触特写 · 4 倍慢放</a></div>
@@ -648,29 +670,7 @@
               <tr><td>撤手后仍由夹爪承载</td><td>否，0 N</td><td>否，0 N</td></tr>
             </tbody></table></div>
             <p>最终追加窗为 [4.96,5.46] s。短暂断触不直接等于失稳；更静也不等于更接近参考。这里的二元放入结果区分度较低。</p>
-          </section>
-
-          <section id="laptop-full" class="study-subsection">
-            <h4>B. 从拾取开始：参数不变，各跑一次</h4>
-            <p>扩展到源时间 9.00–21.96 s：闭合笔记本放在原支架上，左手拾取、搬运，再换给右手插架。追加 1.5 s，共 14460 步。<strong>沿用上方选定参数，没有为完整流程调参，也没有在换手时重置物体。</strong>这仍是闭合笔记本流程，不包含官方任务里的耳机或关盖。</p>
-            <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/laptop/full/poster.jpg" style="aspect-ratio:4/1"><source src="assets/part5/laptop/full/comparison.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/laptop/full/comparison.mp4">下载连续流程视频</a>。</video><figcaption><h4>原始示范 / MuJoCo Warp / SAP Warp · 连续流程</h4><p>两边都观察到拾取、换手和最终放入，末尾夹爪完全撤离。画面中的初始平台与插入竖架是两件不同的静态物体。颜色仅用于区分碰撞几何，不是纹理重建。末尾参考冻结段已标注。</p><a href="assets/part5/laptop/full/comparison.mp4" download>下载三栏视频</a></figcaption></figure>
-            <div class="source-links"><a href="assets/part5/laptop/full/mujoco.mp4">单看 MuJoCo Warp</a><a href="assets/part5/laptop/full/sap.mp4">单看 SAP Warp</a><a href="assets/part5/laptop/full/closeup.mp4">插架特写 · 4 倍慢放</a></div>
-            <div class="table-wrap"><table class="data-table"><thead><tr><th>连续流程指标</th><th>MuJoCo · 沿用配置 3</th><th>SAP · 沿用配置 2</th></tr></thead><tbody>
-              <tr><td>最大 COM 抬升</td><td>0.1650 m</td><td>0.1661 m</td></tr>
-              <tr><td>左手窗口内，COM 在夹爪系的最大变化</td><td>14.32 mm</td><td>8.82 mm</td></tr>
-              <tr><td>左手双指承载 duty / 最长不完整间隔</td><td>98.795% / 45 ms</td><td>100% / 0 ms</td></tr>
-              <tr><td>右手窗口内，COM 在夹爪系的最大变化</td><td>1.99 mm</td><td>0.70 mm</td></tr>
-              <tr><td>笔记本—竖架最大采样穿透区间</td><td>0.077–0.129 mm</td><td><strong>1.369–1.396 mm</strong></td></tr>
-              <tr><td>笔记本—初始支架最大采样穿透区间</td><td>0.108–0.109 mm</td><td>2.414–2.504 mm</td></tr>
-              <tr><td>最终追加窗线速度 RMS</td><td>4.019 mm/s</td><td>0.851 mm/s</td></tr>
-              <tr><td>最终追加窗角速度 RMS</td><td>0.08771 rad/s</td><td>0.01479 rad/s</td></tr>
-              <tr><td>撤手后的夹爪承载力</td><td>0 N</td><td>0 N</td></tr>
-              <tr><td>左夹爪最大位置误差</td><td>4.11 mm</td><td>4.43 mm</td></tr>
-              <tr><td><strong>左夹爪最大姿态误差 / 原 5° 检查</strong></td><td><strong>8.33° / 未通过</strong></td><td><strong>5.10° / 未通过</strong></td></tr>
-            </tbody></table></div>
-            <p class="scope-line">左手窗口 [3.2,7.6] s，右手窗口 [8.3,11.6] s，最终追加窗 [13.96,14.46] s。COM 在夹爪系的变化包括手中转动与调整，不冒充纯滑移或参考轨迹误差；双指承载不完整不等于物体脱手。</p>
-            <div class="study-note"><p><strong>完整流程的结论范围：</strong>SAP 接触更连续、末态更静，但架子和初始支架穿透更大；MuJoCo 有更多短暂断触和手中相对运动。两边都未过原先的姿态跟踪检查，没有放宽门槛让它们通过。拾取时左指还与原支架接触，原生法向力峰值约为 MuJoCo 122 N、SAP 75 N；新增支架接触、几何重建和输入跟踪误差都会影响结果。因此这条流程能提供诊断数据，<strong>不能只凭“都放进去了”或“SAP 更静”作严格物理保真度排名</strong>。</p></div>
-          </section>
+          </details>
 
           <section id="laptop-design" class="study-subsection">
             <h4>共同设置与评估口径</h4>

@@ -79,7 +79,7 @@
     "rack-geometry-audit.json": "b5a004edba3027c7077f199b3b0ba7109631e34dfe6b33243d7a12aeb08c551d",
     "reference-final-attempt.json": "531311f2ce08d73f55d547da1364ecf3552a4e9c922db9b8d07350b9eee8c7fe",
     "reference-full.mp4": "512c491203917abb967a9a4ebbbe5def8b3c6a163bf880dd57772acb48b9deed",
-    "report.md": "f63b649cc2d23df13802f77699bf9df8d207501e0227377c8dad4de9a0df64c1",
+    "report.md": "bdfa784e71d0241161084c68a9b0d7287348f3aa1cce462688f9211c4440db23",
     "short/closeup.mp4": "12e293a72d67485bef2a5b9ca44b6d7b0a8121add1c58fc31a73aecd0d7f6dfe",
     "short/comparison.mp4": "25197b2dc1318e509c9b8f5fe31f4297d4eaffe348d8a7408819827fd085e126",
     "short/mujoco.mp4": "38781652674833bd914165fe507165a7a9b597c542cbc305195c90dc2357c787",
@@ -87,5 +87,6 @@
     "short/sap.mp4": "f5116432db8bfa93987774242050439f66fc6dcd9b2c2209ea3adb37f1600dbd",
     "short-metrics.json": "397e03fec0601f0d96556223badd19b08edb0f82025ff8157e9b7f09d9bb80fb",
     "short-sop.md": "217386de6177b6a585d5468cf8ea8dce056450fdf01eb9d201c17cbeb838d319"
-  }
+  },
+  "primary_result": "complete closed-laptop pickup, transport, handoff, insertion and release; short-fragment tuning is supplementary"
 }
