@@ -1,0 +1,150 @@
+{
+ "mujoco_4.0.0": {
+  "iterations": [
+   {
+    "iter": 1,
+    "params": {},
+    "why": "native defaults",
+    "official_score": 20,
+    "mode": "lost at handover",
+    "lift_mm": 196,
+    "physically_inside_bank": false,
+    "final_tilt_from_flat_deg": 0,
+    "release_minus_slot_mm": [
+     333.4,
+     18.2,
+     -107.9
+    ],
+    "engine_peak_overlap_mm": 11.93,
+    "wall_s": 15
+   },
+   {
+    "iter": 2,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 10,
+      "solref": [
+       0.002,
+       1
+      ]
+     }
+    },
+    "why": "it1: lifted but the 1.94 mm coin is squeezed (finger-com gap 35.5 vs 37.3 mm rigid, ~1.8 mm interpenetration), creeps out of the pinch and drops just before the handover -> stiffest solref allowed (timeconst = 2 dt) + elliptic cone + impratio 10",
+    "official_score": 100,
+    "mode": "deposited",
+    "lift_mm": 200,
+    "physically_inside_bank": true,
+    "final_tilt_from_flat_deg": 6,
+    "release_minus_slot_mm": [
+     0.2,
+     -1.9,
+     0.7
+    ],
+    "engine_peak_overlap_mm": 0.84,
+    "wall_s": 15
+   },
+   {
+    "iter": 3,
+    "params": {
+     "mujoco_parameters": {
+      "cone": "elliptic",
+      "impratio": 10,
+      "solref": [
+       0.002,
+       1
+      ],
+      "solimp": [
+       0.99,
+       0.999,
+       0.0005,
+       0.5,
+       2
+      ]
+     }
+    },
+    "why": "it2: success (100); remaining defect: fingers sink 0.69 mm into the 1.94 mm coin; solref already at the dt limit -> stiffer solimp (impedance 0.99-0.999, width 0.5 mm)",
+    "official_score": 100,
+    "mode": "deposited",
+    "lift_mm": 200,
+    "physically_inside_bank": true,
+    "final_tilt_from_flat_deg": 5,
+    "release_minus_slot_mm": [
+     0.3,
+     -1.9,
+     0.6
+    ],
+    "engine_peak_overlap_mm": 1.52,
+    "wall_s": 16
+   }
+  ],
+  "stopped_after": 3,
+  "why_stopped": "task succeeded from iteration 2; iteration 3 removed the remaining finger interpenetration; no remaining defect justifies further changes (MuJoCo 1.5 mm, 4 ms transient at coin extraction is bounded by the dt-limited solref timeconst = 2 dt)"
+ },
+ "sap_new_2325082_newton": {
+  "iterations": [
+   {
+    "iter": 1,
+    "params": {},
+    "why": "native defaults",
+    "official_score": 20,
+    "mode": "physically deposited, official bbox check fails (coin not flat)",
+    "lift_mm": 200,
+    "physically_inside_bank": true,
+    "final_tilt_from_flat_deg": 89,
+    "release_minus_slot_mm": [
+     0.6,
+     -1.7,
+     0.7
+    ],
+    "engine_peak_overlap_mm": 2.75,
+    "wall_s": 27
+   },
+   {
+    "iter": 2,
+    "params": {
+     "sap_parameters": {
+      "pair_tau": 0.002
+     }
+    },
+    "why": "it1: grasp, handover and slot entry all work; the coin lands on its edge on the bank floor and freezes upright (official bbox check needs it flat). Impact energy fully dissipated -> pair dissipation time constant 0.02 -> 0.002 s",
+    "official_score": 100,
+    "mode": "deposited",
+    "lift_mm": 198,
+    "physically_inside_bank": true,
+    "final_tilt_from_flat_deg": 7,
+    "release_minus_slot_mm": [
+     -4.1,
+     -1.2,
+     -1.1
+    ],
+    "engine_peak_overlap_mm": 2.32,
+    "wall_s": 40
+   },
+   {
+    "iter": 3,
+    "params": {
+     "sap_parameters": {
+      "pair_tau": 0.002,
+      "pair_ke": 100000
+     }
+    },
+    "why": "it2: success (100); remaining defect: native pair ke 1250 N/m lets the fingers sink 2.71 mm into a 1.94 mm coin (fingers overlap through it), 2.7 mm in-hand slip -> pair ke 1e5 N/m, keep tau 0.002",
+    "official_score": 100,
+    "mode": "deposited",
+    "lift_mm": 200,
+    "physically_inside_bank": true,
+    "final_tilt_from_flat_deg": 7,
+    "release_minus_slot_mm": [
+     0.3,
+     -1.9,
+     0.7
+    ],
+    "engine_peak_overlap_mm": 0.14,
+    "wall_s": 31
+   }
+  ],
+  "stopped_after": 3,
+  "why_stopped": "task succeeded from iteration 2; iteration 3 removed the remaining finger interpenetration; no remaining defect justifies further changes (MuJoCo 1.5 mm, 4 ms transient at coin extraction is bounded by the dt-limited solref timeconst = 2 dt)"
+ }
+}

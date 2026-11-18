@@ -63,6 +63,9 @@
           <li><a href="#dish-rack">RH20T · 盘子放上碗架</a>
             <ol><li><a href="#rack-videos">视频对照</a></li><li><a href="#rack-design">实验设计</a></li><li><a href="#rack-params">参数选择</a></li><li><a href="#rack-results">结论</a></li><li><a href="#rack-why">MuJoCo 为什么失败</a></li><li><a href="#rack-sap">SAP 的优势与边界</a></li><li><a href="#rack-sources">来源与数据</a></li></ol>
           </li>
+          <li><a href="#deposit-coin">RoboDojo · 投币</a>
+            <ol><li><a href="#coin-videos">视频对照</a></li><li><a href="#coin-design">实验设计</a></li><li><a href="#coin-iterations">迭代调试</a></li><li><a href="#coin-results">结论</a></li><li><a href="#coin-robustness">鲁棒性测试</a></li><li><a href="#coin-sources">来源与数据</a></li></ol>
+          </li>
         </ol>
       </nav>
       <div class="sidebar-footer"><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a></div>
@@ -82,7 +85,7 @@
       <header id="top" class="page-header">
         <div class="header-grid">
           <div><p class="eyebrow">Part V · November 2026</p><h1>原子能力与复合任务</h1><p class="lede">从单一接触机制到完整任务轨迹：比较模拟器复现了什么、已有数据能区分什么，以及暂时不能判断的部分。</p></div>
-          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes；RH20T · Dish on Rack（真实机器人）</dd></div><div><dt>Comparison</dt><dd>SAP Internal（legacy 与 Newton Convex）/ MuJoCo 4.0（Warp 与 CPU）/ Genesis Rigid · IPC · SAP coupler</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
+          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes / Deposit Coin；RH20T · Dish on Rack（真实机器人）</dd></div><div><dt>Comparison</dt><dd>SAP Internal（legacy 与 Newton Convex）/ MuJoCo 4.0（Warp 与 CPU）/ Genesis Rigid · IPC · SAP coupler</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
         </div>
       </header>
 
@@ -92,6 +95,7 @@
         <p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
+        <p><strong>投币（RoboDojo）：调参后 MuJoCo 和 SAP 都能完成（官方 100 分），结果几乎一样。</strong>差异在默认参数：MuJoCo 把 5 g 的薄硬币夹扁挤出；SAP 默认刚度太软，且落地冲击被过度耗散，硬币侧立不倒。鲁棒性测试（进行中）里，存钱罐横向偏 3 mm 时 SAP 的硬币卡在槽口而 MuJoCo 仍能投入，MuJoCo 的这一成功是否物理可信尚待核实。详见<a href="#deposit-coin">2.4</a>。</p>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
@@ -509,6 +513,110 @@
             <h4>来源、数据与文件</h4>
             <p>数据来自 RH20T 官方 Hugging Face 仓库 <code>tonyfanggalaxies/RH20T</code>（revision <code>ae13524566502155941720083c9d5921e4100966</code>），cfg2，<code>task_0050_user_0016_scene_0009_cfg_0002</code>：机器人低维数据（TCP 位姿 125 Hz、夹爪开度与力档）、7 个固定相机的彩色视频与标定。场景还原（桌面、碗架、盘子、手中姿态）只用这些真实数据；本节的模拟回放、渲染和分析由本实验生成。</p>
             <div class="source-links"><a href="https://rh20t.github.io/" target="_blank" rel="noreferrer">RH20T 项目主页 ↗</a><a href="https://huggingface.co/datasets/tonyfanggalaxies/RH20T" target="_blank" rel="noreferrer">官方数据 ↗</a><a href="assets/part5/rh20t-dish-rack/report.md">详细报告（MD）</a><a href="assets/part5/rh20t-dish-rack/segment_results.json">片段回放结果（JSON）</a><a href="assets/part5/rh20t-dish-rack/full_task_tuning_log.json">整段任务 5 轮调参记录（JSON）</a><a href="assets/part5/rh20t-dish-rack/contact-probe-analysis.txt">MuJoCo 接触诊断记录（TXT）</a></div>
+          </section>
+        </article>
+
+        <article id="deposit-coin" class="study-subsection">
+          <h3>2.4 RoboDojo · Deposit Coin 投币 <span class="study-label">单 episode · 每引擎迭代调参</span></h3>
+          <p>来自 <a href="https://github.com/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">RoboDojo 官方项目</a>及其<a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">公开数据集</a>的 <code>deposit_coin / arx_x5 / episode_0000000</code>，是官方自动生成的<strong>仿真示范</strong>，时长 7.6 s。动作分三步：</p>
+          <ol>
+            <li>右手从一个小支架中自上而下夹起竖立的硬币（直径 28.5 mm、厚 1.94 mm、5 g）；</li>
+            <li>在桌子中央<strong>空中交接</strong>：左手夹住硬币另一侧边缘，右手松开；</li>
+            <li>左手把硬币送到存钱罐投币口（5.5 × 36.9 mm）上方松手。松手时硬币下半截已在槽里，靠重力掉进罐中。</li>
+          </ol>
+          <p>这个任务检验的是<strong>薄而轻的物体的夹持</strong>：两指夹一枚不到 2 mm 厚的硬币，经过交接，再落进窄槽。</p>
+
+          <section id="coin-videos" class="study-subsection">
+            <h4>先看原示范与模拟结果</h4>
+            <p>三段视频时间轴相同。官方示范时长 7.64 s。模拟视频 1280×960，相机取官方头部相机位姿，在回放后追加 2 s 静置观察，总长 9.6 s。两个引擎都展示最终选定的第 3 轮。模拟画面由已记录的状态回放生成，只显示分离夹爪，未显示机器人手臂和纹理。</p>
+            <div class="playback-toolbar" data-group="coin-videos-grid"><button class="play-all" type="button">从头同步播放</button><button class="pause-all" type="button">全部暂停</button><span class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
+            <div class="video-grid" id="coin-videos-grid">
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/reference-poster.jpg"><source src="assets/part5/deposit-coin/reference.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/deposit-coin/reference.mp4">下载官方示范</a>。</video><figcaption><h4>原始示范 · RoboDojo</h4><p>官方头部相机，640×480（官方原始分辨率）。左侧为存钱罐，右侧小物件为硬币支架。</p><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/deposit_coin/arx_x5/preview_video/episode_0000000_cam_head.mp4" target="_blank" rel="noreferrer">官方视频来源 ↗</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/mujoco-poster.jpg"><source src="assets/part5/deposit-coin/mujoco.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/deposit-coin/mujoco.mp4">下载 MuJoCo 视频</a>。</video><figcaption><h4>MuJoCo 4.0.0 · 第 3 轮</h4><p>抓取、交接、投入全部完成，硬币平躺在罐底，官方 100 分。</p><a href="assets/part5/deposit-coin/mujoco.mp4" download>下载视频</a></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/sap-newton-poster.jpg"><source src="assets/part5/deposit-coin/sap-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/deposit-coin/sap-newton.mp4">下载 SAP 视频</a>。</video><figcaption><h4>SAP + Newton Convex · 第 3 轮</h4><p>同样全部完成，官方 100 分。</p><a href="assets/part5/deposit-coin/sap-newton.mp4" download>下载视频</a></figcaption></figure>
+            </div>
+            <details><summary>三段特写：抓取、交接、入槽（左 MuJoCo，右 SAP，4 倍慢放）</summary>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/closeup-pickup-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/deposit-coin/closeup-pickup.mp4" type="video/mp4"></video><figcaption><p>从支架中夹起硬币（1.4–2.4 s）。</p></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/closeup-handover-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/deposit-coin/closeup-handover.mp4" type="video/mp4"></video><figcaption><p>空中交接（4.0–5.4 s）：两只夹爪各夹住硬币一侧边缘。</p></figcaption></figure>
+              <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/deposit-coin/closeup-slot-poster.jpg" style="width:100%;aspect-ratio:8/3"><source src="assets/part5/deposit-coin/closeup-slot.mp4" type="video/mp4"></video><figcaption><p>投入存钱罐（6.1–7.1 s）。存钱罐做了半透明处理，能看到硬币掉进罐内。</p></figcaption></figure>
+            </details>
+          </section>
+
+          <section id="coin-design" class="study-subsection">
+            <h4>实验设计</h4>
+            <ul>
+              <li><strong>输入固定：</strong>191 帧、25 Hz 的双臂末端位姿和夹爪指令，与前两个 RoboDojo 任务相同的插值、控制映射和带关节夹爪 r3。积分步长 1 ms，回放后追加 2 s 观察。</li>
+              <li><strong>场景还原：</strong>数据集只有机器人数据，没有物体位姿，所以由我们自己还原：
+                <ul>
+                  <li>支架和硬币：右手抓取时的闭合方向就是硬币的法向，由此得到支架朝向（−13.9°）；抓取位置给出支架位置。高度自洽：指尖下沿 0.788 m，硬币顶 0.795 m，支架顶 0.782 m。</li>
+                  <li>存钱罐：假设硬币在两只手中都不打滑，算出松手时硬币的位置，再把投币口放在它正下方并与硬币平面对齐。朝向的 180° 歧义用首帧图像中猪头（耳朵）的位置确定为 +83.9°，与官方配置的朝向范围一致。</li>
+                  <li>所有还原值都落在官方配置的随机范围内。</li>
+                </ul>
+              </li>
+              <li><strong>几何（两个引擎完全相同）：</strong>吸取插试管的教训，<strong>每块凸体都不超过 64 个顶点</strong>，避免 SAP 截断形状，而且都是均匀简化，从不截断。
+                <ul>
+                  <li>硬币：30 边形棱柱。</li>
+                  <li>支架：按官方网格射线测量精确搭建，槽宽从底部 2.2 mm 渐宽到顶部 3.0 mm，硬币两侧各留 0.13 mm 间隙。</li>
+                  <li>存钱罐：官方网格是零厚度的单层曲面，我们向内加 2 mm 壁厚，分成 435 个凸块，并检查确认投币口通道畅通、罐内是空的。</li>
+                </ul>
+              </li>
+              <li><strong>摩擦：</strong>统一 <code>μ=0.3</code>。读官方代码发现，元数据里的 friction 字段实际没有被使用：硬币用刚体默认静摩擦 0.6，支架和存钱罐等 Geometry 类物体默认为 0，按 PhysX 平均值组合得 0.3。</li>
+              <li><strong>成功判据：</strong>照搬官方代码。硬币抬起超过 8 cm 得 20 分；硬币的包围盒完全落在存钱罐的槽区（罐的 "bottom" 点到 "center" 点之间）得 100 分。我们另外报告"物理上在罐内"（硬币形状的每个点都在罐内空腔里）作为辅助，不替代官方判据。</li>
+              <li><strong>引擎：</strong>MuJoCo 4.0.0（CPU）；SAP 新版（<code>2325082</code>，Newton Convex 碰撞）。</li>
+            </ul>
+            <details><summary>场景还原叠加图</summary><figure class="figure-audit"><img src="assets/part5/deposit-coin/reconstruction-overlay.jpg" alt="官方首帧头部相机图像上叠加还原出的存钱罐轮廓（绿色）、硬币支架（青色）和硬币位置（黄色）" loading="lazy"><figcaption>还原出的存钱罐（绿）、支架（青）和硬币（黄）投影到官方首帧图像上。存钱罐的一部分被左侧夹爪遮挡。</figcaption></figure></details>
+          </section>
+
+          <section id="coin-iterations" class="study-subsection">
+            <h4>迭代调试</h4>
+            <p>规则与插试管相同：第 1 轮用原生默认参数，之后每轮只根据上一轮暴露的问题调整引擎自身的数值参数，每轮只跑 1 次。<strong>两个引擎都在第 2 轮成功，第 3 轮消除了剩下的物理缺陷，之后已没有值得针对的问题，所以只用了 3 轮。</strong></p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>MuJoCo 4.0.0 设置</th><th>得分</th><th>为什么这样改 / 结果</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认</td><td>20</td><td>硬币被抬起，但两指压进硬币约 1.8 mm，把它挤得在手里滑移、翻转，交接前掉落。</td></tr>
+              <tr><td>2</td><td>椭圆摩擦锥、<code>impratio=10</code>、<code>solref=(0.002,1)</code></td><td><strong>100</strong></td><td>针对硬币被挤出：接触刚度用到步长允许的上限（时间常数 = 2 倍步长）。压入降到 0.69 mm，滑移 0.3–0.4 mm，硬币平躺在罐底。</td></tr>
+              <tr><td>3</td><td>+ <code>solimp=(0.99,0.999,0.0005,0.5,2)</code></td><td><strong>100</strong></td><td>针对剩下的压入，压入降到约 0。仍有一次约 4 ms、1.5 mm 的瞬时穿透（硬币拔出时撞到支架壁），受步长限制，无法再改善。</td></tr>
+            </tbody></table></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>轮次</th><th>SAP + Newton Convex 设置</th><th>得分</th><th>为什么这样改 / 结果</th></tr></thead><tbody>
+              <tr><td>1</td><td>原生默认（pair <code>ke=1250 N/m</code>、<code>τ=0.02 s</code>）</td><td>20</td><td>抓取、交接、入槽<strong>全部成功</strong>，硬币已掉进罐里，但<strong>侧立在罐底不倒</strong>，官方判据不通过（见下文）。</td></tr>
+              <tr><td>2</td><td>pair <code>τ=0.002 s</code></td><td><strong>100</strong></td><td>针对落地冲击被完全耗散，降低耗散后，硬币落地弹起、倒平。但默认刚度太软，手指压进硬币 2.71 mm，超过硬币本身厚度。</td></tr>
+              <tr><td>3</td><td>+ pair <code>ke=1e5 N/m</code></td><td><strong>100</strong></td><td>针对手指压入，压入降到约 0，手内滑移 0.4 mm，全程峰值穿透 0.14 mm。</td></tr>
+            </tbody></table></div>
+            <p class="scope-line">参数是在同一条回放上调出来的。我们自己的一个建模错误已在正式迭代前修正：支架最初用自动凸分解，为满足 64 顶点上限而简化，使槽比硬币还窄，硬币一开始就被支架夹住。改为精确搭建后重跑，修正前的结果不计入。</p>
+          </section>
+
+          <section id="coin-results" class="study-subsection">
+            <h4>结论</h4>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>第 3 轮</th><th>MuJoCo 4.0.0</th><th>SAP + Newton Convex</th></tr></thead><tbody>
+              <tr><td>官方得分</td><td><strong>100</strong></td><td><strong>100</strong></td></tr>
+              <tr><td>手指压入硬币</td><td>≈0（−0.05 mm）</td><td>≈0（0.00 mm）</td></tr>
+              <tr><td>手内滑移（两次搬运）</td><td>0.4 mm</td><td>0.4 mm</td></tr>
+              <tr><td>松手时相对投币口中心</td><td>(0.3, −1.9, 0.6) mm</td><td>(0.3, −1.9, 0.7) mm</td></tr>
+              <tr><td>全程峰值穿透</td><td>1.52 mm（4 ms 瞬时）</td><td>0.14 mm</td></tr>
+              <tr><td>每次计算时间</td><td>约 16 s（CPU）</td><td>约 31 s（GPU）</td></tr>
+            </tbody></table></div>
+            <div class="study-note"><p><strong>如实结论：</strong>在这条示范上，<strong>调参后两个引擎都能完成投币，结果几乎一样</strong>，这个任务在最终结果上没有拉开两者。差异集中在默认参数下的表现：
+              <br>· MuJoCo 的接触刚度按物体质量缩放，5 g 的硬币接触偏软，默认会被夹扁、挤出；
+              <br>· SAP 默认刚度太软，同时落地冲击被过度耗散，硬币侧立不倒。
+              <br>需要注意的是，这个复现里存钱罐的位置是按"硬币在手里不打滑"反推出来的，只要夹得稳，松手时就正对投币口，所以成功在一定程度上是被"对齐"进去的。下面的鲁棒性测试就是用来检查这一点。</p></div>
+            <p><strong>SAP 第 1 轮的"失败"其实是官方判据的特点。</strong>硬币已经穿过投币口掉进罐里（物理检查确认它完全在罐内），只是落地后侧立。官方判据用的是元数据里的硬币包围盒：一个旋转 45° 的 40 × 40 mm 方框，比硬币本身（28.5 mm）大。硬币立着时，这个框的下沿比罐底参考点低 1.1 mm，于是判为"不在罐内"；硬币平躺才能通过。</p>
+          </section>
+
+          <section id="coin-robustness" class="study-subsection">
+            <h4>鲁棒性测试 <span class="study-label">进行中 · 部分结果</span></h4>
+            <p>参数冻结为两个引擎的第 3 轮，做两类测试。<strong>计算服务器中途离线，部分结果尚未取回，下表只列出已经核实的结果。</strong></p>
+            <p><strong>（1）扰动存钱罐位置。</strong>检验结论是否依赖还原精度。投币口宽 5.5 mm，硬币厚 1.94 mm，硬币每侧理论上只有约 1.8 mm 余量。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>存钱罐沿槽宽方向偏移</th><th>−3 mm</th><th>−2 mm</th><th>−1 mm</th><th>+1 mm</th><th>+2 mm</th><th>+3 mm</th></tr></thead><tbody>
+              <tr><td>MuJoCo</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td></tr>
+              <tr><td>SAP</td><td>20（卡在槽口）</td><td>100</td><td>100</td><td>100</td><td>20（已入罐但侧立）</td><td>20（卡在槽口）</td></tr>
+            </tbody></table></div>
+            <p>沿槽长方向偏移 ±3 / ±6 mm、绕投币口转 ±2° / ±5°：MuJoCo 8/8 全部 100 分；SAP 已取回的 −3 mm、−6 mm 两种为 100 分，其余未取回。</p>
+            <p>这是这个任务里<strong>第一个拉开两者的结果</strong>：横向偏 3 mm 已经超出硬币的理论余量，SAP 的硬币卡在槽口，而 MuJoCo 仍然投了进去。MuJoCo 是靠硬币在手里横向滑开、顺着槽沿滑进去，还是靠软接触让硬币部分穿过了槽沿，<strong>尚未核实</strong>。这决定了 MuJoCo 这里的"成功"是否物理可信，取回数据后会补上分析。</p>
+            <p><strong>（2）多条示范。</strong>自动还原了 21 条示范（含 episode 0）的场景（自动识别哪只手抓取、有无交接、哪只手投放），其中 14 条通过全部一致性检查（抓取高度、配置范围、存钱罐朝向判定），包括无交接的单手示范。已取回的结果：MuJoCo 在前 8 条上 8/8 成功；SAP 和其余 6 条的结果尚未取回。</p>
+          </section>
+
+          <section id="coin-sources" class="study-subsection">
+            <h4>来源、数据与文件</h4>
+            <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>；任务定义与成功判据参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>（<code>deposit_coin.py</code>、<code>func_parser.py</code>）。资产：<code>Rigid/coin/00000</code>、<code>Geometry/vertical_coin_stand/00000</code>、<code>Geometry/piggy_bank/00000</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本节的模拟回放、视频和分析由本实验生成。</p>
+            <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/deposit_coin/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/deposit_coin.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/deposit-coin/report.md">详细报告（MD）</a><a href="assets/part5/deposit-coin/tuning_log.json">迭代记录（JSON）</a></div>
           </section>
         </article>
       </section>
