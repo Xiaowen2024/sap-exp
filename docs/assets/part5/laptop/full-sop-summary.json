@@ -1,0 +1,625 @@
+{
+  "mode": "existing-only; no new simulation",
+  "standard": "user-provided Stack Bowls evaluation SOP, adapted to one rectangular laptop",
+  "physical_fidelity": {
+    "object_trajectory_error": {
+      "position_rmse_m": null,
+      "orientation_error_deg": null,
+      "accepted_object_frames": 0,
+      "total_source_object_frames": 325,
+      "uncertainty": null,
+      "status": "not evaluated: no admitted object reference trajectory"
+    },
+    "final_pose_error": {
+      "position_error_m": null,
+      "orientation_error_deg": null,
+      "accepted_objects": 0,
+      "total_objects": 1,
+      "accepted_source_window_object_frames": 0,
+      "source_window_object_frames": 12,
+      "reference_attempt": {
+        "status": "rejected_not_admitted_reference",
+        "head_frames": [
+          538,
+          544,
+          549
+        ],
+        "right_wrist_frame": 549,
+        "method": "visible-corner rigid fit using calibrated multi-view projections",
+        "landmark_rms_px": 6.901598825447431,
+        "admission_threshold_px": 2.0,
+        "reason": "inconsistent corner/model/multiview fit; no reliable final reference admitted",
+        "trajectory_reference_error_m": null,
+        "final_reference_error_m": null
+      },
+      "uncertainty": null,
+      "status": "reference fit rejected; residual is not simulation error"
+    },
+    "note": "Zero accepted coverage does not mean the images are invisible. Initial reconstruction, gripper tracking and engine-to-engine differences are not reference trajectory errors."
+  },
+  "simulation_consistency": {
+    "MuJoCo Warp": {
+      "geometric_validity": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "sample_dt_s": 0.01,
+        "sample_count": 1447,
+        "run_window_s": [
+          0,
+          14.46
+        ],
+        "pairs": {
+          "laptop/right_link7": {
+            "sampled_peak_lower_bound_mm": 0.18069206506333607,
+            "sampled_peak_upper_bound_mm": 4.107138240990449,
+            "upper_peak_time_s": 6.33,
+            "lower_peak_time_s": 6.33
+          },
+          "laptop/right_link8": {
+            "sampled_peak_lower_bound_mm": 0.1940651772797842,
+            "sampled_peak_upper_bound_mm": 0.3811915322111555,
+            "upper_peak_time_s": 7.87,
+            "lower_peak_time_s": 10.370000000000001
+          },
+          "laptop/left_link7": {
+            "sampled_peak_lower_bound_mm": 0.3491171673859403,
+            "sampled_peak_upper_bound_mm": 0.386404924442962,
+            "upper_peak_time_s": 3.2600000000000002,
+            "lower_peak_time_s": 3.2600000000000002
+          },
+          "laptop/left_link8": {
+            "sampled_peak_lower_bound_mm": 0.5376147196925876,
+            "sampled_peak_upper_bound_mm": 0.5509175593059075,
+            "upper_peak_time_s": 6.82,
+            "lower_peak_time_s": 6.82
+          },
+          "laptop/rack": {
+            "sampled_peak_lower_bound_mm": 0.0774511381447234,
+            "sampled_peak_upper_bound_mm": 0.12858075868376023,
+            "upper_peak_time_s": 11.620000000000001,
+            "lower_peak_time_s": 11.56
+          },
+          "laptop/table": {
+            "sampled_peak_lower_bound_mm": 0.0,
+            "sampled_peak_upper_bound_mm": 0.0,
+            "upper_peak_time_s": null,
+            "lower_peak_time_s": null
+          },
+          "laptop/laptop_stand": {
+            "sampled_peak_lower_bound_mm": 0.10785209197141575,
+            "sampled_peak_upper_bound_mm": 0.10868593032752298,
+            "upper_peak_time_s": 3.2600000000000002,
+            "lower_peak_time_s": 3.2600000000000002
+          }
+        },
+        "global_component_peak_bounds_mm": [
+          0.5376147196925876,
+          4.107138240990449
+        ],
+        "local_wall_thickness_audit": null,
+        "wall_crossing_audit": null,
+        "note": "Bounds concern the sampled maximum over convex component pairs, not exact union penetration or a continuous-time maximum. Wide finger-contact bounds prevent a global geometry ranking."
+      },
+      "contact_continuity": {
+        "laptop/left_link7": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 0.9956818181818182,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 0.9954545454545455,
+          "longest_no_force_s": 0.013000000000000001,
+          "recontact_count": 8,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            }
+          }
+        },
+        "laptop/left_link8": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 0.9895454545454545,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 0.9893181818181818,
+          "longest_no_force_s": 0.04,
+          "recontact_count": 6,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            }
+          }
+        },
+        "laptop/right_link7": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 0.9993939393939394,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 0.9993939393939394,
+          "longest_no_force_s": 0.001,
+          "recontact_count": 2,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            12.3,
+            14.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 0.999537037037037,
+          "longest_no_force_s": 0.001,
+          "recontact_count": 1,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            }
+          }
+        }
+      },
+      "post_release_settling": {
+        "primary": {
+          "window_s": [
+            12.5,
+            12.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 1.9076599344828284,
+          "angular_speed_rms_rad_s": 0.04497388752045864,
+          "linear_speed_peak_mm_s": 9.850923430383672,
+          "net_COM_drift_mm": 0.23659703224339218,
+          "orientation_change_deg": 0.5648785468221635,
+          "final_COM_m": [
+            0.3341427445411682,
+            -0.0637291967868805,
+            0.8340989947319031
+          ]
+        },
+        "supplementary_appended_tail": {
+          "window_s": [
+            13.96,
+            14.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 4.018524946881652,
+          "angular_speed_rms_rad_s": 0.08770939905047412,
+          "linear_speed_peak_mm_s": 9.079451950424259,
+          "net_COM_drift_mm": 0.029127437613596294,
+          "orientation_change_deg": 0.008772048560050946,
+          "final_COM_m": [
+            0.3344678282737732,
+            -0.06358508765697479,
+            0.8339512944221497
+          ]
+        },
+        "path_length_mm": null,
+        "tilt_fluctuation_deg": null,
+        "note": "Primary window is inside recorded source time. Tail motion is supplementary, not reference pose evidence."
+      }
+    },
+    "SAP Warp": {
+      "geometric_validity": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "sample_dt_s": 0.01,
+        "sample_count": 1447,
+        "run_window_s": [
+          0,
+          14.46
+        ],
+        "pairs": {
+          "laptop/right_link7": {
+            "sampled_peak_lower_bound_mm": 0.16849811014033314,
+            "sampled_peak_upper_bound_mm": 2.278026637672281,
+            "upper_peak_time_s": 6.5600000000000005,
+            "lower_peak_time_s": 11.51
+          },
+          "laptop/right_link8": {
+            "sampled_peak_lower_bound_mm": 0.06829469646375112,
+            "sampled_peak_upper_bound_mm": 0.06932970328747916,
+            "upper_peak_time_s": 11.6,
+            "lower_peak_time_s": 11.6
+          },
+          "laptop/left_link7": {
+            "sampled_peak_lower_bound_mm": 0.32438737788330235,
+            "sampled_peak_upper_bound_mm": 0.37871712257074824,
+            "upper_peak_time_s": 3.0500000000000003,
+            "lower_peak_time_s": 3.0500000000000003
+          },
+          "laptop/left_link8": {
+            "sampled_peak_lower_bound_mm": 0.38210482244777516,
+            "sampled_peak_upper_bound_mm": 0.8557752099351719,
+            "upper_peak_time_s": 3.16,
+            "lower_peak_time_s": 6.72
+          },
+          "laptop/rack": {
+            "sampled_peak_lower_bound_mm": 1.3690462867568185,
+            "sampled_peak_upper_bound_mm": 1.3964837040518647,
+            "upper_peak_time_s": 12.52,
+            "lower_peak_time_s": 12.52
+          },
+          "laptop/table": {
+            "sampled_peak_lower_bound_mm": 0.0,
+            "sampled_peak_upper_bound_mm": 0.0,
+            "upper_peak_time_s": null,
+            "lower_peak_time_s": null
+          },
+          "laptop/laptop_stand": {
+            "sampled_peak_lower_bound_mm": 2.4136353394556753,
+            "sampled_peak_upper_bound_mm": 2.5039432450721817,
+            "upper_peak_time_s": 2.87,
+            "lower_peak_time_s": 2.87
+          }
+        },
+        "global_component_peak_bounds_mm": [
+          2.4136353394556753,
+          2.5039432450721817
+        ],
+        "local_wall_thickness_audit": null,
+        "wall_crossing_audit": null,
+        "note": "Bounds concern the sampled maximum over convex component pairs, not exact union penetration or a continuous-time maximum. Wide finger-contact bounds prevent a global geometry ranking."
+      },
+      "contact_continuity": {
+        "laptop/left_link7": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/left_link8": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link7": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            12.3,
+            14.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "force_threshold_N": 0.01,
+          "force_bearing_duty": 1.0,
+          "longest_no_force_s": 0.0,
+          "recontact_count": 0,
+          "threshold_sensitivity": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "post_release_settling": {
+        "primary": {
+          "window_s": [
+            12.5,
+            12.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 0.9621782609410937,
+          "angular_speed_rms_rad_s": 0.015928949068219657,
+          "linear_speed_peak_mm_s": 5.57436990737915,
+          "net_COM_drift_mm": 0.004231052473187447,
+          "orientation_change_deg": 0.014648252687993139,
+          "final_COM_m": [
+            0.3226977586746216,
+            -0.05922633409500122,
+            0.8336346745491028
+          ]
+        },
+        "supplementary_appended_tail": {
+          "window_s": [
+            13.96,
+            14.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 0.8512705415121572,
+          "angular_speed_rms_rad_s": 0.014790736305218823,
+          "linear_speed_peak_mm_s": 2.199848175048828,
+          "net_COM_drift_mm": 0.006176599767059088,
+          "orientation_change_deg": 0.01629021224979297,
+          "final_COM_m": [
+            0.3226771652698517,
+            -0.05923386663198471,
+            0.8336297869682312
+          ]
+        },
+        "path_length_mm": null,
+        "tilt_fluctuation_deg": null,
+        "note": "Primary window is inside recorded source time. Tail motion is supplementary, not reference pose evidence."
+      }
+    }
+  },
+  "task_outcome": {
+    "MuJoCo Warp": {
+      "reference_observed_success": true,
+      "simulation_observed_insertion": true,
+      "complete_release_observed": true,
+      "post_release_peak_gripper_normal_force_N": 0.0,
+      "observed_outcome_agreement": true,
+      "valid_success": null,
+      "valid_outcome_agreement": null,
+      "false_success": null,
+      "false_success_status": "not applicable under observed-success reference label",
+      "false_failure": null,
+      "reason": "Local thickness and wall-crossing validity audits are incomplete; do not turn missing validity into success or failure."
+    },
+    "SAP Warp": {
+      "reference_observed_success": true,
+      "simulation_observed_insertion": true,
+      "complete_release_observed": true,
+      "post_release_peak_gripper_normal_force_N": 0.0,
+      "observed_outcome_agreement": true,
+      "valid_success": null,
+      "valid_outcome_agreement": null,
+      "false_success": null,
+      "false_success_status": "not applicable under observed-success reference label",
+      "false_failure": null,
+      "reason": "Local thickness and wall-crossing validity audits are incomplete; do not turn missing validity into success or failure."
+    }
+  },
+  "input_checks": {
+    "MuJoCo Warp": {
+      "drive_gate_pass": false,
+      "tracking": {
+        "left_base": {
+          "max_position_m": 0.0041070932821112875,
+          "rms_position_m": 0.0004837063781987725,
+          "max_rotation_deg": 8.332447389617927
+        },
+        "right_base": {
+          "max_position_m": 0.00156708046824401,
+          "rms_position_m": 0.00010901139304168728,
+          "max_rotation_deg": 1.5833644146057804
+        }
+      },
+      "finite": true,
+      "steps": 14460,
+      "expected_steps": 14460,
+      "truncated": 0,
+      "use": "input implementation checks; not object-trajectory fidelity metrics or automatic task-failure labels"
+    },
+    "SAP Warp": {
+      "drive_gate_pass": false,
+      "tracking": {
+        "left_base": {
+          "max_position_m": 0.004425836219458225,
+          "rms_position_m": 0.0008983828284185998,
+          "max_rotation_deg": 5.1002137854777505
+        },
+        "right_base": {
+          "max_position_m": 0.00156732075747668,
+          "rms_position_m": 0.00010931180363643582,
+          "max_rotation_deg": 1.689911235384972
+        }
+      },
+      "finite": true,
+      "steps": 14460,
+      "expected_steps": 14460,
+      "truncated": 0,
+      "use": "input implementation checks; not object-trajectory fidelity metrics or automatic task-failure labels"
+    }
+  },
+  "source_time_offset_s": 9.0,
+  "primary_settling_window_run_s": [
+    12.5,
+    12.96
+  ],
+  "primary_settling_window_source_s": [
+    21.5,
+    21.96
+  ],
+  "r_per_configuration": 1,
+  "episode_count": 1,
+  "overall_fidelity_ranking": null,
+  "inputs_sha256": {
+    "full-metrics.json": "c9f35009e9333946eb6ab9461ffad0ff6170ec07a1e29118d5e2c2357df28c7e",
+    "full-stages.json": "e07764da6f54f3f3ee53abc1e5ffb705e8c63adf8e9807c345ef718cc85ebab1",
+    "reference-final-attempt.json": "531311f2ce08d73f55d547da1364ecf3552a4e9c922db9b8d07350b9eee8c7fe"
+  }
+}

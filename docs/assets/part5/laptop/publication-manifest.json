@@ -64,6 +64,7 @@
     "browser_visual_check": "not performed; computer-use permission unavailable in this session"
   },
   "files": {
+    "evaluation-sop.md": "93cd7a685ab68bf817a2ed71e3ca1d736cedc51686da2b197e40556a04fce1ac",
     "full/closeup.mp4": "f77abd9a34d4f7209ab0313f6aa6a06ea03ab8c5c89fe8c8ef9e8279c744044e",
     "full/comparison.mp4": "f68abb080c6d0c9fdf36d6f8d26ea8f8af93928d725f5d2942e757eccb3dff8b",
     "full/mujoco.mp4": "f5501be7b023237f7fc58e93df4c4b23cc595f9e1345323d2e84228ebbacc80d",
@@ -71,6 +72,7 @@
     "full/sap.mp4": "fd73f2f8e4e39dc051e1f0aea4cb3f05584e7416fd696f8ee8764111a4fd2283",
     "full-initial-fit.json": "ddbd891802551a361821a2ee39a46b16083a871ee48b6e6d05c0a0707c81af1c",
     "full-metrics.json": "c9f35009e9333946eb6ab9461ffad0ff6170ec07a1e29118d5e2c2357df28c7e",
+    "full-sop-summary.json": "046029fac6871c32fea0f78253bf52e379e9a1e968d0b6217ebf9176c0b45526",
     "full-sop.md": "2ef793489c34781b455eb464ad51912c3c73566f9b0c9281b2597f2d96dc940f",
     "full-stages.json": "e07764da6f54f3f3ee53abc1e5ffb705e8c63adf8e9807c345ef718cc85ebab1",
     "iteration-journal.md": "f381e0c8dd78b1f7ca5f45546a6dbe9fd6bcd89669f9ad8256444e27954da3fe",
@@ -79,14 +81,20 @@
     "rack-geometry-audit.json": "b5a004edba3027c7077f199b3b0ba7109631e34dfe6b33243d7a12aeb08c551d",
     "reference-final-attempt.json": "531311f2ce08d73f55d547da1364ecf3552a4e9c922db9b8d07350b9eee8c7fe",
     "reference-full.mp4": "512c491203917abb967a9a4ebbbe5def8b3c6a163bf880dd57772acb48b9deed",
-    "report.md": "bdfa784e71d0241161084c68a9b0d7287348f3aa1cce462688f9211c4440db23",
+    "report.md": "1c63e2b5f5010ad10add209d1c446f000c87fd8090bb04ffd8d73db2de9f3e8a",
     "short/closeup.mp4": "12e293a72d67485bef2a5b9ca44b6d7b0a8121add1c58fc31a73aecd0d7f6dfe",
     "short/comparison.mp4": "25197b2dc1318e509c9b8f5fe31f4297d4eaffe348d8a7408819827fd085e126",
     "short/mujoco.mp4": "38781652674833bd914165fe507165a7a9b597c542cbc305195c90dc2357c787",
     "short/poster.jpg": "419df6135fabe3eede3e03b5c3899e8bce5b0ee9881b656d4fa76bb20a2b71a2",
     "short/sap.mp4": "f5116432db8bfa93987774242050439f66fc6dcd9b2c2209ea3adb37f1600dbd",
     "short-metrics.json": "397e03fec0601f0d96556223badd19b08edb0f82025ff8157e9b7f09d9bb80fb",
-    "short-sop.md": "217386de6177b6a585d5468cf8ea8dce056450fdf01eb9d201c17cbeb838d319"
+    "short-sop.md": "217386de6177b6a585d5468cf8ea8dce056450fdf01eb9d201c17cbeb838d319",
+    "summarize-existing.py": "1bbc3b494b34fda32703478394aef850bc6e0b7016a42e122bfabcbc1b50f668"
   },
-  "primary_result": "complete closed-laptop pickup, transport, handoff, insertion and release; short-fragment tuning is supplementary"
+  "primary_result": "complete closed-laptop pickup, transport, handoff, insertion and release; short-fragment tuning is supplementary",
+  "evaluation_standard": "Stack Bowls user-provided SOP; physical fidelity / simulation consistency / task outcome; existing-only",
+  "primary_settling_window_source_s": [
+    21.5,
+    21.96
+  ]
 }
