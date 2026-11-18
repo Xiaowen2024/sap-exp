@@ -62,7 +62,7 @@ Tasks in this family report the shared metrics above first, then add only task-s
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Pendulum | Period Duration (PD) evaluated via Fourier spectral analysis. | [pendulum.md](../../tasks/simulation-only-atomic/pendulum-ideal/SOP.md) |
+| Pendulum | Period Duration (PD) evaluated via Fourier spectral analysis. | [pendulum.md](../../tasks/simulation-only-atomic/pendulum-ideal/task-metrics.md) |
 | Newton's cradle | Momentum Transfer Efficiency (MTE) and Longest Stationary Duration (LSD). | Not in this repository yet |
 
 ---

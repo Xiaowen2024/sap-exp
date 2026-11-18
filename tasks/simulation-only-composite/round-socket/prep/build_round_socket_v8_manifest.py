@@ -14,7 +14,7 @@ points are placed by their margin to an analytic boundary, not on a parameter gr
 Universal checks on every rollout: pose inside the non-penetrating set, mechanical energy never above its initial value, final pose is a
 static equilibrium the rigid model allows at that friction.  Every regularisation rung of both engines is run on every condition.
 
-Usage: python3 build_round_socket_v8_manifest.py [--out tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json]
+Usage: python3 build_round_socket_v8_manifest.py [--out archive/manifests/round_socket_strict_v8_draft.json]
 """
 from __future__ import annotations
 import sys as _sys
@@ -287,7 +287,7 @@ NOT_COVERED = [
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=REPO_ROOT / "tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json")
+    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=REPO_ROOT / "archive/manifests/round_socket_strict_v8_draft.json")
     a = ap.parse_args(); cells, geom = build()
     ids = {c["id"] for c in cells}; assert set(SELECTION_IDS) <= ids, set(SELECTION_IDS) - ids
     robust = [c["id"] for c in cells if c["split"] == "heldout" and any(c["id"].endswith(sfx) for sfx in ROBUST_SUFFIXES)]

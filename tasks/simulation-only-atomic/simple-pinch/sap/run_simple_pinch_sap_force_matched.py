@@ -23,7 +23,7 @@ from typing import Any
 import numpy as np
 
 ROOT = REPO_ROOT
-DEFAULT_MANIFEST = ROOT / "tasks/simulation-only-atomic/simple-pinch/manifests/simple_pinch_force_matched_v1.json"
+DEFAULT_MANIFEST = ROOT / "archive/manifests/simple_pinch_force_matched_v1.json"
 
 
 def load_module(path: Path) -> Any:

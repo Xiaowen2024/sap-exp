@@ -33,7 +33,7 @@ from pathlib import Path
 import build_round_socket_v8_manifest as v8
 
 ROOT = REPO_ROOT
-V8_FILE = ROOT / "tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json"
+V8_FILE = ROOT / "archive/manifests/round_socket_strict_v8_draft.json"
 HARDNESS_DT_MS = [0.125, 0.25, 0.5, 1.0, 2.0]
 HARDNESS_MARKS_MM = [0.15, 0.3, 0.6, 1.2]
 

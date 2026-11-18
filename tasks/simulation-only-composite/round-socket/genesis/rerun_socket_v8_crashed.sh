@@ -5,7 +5,7 @@
 # deterministic and not re-run.
 set -u
 OUT=${1:-/root/genesis_ipc/socket_v8/run}; PAR=${PAR:-3}
-PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; M=/root/SIM-EXP/tasks/simulation-only-composite/round-socket/manifests/round_socket_strict_v8_draft.json
+PY=/root/autodl-tmp/genesis-runtime/bin/python-genesis; M=/root/SIM-EXP/archive/manifests/round_socket_strict_v8_draft.json
 SUB="R_c0p3_x1p50,R_c1p0_x1p10,R_c0p1_x1p10,R_c0p3_x0p85,R_c1p0_x2p20,I_c0p3_rim_x2p20_g64,I_c0p3_wedgehold_g8,I_c1p0_wedgehold_g64,I_c0p1_wedgehold_g8,I_c0p3_wedgeslide_m0.1,E_c0p3_out_x1p5,E_c0p1_in_tilt0p5fe,E_c0p3_in_off0p5c,W_c0p3_shallow_slide1,W_c0p3_shallow_hold2,C_c0p3_free_centred"
 cd /root/SIM-EXP; mkdir -p $OUT/logs/rerun
 log() { echo "$(date -Is) $*" >> "$OUT/status.txt"; }

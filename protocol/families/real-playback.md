@@ -219,7 +219,7 @@ When all admitted episodes have the same real label, agreement is
 
 | Task | Source | Outcome classes | State |
 |---|---|---|---|
-| [Dish on rack](../../tasks/robot-playback/rh20t-dish-on-rack/SOP.md) | RH20T `task_0050` | success / task failure | pilot manifest drafted; data audit not started |
+| [Dish on rack](../../tasks/robot-playback/rh20t-dish-on-rack/task-metrics.md) | RH20T `task_0050` | success / task failure | pilot manifest drafted; data audit not started |
 
 ## Implementation status (2026-11-17)
 

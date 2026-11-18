@@ -81,8 +81,8 @@ physical outcomes.
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Bouncing ball | Apex-height decay error over the primary \(K\) bounces. | [ball-bounce.md](../../tasks/real-data-simple/ball-bounce/SOP.md) |
-| Cube toss | Final pose error (position, orientation, resting face) and post-impact linear/angular speed-decay errors. | [cube-toss.md](../../tasks/real-data-simple/cube-toss/SOP.md) |
+| Bouncing ball | Apex-height decay error over the primary \(K\) bounces. | [ball-bounce.md](../../tasks/real-data-simple/ball-bounce/task-metrics.md) |
+| Cube toss | Final pose error (position, orientation, resting face) and post-impact linear/angular speed-decay errors. | [cube-toss.md](../../tasks/real-data-simple/cube-toss/task-metrics.md) |
 | Cassie landing | Landing success, post-impact stability/chatter, and weighted 50-ms state error. | [cassie-landing.md](../../archive/composite/cassie-landing/SOP.md) |
 
 ## Reporting requirements

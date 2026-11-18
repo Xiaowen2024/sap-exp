@@ -44,7 +44,7 @@ The report follows the progression:
 
 - [`tasks/`](tasks/) — the current task set in four categories: simulation only · atomic,
   simulation only · composite (round socket), real data · simple, and robot playback.
-  Each task folder holds its SOP (how it is measured and judged), its manifests, assets
+  Each task folder holds its measurement criteria (`task-metrics.md`), the latest manifest, assets
   and one runner folder per simulator (`mujoco/`, `mjwarp/`, `sap/`, `genesis/`);
   see the [task index](tasks/README.md)
 - [`common/`](common/) — code shared by several tasks: [`paths.py`](common/paths.py) (which every

@@ -1,7 +1,7 @@
 # Protocol
 
 Rules that apply across tasks, from the general protocol down to the family a task
-belongs to. Each task's own SOP and manifests are in its folder under
+belongs to. Each task's measurement criteria (`task-metrics.md`) and latest manifest are in its folder under
 [`tasks/`](../tasks/README.md).
 
 - [`UNIFIED-B5-SOP.md`](UNIFIED-B5-SOP.md) — the B=1/B=5 tuning and frozen-generalization protocol.

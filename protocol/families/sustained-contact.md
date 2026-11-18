@@ -66,8 +66,8 @@ Tasks in this family report the shared metrics above first, then add only task-s
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Cube toss (sustained phase) | Residual creep / drift rate across the final resting window. | [cube-toss.md](../../tasks/real-data-simple/cube-toss-tail/SOP.md) |
-| Three-plate stacking | Stack order preservation, center-of-mass height deflection, and thickness sweep critical breakdown. | [three-plate-stack.md](../../tasks/simulation-only-atomic/three-plate-stack/SOP.md) |
+| Cube toss (sustained phase) | Residual creep / drift rate across the final resting window. | [cube-toss.md](../../tasks/real-data-simple/cube-toss-tail/task-metrics.md) |
+| Three-plate stacking | Stack order preservation, center-of-mass height deflection, and thickness sweep critical breakdown. | [three-plate-stack.md](../../tasks/simulation-only-atomic/three-plate-stack/task-metrics.md) |
 
 ---
 

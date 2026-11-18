@@ -64,8 +64,8 @@ Run every condition for \(M\) rollouts using a declared perturbation/seed distri
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Slope Slider | None. It is the real-world atomic validation of the shared sliding-law and support metrics. | [slope-slider.md](../../tasks/real-data-simple/slope-slider/SOP.md) |
-| MIT Push | Final planar object-pose error and windowed wrench--twist response errors. | [mit-push.md](../../tasks/real-data-simple/mit-push/SOP.md) |
+| Slope Slider | None. It is the real-world atomic validation of the shared sliding-law and support metrics. | [slope-slider.md](../../tasks/real-data-simple/slope-slider/task-metrics.md) |
+| MIT Push | Final planar object-pose error and windowed wrench--twist response errors. | [mit-push.md](../../tasks/real-data-simple/mit-push/task-metrics.md) |
 
 Future dynamic-friction tasks should add only the endpoint metrics that are not already represented by the shared protocol. Their binary outcome labels and thresholds must be defined at task level before repeated rollouts are run.
 

@@ -55,8 +55,8 @@ Every task in this family reports the shared metrics above first, then adds only
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Two-finger simple pinch | Minimum measured per-finger hold force \(F_{\rm grip,sim}^{*}\), grip-force error \(E_{\rm grip}\), and lift-height error \(E_z(T)\). | [simple-pinch.md](../../tasks/simulation-only-atomic/simple-pinch/SOP.md) |
-| Three-box push | Expected-outcome agreement for the middle box, plus repeated-condition `TP/FP/FN/TN`, FPR, FNR, and balanced accuracy. | [three-box-push.md](../../tasks/simulation-only-atomic/three-box-push/SOP.md) |
+| Two-finger simple pinch | Minimum measured per-finger hold force \(F_{\rm grip,sim}^{*}\), grip-force error \(E_{\rm grip}\), and lift-height error \(E_z(T)\). | [simple-pinch.md](../../tasks/simulation-only-atomic/simple-pinch/task-metrics.md) |
+| Three-box push | Expected-outcome agreement for the middle box, plus repeated-condition `TP/FP/FN/TN`, FPR, FNR, and balanced accuracy. | [three-box-push.md](../../tasks/simulation-only-atomic/three-box-push/task-metrics.md) |
 
 Future static-friction tasks should add a row and a short extension file here. For example, a block-on-slope task may add critical inclination; a push task may add breakaway load. Neither replaces the common support-relative motion, \(\rho\), duty, and normal-state checks.
 
