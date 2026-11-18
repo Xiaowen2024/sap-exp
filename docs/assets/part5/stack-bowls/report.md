@@ -52,3 +52,11 @@ Object-trajectory error、Final-pose error 暂未评估。视频有估计潜力�
 已有数据可区分末态共同几何采样重叠和释放后细小运动；最终视觉结果没有拉开差距。SAP 更静不等于更接近原示范，MuJoCo 采样穿透更少也不能单独证明真实复刻更好。没有足够证据给出 Physical Fidelity 排名或多 episode 复刻成功率。
 
 完整数值、补充尾窗、输入 SHA-256 见 [metrics.json](metrics.json)；逐碗 RMS 见 [settling.csv](settling.csv)。参考可见性图：[头部关键帧](reference_head_contact_sheet.jpg)、[三视角](reference_multiview_contact_sheet.jpg)。执行标准见 [SOP](sop.md)。
+
+## 补充：旧 SAP legacy 碰撞路径也能 work
+
+同一带关节夹爪 r3 下，两条碰撞路径都呈现了抓取、搬运和叠放：legacy 左／右碗最大抬升 15.14 / 11.86 cm，Newton 15.15 / 11.84 cm。末态最大采样穿透下界分别为 0.3312 / 1.5766 mm。新路径尾段运动较小，但本任务没有体现出它在宏观结果上的优势。
+
+范围是固定当前 SAP 求解器的 legacy／Newton 碰撞 A/B，不是完整旧构建与新构建的全部差异。早期 r2 的约 2 cm 抬升受独立手指模型影响，不能当作旧 SAP 在当前任务不 work 的证据。work 为可见搬运叠放，严格有效成功及参考复刻误差仍有缺项。
+
+[已有轨迹视频](legacy-vs-newton.mp4)。

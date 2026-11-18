@@ -316,5 +316,27 @@
     "task_outcome_separates_engines": false,
     "success_rate": null,
     "caveat": "single episode, descriptive comparison; lower speeds and lower sampled penetration alone do not prove closer reproduction"
+  },
+  "legacy_collision_ablation": {
+    "scope": "same articulated r3 and SAP solver; legacy versus Newton collision path, not entire old/new builds",
+    "R": 1,
+    "reference_fidelity_winner": null,
+    "macroscopic_update_benefit_observed": false,
+    "runs": {
+      "sap_objects_r3_legacy": {
+        "observed_transport_and_stacking": true,
+        "left_max_lift_cm": 15.138042210299718,
+        "right_max_lift_cm": 11.858293170420575,
+        "max_final_sampled_penetration_lower_bound_mm": 0.3311646275997171,
+        "trace_sha256": "509a5d9fefdf2185b8e447bb363929d24530a198a346b8cc994b2d7d84423d72"
+      },
+      "sap_objects_r3_newton": {
+        "observed_transport_and_stacking": true,
+        "left_max_lift_cm": 15.14895879636593,
+        "right_max_lift_cm": 11.836171584488008,
+        "max_final_sampled_penetration_lower_bound_mm": 1.576550784795655,
+        "trace_sha256": "931ddac9901a3c62c7c80008c24a600e363f64e4b3948969a6398f8406b46e4e"
+      }
+    }
   }
 }
