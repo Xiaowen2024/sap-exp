@@ -115,7 +115,7 @@
 
         <article id="atomic-all" class="study-subsection">
           <h3>1.0 结论：SAP 与 MuJoCo Warp 4.0、Genesis Rigid、Genesis IPC 的对比</h3>
-          <p>以 SAP 为主体，依次列出 SAP 占优、基本持平和表现较弱的任务。除单独标注的 round socket v6 历史结果外，每个任务使用同一份 manifest、条件、seed、R 和评分代码，各引擎用各自冻结的 B5 参数计分。通过数和正确数越高越好，loss、误差和能量漂移越低越好；round socket v9 草案单独报告 46 个有标签条件，不与 v6 合并。Genesis SAP coupler 的选择阶段诊断见 <a href="#atomic-genesis-sap">1.4</a>。</p>
+          <p>以 SAP 为主体，依次列出 SAP 占优、基本持平和表现较弱的任务。每个任务使用同一份 manifest、条件、seed、R 和评分代码，各引擎用各自冻结的 B5 参数计分。通过数和正确数越高越好，loss、误差和能量漂移越低越好；round socket 只列 v9 草案的 46 个有标签条件（368 个 rollout）。Genesis SAP coupler 的选择阶段诊断见 <a href="#atomic-genesis-sap">1.4</a>。</p>
           <div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">任务</th><th scope="col">指标</th><th scope="col">SAP</th><th scope="col">MuJoCo Warp 4.0</th><th scope="col">Genesis Rigid</th><th scope="col">Genesis IPC</th><th scope="col">以 SAP 为主体的结论</th></tr></thead><tbody>
             <tr><td><strong>Three-plate 叠板</strong></td><td>通过数</td><td><strong>240/240</strong></td><td>112/240</td><td>224/240</td><td>220/240</td><td><strong>SAP 最好</strong>，唯一满分；MuJoCo 不到一半</td></tr>
             <tr><td><strong>Cube-toss 抛方块</strong></td><td>loss ↓</td><td><strong>0.033</strong></td><td>0.051</td><td>0.052</td><td>0.042</td><td><strong>SAP 最好</strong>，比 MuJoCo 和 Rigid 低约 35%</td></tr>
@@ -128,7 +128,6 @@
             <tr><td>单摆 GAUGE（真实数据）</td><td>误差 ↓</td><td>1.029</td><td>1.029</td><td>1.029</td><td>—</td><td>完全相同，<strong>区分不出引擎</strong></td></tr>
             <tr><td><strong>Ball bounce 弹球，dt 1/900 s</strong></td><td>loss ↓</td><td>0.269</td><td><strong>0.076</strong></td><td>0.078</td><td>未跑</td><td><strong>SAP 明显最差</strong>，约为 MuJoCo 的 3.5 倍</td></tr>
             <tr><td><strong>Pendulum v2（理想化单摆）</strong></td><td>能量漂移 ↓</td><td>1.5e-3</td><td><strong>5e-6</strong></td><td>1.5e-3</td><td>—</td><td><strong>SAP 更差</strong>，但这是积分器的差别：MuJoCo 用的是 RK4；Rigid 和 SAP 一样</td></tr>
-            <tr><td><strong>Round socket 插孔</strong></td><td>v6：正确 rollout</td><td>560/680</td><td>680/680</td><td>—</td><td>—</td><td><strong>SAP 更差</strong>：放在孔口边缘的条件只有 40/160 站住</td></tr>
             <tr><td><strong>Round socket 插孔</strong></td><td>v9 草案：46 个有标签条件（368 个 rollout）</td><td>69.0% → 76.9%（新 Newton Convex）</td><td>85.1%</td><td>—</td><td>97.3%</td><td>SAP 原版最差；换了新 Newton Convex 后有提升，仍低于 MuJoCo 和 IPC</td></tr>
           </tbody></table></div>
           <p class="scope-line">Round socket v9 的 69.0% / 76.9% / 85.1% / 97.3% 分别对应 254 / 283 / 313 / 358 个正确 rollout（总数均为 368）。按问题迭代调参后的 SAP 92.4%、MuJoCo 95.9% 另列于 <a href="#atomic-socket">1.1</a>，不作为冻结参数的泛化结果。</p>
