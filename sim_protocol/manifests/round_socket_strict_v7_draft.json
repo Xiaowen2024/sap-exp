@@ -1,0 +1,1039 @@
+{
+ "protocol": "aligned-frozen-generalizability-v1",
+ "task": "round-socket",
+ "R": 20,
+ "candidate_rule": {
+  "fixed_during_B1_B5_selection": [
+   "clearance_mm",
+   "offset_mm",
+   "tilt_deg",
+   "release_height_mm",
+   "dt_ms",
+   "mu",
+   "geometry",
+   "duration_s"
+  ],
+  "allowed_native_parameters_only": true,
+  "sap_candidates": [
+   "native default",
+   "ke=2e4,tau=1.5ms,gap=.1mm",
+   "ke=6e4,tau=1.5ms,gap=.1mm",
+   "ke=2e5,tau=1.5ms,gap=.1mm",
+   "ke=2e4,tau=5ms,gap=.1mm"
+  ],
+  "mujoco_warp_candidates": [
+   "native default",
+   "tc=2ms,dampratio=1,dmax=.95",
+   "tc=3ms,dampratio=1,dmax=.95",
+   "tc=4ms,dampratio=2,dmax=.95",
+   "tc=6ms,dampratio=2,dmax=.99"
+  ],
+  "rationale": "unchanged from strict-v4/v5 (MuJoCo tc >= 2*dt at every declared dt)"
+ },
+ "revision": "strict-v7-draft",
+ "status": "DRAFT 2026-11-15; not declared, not run. Cells, labels, candidates and seeds are unchanged from strict-v6; only the two rule changes below are applied. Other v6 audit items (cell composition, all-candidate held-out reporting, boundary sweeps, negative controls, fresh held-out cells) are still open.",
+ "supersedes": "none yet (strict-v6 results are kept). v7 fixes two v6 rule defects found in the audit: the zero-tolerance radial bound and a selection rule that could not see base-impact penetration.",
+ "seed0": 86100,
+ "outcome_type": "multiclass",
+ "classes": [
+  "inserted",
+  "held_in_wedge",
+  "held_on_rim"
+ ],
+ "selection": [
+  {
+   "id": "sel_c0p75_tilt16_mu0p55",
+   "clearance_mm": 0.75,
+   "mu": 0.55,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "held_in_wedge",
+   "pose": {
+    "centre_inplane_mm": -5.7051,
+    "centre_z_mm": 58.8617,
+    "tilt_deg": 16.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.16,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "inserted_side_mm": 8.604,
+    "corner_depth_below_rim_mm": 2.069,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): (stick, stick) is the ONLY consistent mode for every mu in [mu/1.2, mu*1.2] -> the peg cannot start to move"
+   },
+   "selection_only": true
+  },
+  {
+   "id": "sel_c0p75_tilt16_mu0p12",
+   "clearance_mm": 0.75,
+   "mu": 0.12,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -5.7051,
+    "centre_z_mm": 58.8617,
+    "tilt_deg": 16.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.16,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 8.604,
+    "corner_depth_below_rim_mm": 2.069,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   },
+   "selection_only": true
+  }
+ ],
+ "held_out_conditions": [
+  {
+   "id": "free_c0p5_tilt0_centred_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.0025,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.0025,
+    "allowed_bottom_offset_mm": [
+     -0.395,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt0_centred_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.0025,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.0025,
+    "allowed_bottom_offset_mm": [
+     -0.395,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt0_shifted_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.2012,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.2012,
+    "allowed_bottom_offset_mm": [
+     -0.395,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt0_shifted_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.2012,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.2012,
+    "allowed_bottom_offset_mm": [
+     -0.395,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt1_centred_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1738,
+    "centre_z_mm": 67.1969,
+    "tilt_deg": 1.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.2625,
+    "allowed_bottom_offset_mm": [
+     0.125,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt1_centred_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1738,
+    "centre_z_mm": 67.1969,
+    "tilt_deg": 1.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.2625,
+    "allowed_bottom_offset_mm": [
+     0.125,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt1_shifted_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1051,
+    "centre_z_mm": 67.1969,
+    "tilt_deg": 1.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.3312,
+    "allowed_bottom_offset_mm": [
+     0.125,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c0p5_tilt1_shifted_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1051,
+    "centre_z_mm": 67.1969,
+    "tilt_deg": 1.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.3312,
+    "allowed_bottom_offset_mm": [
+     0.125,
+     0.4
+    ],
+    "free_entry_tilt_max_deg": 1.935,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt0_centred_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.0025,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.0025,
+    "allowed_bottom_offset_mm": [
+     -0.895,
+     0.9
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt0_centred_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.0025,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.0025,
+    "allowed_bottom_offset_mm": [
+     -0.895,
+     0.9
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt0_shifted_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.4512,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.4512,
+    "allowed_bottom_offset_mm": [
+     -0.895,
+     0.9
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt0_shifted_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": 0.4512,
+    "centre_z_mm": 67.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.4512,
+    "allowed_bottom_offset_mm": [
+     -0.895,
+     0.9
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt2_centred_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.3475,
+    "centre_z_mm": 67.3687,
+    "tilt_deg": 2.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.525,
+    "allowed_bottom_offset_mm": [
+     0.145,
+     0.905
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt2_centred_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.3475,
+    "centre_z_mm": 67.3687,
+    "tilt_deg": 2.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.525,
+    "allowed_bottom_offset_mm": [
+     0.145,
+     0.905
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt2_shifted_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1575,
+    "centre_z_mm": 67.3687,
+    "tilt_deg": 2.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.715,
+    "allowed_bottom_offset_mm": [
+     0.145,
+     0.905
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "free_c1_tilt2_shifted_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "free_entry",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -0.1575,
+    "centre_z_mm": 67.3687,
+    "tilt_deg": 2.0
+   },
+   "label_basis": {
+    "bottom_offset_mm": 0.715,
+    "allowed_bottom_offset_mm": [
+     0.145,
+     0.905
+    ],
+    "free_entry_tilt_max_deg": 3.921,
+    "reason": "lowered vertically the peg clears both walls by >= 0.1 mm down to the base (no two-point contact possible); rebound from a 32-mm drop cannot exceed the 30-mm bore depth"
+   }
+  },
+  {
+   "id": "rim_c0p5_off1p3x_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 4.4562,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 3.4278,
+    "offset_over_threshold": 1.3,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c0p5_off1p3x_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 4.4562,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 3.4278,
+    "offset_over_threshold": 1.3,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c0p5_off2x_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 6.8557,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 3.4278,
+    "offset_over_threshold": 2.0,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c0p5_off2x_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 6.8557,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 3.4278,
+    "offset_over_threshold": 2.0,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c1_off1p3x_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 6.2346,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 4.7958,
+    "offset_over_threshold": 1.3,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c1_off1p3x_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 6.2346,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 4.7958,
+    "offset_over_threshold": 1.3,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c1_off2x_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 9.5917,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 4.7958,
+    "offset_over_threshold": 2.0,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "rim_c1_off2x_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "rim_rest",
+   "expected": "held_on_rim",
+   "pose": {
+    "centre_inplane_mm": 9.5917,
+    "centre_z_mm": 65.0,
+    "tilt_deg": 0.0
+   },
+   "label_basis": {
+    "stability_offset_mm": 4.7958,
+    "offset_over_threshold": 2.0,
+    "reason": "upright peg on the rim top is statically stable iff centre offset > sqrt(R^2 - r^2); released at rest with 30-100 % margin; no tangential load, so friction is irrelevant"
+   }
+  },
+  {
+   "id": "wedge_c0p5_tilt5_mu0p3",
+   "clearance_mm": 0.5,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -1.6351,
+    "centre_z_mm": 53.4767,
+    "tilt_deg": 5.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.479,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 12.478,
+    "corner_depth_below_rim_mm": 10.426,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  },
+  {
+   "id": "wedge_c0p5_tilt14_mu0p8",
+   "clearance_mm": 0.5,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "held_in_wedge",
+   "pose": {
+    "centre_inplane_mm": -5.2064,
+    "centre_z_mm": 60.2886,
+    "tilt_deg": 14.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.119,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "inserted_side_mm": 6.958,
+    "corner_depth_below_rim_mm": 1.187,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): (stick, stick) is the ONLY consistent mode for every mu in [mu/1.2, mu*1.2] -> the peg cannot start to move"
+   }
+  },
+  {
+   "id": "wedge_c0p5_tilt14_mu0p08",
+   "clearance_mm": 0.5,
+   "mu": 0.08,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -5.2064,
+    "centre_z_mm": 60.2886,
+    "tilt_deg": 14.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.119,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 6.958,
+    "corner_depth_below_rim_mm": 1.187,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt8_mu0p3",
+   "clearance_mm": 1.0,
+   "mu": 0.3,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -2.3723,
+    "centre_z_mm": 50.5334,
+    "tilt_deg": 8.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.5995,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 15.909,
+    "corner_depth_below_rim_mm": 12.692,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p8",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "held_in_wedge",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): (stick, stick) is the ONLY consistent mode for every mu in [mu/1.2, mu*1.2] -> the peg cannot start to move"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p08",
+   "clearance_mm": 1.0,
+   "mu": 0.08,
+   "dt_ms": 0.5,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p8_dt0p25",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 0.25,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "held_in_wedge",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): (stick, stick) is the ONLY consistent mode for every mu in [mu/1.2, mu*1.2] -> the peg cannot start to move"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p08_dt0p25",
+   "clearance_mm": 1.0,
+   "mu": 0.08,
+   "dt_ms": 0.25,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p8_dt1",
+   "clearance_mm": 1.0,
+   "mu": 0.8,
+   "dt_ms": 1.0,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "held_in_wedge",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "stick",
+      "stick"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): (stick, stick) is the ONLY consistent mode for every mu in [mu/1.2, mu*1.2] -> the peg cannot start to move"
+   }
+  },
+  {
+   "id": "wedge_c1_tilt20_mu0p08_dt1",
+   "clearance_mm": 1.0,
+   "mu": 0.08,
+   "dt_ms": 1.0,
+   "duration_s": 3.0,
+   "azimuth_deg": 5.625,
+   "category": "wedge",
+   "expected": "inserted",
+   "pose": {
+    "centre_inplane_mm": -6.8871,
+    "centre_z_mm": 58.1143,
+    "tilt_deg": 20.0
+   },
+   "label_basis": {
+    "mu_star_static": 0.1425,
+    "consistent_release_modes_at_mu_div_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "consistent_release_modes_at_mu_x_1p2": [
+     [
+      "slide-",
+      "slide-"
+     ]
+    ],
+    "inserted_side_mm": 9.727,
+    "corner_depth_below_rim_mm": 1.616,
+    "reason": "2D rigid-body contact-mode analysis at release from rest (acceleration-level Coulomb LCP, both contacts x {separate, stick, slide+, slide-}): no static (stick, stick) solution even at 1.2 mu, and mu* only grows as the peg slides deeper -> it slides to the base"
+   }
+  }
+ ],
+ "fixed": {
+  "geometry": "assets/round_socket_exact (scripts/build_round_socket_exact.py): 32-gon base z 0-10 mm + 32 convex wall wedges z 10-40 mm whose inner faces sit at apothem 12.000 mm (inscribed bore exactly 12 mm; audit in geometry_audit.json); same meshes in both engines; peg = cylinder radius 12 mm - clearance, half-length 25 mm, mass 0.08 kg, solid-cylinder inertia",
+  "frame": "all poses are in the tilt plane through a flat-face centre of the 32-gon bore (azimuth 5.625 deg about z), where the bore radius is exactly 12.000 mm on both sides; centre_inplane_mm is along that direction, tilt_deg tilts the peg top toward the negative in-plane direction",
+  "release": "at rest, no actuation, gravity only; 3-s run. free_entry: lowest point 2 mm above the rim top; rim_rest: bottom face on the rim top; wedge: exact two-point contact",
+  "perturbation": "U(+-0.05 mm) perpendicular to the tilt plane only (keeps the analytic contact geometry); identical arrays for both engines",
+  "labels": "free_entry and rim_rest: geometry / statics as before. wedge: 2D rigid-body contact-mode analysis at release (peg_hole_statics.release_modes); held_in_wedge only where static hold is the unique consistent mode over mu/1.2..mu*1.2; inserted where no static solution exists at 1.2 mu. Rev 5's wedge labels used static feasibility alone, which is necessary but not sufficient: the smoke test (both engines) and this analysis show a consistent (slide-, slide-) mode at those poses.",
+  "correct_rule": "inserted: final centre z <= 36 mm, final radial <= clearance + 0.01 mm (radial_tolerance_mm; v6 had no tolerance and flipped seated pegs on 0.3-10.2 um of static wall penetration), final tilt <= atan(2c/30 mm) + 0.5 deg, settled (last 0.5 s z-range <= 0.5 mm, speed <= 5 mm/s). held_in_wedge: never drops more than 5 mm below its start, tilt change <= 5 deg, settled (held and inserted end ~23 mm apart). held_on_rim: final |z - z0| <= 1 mm, tilt change <= 5 deg, settled. Pre-lock settling (max displacement, tilt change) and a strict rigid-ideal hold (<= 0.5 mm, <= 0.5 deg) are reported as numerical metrics, not used for correctness.",
+  "outcomes": "each valid rollout: inserted / stuck (not inserted, on or in the socket; reports whether it held in place) / ejected (centre radial > 50 mm); invalid (non-finite, truncation, or tunnelling) counted separately",
+  "pass_gate": "rollout correct iff its outcome matches the cell's analytic label under fixed.correct_rule; invalid rollouts are reported separately and count as not correct",
+  "numerical_health": "peak/final penetration split into base/rim and bore-wall; penetration-assisted flag (success with wall penetration > 0.5 x clearance); reported, never part of correctness; v7 also reports at_depth (final centre z within the seat tolerance regardless of the other checks) and radial_excess_um",
+  "hold_tolerance_note": "the hold tolerances were set after the rev-6 smoke test: with the original 0.5 mm / 0.5 deg rigid-ideal tolerance every engine failed holds it clearly made (wedged pegs stayed at z ~ 58-60 mm vs 35 mm inserted) because compliant contacts settle 1-2 mm while the contact force builds from zero; the strict metric is still reported",
+  "radial_tolerance_mm": 0.01
+ },
+ "selection_rule": "total correct count over the two selection cells; then fewer invalid rollouts; then lower mean peak penetration over ALL peg contacts (base and wall) on the selection cells; then the declared candidate order. v6 used bore-wall penetration only and wall time as the last key.",
+ "selection_note": "two selection cells, same geometry (clearance 0.75 mm, tilt 16 deg shallow wedge): mu 0.55 -> held_in_wedge (unique-hold window for this pose is about 0.40-1.90; 0.55/1.2 = 0.46 sits near its lower edge, i.e. medium) and mu 0.12 -> inserted (mu* = 0.160; 0.12 = 0.75 mu*)",
+ "seed_rule": "selection: seed0; held-out cell j: seed0 + 1000 + j",
+ "dropped_ambiguous_cells": "wedge combinations where static hold is possible but not unique (e.g. tilt 5-10 deg at mu 0.8) are excluded",
+ "variable_groups": {
+  "clearance_mm": [
+   0.5,
+   1.0
+  ],
+  "friction_mu": {
+   "free_entry/rim_rest": [
+    0.3,
+    0.8
+   ],
+   "wedge": [
+    0.08,
+    0.3,
+    0.8
+   ]
+  },
+  "tilt_deg": {
+   "free_entry": "0 and 1 (c 0.5) / 2 (c 1)",
+   "wedge": "deep wedge 5 (c 0.5) / 8 (c 1) deg; shallow wedge 14 (c 0.5) / 20 (c 1) deg"
+  },
+  "lateral_offset": {
+   "free_entry": "centred / shifted by half the allowed range",
+   "rim_rest": "1.3x and 2.0x the stability threshold"
+  },
+  "dt_ms": [
+   0.25,
+   0.5,
+   1.0
+  ]
+ },
+ "diagnostic_all_candidates_heldout": false,
+ "post_hoc_disclosure": "These rules were revised after the v6 selection and held-out results had been seen. Re-scoring existing v6 data under v7 rules is a re-analysis, not a new blind result; a blind v7 needs held-out cells that were not used in v6.",
+ "shared_logic": "scripts/protocol_v2/socket_v7_common.py"
+}

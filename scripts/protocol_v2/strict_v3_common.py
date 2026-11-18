@@ -75,7 +75,7 @@ PLATE_SETTLE_S = 0.2   # settling window (last 0.2 s)
 
 
 def plate_summary(z: np.ndarray, v: np.ndarray, w: np.ndarray, fn: np.ndarray, cnt: np.ndarray,
-                  *, h: float, mass: float, g: float, sample_dt: float, truncated: int) -> dict[str, Any]:
+                  *, h: float, mass: float, g: float, sample_dt: float, truncated: int, standoff: bool = False) -> dict[str, Any]:
     """Engine-independent three-plate gate evaluation.
 
     z [T,R,3] plate centre heights; v,w [T,R,3,3] linear/angular velocity;
@@ -105,6 +105,9 @@ def plate_summary(z: np.ndarray, v: np.ndarray, w: np.ndarray, fn: np.ndarray, c
         "settling": settled,
         "finite": finite,
     }
+    if standoff:   # mirror of the overlap gate for engines that rest separated (IPC barrier); off by default
+        sep = np.maximum(0.0, gaps[tail]).max(axis=(0, 2))
+        gates["standoff"] = sep <= .05 * h
     passed = np.logical_and.reduce(list(gates.values())) & (truncated == 0)
     R = z.shape[1]
     zref = np.array([.5, 1.5, 2.5]) * h
@@ -114,6 +117,7 @@ def plate_summary(z: np.ndarray, v: np.ndarray, w: np.ndarray, fn: np.ndarray, c
             "rollout": r, "passes": bool(passed[r]),
             **{f"gate_{k}": bool(val[r]) for k, val in gates.items()},
             "max_overlap_mm": float(peak[r] * 1e3), "max_overlap_over_h": float(peak[r] / h),
+            **({"rest_standoff_mm": float(sep[r] * 1e3), "rest_standoff_over_h": float(sep[r] / h)} if standoff else {}),
             "load_error_by_interface": ferr[r].tolist(), "load_error_max": float(ferr[r].max()),
             "contact_duty_by_interface": (cnt[tail, r] > 0).mean(axis=0).tolist(),
             "height_bias_mm": ((z[-1, r] - zref) * 1e3).tolist(),
@@ -125,6 +129,7 @@ def plate_summary(z: np.ndarray, v: np.ndarray, w: np.ndarray, fn: np.ndarray, c
         "failed_gate_counts": {name: int((~val).sum()) for name, val in gates.items()},
         "truncated_contacts": int(truncated),
         "max_overlap_mm_mean": float(peak.mean() * 1e3), "max_overlap_over_h_mean": float((peak / h).mean()),
+        **({"rest_standoff_mm_mean": float(sep.mean() * 1e3), "rest_standoff_over_h_mean": float((sep / h).mean())} if standoff else {}),
         "load_error_max_mean": float(ferr.max(axis=1).mean()), "load_error_mean": float(ferr.mean()),
         "tail_speed_max_mean_m_s": float(speed[last].max(axis=(0, 2)).mean()),
         "contact_duty_mean": float((cnt[tail] > 0).mean()),

@@ -10,6 +10,14 @@ Cassie is a **composite robot-level task**, not a pure impact ranking. Its impac
 
 Initialize each simulator from the mapped measured state immediately before the first touchdown and replay the measured motor-torque trace. State registration, ground-plane alignment, generalized-coordinate mapping, and fixed evaluation windows must be predeclared and identical across engines.
 
+**Public-data boundary.** The released `jumping_data` traces begin about 5 ms
+before impact and end 50 ms afterward. They therefore support only
+\(\mathcal W_{\rm impact}\), not a physical recovery-error score. Until the
+full logs and controller are obtained, a continuation beyond 50 ms is reported
+separately as a *simulation-only actuation-frozen tail diagnostic*: start from
+each engine's own 50-ms endpoint and hold the final recorded motor torque. It
+is not called recovery fidelity or landing success.
+
 ### B. Closed-loop stress test
 
 If run, use the same controller architecture, command interface, update rate, and torque limits in every engine. This measures simulated task robustness and must not be reported as real-world fidelity without paired physical trials.
@@ -35,6 +43,10 @@ Use the same state weights as Acosta et al.: all position states have weight 10;
 
 Do not use DTW as a primary Cassie score: it can obscure an incorrect touchdown phase. Foot-event timing may be reported only if a common, reliable event label is available from the physical record.
 
+For the public 50-ms release, label **Recovery weighted state error:
+unavailable** rather than extrapolating the final measured state as a fake
+recovery reference.
+
 ## 2. Simulation consistency
 
 These are internal physical-validity diagnostics. They do not claim direct real-world accuracy without independent measurements.
@@ -45,6 +57,13 @@ These are internal physical-validity diagnostics. They do not claim direct real-
 | **Maximum normalized foot penetration** \(\hat\delta_{\max}\) | \(\delta_{\max}/\delta_{\rm allowed}\), where \(\delta_{\rm allowed}\) is a preregistered foot-pad compression or collision-geometry tolerance. | Physical-validity gate; \(\hat\delta_{\max}>1\) is labelled penetration-assisted, not automatically less accurate. |
 | **Tail internal-shear ratio** \(\eta_{\rm internal}\) | For each foot resultant \(F_i\), let \(F_{i,\parallel}=F_i-(F_i\cdot n)n\). Then \(F_{\rm internal}=\frac12(\sum_i\|F_{i,\parallel}\|-\|\sum_iF_{i,\parallel}\|)\), and \(\eta_{\rm internal}=\overline{F_{\rm internal}}/(mg)\) over a steady double-support tail window. | Detects excess cancelling tangential ground reactions / solver-induced self-stress. Use only with both feet in contact, no horizontal external load, and near-zero COM horizontal acceleration. |
 
+For the public-data tail diagnostic, record ground-contact duty; tail pelvis
+horizontal/vertical/angular-velocity RMS; pelvis tilt RMS/final tilt;
+pelvis-height drift; finite-state status; and SAP contact-capacity truncation.
+These test numerical settling after the observed window; they are not physical
+recovery-error substitutes. The shared reduced-tree model has no four-bar
+equality constraints, so \(r_{\rm loop}\) is **not applicable** there.
+
 Raw peak contact force and \(dF/dt\) are saved as diagnostic traces only; they are timestep- and regularization-dependent and are not v1 cross-engine scores.
 
 ## 3. Mechanism-aware usability
@@ -53,7 +72,7 @@ The native settings selected on calibration landings are frozen before all held-
 
 | Check | Definition |
 |---|---|
-| **Bounded tuning budget** | Compare default \(B=1\), up to \(B\leq5\) mechanism-motivated native candidates, and—if run—a disclosed \(B\approx100\) blind-grid ceiling. Report \(\mathrm{Pass}@B\) and \(B_{\rm first\ pass}\) using the preregistered impact/recovery criterion. |
+| **Bounded tuning budget** | Compare the literal native default \(B=1\) with the fixed, mechanism-motivated five-candidate budget \(B=5\). Report \(\mathrm{Pass}@1\), \(\mathrm{Pass}@5\), and \(B_{\rm first\ pass}\) using the preregistered impact/recovery criterion. No larger search budget is part of this protocol. |
 | **Plausible-range controllability** | With native settings frozen, vary physically plausible landing height/vertical speed, body mass, and initial orientation. Check for the expected qualitative transition from stable recovery to failure, without penetration-assisted support or excessive loop residual. |
 | **Numerical local robustness** | At each frozen condition, perturb timestep, initial state, and seed under a preregistered distribution. Report mean/SD across \(R\geq20\) rollouts. |
 | **Setup-variant robustness** | With native settings frozen, repeat on held-out landing profiles or meaningful environment variants, then report whether the real-data and consistency conclusions transfer. |

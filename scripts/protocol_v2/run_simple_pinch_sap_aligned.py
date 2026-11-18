@@ -76,7 +76,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sap-internal-root", type=Path, default=DEFAULT_INTERNAL)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--device", default="cuda:0", choices=("cpu", "cuda:0"))
     args = parser.parse_args()
+    if args.device == "cpu":
+        # SolverSAP's CPU path applies gravity/body_f only to the first body of
+        # each world; the pinch cube is body 4, so on CPU it is weightless and
+        # every cell "retains".  See exp-report/sap-force-readout-audit.md.
+        raise SystemExit("refusing --device cpu: SAP CPU path drops body forces on non-first bodies")
     internal = args.sap_internal_root.resolve()
     source = internal / "local_experiments" / "run_simple_pinch_b1_b5.py"
     if not source.is_file():
@@ -87,11 +93,11 @@ def main() -> None:
     import warp as wp
     import run_simple_pinch_b1_b5 as pinch
 
-    # The original runner was written for CUDA.  This adapter changes only its
-    # device lookup so it can execute the identical solver/model on an
-    # available CPU device when CUDA is unavailable.
-    original_get_device = pinch.wp.get_device
-    pinch.wp.get_device = lambda name: wp.get_device("cpu") if name == "cuda:0" else original_get_device(name)
+    # The recovered runner was written for CUDA.  CPU recovery runs map only
+    # its hard-coded CUDA lookup; GPU runs preserve the original lookup.
+    if args.device == "cpu":
+        original_get_device = pinch.wp.get_device
+        pinch.wp.get_device = lambda name: wp.get_device("cpu") if name == "cuda:0" else original_get_device(name)
     wp.init()
 
     frozen = next(candidate for candidate in pinch.CANDIDATES if candidate["id"] == "ke1e5_tau3ms_c02")
@@ -103,7 +109,8 @@ def main() -> None:
         "engine_warp_version": wp.__version__,
         "internal_runner": str(source),
         "internal_runner_git_revision": git_revision(internal),
-        "device": "cpu (CUDA lookup mapped for an otherwise unchanged runner)",
+        "device": ("cpu (CUDA lookup mapped for an otherwise unchanged runner)"
+                   if args.device == "cpu" else "cuda:0 (original runner lookup)"),
         "frozen_b5": frozen,
         "selection_condition_excluded": {"mu": 0.4, "mass_kg": 0.25, "compression_mm": 0.2, "dt_ms": 0.5, "R": 20},
         "matrix_scope": "Aligned with the existing MuJoCo Warp 17-cell core matrix: mass, compression/preload, friction, and timestep. Geometry/surface transfer is not included for either engine.",

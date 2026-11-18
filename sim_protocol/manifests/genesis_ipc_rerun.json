@@ -1,0 +1,207 @@
+{
+ "revision": "genesis-ipc-20261116-a3",
+ "status": "a3 rerun, declared 2026-11-16 after the user reviewed the preliminary 2026-11-15 run (all of whose results are superseded). The user approved the a3 plan and asked to rerun directly.",
+ "engine": "Genesis 1.4.6 + IPCCoupler (libuipc 0.0.29, ABD rigid bodies)",
+ "required_packages": {
+  "genesis-world": "1.4.6",
+  "pyuipc": "0.0.29"
+ },
+ "requires_cuda": true,
+ "declared_before_scoring": "a3: 2026-11-16, before any a3 task metric. Informed by the preliminary run and by diagnostics that score no task: exp-results/genesis-ipc-prelim-20261115/diagnostics (Newton-tolerance probe, direct contact-force probe, R=4 smoke on selection cells). The candidate set is not tuned to any held-out cell.",
+ "sop": "sim_protocol/genesis_ipc_runner_sop.md",
+ "scope": "Same tasks as the Genesis RigidSolver track minus the two pendulums (no contact). Not run: Newton's cradle, Cassie, round socket, GLIDE, DENSE.",
+ "selection_policy": "Same as the task manifest: B=1 = pinned IPCCouplerOptions/libuipc defaults; candidates 2-5 fixed here; selection cells only with the task's gate/loss/wall-time rule; freeze; unchanged held-out matrix, R=20.",
+ "default_candidates": [
+  "native default",
+  "d_hat=1mm,newton_tol=1e-4",
+  "d_hat=1mm,eps_v=1e-3,newton_tol=1e-4",
+  "d_hat=0.3mm,eps_v=1e-3,newton_tol=1e-4",
+  "d_hat=0.1mm,eps_v=1e-3,newton_tol=1e-4"
+ ],
+ "candidate_rules": {
+  "B1": "IPCCouplerOptions() of Genesis 1.4.6: d_hat 0.01 m, eps_velocity 0.01 m/s, contact_resistance 1e9, Newton tol 0.05, ABD kappa 100 MPa (hard-coded), soft-constraint strength 100/100. Physical inputs from the manifest.",
+  "numerical_knobs": "Only d_hat, eps_velocity (friction smoothing), contact_resistance and Newton tolerance. Friction, mass, geometry, dt, gravity are physical and never tuned. Pinch only (amendment a1): bridge soft-constraint strength.",
+  "start_gap": "IPC cannot start at zero distance. Every contact that is resting/touching at t=0 in the manifest starts g0 = d_hat of the candidate apart (bodies lifted along the contact normal: +z for stacks/slope/MIT object, outward x for pinch pads). The manifest's own settle/gate phase absorbs the drop. In-air starts are unchanged; their minimum clearance is recorded. Slope: the cube is lifted along the board normal only as far as needed for a g0 clearance from the board top face (recorded per rollout). MIT: the object is lifted g0 and, where the recorded tip start is closer than g0 to (or inside) the object outline, moved away from the tip in the plane until the clearance is g0 (shift recorded).",
+  "mass": "rho = manifest mass / volume of the IPC surface mesh; IPC mass equals the manifest. Inertia is the uniform-density inertia of the mesh; where the manifest prescribes another inertia (cube toss/tail, MIT object) the ratio is recorded.",
+  "friction": "pair mu = geometric mean of coup_friction; every body carries the pair mu (MIT pusher 0.25^2/0.22).",
+  "sensitivity": "three-box +-10% stiffness maps to contact_resistance x scale when the frozen candidate is non-native; skipped for native as in the rigid track.",
+  "newton_tolerance": "a3: candidates 2-5 carry newton_tol=1e-4 (m/s, 1/10 of the smallest eps_v). The default 0.05 m/s stops after one linearisation whenever motion is slower than 5 cm/s, so friction acts as a viscous drag (v = r eps_v / 2, no sliding above the friction limit). B=1 keeps the default.",
+  "readouts": "a3: every contact-force gate and readout uses IPC's own contact potentials through libuipc ContactSystemFeature.contact_gradient (f = -dE/dx / dt^2, summed over one face of the receiving body; Built.vertex_forces/direct_force). Momentum balance m(dv/dt - g) - F_ext and the bridge spring force are diagnostics only (readout_check): their difference from the direct readout is the Newton residual. The direct readout is valid only when Newton converged.",
+  "standoff_gate": "a3: IPC rests separated (barrier equilibrium distance in (0, d_hat)), never interpenetrated, so overlap gates cannot fail. Where a task has an overlap gate, its mirror applies to IPC with the same threshold over the task's rest window: three-plate rest gap <= 5% plate thickness (last 1 s); cube tail lowest-corner standoff <= 1 mm (settled tail). Tasks without an overlap gate (cube toss, ball, slope, MIT) get no new gate; the standoff stays in their position error and is reported."
+ },
+ "tasks": [
+  {
+   "id": "three-plate",
+   "manifest": "three_plate_stack_strict_v3p1.json",
+   "sha256": "f14499c0fac251d34fc73bce34ece13ddd6b7bab654abf5d65769d0c8d4aee42",
+   "runner": "scripts/genesis/run_threeplate_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "ground": "ipc_only plane",
+    "plates": "ipc_only free, start gap g0 per interface"
+   },
+   "readouts": "a3: interface load = IPC barrier force (z) on the lower face of the upper body (direct); contact count = its vertices carrying barrier force; momentum chain = diagnostic",
+   "extra_gates": [
+    "standoff: max rest gap over the last 1 s <= 0.05 h (mirror of the overlap gate)"
+   ]
+  },
+  {
+   "id": "three-box",
+   "manifest": "three_box_push_strict_v4.json",
+   "sha256": "27be759da980b0e8170a886d9e617369324c2c2312132e469c72becc215f25c8",
+   "runner": "scripts/genesis/run_threebox_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "ground": "ipc_only plane",
+    "boxes": "ipc_only free, start gap g0 per interface",
+    "push": "IPC external body force (animator), ramped"
+   },
+   "readouts": "a3: pushed-interface load = IPC barrier force (z) on the pushed box's lower face (direct); duty = that face carries barrier force; momentum sum = diagnostic (compared while the box is within 1 mm of its start)"
+  },
+  {
+   "id": "cube-toss",
+   "manifest": "contactnets_cube_toss_dynamic_impact_v2.json",
+   "sha256": "fbcf8a2a916f7e1c077941555a3611b9e8ad4a84f9884e1d501f04cb22217350",
+   "runner": "scripts/genesis/run_impact_genesis_ipc.py",
+   "args": [
+    "--task",
+    "cube"
+   ],
+   "routes": {
+    "ground": "ipc_only plane",
+    "cube": "ipc_only free; initial pose+velocity written into IPC; ABD inertia is uniform-density"
+   },
+   "caveats": "a3: restitution is numerical damping only (dt/mass held-out cells test it); ABD inertia is uniform-density (ratio recorded; effect to be sized with MuJoCo uniform inertia before ranking)."
+  },
+  {
+   "id": "ball-bounce-v2",
+   "manifest": "gauge_ball_bounce_dynamic_impact_v2.json",
+   "sha256": "6d5b521fede561f5ae3521dd7505c276f525fe0bc4ae173e79ab844e33df027f",
+   "runner": "scripts/genesis/run_impact_genesis_ipc.py",
+   "args": [
+    "--task",
+    "ball"
+   ],
+   "routes": {
+    "ground": "ipc_only plane",
+    "ball": "ipc_only free; collision surface = 162-vertex farthest-point hull of the original mesh (a2); initial pose+velocity written into IPC"
+   },
+   "not_run": "a3: not run. v2 (dt 1/180 s) was superseded by v3 for the restitution comparison; IPC restitution is numerical damping only."
+  },
+  {
+   "id": "ball-bounce-v3",
+   "manifest": "gauge_ball_bounce_dynamic_impact_v3.json",
+   "sha256": "dcb36fc74bc1ae531f906f11a41c403d41ab6b8f1049f253e8c635e262d93d20",
+   "runner": "scripts/genesis/run_impact_genesis_ipc.py",
+   "args": [
+    "--task",
+    "ball"
+   ],
+   "routes": {
+    "ground": "ipc_only plane",
+    "ball": "ipc_only free; collision surface = 162-vertex farthest-point hull of the original mesh (a2); initial pose+velocity written into IPC"
+   },
+   "report_only": "a3: run, reported, not ranked. IPC has no restitution/damping parameter: energy loss at impact is implicit-Euler numerical damping set by kappa, d_hat and dt, and the collision surface is the 162-vertex hull (a2). The held-out dt and mass cells show whether the fitted bounce is dt/mass-dependent."
+  },
+  {
+   "id": "cube-tail",
+   "manifest": "contactnets_cube_tail_sustained_v3.json",
+   "sha256": "5a8ce59008fa69b4164a58127a95dca3c90e21149bb8db69e262d7eda7500c13",
+   "runner": "scripts/genesis/run_tail_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "floor": "ipc_only plane",
+    "cube": "ipc_only free; inherits cube-toss IPC frozen candidate"
+   },
+   "readouts": "a3: support load = IPC barrier force (z) on the cube (direct); contact count = cube vertices carrying barrier force; speed/omega from IPC velocity; momentum load = diagnostic",
+   "candidates": [
+    "inherit cube-toss frozen"
+   ],
+   "depends_on": "cube-toss",
+   "extra_gates": [
+    "standoff: max lowest-corner height over the settled tail <= 1 mm (mirror of the overlap gate)"
+   ]
+  },
+  {
+   "id": "simple-pinch",
+   "manifest": "simple_pinch_force_controlled_v3.json",
+   "sha256": "3d46155ce1aa184c3b26cd30f83b5e83403f2590d0ae43f30e6779f38c74c901",
+   "runner": "scripts/genesis/run_pinch_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "pads": "two_way_soft_constraint on Genesis x/z slide joints (Genesis applies the manifest control law); start gap g0 to the cube",
+    "cube": "ipc_only free; load as IPC external body force"
+   },
+   "readouts": "a3: per-pad normal force = |x| of IPC's barrier force on the cube's -x/+x face (direct); duty = force > 1e-3 F; bridge spring = diagnostic",
+   "candidates": [
+    "native default",
+    "strength=1,newton_tol=1e-4",
+    "d_hat=1mm,strength=1,newton_tol=1e-4",
+    "d_hat=0.3mm,eps_v=1e-3,strength=1,newton_tol=1e-4",
+    "d_hat=0.1mm,eps_v=1e-3,strength=1,newton_tol=1e-4"
+   ]
+  },
+  {
+   "id": "gauge-slope",
+   "manifest": "gauge_slope_slider_dynamic_friction_v3.json",
+   "sha256": "4e95f2a4e92e46452873701bfd354f8249bf7a0802905d94a8a427143c45ea8a",
+   "runner": "scripts/genesis/run_slope_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "ground": "ipc_only plane",
+    "board": "static: fixed ipc_only ABD; task-3 kinematic: two_way_soft_constraint free body whose Genesis pose/velocity is written every step, no ground contact",
+    "cube": "ipc_only free mesh, start lifted g0 in z"
+   },
+   "readouts": "cube position from IPC; kinematic-board tracking = IPC board transform vs target"
+  },
+  {
+   "id": "mit-push",
+   "manifest": "mit_push_dynamic_friction_v3.json",
+   "sha256": "76a091104063dbb0ea7d3f2e5fe21246af7b3aad0799ef3c7c2e673505561561",
+   "runner": "scripts/genesis/run_mitpush_genesis_ipc.py",
+   "args": [],
+   "routes": {
+    "table": "ipc_only plane",
+    "object": "ipc_only free mesh, start lifted g0",
+    "pusher": "two_way_soft_constraint on Genesis x/y slide joints, written every step; pusher-table pair disabled (no such contact in the manifest scene); coup_friction 0.25^2/0.22 so pusher-object pair = 0.25"
+   },
+   "readouts": "a3: wrench = IPC contact force on the pusher vertices (direct; the pusher-table pair is off); duty = pusher carries barrier force; bridge spring = diagnostic"
+  }
+ ],
+ "crash_rule": "libuipc aborts the process when a PCG/Newton solve diverges. Each simulation call runs in a child process; a crashed call's rollouts count as non-finite/invalid (impact/tail: per 64-rollout chunk) and the reason is recorded.",
+ "amendments": [
+  {
+   "date": "2026-11-15",
+   "revision": "a1",
+   "tasks": [
+    "simple-pinch"
+   ],
+   "change": "Candidates 2-5 add strength=1 (constraint_strength_translation/rotation); B=1 stays the native default.",
+   "reason": "Engine-imposed: with the default bridge strength 100 (and 10) the Genesis side of the two-way pads diverges to NaN within 30-50 steps at dt 0.5 ms (coupling stiffness 100 m/dt^2); strength 1 is stable and returns the 4 N preload (probe, no task metric). At the change no pinch candidate had been scored.",
+   "other_changes": "start-gap geometry rule for slope and MIT (initial intersections found at build), crash isolation; no task had a scored IPC result at the change except three-box candidate 1 and gauge-slope selection cells (re-run)."
+  },
+  {
+   "date": "2026-11-15",
+   "revision": "a2",
+   "tasks": [
+    "ball-bounce-v2",
+    "ball-bounce-v3"
+   ],
+   "change": "IPC collision surface of the GAUGE ball = convex hull of 162 farthest-point-sampled vertices of ball-6.obj (320 faces; vertex radius 29.6-30.4 mm vs 30.0 mm). RigidSolver/MuJoCo/SAP tracks unchanged.",
+   "reason": "Cost: the 16128-face hull ran ~20 s per IPC step for 8 rollouts (a single selection cell did not finish in 2.4 h); 500 vertices ~2.5 s/step for 64; 162 vertices ~0.27 s/step for 64. Genesis' MJCF importer ignores morph.decimate. No ball metric had been scored at the change."
+  },
+  {
+   "date": "2026-11-16",
+   "revision": "a3",
+   "tasks": "all",
+   "change": [
+    "candidates 2-5 add newton_tol=1e-4 (pinch: on top of strength=1)",
+    "contact-force gates/readouts switch to the direct ContactSystemFeature readout (three-plate, three-box, pinch, cube tail; MIT wrench)",
+    "standoff mirror gate on three-plate (<= 5% h) and cube tail (<= 1 mm)",
+    "ball-bounce-v2 not run; ball-bounce-v3 report-only"
+   ],
+   "reason": "Review of the preliminary run: (1) the default Newton tolerance turned friction into viscous drag below 5 cm/s, which caused the creep and the missed slips (probe: r=0.7 creep 0.350 mm/s at tol 0.05 vs 0.452 converged; r=1.25 no slip at 0.05, slides at 0.7357 m/s^2 vs 0.7358 at 1e-4); (2) momentum-balance load readouts satisfy load gates by construction; (3) the d_hat standoff was not checked by any gate. Diagnostics in exp-results/genesis-ipc-prelim-20261115/diagnostics.",
+   "user_decisions": "2026-11-16: ball v2 not run, v3 report-only; three-plate gap limit = mirror of the existing overlap gate (|gap| <= 5% h); rerun directly."
+  }
+ ]
+}

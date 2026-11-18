@@ -1,0 +1,120 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "pendulum",
+  "revision": "energy-conservation-v2",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "energy-conservation-v1 pendulum (dt was used as a B candidate)",
+  "R": 20,
+  "seed0": 82100,
+  "duration_s": 10.0,
+  "outcome_type": "continuous",
+  "selection": {
+    "id": "sel_amp90_dt1",
+    "amplitude_deg": 90,
+    "dt_ms": 1.0,
+    "length_m": 1.0,
+    "mass_kg": 1.0,
+    "selection_only": true
+  },
+  "fixed": {
+    "model": "single hinge about world y, point-like bob (sphere r=20 mm, solid-sphere inertia about its centre) at distance L below the hinge, gravity 9.81, no damping, no contact",
+    "perturbation": "initial angle + U(+-3 mrad), zero initial velocity; identical arrays for both engines",
+    "reference": "analytic: total energy conserved; exact large-amplitude period T = 4 sqrt(I_p/(m g L)) K(sin(theta0/2)) with I_p = m L^2 + I_com",
+    "pass_gate": "finite state for every rollout",
+    "loss": "mean over rollouts of max_t |E(t) - E(0)| / E(0) over 10 s",
+    "mechanism_metrics": "relative period error vs the exact period, final energy ratio, energy trend (gain vs loss)"
+  },
+  "selection_rule": "pass gate, then loss, then wall time",
+  "seed_rule": "selection: seed0; held-out cell j: seed0 + 1000 + j",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "dt_ms",
+      "length",
+      "mass",
+      "amplitude"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "dtype=float64"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "integrator=implicitfast",
+      "integrator=implicit",
+      "integrator=RK4"
+    ],
+    "rationale": "contact-free hinge: SAP's only native numerical option that changes these dynamics is the solver precision (float32 default vs float64); MuJoCo's are the integrator choices. Contact parameters do not apply, so fewer than five candidates are declared rather than padding with duplicates. dt is a held-out axis, never a candidate."
+  },
+  "held_out_conditions": [
+    {
+      "id": "amp30",
+      "amplitude_deg": 30,
+      "dt_ms": 1.0,
+      "length_m": 1.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "amp60",
+      "amplitude_deg": 60,
+      "dt_ms": 1.0,
+      "length_m": 1.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "amp120",
+      "amplitude_deg": 120,
+      "dt_ms": 1.0,
+      "length_m": 1.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "dt0p5_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 0.5,
+      "length_m": 1.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "dt2_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 2.0,
+      "length_m": 1.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "len0p5_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 1.0,
+      "length_m": 0.5,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "len2_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 1.0,
+      "length_m": 2.0,
+      "mass_kg": 1.0
+    },
+    {
+      "id": "mass0p5_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 1.0,
+      "length_m": 1.0,
+      "mass_kg": 0.5
+    },
+    {
+      "id": "mass2_amp90",
+      "amplitude_deg": 90,
+      "dt_ms": 1.0,
+      "length_m": 1.0,
+      "mass_kg": 2.0
+    }
+  ],
+  "axis_coverage": {
+    "amplitude": "30/60/90/120 deg",
+    "dt": "0.5/1/2 ms",
+    "length": "0.5/1/2 m",
+    "mass": "0.5/1/2 kg (energy-relative metrics are mass-invariant)"
+  }
+}

@@ -122,6 +122,16 @@ frozen matrix; it never follows from B=5 selection alone.
 
 Do not start the full sweep until the task owner has checked and saved:
 
+- a passing **engine preflight** for the exact simulator source, device, and
+  Warp version used by the sweep. For SAP this is
+  `SAP-WARP-INTERNAL/local_experiments/diagnostics/sap_preflight.py --compare-devices --json <out>`
+  (static load = m g at three `dt`, free fall of every body in a multi-root
+  scene, batched-vs-alone contact-force readout, CPU/GPU agreement). Store the
+  JSON with the artifact. A failed check blocks the sweep, or else restricts
+  it to metrics shown to be unaffected and records that restriction. As of
+  `db8d236`: CPU fails free fall (bug A), CPU and GPU fail batched readout
+  (bug B); with the `fix-gamma-readout` branch GPU passes all checks;
+
 - the candidate table and B=5 selection gate;
 - the common frozen-matrix manifest, including axis values and held-out IDs;
 - selection/held-out disjointness;
@@ -138,14 +148,18 @@ This is a run queue, not a result table. A row remains `needs common rerun`
 until both engines have completed the declared matrix from a runner that
 reproduces its frozen B=5 selection point.
 
+The full cross-regime execution inventory, including tasks that are blocked by
+missing released inputs rather than an unrun simulation, is maintained in
+[generalizability_rerun_register.md](generalizability_rerun_register.md).
+
 | Website task | Existing SAP coverage | Existing MuJoCo Warp coverage | Required next common frozen matrix | State |
 | --- | --- | --- | --- | --- |
-| Three-box push | 14 force/target cells × R=20 | 22 force, friction, mass and `dt` cells × R=20 | Force/target, friction, mass, `dt`, and one geometry/push-height axis; same cells and seeds | needs common rerun |
-| Simple pinch | Historical artifact: five masses only. New recovered-runner CPU artifact: the same 17 mass/preload/friction/`dt` cells × R=20, but it disagrees with the historical 0.40-kg edge anchor | 17 mass/preload/friction/`dt` cells × R=20 | Rerun the common 17-cell core matrix on the historical SAP GPU/runtime; then add a preregistered geometry/surface-transfer axis for both engines | CPU matrix complete; GPU-aligned matrix pending |
-| Three-plate stack | Same eight held-out thickness/`dt` cells as the paired artifact | Same eight held-out thickness/`dt` cells | Add mass/load, placement-offset, and geometry/setup-transfer axes; retain the matched thickness/`dt` cells | needs expanded common rerun |
-| GAUGE ball bounce | Same 11 held-out trajectory IDs × R=20 | Same 11 held-out trajectory IDs × R=20 | Add drop height/impact speed, angle, mass/material, and three `dt` values, while retaining the held-out trajectory split | needs expanded common rerun |
-| ContactNets cube toss | Same 32 held-out state/trajectory IDs × R=20 | Same 32 held-out state/trajectory IDs × R=20 | Add impact speed, orientation, mass/material, and three `dt` values, while retaining the held-out state split | needs expanded common rerun |
-| Round socket | Nine clearance/offset cells × R=20 at SAP `dt=.25 ms` | Nine clearance/offset cells × R=20 at MuJoCo `dt=.5 ms` | Same clearance/offset, tilt, insertion speed/force, and three common `dt` values; add a geometry/surface transfer cell | needs common rerun |
+| Three-box push | Historical 12-cell R=20 sweep exists, but no pre-run common manifest or raw per-repeat contract was saved. | Same limitation. | Declare a shared selection screen and a new common matrix: breakaway ratio, mass, friction, three `dt` levels, and pushed-body setup. | **rerun required**; historical sweep remains descriptive only. |
+| Simple pinch | A recovered GPU 17-cell sweep exists, but labels are computed from SAP's own measured preload and there is no surface/geometry transfer cell. | A separate 17-cell sweep exists with engine-specific preload labels. | Use a shared external task-success label, common mass / commanded grip / friction / three-`dt` / surface-or-geometry matrix, and common seeds. | **rerun required**; historical accuracy values are not cross-engine comparable. |
+| Three-plate stack | Historical 11-cell R=20 sweep exists, but no pre-run common manifest/raw-repeat contract was saved. | Same limitation. | Declare a common calibration screen and common thickness, mass, radius, placement-offset, and three-`dt` held-out matrix. | **rerun required**; historical sweep remains descriptive only. |
+| GAUGE ball bounce | A 12-cell R=20 artifact is marked `partial`; its pre-run manifest and fixed-frame `dt` protocol are absent. | Same limitation. | Declare common trajectory IDs, release height, lateral offset, mass, three `dt` values, sampler, and continuous apex/trajectory loss. | **rerun required**. |
+| ContactNets cube toss | 12 non-`dt` plus 3 `dt` R=20 artifacts exist, but the non-`dt` artifact is marked `partial` and no pre-run manifest/raw-repeat contract was saved. | Same limitation. | Declare common selection samples and common speed, yaw, mass, friction, held-out state, and three-`dt` matrix. | **rerun required**. |
+| Round socket | The recovered historical selection script reproduces 18/20 credible insertions, but its B=5 screen changes `dt` from the B=1 physical task and therefore is not a compliant B=5 selection under this SOP. | An expanded 12-cell R=20 sweep exists, but it was not paired with a compliant SAP selection/matrix. | Re-select B=5 at fixed nominal `dt`, then run the common clearance, lateral/angle offset, insertion input, setup-transfer, and three-`dt` matrix. | **rerun required**; historical result remains descriptive only. |
 
 ### 6.1 Reproducibility preflight for an old frozen artifact
 
@@ -172,3 +186,15 @@ is therefore a device-specific replication, not a replacement for the
 historical SAP result or a fair SAP–MuJoCo robustness comparison. Repeat the
 common matrix on the historical SAP GPU/runtime before publishing an
 engine-level robustness conclusion.
+
+**Update 2026-11-03 ([audit](../exp-report/sap-force-readout-audit.md)).**
+The 0.40-kg disagreement has been traced to a SAP CPU solver bug, not to
+runtime nondeterminism. On CPU, gravity and `body_f` reach only the first body
+of each world, so the pinch cube (body 4) is weightless. The CPU matrix is
+invalid and the aligned runner now refuses `--device cpu`. The GPU 17-cell
+matrix agrees 340/340 once labels use the true PD-spring preload. Its
+gamma-based labels were corrupted because `contact_gamma` reads zero for
+early-converged worlds in a batch. Every preflight must now also check:
+(a) force readouts divide by the step's actual `dt`; (b) preload/load is
+cross-checked against a force-independent quantity (spring deflection,
+statics); and (c) no SAP CPU run uses a scene with more than one root body.

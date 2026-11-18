@@ -50,7 +50,7 @@ The website may show only B=1, the frozen B=5 winner, and at most one representa
 This is a separate subsection on every result card. It answers two questions and must give numbers for both when they exist:
 
 1. **Candidate usability.** Which B=1…B=5 configurations pass the selection task/health gate under the declared repeats? The public card can summarize this as `B=1 fails; B=3 and B=5 pass; B=5 selected`, but must identify the selected configuration exactly.
-2. **Frozen-setting robustness.** With B=5 frozen, what happens on the preregistered held-out mass/friction/dt/geometry/pose/trajectory grid? Give coverage, denominator, range or worst case, representative mechanism metric, and the failed condition if any.
+2. **Frozen-setting robustness.** With B=5 frozen, what happens on the preregistered held-out grid over the axes relevant to that task (for example mass, friction, `dt`, geometry, pose, or trajectory)? Give coverage, denominator, range or worst case, representative mechanism metric, and the failed condition if any. Explicitly list relevant axes that were not tested; a valid partial grid is reportable only within its stated coverage.
 
 Use a compact table or a precise sentence in this form:
 

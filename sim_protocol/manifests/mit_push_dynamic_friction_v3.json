@@ -1,0 +1,128 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "mit-push",
+  "revision": "dynamic-friction-v3",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "dynamic-friction-v2 MIT Push (SAP-only reconstruction; MuJoCo used box primitives with a 36-mm central table-support patch while SAP used the released meshes with a table friction of ~0.36 instead of 0.22)",
+  "R": 20,
+  "seed0": 83100,
+  "outcome_type": "continuous",
+  "selection": {
+    "id": "sel_hex",
+    "trial_file": "motion_surface=plywood_shape=hex_a=0_v=150_i=1.000_s=0.000_t=-0.349.json",
+    "shape": "hex",
+    "dt_ms": 5.5556,
+    "mass_scale": 1.0,
+    "selection_only": true
+  },
+  "fixed": {
+    "geometry": "released hex.obj / rect1.obj convex meshes (thickness axis y remapped to z) for the object in both engines; pusher = cylinder r 4.75 mm, half-height 15 mm, centred 10 mm above the object mid-plane so it never touches the table; table = ground plane",
+    "object_physics": "mass 0.9827 kg, inertia diag(0.00075, 0.00075, 0.001497) hex / (0.00057, 0.00057, 0.001131) rect1 (dataset-documented reconstruction assumptions), table-object friction 0.22, pusher-object friction 0.25 (SAP: per-shape mu 1.0 / ground 0.1236 / pusher 0.1429 so that its harmonic pair combination gives exactly 0.22 and 0.25)",
+    "pusher_motion": "recorded tip xy (registered in the object-0 frame) imposed on x/y slide joints: MuJoCo overwrites pusher qpos/qvel every step; SAP tracks it with stiff implicit PD on targets and target velocities (tracking error gated <= 0.5 mm)",
+    "perturbation": "object initial xy + N(0, 0.2 mm); identical arrays for both engines",
+    "pass_gate": "finite state, no contact truncation, pusher tracking within 0.5 mm (SAP)",
+    "loss": "final planar translation error (m) + 0.05 x final yaw error (rad), mean over rollouts",
+    "mechanism_metrics": "translation and yaw errors reported separately; windowed (0.12-0.20, 0.22-0.32, 0.40-0.50, 0.60-0.72 s) object-twist error and pusher-wrench error (force on the pusher, object-0 frame), pusher-object contact duty"
+  },
+  "selection_rule": "pass gate, then loss, then wall time",
+  "seed_rule": "selection: seed0; held-out cell j: seed0 + 1000 + j",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "geometry",
+      "mass",
+      "inertia",
+      "friction",
+      "pusher trajectory",
+      "dt_ms"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=2.5e3,tau=0",
+      "ke=1e4,tau=1ms",
+      "ke=1e5,tau=3ms",
+      "ke=1e5,tau=3ms,sigma=1e-4"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "k=1e4,b=100,elliptic,implicitfast",
+      "k=3e4,b=200,elliptic,implicitfast",
+      "k=1e5,b=400,elliptic,implicitfast",
+      "k=1e5,b=400,elliptic,implicitfast,impratio=10"
+    ],
+    "rationale": "both span normal compliance and friction regularisation; MuJoCo uses direct stiffness/damping so refsafe does not clamp at dt = 1/90 s"
+  },
+  "held_out_conditions": [
+    {
+      "id": "rect1_nominal",
+      "trial_file": "motion_surface=plywood_shape=rect1_a=0_v=20_i=0.000_s=0.600_t=0.000_rep=0023.json",
+      "shape": "rect1",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out object shape / push"
+    },
+    {
+      "id": "rect1_dt_small",
+      "trial_file": "motion_surface=plywood_shape=rect1_a=0_v=20_i=0.000_s=0.600_t=0.000_rep=0023.json",
+      "shape": "rect1",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "rect1_dt_large",
+      "trial_file": "motion_surface=plywood_shape=rect1_a=0_v=20_i=0.000_s=0.600_t=0.000_rep=0023.json",
+      "shape": "rect1",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "hex_dt_small",
+      "trial_file": "motion_surface=plywood_shape=hex_a=0_v=150_i=1.000_s=0.000_t=-0.349.json",
+      "shape": "hex",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt (selection trial at a held-out dt)"
+    },
+    {
+      "id": "hex_dt_large",
+      "trial_file": "motion_surface=plywood_shape=hex_a=0_v=150_i=1.000_s=0.000_t=-0.349.json",
+      "shape": "hex",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt (selection trial at a held-out dt)"
+    },
+    {
+      "id": "rect1_mass0p5x",
+      "trial_file": "motion_surface=plywood_shape=rect1_a=0_v=20_i=0.000_s=0.600_t=0.000_rep=0023.json",
+      "shape": "rect1",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "mass (quasi-static pushing: object pose is mass-invariant; wrench compared after dividing by the mass scale)"
+    },
+    {
+      "id": "rect1_mass2x",
+      "trial_file": "motion_surface=plywood_shape=rect1_a=0_v=20_i=0.000_s=0.600_t=0.000_rep=0023.json",
+      "shape": "rect1",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "mass (as above)"
+    }
+  ],
+  "axis_coverage": {
+    "object / push": "hex (selection) vs rect1 (held-out)",
+    "dt": "1/360, 1/180, 1/90 s on both trials",
+    "mass": "x0.5 / x1 / x2 on rect1"
+  },
+  "not_run_conditions": [
+    {
+      "axis": "surface / friction sweep",
+      "reason": "only two plywood recordings are released in the repo; no reference for other surfaces"
+    },
+    {
+      "axis": "push speed / contact point sweep",
+      "reason": "no further recordings available locally"
+    }
+  ]
+}

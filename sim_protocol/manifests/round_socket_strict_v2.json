@@ -1,0 +1,60 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "round-socket",
+  "revision": "strict-v2",
+  "status": "declared; not yet run",
+  "R": 20,
+  "seed0": 73000,
+  "duration_s": 2.0,
+  "selection": {
+    "id": "selection_c2_o1_t1_h120_dt0p5_mu0p8",
+    "clearance_mm": 2.0,
+    "offset_mm": 1.0,
+    "tilt_deg": 1.0,
+    "release_height_mm": 120.0,
+    "dt_ms": 0.5,
+    "mu": 0.8,
+    "surface": "baseline",
+    "selection_only": true
+  },
+  "fixed": {
+    "shared_geometry": "32-piece CoACD socket and cylindrical peg",
+    "peg_mass_kg": 0.08,
+    "perturbation": "independent lateral x/y uniform [-0.05, 0.05] mm",
+    "pass_gate": "entered to the registered seated depth, final radial error <= clearance, no escape, no contact overflow/truncation, and peak/final penetration <= 0.1 clearance",
+    "label_source": "No external binary reference is available. Report per-condition credible-insertion success rate and failure modes; do not report cross-engine accuracy."
+  },
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": ["clearance_mm", "offset_mm", "tilt_deg", "release_height_mm", "dt_ms", "mu", "surface", "geometry", "duration_s"],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=2e4,tau=1.5ms,gap=.1mm",
+      "ke=6e4,tau=1.5ms,gap=.1mm",
+      "ke=2e5,tau=1.5ms,gap=.1mm",
+      "ke=2e4,tau=5ms,gap=.1mm"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "tc=.75ms,dampratio=1,dmax=.95",
+      "tc=1ms,dampratio=1,dmax=.95",
+      "tc=2ms,dampratio=2,dmax=.95",
+      "tc=4ms,dampratio=2,dmax=.99"
+    ]
+  },
+  "held_out_conditions": [
+    {"id": "clearance_0p25", "clearance_mm": 0.25, "offset_mm": 1.0, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "release"},
+    {"id": "clearance_1p0", "clearance_mm": 1.0, "offset_mm": 1.0, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "release"},
+    {"id": "clearance_3p0", "clearance_mm": 3.0, "offset_mm": 1.0, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "offset_0mm", "clearance_mm": 2.0, "offset_mm": 0.0, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "offset_2mm", "clearance_mm": 2.0, "offset_mm": 2.0, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "release"},
+    {"id": "tilt_0deg", "clearance_mm": 2.0, "offset_mm": 1.0, "tilt_deg": 0.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "tilt_2deg", "clearance_mm": 2.0, "offset_mm": 1.0, "tilt_deg": 2.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "release"},
+    {"id": "height_100mm", "clearance_mm": 2.0, "offset_mm": 1.0, "tilt_deg": 1.0, "release_height_mm": 100.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "height_140mm", "clearance_mm": 2.0, "offset_mm": 1.0, "tilt_deg": 1.0, "release_height_mm": 140.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "release"},
+    {"id": "dt_0p25ms", "clearance_mm": 2.0, "offset_mm": 0.5, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.25, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "dt_0p5ms", "clearance_mm": 2.0, "offset_mm": 0.5, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "dt_1ms", "clearance_mm": 2.0, "offset_mm": 0.5, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 1.0, "mu": 0.8, "surface": "baseline", "expected": "retain"},
+    {"id": "surface_mu0p5", "clearance_mm": 2.0, "offset_mm": 0.5, "tilt_deg": 1.0, "release_height_mm": 120.0, "dt_ms": 0.5, "mu": 0.5, "surface": "low-friction insert", "expected": "retain"}
+  ]
+}

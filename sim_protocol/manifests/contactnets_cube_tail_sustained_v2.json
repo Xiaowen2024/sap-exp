@@ -1,0 +1,145 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "contactnets-cube-toss-tail",
+  "revision": "sustained-contact-v2",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "sap-internal-cube-toss-tail artifacts (SAP only; old ContactNets angular velocity)",
+  "R": 20,
+  "seed0": 80100,
+  "duration_s": 6.0,
+  "outcome_type": "gate",
+  "data": {
+    "source": "contactnets_si_v2.npz frame-0 released states (corrected body-frame angular velocity)",
+    "split": "selection = eligible[::2][:32], held-out = eligible[1::2][:32] (same as dynamic-impact-v2 cube toss)",
+    "reference": "analytic static rest (no recorded post-settling window exists): zero drift, support load = m g, small overlap"
+  },
+  "selection": {
+    "id": "sel_even_eligible_32",
+    "trials": "eligible[::2][:32]",
+    "dt_ms": 6.7568,
+    "mass_scale": 1.0,
+    "mu": 0.18,
+    "scale": 1.0,
+    "selection_only": true
+  },
+  "fixed": {
+    "mass_kg": 0.37,
+    "cube_half_width_m": 0.0524,
+    "inertia": "0.2950002913583124*half^2 diagonal, scaled with mass and size^2",
+    "ground_z_m": 0.0,
+    "initial_state": "frame-0 released state with the dynamic-impact-v2 cube-toss perturbation scheme (own seeds, seed0 80100); for scale != 1 the start height is raised by (scale-1)*half*sqrt(3) so the cube starts clear of the floor",
+    "settle_rule": "first time after which |v| < 0.01 m/s and |omega| < 0.05 rad/s hold for 0.2 s; the tail window runs from there to 6 s and must be >= 1.0 s, otherwise 'not settled'",
+    "pass_gate": "settled, finite, no contact truncation, |mean tail support force - m g| / m g <= 1%, max tail overlap (deepest corner below the floor) <= 1 mm, planar drift <= 0.1 mm/s and yaw drift <= 1 mrad/s over the tail",
+    "load_readout": "SAP: sum contact_gamma.z/dt (fixed build); MuJoCo: mujoco_warp.contact_force normal",
+    "mechanism_metrics": "settle time, support load error, overlap, planar/yaw drift, contact duty, contact count"
+  },
+  "selection_rule": "pass fraction over all selection rollouts, then mean support load error, then mean planar drift, then wall time",
+  "seed_rule": "same as dynamic-impact-v2 cube toss: selection seed0 + trial index; held-out cell j, trial i: seed0 + 1000 + 100*j + i",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "mass",
+      "inertia",
+      "geometry",
+      "mu",
+      "dt_ms",
+      "start state"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=3e3,tau=0",
+      "ke=1e4,tau=0",
+      "ke=3e4,tau=1ms",
+      "ke=1e5,tau=3ms"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "k=1e3,b=0,implicitfast",
+      "k=3e3,b=5,implicitfast",
+      "k=1e4,b=15,implicitfast",
+      "k=3e4,b=30,implicitfast"
+    ],
+    "rationale": "same candidate tables as dynamic-impact-v2 cube toss, selected independently on the sustained gate"
+  },
+  "held_out_conditions": [
+    {
+      "id": "nominal",
+      "dt_ms": 6.7568,
+      "mass_scale": 1.0,
+      "mu": 0.18,
+      "scale": 1.0,
+      "axis": "held-out released states"
+    },
+    {
+      "id": "dt_small",
+      "dt_ms": 3.3784,
+      "mass_scale": 1.0,
+      "mu": 0.18,
+      "scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "dt_large",
+      "dt_ms": 13.5135,
+      "mass_scale": 1.0,
+      "mu": 0.18,
+      "scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "mass_0p5x",
+      "dt_ms": 6.7568,
+      "mass_scale": 0.5,
+      "mu": 0.18,
+      "scale": 1.0,
+      "axis": "mass / load"
+    },
+    {
+      "id": "mass_2x",
+      "dt_ms": 6.7568,
+      "mass_scale": 2.0,
+      "mu": 0.18,
+      "scale": 1.0,
+      "axis": "mass / load"
+    },
+    {
+      "id": "mu_0p5",
+      "dt_ms": 6.7568,
+      "mass_scale": 1.0,
+      "mu": 0.5,
+      "scale": 1.0,
+      "axis": "friction"
+    },
+    {
+      "id": "mu_0p9",
+      "dt_ms": 6.7568,
+      "mass_scale": 1.0,
+      "mu": 0.9,
+      "scale": 1.0,
+      "axis": "friction"
+    },
+    {
+      "id": "scale_0p75",
+      "dt_ms": 6.7568,
+      "mass_scale": 1.0,
+      "mu": 0.18,
+      "scale": 0.75,
+      "axis": "cube size (setup)"
+    },
+    {
+      "id": "scale_1p25",
+      "dt_ms": 6.7568,
+      "mass_scale": 1.0,
+      "mu": 0.18,
+      "scale": 1.25,
+      "axis": "cube size (setup)"
+    }
+  ],
+  "axis_coverage": {
+    "dt": "1/296, 1/148, 1/74 s",
+    "mass": "x0.5 / x1 / x2",
+    "friction": "0.18 / 0.5 / 0.9",
+    "size": "x0.75 / x1 / x1.25",
+    "state": "32 held-out released states (rest face/edge varies)"
+  }
+}

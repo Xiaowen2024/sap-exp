@@ -1,0 +1,369 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "gauge-slope-slider",
+  "revision": "dynamic-friction-v3",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "dynamic-friction-v2 slope artifacts (historical SAP runner used a fixed board for every subtask, so task-3 was not aligned with MuJoCo)",
+  "R": 20,
+  "seed0": 81100,
+  "outcome_type": "continuous",
+  "data": {
+    "source": "GAUGE full-table5 slope-slider (3 materials x 3 subtasks, 19-20 trials each, 30 fps)",
+    "reference": "per case: mean cube-centre trajectory over the real trials",
+    "subtasks": {
+      "task-1": "fixed board, cube stays (static friction)",
+      "task-2": "fixed board, cube slides ~0.53 m",
+      "task-3": "board moved kinematically (~2.5 cm in x-z, up to ~31 deg about world y), cube slides ~0.5-0.6 m"
+    }
+  },
+  "selection": [
+    {
+      "id": "sel_wood_task-2",
+      "material": "wood",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "selection_only": true
+    },
+    {
+      "id": "sel_metal_task-3",
+      "material": "metal",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "selection_only": true
+    }
+  ],
+  "fixed": {
+    "geometry": "GAUGE cube.obj / board.obj convex meshes (both engines), masses and harmonic-mean friction from GAUGE metadata, ground plane at z=0",
+    "board_motion": "task-1/2: board fixed at its recorded pose; task-3: board pose follows the mean recorded board trajectory (MuJoCo: pose and velocity written every step; SAP: prismatic x + prismatic z + revolute about world y chain with stiff implicit PD on recorded targets and target velocities)",
+    "perturbation": "rollout r starts at p_cube + 0.25 (trial[r mod N] start - mean start) + U(+-0.2 mm); identical arrays for both engines",
+    "pass_gate": "finite state, no contact truncation, and (task-3, SAP) board PD tracking error <= 1 mm / 0.5 deg",
+    "loss": "case loss = mean over rollouts of the 3-D cube trajectory RMSE (m) to the mean real trajectory; selection loss = mean over the two selection cases",
+    "mechanism_metrics": "terminal position error, sliding distance, fitted along-slope acceleration error, static outcome for task-1 (displacement < 10 mm)"
+  },
+  "selection_rule": "pass gate, then selection loss, then wall time",
+  "seed_rule": "selection case s: seed0 + 100*s; held-out cell j: seed0 + 1000 + 100*j (rollout r adds r)",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "geometry",
+      "mass",
+      "mu",
+      "board motion",
+      "dt_ms"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=2.5e3,tau=0",
+      "ke=1e4,tau=1ms",
+      "ke=1e5,tau=3ms",
+      "ke=1e5,tau=3ms,sigma=1e-4"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "k=1e4,b=100,elliptic,implicitfast",
+      "k=3e4,b=200,elliptic,implicitfast",
+      "k=1e5,b=400,elliptic,implicitfast",
+      "k=1e5,b=400,elliptic,implicitfast,impratio=10"
+    ],
+    "rationale": "both span normal compliance and friction regularisation. MuJoCo uses direct stiffness/damping (negative solref), which refsafe does not clamp, because a positive time constant would be clamped to >= 2*dt = 22 ms at dt = 1/90 s"
+  },
+  "held_out_conditions": [
+    {
+      "id": "wood_task-1_nominal",
+      "material": "wood",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "wood_task-3_nominal",
+      "material": "wood",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "plastic_task-1_nominal",
+      "material": "plastic",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "plastic_task-2_nominal",
+      "material": "plastic",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "plastic_task-3_nominal",
+      "material": "plastic",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "metal_task-1_nominal",
+      "material": "metal",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "metal_task-2_nominal",
+      "material": "metal",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 1.0,
+      "axis": "held-out material/subtask"
+    },
+    {
+      "id": "wood_task-1_dt_small",
+      "material": "wood",
+      "subtask": "task-1",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "wood_task-1_dt_large",
+      "material": "wood",
+      "subtask": "task-1",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "wood_task-1_mass0p5x",
+      "material": "wood",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "wood_task-1_mass2p0x",
+      "material": "wood",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "wood_task-3_dt_small",
+      "material": "wood",
+      "subtask": "task-3",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "wood_task-3_dt_large",
+      "material": "wood",
+      "subtask": "task-3",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "wood_task-3_mass0p5x",
+      "material": "wood",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "wood_task-3_mass2p0x",
+      "material": "wood",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-1_dt_small",
+      "material": "plastic",
+      "subtask": "task-1",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-1_dt_large",
+      "material": "plastic",
+      "subtask": "task-1",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-1_mass0p5x",
+      "material": "plastic",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-1_mass2p0x",
+      "material": "plastic",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-2_dt_small",
+      "material": "plastic",
+      "subtask": "task-2",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-2_dt_large",
+      "material": "plastic",
+      "subtask": "task-2",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-2_mass0p5x",
+      "material": "plastic",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-2_mass2p0x",
+      "material": "plastic",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-3_dt_small",
+      "material": "plastic",
+      "subtask": "task-3",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-3_dt_large",
+      "material": "plastic",
+      "subtask": "task-3",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "plastic_task-3_mass0p5x",
+      "material": "plastic",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "plastic_task-3_mass2p0x",
+      "material": "plastic",
+      "subtask": "task-3",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "metal_task-1_dt_small",
+      "material": "metal",
+      "subtask": "task-1",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "metal_task-1_dt_large",
+      "material": "metal",
+      "subtask": "task-1",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "metal_task-1_mass0p5x",
+      "material": "metal",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "metal_task-1_mass2p0x",
+      "material": "metal",
+      "subtask": "task-1",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "metal_task-2_dt_small",
+      "material": "metal",
+      "subtask": "task-2",
+      "dt_ms": 2.7778,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "metal_task-2_dt_large",
+      "material": "metal",
+      "subtask": "task-2",
+      "dt_ms": 11.1111,
+      "mass_scale": 1.0,
+      "axis": "dt"
+    },
+    {
+      "id": "metal_task-2_mass0p5x",
+      "material": "metal",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 0.5,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    },
+    {
+      "id": "metal_task-2_mass2p0x",
+      "material": "metal",
+      "subtask": "task-2",
+      "dt_ms": 5.5556,
+      "mass_scale": 2.0,
+      "axis": "cube mass (Coulomb incline sliding is mass-invariant; reference = real)"
+    }
+  ],
+  "axis_coverage": {
+    "material x subtask": "7 held-out cases (static / sliding / moving board)",
+    "dt": "1/360, 1/180, 1/90 s on every held-out case",
+    "mass": "x0.5 / x1 / x2 on every held-out case"
+  },
+  "not_run_conditions": [
+    {
+      "axis": "slope angle / board speed sweep",
+      "reason": "no real reference outside the recorded tasks"
+    },
+    {
+      "axis": "friction-force fidelity",
+      "reason": "GAUGE releases trajectories only; no measured contact force"
+    }
+  ]
+}

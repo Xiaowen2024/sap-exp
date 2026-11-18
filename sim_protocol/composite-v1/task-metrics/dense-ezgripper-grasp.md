@@ -32,7 +32,7 @@ The task first selects native engine settings on calibration trials, then freeze
 
 | Check | Definition |
 |---|---|
-| **Bounded tuning budget** | Compare default \(B=1\), up to \(B\leq5\) mechanism-motivated native candidates, and—if run—a disclosed \(B\approx100\) blind-grid ceiling. Report \(\mathrm{Pass}@B\) and \(B_{\rm first\ pass}\) for a preregistered retention criterion. |
+| **Bounded tuning budget** | Compare the literal native default \(B=1\) with the fixed, mechanism-motivated five-candidate budget \(B=5\). Report \(\mathrm{Pass}@1\), \(\mathrm{Pass}@5\), and \(B_{\rm first\ pass}\) for a preregistered retention criterion. No larger search budget is part of this protocol. |
 | **Plausible-range controllability** | With native settings and material parameters frozen, map the hold/slip boundary over *physical task controls*: commanded tendon/grip force versus object weight and external load. A plausible grasp should retain the object above, and slip below, the expected boundary. Compare this boundary with held-out physical trials when available; otherwise label it simulation-only. |
 | **Numerical local robustness** | At each frozen configuration, perturb timestep, initial object pose, and seed under a preregistered distribution. Report mean/SD across \(R\geq20\) draws. |
 | **Setup-variant robustness** | With frozen native settings, repeat on held-out object mass/shape, surface/material condition, initial object pose, and applied-load or motion profiles. Report slip/no-slip prediction and pose drift by variant. |

@@ -1,0 +1,168 @@
+{
+ "protocol": "aligned-frozen-generalizability-v1",
+ "R": 20,
+ "outcome_type": "continuous",
+ "status": "declared 2026-11-10; not yet run",
+ "task": "gauge-ball-bounce",
+ "revision": "dynamic-impact-v3",
+ "seed0": 78300,
+ "supersedes": "gauge_ball_bounce_dynamic_impact_v2.json (kept). At v2 dt = 1/180 s no SAP candidate reached the measured restitution (first-bounce e 0.26-0.45 vs real 0.72) because SAP's implicit contact step carries a dissipation time of order dt even at tau = 0. The diagnostic exp-results/dynamic-impact-v2/bounce-dt-probe (run before this declaration) showed SAP e rises as dt falls (ke=1e4, tau=0: 0.36 at 5.56 ms, 0.68 at 1.11 ms) while MuJoCo e stays 0.70-0.77 for dt <= 5.56 ms. v3 fixes the task dt at 1/900 s (30 steps per 30-fps frame) for both engines; everything else is unchanged.",
+ "data": {
+  "source": "GAUGE public bouncing-ball trajectories (22 JSON files, 30 fps, mm)",
+  "split": "selection = odd file IDs 1..21, held-out = even file IDs 2..22",
+  "observed_diversity": "all 22 trials are repeats of one drop (release height 0.405-0.410 m, same xy); the held-out trajectory split therefore tests replicate transfer, not new conditions. The height axis below uses later apexes of the same real trajectories as lower-height re-releases."
+ },
+ "selection": {
+  "id": "sel_odd_ids_release0",
+  "trials": "odd file IDs",
+  "start": "frame 0",
+  "dt_ms": 1.111111,
+  "mass_scale": 1.0,
+  "offset_m": [
+   0,
+   0
+  ],
+  "selection_only": true
+ },
+ "fixed": {
+  "mass_kg": 0.121,
+  "mu": 0.808698,
+  "ground_z_m": 0.013297,
+  "ball_radius_m": 0.03,
+  "geometry": "GAUGE ball-6.obj (both engines)",
+  "frame_rate_hz": 30,
+  "initial_velocity": "frame-0 start: zero (public-data limitation); apex re-release: central finite difference of frames k-1,k+1",
+  "sap_note": "SAP ignores the shape 'restitution' field; it is not set",
+  "perturbation": "initial position + N(0, 0.5 mm) per axis per rollout; identical arrays for both engines",
+  "pass_gate": "finite state, no contact truncation/overflow, and at least one valid rebound apex in every rollout (otherwise the apex term is undefined and the candidate cannot win)",
+  "loss": "per trial: trajectory RMSE (m) + 0.05 x E_apex over the first <=3 apexes; mean over trials",
+  "mechanism_metrics": "apex-to-apex restitution sequence e_k = sqrt(h_k+1/h_k) vs the real sequence, DTW, contact duration (simulation only)"
+ },
+ "selection_rule": "pass gate, then mean selection loss, then wall time",
+ "seed_rule": "selection: seed0 + trial index (same for every candidate); held-out cell j, trial i: seed0 + 1000 + 100*j + i",
+ "candidate_rule": {
+  "fixed_during_B1_B5_selection": [
+   "mass",
+   "geometry",
+   "mu",
+   "dt_ms",
+   "start state"
+  ],
+  "allowed_native_parameters_only": true,
+  "sap_candidates": [
+   "native default",
+   "ke=2.5e3,tau=0",
+   "ke=2.5e3,tau=1ms",
+   "ke=5e3,tau=0",
+   "ke=1e4,tau=0"
+  ],
+  "mujoco_warp_candidates": [
+   "native default",
+   "k=3e3,b=0,implicitfast",
+   "k=1e4,b=5,implicitfast",
+   "k=1e4,b=15,implicitfast",
+   "k=3e4,b=30,implicitfast"
+  ],
+  "rationale": "SAP: chosen with the pre-declaration dt probe so the set brackets the measured first-bounce e at dt = 1.11 ms (probe: ke=2.5e3 tau=0 -> 0.80, ke=1e4 tau=0 -> 0.68); stiff ke (>= 1e5) excluded because the probe showed erratic, step-count-dominated e. MuJoCo: unchanged from v2 (its direct k/b set already brackets e, which the probe showed is dt-insensitive for dt <= 5.56 ms)."
+ },
+ "held_out_conditions": [
+  {
+   "id": "nominal",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 1.111111,
+   "axis": "held-out trajectory (replicate)"
+  },
+  {
+   "id": "dt_small",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 0.555556,
+   "axis": "dt"
+  },
+  {
+   "id": "dt_large",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 2.222222,
+   "axis": "dt"
+  },
+  {
+   "id": "mass_0p5x",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 1.111111,
+   "mass_scale": 0.5,
+   "axis": "mass (rigid-impact invariance; reference = real trajectory)"
+  },
+  {
+   "id": "mass_2x",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 1.111111,
+   "mass_scale": 2.0,
+   "axis": "mass (rigid-impact invariance; reference = real trajectory)"
+  },
+  {
+   "id": "offset_100mm",
+   "trials": "even file IDs",
+   "start": "frame 0",
+   "dt_ms": 1.111111,
+   "offset_m": [
+    0.1,
+    0.1
+   ],
+   "axis": "placement (translation symmetry; reference shifted)"
+  },
+  {
+   "id": "rerelease_apex1",
+   "trials": "even file IDs",
+   "start": "1st measured apex (~0.21 m)",
+   "dt_ms": 1.111111,
+   "axis": "release height (real reference from the apex onward)"
+  },
+  {
+   "id": "rerelease_apex2",
+   "trials": "even file IDs",
+   "start": "2nd measured apex (~0.105 m)",
+   "dt_ms": 1.111111,
+   "axis": "release height (real reference from the apex onward)"
+  }
+ ],
+ "axis_coverage": {
+  "dt": "1/1800, 1/900, 1/450 s",
+  "release_height": "0.407 / ~0.21 / ~0.105 m",
+  "mass": "x0.5 / x1 / x2",
+  "placement": "nominal / +0.1 m xy",
+  "trajectory": "11 held-out replicates"
+ },
+ "reference_types": {
+  "real": [
+   "nominal",
+   "dt_small",
+   "dt_large",
+   "rerelease_apex1",
+   "rerelease_apex2"
+  ],
+  "real_under_exact_symmetry": [
+   "offset_100mm"
+  ],
+  "real_under_rigid_invariance_assumption": [
+   "mass_0p5x",
+   "mass_2x"
+  ]
+ },
+ "not_run_conditions": [
+  {
+   "axis": "impact angle / lateral velocity",
+   "reason": "the public drops are vertical with no lateral velocity; no reference exists"
+  },
+  {
+   "axis": "material / friction",
+   "reason": "single ball and board; no reference"
+  }
+ ],
+ "known_anomalies": [
+  "bounce-dt-probe: SAP ke=1e4, tau=0 gives e = 0.98 at dt = 0.22 ms and 1.32 (energy gain) at 0.11 ms; outside the v3 dt range; reported, not investigated"
+ ]
+}

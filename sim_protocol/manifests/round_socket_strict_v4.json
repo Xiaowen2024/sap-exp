@@ -1,0 +1,185 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "round-socket",
+  "revision": "strict-v4",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "round_socket_strict_v3.json (shared 32-piece CoACD socket narrowed the 12-mm bore to 10.24 mm, so clearance cells < 2 mm were infeasible)",
+  "R": 20,
+  "seed0": 85100,
+  "duration_s": 2.0,
+  "outcome_type": "gate",
+  "selection": {
+    "id": "sel_c2_o1_t1_h120",
+    "clearance_mm": 2.0,
+    "offset_mm": 1.0,
+    "tilt_deg": 1.0,
+    "release_height_mm": 120.0,
+    "dt_ms": 0.5,
+    "mu": 0.8,
+    "selection_only": true
+  },
+  "fixed": {
+    "geometry": "assets/round_socket_exact (scripts/build_round_socket_exact.py): 32-gon base z 0-10 mm + 32 convex wall wedges z 10-40 mm whose inner faces sit at apothem 12.000 mm (inscribed bore exactly 12 mm; audit in geometry_audit.json); same meshes in both engines; peg = cylinder radius 12 mm - clearance, half-length 25 mm, mass 0.08 kg, solid-cylinder inertia",
+    "release": "peg centre at (offset, 0, release_height), tilted tilt_deg about world y, at rest; 2-s drop",
+    "perturbation": "peg x, y + U(+-0.05 mm); identical arrays for both engines",
+    "pass_gate": "credible insertion: entered (final centre z <= 45 mm and radial <= 3 mm), final radial error <= clearance, not escaped, no contact truncation, peak and final penetration <= 0.1 x clearance",
+    "label_source": "no external binary reference; report per-cell credible-insertion rate and failure modes (gate outcome)"
+  },
+  "selection_rule": "credible rate, then mean peak penetration / clearance, then mean final radial error, then wall time",
+  "seed_rule": "selection: seed0; held-out cell j: seed0 + 1000 + j",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "clearance_mm",
+      "offset_mm",
+      "tilt_deg",
+      "release_height_mm",
+      "dt_ms",
+      "mu",
+      "geometry",
+      "duration_s"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=2e4,tau=1.5ms,gap=.1mm",
+      "ke=6e4,tau=1.5ms,gap=.1mm",
+      "ke=2e5,tau=1.5ms,gap=.1mm",
+      "ke=2e4,tau=5ms,gap=.1mm"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "tc=2ms,dampratio=1,dmax=.95",
+      "tc=3ms,dampratio=1,dmax=.95",
+      "tc=4ms,dampratio=2,dmax=.95",
+      "tc=6ms,dampratio=2,dmax=.99"
+    ],
+    "rationale": "unchanged from strict-v3 (MuJoCo tc >= 2*dt at every declared dt)"
+  },
+  "held_out_conditions": [
+    {
+      "id": "clearance_0p5",
+      "clearance_mm": 0.5,
+      "offset_mm": 0.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "clearance_1p0",
+      "clearance_mm": 1.0,
+      "offset_mm": 0.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "clearance_3p0",
+      "clearance_mm": 3.0,
+      "offset_mm": 0.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "offset_0mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "offset_2mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 2.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "tilt_0deg",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 0.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "tilt_2deg",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 2.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "height_100mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 100.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "height_140mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 140.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "dt_0p25ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.25,
+      "mu": 0.8
+    },
+    {
+      "id": "dt_0p5ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8
+    },
+    {
+      "id": "dt_1ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 1.0,
+      "mu": 0.8
+    },
+    {
+      "id": "surface_mu0p5",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.5
+    }
+  ],
+  "axis_coverage": {
+    "clearance": "0.5/1/2/3 mm",
+    "lateral offset": "0/0.5/1/2 mm",
+    "tilt": "0/1/2 deg",
+    "release height (insertion speed)": "100/120/140 mm",
+    "dt": "0.25/0.5/1 ms",
+    "surface friction": "0.8/0.5"
+  }
+}

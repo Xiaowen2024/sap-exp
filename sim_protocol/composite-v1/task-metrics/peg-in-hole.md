@@ -29,7 +29,7 @@ The native settings selected on calibration cases are frozen before all sweeps.
 
 | Check | Definition |
 |---|---|
-| **Bounded tuning budget** | Compare default \(B=1\), up to \(B\leq5\) mechanism-motivated native candidates, and—if run—a disclosed \(B\approx100\) blind-grid ceiling. Report \(\mathrm{Pass}@B\) and \(B_{\rm first\ pass}\) for the preregistered task-success condition. |
+| **Bounded tuning budget** | Compare the literal native default \(B=1\) with the fixed, mechanism-motivated five-candidate budget \(B=5\). Report \(\mathrm{Pass}@1\), \(\mathrm{Pass}@5\), and \(B_{\rm first\ pass}\) for the preregistered task-success condition. No larger search budget is part of this protocol. |
 | **Plausible-range controllability** | With native settings frozen, sweep clearance, initial lateral/angle offset, insertion speed, and commanded axial force through preregistered plausible ranges. Check whether expected insertion, self-centering, jam, and escape transitions occur. |
 | **Numerical local robustness** | At each frozen case, perturb timestep, initial pose, and seed under a preregistered distribution. Report mean/SD across \(R\geq20\) rollouts. |
 | **Setup-variant robustness** | With native settings frozen, transfer to a held-out geometry or clearance regime and report whether the task-success, penetration, and contact-mode conclusion transfers. |

@@ -1,0 +1,179 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "pendulum",
+  "revision": "gauge-v3.1-real-reference",
+  "status": "declared 2026-11-10 before 3.17/4.0 real-reference reruns; old version verified from historical artifacts",
+  "supersedes": "pendulum_gauge_v3.json; original manifests and analytic-reference artifacts retained.",
+  "R": 20,
+  "seed0": 88100,
+  "outcome_type": "continuous",
+  "data": {
+    "source": "GAUGE public pendulum trajectories (20 JSON, 30 fps, mm)",
+    "split": "selection = odd trial IDs, held-out = even; each trial starts from its own measured release angle (~90 deg)",
+    "real_reference": "Per-trial period and measured 3000-frame energy decay; both evaluated using identical metric code for real and simulated trajectories.",
+    "trial_ids": {
+      "selection": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19
+      ],
+      "heldout": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20
+      ]
+    },
+    "sources": [
+      "https://huggingface.co/datasets/InternRobotics/GAUGE-Dataset",
+      "https://arxiv.org/html/2608.05948v1"
+    ],
+    "file_sha256": {
+      "exp-results/gauge-rigid-reproduction/assets/ball-6.obj": "6923590deb1b1a8cc91b982e09eead04ff3fa1237641ae4093bfaf57773b6183",
+      "exp-results/gauge-rigid-reproduction/assets/source-gauge/pendulum.json": "c0936f54b49a30556e7dcf47b059dc9829b3671c59c5b7788725f7805b4a59b1",
+      "exp-results/gauge-rigid-reproduction/assets/source-gauge/pendulum.xml": "e94dab4dc5762bb37658691093b00c4c0e2c121f93cd68d4e94d1a7db28fd9cf",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/1.json": "c25e0963daf965ea3ba038552bc25088c5a28a3530714645b934e682ae88260a",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/10.json": "10e9f1f44c8f5e7c15429ec6df2351a3e0cfc4e60000fe10437ccb04038e308c",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/11.json": "20a7ef9823d576423029066c1abf39ad36ee1b2dc27f9cc5c1b0dce33923e8ff",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/12.json": "b1ca9b2db023d1ddecbe5176e9b9510875c62c849e2f718754c7df220dfa3c19",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/13.json": "4782e94c87a5276563540b4b954e4f6e202a80786e07f5adfe3d5606913ed58f",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/14.json": "40cef71c28fc85744e10b9539d751b194dee11ca8aeabfc41fa844b20372a95e",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/15.json": "d9ae3eb86ad70f3096fcdf34a4bcc5edde2403ddee30e1b079ad0d53b9e22de3",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/16.json": "16effceaeb41178c072a1c7f42efca197c5ae211848b1f75b42783d3a8c0ea4f",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/17.json": "8a4d467f017fa1810f0143736682fd0d35b0f0dde643827d9a045239d4bc0710",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/18.json": "252aadc13e6c9b88584ffbbe8605dca29ef77866f888b8b919b04b4b8cb2ac35",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/19.json": "3c6b79f60a69f4d810e23fb39ed67f923c9165623983700db23254ccb47e1d5a",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/2.json": "146bfc3cd3625c8fcfc4c8fea4d7ca0dc1558a7f1ba50721783967f6dece145e",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/20.json": "c4289397f621e9dbbf98e45b637b562f9aaca0ad90fdddb8a5106905d66ee05b",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/3.json": "18a6fa6f561440d845b144186a5c9ec5cd34bdf89c72b10d7fb33b690c983004",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/4.json": "85dec48f32de193e4f777fbb7667fb5727afb712e9ba580f3247f9617cdc022b",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/5.json": "fa3737d43b9707f1d9a71ee4216acd770bfc52ca02cfa880545fca194972f4f6",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/6.json": "94cd8c48fd4b0e8b2ad3bda9e842ebe544bb7d826831de9a633eca756a691b47",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/7.json": "bf76ec3c4a6c3e51a25eef63420e843e3ac249ec013fd3f2e831709f1045df0d",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/8.json": "205660a4962fb0e03e4a55205a1b27ee5ef0ae6d843209d04f57b73953daf0cb",
+      "exp-results/gauge-rigid-reproduction/data/pendulum/9.json": "2f890360e2ab29bd88be43ef924cace5c0db2381dfe0082d06b88d5233fb6e35"
+    }
+  },
+  "selection": {
+    "id": "sel_odd_trials",
+    "trials": "odd trials",
+    "dt_ms": 5.555556,
+    "frames": 3000,
+    "mass_scale": 1.0,
+    "selection_only": true,
+    "reference_scope": "matched_real_trials"
+  },
+  "fixed": {
+    "scene": "GAUGE pendulum: 0.3175 kg ball (radius 30 mm, solid-sphere inertia) 0.278 m below an undamped world-y hinge at (0.37396, 0.49059, 0.445133) m; massless rod; no contact; geometry/inertia from the released mesh rather than an analytic sphere; reconstructed from the released MJCF prototype and physical metadata",
+    "release": "from rest at the trial's measured angle; perturbation U(+-3 mrad); identical arrays for both engines",
+    "sampling": "exact 30-Hz samples; dt = 1/(30 * integer steps-per-frame), avoiding accumulated rounded-dt drift",
+    "pass_gate": "finite qpos AND qvel at every physics step; no measured capacity overflow; detectable final peak for both real and simulated 3000-frame trajectories",
+    "loss": "mean over trial x repeat of |PD_sim / PD_real(trial) - 1| + |EL_sim - EL_real(trial)|. EL_real uses the same 3000-frame, peak-height equation as EL_sim; target is NOT zero. Raw-FFT PD is primary, refined PD and 300-frame 3D RMSE auxiliary.",
+    "mechanism_metrics": "zero-padded PD (finer than the paper's 0.1-Hz bins), minimum EL (energy gain if < 0), 300-frame 3D RMSE vs the real trial",
+    "unmeasured_parameters": "The released metadata has no hinge damping/rod inertia calibration; keep the published undamped/massless-link reconstruction. Do not claim that all real dissipative effects are identified.",
+    "LSD_note": "3D central-difference speed; no smoothing; eps_z=0.5 mm, v_th=5 mm/s, same code for real and simulation. Public-data LSD differs from paper table; do not assert exact LSD reproduction."
+  },
+  "selection_rule": "pass gate, then loss, then wall time",
+  "seed_rule": "selection: seed0; held-out cell j: seed0 + 1000 + j",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "scene",
+      "mass",
+      "length",
+      "release state",
+      "dt_ms",
+      "frames"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "dtype=float64"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "integrator=implicitfast",
+      "integrator=implicit",
+      "integrator=RK4"
+    ],
+    "rationale": "contact-free hinge: SAP's only native option that changes these dynamics is solver precision; MuJoCo's are the integrators. No padding with duplicates."
+  },
+  "held_out_conditions": [
+    {
+      "id": "nominal",
+      "trials": "even trials",
+      "dt_ms": 5.555556,
+      "frames": 3000,
+      "axis": "held-out real trials",
+      "reference_scope": "matched_real_trials"
+    },
+    {
+      "id": "dt_360hz",
+      "trials": "even trials",
+      "dt_ms": 2.777778,
+      "frames": 3000,
+      "axis": "dt",
+      "reference_scope": "matched_real_trials"
+    },
+    {
+      "id": "dt_90hz",
+      "trials": "even trials",
+      "dt_ms": 11.111111,
+      "frames": 3000,
+      "axis": "dt",
+      "reference_scope": "matched_real_trials"
+    },
+    {
+      "id": "mass_0p5x",
+      "trials": "even trials",
+      "dt_ms": 5.555556,
+      "frames": 3000,
+      "mass_scale": 0.5,
+      "axis": "mass sensitivity only; compare with nominal real trajectory for context, not a measured mass-transfer fidelity test",
+      "reference_scope": "counterfactual_mass_sensitivity_no_matched_real_mass_data"
+    },
+    {
+      "id": "mass_2x",
+      "trials": "even trials",
+      "dt_ms": 5.555556,
+      "frames": 3000,
+      "mass_scale": 2.0,
+      "axis": "mass sensitivity only; compare with nominal real trajectory for context, not a measured mass-transfer fidelity test",
+      "reference_scope": "counterfactual_mass_sensitivity_no_matched_real_mass_data"
+    }
+  ],
+  "axis_coverage": {
+    "dt": "1/90, 1/180 (paper), 1/360 s",
+    "trials": "10 held-out real trials",
+    "mass": "x0.5 / x1 / x2; only x1 has matching real measurements; shifted mass cells are sensitivity diagnostics, not real-data-validated transfer"
+  },
+  "not_run_conditions": [
+    {
+      "axis": "length / amplitude",
+      "reason": "single GAUGE configuration; no real reference"
+    }
+  ],
+  "versions": {
+    "mujoco": [
+      "3.17.0",
+      "4.0.0"
+    ],
+    "mujoco_warp": [
+      "3.17.0",
+      "4.0.0"
+    ],
+    "warp_lang": "1.18.0+cu12"
+  }
+}

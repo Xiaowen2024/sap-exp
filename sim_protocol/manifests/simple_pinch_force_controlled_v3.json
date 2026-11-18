@@ -1,0 +1,273 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "simple-pinch",
+  "revision": "force-controlled-v3",
+  "status": "declared 2026-11-07; not yet run",
+  "supersedes": "simple_pinch_force_matched_v2.json (never run; position-commanded pads with per-engine preload calibration, and dt cells within 7-9% of the threshold)",
+  "R": 20,
+  "seed0": 72100,
+  "duration_s": 2.05,
+  "outcome_type": "binary",
+  "selection": [
+    {
+      "id": "sel_F4_mu0p4_r1p3",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.2509,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.3001,
+      "expected": "retain",
+      "selection_only": true
+    },
+    {
+      "id": "sel_F4_mu0p4_r0p7",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.466,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.7,
+      "expected": "release",
+      "selection_only": true
+    }
+  ],
+  "fixed": {
+    "gravity": "off; the cube weight m g (x load scale) is applied as an external -z force on the cube during lift/hold",
+    "geometry": "pads 20 x (2*pad_halfwidth_y) x 80 mm boxes, cube 40 mm; pads start just touching the cube",
+    "actuation": "force-controlled gripper: each pad x-joint receives a constant inward force F (per_pad_force_N) plus damping 300 N s/m and no x stiffness; pad z-joints track the lift with PD (ke 2e4, kd 300). The steady per-pad normal load therefore equals F in both engines (no per-engine preload calibration).",
+    "phases": "0.8-s squeeze gate (no load), 1.0-s 60-mm lift, 0.25-s hold",
+    "perturbation": "cube y,z ~ U(+-0.4 mm), pitch ~ U(+-4 mrad), load scale 1 +- 0.5%; identical arrays for both engines",
+    "label_rule": "ideal Coulomb margin r = 2 mu F / (m g); retain if r >= 1.2, release if r <= 0.8 (20% margin); no cell lies in between",
+    "outcome": "retain if the cube has risen >= 57 mm (95% of the lift) at the end of the hold, else release",
+    "pass_gate": "finite state, no contact truncation, both pads in contact for the last 0.2 s of the gate, and the measured per-pad normal force (SAP contact_gamma/dt; MuJoCo contact_force) within 5% of F at the end of the gate; observed outcome == expected",
+    "mechanism_metrics": "measured gate preload vs F, lift-follow error, hold-window slip creep of the cube relative to the pads"
+  },
+  "selection_rule": "total valid+correct rollouts over both selection cells, then mean |rise - 60 mm| on the retain cell, then hold creep, then wall time",
+  "seed_rule": "selection cell s: seed0 + s (same for every candidate); held-out cell j: seed0 + 1000 + j",
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "per_pad_force_N",
+      "mass_kg",
+      "mu",
+      "dt_ms",
+      "pad geometry",
+      "lift profile"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=3e4,tau=3ms",
+      "ke=1e5,tau=3ms",
+      "ke=3e5,tau=3ms",
+      "ke=1e5,tau=3ms,sigma=1e-4"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "tc=2ms,impratio=50,noslip=0",
+      "tc=4ms,impratio=50,noslip=0",
+      "tc=2ms,impratio=100,noslip=0",
+      "tc=2ms,impratio=50,noslip=2"
+    ],
+    "rationale": "both engines span normal compliance (SAP ke; MuJoCo solref tc) and friction regularisation (SAP sigma; MuJoCo impratio / noslip). MuJoCo tc >= 2 ms keeps tc >= 2*dt at dt = 1 ms (no refsafe clamping)."
+  },
+  "held_out_conditions": [
+    {
+      "id": "mass_r1p5",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.2175,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.4998,
+      "expected": "retain"
+    },
+    {
+      "id": "mass_r1p25",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.261,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.2498,
+      "expected": "retain"
+    },
+    {
+      "id": "mass_r0p75",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.4349,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.7501,
+      "expected": "release"
+    },
+    {
+      "id": "mass_r0p5",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.6524,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.5,
+      "expected": "release"
+    },
+    {
+      "id": "force_2N",
+      "per_pad_force_N": 2,
+      "mass_kg": 0.3,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.5437,
+      "expected": "release"
+    },
+    {
+      "id": "force_6N",
+      "per_pad_force_N": 6,
+      "mass_kg": 0.3,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.631,
+      "expected": "retain"
+    },
+    {
+      "id": "force_8N",
+      "per_pad_force_N": 8,
+      "mass_kg": 0.3,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 2.1747,
+      "expected": "retain"
+    },
+    {
+      "id": "mu_0p25",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.3,
+      "mu": 0.25,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.6796,
+      "expected": "release"
+    },
+    {
+      "id": "mu_0p6",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.3,
+      "mu": 0.6,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.631,
+      "expected": "retain"
+    },
+    {
+      "id": "mu_0p8",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.3,
+      "mu": 0.8,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 2.1747,
+      "expected": "retain"
+    },
+    {
+      "id": "pad25_r1p25",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.261,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 25.0,
+      "ideal_margin_r": 1.2498,
+      "expected": "retain"
+    },
+    {
+      "id": "pad25_r0p75",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.4349,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 25.0,
+      "ideal_margin_r": 0.7501,
+      "expected": "release"
+    },
+    {
+      "id": "pad50_r1p25",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.261,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 50.0,
+      "ideal_margin_r": 1.2498,
+      "expected": "retain"
+    },
+    {
+      "id": "dt0p25_r1p4",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.233,
+      "mu": 0.4,
+      "dt_ms": 0.25,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.4,
+      "expected": "retain"
+    },
+    {
+      "id": "dt0p25_r0p6",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.5437,
+      "mu": 0.4,
+      "dt_ms": 0.25,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.6,
+      "expected": "release"
+    },
+    {
+      "id": "dt0p5_r1p4",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.233,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.4,
+      "expected": "retain"
+    },
+    {
+      "id": "dt0p5_r0p6",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.5437,
+      "mu": 0.4,
+      "dt_ms": 0.5,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.6,
+      "expected": "release"
+    },
+    {
+      "id": "dt1p0_r1p4",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.233,
+      "mu": 0.4,
+      "dt_ms": 1.0,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 1.4,
+      "expected": "retain"
+    },
+    {
+      "id": "dt1p0_r0p6",
+      "per_pad_force_N": 4,
+      "mass_kg": 0.5437,
+      "mu": 0.4,
+      "dt_ms": 1.0,
+      "pad_halfwidth_y_mm": 40.0,
+      "ideal_margin_r": 0.6,
+      "expected": "release"
+    }
+  ],
+  "axis_coverage": {
+    "mass / margin": "r 0.5, 0.75, 1.25, 1.5 at F=4 N",
+    "per-pad force": "2, 4, 6, 8 N",
+    "mu": "0.25, 0.4, 0.6, 0.8",
+    "pad width (setup)": "25, 40, 50 mm half-width",
+    "dt": "0.25, 0.5, 1.0 ms x {retain r=1.4, release r=0.6}"
+  }
+}

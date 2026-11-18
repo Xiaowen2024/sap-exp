@@ -1,0 +1,305 @@
+{
+ "revision": "genesis-rigid-rerun-20261114-a1",
+ "engine": "Genesis RigidSolver (no coupler)",
+ "required_packages": {
+  "genesis-world": "1.4.6"
+ },
+ "requires_cuda": true,
+ "declared_before_scoring": "2026-11-14, after API/readout probes only (exp-results/genesis-rigid-20261114/preflight); no task metric was computed before this file was written.",
+ "sop": "sim_protocol/genesis_rigid_runner_sop.md",
+ "scope": "Every task with completed SAP and MuJoCo results except Newton's cradle (idealised v3 and GAUGE real v4.1), Cassie, round socket, GLIDE and DENSE. Genesis + IPC is a separate later registry.",
+ "selection_policy": "Same as the task manifest: B=1 = Genesis native defaults; candidates 2-5 below are fixed now; select on selection cells only with the task's existing gate/loss/wall-time rule; freeze; run the unchanged held-out matrix with R=20.",
+ "candidate_rules": {
+  "B1": "No numerical contact/solver setting: RigidOptions() defaults and Genesis default geom sol_params (timeconst from RigidOptions.constraint_timeconst=0.01 s, dampratio 1, solimp 0.9/0.95/0.001/0.5/2). Physical inputs (geometry, mass, inertia, friction, gravity, dt, joints, inputs) are always set from the manifest.",
+  "parameterisation": "Genesis accepts only positive timeconst (no direct stiffness/damping) and floors every contact's mixed timeconst at 2*dt. Where the MuJoCo Warp candidate is direct (k, b), the Genesis candidate is the exact equivalent tc=2/b, dr=b/(2 sqrt k) (MuJoCo and Genesis share b=2/(dmax tc), k=1/(dmax^2 tc^2 dr^2)); b=0 uses b=0.02 1/s because dampratio=0 is forbidden. Any floor that Genesis applies is recorded in compiled.geoms_sol_params / min_contact_timeconst_s and reported, not hidden.",
+  "unavailable_mujoco_options": "Genesis 1.4.6 has no solreffriction, no implicit or RK4 integrator and no direct (negative) solref; candidates that used them in MuJoCo are mapped to the nearest declared Genesis knob as listed per task."
+ },
+ "tasks": [
+  {
+   "id": "three-plate",
+   "manifest": "three_plate_stack_strict_v3p1.json",
+   "sha256": "f14499c0fac251d34fc73bce34ece13ddd6b7bab654abf5d65769d0c8d4aee42",
+   "runner": "scripts/genesis/run_threeplate_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "tc=4ms,dr=1,dmax=.95",
+    "tc=8ms,dr=1,dmax=.95",
+    "tc=8ms,dr=2,dmax=.99",
+    "tc=12ms,dr=2,dmax=.99"
+   ],
+   "nonnative": {
+    "cone": "elliptic",
+    "integrator": "implicitfast",
+    "iterations": 100,
+    "tolerance": 1e-10,
+    "solimp": [
+     0.9,
+     0.95,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "identical to the MuJoCo Warp set (solimp dmin=dmax)."
+  },
+  {
+   "id": "three-box",
+   "manifest": "three_box_push_strict_v4.json",
+   "sha256": "27be759da980b0e8170a886d9e617369324c2c2312132e469c72becc215f25c8",
+   "runner": "scripts/genesis/run_threebox_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "k=1e4,impratio=10,noslip=2,cone=pyramidal",
+    "k=1e5,impratio=10",
+    "k=1e5,impratio=10,noslip=2,cone=pyramidal",
+    "k=1e5,impratio=100,noslip=2,cone=pyramidal"
+   ],
+   "nonnative": {
+    "cone": "elliptic",
+    "integrator": "implicitfast",
+    "iterations": 100,
+    "tolerance": 1e-12,
+    "solimp": [
+     0.9,
+     0.9,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "k is the MuJoCo pair stiffness k_pair: ground pair s=(1-0.9)k/m, box-box pair 2s, critically damped (tc=1/sqrt(s), dr=1). Genesis mixes the two geoms' sol_params by their mean, so box geoms carry the box-box value and the ground geom 2*ground-target minus it, giving both pair targets exactly. MuJoCo candidate 2's solreffriction tc=4ms has no Genesis counterpart and is dropped."
+  },
+  {
+   "id": "cube-toss",
+   "manifest": "contactnets_cube_toss_dynamic_impact_v2.json",
+   "sha256": "fbcf8a2a916f7e1c077941555a3611b9e8ad4a84f9884e1d501f04cb22217350",
+   "runner": "scripts/genesis/run_impact_genesis_rigid.py",
+   "args": [
+    "--task",
+    "cube"
+   ],
+   "candidates": [
+    "native default",
+    "k=1e3,b=0",
+    "k=3e3,b=5",
+    "k=1e4,b=15",
+    "k=3e4,b=30"
+   ],
+   "nonnative": {
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.9,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "exact (k, b) equivalents of the MuJoCo Warp set."
+  },
+  {
+   "id": "ball-bounce-v2",
+   "manifest": "gauge_ball_bounce_dynamic_impact_v2.json",
+   "sha256": "6d5b521fede561f5ae3521dd7505c276f525fe0bc4ae173e79ab844e33df027f",
+   "runner": "scripts/genesis/run_impact_genesis_rigid.py",
+   "args": [
+    "--task",
+    "ball"
+   ],
+   "candidates": [
+    "native default",
+    "k=3e3,b=0",
+    "k=1e4,b=5",
+    "k=1e4,b=15",
+    "k=3e4,b=30"
+   ],
+   "nonnative": {
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.9,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "exact (k, b) equivalents of the MuJoCo Warp set."
+  },
+  {
+   "id": "ball-bounce-v3",
+   "manifest": "gauge_ball_bounce_dynamic_impact_v3.json",
+   "sha256": "dcb36fc74bc1ae531f906f11a41c403d41ab6b8f1049f253e8c635e262d93d20",
+   "runner": "scripts/genesis/run_impact_genesis_rigid.py",
+   "args": [
+    "--task",
+    "ball"
+   ],
+   "candidates": [
+    "native default",
+    "k=3e3,b=0",
+    "k=1e4,b=5",
+    "k=1e4,b=15",
+    "k=3e4,b=30"
+   ],
+   "nonnative": {
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.9,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "exact (k, b) equivalents of the MuJoCo Warp set."
+  },
+  {
+   "id": "cube-tail",
+   "manifest": "contactnets_cube_tail_sustained_v3.json",
+   "sha256": "5a8ce59008fa69b4164a58127a95dca3c90e21149bb8db69e262d7eda7500c13",
+   "runner": "scripts/genesis/run_tail_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "inherit cube-toss frozen"
+   ],
+   "nonnative": {
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.9,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "as the manifest's frozen_from rule: the single candidate is the Genesis cube-toss frozen winner read from that run's artifact (path and sha recorded); no selection on this task.",
+   "depends_on": "cube-toss"
+  },
+  {
+   "id": "simple-pinch",
+   "manifest": "simple_pinch_force_controlled_v3.json",
+   "sha256": "3d46155ce1aa184c3b26cd30f83b5e83403f2590d0ae43f30e6779f38c74c901",
+   "runner": "scripts/genesis/run_pinch_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "tc=2ms,impratio=50,noslip=0",
+    "tc=4ms,impratio=50,noslip=0",
+    "tc=2ms,impratio=100,noslip=0",
+    "tc=2ms,impratio=50,noslip=2,cone=pyramidal"
+   ],
+   "nonnative": {
+    "cone": "elliptic",
+    "integrator": "implicitfast",
+    "iterations": 100,
+    "tolerance": 1e-12,
+    "dr": 1.0,
+    "solimp": [
+     0.95,
+     0.99,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "identical to the MuJoCo Warp set."
+  },
+  {
+   "id": "gauge-slope",
+   "manifest": "gauge_slope_slider_dynamic_friction_v3.json",
+   "sha256": "4e95f2a4e92e46452873701bfd354f8249bf7a0802905d94a8a427143c45ea8a",
+   "runner": "scripts/genesis/run_slope_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "k=1e4,b=100",
+    "k=3e4,b=200",
+    "k=1e5,b=400",
+    "k=1e5,b=400,impratio=10"
+   ],
+   "nonnative": {
+    "cone": "elliptic",
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.95,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "exact (k, b) equivalents of the MuJoCo Warp set; at dt=1/180 s and 1/90 s Genesis floors the stiffer ones (tc<2dt), recorded per cell."
+  },
+  {
+   "id": "mit-push",
+   "manifest": "mit_push_dynamic_friction_v3.json",
+   "sha256": "76a091104063dbb0ea7d3f2e5fe21246af7b3aad0799ef3c7c2e673505561561",
+   "runner": "scripts/genesis/run_mitpush_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "k=1e4,b=100",
+    "k=3e4,b=200",
+    "k=1e5,b=400",
+    "k=1e5,b=400,impratio=10"
+   ],
+   "nonnative": {
+    "cone": "elliptic",
+    "integrator": "implicitfast",
+    "solimp": [
+     0.9,
+     0.95,
+     0.001,
+     0.5,
+     2.0
+    ]
+   },
+   "mapping": "exact (k, b) equivalents of the MuJoCo Warp set; floors recorded as for the slope."
+  },
+  {
+   "id": "pendulum-v2",
+   "manifest": "pendulum_energy_v2.json",
+   "sha256": "b834b64ae6f622dda7785117fd211e86f6c0697fdfcc4249484fbb6f4513e7de",
+   "runner": "scripts/genesis/run_pendulum_v2_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "integrator=Euler",
+    "integrator=implicitfast"
+   ],
+   "nonnative": {},
+   "mapping": "contact-free hinge: Genesis' integrator choices (native is approximate_implicitfast); no implicit/RK4 exist, so three candidates, no padding."
+  },
+  {
+   "id": "pendulum-gauge-real",
+   "manifest": "pendulum_gauge_real_v1.json",
+   "sha256": "4c061771b059cc039379d37fef672aad287e6320778344493588747bcd2b13c2",
+   "runner": "scripts/genesis/run_gauge_pendulum_real_genesis_rigid.py",
+   "args": [],
+   "candidates": [
+    "native default",
+    "integrator=Euler",
+    "integrator=implicitfast"
+   ],
+   "nonnative": {},
+   "mapping": "as pendulum-v2."
+  }
+ ],
+ "amendments": [
+  {
+   "date": "2026-11-14",
+   "tasks": [
+    "three-box",
+    "simple-pinch"
+   ],
+   "change": "Candidates with noslip>0 use cone=pyramidal instead of the elliptic default of the non-native settings.",
+   "reason": "Genesis 1.4.6 raises 'The elliptic friction cone is not supported with the noslip solver.' at build. Only engine-imposed; at the time of the change the only scored output was three-box candidate 1 (native default, unaffected) and pinch candidate 1 (native default, unaffected). Both tasks are rerun in full under this revision.",
+   "unaffected_tasks_started_under_previous_revision": [
+    "cube-toss",
+    "three-plate"
+   ]
+  }
+ ]
+}

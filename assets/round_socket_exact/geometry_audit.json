@@ -1,0 +1,75 @@
+{
+  "pieces": 33,
+  "inscribed_bore_mm": 11.999999922672309,
+  "inner_corner_radius_mm": 12.058062868515737,
+  "outer_radius_mm": 50.0,
+  "base_z_mm": [
+    0,
+    10.0
+  ],
+  "wall_z_mm": [
+    10.0,
+    40.0
+  ],
+  "pegs": {
+    "0.5": {
+      "peg_radius_mm": 11.5,
+      "inscribed_bore_mm": 11.999999922672309,
+      "margin_mm": 0.4999999226723091,
+      "feasible": true
+    },
+    "1": {
+      "peg_radius_mm": 11.0,
+      "inscribed_bore_mm": 11.999999922672309,
+      "margin_mm": 0.9999999226723091,
+      "feasible": true
+    },
+    "2": {
+      "peg_radius_mm": 10.0,
+      "inscribed_bore_mm": 11.999999922672309,
+      "margin_mm": 1.999999922672309,
+      "feasible": true
+    },
+    "3": {
+      "peg_radius_mm": 9.0,
+      "inscribed_bore_mm": 11.999999922672309,
+      "margin_mm": 2.999999922672309,
+      "feasible": true
+    }
+  },
+  "files": [
+    "socket_base.obj",
+    "socket_wall_00.obj",
+    "socket_wall_01.obj",
+    "socket_wall_02.obj",
+    "socket_wall_03.obj",
+    "socket_wall_04.obj",
+    "socket_wall_05.obj",
+    "socket_wall_06.obj",
+    "socket_wall_07.obj",
+    "socket_wall_08.obj",
+    "socket_wall_09.obj",
+    "socket_wall_10.obj",
+    "socket_wall_11.obj",
+    "socket_wall_12.obj",
+    "socket_wall_13.obj",
+    "socket_wall_14.obj",
+    "socket_wall_15.obj",
+    "socket_wall_16.obj",
+    "socket_wall_17.obj",
+    "socket_wall_18.obj",
+    "socket_wall_19.obj",
+    "socket_wall_20.obj",
+    "socket_wall_21.obj",
+    "socket_wall_22.obj",
+    "socket_wall_23.obj",
+    "socket_wall_24.obj",
+    "socket_wall_25.obj",
+    "socket_wall_26.obj",
+    "socket_wall_27.obj",
+    "socket_wall_28.obj",
+    "socket_wall_29.obj",
+    "socket_wall_30.obj",
+    "socket_wall_31.obj"
+  ]
+}

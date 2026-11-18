@@ -1,0 +1,95 @@
+{
+ "protocol": "real-task-playback-v1 (on aligned-frozen-generalizability-v1)",
+ "task": "rh20t-dish-on-rack",
+ "revision": "playback-v1-pilot-c3",
+ "status": "PILOT, declared 2026-11-17 before any object rollout of c3 scenes. Supersedes the draft for execution; the draft is kept.",
+ "source": {
+  "dataset": "RH20T official (HF tonyfanggalaxies/RH20T @ ae13524566502155941720083c9d5921e4100966)",
+  "task_id": "task_0050",
+  "robot_configuration": "cfg2 (Flexiv Rizon, Dahuan AG-95, wrist F/T)",
+  "operator_scenes": "user_0016 scenes 1-10 (one calibration 1633226229297)",
+  "replayed_fields": [
+   "high_freq_data base TCP 125 Hz, wxyz",
+   "gripper.npy width + command"
+  ]
+ },
+ "completion": {
+  "c1": "see completion/c1/REVISION",
+  "c2_sha256": "f485b3ea43b9faca2c13934455c563d08f4af824617a602b9d8f7dae8e412c1f",
+  "c3_sha256": "48056068c359ce2a781b6e9f56938927296eb7413dfb73635502d6d5445ce84f",
+  "in_force": "c3",
+  "rules": "task card 'Pilot amendments'"
+ },
+ "episodes": {
+  "admitted_c3": {
+   "task_0050_user_0016_scene_0005_cfg_0002": "not_retained (rating 1)",
+   "task_0050_user_0016_scene_0009_cfg_0002": "retained (rating 9)"
+  },
+  "not_admitted": {
+   "s1,s2,s6,s7,s8": "more than one grasp (c2 rule); s6-s8 also final-frame fit not evaluable",
+   "s10": "c3: object pushed during the approach (E2/E3 disagree by 36 mm; no clear replay start)",
+   "s3,s4": "robot failure (rating 0)"
+  },
+  "split": "B=1 has no selection and is evaluated on both admitted episodes. B=5 selection uses both admitted episodes, so no held-out episode remains: the held-out matrix is NOT RUN (protocol gate '>=3 held-out successes' not met)."
+ },
+ "fixed": {
+  "dt_s": 0.0005,
+  "drive": {
+   "base_mass_kg": 1.0,
+   "base_inertia_kg_m2": 0.002,
+   "K_t_N_m": 100000.0,
+   "K_r_Nm_rad": 300,
+   "F_cap_N": 300,
+   "T_cap_Nm": 5,
+   "finger_K_N_m": 3000,
+   "finger_D_closed_Ns_m": 2,
+   "pad_mass_kg": 0.1,
+   "pad_size_m": [
+    0.02,
+    0.006,
+    0.032
+   ],
+   "stroke_m": 0.095,
+   "closing_force_N": "102.5 (E4 45-160)"
+  },
+  "finger_rule": "CLOSED: cmd <= width-2 mm, width stalled (<0.5 mm over 0.15 s) at >=1 mm, segment >=0.3 s; closing force fades over last 0.5 mm",
+  "replay_window": "c3: from 0.3 s before the stall (earlier until pads clear) to withdrawal >=50 mm + 2 s settle",
+  "perturbation": "object xy U(+-0.5 mm), yaw U(+-0.5 deg), identical arrays for all engines",
+  "seed_rule": "seed0 + 1000*(episode_index+1) + cell_index; seed0=91100; episode index s5=0, s9=1"
+ },
+ "stages": "acquired (reported, unscored: E3) -> carried -> placed -> retained (primary); see rp_task.evaluate",
+ "goal_predicate": "touch rack (<=3 mm), pads clear, centre in rack footprint, axis within 45 deg of rails, lean <= atan(2 pitch/peg height)+10 deg (58.5), at rest over last 0.5 s (<=10 mm/s, <=0.05 rad/s)",
+ "flags": "deep_penetration (pad: >0.5 wall; rack: >0.5 peg diameter; table: >0.5 bottom), penetration_assisted, ejected (>3x max TCP speed), large_slip (>10 mm or >10 deg in hand), full_closure_on_object (pads closed through or past the object during a recorded hold)",
+ "candidates": {
+  "mujoco (MuJoCo 4.0 CPU)": {
+   "native": {},
+   "tc2_imp50": "pair solref (0.002,1), impratio 50",
+   "tc4_imp50": "solref (0.004,1), impratio 50",
+   "tc2_imp100": "solref (0.002,1), impratio 100",
+   "tc2_imp50_ns2": "solref (0.002,1), impratio 50, noslip 2"
+  },
+  "sap (sap-fix-gamma, CUDA graph)": {
+   "native": {},
+   "ke3e4_tau3": "pair ke 3e4, tau 3 ms",
+   "ke1e5_tau3": "pair ke 1e5, tau 3 ms",
+   "ke3e5_tau3": "pair ke 3e5, tau 3 ms",
+   "ke1e5_tau3_s1e-4": "ke 1e5, tau 3 ms, sigma 1e-4"
+  },
+  "ipc (libuipc 0.0.29 ABD)": {
+   "native": "d_hat 10 mm, eps_v 0.01, newton tol 0.05",
+   "others": "registry a3 set (d_hat 1/0.3/0.1 mm, eps_v 1e-3, newton tol 1e-4)",
+   "status": "NOT RUN: ~0.3-0.6 s per step on the shared GPU (>5 h per rollout); adapter drive gate fails orientation (0.73 deg > 0.5 deg)"
+  }
+ },
+ "selection_rule": "valid+correct rollouts summed over selection cells (nominal, both admitted episodes), then fewest flagged rollouts, then wall time",
+ "matrix_run": {
+  "P3a": "MuJoCo and SAP on all c2-admitted episodes",
+  "P4": "nominal cell, 5 candidates per engine, 2 episodes, R=20",
+  "P5": "NOT RUN (no held-out episode under c3)",
+  "c2_reference": "B=1 nominal and B=5 selection on c2 scenes kept as the 'before grasp conditioning' evidence"
+ },
+ "verdict_rule": {
+  "cell": "pass >=18/20, fail <=2/20, mixed otherwise",
+  "claims": "README 4.3; with one episode per class, every statement is per-episode and engine-vs-engine, not 'reproducing reality'"
+ }
+}

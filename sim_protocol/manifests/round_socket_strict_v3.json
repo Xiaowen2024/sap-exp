@@ -1,0 +1,199 @@
+{
+  "protocol": "aligned-frozen-generalizability-v1",
+  "task": "round-socket",
+  "revision": "strict-v3",
+  "status": "declared; not yet run",
+  "R": 20,
+  "seed0": 73100,
+  "duration_s": 2.0,
+  "selection": {
+    "id": "selection_c2_o1_t1_h120_dt0p5_mu0p8",
+    "clearance_mm": 2.0,
+    "offset_mm": 1.0,
+    "tilt_deg": 1.0,
+    "release_height_mm": 120.0,
+    "dt_ms": 0.5,
+    "mu": 0.8,
+    "surface": "baseline",
+    "selection_only": true
+  },
+  "fixed": {
+    "shared_geometry": "32-piece CoACD socket and cylindrical peg",
+    "peg_mass_kg": 0.08,
+    "perturbation": "independent lateral x/y uniform [-0.05, 0.05] mm",
+    "pass_gate": "entered to the registered seated depth, final radial error <= clearance, no escape, no contact overflow/truncation, and peak/final penetration <= 0.1 clearance",
+    "label_source": "No external binary reference is available. Report per-condition credible-insertion success rate and failure modes; do not report cross-engine accuracy.",
+    "geometry_audit": "exp-report/round-socket-coacd-bore-audit.md: effective bore radius 10.24 mm (narrowest slice) vs nominal 12 mm; the 2-mm selection peg (10.0 mm) has 0.24 mm effective clearance"
+  },
+  "candidate_rule": {
+    "fixed_during_B1_B5_selection": [
+      "clearance_mm",
+      "offset_mm",
+      "tilt_deg",
+      "release_height_mm",
+      "dt_ms",
+      "mu",
+      "surface",
+      "geometry",
+      "duration_s"
+    ],
+    "allowed_native_parameters_only": true,
+    "sap_candidates": [
+      "native default",
+      "ke=2e4,tau=1.5ms,gap=.1mm",
+      "ke=6e4,tau=1.5ms,gap=.1mm",
+      "ke=2e5,tau=1.5ms,gap=.1mm",
+      "ke=2e4,tau=5ms,gap=.1mm"
+    ],
+    "mujoco_warp_candidates": [
+      "native default",
+      "tc=2ms,dampratio=1,dmax=.95",
+      "tc=3ms,dampratio=1,dmax=.95",
+      "tc=4ms,dampratio=2,dmax=.95",
+      "tc=6ms,dampratio=2,dmax=.99"
+    ]
+  },
+  "held_out_conditions": [
+    {
+      "id": "offset_0mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "offset_2mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 2.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "tilt_0deg",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 0.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "tilt_2deg",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 2.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "height_100mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 100.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "height_140mm",
+      "clearance_mm": 2.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 140.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "dt_0p25ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.25,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "dt_0p5ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "dt_1ms",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 1.0,
+      "mu": 0.8,
+      "surface": "baseline"
+    },
+    {
+      "id": "surface_mu0p5",
+      "clearance_mm": 2.0,
+      "offset_mm": 0.5,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.5,
+      "surface": "low-friction insert"
+    }
+  ],
+  "supersedes": "round_socket_strict_v2.json (retain/release labels had no reference; MuJoCo tc=.75ms clamped to 1ms at dt=.5ms; clearance cells < 2 mm infeasible in the asset)",
+  "outcome_type": "gate",
+  "not_run_conditions": [
+    {
+      "id": "clearance_0p25",
+      "clearance_mm": 0.25,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline",
+      "status": "not run",
+      "reason": "geometrically infeasible: peg radius exceeds the CoACD effective bore (bore audit)"
+    },
+    {
+      "id": "clearance_1p0",
+      "clearance_mm": 1.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline",
+      "status": "not run",
+      "reason": "geometrically infeasible: peg radius exceeds the CoACD effective bore (bore audit)"
+    },
+    {
+      "id": "clearance_3p0",
+      "clearance_mm": 3.0,
+      "offset_mm": 1.0,
+      "tilt_deg": 1.0,
+      "release_height_mm": 120.0,
+      "dt_ms": 0.5,
+      "mu": 0.8,
+      "surface": "baseline",
+      "status": "not run",
+      "reason": "geometrically infeasible: peg radius exceeds the CoACD effective bore (bore audit)"
+    }
+  ],
+  "follow_up": "rebuild the clearance axis on a socket whose inscribed bore is verified against each peg radius before any clearance-transfer claim"
+}
