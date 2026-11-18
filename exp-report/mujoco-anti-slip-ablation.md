@@ -117,6 +117,6 @@ NoSlip=1 或 3 大多将残余 creep 再压低几个数量级。几个有代表�
 
 - Runtime（CPU，MuJoCo 3.12.0）：81 cases 合计 84.80 s；单 case 平均 1.047 s。按 timestep 的平均 wall time 为 0.25 / 0.5 / 1 ms：`1.614 / 0.916 / 0.611 s`。NoSlip iterations 会增加每步的 post-processing 成本，因此这些数同时依赖 `dt` 和 NoSlip。
 - Runner: `mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_anti_slip_ablation.py`
-- Summarizer / plots: `scripts/summarize_mujoco_anti_slip_ablation.py`
+- Summarizer / plots: `tasks/static-friction/simple-pinch/analysis/summarize_mujoco_anti_slip_ablation.py`
 - 81 个 trace、model XML、metadata：`exp-results/frictional-stack-v3/mujoco-anti-slip-ablation-v3/`
 - Machine-readable metrics: `exp-results/frictional-stack-v3/mujoco-anti-slip-ablation-v3/summary.json` 与 `top-interface-summary.csv`

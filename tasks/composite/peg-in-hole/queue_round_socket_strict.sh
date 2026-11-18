@@ -21,13 +21,13 @@ done
 
 printf '%s starting MuJoCo Warp Round Socket strict-v2\n' "$(date -Is)" >> "$LOG"
 PYTHONPATH="$RUNNERS" /root/.venvs/mjwarp317/bin/python "$RUNNERS/run_round_socket_mjwarp_strict.py" \
-  --manifest "$ROOT/sim_protocol/manifests/round_socket_strict_v2.json" \
+  --manifest "$ROOT/protocol/manifests/round_socket_strict_v2.json" \
   --source "$RUNNERS/run_round_socket_b1_b5_mjwarp.py" \
   --output "$OUT/mujoco_warp" >> "$LOG" 2>&1
 
 printf '%s starting SAP Warp Round Socket strict-v2\n' "$(date -Is)" >> "$LOG"
 PYTHONPATH="/root/SAP-WARP-INTERNAL-db8d236/src:$RUNNERS" /root/.venvs/mjwarp317/bin/python "$RUNNERS/run_round_socket_sap_strict.py" \
-  --manifest "$ROOT/sim_protocol/manifests/round_socket_strict_v2.json" \
+  --manifest "$ROOT/protocol/manifests/round_socket_strict_v2.json" \
   --private-runner /root/SAP-WARP-INTERNAL-db8d236/local_experiments/run_round_socket_b1b5.py \
   --output "$OUT/sap_warp" >> "$LOG" 2>&1
 

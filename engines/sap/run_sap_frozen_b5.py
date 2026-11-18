@@ -10,6 +10,10 @@ artifact and checked against the manifest's declared candidate list.  B1, parame
 Writes <out>/<result file> after every cell; on restart, cells already present (same id) are kept and skipped.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import hashlib

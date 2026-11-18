@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Same declared frozen B=5 static-friction matrix with MuJoCo Warp."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse, importlib.util, json, math
 from pathlib import Path
 from run_threebox_sap_frozen_generalization import CASES

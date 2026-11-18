@@ -6,6 +6,10 @@ The command compression may differ between engines; target measured normal load,
 geometry, material, mass, lift command, labels, R, and seeds are shared.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import importlib.util
@@ -16,9 +20,9 @@ from typing import Any
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_MANIFEST = ROOT / "sim_protocol/manifests/simple_pinch_force_matched_v1.json"
-DEFAULT_SOURCE = ROOT / "scripts/protocol_v2/run_static_friction_v2.py"
+ROOT = REPO_ROOT
+DEFAULT_MANIFEST = ROOT / "protocol/manifests/simple_pinch_force_matched_v1.json"
+DEFAULT_SOURCE = ROOT / "tasks/static-friction/run_static_friction_v2.py"
 
 
 def source_module(path: Path) -> Any:

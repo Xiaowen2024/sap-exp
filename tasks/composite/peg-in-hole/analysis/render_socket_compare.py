@@ -6,6 +6,10 @@ exact-bore socket meshes (semi-transparent) so both engines are drawn identicall
 side view along +y (bottom), with time, centre height, tilt and the engine's peak penetration.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import math
@@ -16,7 +20,7 @@ import mujoco
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 ASSETS = ROOT / "assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 W, Hh = 480, 360

@@ -5,12 +5,16 @@ Genesis SAP was run selection-only (user decision 2026-11-18), so the comparison
 B1 = native default (candidate 1) and B5 = the engine's frozen candidate, both scored on the task's selection cells.
 Held-out results of the other engines are not used here.  Prints a markdown table and writes JSON next to --out.
 """
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse
 import json
 import math
 from pathlib import Path
 
-E = Path(__file__).resolve().parents[2] / "exp-results"
+E = REPO_ROOT / "exp-results"
 GS = E / "genesis-sap-20261117/selection-only-20261118"
 FILES = {
     "three-box": {"SAP Warp": "aligned-generalizability-strict-v3/v4/sap_three_box_strict_v4.json",

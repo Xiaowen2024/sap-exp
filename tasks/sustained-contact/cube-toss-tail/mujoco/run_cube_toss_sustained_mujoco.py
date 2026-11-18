@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """CPU counterpart of the frozen-config Cube Toss sustained-tail protocol."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json
 from pathlib import Path
 import mujoco,numpy as np
 from run_dynamic_impact_cube_budget import DT,SRC,make_model
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'exp-results/protocol-v2-native-default/b5-sustained-contact-v1/cube-toss'
+ROOT=REPO_ROOT;OUT=ROOT/'exp-results/protocol-v2-native-default/b5-sustained-contact-v1/cube-toss'
 def main():
  a=argparse.ArgumentParser();a.add_argument('--replicates',type=int,default=20);a.add_argument('--duration',type=float,default=6.);z=a.parse_args();src=json.loads((ROOT/'exp-results/protocol-v2-native-default/b5-dynamic-impact-v1/cube-toss/mujoco/b5_sop_r20.json').read_text());raw=np.load(SRC);ids=src['heldout_sample_indices'];m=make_model(src['frozen_config']);cases=[]
  for sid in ids:

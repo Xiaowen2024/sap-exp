@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Convert released ContactNets toss tensors to physical SI trajectory arrays."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import glob
 from pathlib import Path
 import numpy as np
 import torch
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=REPO_ROOT
 SRC=ROOT/'external/contact-nets/data/tosses_processed'
 OUT=ROOT/'exp-results/dynamic-impact-v1/cube-toss/contactnets_si.npz'
 SCALE=.0524

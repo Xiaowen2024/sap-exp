@@ -1,13 +1,13 @@
 # Genesis RigidSolver runner SOP
 
 Status: in force from 2026-11-14 for the Genesis 1.4.6 RigidSolver track (no coupler). Genesis + IPC gets its own
-registry and SOP later. This SOP adds Genesis-specific rules to [UNIFIED-B5-SOP.md](UNIFIED-B5-SOP.md) and
-[task_runner_sop.md](task_runner_sop.md); where they overlap, those two documents still govern B=1, B=5, R=20,
+registry and SOP later. This SOP adds Genesis-specific rules to [UNIFIED-B5-SOP.md](../../../protocol/UNIFIED-B5-SOP.md) and
+[task_runner_sop.md](../../../protocol/task_runner_sop.md); where they overlap, those two documents still govern B=1, B=5, R=20,
 held-out matrices and reporting.
 
 ## 1. Scope
 
-| Task | Manifest | Runner (`scripts/genesis/`) |
+| Task | Manifest | Runner (`tasks/<family>/<task>/genesis/`) |
 | --- | --- | --- |
 | Three-plate v3.1 | `three_plate_stack_strict_v3p1` | `run_threeplate_genesis_rigid.py` |
 | Three-box v4 | `three_box_push_strict_v4` | `run_threebox_genesis_rigid.py` |
@@ -23,7 +23,7 @@ held-out matrices and reporting.
 Not run: Newton's cradle (idealised v3 and real v4.1), Cassie, round socket, GLIDE, DENSE.
 
 The task manifests are unchanged and are checked by SHA-256. The Genesis candidates live in
-[`genesis_rigid_rerun.json`](manifests/genesis_rigid_rerun.json), written before any task metric was computed.
+[`genesis_rigid_rerun.json`](../../../protocol/manifests/genesis_rigid_rerun.json), written before any task metric was computed.
 
 ## 2. How a runner is built
 
@@ -39,7 +39,7 @@ The task manifests are unchanged and are checked by SHA-256. The Genesis candida
    rule and the held-out loop are all the existing `strict_v3_common`, `impact_v2_common`, `tail_v2_common`,
    `pinch_v3_common`, `slope_v3_common`, `mitpush_v3_common`, `pendulum_v2_common` and `gauge_pendulum_v3_common`
    modules. Each runner supplies only the engine callback.
-4. **Common adapter.** [`genesis_rigid_common.py`](../scripts/genesis/genesis_rigid_common.py) holds the version pin,
+4. **Common adapter.** [`genesis_rigid_common.py`](../genesis_rigid_common.py) holds the version pin,
    CUDA initialisation, candidate parsing, scene building, contact readout and provenance.
 
 ## 3. Alignment rules (Genesis-specific)
@@ -76,9 +76,9 @@ The task manifests are unchanged and are checked by SHA-256. The Genesis candida
 
 ```bash
 # server, Genesis runtime wrapper; GPU must be idle or shared politely
-cd /root/SIM-EXP/scripts/genesis
-python-genesis genesis_rigid_preflight.py --out <dir>/preflight.json     # must print ALL PASS
-setsid nohup bash run_genesis_rigid_queue.sh <dir> < /dev/null > <dir>/queue.out 2>&1 &
+cd /root/SIM-EXP
+python-genesis engines/genesis/genesis_rigid_preflight.py --out <dir>/preflight.json     # must print ALL PASS
+setsid nohup bash engines/genesis/run_genesis_rigid_queue.sh <dir> < /dev/null > <dir>/queue.out 2>&1 &
 ```
 
 The queue runs the preflight first and stops if it fails. It then runs three lanes in parallel; the tail task waits

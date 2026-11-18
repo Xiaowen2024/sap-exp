@@ -1,5 +1,9 @@
 """Summarize constant-force hold traces and render the creep comparison plot."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 import json
@@ -9,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results" / "frictional-stack-v3" / "force-holds"
 FORCES = (1.0, 2.0, 3.0, 4.0)
 INTERFACES = ("ground_bottom", "bottom_middle", "middle_top")

@@ -1,11 +1,15 @@
 """Validate complete corrected artifacts against the declared matrices and raw rows."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import hashlib
 import json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 BASE = ROOT / 'exp-results/contact-correction-20261109'
 
 
@@ -53,12 +57,12 @@ def validate(path, manifest_path, box=False):
 
 
 def main():
-    plate_manifest = ROOT / 'sim_protocol/manifests/three_plate_stack_strict_v3p1.json'
+    plate_manifest = ROOT / 'protocol/manifests/three_plate_stack_strict_v3p1.json'
     for name in ['sap', 'mujoco']:
         prefix = 'sap' if name == 'sap' else 'mjwarp'
         validate(BASE / f'three-plate/{name}/{prefix}_three_plate_strict_v3.json', plate_manifest)
     validate(BASE / 'three-box/mujoco/mjwarp_three_box_strict_v4.json',
-             ROOT / 'sim_protocol/manifests/three_box_push_strict_v4.json', box=True)
+             ROOT / 'protocol/manifests/three_box_push_strict_v4.json', box=True)
 
 
 if __name__ == '__main__':

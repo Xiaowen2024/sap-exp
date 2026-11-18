@@ -5,6 +5,10 @@ from native trace.npz files produced by run_thin_shape_stack_comparison.py.
 The renderer is MuJoCo only; it does not re-simulate SAP dynamics.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import importlib.util
@@ -16,7 +20,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 OUT = ROOT / "exp-results" / "site-video-demos"
 MJC_RUNNER = ROOT / "mujoco-sim" / "learn_mujoco" / "concave_plate_experiments" / "run_thin_shape_stack_comparison.py"
 

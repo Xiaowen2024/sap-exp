@@ -5,6 +5,10 @@ render: displacement, velocity, normal force and friction utilization are
 read directly from the recorded three-box traces.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 from pathlib import Path
@@ -14,7 +18,7 @@ from matplotlib import animation, patches
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 MJC = ROOT / "exp-results/frictional-stack-v3/force-holds/mujoco-native/tc1ms_ir10_ns3/trace_F_4N.csv"
 SAP = ROOT / "exp-results/frictional-stack-v3/force-holds/sap/trace_F_4N.csv"
 OUT = ROOT / "exp-results/site-video-demos/04_static_friction_hold_trace_replay.mp4"

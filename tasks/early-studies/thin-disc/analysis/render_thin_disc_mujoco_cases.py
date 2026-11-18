@@ -1,5 +1,9 @@
 """Render representative success/failure traces from the MuJoCo thin-disc sweep."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 from pathlib import Path
 
@@ -8,7 +12,7 @@ import mujoco
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 OUT = ROOT / "exp-results" / "site-video-demos"
 INITIAL = ((0.0, 0.0, 0.030), (0.003, -0.002, 0.070), (-0.002, 0.002, 0.110))
 NAMES = ("disc_bottom", "disc_middle", "disc_top")

@@ -5,11 +5,15 @@ Pivot body at the GAUGE anchor with an undamped hinge about world y; ball body L
 inertia (non-colliding sphere geom).  Candidates: integrator only (contact-free task).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse, json
 from pathlib import Path
 import mujoco, mujoco_warp as mjw, numpy as np, warp as wp
 import gauge_pendulum_v3_common as gp
-ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / "exp-results").exists() else Path("/root/SIM-EXP")
+ROOT = REPO_ROOT if (REPO_ROOT / "exp-results").exists() else Path("/root/SIM-EXP")
 
 
 def parse_candidate(t):

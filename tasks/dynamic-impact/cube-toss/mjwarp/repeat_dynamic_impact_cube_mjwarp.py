@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Warp-batched R=20 local robustness for frozen ContactNets cube-toss settings."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json,math
 from pathlib import Path
 import numpy as np
 from run_dynamic_impact_cube_budget import HALF,SRC,ci,dtw,qangle,qangle_sym,upward_face
 from run_dynamic_impact_cube_budget_mjwarp import simulate_batch
 from repeat_dynamic_impact_cube import perturb
-ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'exp-results/dynamic-impact-v1/cube-toss/mjwarp-3.17'
+ROOT=REPO_ROOT; OUT=ROOT/'exp-results/dynamic-impact-v1/cube-toss/mjwarp-3.17'
 KEYS=('position_rmse_m','position_dtw_m','linear_velocity_rmse_m_s','final_position_error_m','final_orientation_error_rad','final_orientation_sym_rad','final_up_face_agreement','e_com_proxy','contact_duration_s','postimpact_linear_speed_error_m_s','postimpact_angular_speed_error_rad_s')
 def one(real, sim):
  s,e,tc,o=sim

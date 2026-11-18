@@ -5,6 +5,10 @@ fraction.  This avoids pretending that the native controllers share a common
 duration while retaining direct trace provenance for all plotted signals.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 from pathlib import Path
@@ -13,7 +17,7 @@ import matplotlib.pyplot as plt
 from matplotlib import animation, patches
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 MJC = ROOT / "exp-results/simple-pinch-v3/mujoco/matched-N4/c0p2mm_mu0p4_m0p3262/trace.csv"
 SAP = ROOT / "exp-results/simple-pinch-v3/sap/matched-N4/c0p001mm_mu0p4_m0p3262/trace.csv"
 OUT = ROOT / "exp-results/site-video-demos/05_simple_pinch_force_matched_boundary.mp4"

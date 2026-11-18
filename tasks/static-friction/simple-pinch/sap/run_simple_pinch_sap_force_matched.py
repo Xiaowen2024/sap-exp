@@ -8,6 +8,10 @@ uses the manifest's engine-independent Coulomb label.  The calibration command
 is task control, not a B candidate; candidates differ only in SAP parameters.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import importlib.util
@@ -18,8 +22,8 @@ from typing import Any
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_MANIFEST = ROOT / "sim_protocol/manifests/simple_pinch_force_matched_v1.json"
+ROOT = REPO_ROOT
+DEFAULT_MANIFEST = ROOT / "protocol/manifests/simple_pinch_force_matched_v1.json"
 
 
 def load_module(path: Path) -> Any:

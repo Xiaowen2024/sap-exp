@@ -12,14 +12,14 @@ PRIMARY={'three-plate','three-box','simple-pinch','cube-toss','cube-tail','gauge
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--sap-coupler',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);a=ap.parse_args()
- regp=E.parent/'sim_protocol/manifests/genesis_sap_rerun.json';reg=json.loads(regp.read_text());regsha=hashlib.sha256(regp.read_bytes()).hexdigest()
+ regp=E.parent/'protocol/manifests/genesis_sap_rerun.json';reg=json.loads(regp.read_text());regsha=hashlib.sha256(regp.read_bytes()).hexdigest()
  pre=json.loads((a.sap_coupler/'preflight.json').read_text());assert pre['all_pass']
  rows=[]
  for tid,kind,sp,mp,gp in TASKS:
   if tid not in PRIMARY:continue
   sapfile=a.sap_coupler/gp.replace('genesis_rigid_','genesis_sap_');d=json.loads(sapfile.read_text())
   spec=next(t for t in reg['tasks'] if t['id']==tid)
-  man=json.loads((E.parent/'sim_protocol/manifests'/spec['manifest']).read_text())
+  man=json.loads((E.parent/'protocol/manifests'/spec['manifest']).read_text())
   assert d['complete'] is True and d['engine']=='Genesis SAP coupler',(tid,'incomplete')
   assert d['manifest_sha256']==spec['sha256'] and d['registry_sha256']==regsha
   assert len(d['heldout'])==len(man['held_out_conditions']),(tid,'held-out coverage')

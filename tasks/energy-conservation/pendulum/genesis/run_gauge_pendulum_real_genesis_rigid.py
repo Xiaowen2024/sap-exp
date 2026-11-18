@@ -7,6 +7,10 @@ are the pendulum branch of run_gauge_real_oscillations_mjwarp.py with gauge_pend
 because that driver imports mujoco_warp at module level).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import copy

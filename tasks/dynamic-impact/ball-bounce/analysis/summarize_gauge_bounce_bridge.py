@@ -1,5 +1,9 @@
 """Render the GAUGE bounce bridge report from frozen configuration rollouts."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 from pathlib import Path
@@ -7,7 +11,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results" / "gauge-rigid-reproduction" / "bounce_bridge"
 OUT = ROOT / "exp-results" / "gauge-rigid-reproduction" / "bounce_bridge"
 REPORT = ROOT / "exp-report" / "gauge-bouncing-ball-impact-bridge.md"

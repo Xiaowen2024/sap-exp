@@ -391,15 +391,15 @@ SAP 脚本逐 timestep 将 contact telemetry 从 GPU 同步到 CPU，因此这�
 - SAP normal gate runner：`sap-sim/scripts/run_frictional_stack_normal_gate.py`
 - SAP parameterized friction runner：`sap-sim/scripts/run_frictional_stack_ramp_v2.py`
 - MuJoCo matched runner：`mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_ramp_matched.py`
-- v3 summary script：`scripts/summarize_frictional_stack_v3.py`
+- v3 summary script：`tasks/static-friction/three-box-push/analysis/summarize_frictional_stack_v3.py`
 - SAP constant-force runner：`sap-sim/scripts/run_frictional_stack_force_holds_v3.py`
 - MuJoCo constant-force runner：`mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_force_holds_v3.py`
-- Constant-force summary/plot script：`scripts/summarize_frictional_stack_force_holds_v3.py`
+- Constant-force summary/plot script：`tasks/static-friction/three-box-push/analysis/summarize_frictional_stack_force_holds_v3.py`
 - MuJoCo native anti-slip runner：`mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_force_holds_native.py`
-- MuJoCo native anti-slip summary/plot script：`scripts/summarize_frictional_stack_force_holds_native.py`
+- MuJoCo native anti-slip summary/plot script：`tasks/static-friction/three-box-push/analysis/summarize_frictional_stack_force_holds_native.py`
 - Native telemetry and machine-readable summary：`exp-results/frictional-stack-v3/force-holds/mujoco-native/`
 - Fixed-normal MuJoCo anti-slip ablation report：`exp-report/mujoco-anti-slip-ablation.md`
-- Fixed-normal anti-slip runner / summary：`mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_anti_slip_ablation.py`、`scripts/summarize_mujoco_anti_slip_ablation.py`
+- Fixed-normal anti-slip runner / summary：`mujoco-sim/learn_mujoco/stacking_experiments/run_frictional_stack_anti_slip_ablation.py`、`tasks/static-friction/simple-pinch/analysis/summarize_mujoco_anti_slip_ablation.py`
 - 完整机器可读汇总：`exp-results/frictional-stack-v3/summary.json`
 - Constant-force 完整汇总：`exp-results/frictional-stack-v3/force-holds/summary.json`
 - Constant-force 核心表：`exp-results/frictional-stack-v3/force-holds/top-interface-summary.csv`

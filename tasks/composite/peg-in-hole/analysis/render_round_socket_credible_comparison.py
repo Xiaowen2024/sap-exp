@@ -8,6 +8,10 @@ peak overlap below 0.1c = 0.200 mm (credible), whereas the right pane exceeds
 0.1c during entry (entered, not credible).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import re
@@ -19,7 +23,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 HERE = ROOT / "mujoco-sim" / "learn_mujoco" / "peg_in_hole_experiments"
 XML = HERE / "peg_convex_decomposition.xml"
 OUT = ROOT / "exp-results" / "site-video-demos"

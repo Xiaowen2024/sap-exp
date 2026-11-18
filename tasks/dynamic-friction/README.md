@@ -1,6 +1,6 @@
 # Dynamic-friction v2 — shared evaluation protocol
 
-New comparison runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md).
+New comparison runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md).
 
 This protocol defines reusable metrics for tasks with sustained kinetic sliding. Each concrete task uses these shared quantities first, then adds its own task-level endpoint and expected-outcome rule. All trajectories are expressed in the support frame and evaluated over a declared sliding window.
 
@@ -45,7 +45,7 @@ The normal-support diagnostic is deliberately retained. In its oblique-sliding e
 
 ## 3. Mechanism-aware usability
 
-Apply the same study-level rules as [Static-friction v2](../static-friction-v2/README.md):
+Apply the same study-level rules as [Static-friction v2](../static-friction/README.md):
 
 | Metric | Definition |
 |---|---|
@@ -64,8 +64,8 @@ Run every condition for \(M\) rollouts using a declared perturbation/seed distri
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Slope Slider | None. It is the real-world atomic validation of the shared sliding-law and support metrics. | [slope-slider.md](task-metrics/slope-slider.md) |
-| MIT Push | Final planar object-pose error and windowed wrench--twist response errors. | [mit-push.md](task-metrics/mit-push.md) |
+| Slope Slider | None. It is the real-world atomic validation of the shared sliding-law and support metrics. | [slope-slider.md](slope-slider/SOP.md) |
+| MIT Push | Final planar object-pose error and windowed wrench--twist response errors. | [mit-push.md](mit-push/SOP.md) |
 
 Future dynamic-friction tasks should add only the endpoint metrics that are not already represented by the shared protocol. Their binary outcome labels and thresholds must be defined at task level before repeated rollouts are run.
 

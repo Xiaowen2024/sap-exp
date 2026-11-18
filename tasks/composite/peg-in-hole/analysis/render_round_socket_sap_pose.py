@@ -1,12 +1,16 @@
 """Offline render of a recorded SAP shared-CoACD round-socket trajectory."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import csv
 from pathlib import Path
 import imageio.v3 as iio
 import mujoco
 import numpy as np
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=REPO_ROOT
 HERE=ROOT/'mujoco-sim/learn_mujoco/peg_in_hole_experiments'
 TRACE=ROOT/'exp-results/peg-in-hole/sap-round-socket-matrix/coacd_shared_r10mm_x1mm/trace.csv'
 OUT=ROOT/'exp-results/site-video-demos/round_socket_sap_coacd_pose_raw.mp4'

@@ -5,6 +5,10 @@ tunes only the nominal 2-mm-clearance / 1-mm-offset / 1-degree-tilt case;
 the selected setting is later frozen and evaluated on the full matrix.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 import argparse
@@ -16,7 +20,7 @@ from pathlib import Path
 import mujoco
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 HERE = ROOT / "mujoco-sim" / "learn_mujoco" / "peg_in_hole_experiments"
 XML = HERE / "peg_convex_decomposition.xml"
 OUT = ROOT / "exp-results" / "peg-in-hole" / "mujoco-round-socket-equal-budget"

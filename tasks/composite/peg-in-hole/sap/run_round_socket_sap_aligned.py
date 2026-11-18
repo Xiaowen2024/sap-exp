@@ -7,6 +7,10 @@ the paired MuJoCo Warp evaluation; only SAP-native contact settings differ.
 """
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -18,7 +22,7 @@ import warp as wp
 import yaml
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 SAP_ROOT = Path("/home/xw/sim-exp-gpu/sap-sim-round")
 if SAP_ROOT.exists():
     sys.path.insert(0, str(SAP_ROOT))

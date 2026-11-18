@@ -3,7 +3,7 @@
 Status: **revision a3**, dated 2026-11-16. The user reviewed the preliminary run of 2026-11-15, and all results from
 that run are superseded. This SOP adds IPC-specific rules to
 [genesis_rigid_runner_sop.md](genesis_rigid_runner_sop.md). B=1, B=5, R=20, held-out matrices and reporting are
-unchanged from [UNIFIED-B5-SOP.md](UNIFIED-B5-SOP.md).
+unchanged from [UNIFIED-B5-SOP.md](../../../protocol/UNIFIED-B5-SOP.md).
 
 ## 1. Scope
 
@@ -11,8 +11,8 @@ The tasks are those of the RigidSolver track, minus the two pendulums, which hav
 **ball bounce v2 is not run**, and **ball bounce v3 is run and reported but not ranked**. The reason is that IPC
 has no restitution or damping parameter: the energy lost at impact is the numerical damping of implicit Euler, and the
 collision surface is a 162-vertex hull. The registry is
-[`genesis_ipc_rerun.json`](manifests/genesis_ipc_rerun.json). The runners are `scripts/genesis/run_*_genesis_ipc.py`.
-The shared adapter is [`genesis_ipc_common.py`](../scripts/genesis/genesis_ipc_common.py).
+[`genesis_ipc_rerun.json`](../../../protocol/manifests/genesis_ipc_rerun.json). The runners are `tasks/<family>/<task>/genesis/run_*_genesis_ipc.py`.
+The shared adapter is [`genesis_ipc_common.py`](../genesis_ipc_common.py).
 
 ## 2. Routes (who integrates what)
 
@@ -109,9 +109,9 @@ is an environment failure, not a solver result, so it is never scored. The call 
 ## 7. Running
 
 ```bash
-cd /root/SIM-EXP/scripts/genesis
-python-genesis genesis_ipc_preflight.py --out <dir>/preflight.json          # must print ALL PASS
-setsid nohup bash run_genesis_ipc_queue_a3.sh <dir> < /dev/null > <dir>/../queue.out 2>&1 &
+cd /root/SIM-EXP
+python-genesis engines/genesis/genesis_ipc_preflight.py --out <dir>/preflight.json          # must print ALL PASS
+setsid nohup bash engines/genesis/run_genesis_ipc_queue_a3.sh <dir> < /dev/null > <dir>/../queue.out 2>&1 &
 ```
 
 The GPU holds at most about four IPC processes (2–2.7 GB each on 12 GB). When other jobs share the GPU, run three

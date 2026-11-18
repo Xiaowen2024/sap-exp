@@ -5,10 +5,14 @@ prepare_contactnets_cube_toss.py multiplied state[..., 7:13] by the 0.0524-m len
 linear velocity (7:10) but wrong for angular velocity (10:13, rad/s). This script divides 10:13 by the scale
 and verifies against finite-differenced quaternions that the result is the body-frame angular velocity.
 """
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 from pathlib import Path
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 SRC = ROOT / "exp-results/dynamic-impact-v1/cube-toss/contactnets_si.npz"
 OUT = ROOT / "exp-results/dynamic-impact-v1/cube-toss/contactnets_si_v2.npz"
 

@@ -10,7 +10,7 @@ import numpy as np
 import genesis_rigid_common as R
 from genesis_rigid_common import (ROOT, mjcf, np_, finite_rows, Timer, save_json, load_manifest, json_safe, versions)
 
-REGISTRY = ROOT / 'sim_protocol/manifests/genesis_sap_rerun.json'
+REGISTRY = ROOT / 'protocol/manifests/genesis_sap_rerun.json'
 ENGINE = 'Genesis SAP coupler'
 MESH_KW = R.MESH_KW
 

@@ -5,6 +5,10 @@ Not a benchmark result and never used for candidate choice (candidates are fixed
 Fails loudly when a probe disagrees with the SOP assumptions.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -86,7 +90,7 @@ SMOKE = {
 def smoke(out, R=4):
     import importlib
     nat = {"id": "native_default", "native": True, "text": "native default"}
-    M = G.ROOT / "sim_protocol/manifests"
+    M = G.ROOT / "protocol/manifests"
     T = importlib.import_module("run_threeplate_genesis_rigid"); man, _ = G.load_manifest(M / "three_plate_stack_strict_v3p1.json")
     r = T.run_cell(nat, man["selection"], 1, R, 0.3)
     check("smoke three-plate runs; order kept", r["failed_gate_counts"]["order"] == 0 and r["failed_gate_counts"]["finite"] == 0,

@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Post-impact sustained-contact extension for ContactNets Cube Toss, Warp GPU."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json
 from pathlib import Path
 import mujoco,mujoco_warp as mw,numpy as np
 from run_dynamic_impact_cube_budget import DT,SRC,make_model
-ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'exp-results/protocol-v2-native-default/b5-sustained-contact-v1/cube-toss'
+ROOT=REPO_ROOT; OUT=ROOT/'exp-results/protocol-v2-native-default/b5-sustained-contact-v1/cube-toss'
 def main():
  a=argparse.ArgumentParser();a.add_argument('--replicates',type=int,default=20);a.add_argument('--duration',type=float,default=6.0);z=a.parse_args();srcp=ROOT/'exp-results/protocol-v2-native-default/b5-dynamic-impact-v1/cube-toss/mujoco_warp/b5_sop_r20.json';src=json.loads(srcp.read_text());raw=np.load(SRC); ids=src['heldout_sample_indices']; initial=[]
  for sid in ids:

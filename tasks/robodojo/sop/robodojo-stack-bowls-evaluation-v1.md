@@ -54,7 +54,7 @@ Post-release settling：统一时窗内，逐碗报告 COM 线速度 RMS、世�
 本次命令（只读取既有文件，不启动模拟）：
 
 ```sh
-PYTHONPATH=/tmp/simexp-playback-deps python3 -m scripts.robodojo_playback.evaluate_stack_existing \
+PYTHONPATH=/tmp/simexp-playback-deps:tasks/robodojo python3 -m robodojo_playback.evaluate_stack_existing \
   --artifacts exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts \
   --out exp-results/robodojo-stack-eval-v1
 ```

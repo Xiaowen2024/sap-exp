@@ -3,10 +3,10 @@
 **Status: draft for review (2026-11-16).**
 
 Execution addendum for tasks under
-[real-playback-v1](real-playback-v1/README.md). The budget, candidate, and
-R=20 rules are those of [UNIFIED-B5-SOP.md](UNIFIED-B5-SOP.md); the frozen
+[real-playback-v1](README.md). The budget, candidate, and
+R=20 rules are those of [UNIFIED-B5-SOP.md](../../protocol/UNIFIED-B5-SOP.md); the frozen
 matrix and artifact contract are those of
-[task_runner_sop.md](task_runner_sop.md). This document adds the phases that
+[task_runner_sop.md](../../protocol/task_runner_sop.md). This document adds the phases that
 come before a manifest can be declared, and the order in which data may be
 looked at.
 

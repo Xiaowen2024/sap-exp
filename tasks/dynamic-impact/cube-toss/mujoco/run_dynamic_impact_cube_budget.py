@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """ContactNets real cube-toss replay: MuJoCo 3.17 budgeted evaluation."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json,math,time
 from pathlib import Path
 import mujoco,numpy as np
 from cube_orientation_metrics import cube_symmetric_qangle as qangle_sym
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=REPO_ROOT
 SRC=ROOT/'exp-results/dynamic-impact-v1/cube-toss/contactnets_si.npz'
 OUT=ROOT/'exp-results/dynamic-impact-v1/cube-toss/mujoco-3.17'
 DT=1/148; MASS=.37; MU=.18; HALF=.0524; INERTIA=.2950002913583124*HALF**2; G=9.81

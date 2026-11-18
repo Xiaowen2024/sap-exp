@@ -2,9 +2,9 @@
 
 **Status: draft for review (2026-11-16). Nothing has been run under this protocol.**
 
-New runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md) and the
-[task runner SOP](../task_runner_sop.md). Execution order and gates are in the
-[real-playback runner SOP](../real_playback_runner_sop.md).
+New runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md) and the
+[task runner SOP](../../protocol/task_runner_sop.md). Execution order and gates are in the
+[real-playback runner SOP](runner-sop.md).
 
 This regime replays the **recorded motion of a real robot hand** against
 **free simulated objects** and asks one question per episode: *does the task
@@ -219,11 +219,11 @@ When all admitted episodes have the same real label, agreement is
 
 | Task | Source | Outcome classes | State |
 |---|---|---|---|
-| [Dish on rack](task-metrics/rh20t-dish-on-rack.md) | RH20T `task_0050` | success / task failure | pilot manifest drafted; data audit not started |
+| [Dish on rack](rh20t-dish-on-rack/SOP.md) | RH20T `task_0050` | success / task failure | pilot manifest drafted; data audit not started |
 
 ## Implementation status (2026-11-17)
 
 The dish-on-rack pilot has been implemented and run as a pilot, with the
 amendments recorded in the task document's "Pilot amendments" section. Code is
-in `scripts/real_playback/` (`rp_*.py`, `rh20t_*.py`, `range_tar.py`); the
+in `tasks/real-playback/real_playback/` (`rp_*.py`, `rh20t_*.py`, `range_tar.py`); the
 report is in `exp-report/rh20t-dish-rack-playback-pilot.md`.

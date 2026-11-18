@@ -5,6 +5,10 @@ Preparation needs no simulator. Execution must use an isolated 4.0 CUDA environm
 This checks coverage/provenance; it does not replace numerical/result audits.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT, find_script  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 from datetime import datetime, timezone
@@ -16,8 +20,8 @@ from pathlib import Path
 import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[2]
-REGISTRY = ROOT / "sim_protocol/manifests/mujoco_warp_4p0_rerun.json"
+ROOT = REPO_ROOT
+REGISTRY = ROOT / "protocol/manifests/mujoco_warp_4p0_rerun.json"
 
 
 def sha(path):
@@ -33,12 +37,13 @@ def save(path, value):
 def inputs(registry):
     from validate_generalizability_manifest import validate
 
-    paths = list((ROOT / "scripts/protocol_v2").glob("*.py"))
-    paths += [ROOT / "scripts/cube_orientation_metrics.py", REGISTRY]
-    paths += [ROOT / "sim_protocol" / n for n in
+    from common.paths import module_dirs
+    paths = sorted(p for d in module_dirs() for p in d.glob("*.py"))
+    paths += [REGISTRY]
+    paths += [ROOT / "protocol" / n for n in
               ("UNIFIED-B5-SOP.md", "task_runner_sop.md", "result_summary_protocol.md")]
     for task in registry["tasks"]:
-        p = ROOT / "sim_protocol/manifests" / task["manifest"]
+        p = ROOT / "protocol/manifests" / task["manifest"]
         if sha(p) != task["sha256"]:
             raise ValueError(f"Manifest changed: {p.name}; declare a new revision first")
         errors = validate(json.loads(p.read_text()))
@@ -50,7 +55,7 @@ def inputs(registry):
 
 def check_output(path, task):
     data = json.loads(path.read_text())
-    man = json.loads((ROOT / "sim_protocol/manifests" / task["manifest"]).read_text())
+    man = json.loads((ROOT / "protocol/manifests" / task["manifest"]).read_text())
     if data.get("mujoco_version") != "4.0.0" or data.get("engine") != "MuJoCo Warp":
         raise ValueError(f"Wrong engine/version in {path}")
     if data.get("manifest_sha256") != task["sha256"]:
@@ -96,7 +101,7 @@ def main():
 
     # Respect the requested order: finish and validate the corrected plate pair first.
     from validate_contact_correction import validate as validate_plate
-    manifest = ROOT / "sim_protocol/manifests/three_plate_stack_strict_v3p1.json"
+    manifest = ROOT / "protocol/manifests/three_plate_stack_strict_v3p1.json"
     for engine, prefix in (("sap", "sap"), ("mujoco", "mjwarp")):
         validate_plate(a.correction_root / f"three-plate/{engine}/{prefix}_three_plate_strict_v3.json", manifest)
 
@@ -108,8 +113,8 @@ def main():
         raise RuntimeError("Evaluation requires CUDA; CPU preflight is not an evaluation result")
     wp.set_device("cuda:0")
     env = dict(os.environ)
-    env["PYTHONPATH"] = os.pathsep.join([str(ROOT / "scripts"), str(ROOT / "scripts/protocol_v2"),
-                                        env.get("PYTHONPATH", "")])
+    from common.paths import module_dirs
+    env["PYTHONPATH"] = os.pathsep.join([str(ROOT), *map(str, module_dirs()), env.get("PYTHONPATH", "")])
     save(out / "environment.json", {"packages": versions,
          "warp": importlib.metadata.version("warp-lang"), "python": sys.version,
          "device": str(wp.get_device()), "pip_freeze": subprocess.check_output(
@@ -118,7 +123,7 @@ def main():
                                           "--format=csv,noheader"], text=True)})
     with (out / "preflight.log").open("w") as log:
         subprocess.run([sys.executable, "-m", "unittest", "test_box_v4_validity",
-                        "test_mujoco_capacity_audit"], cwd=ROOT / "scripts/protocol_v2",
+                        "test_mujoco_capacity_audit"], cwd=ROOT,
                        env=env, stdout=log, stderr=subprocess.STDOUT, check=True)
     plan["state"] = "running"
     save(plan_path, plan)
@@ -133,8 +138,8 @@ def main():
             save(plan_path, plan)
             continue
         task_out.mkdir(exist_ok=True)
-        command = [sys.executable, str(ROOT / "scripts/protocol_v2" / task["runner"]),
-                   "--manifest", str(out / "inputs/sim_protocol/manifests" / task["manifest"]),
+        command = [sys.executable, str(find_script(task["runner"])),
+                   "--manifest", str(out / "inputs/protocol/manifests" / task["manifest"]),
                    "--out", str(task_out), *task.get("args", [])]
         status.update(state="running", command=command)
         save(plan_path, plan)

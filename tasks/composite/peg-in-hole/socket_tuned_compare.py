@@ -4,11 +4,15 @@
 Inputs are result.json files that hold frozen_matrix.B5.conditions.  Tuned results (socket_tune.py, 2026-11-18) were tuned
 on these same conditions (no held-out), so they show the best each engine reached, not generalisation.
 """
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]; E = ROOT / "exp-results"
-MAN = json.loads((ROOT / "sim_protocol/manifests/round_socket_strict_v9_draft.json").read_text())
+ROOT = REPO_ROOT; E = ROOT / "exp-results"
+MAN = json.loads((ROOT / "protocol/manifests/round_socket_strict_v9_draft.json").read_text())
 LAB = [c for c in MAN["conditions"] if c["role"] == "frozen" and c.get("expected") is not None]
 RUNS = [("SAP old code, v8-pilot B5 (ke=57255,tau=1.5ms,gap=.1mm)", E / "round-socket-v8-draft/sap/result.json"),
         ("SAP Newton-convex, same old B5", E / "sap-newton-convex-b5-20261118/socket/result.json"),

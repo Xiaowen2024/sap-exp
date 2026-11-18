@@ -1,6 +1,6 @@
 # Energy-conservation v1 — shared evaluation protocol
 
-New comparison runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md).
+New comparison runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md).
 
 This folder defines the reusable **v1 comparison protocol** for mechanical energy conservation, dissipation fidelity, and momentum preservation across conservative and near-conservative systems.
 
@@ -62,8 +62,8 @@ Tasks in this family report the shared metrics above first, then add only task-s
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Pendulum | Period Duration (PD) evaluated via Fourier spectral analysis. | [pendulum.md](task-metrics/pendulum.md) |
-| Newton's cradle | Momentum Transfer Efficiency (MTE) and Longest Stationary Duration (LSD). | [newtons-cradle.md](task-metrics/newtons-cradle.md) |
+| Pendulum | Period Duration (PD) evaluated via Fourier spectral analysis. | [pendulum.md](pendulum/SOP.md) |
+| Newton's cradle | Momentum Transfer Efficiency (MTE) and Longest Stationary Duration (LSD). | [newtons-cradle.md](newtons-cradle/SOP.md) |
 
 ---
 

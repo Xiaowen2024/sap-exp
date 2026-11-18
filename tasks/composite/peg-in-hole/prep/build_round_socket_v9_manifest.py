@@ -16,9 +16,13 @@ declared and how results are selected and reported, after the v8 pilot review:
   5. supplementary tests (hardness of each candidate, reachable hardness versus time step, attribution, robustness) explain the main
      result and never change it.
 
-Usage: python3 build_round_socket_v9_manifest.py [--out sim_protocol/manifests/round_socket_strict_v9_draft.json]
+Usage: python3 build_round_socket_v9_manifest.py [--out protocol/manifests/round_socket_strict_v9_draft.json]
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import copy
@@ -28,8 +32,8 @@ from pathlib import Path
 
 import build_round_socket_v8_manifest as v8
 
-ROOT = Path(__file__).resolve().parents[2]
-V8_FILE = ROOT / "sim_protocol/manifests/round_socket_strict_v8_draft.json"
+ROOT = REPO_ROOT
+V8_FILE = ROOT / "protocol/manifests/round_socket_strict_v8_draft.json"
 HARDNESS_DT_MS = [0.125, 0.25, 0.5, 1.0, 2.0]
 HARDNESS_MARKS_MM = [0.15, 0.3, 0.6, 1.2]
 
@@ -109,7 +113,7 @@ CANDIDATES = {
         "origin": "new in v9; no IPC run of this task exists"}}
 
 IPC_CLAUSE = {
-    "engine": "Genesis 1.4.6 + IPCCoupler (libuipc 0.0.29), ABD rigid bodies, CUDA. Runner: scripts/genesis/run_socket_v8_genesis_ipc.py",
+    "engine": "Genesis 1.4.6 + IPCCoupler (libuipc 0.0.29), ABD rigid bodies, CUDA. Runner: tasks/composite/peg-in-hole/genesis/run_socket_v8_genesis_ipc.py",
     "what_is_shared": "conditions, labels, seeds, perturbations, time step, the universal criterion and all scoring code (pose-based) are those of "
                       "the other engines, unchanged.",
     "geometry": "same analytic shapes, mesh representation: the socket is one watertight non-convex mesh (outer 32-gon prism with the 32-gon "
@@ -225,7 +229,7 @@ CHANGES = [
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=ROOT / "sim_protocol/manifests/round_socket_strict_v9_draft.json")
+    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=ROOT / "protocol/manifests/round_socket_strict_v9_draft.json")
     a = ap.parse_args(); cells, geom = v8.build()
     for c in cells:
         c["role"] = "selection" if c["id"] in v8.SELECTION_IDS else "frozen"
@@ -243,7 +247,7 @@ def main():
            "status": "DRAFT 2026-11-16: not declared. Same conditions and labels as strict-v8-draft; candidates, selection and reporting rules revised after the v8 pilot review; Genesis IPC added. No run has been made under this file.",
            "supersedes": f"strict-v8-draft (pilot run kept in exp-results/round-socket-v8-draft; manifest sha256 {v8_sha[:16]}...). strict-v6 results and the strict-v7 draft are kept.",
            "changes_from_v8": CHANGES,
-           "generator": "scripts/protocol_v2/build_round_socket_v9_manifest.py (conditions and labels from build_round_socket_v8_manifest.py / peg_hole_statics.py)",
+           "generator": "tasks/composite/peg-in-hole/prep/build_round_socket_v9_manifest.py (conditions and labels from build_round_socket_v8_manifest.py / peg_hole_statics.py)",
            "R": old["R"], "seed0": old["seed0"], "seed_rule": old["seed_rule"].replace("every engine, rung and repeat", "every engine, candidate and repeat"),
            "engines": {"default": old["engines"]["default"] + ["Genesis 1.4.6 + IPC (libuipc 0.0.29), under engine_clauses.genesis_ipc"],
                        "open_decision": old["engines"]["open_decision"]},
@@ -256,7 +260,7 @@ def main():
                "SAP and MuJoCo runners: build candidates from candidates.<engine>.declared_order; MuJoCo 'runnable' check per candidate and dt",
                "result tables: per-block main table with k / R, verdict and the deviation columns (all columns are already in the per-rollout rows)",
                "supplementary hardness test: candidate hardness and the stiffness bisection at each dt",
-               "Genesis IPC runner (scripts/genesis/run_socket_v8_genesis_ipc.py): written, not yet tested; its selection key must follow this file"],
+               "Genesis IPC runner (tasks/composite/peg-in-hole/genesis/run_socket_v8_genesis_ipc.py): written, not yet tested; its selection key must follow this file"],
            "geometry_summary": geom, "counts": old["counts"], "conditions": cells}
     a.out.write_text(json.dumps(man, indent=1) + "\n"); print("wrote", a.out); print("v8 sha256", v8_sha[:16], "| conditions", len(cells), "| sha256", hashlib.sha256(a.out.read_bytes()).hexdigest()[:16])
 

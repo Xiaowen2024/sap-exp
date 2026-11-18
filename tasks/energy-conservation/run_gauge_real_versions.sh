@@ -19,11 +19,11 @@ for version in 317 400; do
     manifest=newtons_cradle_gauge_real_v1
     if [[ "$task" == pendulum ]]; then manifest=pendulum_gauge_real_v1; fi
     printf '{"state":"preflight","job":"%s"}\n' "$job" > "$audit/results/state.json"
-    "$py" -u "$src/scripts/protocol_v2/run_gauge_real_oscillations_mjwarp.py" --task "$task" \
-      --manifest "$src/sim_protocol/manifests/$manifest.json" --expected-version "$expected" --out "$dir" --smoke > "$dir/smoke.log" 2>&1
+    "$py" -u "$src/tasks/energy-conservation/mjwarp/run_gauge_real_oscillations_mjwarp.py" --task "$task" \
+      --manifest "$src/protocol/manifests/$manifest.json" --expected-version "$expected" --out "$dir" --smoke > "$dir/smoke.log" 2>&1
     printf '{"state":"running","job":"%s"}\n' "$job" > "$audit/results/state.json"
-    "$py" -u "$src/scripts/protocol_v2/run_gauge_real_oscillations_mjwarp.py" --task "$task" \
-      --manifest "$src/sim_protocol/manifests/$manifest.json" --expected-version "$expected" --out "$dir" > "$dir/run.log" 2>&1
+    "$py" -u "$src/tasks/energy-conservation/mjwarp/run_gauge_real_oscillations_mjwarp.py" --task "$task" \
+      --manifest "$src/protocol/manifests/$manifest.json" --expected-version "$expected" --out "$dir" > "$dir/run.log" 2>&1
     printf 'Completed %s\n' "$job"
   done
 done

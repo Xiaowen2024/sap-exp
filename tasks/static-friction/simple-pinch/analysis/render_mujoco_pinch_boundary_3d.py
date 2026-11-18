@@ -6,6 +6,10 @@ explicitly magnified measurement scale reveals the 57-mm decision boundary.
 """
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 import json
@@ -17,7 +21,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results/simple-pinch-v3/mujoco/refined-boundary-20261017/N4"
 OUT = ROOT / "exp-results/site-video-demos/23_mujoco_pinch_refined_boundary_3d.mp4"
 CASES = (

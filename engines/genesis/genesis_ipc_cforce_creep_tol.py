@@ -1,5 +1,4 @@
 import sys, json
-sys.path.insert(0, "/root/SIM-EXP/scripts/genesis")
 import genesis_ipc_common as I
 import genesis_ipc_cforce_probe as C
 if __name__ == "__main__":

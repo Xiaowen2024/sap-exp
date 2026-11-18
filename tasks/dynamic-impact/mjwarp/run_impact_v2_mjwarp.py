@@ -6,6 +6,10 @@ All trial selection, start states, perturbations, cell transforms and metrics li
 MuJoCo free-joint qvel = [world linear velocity, body angular velocity]; the common init uses the same.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -20,7 +24,7 @@ import warp as wp
 
 import impact_v2_common as ic
 
-ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / "exp-results").exists() else Path("/root/SIM-EXP")
+ROOT = REPO_ROOT if (REPO_ROOT / "exp-results").exists() else Path("/root/SIM-EXP")
 BALL = {"mass": 0.121, "mu": 0.808698, "mesh": ROOT / "exp-results/gauge-rigid-reproduction/assets/ball-6.obj"}
 CUBE = {"mass": 0.37, "mu": 0.18, "half": ic.CUBE_HALF, "inertia": 0.2950002913583124 * ic.CUBE_HALF ** 2}
 

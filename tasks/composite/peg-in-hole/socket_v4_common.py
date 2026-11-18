@@ -4,6 +4,10 @@ Engine simulate(cand, cell, init_xy [R,2]) -> dict(final_xyz [R,3] (m), peak_pen
 finite [R], truncated int).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import math, time
 import numpy as np
 from strict_v3_common import json_safe, load_manifest, wilson  # noqa: F401

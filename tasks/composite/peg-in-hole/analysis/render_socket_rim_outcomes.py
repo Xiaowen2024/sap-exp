@@ -6,6 +6,10 @@ exact-bore socket drawn semi-transparent, side view along the tilt plane normal 
 filmstrip png (rows = cases, columns = selected times).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -21,7 +25,7 @@ import mujoco  # noqa: E402
 import numpy as np  # noqa: E402
 
 plt.rcParams["font.family"] = ["PingFang SC", "Arial Unicode MS", "DejaVu Sans"]
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 ASSETS = ROOT / "assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 W, H = 520, 400

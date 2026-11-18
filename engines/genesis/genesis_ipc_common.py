@@ -1,7 +1,7 @@
 """Shared Genesis 1.4.6 + IPC (libuipc 0.0.29) adapter for the SIM-EXP protocol tasks (preliminary track).
 
 Physics comes from the task manifest exactly as in the RigidSolver track (same MJCF snippets, one entity per body).
-What is IPC-specific (see sim_protocol/genesis_ipc_runner_sop.md):
+What is IPC-specific (see engines/genesis/sop/genesis_ipc_runner_sop.md):
 - every body that touches another is coupled, with an explicit coup_type (the rigid collider only drops a pair when
   both sides carry an explicit IPC coup_type; an implicit one would double-count contact):
   free bodies -> 'ipc_only' (IPC integrates them), fixed bodies / ground -> 'ipc_only' (fixed ABD / IPC ground),
@@ -39,7 +39,7 @@ import numpy as np
 import genesis_rigid_common as G
 from genesis_rigid_common import ROOT, Timer, json_safe, load_manifest, mjcf, np_, save_json  # noqa: F401
 
-REGISTRY = ROOT / "sim_protocol/manifests/genesis_ipc_rerun.json"
+REGISTRY = ROOT / "protocol/manifests/genesis_ipc_rerun.json"
 ENGINE = "Genesis IPC"
 PINNED = {"genesis-world": "1.4.6", "pyuipc": "0.0.29"}
 D_HAT_DEFAULT = 0.01          # libuipc 0.0.29 contact.d_hat (resolved default, recorded in the setup audit)

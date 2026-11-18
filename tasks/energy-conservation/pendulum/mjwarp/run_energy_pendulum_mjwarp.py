@@ -6,12 +6,16 @@ nonlinear period are directly observable, while R=20 consists only of small
 initial-angle perturbations.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json, math, time
 from pathlib import Path
 import mujoco, mujoco_warp as mjw
 import numpy as np
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=REPO_ROOT
 OUT=ROOT/'exp-results/protocol-v2-native-default/energy-conservation-v1/mujoco_warp'
 G=9.81; M=1.; L=1.; T=10.; R=20
 

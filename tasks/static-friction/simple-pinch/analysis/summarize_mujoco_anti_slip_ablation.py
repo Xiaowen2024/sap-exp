@@ -1,5 +1,9 @@
 """Summarize the fixed-normal-contact MuJoCo 4 N anti-slip ablation."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import csv
 import json
@@ -9,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results" / "frictional-stack-v3" / "mujoco-anti-slip-ablation-v3"
 TOP = "middle_top"
 TAIL_START, HOLD_START = 8.5, 2.5

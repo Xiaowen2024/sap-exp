@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Round socket strict-v4, MuJoCo Warp (exact-bore socket; shared logic in socket_v4_common)."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse, json
 from pathlib import Path
 import mujoco, mujoco_warp as mjw, numpy as np, warp as wp
 from native_defaults import native_default_mjcf
 import socket_v4_common as sc
-ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / "exp-results").exists() else Path("/root/SIM-EXP")
+ROOT = REPO_ROOT if (REPO_ROOT / "exp-results").exists() else Path("/root/SIM-EXP")
 NCON = 4096
 
 

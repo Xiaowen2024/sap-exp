@@ -1,6 +1,6 @@
 # Sustained-contact v1 — shared evaluation protocol
 
-New comparison runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md).
+New comparison runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md).
 
 This folder defines the reusable **v1 comparison protocol** for sustained normal contact, multi-contact support, and static equilibrium. 
 
@@ -66,8 +66,8 @@ Tasks in this family report the shared metrics above first, then add only task-s
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Cube toss (sustained phase) | Residual creep / drift rate across the final resting window. | [cube-toss.md](task-metrics/cube-toss.md) |
-| Three-plate stacking | Stack order preservation, center-of-mass height deflection, and thickness sweep critical breakdown. | [three-plate-stack.md](task-metrics/three-plate-stack.md) |
+| Cube toss (sustained phase) | Residual creep / drift rate across the final resting window. | [cube-toss.md](cube-toss-tail/SOP.md) |
+| Three-plate stacking | Stack order preservation, center-of-mass height deflection, and thickness sweep critical breakdown. | [three-plate-stack.md](three-plate-stack/SOP.md) |
 
 ---
 

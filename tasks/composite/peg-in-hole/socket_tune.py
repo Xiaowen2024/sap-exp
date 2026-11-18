@@ -16,6 +16,10 @@ Engine settings accepted in the candidate JSON
 Usage: socket_tune.py --engine mj|sap --cand cand.json --manifest M --out DIR [--shard i/n] [--merge]
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import importlib.util

@@ -26,13 +26,13 @@ done
 
 printf '%s starting MuJoCo Warp Simple Pinch rerun\n' "$(date -Is)" >> "$LOG"
 PYTHONPATH="$RUNNERS" /root/.venvs/mjwarp317/bin/python "$RUNNERS/run_simple_pinch_mjwarp_force_matched.py" \
-  --manifest "$ROOT/sim_protocol/manifests/simple_pinch_force_matched_v1.json" \
+  --manifest "$ROOT/protocol/manifests/simple_pinch_force_matched_v1.json" \
   --source "$RUNNERS/run_static_friction_v2.py" \
   --output "$OUT/mujoco_warp" >> "$LOG" 2>&1
 
 printf '%s starting SAP Warp Simple Pinch rerun\n' "$(date -Is)" >> "$LOG"
 PYTHONPATH="/root/SAP-WARP-INTERNAL-db8d236/src:$RUNNERS" /root/.venvs/mjwarp317/bin/python "$RUNNERS/run_simple_pinch_sap_force_matched.py" \
-  --manifest "$ROOT/sim_protocol/manifests/simple_pinch_force_matched_v1.json" \
+  --manifest "$ROOT/protocol/manifests/simple_pinch_force_matched_v1.json" \
   --private-runner /root/SAP-WARP-INTERNAL-db8d236/local_experiments/run_simple_pinch_b1_b5.py \
   --output "$OUT/sap_warp" >> "$LOG" 2>&1
 

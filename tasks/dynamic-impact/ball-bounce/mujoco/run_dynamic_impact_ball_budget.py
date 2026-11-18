@@ -11,6 +11,10 @@ settings, and B100 a disclosed 10x10 direct-solref grid.  Configuration
 selection uses odd-numbered trials only; all reported metrics use even trials.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -22,7 +26,7 @@ import mujoco
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 DATA = ROOT / "exp-results/gauge-rigid-reproduction/data/bouncing-ball"
 MESH = ROOT / "exp-results/gauge-rigid-reproduction/assets/ball-6.obj"
 OUT_DEFAULT = ROOT / "exp-results/dynamic-impact-v1/ball-bounce/mujoco-3.17"

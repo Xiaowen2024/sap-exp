@@ -11,6 +11,10 @@ the primary runner, with the original scoring code.
 Assignment rule (fixed before any held-out result): a cell's result is whichever machine's result is in the cache
 when the primary runner reaches it.  Duplicated cells (both machines computed) are kept as a cross-GPU check.
 """
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse, json, os, socket, time
 from pathlib import Path
 
@@ -18,7 +22,7 @@ os.environ.setdefault('SAP_BUFFER_CAPACITY', '32768'); os.environ.setdefault('SA
 os.environ.setdefault('SAP_PAIR_FACTOR', '2')
 import genesis_sap_common as G
 
-M = G.ROOT / 'sim_protocol/manifests'
+M = G.ROOT / 'protocol/manifests'
 LOG = None
 
 

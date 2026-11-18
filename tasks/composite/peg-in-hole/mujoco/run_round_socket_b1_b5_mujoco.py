@@ -6,6 +6,10 @@ numerical default (no option/default solver parameters in the generated MJCF).
 Candidates 1--4 are declared before running; they are not a hidden sweep.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 import re
@@ -15,7 +19,7 @@ from pathlib import Path
 import mujoco
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 HERE = ROOT / "mujoco-sim" / "learn_mujoco" / "peg_in_hole_experiments"
 BASE = HERE / "peg_convex_decomposition.xml"
 OUT = ROOT / "exp-results" / "protocol-v2-native-default" / "composite-v1" / "round-socket" / "mujoco"

@@ -5,6 +5,10 @@ Kinematic board (task-3): a free body whose pose and velocity are overwritten ev
 board trajectory (as in the historical MuJoCo runner).  Cube position = body origin (mesh centred at origin).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -19,7 +23,7 @@ import warp as wp
 from native_defaults import native_default_mjcf
 import slope_v3_common as sc
 
-ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / "exp-results").exists() else Path("/root/SIM-EXP")
+ROOT = REPO_ROOT if (REPO_ROOT / "exp-results").exists() else Path("/root/SIM-EXP")
 
 
 def parse_candidate(text: str) -> dict[str, Any]:

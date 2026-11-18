@@ -2,7 +2,7 @@
 
 Each task runner builds its scene from the task manifest (never from a tuned MuJoCo MJCF), steps Genesis, and hands
 the raw trajectories to the same engine-independent *_common module the SAP and MuJoCo Warp drivers use.  This module
-only supplies what is Genesis-specific; see sim_protocol/genesis_rigid_runner_sop.md.
+only supplies what is Genesis-specific; see engines/genesis/sop/genesis_rigid_runner_sop.md.
 
 Scene rules enforced here (each one closes a silent-mismatch route found in the 2026-11-14 API probes):
 - every physical body is its own entity: Genesis drops self-collision between links of one entity that touch in the
@@ -15,6 +15,10 @@ Scene rules enforced here (each one closes a silent-mismatch route found in the 
 - dt is the actual step (substeps=1); B=1 sets no numerical contact/solver option.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import hashlib
 import importlib.metadata as metadata
@@ -37,22 +41,22 @@ def _find_root() -> Path:
     cands = [Path(os.environ["SIMEXP_ROOT"])] if os.environ.get("SIMEXP_ROOT") else []
     cands += [HERE.parents[1], Path("/root/SIM-EXP")]
     for c in cands:
-        if (c / "exp-results").is_dir() and (c / "sim_protocol/manifests").is_dir():
+        if (c / "exp-results").is_dir() and (c / "protocol/manifests").is_dir():
             return c
     raise RuntimeError("SIM-EXP root not found; set SIMEXP_ROOT")
 
 
 ROOT = _find_root()
 _PROTO = [Path(os.environ["SIMEXP_PROTOCOL_DIR"])] if os.environ.get("SIMEXP_PROTOCOL_DIR") else []
-_PROTO += [ROOT / "scripts/protocol_v2", ROOT / "runners"]
+_PROTO += [ROOT / "tasks/dynamic-impact", ROOT / "runners"]
 PROTOCOL_DIR = next(p for p in _PROTO if (p / "impact_v2_common.py").exists())
-for p in (PROTOCOL_DIR, ROOT / "scripts", HERE):
+for p in (PROTOCOL_DIR, HERE):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
 
 from strict_v3_common import json_safe, load_manifest  # noqa: E402,F401
 
-REGISTRY = ROOT / "sim_protocol/manifests/genesis_rigid_rerun.json"
+REGISTRY = ROOT / "protocol/manifests/genesis_rigid_rerun.json"
 ENGINE = "Genesis RigidSolver"
 PINNED = {"genesis-world": "1.4.6"}
 SEED = 20261114

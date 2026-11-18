@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Strict B=1/B=5, R=20 CPU counterparts for energy-conservation-v1."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json, math, time
 from pathlib import Path
 import mujoco
 import numpy as np
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=REPO_ROOT
 OUT=ROOT/'exp-results/protocol-v2-native-default/energy-conservation-v1/mujoco_cpu'
 G=9.81
 

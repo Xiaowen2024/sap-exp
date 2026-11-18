@@ -14,6 +14,6 @@ No metric, calibration budget, or consistency diagnostic is assumed to be univer
 
 | Task | Primary coupled mechanisms | Real-world reference |
 |---|---|---|
-| [Cassie landing](task-metrics/cassie-landing.md) | impact, closed linkages, multi-foot contact, articulated dynamics | Yes |
-| [Peg-in-hole](task-metrics/peg-in-hole.md) | clearance, contact manifold, friction, geometric validity | Not in v1 |
-| [DENSE EZGripper grasp](task-metrics/dense-ezgripper-grasp.md) | underactuated tendon-driven grasp, frictional retention, contact switching | Planned physical data |
+| [Cassie landing](cassie-landing/SOP.md) | impact, closed linkages, multi-foot contact, articulated dynamics | Yes |
+| [Peg-in-hole](peg-in-hole/SOP.md) | clearance, contact manifold, friction, geometric validity | Not in v1 |
+| [DENSE EZGripper grasp](dense-ezgripper-grasp/SOP.md) | underactuated tendon-driven grasp, frictional retention, contact switching | Planned physical data |

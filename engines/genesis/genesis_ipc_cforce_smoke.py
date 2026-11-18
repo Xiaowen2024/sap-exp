@@ -6,6 +6,10 @@ bridge spring), at the frozen preliminary candidate and at the same candidate wi
   python-genesis genesis_ipc_cforce_smoke.py --lane plates|boxes --out <dir>
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -15,7 +19,7 @@ import numpy as np
 
 import genesis_ipc_common as I
 
-MAN = I.ROOT / "sim_protocol/manifests"
+MAN = I.ROOT / "protocol/manifests"
 R = 4
 
 

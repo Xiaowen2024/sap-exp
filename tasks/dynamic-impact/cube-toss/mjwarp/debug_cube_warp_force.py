@@ -1,10 +1,14 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json
 from pathlib import Path
 import numpy as np
 import mujoco, mujoco_warp as mw
 from run_dynamic_impact_cube_budget import DT, SRC, make_model
 
-root=Path(__file__).resolve().parents[1]
+root=REPO_ROOT
 src=json.loads((root/'exp-results/dynamic-impact-v1/cube-toss/mjwarp-3.17/b1.json').read_text())
 raw=np.load(SRC); x=raw['state'][0,0]
 m=make_model(src['frozen_config']); gm=mw.put_model(m); d=mw.make_data(m,nworld=1,nconmax=128,njmax=512)

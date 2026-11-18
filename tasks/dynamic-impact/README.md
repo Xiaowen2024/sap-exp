@@ -1,6 +1,6 @@
 # Dynamic-impact v1 — shared evaluation protocol
 
-New comparison runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md). Existing B=100 artifacts are historical upper bounds, not the primary budget.
+New comparison runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md). Existing B=100 artifacts are historical upper bounds, not the primary budget.
 
 This folder defines the reusable **v1 comparison protocol** for dynamic-impact
 and collision tasks. Future tasks can use different geometries (for example, a
@@ -81,9 +81,9 @@ physical outcomes.
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Bouncing ball | Apex-height decay error over the primary \(K\) bounces. | [ball-bounce.md](task-metrics/ball-bounce.md) |
-| Cube toss | Final pose error (position, orientation, resting face) and post-impact linear/angular speed-decay errors. | [cube-toss.md](task-metrics/cube-toss.md) |
-| Cassie landing | Landing success, post-impact stability/chatter, and weighted 50-ms state error. | [cassie-landing.md](task-metrics/cassie-landing.md) |
+| Bouncing ball | Apex-height decay error over the primary \(K\) bounces. | [ball-bounce.md](ball-bounce/SOP.md) |
+| Cube toss | Final pose error (position, orientation, resting face) and post-impact linear/angular speed-decay errors. | [cube-toss.md](cube-toss/SOP.md) |
+| Cassie landing | Landing success, post-impact stability/chatter, and weighted 50-ms state error. | [cassie-landing.md](../composite/cassie-landing/SOP.md) |
 
 ## Reporting requirements
 

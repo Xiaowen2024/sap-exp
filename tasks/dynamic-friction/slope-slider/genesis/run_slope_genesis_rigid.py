@@ -6,6 +6,10 @@ every step from the mean recorded board trajectory, as the MuJoCo Warp driver do
 is body-frame, so board_state's w_local is passed unchanged).  Ground, board and cube share the GAUGE harmonic-mean mu.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 from pathlib import Path

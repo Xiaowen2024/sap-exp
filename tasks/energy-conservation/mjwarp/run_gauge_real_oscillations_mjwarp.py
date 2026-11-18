@@ -6,6 +6,10 @@ The contact-free pendulum's CUDA graph is checked against uncaptured steps.
 Cradle uses uncaptured native steps: contact-order sensitivity was seen in preflight.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import copy
@@ -27,7 +31,7 @@ import gauge_pendulum_v3_common as gp
 from mujoco_capacity_audit import CapacityAudit
 from strict_v3_common import json_safe, load_manifest
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 ASSETS = ROOT / 'exp-results/gauge-rigid-reproduction/assets'
 
 

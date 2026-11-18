@@ -1,6 +1,6 @@
 # Static-friction v2 — shared evaluation protocol
 
-New comparison runs follow the [Unified B=5 SOP](../UNIFIED-B5-SOP.md).
+New comparison runs follow the [Unified B=5 SOP](../../protocol/UNIFIED-B5-SOP.md).
 
 This folder defines the reusable **v2 comparison protocol** for static-friction tasks. It is not a new result set and does not replace the historical three-box `v3` run. The latter is retained as the first implementation of this protocol family. Future tasks can use a different geometry (for example, a single block, an inclined support, or a two-finger grasp) while reporting the same categories below.
 
@@ -55,8 +55,8 @@ Every task in this family reports the shared metrics above first, then adds only
 
 | Task | Additional task-level metrics | Extension |
 |---|---|---|
-| Two-finger simple pinch | Minimum measured per-finger hold force \(F_{\rm grip,sim}^{*}\), grip-force error \(E_{\rm grip}\), and lift-height error \(E_z(T)\). | [simple-pinch.md](task-metrics/simple-pinch.md) |
-| Three-box push | Expected-outcome agreement for the middle box, plus repeated-condition `TP/FP/FN/TN`, FPR, FNR, and balanced accuracy. | [three-box-push.md](task-metrics/three-box-push.md) |
+| Two-finger simple pinch | Minimum measured per-finger hold force \(F_{\rm grip,sim}^{*}\), grip-force error \(E_{\rm grip}\), and lift-height error \(E_z(T)\). | [simple-pinch.md](simple-pinch/SOP.md) |
+| Three-box push | Expected-outcome agreement for the middle box, plus repeated-condition `TP/FP/FN/TN`, FPR, FNR, and balanced accuracy. | [three-box-push.md](three-box-push/SOP.md) |
 
 Future static-friction tasks should add a row and a short extension file here. For example, a block-on-slope task may add critical inclination; a push task may add breakaway load. Neither replaces the common support-relative motion, \(\rho\), duty, and normal-state checks.
 
@@ -76,5 +76,5 @@ For every static-friction experiment, record:
 
 ## Existing implementation: three-box sub-Coulomb task
 
-The existing three-box experiment is a **simulation-level** use of this protocol. Its current B=1/B=5 artifact records repeated (`R=20`) expected-outcome statistics, a calibration-only selection condition, and a frozen held-out grid covering force sweeps plus the declared ranges \(\mu\in\{0.3,0.5,0.7\}\), mass \(\in\{0.5,1.0\}\) kg, and `dt` \(\in\{0.25,0.5,1.0\}\) ms. It also measures contact duty, normal-force stability, relative slip, \(\rho\), macroscopic slip onset, and tail creep. This is sufficient for a scoped parameter-robustness conclusion; it is not a full setup-variant study because geometry (for example footprint or push height) was not varied, and it remains unrelated to a synchronized real trajectory. See [the B=5 artifact](../../exp-results/protocol-v2-native-default/b5-static-friction-v2/mujoco/static_friction_v2_summary.json) and [the historical ramp report](../mujoco-vs-sap-frictional-three-box-ramp.md).
+The existing three-box experiment is a **simulation-level** use of this protocol. Its current B=1/B=5 artifact records repeated (`R=20`) expected-outcome statistics, a calibration-only selection condition, and a frozen held-out grid covering force sweeps plus the declared ranges \(\mu\in\{0.3,0.5,0.7\}\), mass \(\in\{0.5,1.0\}\) kg, and `dt` \(\in\{0.25,0.5,1.0\}\) ms. It also measures contact duty, normal-force stability, relative slip, \(\rho\), macroscopic slip onset, and tail creep. This is sufficient for a scoped parameter-robustness conclusion; it is not a full setup-variant study because geometry (for example footprint or push height) was not varied, and it remains unrelated to a synchronized real trajectory. See [the B=5 artifact](../../exp-results/protocol-v2-native-default/b5-static-friction-v2/mujoco/static_friction_v2_summary.json) and [the historical ramp report](../../exp-report/mujoco-vs-sap-frictional-three-box-ramp.md).
 

@@ -1,11 +1,15 @@
 """Render the two corrected task cards from completed artifacts; print JSON for apply_patch."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import html
 import json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results/contact-correction-20261109"
 
 

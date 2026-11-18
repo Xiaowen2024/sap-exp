@@ -27,7 +27,7 @@ check, not a substitute for the CUDA evaluation. SAP results are preserved.
   candidate is added to this contact-free task.
 
 The registry is
-[`mujoco_warp_4p0_rerun.json`](../sim_protocol/manifests/mujoco_warp_4p0_rerun.json).
+[`mujoco_warp_4p0_rerun.json`](../protocol/manifests/mujoco_warp_4p0_rerun.json).
 It fixes each existing task manifest by SHA-256. All seven pass the common
 manifest validator. Physical cases, candidates, gates, seeds, perturbations,
 sampling and loss formulas are unchanged. Rerun B=1 and the entire original
@@ -59,7 +59,7 @@ queue has started with Three-plate; the other six tasks are queued. No
 completed 4.0 task result is claimed at this checkpoint.
 
 The launcher is
-[`run_mujoco4_rerun.py`](../scripts/protocol_v2/run_mujoco4_rerun.py).
+[`run_mujoco4_rerun.py`](../engines/mujoco/run_mujoco4_rerun.py).
 It checks the corrected Three-plate pair before execution, requires CUDA,
 checks the installed versions and stops on task failure or changed inputs.
 It resumes only completed, structurally matching artifacts; a failed task

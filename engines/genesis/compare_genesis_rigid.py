@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Held-out headline table: SAP vs MuJoCo Warp 4.0 vs Genesis RigidSolver (same metric, same denominators)."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
 import math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 E = ROOT / "exp-results"
 TASKS = [  # id, kind, SAP, MuJoCo Warp 4.0, Genesis (relative to the Genesis results dir)
     ("three-plate", "count", "contact-correction-20261109/three-plate/sap/sap_three_plate_strict_v3.json",

@@ -8,6 +8,10 @@ diagnostic.  Pads start g0 = d_hat outside the cube faces; the gate phase closes
 The cube is an IPC-only ABD; the load m g (x scale) is an IPC external body force during lift/hold.  Gravity off.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 from pathlib import Path

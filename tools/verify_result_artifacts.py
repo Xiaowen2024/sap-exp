@@ -1,5 +1,5 @@
 import json, hashlib, sys
-M='sim_protocol/manifests/'
+M='protocol/manifests/'
 T={
 'three-plate v3.1':('three_plate_stack_strict_v3p1.json',{'SAP':'exp-results/contact-correction-20261109/three-plate/sap/sap_three_plate_strict_v3.json','MJ3.17':'exp-results/contact-correction-20261109/three-plate/mujoco/mjwarp_three_plate_strict_v3.json','MJ4.0':'exp-results/mujoco-warp-4p0/three-plate/mjwarp_three_plate_strict_v3.json'}),
 'three-box v4':('three_box_push_strict_v4.json',{'SAP':'exp-results/aligned-generalizability-strict-v3/v4/sap_three_box_strict_v4.json','MJ3.17':'exp-results/contact-correction-20261109/three-box/mujoco/mjwarp_three_box_strict_v4.json','MJ4.0':'exp-results/mujoco-warp-4p0/three-box/mjwarp_three_box_strict_v4.json'}),

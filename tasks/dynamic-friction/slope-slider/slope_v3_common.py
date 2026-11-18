@@ -4,6 +4,10 @@ Engine run_case(cand, case, cell, init_pos [R,3], n_frames, steps_per_frame, dt)
 truncated int, extra dict) where case comes from load_case() and board motion from board_state().
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 import math

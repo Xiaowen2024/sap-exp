@@ -6,6 +6,10 @@ strict_v3_common, shared verbatim with the SAP driver.  The scene XML is the
 historical static-friction-v2 three_box_xml (pair stiffness k_pair=1e4, d=0.9).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json

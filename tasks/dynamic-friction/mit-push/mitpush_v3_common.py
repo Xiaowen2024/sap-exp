@@ -5,6 +5,10 @@ pose [R,S,3] (x, y, yaw in the object-0 frame), twist [R,S,3], wrench [R,S,2] (f
 finite [R], truncated int, tracking_ok bool, tracking dict.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 import math

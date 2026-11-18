@@ -9,6 +9,10 @@ Wrench (a3) = IPC's own contact force on the pusher vertices (force ON the pushe
 it comes from the object); the bridge coupling force is kept as a diagnostic.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 from pathlib import Path

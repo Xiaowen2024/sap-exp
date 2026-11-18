@@ -25,6 +25,6 @@
 
 IPC 注意：使用专用接口输入速度和力；角速度、运动轨迹、关节驱动和接触力读数仍待逐任务验证。`friction` 与 `coup_friction` 要分别设置并核对实际配对值；质量／几何变化需重建 IPC 场景。初始穿透不能通过偷偷挪动物体消除。默认配置 `d_hat=10 mm`，本次落地测试最终表面间隙约 8.62 mm；薄板和小间隙任务必须记录实际配置，不能在 B=1 前悄悄调参。
 
-完整设置与 manifest 链接：[任务清单 JSON](genesis_ipc_task_setup.json)。版本、测试与运行入口：[环境记录](../exp-results/genesis-ipc-setup-20261114/environment.json)、[依赖锁定](../exp-results/genesis-ipc-setup-20261114/requirements-lock.txt)、[启动脚本](../exp-results/genesis-ipc-setup-20261114/python-genesis.sh)。实现依据：[Genesis 1.4.6](https://github.com/Genesis-Embodied-AI/genesis-world/releases/tag/v1.4.6)、[libuipc 0.0.29](https://github.com/spiriMirror/libuipc/releases/tag/v0.0.29)、[IPC 桥接源码](https://github.com/Genesis-Embodied-AI/genesis-world/blob/v1.4.6/genesis/engine/couplers/ipc_coupler/coupler.py)。
+完整设置与 manifest 链接：[任务清单 JSON](genesis_ipc_task_setup.json)。版本、测试与运行入口：[环境记录](../../../exp-results/genesis-ipc-setup-20261114/environment.json)、[依赖锁定](../../../exp-results/genesis-ipc-setup-20261114/requirements-lock.txt)、[启动脚本](../../../exp-results/genesis-ipc-setup-20261114/python-genesis.sh)。实现依据：[Genesis 1.4.6](https://github.com/Genesis-Embodied-AI/genesis-world/releases/tag/v1.4.6)、[libuipc 0.0.29](https://github.com/spiriMirror/libuipc/releases/tag/v0.0.29)、[IPC 桥接源码](https://github.com/Genesis-Embodied-AI/genesis-world/blob/v1.4.6/genesis/engine/couplers/ipc_coupler/coupler.py)。
 
-清理记录：已释放磁盘 2.36 GB、共享内存 4.70 GB，结果／scripts／输入数据／现有环境均保留；详见[首次清理](../exp-results/cleanup-20261114/server_cleanup.json)和[空闲后清理](../exp-results/cleanup-20261114/deferred_cleanup.json)。
+清理记录：已释放磁盘 2.36 GB、共享内存 4.70 GB，结果／scripts／输入数据／现有环境均保留；详见[首次清理](../../../exp-results/cleanup-20261114/server_cleanup.json)和[空闲后清理](../../../exp-results/cleanup-20261114/deferred_cleanup.json)。

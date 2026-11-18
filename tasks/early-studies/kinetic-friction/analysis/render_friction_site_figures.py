@@ -5,6 +5,10 @@ The goal is to separate (1) the original matched-compliance baseline from
 as a fair compliant-contact-model comparison.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 from pathlib import Path
@@ -13,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 HOLD = ROOT / "exp-results/frictional-stack-v3/force-holds"
 OUT = ROOT / "docs/assets"
 TOP = "middle_top"

@@ -5,6 +5,10 @@ This deliberately evaluates only an already-frozen B-stage configuration.
 It never feeds perturbation results back into parameter selection.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse, json, math
 from pathlib import Path
 import numpy as np
@@ -13,7 +17,7 @@ from run_dynamic_impact_cube_budget import (
     HALF, SRC, ci, dtw, make_model, qangle,qangle_sym, simulate, upward_face,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 RESULTS = ROOT / 'exp-results/dynamic-impact-v1/cube-toss/mujoco-3.17'
 
 METRICS = {

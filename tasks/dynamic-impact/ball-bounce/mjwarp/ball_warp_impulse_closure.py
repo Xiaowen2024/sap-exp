@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Native-EFC impulse closure for frozen Warp ball-bounce configurations."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json,math
 from pathlib import Path
 import mujoco,mujoco_warp as mw,numpy as np
 from run_dynamic_impact_ball_budget import DT,MASS,load_trials,mjcf
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'exp-results/dynamic-impact-v1/ball-bounce/mjwarp-3.17'
+ROOT=REPO_ROOT;OUT=ROOT/'exp-results/dynamic-impact-v1/ball-bounce/mjwarp-3.17'
 def main():
  a=argparse.ArgumentParser();a.add_argument('--stage',choices=('b1','b5','b100'),required=True);a.add_argument('--replicates',type=int,default=20);z=a.parse_args();src=json.loads((OUT/f'{z.stage}.json').read_text());names,real=load_trials();ids=[names.index(str(r['trial'])) for r in src['heldout_metrics']['per_rollout']];ini=[]
  for i in ids:

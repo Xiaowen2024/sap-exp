@@ -6,6 +6,10 @@ Candidates: native default (literal MuJoCo defaults), and ladder rungs = solref 
 implicitfast / elliptic / Newton; timeconst is bisected per rung on the calibration cell (pose-based peak base penetration).
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -19,7 +23,7 @@ import warp as wp
 import socket_v8_common as sc
 from native_defaults import native_default_mjcf
 
-ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / "exp-results").exists() else Path("/root/SIM-EXP")
+ROOT = REPO_ROOT if (REPO_ROOT / "exp-results").exists() else Path("/root/SIM-EXP")
 NCON = 4096
 SOLIMP = (0.95, 0.95, 0.001, 0.5, 2.0)
 

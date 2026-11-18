@@ -6,6 +6,10 @@ Ground and three boxes are separate entities; box and ground friction = cell mu 
 The pushed box receives +x force * scale * ramp at its COM every step, as MuJoCo's xfrc_applied.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import math

@@ -14,9 +14,13 @@ points are placed by their margin to an analytic boundary, not on a parameter gr
 Universal checks on every rollout: pose inside the non-penetrating set, mechanical energy never above its initial value, final pose is a
 static equilibrium the rigid model allows at that friction.  Every regularisation rung of both engines is run on every condition.
 
-Usage: python3 build_round_socket_v8_manifest.py [--out sim_protocol/manifests/round_socket_strict_v8_draft.json]
+Usage: python3 build_round_socket_v8_manifest.py [--out protocol/manifests/round_socket_strict_v8_draft.json]
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -283,7 +287,7 @@ NOT_COVERED = [
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[2] / "sim_protocol/manifests/round_socket_strict_v8_draft.json")
+    ap = argparse.ArgumentParser(); ap.add_argument("--out", type=Path, default=REPO_ROOT / "protocol/manifests/round_socket_strict_v8_draft.json")
     a = ap.parse_args(); cells, geom = build()
     ids = {c["id"] for c in cells}; assert set(SELECTION_IDS) <= ids, set(SELECTION_IDS) - ids
     robust = [c["id"] for c in cells if c["split"] == "heldout" and any(c["id"].endswith(sfx) for sfx in ROBUST_SUFFIXES)]
@@ -298,7 +302,7 @@ def main():
     man = {"protocol": "aligned-frozen-generalizability-v1", "task": "round-socket", "revision": "strict-v8-draft",
            "status": "DRAFT 2026-11-15: not declared, not run. Needs runner support (see implementation_required) and the open decisions before declaration.",
            "supersedes": "none yet. strict-v6 results and the strict-v7 draft (v6 cells with two rule fixes) are kept. v8 is a redesign after the v6 audit.",
-           "generator": "scripts/protocol_v2/build_round_socket_v8_manifest.py (labels from scripts/protocol_v2/peg_hole_statics.py)",
+           "generator": "tasks/composite/peg-in-hole/prep/build_round_socket_v8_manifest.py (labels from tasks/composite/peg-in-hole/peg_hole_statics.py)",
            "R": 8, "seed0": 88100, "seed_rule": "condition j (order of this file): seed0 + j; the same perturbation array for every engine, rung and repeat",
            "engines": {"default": ["SAP Warp (internal, fix branch)", "MuJoCo Warp 4.0"], "open_decision": "whether MuJoCo Warp 3.17 is also run (v6 found ~0.3 % of 4.0 rollouts with a ~60-mm spurious contact, none in 3.17)"},
            "design_rule": "every test is a provable statement of the rigid-body Coulomb model; points are placed by margin to an analytic boundary; anything the theory cannot decide is recorded but not scored",

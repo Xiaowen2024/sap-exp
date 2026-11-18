@@ -4,11 +4,15 @@
 This runner deliberately uses the same evaluation conventions as protocol-v2:
 selection and evaluation are separated, primary B={1,5}, and every reported
 evaluation condition contains R independent perturbed worlds.  It implements
-the three-plate task in sim_protocol/sustained-contact-v1; Cube Toss is kept
+the three-plate task in tasks/sustained-contact; Cube Toss is kept
 separate because its public ContactNets recordings do not include a one-second
 post-settling physical reference window.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -23,7 +27,7 @@ import numpy as np
 from metrics_common import HAS_MJWARP, mjw, warp_contact_records, wilson_ci
 from native_defaults import native_default_mjcf
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 OUT = ROOT / "exp-results" / "protocol-v2-revised" / "sustained-contact-v1"
 G = 9.81
 RADIUS = 0.1

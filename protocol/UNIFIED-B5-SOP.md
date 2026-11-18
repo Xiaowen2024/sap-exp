@@ -1,7 +1,7 @@
 # Unified B=5 comparison SOP (2026-10-27)
 
 This SOP governs new MuJoCo CPU, MuJoCo Warp, and SAP Warp comparisons in
-`sim_protocol/`. Older B=2, B=30, or B=100 artifacts remain historical and
+`protocol/` and the task SOPs under `tasks/`. Older B=2, B=30, or B=100 artifacts remain historical and
 must not be relabeled as B=5. SAP internal source stays outside the public
 SIM-EXP workspace; only numerical artifacts and non-proprietary setup details
 may be copied here.

@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Resume-aware bounded task queue; wait for an adopted SAP child before starting duplicate work."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT, find_script  # noqa: E402  (also puts shared module folders on sys.path)
 import argparse,json,os,subprocess,time
 from pathlib import Path
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True);ap.add_argument('--adopt-pid',type=int);ap.add_argument('--adopt-task',default='three-box');ap.add_argument('--lanes',type=int,default=3);ap.add_argument('--adopt',action='append',default=[],help='task=pid, repeatable');ap.add_argument('--skip',default='',help='comma list of tasks run elsewhere');ap.add_argument('--only',default='',help='comma list; run only these tasks');ap.add_argument('--preflight-exception',default='',help='disclosed reason to run despite a failed preflight check');a=ap.parse_args()
- root=Path(__file__).resolve().parents[2];m=root/'sim_protocol/manifests';py='/root/autodl-tmp/genesis-runtime/bin/python-genesis'
+ root=REPO_ROOT;m=root/'protocol/manifests';py='/root/autodl-tmp/genesis-runtime/bin/python-genesis'
  tasks=[('three-box','run_threebox_genesis_sap.py','three_box_push_strict_v4.json','genesis_sap_three_box_strict_v4.json',[]),
  ('simple-pinch','run_pinch_genesis_sap.py','simple_pinch_force_controlled_v3.json','genesis_sap_simple_pinch_v3.json',[]),
  ('three-plate','run_threeplate_genesis_sap.py','three_plate_stack_strict_v3p1.json','genesis_sap_three_plate_strict_v3.json',[]),
@@ -53,7 +57,7 @@ def main():
      name,script,mf,result,extra=t
      if name=='cube-tail' and not done(next(x for x in tasks if x[0]=='cube-toss')):continue
      fh=(a.out/(name+'.log')).open('w')
-     proc=subprocess.Popen([py,'-u',str(root/'scripts/genesis'/script),'--manifest',str(m/mf),'--out',str(a.out/name),*extra],stdout=fh,stderr=subprocess.STDOUT,cwd=root/'scripts/genesis',stdin=subprocess.DEVNULL)
+     proc=subprocess.Popen([py,'-u',str(find_script(script)),'--manifest',str(m/mf),'--out',str(a.out/name),*extra],stdout=fh,stderr=subprocess.STDOUT,cwd=find_script(script).parent,stdin=subprocess.DEVNULL)
      running[name]=(proc.pid,proc,fh);pending.remove(t);log('start '+name+' pid='+str(proc.pid)+' gpu_free_MiB='+str(free));break
   if not running and pending and all(t[0]=='cube-tail' for t in pending) and 'cube-toss' in failed:
    failed['cube-tail']={'blocked_by':'cube-toss'};pending=[]

@@ -8,12 +8,16 @@ piece. This is compared with the nominal 12-mm bore and with the peg radius
 (12 - clearance) used in the clearance matrix.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json
 from pathlib import Path
 import numpy as np
 from scipy.spatial import ConvexHull
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 ASSET = ROOT / "mujoco-sim/learn_mujoco/peg_in_hole_experiments/assets/collision"
 OUT = ROOT / "exp-results/peg-in-hole/round-socket-coacd-bore-audit.json"
 

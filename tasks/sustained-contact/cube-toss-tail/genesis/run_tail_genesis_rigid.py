@@ -5,6 +5,10 @@ The single candidate is inherited from the Genesis cube-toss frozen winner (mani
 path and sha256 are recorded.  Support load = sum of |f.n| over cube-floor contacts.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import hashlib
@@ -65,7 +69,7 @@ def main():
         raise ValueError("cube-toss artifact is not a complete Genesis RigidSolver run with a frozen candidate")
     if toss["manifest_sha256"] != man0["frozen_from"]["manifest_sha256"]:
         raise ValueError("cube-toss artifact used a different manifest than this task's frozen_from")
-    _, toss_spec, _ = G.registry_task("cube-toss", G.ROOT / "sim_protocol/manifests" / man0["frozen_from"]["manifest"])
+    _, toss_spec, _ = G.registry_task("cube-toss", G.ROOT / "protocol/manifests" / man0["frozen_from"]["manifest"])
     text = toss["frozen_candidate"]["text"]
     inherited = {**spec, "candidates": [text], "nonnative": toss_spec.get("nonnative", {})}
     man = G.with_candidates(man0, inherited)

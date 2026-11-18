@@ -1,5 +1,9 @@
 """Summarize synchronized MuJoCo/SAP three-box friction-ramp traces."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 from pathlib import Path
@@ -8,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = REPO_ROOT
 BASE = ROOT / "exp-results" / "frictional-stack-v2"
 INTERFACES = ("ground_bottom", "bottom_middle", "middle_top")
 EXPECTED_FN = {"ground_bottom": 29.43, "bottom_middle": 19.62, "middle_top": 9.81}

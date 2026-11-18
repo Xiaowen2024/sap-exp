@@ -195,7 +195,7 @@ SAP staged-ramp 的 low-friction case 几乎与 baseline 等效，正好说明�
 - MuJoCo pinch sweep: `mujoco-sim/learn_mujoco/pinch_grasp_experiments/pinch_grasp_sweep.py`
 - MuJoCo ground-ramp: `mujoco-sim/learn_mujoco/pinch_grasp_experiments/run_ground_ramp.py`
 - SAP pinch scenes/runners: `sap-sim/assets/yaml/two_finger_pinch*.yaml`、`sap-sim/scripts/run_two_finger_pinch_sap.py`
-- This report’s figure generator: `scripts/summarize_panda_and_pinch.py`
+- This report’s figure generator: `tasks/early-studies/panda-manipulation/analysis/summarize_panda_and_pinch.py`
 - Existing videos: `exp-results/panda-pick/mujoco/panda-pick.mp4`、`exp-results/panda-pick/sap/*.mp4`、`exp-results/pinch-grasp/mujoco/videos/*.mp4`
 
 ---

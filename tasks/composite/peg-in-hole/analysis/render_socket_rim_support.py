@@ -12,6 +12,10 @@ Per cell, one mp4 (+ a key-frame png) with two columns (SAP | MuJoCo) and three 
   3. Tilt(t) of both engines and the support margin (CoM x' minus the polygon's inner edge at the CoM's y').
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -30,7 +34,7 @@ from matplotlib.path import Path as MPath  # noqa: E402
 
 plt.rcParams["font.family"] = ["PingFang SC", "Arial Unicode MS", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = REPO_ROOT
 ASSETS = ROOT / "assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 R_VERT, N_SEG, Z_RIM, PEG_HALF, PEG_W = 12.058063, 32, 40.0, 25.0, 0.08 * 9.81   # mm; weight in N

@@ -7,6 +7,10 @@ R_BORE everywhere (the inner corners lie at R_BORE / cos(pi/N)).  Writes triangu
 and verifies convexity, the inscribed bore, and the feasibility of each declared peg radius.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import argparse
 import json
@@ -80,7 +84,7 @@ def verify(out: Path, clearances_mm):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "assets/round_socket_exact")
+    ap.add_argument("--out", type=Path, default=REPO_ROOT / "assets/round_socket_exact")
     a = ap.parse_args()
     files = build(a.out)
     rep = verify(a.out, [0.5, 1.0, 2.0, 3.0]); rep["files"] = files

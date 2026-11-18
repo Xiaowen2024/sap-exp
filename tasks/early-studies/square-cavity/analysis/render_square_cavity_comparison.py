@@ -5,6 +5,10 @@ analytic MuJoCo visual model only to render the recorded SAP body poses; it
 does not run MuJoCo contact dynamics for the SAP pane.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import csv
 from pathlib import Path
 import imageio.v3 as iio
@@ -12,7 +16,7 @@ import mujoco
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=REPO_ROOT
 SAP_TRACE=ROOT/'exp-results/peg-in-hole/sap-square-cavity-gap-diagnostics/square_offset_1mm_gap_0.1mm_trace.csv'
 OUT=ROOT/'exp-results/site-video-demos/08_square_cavity_offset_labelled.mp4'
 DT=.0005

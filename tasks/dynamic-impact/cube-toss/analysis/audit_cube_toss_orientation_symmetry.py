@@ -12,6 +12,10 @@ MuJoCo Warp / SAP Warp R=20 artifacts, which must be regenerated with final
 quaternions saved.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 
 import json
 import sys
@@ -19,8 +23,8 @@ from pathlib import Path
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+ROOT = REPO_ROOT
+sys.path.insert(0, str(ROOT / "common"))
 from cube_orientation_metrics import _self_test, cube_symmetric_qangle, raw_qangle  # noqa: E402
 from run_dynamic_impact_cube_budget import SRC, make_model, simulate  # noqa: E402
 

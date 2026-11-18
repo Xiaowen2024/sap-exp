@@ -2,7 +2,7 @@
 
 Uses Genesis 1.4.6 (SAP requires precision=64), the same runtime as the Genesis Rigid and IPC comparisons. Applies UNIFIED-B5-SOP.md: literal-default B1, five predeclared candidates, unchanged task selection and held-out conditions, R=20, original gates and seeds. Seven primary contact tasks match the IPC a3 main comparison. Ball bounce remains excluded as in that comparison. Socket is a separately reported draft task and cannot be pooled with the primary results.
 
-Registry: `manifests/genesis_sap_rerun.json`. Adapter: `../scripts/genesis/genesis_sap_common.py`. Runners: `../scripts/genesis/run_*_genesis_sap.py`.
+Registry: `protocol/manifests/genesis_sap_rerun.json`. Adapter: `engines/genesis/genesis_sap_common.py`. Runners: `tasks/<family>/<task>/genesis/run_*_genesis_sap.py`.
 
 ## Physical and numerical alignment
 

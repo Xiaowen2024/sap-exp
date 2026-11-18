@@ -70,5 +70,5 @@ kinetic-friction validation without an additional sliding-phase normal gate.
 
 - MuJoCo runner: `mujoco-sim/learn_mujoco/friction_experiments/run_free_sliding_block.py`
 - SAP runner: `sap-sim/scripts/run_free_sliding_block.py`
-- Renderer: `scripts/summarize_kinetic_friction.py`
+- Renderer: `tasks/early-studies/kinetic-friction/analysis/summarize_kinetic_friction.py`
 - Raw traces and JSON/CSV: `exp-results/kinetic-friction/`

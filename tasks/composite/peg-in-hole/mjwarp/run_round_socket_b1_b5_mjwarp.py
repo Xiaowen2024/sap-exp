@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Strict B=1/B=5, R=20 MuJoCo Warp round peg--socket evaluation."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "common" / "paths.py").is_file())))
+from common.paths import REPO_ROOT  # noqa: E402  (also puts shared module folders on sys.path)
 import json, re, time
 from pathlib import Path
 import mujoco, mujoco_warp as mjw, warp as wp
 import numpy as np
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=REPO_ROOT
 OUT=ROOT/'exp-results/protocol-v2-native-default/composite-v1/round-socket/mujoco_warp'
 ASSET=ROOT/'assets/round_socket_collision'
 R,T,SEED,NCON=20,2.,20261029,8192
