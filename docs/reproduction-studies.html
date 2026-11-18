@@ -50,7 +50,9 @@
         <p class="nav-label">Contents</p>
         <ol>
           <li><a href="#summary">本页结论</a></li>
-          <li><a href="#atomic">1. 原子能力</a></li>
+          <li><a href="#atomic">1. 原子能力</a>
+            <ol><li><a href="#atomic-socket">Round socket 调参后</a></li><li><a href="#atomic-regression">Newton Convex 的影响</a></li><li><a href="#atomic-genesis-sap">Genesis SAP coupler</a></li></ol>
+          </li>
           <li><a href="#composite">2. 复合任务</a></li>
           <li><a href="#stack-bowls">RoboDojo · 叠碗</a>
             <ol><li><a href="#videos">视频对照</a></li><li><a href="#design">实验设计</a></li><li><a href="#iterations">调试与参数冻结</a></li><li><a href="#results">结果与区分度</a></li><li><a href="#legacy-sap">旧 SAP 也能 work</a></li><li><a href="#sources">来源与数据</a></li></ol>
@@ -86,15 +88,57 @@
 
       <section id="summary" class="report-section">
         <h2>本页结论</h2>
-        <div class="callout"><p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
+        <div class="callout"><p><strong>原子能力（2026-11-18 新增）：round socket 按迭代调参后，SAP（Newton Convex）从 69% 提高到 92%，MuJoCo 从 85% 提高到 96%，Genesis IPC 为 97%。</strong>SAP 剩下的失败是余量最小的孔沿支撑，属于碰撞几何的局限。新碰撞路径没有让其他原子任务退化。Genesis 的 SAP coupler 在 7 个原子任务上全部排在最后，three-plate 崩溃、slope 粘住不滑、推力和夹持力误差很大，而且求解不收敛。详见<a href="#atomic">第 1 节</a>。</p>
+        <p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
       <section id="atomic" class="report-section">
-        <h2>1. 原子能力 <span class="study-label">本次无新增结果</span></h2>
-        <p>用于隔离摩擦、支撑、碰撞等单一机制。本部分保留为后续原子实验入口；已有基础实验见 <a href="index.html">Part I</a> 和 <a href="mechanism-eval.html">Part III</a>。本次新增的是下面的复合任务。</p>
+        <h2>1. 原子能力 <span class="study-label">2026-11-18 更新</span></h2>
+        <p>用于隔离摩擦、支撑、碰撞等单一机制。任务、标签和评分沿用 <a href="index.html">Part I</a> 和 <a href="mechanism-eval.html">Part III</a>，那里已有详细说明，这里只记录本次的新结果。和之前相比有三点不同：</p>
+        <ul>
+          <li><strong>SAP 换用 Newton Convex 碰撞路径</strong>（<code>2325082</code>）。它修复了 round socket 孔口支撑问题中的接触点去重容差和 MPR 距离偏差。</li>
+          <li><strong>不再预先声明候选参数。</strong>每个引擎最多调 5 轮，每轮只根据上一轮的失败修改引擎数值参数。dt、几何、质量、μ、seed 和标签这些物理设定不变。</li>
+          <li><strong>加入 Genesis 的 SAP coupler（hydroelastic）</strong>作为对照。</li>
+        </ul>
+
+        <article id="atomic-socket" class="study-subsection">
+          <h3>1.1 Round socket · 迭代调参后的结果</h3>
+          <p>比较范围是 46 个带标签的冻结条件，每个条件 8 个 rollout，seed 和评分完全相同。调参只用每个条件 3 个 rollout，选出最好的一轮后再用 R=8 跑一遍。<strong>参数是在同一批条件上调出来的，所以这代表各引擎能达到的最好水平，不代表泛化能力。</strong></p>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>版本</th><th>正确 / 不稳定 / 错误</th><th>正确 rollout</th></tr></thead><tbody>
+            <tr><td>SAP 旧碰撞路径，v8 B5（ke 57255，gap 0.1 mm）</td><td>31 / 1 / 14</td><td>69.0%</td></tr>
+            <tr><td>SAP Newton Convex，沿用旧参数</td><td>33 / 5 / 8</td><td>76.9%</td></tr>
+            <tr><td><strong>SAP Newton Convex，调参后</strong>（ke 1e7，tau 5 ms，gap 0）</td><td><strong>40 / 3 / 3</strong></td><td><strong>92.4%</strong></td></tr>
+            <tr><td>MuJoCo Warp 4.0，v9 B5（solref 2.02 ms）</td><td>38 / 3 / 5</td><td>85.1%</td></tr>
+            <tr><td><strong>MuJoCo Warp 4.0，调参后</strong>（solref 1 ms = 2dt，elliptic，Newton，impratio 100）</td><td><strong>42 / 3 / 1</strong></td><td><strong>95.9%</strong></td></tr>
+            <tr><td>Genesis IPC，v9 B5（d_hat 0.01 mm，未重新调参）</td><td>44 / 1 / 1</td><td>97.3%</td></tr>
+          </tbody></table></div>
+          <ul>
+            <li><strong>SAP：</strong>从 69% 提高到 92%。约 8 个百分点来自新的碰撞路径，约 15 个百分点来自调参，主要是把默认的软接触（ke 2500）调硬，并去掉 0.1 mm 的 gap（它正好等于最小间隙）。剩下的失败集中在余量最小的孔沿支撑条件（×1.10），刚度、阻尼、摩擦正则化和 gap 都改变不了它们，判断是碰撞几何近似造成的。</li>
+            <li><strong>MuJoCo：</strong>从 85% 提高到 96%。剩下的难点是 1.0 mm 间隙下的浅楔夹持，peg 每次都滑进去坐到底，加 noslip 也没有改善。</li>
+          </ul>
+        </article>
+
+        <article id="atomic-regression" class="study-subsection">
+          <h3>1.2 Newton Convex 对其他原子任务的影响</h3>
+          <p>其他任务沿用各自之前冻结的 SAP B5 参数，只换碰撞路径，结果没有退化：simple-pinch 380/380，three-box 500/500，three-plate 240/240，Newton's cradle 的 8 个条件数值完全相同。也就是说，碰撞路径的修复只改变了 round socket 这类依赖孔沿几何的接触。</p>
+        </article>
+
+        <article id="atomic-genesis-sap" class="study-subsection">
+          <h3>1.3 Genesis SAP coupler（hydroelastic）</h3>
+          <p>它和 SAP Warp 同属 Drake SAP 算法，但实现不同：hydroelastic 四面体接触，强制 fp64，迭代次数固定、收敛后也不会提前退出。它比 SAP Warp 慢 10–60 倍，所以只跑了 7 个原子任务的选择阶段（5 个候选），发现问题就停。<strong>结果是 7 个任务全部排在最后：</strong></p>
+          <ul>
+            <li><strong>three-plate：</strong>接触检测时 CUDA 越界崩溃，原版 Genesis 用单环境也一样。</li>
+            <li><strong>GAUGE slope：</strong>滑块粘住不动，真实数据滑了 0.46 m，它只滑了 0–0.013 m。刚度 1e9 时会发散。</li>
+            <li><strong>MIT push：</strong>推杆受力误差 16.7 N，其他引擎为 0.9–1.4 N。</li>
+            <li><strong>simple-pinch：</strong>预载误差 19% 到 576%，其他引擎都不超过 0.1%。</li>
+            <li><strong>cube tail：</strong>640 个 rollout 一个都静止不下来。</li>
+            <li><strong>收敛：</strong>即使给到 20 次迭代，70–86% 的步仍然不收敛，而且不报警。</li>
+          </ul>
+          <p>作为对照，Genesis Rigid 用同一套 Genesis 场景搭建代码，这些任务都正常，所以问题出在 SAP coupler 本身。复合任务方面，<a href="#dish-rack">RH20T 盘子放上碗架</a>的完整任务上，Genesis SAP 5 轮调参全部失败：盘子在手中滑移 36–65 mm 后侧翻，接触刚度从 1e8 一直提高到 1e11 也没有改善。</p>
+        </article>
       </section>
 
       <section id="composite" class="report-section">
