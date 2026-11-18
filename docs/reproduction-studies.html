@@ -94,7 +94,7 @@
 
       <section id="summary" class="report-section">
         <h2>本页结论</h2>
-        <div class="callout"><p><strong>原子能力（11-03 至 11-18）：修复两个 bug 之后，SAP 在接触稳定性（three-plate）、冲击轨迹（cube toss）和推物（MIT push）上最好，在弹跳和能量守恒上不如 MuJoCo。</strong>本次新增的 Genesis IPC 不穿透做得最好，round socket 上也最高（97%），但 barrier 间隙使它在 cube tail 上全部失败。新增的 Genesis SAP coupler 在 7 个任务上全部排在最后。round socket 改为按问题迭代调参后，SAP（Newton Convex）从 69% 提高到 92%，MuJoCo 从 85% 提高到 96%；SAP 剩下的失败是余量最小的孔沿支撑，属于碰撞几何的局限。详见<a href="#atomic">第 1 节</a>。</p>
+        <div class="callout"><p><strong>原子能力（11-03 至 11-18）：SAP 在接触稳定性和摩擦主导的任务上最好或并列最好，代表任务是 three-plate、cube-toss 和 MIT push；小步长弹跳、理想单摆的能量守恒和 round socket 则不如 MuJoCo。</strong>与 MuJoCo Warp 4.0、Genesis Rigid 和 Genesis IPC 的逐项对比见<a href="#atomic-all">总表</a>。Round socket v9 冻结参数下，SAP 原版为 69.0%，换 Newton Convex 后为 76.9%，仍低于 MuJoCo 的 85.1% 和 IPC 的 97.3%；按问题迭代调参后，SAP 为 92.4%、MuJoCo 为 95.9%，这组结果另列于 <a href="#atomic-socket">1.1</a>。IPC 不穿透最好，但继承的 barrier 间隙使它在 cube-tail 上全部失败。</p>
         <p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。<strong>同一带关节夹爪场景中，旧 SAP legacy 碰撞路径也能完成抓取、搬运和叠放；该任务尚未显示出必须更新碰撞后端才能 work 的收益。</strong></p>
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
@@ -110,38 +110,35 @@
           <li><strong>SAP 修复了两个 bug，并重跑了全部任务。</strong>bug A 只在 CPU 上出现，部分物体没有受到重力；bug B 会把已收敛 world 的接触力读数清零。之前有几条 SAP 结论其实是这两个 bug 造成的，已经撤回。现在跑 SAP 前必须先通过 preflight。</li>
           <li><strong>新增两个引擎：Genesis IPC 和 Genesis SAP coupler。</strong>同时加入 Genesis Rigid，它和这两个引擎用同一套场景搭建代码，可以作为对照。</li>
           <li><strong>SAP 换用 Newton Convex 碰撞路径</strong>（<code>2325082</code>）。它修复了 round socket 孔口支撑问题的根因：接触点去重容差过大，以及 MPR 距离偏差。</li>
-          <li><strong>不再预先声明候选参数</strong>，目前只在 round socket 上这样做。每个引擎最多调 5 轮，每轮只根据上一轮的失败修改引擎的数值参数；dt、几何、质量、μ、seed 和标签都不变。</li>
+          <li><strong>Round socket 分开报告冻结 B5 与迭代调参。</strong>总表使用冻结参数的结果；<a href="#atomic-socket">1.1</a> 另报按问题调参的结果，每个引擎最多调 5 轮，每轮只根据上一轮的失败修改数值参数，dt、几何、质量、μ、seed 和标签都不变。</li>
         </ul>
 
         <article id="atomic-all" class="study-subsection">
-          <h3>1.0 所有原子任务总览</h3>
-          <p>每个任务都用同一份 manifest，也就是相同的条件、seed、R 和评分代码，各引擎用自己冻结的 B5 参数在 held-out 矩阵上计分。"通过"类指标越高越好，loss 和误差类指标越低越好。Genesis SAP 只跑了选择阶段，它那一列是选择格上的结果，不能直接和其他列的 held-out 数值比较。</p>
-          <div class="table-wrap"><table class="data-table"><thead><tr><th>任务（指标）</th><th>SAP Warp</th><th>MuJoCo Warp 4.0</th><th>Genesis Rigid</th><th>Genesis IPC <span class="study-label">新增</span></th><th>Genesis SAP* <span class="study-label">新增</span></th><th>小结</th></tr></thead><tbody>
-            <tr><td>Three-plate 叠板（通过 / 240）</td><td><strong>240</strong></td><td>112</td><td>224</td><td>220</td><td>崩溃</td><td>SAP 最稳；MuJoCo 主要超出板间重叠门限，其次是静止和载荷门限</td></tr>
-            <tr><td>Three-box 推箱（正确 / 500）</td><td><strong>500</strong></td><td>490</td><td><strong>500</strong></td><td><strong>500</strong></td><td>20/40</td><td>前四者基本持平；SAP 和 MuJoCo 的保持蠕变最小</td></tr>
-            <tr><td>Simple pinch 夹持（正确 / 380）</td><td><strong>380</strong></td><td><strong>380</strong></td><td><strong>380</strong></td><td><strong>380</strong></td><td>18/40</td><td>前四者全对；Genesis SAP 预载误差 19–576%</td></tr>
-            <tr><td>Cube toss 抛方块（loss ↓）</td><td><strong>0.033</strong></td><td>0.051</td><td>0.052</td><td>0.042</td><td>0.070</td><td>SAP 最接近真实轨迹</td></tr>
-            <tr><td>Cube tail 静置（通过 / 5760）</td><td><strong>5760</strong></td><td><strong>5760</strong></td><td><strong>5760</strong></td><td>0</td><td>0/640</td><td>IPC 静止时悬空约 9 mm（barrier 间隙）；Genesis SAP 停不下来</td></tr>
-            <tr><td>GAUGE slope 斜面滑块（RMSE m ↓）</td><td>0.0171</td><td>0.0162</td><td><strong>0.0161</strong></td><td>0.0184</td><td>约 15× loss</td><td>前四者接近；Genesis SAP 粘住不滑</td></tr>
-            <tr><td>MIT push 推物（loss ↓）</td><td><strong>0.0074</strong></td><td>0.0149</td><td>0.0165</td><td>0.0077</td><td>约 3× loss</td><td>SAP 和 IPC 最好；Genesis SAP 推力误差 16.7 N</td></tr>
-            <tr><td>Ball bounce v2 弹球，dt 1/180（loss ↓）</td><td><strong>0.165</strong>（7/8 有效）</td><td>0.366</td><td>0.328</td><td>未跑</td><td>未跑</td><td>大步长下 SAP 最好</td></tr>
-            <tr><td>Ball bounce v3 弹球，dt 1/900（loss ↓）</td><td>0.269</td><td><strong>0.076</strong></td><td>0.078</td><td>未跑</td><td>未跑</td><td>小步长下 MuJoCo 和 Rigid 更好</td></tr>
-            <tr><td>Pendulum 理想单摆（能量漂移 ↓）</td><td>1.5e-3</td><td><strong>5.0e-6</strong></td><td>1.5e-3</td><td>—</td><td>—</td><td>MuJoCo 积分器守恒最好</td></tr>
-            <tr><td>Pendulum GAUGE 真实单摆</td><td>1.029</td><td>1.029</td><td>1.029</td><td>—</td><td>—</td><td>各引擎一致，无区分度</td></tr>
-            <tr><td>Round socket v9 圆孔插销（46 个带标签冻结条件，正确 rollout / 368）</td><td>254（69.0%）<br><span style="color:var(--muted);font-size:12px">Newton Convex：283（76.9%）</span></td><td>313（85.1%）</td><td>—</td><td><strong>358（97.3%）</strong></td><td>未跑</td><td>SAP 最差，主要失败在孔沿支撑（碰撞几何）；换 Newton Convex 后提高 8 个百分点。按问题调参后 SAP 92.4%、MuJoCo 95.9%（见 1.1，非泛化）</td></tr>
-            <tr><td>不穿透诊断：重物堆叠，质量比 1000（穿透 mm）</td><td>0.72 / 1.18</td><td>2.21 / 2.21</td><td>—</td><td><strong>悬空 0.08</strong></td><td>—</td><td>IPC 完全不穿透；SAP 的穿透约为 MuJoCo 的 1/3</td></tr>
-            <tr><td>不穿透诊断：高速撞 2 mm 薄墙，1–20 m/s</td><td>全部挡住</td><td>全部穿过（默认参数）</td><td>—</td><td><strong>全部挡住并反弹</strong></td><td>—</td><td>IPC > SAP > MuJoCo</td></tr>
-            <tr><td>软垫夹取 smoke（健康配置数 / 5）</td><td><strong>5</strong></td><td>4</td><td>—</td><td>1</td><td>—</td><td>三个引擎都有可用配置；只验证能跑通，不评估精度</td></tr>
+          <h3>1.0 结论：SAP 与 MuJoCo Warp 4.0、Genesis Rigid、Genesis IPC 的对比</h3>
+          <p>以 SAP 为主体，依次列出 SAP 占优、基本持平和表现较弱的任务。除单独标注的 round socket v6 历史结果外，每个任务使用同一份 manifest、条件、seed、R 和评分代码，各引擎用各自冻结的 B5 参数计分。通过数和正确数越高越好，loss、误差和能量漂移越低越好；round socket v9 草案单独报告 46 个有标签条件，不与 v6 合并。Genesis SAP coupler 的选择阶段诊断见 <a href="#atomic-genesis-sap">1.4</a>。</p>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">任务</th><th scope="col">指标</th><th scope="col">SAP</th><th scope="col">MuJoCo Warp 4.0</th><th scope="col">Genesis Rigid</th><th scope="col">Genesis IPC</th><th scope="col">以 SAP 为主体的结论</th></tr></thead><tbody>
+            <tr><td><strong>Three-plate 叠板</strong></td><td>通过数</td><td><strong>240/240</strong></td><td>112/240</td><td>224/240</td><td>220/240</td><td><strong>SAP 最好</strong>，唯一满分；MuJoCo 不到一半</td></tr>
+            <tr><td><strong>Cube-toss 抛方块</strong></td><td>loss ↓</td><td><strong>0.033</strong></td><td>0.051</td><td>0.052</td><td>0.042</td><td><strong>SAP 最好</strong>，比 MuJoCo 和 Rigid 低约 35%</td></tr>
+            <tr><td><strong>MIT push 推物体</strong></td><td>loss ↓</td><td><strong>0.0074</strong></td><td>0.0149</td><td>0.0165</td><td>0.0077</td><td><strong>SAP 最好</strong>，和 IPC 相当，误差约为 MuJoCo 和 Rigid 的一半</td></tr>
+            <tr><td>Ball bounce 弹球，dt 1/180 s</td><td>loss ↓</td><td><strong>0.165</strong>（8 格中 7 格有效）</td><td>0.366</td><td>0.328</td><td>未跑</td><td>SAP 更好，但有 1 格无效</td></tr>
+            <tr><td>Three-box 推箱</td><td>有效且正确</td><td>500/500</td><td>490/500</td><td>500/500</td><td>500/500</td><td>SAP 与 Rigid、IPC 持平；只有 MuJoCo 丢了 10 个</td></tr>
+            <tr><td>Simple-pinch 夹取</td><td>正确数</td><td>380/380</td><td>380/380</td><td>380/380</td><td>380/380</td><td>全部满分，<strong>区分不出引擎</strong></td></tr>
+            <tr><td>Cube-tail 方块静止段</td><td>正确数</td><td>5760/5760</td><td>5760/5760</td><td>5760/5760</td><td>0/5760</td><td>SAP 与 MuJoCo、Rigid 持平。IPC 的 0 是因为它继承了 cube-toss 的配置，静止时悬空约 9 mm</td></tr>
+            <tr><td>GAUGE slope 斜面滑块</td><td>轨迹 RMSE ↓</td><td>0.0171 m</td><td>0.0162 m</td><td>0.0161 m</td><td>0.0184 m</td><td>四个引擎很接近，SAP 排第三，与 MuJoCo 和 Rigid 的差距约 1 mm</td></tr>
+            <tr><td>单摆 GAUGE（真实数据）</td><td>误差 ↓</td><td>1.029</td><td>1.029</td><td>1.029</td><td>—</td><td>完全相同，<strong>区分不出引擎</strong></td></tr>
+            <tr><td><strong>Ball bounce 弹球，dt 1/900 s</strong></td><td>loss ↓</td><td>0.269</td><td><strong>0.076</strong></td><td>0.078</td><td>未跑</td><td><strong>SAP 明显最差</strong>，约为 MuJoCo 的 3.5 倍</td></tr>
+            <tr><td><strong>Pendulum v2（理想化单摆）</strong></td><td>能量漂移 ↓</td><td>1.5e-3</td><td><strong>5e-6</strong></td><td>1.5e-3</td><td>—</td><td><strong>SAP 更差</strong>，但这是积分器的差别：MuJoCo 用的是 RK4；Rigid 和 SAP 一样</td></tr>
+            <tr><td><strong>Round socket 插孔</strong></td><td>v6：正确 rollout</td><td>560/680</td><td>680/680</td><td>—</td><td>—</td><td><strong>SAP 更差</strong>：放在孔口边缘的条件只有 40/160 站住</td></tr>
+            <tr><td><strong>Round socket 插孔</strong></td><td>v9 草案：46 个有标签条件（368 个 rollout）</td><td>69.0% → 76.9%（新 Newton Convex）</td><td>85.1%</td><td>—</td><td>97.3%</td><td>SAP 原版最差；换了新 Newton Convex 后有提升，仍低于 MuJoCo 和 IPC</td></tr>
           </tbody></table></div>
-          <p>* Genesis SAP coupler 只跑了选择阶段（5 个候选），表中是选择格上的结果，理由见 1.4。两项不穿透诊断是一次性探测，每个引擎用一套事先定好的参数，没有调参；MuJoCo 撞墙用的是默认参数。</p>
-          <p><strong>总体：</strong></p>
-          <ul>
-            <li>SAP Warp 在静态支撑和堆叠（three-plate）、冲击轨迹（cube toss）和推物（MIT push）上最好。</li>
-            <li>MuJoCo 在小步长弹跳和能量守恒上更好。</li>
-            <li>静摩擦保持类任务（three-box、pinch）前四个引擎基本持平。</li>
-            <li>IPC 不穿透最好，round socket 上也最高；但 barrier 留下的间隙让它在 cube tail 上全部没过 standoff 门限。</li>
-            <li>Genesis SAP 在每一项上都最差。</li>
-          </ul>
+          <p class="scope-line">Round socket v9 的 69.0% / 76.9% / 85.1% / 97.3% 分别对应 254 / 283 / 313 / 358 个正确 rollout（总数均为 368）。按问题迭代调参后的 SAP 92.4%、MuJoCo 95.9% 另列于 <a href="#atomic-socket">1.1</a>，不作为冻结参数的泛化结果。</p>
+          <h4>三句话总结</h4>
+          <ol>
+            <li><strong>SAP 强在接触稳定性和摩擦主导的任务：</strong>叠放（three-plate）、抛掷后的滑动和翻滚（cube-toss）、推动（MIT push）上都是最好或并列最好；不穿透诊断里 SAP 的穿透约为 MuJoCo 的 1/3，只输给 IPC。</li>
+            <li><strong>SAP 弱在碰撞反弹和紧间隙下的边缘支撑：</strong>dt 1/900 s 的 bounce 中，已测试的候选参数都达不到真实恢复系数 e≈0.7，SAP 还会忽略 <code>restitution</code> 字段；round socket 则有碰撞检测 bug，接触点被错误合并，新 Newton Convex 修好了一部分，剩下的失败集中在余量最小的条件。</li>
+            <li><strong>SAP 的优势取决于任务和指标：</strong>three-box、simple-pinch、cube-tail 和真实单摆未拉开 SAP 与主要对照引擎的差距，斜面轨迹误差也很接近，而理想单摆的能量守恒不如使用 RK4 的 MuJoCo。</li>
+          </ol>
+          <p class="scope-line">补充诊断：重物堆叠（质量比 1000）中，SAP 穿透为 0.72 / 1.18 mm，MuJoCo 为 2.21 / 2.21 mm，IPC 悬空 0.08 mm；高速撞 2 mm 薄墙（1–20 m/s）时 SAP 全部挡住，默认参数的 MuJoCo 全部穿过，IPC 全部挡住并反弹。两项均为单套预定参数的一次性探测。软垫夹取 smoke 的健康配置数为 SAP 5/5、MuJoCo 4/5、IPC 1/5，只验证能跑通，不评估精度。</p>
         </article>
 
         <article id="atomic-socket" class="study-subsection">
