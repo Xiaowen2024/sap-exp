@@ -1,0 +1,320 @@
+{
+  "standard": "sim_protocol/robodojo-stack-bowls-evaluation-v1.md",
+  "mode": "existing_only_no_simulation",
+  "episode": "stack_bowls/episode_0000000",
+  "R": 1,
+  "input_hashes": {
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/summary.json": "6c247e60ce39fe35b054837426418aeac5c5777586404bb3b435aadd9f5e6390",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/baselines/mujoco_objects_r3/trace.npz": "44779e8ce8496243977b36c6bbf85c1f22aa15741f2b3c2f641ef24131ce1545",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/baselines/mujoco_objects_r3/health.json": "8eb5dc82cd08fd15c48c12ec982760a0df91eeb9b820859f2060b31e34e6feea",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/baselines/mujoco_objects_r3/input_scene.json": "3196a982729fb2ec97120fffc2bd31860afbf827b2a9eaece31a50d924859408",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/runs/sap_objects_r3_newton/trace.npz": "931ddac9901a3c62c7c80008c24a600e363f64e4b3948969a6398f8406b46e4e",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/runs/sap_objects_r3_newton/health.json": "55035f696d78f7f7b6e138af22a8bab4bc5a484d04071f05b0d1dfc32c8a6629",
+    "exp-results/robodojo-playback-pilot/sap-newton-rerun/artifacts/runs/sap_objects_r3_newton/input_scene.json": "3196a982729fb2ec97120fffc2bd31860afbf827b2a9eaece31a50d924859408"
+  },
+  "state_dt_s": 0.01,
+  "windows_s": {
+    "source_final": [
+      9.06,
+      9.56
+    ],
+    "appended_tail": [
+      10.06,
+      10.56
+    ]
+  },
+  "physical_fidelity": {
+    "object_trajectory_error": null,
+    "final_pose_error": null,
+    "valid_object_frames": 0,
+    "total_object_frames": 720,
+    "final_valid_objects": 0,
+    "total_objects": 3,
+    "reference_kind": "estimated reference, not exact ground truth",
+    "reference_method": "source-only visual feasibility audit; no accepted quantitative 3D fit",
+    "reference_uncertainty": null,
+    "visibility": "three camera views at 7 timestamps plus full head video; upper bowl and some carried phases observable; lower bowls occluded after nesting",
+    "reason": "recorded HDF5 has no object poses; reliable estimated positions/axes with uncertainty not yet available"
+  },
+  "runs": {
+    "mujoco": {
+      "native_health": {
+        "finite": true,
+        "steps": 10560,
+        "expected_steps": 10560
+      },
+      "settling": {
+        "source_final": {
+          "bowl0": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.034177261664390134,
+            "angular_rms_rad_s": 0.0010858216451951914,
+            "linear_peak_mm_s": 0.03643919054832048,
+            "angular_peak_rad_s": 0.0011323331869666983,
+            "com_net_drift_mm": 0.017085412794826626,
+            "com_path_length_mm": 0.01708631862213296,
+            "tilt_peak_to_peak_deg": 0.0005254030832874401,
+            "final_tilt_deg": 0.09965655572255722
+          },
+          "bowl1": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.9804441035092057,
+            "angular_rms_rad_s": 0.01995145070668599,
+            "linear_peak_mm_s": 1.002244476520905,
+            "angular_peak_rad_s": 0.021695622150107993,
+            "com_net_drift_mm": 0.4894336401767665,
+            "com_path_length_mm": 0.4902447459117843,
+            "tilt_peak_to_peak_deg": 0.5118289355627077,
+            "final_tilt_deg": 16.54078020613839
+          },
+          "bowl2": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.32691527405419474,
+            "angular_rms_rad_s": 0.006460759058458759,
+            "linear_peak_mm_s": 0.37676013883238707,
+            "angular_peak_rad_s": 0.010982053300111923,
+            "com_net_drift_mm": 0.16235854749148085,
+            "com_path_length_mm": 0.16322867130357616,
+            "tilt_peak_to_peak_deg": 0.11852918492538755,
+            "final_tilt_deg": 1.2809218103139695
+          }
+        },
+        "appended_tail": {
+          "bowl0": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.03364405482293177,
+            "angular_rms_rad_s": 0.0010768583646644282,
+            "linear_peak_mm_s": 0.03383616009309518,
+            "angular_peak_rad_s": 0.0011044385944628632,
+            "com_net_drift_mm": 0.016822236549994523,
+            "com_path_length_mm": 0.01682239789325395,
+            "tilt_peak_to_peak_deg": 0.0005443233525392471,
+            "final_tilt_deg": 0.10072712582985881
+          },
+          "bowl1": {
+            "samples": 51,
+            "linear_rms_mm_s": 1.0883770491913156,
+            "angular_rms_rad_s": 0.02235543274910403,
+            "linear_peak_mm_s": 1.31212378350296,
+            "angular_peak_rad_s": 0.030299912578532838,
+            "com_net_drift_mm": 0.5395534402718308,
+            "com_path_length_mm": 0.5412048090567063,
+            "tilt_peak_to_peak_deg": 0.5328158750366416,
+            "final_tilt_deg": 15.473478095826932
+          },
+          "bowl2": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.2798245632633512,
+            "angular_rms_rad_s": 0.005153844172057903,
+            "linear_peak_mm_s": 0.30598203768994725,
+            "angular_peak_rad_s": 0.005769961703118982,
+            "com_net_drift_mm": 0.13977555323298524,
+            "com_path_length_mm": 0.13984818641509658,
+            "tilt_peak_to_peak_deg": 0.04218032342453992,
+            "final_tilt_deg": 1.1660408124788137
+          }
+        }
+      },
+      "geometry": {
+        "kind": "common sampled final-pose convex-union interior depth lower bound",
+        "time_s": 10.56,
+        "evaluated_frames": 1,
+        "total_saved_frames": 1057,
+        "sampled_vertices_per_bowl": 1024,
+        "sample_rng_seed": 20261117,
+        "pair_depth_lower_bound_mm": {
+          "bowl0/bowl1": 0.0,
+          "bowl0/bowl2": 0.0540228929354139,
+          "bowl1/bowl2": 0.030539496481678252,
+          "bowl0/table": 0.0894897782532933,
+          "bowl1/table": 0.0,
+          "bowl2/table": 0.0
+        },
+        "max_sampled_depth_lower_bound_mm": 0.0894897782532933,
+        "whole_trajectory_geometric_maximum_mm": null,
+        "local_wall_thickness_mm": null,
+        "wall_bottom_crossing_audit": null,
+        "native_reported_peak_contact_overlap_mm": 2.0110431291633173,
+        "native_peak_caveat": "different native observers; do not treat as the common geometric metric"
+      },
+      "contact_continuity": {
+        "status": "not_evaluated",
+        "contact_duty": null,
+        "longest_interruption_s": null,
+        "reason": "no paired, validated body-pair time series in the frozen comparison"
+      },
+      "outcome": {
+        "reference_observed_stack_maintained": true,
+        "sim_observed_stack_maintained": true,
+        "observed_outcome_agreement": true,
+        "observed_window_s": [
+          9.06,
+          9.56
+        ],
+        "evidence": "reference multiview keyframes and recorded-state comparison video; no 10-degree cutoff",
+        "valid_success": null,
+        "valid_outcome_agreement": null,
+        "false_success": null,
+        "false_failure": null,
+        "validity_reason": "local wall-thickness/severe penetration and full support exclusion audit incomplete; visible agreement is provisional"
+      }
+    },
+    "sap_newton": {
+      "native_health": {
+        "finite": true,
+        "steps": 10560,
+        "expected_steps": 10560
+      },
+      "settling": {
+        "source_final": {
+          "bowl0": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.02983090006434166,
+            "angular_rms_rad_s": 0.0009999269057642246,
+            "linear_peak_mm_s": 0.19489810974427058,
+            "angular_peak_rad_s": 0.007052973535531621,
+            "com_net_drift_mm": 0.00012038222426218186,
+            "com_path_length_mm": 0.0011782903888030805,
+            "tilt_peak_to_peak_deg": 0.001191640717798953,
+            "final_tilt_deg": 0.06381225462699146
+          },
+          "bowl1": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.0687383600832905,
+            "angular_rms_rad_s": 0.0010821659939434102,
+            "linear_peak_mm_s": 0.41362995170634936,
+            "angular_peak_rad_s": 0.006958164587672901,
+            "com_net_drift_mm": 0.029008223436590288,
+            "com_path_length_mm": 0.033204481949784065,
+            "tilt_peak_to_peak_deg": 0.008162852933331521,
+            "final_tilt_deg": 20.531406317125573
+          },
+          "bowl2": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.05403808208384033,
+            "angular_rms_rad_s": 0.0010878650122638663,
+            "linear_peak_mm_s": 0.2792462789624537,
+            "angular_peak_rad_s": 0.006958963232032361,
+            "com_net_drift_mm": 0.013492360165142932,
+            "com_path_length_mm": 0.018344300540163276,
+            "tilt_peak_to_peak_deg": 0.012320500370286425,
+            "final_tilt_deg": 4.1141489391175945
+          }
+        },
+        "appended_tail": {
+          "bowl0": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.016822818169037197,
+            "angular_rms_rad_s": 0.000627104497907449,
+            "linear_peak_mm_s": 0.11637298354244606,
+            "angular_peak_rad_s": 0.004423074032724962,
+            "com_net_drift_mm": 0.0001201514409696321,
+            "com_path_length_mm": 0.0006973879908724826,
+            "tilt_peak_to_peak_deg": 0.0007022063505081472,
+            "final_tilt_deg": 0.06370740518258045
+          },
+          "bowl1": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.04813490461713019,
+            "angular_rms_rad_s": 0.0007038712214169628,
+            "linear_peak_mm_s": 0.24552358605328503,
+            "angular_peak_rad_s": 0.004375605198484259,
+            "com_net_drift_mm": 0.023074678457246336,
+            "com_path_length_mm": 0.02764286662090518,
+            "tilt_peak_to_peak_deg": 0.007489211658484152,
+            "final_tilt_deg": 20.52033554712803
+          },
+          "bowl2": {
+            "samples": 51,
+            "linear_rms_mm_s": 0.04065070344035149,
+            "angular_rms_rad_s": 0.0007092940640506257,
+            "linear_peak_mm_s": 0.16294740773429542,
+            "angular_peak_rad_s": 0.0043749912559743346,
+            "com_net_drift_mm": 0.010493541873627579,
+            "com_path_length_mm": 0.0149917158893071,
+            "tilt_peak_to_peak_deg": 0.01048737136191047,
+            "final_tilt_deg": 4.09695736218218
+          }
+        }
+      },
+      "geometry": {
+        "kind": "common sampled final-pose convex-union interior depth lower bound",
+        "time_s": 10.56,
+        "evaluated_frames": 1,
+        "total_saved_frames": 1057,
+        "sampled_vertices_per_bowl": 1024,
+        "sample_rng_seed": 20261117,
+        "pair_depth_lower_bound_mm": {
+          "bowl0/bowl1": 0.0,
+          "bowl0/bowl2": 1.576550784795655,
+          "bowl1/bowl2": 0.4657771732880511,
+          "bowl0/table": 0.29949510621118947,
+          "bowl1/table": 0.0,
+          "bowl2/table": 0.0
+        },
+        "max_sampled_depth_lower_bound_mm": 1.576550784795655,
+        "whole_trajectory_geometric_maximum_mm": null,
+        "local_wall_thickness_mm": null,
+        "wall_bottom_crossing_audit": null,
+        "native_reported_peak_contact_overlap_mm": 11.591051705181599,
+        "native_peak_caveat": "different native observers; do not treat as the common geometric metric"
+      },
+      "contact_continuity": {
+        "status": "not_evaluated",
+        "contact_duty": null,
+        "longest_interruption_s": null,
+        "reason": "no paired, validated body-pair time series in the frozen comparison"
+      },
+      "outcome": {
+        "reference_observed_stack_maintained": true,
+        "sim_observed_stack_maintained": true,
+        "observed_outcome_agreement": true,
+        "observed_window_s": [
+          9.06,
+          9.56
+        ],
+        "evidence": "reference multiview keyframes and recorded-state comparison video; no 10-degree cutoff",
+        "valid_success": null,
+        "valid_outcome_agreement": null,
+        "false_success": null,
+        "false_failure": null,
+        "validity_reason": "local wall-thickness/severe penetration and full support exclusion audit incomplete; visible agreement is provisional"
+      }
+    }
+  },
+  "between_engines": {
+    "is_reference_error": false,
+    "window_s": [
+      0.0,
+      9.56
+    ],
+    "objects": {
+      "bowl0": {
+        "center_difference_rms_mm": 0.43334667630753043,
+        "center_difference_max_mm": 2.383765807793431,
+        "center_difference_at_source_end_mm": 0.44378265904486364,
+        "axis_difference_at_source_end_deg": 0.14519974603079353
+      },
+      "bowl1": {
+        "center_difference_rms_mm": 2.222101572247641,
+        "center_difference_max_mm": 5.942078426693668,
+        "center_difference_at_source_end_mm": 1.864834502369151,
+        "axis_difference_at_source_end_deg": 5.104610375833327
+      },
+      "bowl2": {
+        "center_difference_rms_mm": 2.4758971347666474,
+        "center_difference_max_mm": 6.735670179748364,
+        "center_difference_at_source_end_mm": 2.551534265496383,
+        "axis_difference_at_source_end_deg": 4.551190276051551
+      }
+    }
+  },
+  "conclusions": {
+    "reference_fidelity_winner": null,
+    "settling_difference_quantifiable": true,
+    "sampled_final_geometry_difference_quantifiable": true,
+    "task_outcome_separates_engines": false,
+    "success_rate": null,
+    "caveat": "single episode, descriptive comparison; lower speeds and lower sampled penetration alone do not prove closer reproduction"
+  }
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗轨迹回放：官方示范、MuJoCo 与 SAP + Newton Convex 视频对照，实验设计、调试过程和现有评估结果。">
+  <title>Part V · Atomic Capabilities &amp; Composite Tasks</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .study-label{display:inline-block;padding:2px 9px;border:1px solid var(--border);border-radius:3px;color:var(--muted);font-size:11px;vertical-align:middle;margin-left:8px;font-weight:500}
+    .study-overview{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+    .study-overview a{display:block;padding:18px 20px;background:var(--soft);border:1px solid var(--border);border-radius:5px;color:var(--ink)}
+    .study-overview strong{display:block;font-size:16px;margin-bottom:4px}.study-overview span{font-size:13px;color:var(--muted)}
+    .study-note{padding:14px 18px;margin:20px 0;background:var(--note);border-left:3px solid var(--note-border)}.study-note p{margin:0}
+    .study-subsection{margin-top:32px;padding-top:8px}.study-subsection h4{margin-top:22px}
+    .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .video-grid .video-demo video{aspect-ratio:4/3;object-fit:contain}.video-grid .video-demo h4{margin:10px 0 5px;font-size:15px}
+    .playback-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:18px 0 4px}
+    .playback-toolbar button{font:inherit;font-size:12px;font-weight:650;padding:7px 12px;background:var(--paper);border:1px solid var(--border-dark);border-radius:4px;color:var(--ink);cursor:pointer}
+    .playback-toolbar button:hover{border-color:var(--link);color:var(--link)}.playback-toolbar button:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+    .playback-status{font-size:12px;color:var(--muted)}
+    .source-links{display:flex;flex-wrap:wrap;gap:10px 20px;margin:15px 0;font-size:13px}
+    .table-wrap{overflow-x:auto;margin:18px 0 22px}.table-wrap table{margin:0}.table-wrap th,.table-wrap td{font-variant-numeric:tabular-nums}
+    .process-list{padding-left:25px}.process-list li{padding-left:5px;margin:12px 0}.process-list strong{color:var(--ink)}
+    .scope-line{color:var(--muted);font-size:13px}.figure-audit{margin:22px 0}.figure-audit img{width:100%;height:auto;border:1px solid var(--border);border-radius:4px}.figure-audit figcaption{color:var(--muted);font-size:12px;margin-top:8px}
+    details{margin:18px 0;border:1px solid var(--border);border-radius:4px;padding:12px 16px}summary{font-weight:650;cursor:pointer}details p:last-child{margin-bottom:0}
+    .pending{color:var(--muted)}
+    @media(max-width:1080px){.video-grid{grid-template-columns:1fr}.video-grid .video-demo{max-width:640px}.video-grid .video-demo video{width:100%}}
+    @media(max-width:680px){.study-overview{grid-template-columns:1fr;gap:12px}.video-grid{gap:20px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="site-shell">
+    <aside class="sidebar" aria-label="Report navigation">
+      <div class="brand"><a href="#top" class="brand-title">SAP Warp</a><span class="brand-subtitle">× MuJoCo</span></div>
+      <p class="sidebar-description">Contact-rich simulation benchmark</p>
+      <div class="sidebar-page-switch" aria-label="Benchmark pages">
+        <p class="nav-label">Benchmark Pages</p>
+        <div class="sidebar-page-links">
+          <a href="index.html" class="sidebar-page-link">1. Controlled Contact &amp; Manipulation</a>
+          <a href="real-to-sim.html" class="sidebar-page-link">2. GAUGE Real-to-Sim Benchmark</a>
+          <a href="mechanism-eval.html" class="sidebar-page-link">3. Mechanism-Aware Evaluation</a>
+          <a href="progress-2026-11.html" class="sidebar-page-link">4. Progress Update · Nov 2026</a>
+          <a href="reproduction-studies.html" class="sidebar-page-link is-active" aria-current="page">5. Atomic Capabilities &amp; Composite Tasks</a>
+        </div>
+      </div>
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="report-nav">Contents</button>
+      <nav id="report-nav" class="report-nav">
+        <p class="nav-label">Contents</p>
+        <ol>
+          <li><a href="#summary">本页结论</a></li>
+          <li><a href="#atomic">1. 原子能力</a></li>
+          <li><a href="#composite">2. 复合任务</a></li>
+          <li><a href="#stack-bowls">RoboDojo · 叠碗</a>
+            <ol><li><a href="#videos">视频对照</a></li><li><a href="#design">实验设计</a></li><li><a href="#iterations">调试与参数冻结</a></li><li><a href="#results">结果与区分度</a></li><li><a href="#sources">来源与数据</a></li></ol>
+          </li>
+        </ol>
+      </nav>
+      <div class="sidebar-footer"><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a></div>
+    </aside>
+
+    <main id="main-content" class="content">
+      <nav class="top-tab-bar" aria-label="Benchmark study selector">
+        <p class="breadcrumb" style="margin:0;"><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp</a> / Benchmarking / Reproduction studies</p>
+        <div class="top-tab-list" role="tablist">
+          <a href="index.html" class="top-tab-link"><span>Part I · Controlled Contact &amp; Manipulation</span></a>
+          <a href="real-to-sim.html" class="top-tab-link"><span>Part II · GAUGE Real-to-Sim</span></a>
+          <a href="mechanism-eval.html" class="top-tab-link"><span>Part III · Mechanism-Aware Evaluation</span></a>
+          <a href="progress-2026-11.html" class="top-tab-link"><span>Part IV · Progress Update</span></a>
+          <a href="reproduction-studies.html" class="top-tab-link is-active" aria-current="page"><span>Part V · Atomic &amp; Composite Tasks</span></a>
+        </div>
+      </nav>
+      <header id="top" class="page-header">
+        <div class="header-grid">
+          <div><p class="eyebrow">Part V · November 2026</p><h1>原子能力与复合任务</h1><p class="lede">从单一接触机制到完整任务轨迹：比较模拟器复现了什么、已有数据能区分什么，以及暂时不能判断的部分。</p></div>
+          <dl class="report-meta"><div><dt>Latest task</dt><dd>RoboDojo · Stack Bowls</dd></div><div><dt>Comparison</dt><dd>MuJoCo 4.0.0 CPU / SAP Internal + Newton Convex</dd></div><div><dt>Evidence</dt><dd>1 episode · 同一初始场景与运动输入</dd></div></dl>
+        </div>
+      </header>
+
+      <section id="summary" class="report-section">
+        <h2>本页结论</h2>
+        <div class="callout"><p><strong>叠碗任务的宏观结果相近，目前没有明显拉开两个模拟器的任务表现。</strong>两者都呈现抓取、搬运和叠放过程。SAP 在选定释放后窗口内运动更小，MuJoCo 的末态共同几何采样重叠更少；这些局部差异不足以证明哪个更接近原始示范。</p></div>
+        <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
+      </section>
+
+      <section id="atomic" class="report-section">
+        <h2>1. 原子能力 <span class="study-label">本次无新增结果</span></h2>
+        <p>用于隔离摩擦、支撑、碰撞等单一机制。本部分保留为后续原子实验入口；已有基础实验见 <a href="index.html">Part I</a> 和 <a href="mechanism-eval.html">Part III</a>。本次新增的是下面的复合任务。</p>
+      </section>
+
+      <section id="composite" class="report-section">
+        <h2>2. 复合任务</h2>
+        <p>同一条机器人／夹爪运动作为输入，碗等被操作物体的运动作为评价对象。轨迹复刻质量依据与原始物体运动的接近程度评价，不采用 policy 的任务 reward 门槛替代。</p>
+        <article id="stack-bowls" class="study-subsection">
+          <h3>2.1 RoboDojo · Stack Bowls 叠碗 <span class="study-label">单 episode 诊断</span></h3>
+          <p>来源是 <a href="https://github.com/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">RoboDojo 官方项目</a>及其 <a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo" target="_blank" rel="noreferrer">公开数据集</a>中的 <code>stack_bowls / arx_x5 / episode_0000000</code>。原示范依次将右、左两侧的碗搬到中间碗上。这里回放的是<strong>官方仿真示范</strong>，不是实机测量轨迹。</p>
+
+          <section id="videos" class="study-subsection">
+            <h4>先看原示范与模拟结果</h4>
+            <p>三段视频使用相同时间轴，均展示 0–9.56 s 的录制时间范围。模拟画面由已记录的原生物体状态回放生成；只显示分离夹爪和共同碰撞几何，未显示完整机器人手臂，也未复刻纹理。</p>
+            <div class="playback-toolbar"><button id="play-all" type="button">从头同步播放</button><button id="pause-all" type="button">全部暂停</button><span id="playback-status" class="playback-status" role="status">也可使用各视频自带的播放控件。</span></div>
+            <div class="video-grid">
+              <figure class="video-demo"><video id="reference-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/reference-poster.jpg"><source src="assets/part5/stack-bowls/reference.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/reference.mp4">下载官方示范</a>。</video><figcaption><h4>原始示范 · RoboDojo</h4><p>官方头部相机；三只碗、双臂 ARX X5。</p><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/blob/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/stack_bowls/arx_x5/preview_video/episode_0000000_cam_head.mp4" target="_blank" rel="noreferrer">官方视频来源 ↗</a></figcaption></figure>
+              <figure class="video-demo"><video id="mujoco-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/mujoco-poster.jpg"><source src="assets/part5/stack-bowls/mujoco.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/mujoco.mp4">下载 MuJoCo 视频</a>。</video><figcaption><h4>MuJoCo 4.0.0 · CPU</h4><p>带关节的夹爪 r3；原生求解器记录状态。不是 MuJoCo Warp。</p><a href="assets/part5/stack-bowls/mujoco.mp4" download>下载视频</a></figcaption></figure>
+              <figure class="video-demo"><video id="sap-video" controls muted playsinline preload="metadata" poster="assets/part5/stack-bowls/sap-newton-poster.jpg"><source src="assets/part5/stack-bowls/sap-newton.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/stack-bowls/sap-newton.mp4">下载 SAP 视频</a>。</video><figcaption><h4>SAP Internal + Newton Convex</h4><p><code>2325082</code> · Warp 1.18.0 / CUDA；同一夹爪 r3。</p><a href="assets/part5/stack-bowls/sap-newton.mp4" download>下载视频</a></figcaption></figure>
+            </div>
+          </section>
+
+          <section id="design" class="study-subsection">
+            <h4>实验设计</h4>
+            <ul>
+              <li><strong>输入固定：</strong>相同初始布局、25 Hz 机器人／夹爪记录、相同插值与控制映射；1 ms 积分步长，9.56 s 原记录后追加 1 s 观察尾段。</li>
+              <li><strong>物体固定：</strong>三只相同的 0.35 kg 碗，共同质量／惯量与摩擦系数 <code>μ=0.6</code>；每碗使用同一套 64-piece CoACD 几何。初始布局和碗型号依据首帧形状估计，物体身份未获精确确认。</li>
+              <li><strong>夹爪固定：</strong>官方碰撞 hull、滑动关节及 0–44 mm 限位；官方命令映射和 PD 参数。机器人手臂由分离夹爪基座伺服替代。</li>
+              <li><strong>比较范围：</strong>同一 episode、各一次完整轨迹。比较物体运动、模拟内部一致性和最终可见结果；不据此报告多任务成功率或速度性能排名。</li>
+            </ul>
+            <p class="scope-line">关键限制：公开 HDF5 有机器人状态／动作、三路 RGB 和相机标定，没有逐帧碗位姿真值。视觉恢复的位姿只能作为带不确定度的 estimated reference。</p>
+          </section>
+
+          <section id="iterations" class="study-subsection">
+            <h4>五步调试与参数冻结</h4>
+            <p>记录中可核实的过程分为以下五步；它们是复现与核验步骤，<strong>不等同于每个引擎搜索五套接触参数</strong>。</p>
+            <ol class="process-list">
+              <li><strong>核对数据和首帧。</strong>固定源数据 revision，确认时间轴和相机坐标；按首帧轮廓拟合初始场景，不用模拟终态反推布局。</li>
+              <li><strong>统一几何与惯量。</strong>建立共同凸分解，检查碗腔没有被填实；两引擎使用同一几何、质量和惯量。</li>
+              <li><strong>修正夹爪模型与控制。</strong>早期独立手指模型只能抬起约 2 cm。核对命令语义后，改为官方滑动关节和驱动；两个碰撞后端都可抬起约 12–15 cm。</li>
+              <li><strong>更新并对照碰撞后端。</strong>同步本地 SAP Internal，启用 <code>collision/newton_convex/</code>，在固定 r3 场景下对照 legacy；通过无物体驱动和主机／CUDA graph 接触轨迹核验。</li>
+              <li><strong>冻结设置，统一评估。</strong>保留各引擎的原生接触参数，不以末尾速度最小挑选“最好”配置。用相同释放后窗口处理已有轨迹，缺少的参考位姿和接触连续性留空。</li>
+            </ol>
+            <details><summary>冻结参数：如何确定、实际用了什么</summary>
+              <p>驱动参数来自官方夹爪配置及无物体跟踪核验；接触参数保留当前原生设置，未做物理等效刚度／阻尼标定，也未进行等预算五候选择优。</p>
+              <ul><li>夹指：<code>Kp=2300 N/m</code>、<code>Kd=100 N·s/m</code>、力上限 <code>100 N</code>；关节范围 <code>[0, 0.044] m</code>。</li><li>共同基座伺服：平移刚度 <code>20000 N/m</code>、转动刚度 <code>20 N·m/rad</code>；力／力矩上限 <code>200 N / 20 N·m</code>。</li><li>MuJoCo：<code>solref=(0.02, 1)</code>，<code>solimp=(0.9, 0.95, 0.001, 0.5, 2)</code>，100 iterations，tolerance <code>1e−8</code>。</li><li>SAP：shape <code>ke=2500 N/m</code>、<code>τ=0.01 s</code>、原生 shape gap <code>0.1 m</code>；gap 是接触激活范围，不是实际穿透量。相同两形状合成的 pair <code>ke=1250 N/m</code>、<code>τ=0.02 s</code>。Newton Convex 后端显式启用。</li></ul>
+              <p>这些数值不是跨引擎等价的材料常数，因此不能把阻尼更强或速度更小直接解释成物理更准确。</p>
+            </details>
+          </section>
+
+          <section id="results" class="study-subsection">
+            <h4>结果：能区分内部行为，尚不能区分复刻精度</h4>
+            <p><strong>Post-release settling：</strong>共同窗口 <code>9.06–9.56 s</code>，每碗 51 个状态样本，间隔 10 ms。RMS 对速度向量模长平方做时间积分，不是分量 RMS 的平均。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>指标</th><th>MuJoCo</th><th>SAP + Newton</th></tr></thead><tbody>
+              <tr><td>上层碗线速度 RMS（mm/s）</td><td>0.9804</td><td>0.0687</td></tr>
+              <tr><td>中层碗线速度 RMS（mm/s）</td><td>0.3269</td><td>0.0540</td></tr>
+              <tr><td>底层碗线速度 RMS（mm/s）</td><td>0.0342</td><td>0.0298</td></tr>
+              <tr><td>上层碗角速度 RMS（rad/s）</td><td>0.01995</td><td>0.00108</td></tr>
+              <tr><td>上层碗 0.5 s 净漂移（mm）</td><td>0.4894</td><td>0.0290</td></tr>
+            </tbody></table></div>
+            <p>SAP 在这个窗口内更静，MuJoCo 有小幅缓慢漂移。但如果原示范也有滑动，更早停住并不一定更忠实；本项不能独立给引擎排名。</p>
+            <p><strong>Geometric validity：</strong>使用相同的共同几何顶点采样方法，仅检查 <code>t=10.56 s</code> 的末态，每碗采样 1024 个顶点。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>末态采样穿透下界（mm）</th><th>MuJoCo</th><th>SAP + Newton</th></tr></thead><tbody>
+              <tr><td>底层／中层碗</td><td>0.0540</td><td>1.5766</td></tr>
+              <tr><td>上层／中层碗</td><td>0.0305</td><td>0.4658</td></tr>
+              <tr><td>所有已检查物体对的最大值（含桌面）</td><td>0.0895</td><td>1.5766</td></tr>
+            </tbody></table></div>
+            <p class="scope-line">这是末帧的采样下界，不是精确穿透，也不是全程最大穿透。共同几何为近似表示；局部壁厚与穿墙检查尚未完成，因此暂不将这些值换算成“有效／无效成功”。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>评价层</th><th>现有证据</th><th>当前结论</th></tr></thead><tbody>
+              <tr><td>Physical Fidelity</td><td>检查过头部关键帧及 7 个时刻的三视角图，但未形成带不确定度的可靠三维位姿估计；有效参考覆盖 0/720 物体帧，最终 0/3。</td><td>trajectory / final-pose reference error 未评估。不是零误差，也不表示所有视频帧都不可恢复。</td></tr>
+              <tr><td>Contact continuity</td><td>当前成对比较缺少按物体对的有效接触时间序列。</td><td class="pending">未评估；不以总接触点数代替。</td></tr>
+              <tr><td>Task Outcome</td><td>参考和两引擎的视频观察均为释放后保持三碗叠放。</td><td>视觉 outcome agreement 一致；严格 valid success、false success / false failure 暂不判定。</td></tr>
+            </tbody></table></div>
+            <div class="study-note"><p><strong>如实结论：</strong>这个 episode 对两个模拟器的宏观任务结果区分度有限。已有指标显示“SAP 更静、MuJoCo 末态采样重叠更少”，没有足够参考证据判断谁的轨迹复刻更好，也没有多 episode 的成功率结论。</p></div>
+          </section>
+
+          <section id="sources" class="study-subsection">
+            <h4>来源、协议与结果文件</h4>
+            <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>。机器人／夹爪配置参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本页模拟回放及指标由本实验生成。</p>
+            <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/stack_bowls/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/stack_bowls.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/stack-bowls/sop.md">评估 SOP（MD）</a><a href="assets/part5/stack-bowls/report.md">详细报告（MD）</a><a href="assets/part5/stack-bowls/metrics.json">完整指标（JSON）</a><a href="assets/part5/stack-bowls/settling.csv">稳定性数据（CSV）</a></div>
+            <details><summary>参考视频可观测性检查</summary><p>上层碗和部分搬运过程可见，有估计位置／轴线的潜力；叠放后的下层碗遮挡明显。可见性审查未把遮挡位姿补成可靠参考。</p><figure class="figure-audit"><img src="assets/part5/stack-bowls/reference_multiview_contact_sheet.jpg" alt="官方示范在 0、3、5、7、8.4、9 和 9.56 秒的头部、左腕和右腕三视角，显示搬运和最终叠放时的遮挡情况" loading="lazy"><figcaption>仅使用参考视频的多视角检查；未依据模拟结果拟合参考位姿。</figcaption></figure></details>
+          </section>
+        </article>
+      </section>
+      <footer class="page-footer"><span>SAP Warp × MuJoCo · Part V: Atomic Capabilities &amp; Composite Tasks</span><a href="#top">Back to top ↑</a></footer>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+  <script src="reproduction-studies.js" defer></script>
+</body>
+</html>
