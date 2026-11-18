@@ -35,7 +35,7 @@ from matplotlib.path import Path as MPath  # noqa: E402
 plt.rcParams["font.family"] = ["PingFang SC", "Arial Unicode MS", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 ROOT = REPO_ROOT
-ASSETS = ROOT / "assets/round_socket_exact"
+ASSETS = ROOT / "tasks/simulation-only-composite/round-socket/assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 R_VERT, N_SEG, Z_RIM, PEG_HALF, PEG_W = 12.058063, 32, 40.0, 25.0, 0.08 * 9.81   # mm; weight in N
 W3, H3 = 640, 400

@@ -26,7 +26,7 @@ import numpy as np  # noqa: E402
 
 plt.rcParams["font.family"] = ["PingFang SC", "Arial Unicode MS", "DejaVu Sans"]
 ROOT = REPO_ROOT
-ASSETS = ROOT / "assets/round_socket_exact"
+ASSETS = ROOT / "tasks/simulation-only-composite/round-socket/assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 W, H = 520, 400
 

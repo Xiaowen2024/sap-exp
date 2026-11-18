@@ -13,7 +13,7 @@ Whole folders that moved unchanged:
 | Old | New |
 | --- | --- |
 | `scripts/real_playback/` | `tasks/robot-playback/rh20t-dish-on-rack/real_playback/` |
-| `scripts/robodojo_playback/` | `tasks/robot-playback/robodojo/robodojo_playback/` |
+| `scripts/robodojo_playback/` (core) | `common/robodojo_playback/`; task modules are listed below |
 | `assets/round_socket_exact/` | `tasks/simulation-only-composite/round-socket/assets/round_socket_exact/` |
 
 ## `scripts/`
@@ -236,10 +236,10 @@ Whole folders that moved unchanged:
 | `sim_protocol/real-playback-v1/task-metrics/rh20t-dish-on-rack.md` | `tasks/robot-playback/rh20t-dish-on-rack/task-metrics.md` |
 | `sim_protocol/real_playback_runner_sop.md` | `tasks/robot-playback/rh20t-dish-on-rack/runner-sop.md` |
 | `sim_protocol/result_summary_protocol.md` | `protocol/result_summary_protocol.md` |
-| `sim_protocol/robodojo-laptop-insertion-v1.md` | `tasks/robot-playback/robodojo/task-metrics/robodojo-laptop-insertion-v1.md` |
-| `sim_protocol/robodojo-laptop-pickup-transfer-v1.md` | `tasks/robot-playback/robodojo/task-metrics/robodojo-laptop-pickup-transfer-v1.md` |
-| `sim_protocol/robodojo-stack-bowls-evaluation-v1.md` | `tasks/robot-playback/robodojo/task-metrics/robodojo-stack-bowls-evaluation-v1.md` |
-| `sim_protocol/robodojo-sweep-blocks-v1.md` | `tasks/robot-playback/robodojo/task-metrics/robodojo-sweep-blocks-v1.md` |
+| `sim_protocol/robodojo-laptop-insertion-v1.md` | `tasks/robot-playback/store-laptop/task-metrics-insertion-only.md` |
+| `sim_protocol/robodojo-laptop-pickup-transfer-v1.md` | `tasks/robot-playback/store-laptop/task-metrics.md` |
+| `sim_protocol/robodojo-stack-bowls-evaluation-v1.md` | `tasks/robot-playback/stack-bowls/task-metrics.md` |
+| `sim_protocol/robodojo-sweep-blocks-v1.md` | `tasks/robot-playback/sweep-blocks/task-metrics.md` |
 | `sim_protocol/static-friction-v2/README.md` | `protocol/families/static-friction.md` |
 | `sim_protocol/static-friction-v2/task-metrics/simple-pinch.md` | `tasks/simulation-only-atomic/simple-pinch/task-metrics.md` |
 | `sim_protocol/static-friction-v2/task-metrics/three-box-push.md` | `tasks/simulation-only-atomic/three-box-push/task-metrics.md` |
@@ -247,3 +247,52 @@ Whole folders that moved unchanged:
 | `sim_protocol/sustained-contact-v1/task-metrics/cube-toss.md` | `tasks/real-data-simple/cube-toss-tail/task-metrics.md` |
 | `sim_protocol/sustained-contact-v1/task-metrics/three-plate-stack.md` | `tasks/simulation-only-atomic/three-plate-stack/task-metrics.md` |
 | `sim_protocol/task_runner_sop.md` | `protocol/task_runner_sop.md` |
+
+## `scripts/robodojo_playback/` task modules
+
+| Old | New |
+| --- | --- |
+| `scripts/robodojo_playback/audit_geometry.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/audit_geometry.py` |
+| `scripts/robodojo_playback/coin_eval.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/coin_eval.py` |
+| `scripts/robodojo_playback/coin_prepare.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/coin_prepare.py` |
+| `scripts/robodojo_playback/evaluate_stack_existing.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/evaluate_stack_existing.py` |
+| `scripts/robodojo_playback/fit_coin.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/fit_coin.py` |
+| `scripts/robodojo_playback/fit_coin_ep.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/fit_coin_ep.py` |
+| `scripts/robodojo_playback/fit_initial.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/fit_initial.py` |
+| `scripts/robodojo_playback/laptop_assets.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_assets.py` |
+| `scripts/robodojo_playback/laptop_evaluate.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_evaluate.py` |
+| `scripts/robodojo_playback/laptop_fit_source.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_fit_source.py` |
+| `scripts/robodojo_playback/laptop_geometry_audit.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_geometry_audit.py` |
+| `scripts/robodojo_playback/laptop_pickup_prepare.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_pickup_prepare.py` |
+| `scripts/robodojo_playback/laptop_prepare.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_prepare.py` |
+| `scripts/robodojo_playback/laptop_reference_final.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_reference_final.py` |
+| `scripts/robodojo_playback/laptop_render.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_render.py` |
+| `scripts/robodojo_playback/laptop_run.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_run.py` |
+| `scripts/robodojo_playback/laptop_sop_summary.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_sop_summary.py` |
+| `scripts/robodojo_playback/laptop_transfer_stages.py` | `tasks/robot-playback/store-laptop/robodojo_playback/laptop_transfer_stages.py` |
+| `scripts/robodojo_playback/prepare.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/prepare.py` |
+| `scripts/robodojo_playback/prepare_segment.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/prepare_segment.py` |
+| `scripts/robodojo_playback/render_coin.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/render_coin.py` |
+| `scripts/robodojo_playback/render_coin_fail.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/render_coin_fail.py` |
+| `scripts/robodojo_playback/render_sap_newton.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/render_sap_newton.py` |
+| `scripts/robodojo_playback/render_tubes.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/render_tubes.py` |
+| `scripts/robodojo_playback/rerun_sap_newton.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/rerun_sap_newton.py` |
+| `scripts/robodojo_playback/run_stack_eval.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/run_stack_eval.py` |
+| `scripts/robodojo_playback/shell_decompose.py` | `tasks/robot-playback/deposit-coin/robodojo_playback/shell_decompose.py` |
+| `scripts/robodojo_playback/stack_telemetry.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/stack_telemetry.py` |
+| `scripts/robodojo_playback/summarize.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/summarize.py` |
+| `scripts/robodojo_playback/summarize_sap_newton.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/summarize_sap_newton.py` |
+| `scripts/robodojo_playback/sweep_cavity_audit.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_cavity_audit.py` |
+| `scripts/robodojo_playback/sweep_evaluate.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_evaluate.py` |
+| `scripts/robodojo_playback/sweep_geometry.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_geometry.py` |
+| `scripts/robodojo_playback/sweep_pan_regions.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_pan_regions.py` |
+| `scripts/robodojo_playback/sweep_prepare.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_prepare.py` |
+| `scripts/robodojo_playback/sweep_render.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_render.py` |
+| `scripts/robodojo_playback/sweep_scene.py` | `tasks/robot-playback/sweep-blocks/robodojo_playback/sweep_scene.py` |
+| `scripts/robodojo_playback/test_stack_existing.py` | `tasks/robot-playback/stack-bowls/robodojo_playback/test_stack_existing.py` |
+| `scripts/robodojo_playback/tubes_eval.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_eval.py` |
+| `scripts/robodojo_playback/tubes_fit.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_fit.py` |
+| `scripts/robodojo_playback/tubes_pairtest.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_pairtest.py` |
+| `scripts/robodojo_playback/tubes_prepare.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_prepare.py` |
+| `scripts/robodojo_playback/tubes_probe.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_probe.py` |
+| `scripts/robodojo_playback/tubes_summary.py` | `tasks/robot-playback/insert-tubes/robodojo_playback/tubes_summary.py` |

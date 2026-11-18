@@ -13,7 +13,7 @@ import numpy as np
 from strict_v3_common import json_safe, load_manifest, wilson  # noqa: F401
 
 R_BORE, PEG_HALF, PEG_MASS, N_WALL = 0.012, 0.025, 0.08, 32
-ASSET_DIR = "assets/round_socket_exact"
+ASSET_DIR = "tasks/simulation-only-composite/round-socket/assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(N_WALL)]
 
 

@@ -39,7 +39,7 @@ import numpy as np
 import peg_hole_statics as ps
 from strict_v3_common import json_safe, load_manifest  # noqa: F401
 
-ASSET_DIR = "assets/round_socket_exact"
+ASSET_DIR = "tasks/simulation-only-composite/round-socket/assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 
 # --- socket geometry (mm), verified against assets/round_socket_exact: 32-gon bore inscribed 12.000 (vertices 12.058), outer

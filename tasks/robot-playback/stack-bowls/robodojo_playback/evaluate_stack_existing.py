@@ -61,7 +61,7 @@ def evaluate(artifacts,out):
         angle=np.degrees(np.arccos(np.clip(np.sum(ra*rb,axis=1),-1,1)))
         between[name]={'center_difference_rms_mm':float(np.sqrt(np.mean(delta**2))),'center_difference_max_mm':float(delta.max()),
             'center_difference_at_source_end_mm':float(delta[-1]),'axis_difference_at_source_end_deg':float(angle[-1])}
-    report={'standard':'tasks/robot-playback/robodojo/task-metrics/robodojo-stack-bowls-evaluation-v1.md','mode':'existing_only_no_simulation','episode':'stack_bowls/episode_0000000','R':1,
+    report={'standard':'tasks/robot-playback/stack-bowls/task-metrics.md','mode':'existing_only_no_simulation','episode':'stack_bowls/episode_0000000','R':1,
         'input_hashes':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},'state_dt_s':.01,'windows_s':windows,
         'physical_fidelity':{'object_trajectory_error':None,'final_pose_error':None,'valid_object_frames':0,'total_object_frames':240*3,
             'final_valid_objects':0,'total_objects':3,'reference_kind':'estimated reference, not exact ground truth',
@@ -96,7 +96,7 @@ def evaluate(artifacts,out):
         '### 接触连续性','', '未评估。现有成对比较没有按物体对的有效接触时间序列，不能以总接触点数代替。','',
         '## Task Outcome','', '参考和两引擎的视频观察均为释放后保持三碗叠放，视觉 outcome agreement 为真。严格 valid_success、有效 outcome agreement、false success/false failure 留空：尚未完成局部壁厚／明显穿透与持续托举排除检查。这里不使用官方 policy 门槛，也不以最终倾角是否大于 10° 判失败。','',
         '## 可以区分什么','', '已有数据可区分末态共同几何采样重叠和释放后细小运动；最终视觉结果没有拉开差距。SAP 更静不等于更接近原示范，MuJoCo 采样穿透更少也不能单独证明真实复刻更好。没有足够证据给出 Physical Fidelity 排名或多 episode 复刻成功率。','',
-        '完整数值、补充尾窗、输入 SHA-256 见 [metrics.json](metrics.json)；逐碗 RMS 见 [settling.csv](settling.csv)。参考可见性图：[头部关键帧](reference_head_contact_sheet.jpg)、[三视角](reference_multiview_contact_sheet.jpg)。执行标准见 [SOP](../../tasks/robot-playback/robodojo/task-metrics/robodojo-stack-bowls-evaluation-v1.md)。']
+        '完整数值、补充尾窗、输入 SHA-256 见 [metrics.json](metrics.json)；逐碗 RMS 见 [settling.csv](settling.csv)。参考可见性图：[头部关键帧](reference_head_contact_sheet.jpg)、[三视角](reference_multiview_contact_sheet.jpg)。执行标准见 [SOP](../../tasks/robot-playback/stack-bowls/task-metrics.md)。']
     (out/'report.md').write_text('\n'.join(lines)+'\n')
     print(json.dumps({engine:{'settling':r['settling']['source_final'],'final_geometry_lower_bound_mm':r['geometry']['max_sampled_depth_lower_bound_mm']} for engine,r in runs.items()},indent=2))
     return report

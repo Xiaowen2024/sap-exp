@@ -84,7 +84,7 @@ def verify(out: Path, clearances_mm):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", type=Path, default=REPO_ROOT / "assets/round_socket_exact")
+    ap.add_argument("--out", type=Path, default=REPO_ROOT / "tasks/simulation-only-composite/round-socket/assets/round_socket_exact")
     a = ap.parse_args()
     files = build(a.out)
     rep = verify(a.out, [0.5, 1.0, 2.0, 3.0]); rep["files"] = files

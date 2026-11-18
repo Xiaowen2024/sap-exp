@@ -21,7 +21,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = REPO_ROOT
-ASSETS = ROOT / "assets/round_socket_exact"
+ASSETS = ROOT / "tasks/simulation-only-composite/round-socket/assets/round_socket_exact"
 FILES = ["socket_base.obj"] + [f"socket_wall_{k:02d}.obj" for k in range(32)]
 W, Hh = 480, 360
 

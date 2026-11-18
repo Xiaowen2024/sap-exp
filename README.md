@@ -49,7 +49,7 @@ The report follows the progression:
   see the [task index](tasks/README.md)
 - [`common/`](common/) — code shared by several tasks: [`paths.py`](common/paths.py) (which every
   runner imports for `REPO_ROOT`, `find_manifest` and the shared-module import path), the
-  Genesis adapters, and runners that serve more than one task
+  Genesis adapters, the RoboDojo playback core, and runners that serve more than one task
 - [`protocol/`](protocol/) — cross-task SOPs, [family protocols](protocol/families/),
   Genesis [runner SOPs](protocol/runner-sops/) and rerun [registries](protocol/registries/)
 - [`tools/`](tools/) — cross-task reruns and queues, comparisons, report generation,

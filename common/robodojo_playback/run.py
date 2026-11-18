@@ -305,7 +305,8 @@ def main():
         for k,v in extra.items():
             if k not in ('mujoco_parameters','sap_parameters','contact_capacity','why'):raise ValueError('only engine-numerical keys may be overridden: '+k)
             scene[k]=v
-    source_hashes={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in Path(__file__).parent.glob('*.py')}
+    import robodojo_playback as _pkg  # the core plus every task folder on the package path
+    source_hashes={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for d in _pkg.__path__ for f in Path(d).glob('*.py')}
     if args.max_steps is not None:
         if args.max_steps<1:raise ValueError('max-steps must be positive')
         target={k:target[k][:args.max_steps+1] for k in target}

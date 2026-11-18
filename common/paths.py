@@ -15,8 +15,8 @@ the importing script lives, e.g. ``import strict_v3_common``,
 ``import genesis_ipc_common`` or ``importlib.import_module("run_threebox_genesis_sap")``.
 Module basenames are unique across those folders (checked by
 ``tools/check_layout.py``).  The parents of the two real packages
-(``real_playback``, ``robodojo_playback``) are added too, so
-``python -m real_playback.rp_run`` and ``import robodojo_playback`` work.
+(``common/robodojo_playback``, ``tasks/robot-playback/rh20t-dish-on-rack/real_playback``)
+are on the path too, so ``import robodojo_playback`` and ``python -m real_playback.rp_run`` work.
 """
 from __future__ import annotations
 
@@ -35,7 +35,8 @@ EXTERNAL = REPO_ROOT / "external"
 ARCHIVE = REPO_ROOT / "archive"   # local-only scripts of tasks outside the current task set
 
 CODE_ROOTS = (COMMON, TASKS, TOOLS)
-_SKIP = {"__pycache__", "assets", "configs", "sop", "manifests"}
+_SKIP = {"__pycache__", "assets", "configs", "sop", "manifests",
+         "robodojo_playback"}   # task parts of the robodojo_playback package (see common/robodojo_playback)
 
 
 def _is_package(d: Path) -> bool:
