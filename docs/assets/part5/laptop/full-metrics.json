@@ -1,0 +1,592 @@
+{
+  "protocol": "robodojo-laptop-insertion-v1",
+  "rollouts_per_config": 1,
+  "results": {
+    "mujoco_warp_it1": {
+      "name": "mujoco_warp_it1",
+      "engine": "MuJoCo Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 14460,
+        "expected_steps": 14460,
+        "truncated": 0,
+        "drive_gate_pass": false,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 0.0041070932821112875,
+            "rms_position_m": 0.0004837063781987725,
+            "max_rotation_deg": 8.332447389617927
+          },
+          "right_base": {
+            "max_position_m": 0.00156708046824401,
+            "rms_position_m": 0.00010901139304168728,
+            "max_rotation_deg": 1.5833644146057804
+          }
+        },
+        "native_peak_overlap_m": 0.0012629107804968953,
+        "wall_s": 6.763784386217594
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 1447,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.004107138240990449,
+            "lower_bound_m": 0.00018069206506333608,
+            "time_s": 6.33,
+            "lower_bound_time_s": 6.33
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.0003811915322111555,
+            "lower_bound_m": 0.0001940651772797842,
+            "time_s": 7.87,
+            "lower_bound_time_s": 10.370000000000001
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.000386404924442962,
+            "lower_bound_m": 0.0003491171673859403,
+            "time_s": 3.2600000000000002,
+            "lower_bound_time_s": 3.2600000000000002
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0005509175593059075,
+            "lower_bound_m": 0.0005376147196925876,
+            "time_s": 6.82,
+            "lower_bound_time_s": 6.82
+          },
+          "laptop/rack": {
+            "depth_m": 0.00012858075868376023,
+            "lower_bound_m": 7.74511381447234e-05,
+            "time_s": 11.620000000000001,
+            "lower_bound_time_s": 11.56
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/laptop_stand": {
+            "depth_m": 0.00010868593032752298,
+            "lower_bound_m": 0.00010785209197141575,
+            "time_s": 3.2600000000000002,
+            "lower_bound_time_s": 3.2600000000000002
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0,
+          "laptop_stand": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/left_link7": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 0.9956818181818182,
+          "nonpositive_native_gap_duty": 0.9956818181818182,
+          "normal_force_mean_N": 26.46401596069336,
+          "normal_force_peak_N": 61.959999084472656,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9954545454545455,
+              "longest_no_force_s": 0.013000000000000001,
+              "recontact_count": 8
+            }
+          }
+        },
+        "laptop/left_link8": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 0.9895454545454545,
+          "nonpositive_native_gap_duty": 0.9895454545454545,
+          "normal_force_mean_N": 26.817596435546875,
+          "normal_force_peak_N": 36.5524787902832,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9893181818181818,
+              "longest_no_force_s": 0.04,
+              "recontact_count": 6
+            }
+          }
+        },
+        "laptop/right_link7": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 15.726923942565918,
+          "normal_force_peak_N": 20.314376831054688,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 0.9993939393939394,
+          "nonpositive_native_gap_duty": 0.9993939393939394,
+          "normal_force_mean_N": 15.690291404724121,
+          "normal_force_peak_N": 22.96952247619629,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9993939393939394,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 2
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            12.3,
+            14.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.2442823648452759,
+          "normal_force_peak_N": 8.45567512512207,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.999537037037037,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            12.5,
+            12.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 1.9076599344828284,
+          "angular_speed_rms_rad_s": 0.04497388752045864,
+          "linear_speed_peak_mm_s": 9.850923430383672,
+          "net_COM_drift_mm": 0.23659703224339218,
+          "orientation_change_deg": 0.5648785468221635,
+          "final_COM_m": [
+            0.3341427445411682,
+            -0.0637291967868805,
+            0.8340989947319031
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            13.96,
+            14.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 4.018524946881652,
+          "angular_speed_rms_rad_s": 0.08770939905047412,
+          "linear_speed_peak_mm_s": 9.079451950424259,
+          "net_COM_drift_mm": 0.029127437613596294,
+          "orientation_change_deg": 0.008772048560050946,
+          "final_COM_m": [
+            0.3344678282737732,
+            -0.06358508765697479,
+            0.8339512944221497
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 12.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          -0.0009322200595509349,
+          -0.006432494553016297,
+          0.04458784442214969
+        ],
+        "plate_short_axis_tilt_deg": 9.268790936700375
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 41.61261918395758,
+      "source_hashes": {
+        "dense_trace.npz": "b877b07b78a6c5a92775e5c16a4001432f116aa65967718e97f65bc985189d41",
+        "contact_pairs.npz": "509dcf8295dca71d9729abd7bcc6bf2e08204fc39e3e403fef8430d6cdd7d9e5",
+        "input_scene.json": "0e59c6ac77e41b4c0765894267a1b54b9bce98c30644a2c399aecfd9083a76a2"
+      }
+    },
+    "sap_it1": {
+      "name": "sap_it1",
+      "engine": "SAP Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 14460,
+        "expected_steps": 14460,
+        "truncated": 0,
+        "drive_gate_pass": false,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 0.004425836219458225,
+            "rms_position_m": 0.0008983828284185998,
+            "max_rotation_deg": 5.1002137854777505
+          },
+          "right_base": {
+            "max_position_m": 0.00156732075747668,
+            "rms_position_m": 0.00010931180363643582,
+            "max_rotation_deg": 1.689911235384972
+          }
+        },
+        "native_peak_overlap_m": 0.0025015880819410086,
+        "wall_s": 9.592872023582458
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 1447,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.0022780266376722807,
+            "lower_bound_m": 0.00016849811014033313,
+            "time_s": 6.5600000000000005,
+            "lower_bound_time_s": 11.51
+          },
+          "laptop/right_link8": {
+            "depth_m": 6.932970328747916e-05,
+            "lower_bound_m": 6.829469646375113e-05,
+            "time_s": 11.6,
+            "lower_bound_time_s": 11.6
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.00037871712257074824,
+            "lower_bound_m": 0.0003243873778833024,
+            "time_s": 3.0500000000000003,
+            "lower_bound_time_s": 3.0500000000000003
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0008557752099351719,
+            "lower_bound_m": 0.00038210482244777517,
+            "time_s": 3.16,
+            "lower_bound_time_s": 6.72
+          },
+          "laptop/rack": {
+            "depth_m": 0.0013964837040518648,
+            "lower_bound_m": 0.0013690462867568184,
+            "time_s": 12.52,
+            "lower_bound_time_s": 12.52
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/laptop_stand": {
+            "depth_m": 0.0025039432450721815,
+            "lower_bound_m": 0.0024136353394556753,
+            "time_s": 2.87,
+            "lower_bound_time_s": 2.87
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0,
+          "laptop_stand": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/left_link7": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9959090909090909,
+          "normal_force_mean_N": 26.190824508666992,
+          "normal_force_peak_N": 27.63425064086914,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/left_link8": {
+          "window_s": [
+            3.2,
+            7.6
+          ],
+          "samples": 4400,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9827272727272728,
+          "normal_force_mean_N": 26.730867385864258,
+          "normal_force_peak_N": 28.18596839904785,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link7": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 15.454365730285645,
+          "normal_force_peak_N": 16.710247039794922,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            8.3,
+            11.6
+          ],
+          "samples": 3300,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 15.422344207763672,
+          "normal_force_peak_N": 16.56955909729004,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            12.3,
+            14.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.0802180767059326,
+          "normal_force_peak_N": 1.4721437692642212,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            12.5,
+            12.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 0.9621782609410937,
+          "angular_speed_rms_rad_s": 0.015928949068219657,
+          "linear_speed_peak_mm_s": 5.57436990737915,
+          "net_COM_drift_mm": 0.004231052473187447,
+          "orientation_change_deg": 0.014648252687993139,
+          "final_COM_m": [
+            0.3226977586746216,
+            -0.05922633409500122,
+            0.8336346745491028
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            13.96,
+            14.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 0.8512705415121572,
+          "angular_speed_rms_rad_s": 0.014790736305218823,
+          "linear_speed_peak_mm_s": 2.199848175048828,
+          "net_COM_drift_mm": 0.006176599767059088,
+          "orientation_change_deg": 0.01629021224979297,
+          "final_COM_m": [
+            0.3226771652698517,
+            -0.05923386663198471,
+            0.8336297869682312
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 12.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          0.004465441432427948,
+          0.004917312004734695,
+          0.044266336968231235
+        ],
+        "plate_short_axis_tilt_deg": 3.923343189755989
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 35.40629256516695,
+      "source_hashes": {
+        "dense_trace.npz": "1492c26e6b911dd9c4b3c77c274d207ce2666f0077146f66796cdb106ba82490",
+        "contact_pairs.npz": "9bd450459fe829ff7a3e76e456e408bef079eb7841c4ad9523cb6ea402717b29",
+        "input_scene.json": "972b2bedafe8502ff7c0d4f0c51494841dcca2e56a8b9669849db113a54cd95f"
+      }
+    }
+  }
+}

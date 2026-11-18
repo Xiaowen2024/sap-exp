@@ -1,0 +1,21 @@
+{
+  "status": "invalid_for_ranking",
+  "method": "initial FCL convex observer",
+  "witnesses": [
+    {
+      "run": "sap_it1",
+      "pair": "laptop/right_link8",
+      "time_s": 0.24,
+      "FCL_depth_mm": 17.82860932586321,
+      "independent_MTD_upper_bound_mm": 5.793242303064827
+    },
+    {
+      "run": "sap_it1",
+      "pair": "laptop/rack",
+      "time_s": 2.54,
+      "FCL_depth_mm": 3.56379052913178,
+      "independent_MTD_upper_bound_mm": 0.9727082275720056
+    }
+  ],
+  "action": "Retain original numbers only as rejected diagnostic output. Use evaluation_v2 convex penetration brackets; no additional physics required."
+}

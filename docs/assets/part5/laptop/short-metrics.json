@@ -1,0 +1,1156 @@
+{
+  "protocol": "robodojo-laptop-insertion-v1",
+  "rollouts_per_config": 1,
+  "results": {
+    "mujoco_warp_it1": {
+      "name": "mujoco_warp_it1",
+      "engine": "MuJoCo Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 5460,
+        "expected_steps": 5460,
+        "truncated": 0,
+        "drive_gate_pass": true,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 2.0532233442910835e-05,
+            "rms_position_m": 1.8198489734573233e-06,
+            "max_rotation_deg": 0.044269965020181226
+          },
+          "right_base": {
+            "max_position_m": 0.0009210079918202835,
+            "rms_position_m": 9.32448030734325e-05,
+            "max_rotation_deg": 1.2195150856399009
+          }
+        },
+        "native_peak_overlap_m": 0.00400623120367527,
+        "wall_s": 11.016993179917336
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 547,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.0009461728205129468,
+            "lower_bound_m": 0.0009432181517235559,
+            "time_s": 0.02,
+            "lower_bound_time_s": 0.02
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.0009152512104014683,
+            "lower_bound_m": 0.0009079380257462674,
+            "time_s": 0.02,
+            "lower_bound_time_s": 0.02
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/rack": {
+            "depth_m": 0.003924295015135459,
+            "lower_bound_m": 0.0034228568716251954,
+            "time_s": 2.79,
+            "lower_bound_time_s": 2.7800000000000002
+          },
+          "laptop/table": {
+            "depth_m": 0.0006296188889822636,
+            "lower_bound_m": 0.0006181203601360835,
+            "time_s": 2.79,
+            "lower_bound_time_s": 2.79
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/right_link7": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.9996153846153846,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 14.556035041809082,
+          "normal_force_peak_N": 15.642814636230469,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.9996153846153846,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 14.422196388244629,
+          "normal_force_peak_N": 15.06966781616211,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9992307692307693,
+              "longest_no_force_s": 0.002,
+              "recontact_count": 1
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            3.3,
+            5.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.0404542684555054,
+          "normal_force_peak_N": 1.065690279006958,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            3.5,
+            3.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 0.37967575817973054,
+          "angular_speed_rms_rad_s": 0.008072370729948649,
+          "linear_speed_peak_mm_s": 0.923436473450557,
+          "net_COM_drift_mm": 0.12697577197581214,
+          "orientation_change_deg": 0.14910691331067744,
+          "final_COM_m": [
+            0.33175036311149597,
+            -0.0599263496696949,
+            0.828194260597229
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            4.96,
+            5.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 0.084434418848308,
+          "angular_speed_rms_rad_s": 0.0018831420328325567,
+          "linear_speed_peak_mm_s": 0.333710183601227,
+          "net_COM_drift_mm": 0.010987659585994363,
+          "orientation_change_deg": 0.036525853604206675,
+          "final_COM_m": [
+            0.3317194879055023,
+            -0.05994442477822304,
+            0.8281991481781006
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 3.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          0.0029416425755013575,
+          -0.004023970261809333,
+          0.03883569817810062
+        ],
+        "plate_short_axis_tilt_deg": 4.831609113530482
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 18.19033183902502,
+      "source_hashes": {
+        "dense_trace.npz": "4d2513a8fa3c1d3573881b6d608c07ccd285c1456716bd6ad45bab8bcd4a0704",
+        "contact_pairs.npz": "414a4ea6b419235f487c85624e0191475461d08450bd2681bbd272feae302053",
+        "input_scene.json": "54f89bf3affad26986618863ac262163b105dccdfe638137fd5646efad946430"
+      }
+    },
+    "sap_it1": {
+      "name": "sap_it1",
+      "engine": "SAP Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 5460,
+        "expected_steps": 5460,
+        "truncated": 0,
+        "drive_gate_pass": true,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 2.0615616493073586e-05,
+            "rms_position_m": 1.8230463758661737e-06,
+            "max_rotation_deg": 0.04434510223862373
+          },
+          "right_base": {
+            "max_position_m": 0.0009210089694645154,
+            "rms_position_m": 9.207853876638704e-05,
+            "max_rotation_deg": 0.9516596055166844
+          }
+        },
+        "native_peak_overlap_m": 0.0058846240863204,
+        "wall_s": 58.755744844675064
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 547,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.003675614865646703,
+            "lower_bound_m": 0.0035766095136721535,
+            "time_s": 2.52,
+            "lower_bound_time_s": 2.52
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.005874193686018092,
+            "lower_bound_m": 0.005866159278721186,
+            "time_s": 2.11,
+            "lower_bound_time_s": 2.11
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/rack": {
+            "depth_m": 0.0030083702517651073,
+            "lower_bound_m": 0.002891986284677842,
+            "time_s": 2.11,
+            "lower_bound_time_s": 2.11
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/right_link7": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 7.287181377410889,
+          "normal_force_peak_N": 10.662351608276367,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 7.115235328674316,
+          "normal_force_peak_N": 7.449028015136719,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            3.3,
+            5.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.0566519498825073,
+          "normal_force_peak_N": 1.2710872888565063,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            3.5,
+            3.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 1.0392410636286924,
+          "angular_speed_rms_rad_s": 0.018050873646423042,
+          "linear_speed_peak_mm_s": 2.591226100921631,
+          "net_COM_drift_mm": 0.0029955620411783457,
+          "orientation_change_deg": 0.010107294329079315,
+          "final_COM_m": [
+            0.33187738060951233,
+            -0.05961373448371887,
+            0.8273696303367615
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            4.96,
+            5.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 1.029567701375971,
+          "angular_speed_rms_rad_s": 0.0180223582163039,
+          "linear_speed_peak_mm_s": 2.5653164386749268,
+          "net_COM_drift_mm": 0.005234085954725742,
+          "orientation_change_deg": 0.009260099283630927,
+          "final_COM_m": [
+            0.3319084644317627,
+            -0.059649690985679626,
+            0.8273630738258362
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 3.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          0.003218116769392895,
+          -0.0042387775150772005,
+          0.037999623825836215
+        ],
+        "plate_short_axis_tilt_deg": 5.654577095575808
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 14.66955003887415,
+      "source_hashes": {
+        "dense_trace.npz": "d8f444d70df7ae85bf23f4f3de84dc50c5070a334e2be42d81d8fcb288dc7554",
+        "contact_pairs.npz": "84498869055eb326ee4c2a600ad40ce0fc67e7e89fb95573694bdf69a068bbe5",
+        "input_scene.json": "54f89bf3affad26986618863ac262163b105dccdfe638137fd5646efad946430"
+      }
+    },
+    "sap_it2": {
+      "name": "sap_it2",
+      "engine": "SAP Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 5460,
+        "expected_steps": 5460,
+        "truncated": 0,
+        "drive_gate_pass": true,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 2.0615616493073586e-05,
+            "rms_position_m": 1.8230463758661737e-06,
+            "max_rotation_deg": 0.04434522454446787
+          },
+          "right_base": {
+            "max_position_m": 0.0009210074076923525,
+            "rms_position_m": 9.272271917964742e-05,
+            "max_rotation_deg": 1.6983966921711855
+          }
+        },
+        "native_peak_overlap_m": 0.00015930825611576438,
+        "wall_s": 3.524748355150223
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 547,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 8.189763342601978e-05,
+            "lower_bound_m": 7.961506382951985e-05,
+            "time_s": 2.5300000000000002,
+            "lower_bound_time_s": 2.5300000000000002
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.0001576368761766363,
+            "lower_bound_m": 0.00015676796238979404,
+            "time_s": 2.06,
+            "lower_bound_time_s": 2.06
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/rack": {
+            "depth_m": 8.661298481559236e-05,
+            "lower_bound_m": 7.777970188696911e-05,
+            "time_s": 4.42,
+            "lower_bound_time_s": 5.08
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/right_link7": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 15.271492958068848,
+          "normal_force_peak_N": 17.145536422729492,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 15.07484245300293,
+          "normal_force_peak_N": 15.5171480178833,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            3.3,
+            5.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.0556206703186035,
+          "normal_force_peak_N": 1.1922317743301392,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            3.5,
+            3.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 1.0169701063249126,
+          "angular_speed_rms_rad_s": 0.016866727843603362,
+          "linear_speed_peak_mm_s": 2.284086227416992,
+          "net_COM_drift_mm": 0.004064400680363178,
+          "orientation_change_deg": 0.015576159144408002,
+          "final_COM_m": [
+            0.33164796233177185,
+            -0.05733789876103401,
+            0.8281450271606445
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            4.96,
+            5.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 1.007479294556481,
+          "angular_speed_rms_rad_s": 0.016802362865551042,
+          "linear_speed_peak_mm_s": 2.323949098587036,
+          "net_COM_drift_mm": 0.003618075978010893,
+          "orientation_change_deg": 0.015064019166310364,
+          "final_COM_m": [
+            0.3316602110862732,
+            -0.05733714997768402,
+            0.828142523765564
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 3.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          0.0055436257954195834,
+          -0.004200262491041574,
+          0.038779073765564
+        ],
+        "plate_short_axis_tilt_deg": 5.509151419691996
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 15.958526723086834,
+      "source_hashes": {
+        "dense_trace.npz": "d60783d59ac101edbd40ceacebd4e9d5aee39192deb6a1cd0106467eb1b8bf74",
+        "contact_pairs.npz": "cf1b3c6c8b5006aef9e4880b87fb50210ec204181963b3eb40055019a13cf227",
+        "input_scene.json": "a3fe805937b3a214072ea16887dcbedeb3e3065a66fcdd42eaf233ca727d4ec0"
+      }
+    },
+    "mujoco_warp_it2": {
+      "name": "mujoco_warp_it2",
+      "engine": "MuJoCo Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 5460,
+        "expected_steps": 5460,
+        "truncated": 0,
+        "drive_gate_pass": true,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 2.0532233442910835e-05,
+            "rms_position_m": 1.8198824318302793e-06,
+            "max_rotation_deg": 0.04426998597916693
+          },
+          "right_base": {
+            "max_position_m": 0.0009210075993278219,
+            "rms_position_m": 0.00010057449115343492,
+            "max_rotation_deg": 1.6078193693828227
+          }
+        },
+        "native_peak_overlap_m": 0.0008600970031693578,
+        "wall_s": 2.904398337006569
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 547,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.00018548408739592587,
+            "lower_bound_m": 0.00018441698573296847,
+            "time_s": 0.01,
+            "lower_bound_time_s": 0.01
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.0001742115692260789,
+            "lower_bound_m": 0.00017207927522792178,
+            "time_s": 0.01,
+            "lower_bound_time_s": 0.01
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/rack": {
+            "depth_m": 0.0007258858339971193,
+            "lower_bound_m": 0.0006908033184596522,
+            "time_s": 2.7600000000000002,
+            "lower_bound_time_s": 2.7600000000000002
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/right_link7": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.9996153846153846,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 15.3751859664917,
+          "normal_force_peak_N": 17.657773971557617,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.9996153846153846,
+          "nonpositive_native_gap_duty": 0.9996153846153846,
+          "normal_force_mean_N": 15.225805282592773,
+          "normal_force_peak_N": 17.631893157958984,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9996153846153846,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 1
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            3.3,
+            5.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 1.0,
+          "nonpositive_native_gap_duty": 1.0,
+          "normal_force_mean_N": 1.1721036434173584,
+          "normal_force_peak_N": 3.8137824535369873,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.01": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            },
+            "0.1": {
+              "force_bearing_duty": 1.0,
+              "longest_no_force_s": 0.0,
+              "recontact_count": 0
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            3.5,
+            3.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 2.8136126394334586,
+          "angular_speed_rms_rad_s": 0.05491649243484062,
+          "linear_speed_peak_mm_s": 6.853468838275655,
+          "net_COM_drift_mm": 0.14393594337729795,
+          "orientation_change_deg": 0.07601776531651885,
+          "final_COM_m": [
+            0.33241307735443115,
+            -0.05984670668840408,
+            0.828018307685852
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            4.96,
+            5.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 2.716462963031483,
+          "angular_speed_rms_rad_s": 0.05463378406872774,
+          "linear_speed_peak_mm_s": 7.1338369405169715,
+          "net_COM_drift_mm": 0.18784198252825068,
+          "orientation_change_deg": 0.008239660724009498,
+          "final_COM_m": [
+            0.3324598968029022,
+            -0.060359809547662735,
+            0.8280178904533386
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 3.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          0.0024611254888908547,
+          -0.004723865376456352,
+          0.038654440453338657
+        ],
+        "plate_short_axis_tilt_deg": 7.501458920560487
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 18.896275393664837,
+      "source_hashes": {
+        "dense_trace.npz": "d7f4db1ad43250a89b8efeadc122bcca20ac0464f2c7ded0a4483bc4faa4e868",
+        "contact_pairs.npz": "cd86ca9cd3fae645297eb564229dad6d9d47a2881da2e06d474e64333c9d222a",
+        "input_scene.json": "7d1e71869fbf1ec3a74bd73c8432929588036eb9e215f47f5f03ca1f40ef2032"
+      }
+    },
+    "mujoco_warp_it3": {
+      "name": "mujoco_warp_it3",
+      "engine": "MuJoCo Warp articulated grippers",
+      "health": {
+        "finite": true,
+        "steps": 5460,
+        "expected_steps": 5460,
+        "truncated": 0,
+        "drive_gate_pass": true,
+        "tracking": {
+          "left_base": {
+            "max_position_m": 2.0532233442910835e-05,
+            "rms_position_m": 1.8198489734573233e-06,
+            "max_rotation_deg": 0.04426999027639007
+          },
+          "right_base": {
+            "max_position_m": 0.0009211202980653252,
+            "rms_position_m": 0.00011473843626603888,
+            "max_rotation_deg": 1.820737167561784
+          }
+        },
+        "native_peak_overlap_m": 0.00046889189979992807,
+        "wall_s": 2.9319077879190445
+      },
+      "geometry": {
+        "method": "convex intersection maximum-inscribed-ball LP lower bound (2r), face-normal translation upper bound",
+        "meaning": "sampled maximum component-pair penetration bracket; depth_m is the conservative upper bound, not exact depth; not a global union or continuous-time maximum",
+        "dt_s": 0.01,
+        "samples": 547,
+        "numerical_margin_m": 4e-07,
+        "pairs": {
+          "laptop/right_link7": {
+            "depth_m": 0.0002791906133127627,
+            "lower_bound_m": 0.00027402292625107683,
+            "time_s": 2.52,
+            "lower_bound_time_s": 2.52
+          },
+          "laptop/right_link8": {
+            "depth_m": 0.000251706728989098,
+            "lower_bound_m": 0.0002506043125335783,
+            "time_s": 2.41,
+            "lower_bound_time_s": 2.41
+          },
+          "laptop/left_link7": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/left_link8": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          },
+          "laptop/rack": {
+            "depth_m": 0.00022459739543172447,
+            "lower_bound_m": 6.421118956134785e-05,
+            "time_s": 3.02,
+            "lower_bound_time_s": 2.66
+          },
+          "laptop/table": {
+            "depth_m": 0.0,
+            "lower_bound_m": 0.0,
+            "time_s": null,
+            "lower_bound_time_s": null
+          }
+        },
+        "initial_depths_m": {
+          "right_link7": 0.0,
+          "right_link8": 0.0,
+          "left_link7": 0.0,
+          "left_link8": 0.0,
+          "rack": 0.0,
+          "table": 0.0
+        },
+        "observer_validation": "FCL EPA depth rejected after it exceeded a proved separation upper bound; original FCL outputs remain archived as invalid"
+      },
+      "contact": {
+        "laptop/right_link7": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.995,
+          "nonpositive_native_gap_duty": 0.995,
+          "normal_force_mean_N": 15.42558479309082,
+          "normal_force_peak_N": 29.755552291870117,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.995,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 13
+            },
+            "0.01": {
+              "force_bearing_duty": 0.995,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 13
+            },
+            "0.1": {
+              "force_bearing_duty": 0.995,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 13
+            }
+          }
+        },
+        "laptop/right_link8": {
+          "window_s": [
+            0.0,
+            2.6
+          ],
+          "samples": 2600,
+          "candidate_duty": 0.9938461538461538,
+          "nonpositive_native_gap_duty": 0.9938461538461538,
+          "normal_force_mean_N": 15.276973724365234,
+          "normal_force_peak_N": 23.045269012451172,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9938461538461538,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 16
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9938461538461538,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 16
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9938461538461538,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 16
+            }
+          }
+        },
+        "laptop/rack": {
+          "window_s": [
+            3.3,
+            5.46
+          ],
+          "samples": 2160,
+          "candidate_duty": 0.999537037037037,
+          "nonpositive_native_gap_duty": 0.999537037037037,
+          "normal_force_mean_N": 1.0411732196807861,
+          "normal_force_peak_N": 3.2905874252319336,
+          "thresholds": {
+            "0.001": {
+              "force_bearing_duty": 0.9884259259259259,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 25
+            },
+            "0.01": {
+              "force_bearing_duty": 0.9884259259259259,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 25
+            },
+            "0.1": {
+              "force_bearing_duty": 0.9884259259259259,
+              "longest_no_force_s": 0.001,
+              "recontact_count": 25
+            }
+          }
+        }
+      },
+      "settling": {
+        "source_final_s": {
+          "window_s": [
+            3.5,
+            3.96
+          ],
+          "samples": 461,
+          "linear_speed_rms_mm_s": 2.1314282938850737,
+          "angular_speed_rms_rad_s": 0.020004384584721552,
+          "linear_speed_peak_mm_s": 9.747020930670205,
+          "net_COM_drift_mm": 0.132640322650012,
+          "orientation_change_deg": 0.18034305492908992,
+          "final_COM_m": [
+            0.3244480788707733,
+            -0.0640062764286995,
+            0.8282156586647034
+          ]
+        },
+        "tail_final_s": {
+          "window_s": [
+            4.96,
+            5.46
+          ],
+          "samples": 501,
+          "linear_speed_rms_mm_s": 1.8506168498635642,
+          "angular_speed_rms_rad_s": 0.012875049503561256,
+          "linear_speed_peak_mm_s": 9.895685322493586,
+          "net_COM_drift_mm": 0.058437675080736357,
+          "orientation_change_deg": 0.08635557965084047,
+          "final_COM_m": [
+            0.32430726289749146,
+            -0.06399773806333542,
+            0.8282092809677124
+          ]
+        }
+      },
+      "release_check": {
+        "window_start_s": 3.3,
+        "peak_laptop_gripper_normal_force_N": 0.0
+      },
+      "final_diagnostics": {
+        "COM_in_rack_frame_m": [
+          -0.00042611507490966394,
+          0.003723844692405063,
+          0.038845830967712436
+        ],
+        "plate_short_axis_tilt_deg": 3.2438543970527975
+      },
+      "reference_errors": {
+        "trajectory_rmse_m": null,
+        "final_pose_error_m": null,
+        "reason": "no admitted per-frame estimated reference with calibrated uncertainty; source-only initial fit is not a trajectory truth"
+      },
+      "task_outcome": {
+        "observed_insertion": null,
+        "valid_success": null,
+        "reason": "requires video plus wall-crossing/support audit; no official policy reward used"
+      },
+      "timing_note": "single rollout; native wall time includes cold JIT/capture work with telemetry; not a warmed performance benchmark",
+      "offline_analysis_wall_s": 18.263484127819538,
+      "source_hashes": {
+        "dense_trace.npz": "01d01fe23f37c1aa3ffb9ad507cfeddaf1e356b45cb57472fc4591023b62ff73",
+        "contact_pairs.npz": "9f3e0e64f0e4b607e481d207122cbd87eb13785c550ee65163f869a586966e03",
+        "input_scene.json": "d30fd298ab7f060a816dbfb43420ca4ff7f8247d215d84114aa0b2a0be46e962"
+      }
+    }
+  }
+}

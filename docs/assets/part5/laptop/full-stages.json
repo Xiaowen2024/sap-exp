@@ -1,0 +1,186 @@
+{
+  "mujoco_warp": {
+    "engine": "MuJoCo Warp articulated grippers",
+    "finite": true,
+    "steps": 14460,
+    "expected_steps": 14460,
+    "max_lift_COM_m": 0.1650194525718689,
+    "before_pickup_2s_COM_drift_mm": 0.11012715879684729,
+    "before_pickup_2s_z_range_mm": 0.11008977890014648,
+    "grasp_phases": {
+      "left": {
+        "window_s": [
+          3.2,
+          7.6
+        ],
+        "max_COM_change_in_gripper_frame_mm": 14.316299588355546,
+        "max_relative_rotation_change_deg": 13.646391601694605,
+        "two_finger_force_duty": 0.9879545454545454,
+        "longest_two_finger_force_loss_s": 0.045
+      },
+      "right": {
+        "window_s": [
+          8.3,
+          11.6
+        ],
+        "max_COM_change_in_gripper_frame_mm": 1.9869210829491988,
+        "max_relative_rotation_change_deg": 6.732460460075409,
+        "two_finger_force_duty": 0.9993939393939394,
+        "longest_two_finger_force_loss_s": 0.001
+      }
+    },
+    "handoff": {
+      "window_s": [
+        7.6,
+        8.5
+      ],
+      "longest_no_hand_normal_force_s": 0.001,
+      "both_hands_force_duty": 0.15
+    },
+    "gripper_stand_contacts": {
+      "left_link7": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      },
+      "left_link8": {
+        "peak_normal_force_N": 122.27825164794922,
+        "peak_time_s": 2.537
+      },
+      "right_link7": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      },
+      "right_link8": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      }
+    },
+    "maximum_object_speed_m_s": 0.8035912590671123,
+    "COM_at_phases": {
+      "0": [
+        0.06169291213154793,
+        -0.00662265857681632,
+        0.8473725914955139
+      ],
+      "3.2": [
+        0.06177894026041031,
+        -0.006730628199875355,
+        0.8479597568511963
+      ],
+      "7.6": [
+        0.0687510222196579,
+        -0.20667113363742828,
+        0.9935208559036255
+      ],
+      "8.5": [
+        0.23494389653205872,
+        -0.16399218142032623,
+        0.9712759256362915
+      ],
+      "12.96": [
+        0.3341427445411682,
+        -0.0637291967868805,
+        0.8340989947319031
+      ],
+      "14.46": [
+        0.3344678282737732,
+        -0.06358508765697479,
+        0.8339512944221497
+      ]
+    },
+    "outcome": null,
+    "note": "phase changes are descriptive, not object-reference trajectory errors; inspect video and geometry before outcome judgement"
+  },
+  "sap": {
+    "engine": "SAP Warp articulated grippers",
+    "finite": true,
+    "steps": 14460,
+    "expected_steps": 14460,
+    "max_lift_COM_m": 0.1661272644996643,
+    "before_pickup_2s_COM_drift_mm": 0.3732505440711975,
+    "before_pickup_2s_z_range_mm": 0.3719925880432129,
+    "grasp_phases": {
+      "left": {
+        "window_s": [
+          3.2,
+          7.6
+        ],
+        "max_COM_change_in_gripper_frame_mm": 8.824877450371213,
+        "max_relative_rotation_change_deg": 11.838452179694881,
+        "two_finger_force_duty": 1.0,
+        "longest_two_finger_force_loss_s": 0.0
+      },
+      "right": {
+        "window_s": [
+          8.3,
+          11.6
+        ],
+        "max_COM_change_in_gripper_frame_mm": 0.6989520353989793,
+        "max_relative_rotation_change_deg": 2.3978646893317452,
+        "two_finger_force_duty": 1.0,
+        "longest_two_finger_force_loss_s": 0.0
+      }
+    },
+    "handoff": {
+      "window_s": [
+        7.6,
+        8.5
+      ],
+      "longest_no_hand_normal_force_s": 0.0,
+      "both_hands_force_duty": 0.2877777777777778
+    },
+    "gripper_stand_contacts": {
+      "left_link7": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      },
+      "left_link8": {
+        "peak_normal_force_N": 75.41578674316406,
+        "peak_time_s": 3.074
+      },
+      "right_link7": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      },
+      "right_link8": {
+        "peak_normal_force_N": 0.0,
+        "peak_time_s": 0.0
+      }
+    },
+    "maximum_object_speed_m_s": 0.798925518989563,
+    "COM_at_phases": {
+      "0": [
+        0.06169291213154793,
+        -0.00662265857681632,
+        0.8473725914955139
+      ],
+      "3.2": [
+        0.062005236744880676,
+        -0.006441656965762377,
+        0.8485293388366699
+      ],
+      "7.6": [
+        0.0707535371184349,
+        -0.2055312842130661,
+        0.9935815334320068
+      ],
+      "8.5": [
+        0.23582316935062408,
+        -0.1652626097202301,
+        0.9734450578689575
+      ],
+      "12.96": [
+        0.3226977586746216,
+        -0.05922633409500122,
+        0.8336346745491028
+      ],
+      "14.46": [
+        0.3226771652698517,
+        -0.05923386663198471,
+        0.8336297869682312
+      ]
+    },
+    "outcome": null,
+    "note": "phase changes are descriptive, not object-reference trajectory errors; inspect video and geometry before outcome judgement"
+  }
+}

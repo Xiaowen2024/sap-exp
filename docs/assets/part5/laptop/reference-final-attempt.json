@@ -1,0 +1,15 @@
+{
+  "status": "rejected_not_admitted_reference",
+  "head_frames": [
+    538,
+    544,
+    549
+  ],
+  "right_wrist_frame": 549,
+  "method": "visible-corner rigid fit using calibrated multi-view projections",
+  "landmark_rms_px": 6.901598825447431,
+  "admission_threshold_px": 2.0,
+  "reason": "inconsistent corner/model/multiview fit; no reliable final reference admitted",
+  "trajectory_reference_error_m": null,
+  "final_reference_error_m": null
+}

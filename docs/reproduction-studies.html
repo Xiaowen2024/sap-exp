@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗与插试管轨迹回放：官方示范、MuJoCo 与 SAP 视频对照，实验设计、调试过程、评估结果，以及 SAP 插试管失败的根因分析；RH20T 真实机器人盘子放上碗架：只回放“放进去”一段，SAP 成功、MuJoCo 失败及其原因。">
+  <meta name="description" content="Part V：原子能力与复合任务。RoboDojo 叠碗与插试管轨迹回放：官方示范、MuJoCo 与 SAP 视频对照，实验设计、调试过程、评估结果，以及 SAP 插试管失败的根因分析；新增闭合笔记本的插入与连续拾取流程、Warp 后端视频及接触/穿透诊断；RH20T 真实机器人盘子放上碗架：只回放“放进去”一段，SAP 成功、MuJoCo 失败及其原因。">
   <title>Part V · Atomic Capabilities &amp; Composite Tasks</title>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -66,6 +66,9 @@
           <li><a href="#deposit-coin">RoboDojo · 投币</a>
             <ol><li><a href="#coin-videos">视频对照</a></li><li><a href="#coin-design">实验设计</a></li><li><a href="#coin-iterations">迭代调试</a></li><li><a href="#coin-results">结论</a></li><li><a href="#coin-robustness">鲁棒性测试</a></li><li><a href="#coin-sources">来源与数据</a></li></ol>
           </li>
+          <li><a href="#laptop">RoboDojo · 闭合笔记本插架</a>
+            <ol><li><a href="#laptop-short">插入短片段与调参</a></li><li><a href="#laptop-full">拾取到插架 · 参数迁移</a></li><li><a href="#laptop-design">评估口径</a></li><li><a href="#laptop-difference">与放盘子的区别</a></li><li><a href="#laptop-sources">来源与数据</a></li></ol>
+          </li>
         </ol>
       </nav>
       <div class="sidebar-footer"><a href="https://github.com/Xiaowen2024/sap-exp" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://sap-sim.github.io/sap_warp/" target="_blank" rel="noreferrer">SAP Warp documentation ↗</a></div>
@@ -85,7 +88,7 @@
       <header id="top" class="page-header">
         <div class="header-grid">
           <div><p class="eyebrow">Part V · November 2026</p><h1>原子能力与复合任务</h1><p class="lede">从单一接触机制到完整任务轨迹：比较模拟器复现了什么、已有数据能区分什么，以及暂时不能判断的部分。</p></div>
-          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes / Deposit Coin；RH20T · Dish on Rack（真实机器人）</dd></div><div><dt>Comparison</dt><dd>SAP Internal（legacy 与 Newton Convex）/ MuJoCo 4.0（Warp 与 CPU）/ Genesis Rigid · IPC · SAP coupler</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
+          <dl class="report-meta"><div><dt>Tasks</dt><dd>RoboDojo · Stack Bowls / Insert Tubes / Deposit Coin / Store Laptop；RH20T · Dish on Rack（真实机器人）</dd></div><div><dt>Comparison</dt><dd>SAP Internal（legacy 与 Newton Convex）/ MuJoCo 4.0（Warp 与 CPU）/ Genesis Rigid · IPC · SAP coupler</dd></div><div><dt>Evidence</dt><dd>每任务 1 episode · 同一初始场景与运动输入</dd></div></dl>
         </div>
       </header>
 
@@ -96,6 +99,7 @@
         <p><strong>插试管任务明显拉开了差距：MuJoCo 经 5 轮迭代最好插进 2/3（官方 40 分），SAP 新旧两版 5 轮都是 0/3。</strong>SAP 的失败已定位到具体原因：加载凸网格时，顶点超过 64 个的凸块被截断，试管 15.9 mm 的锥形尖端整段丢失，管子在 SAP 里变成平底圆柱，卡在只有约 1 mm 间隙的孔口。这是碰撞层的几何表示问题，不是 SAP 求解器的问题。</p>
         <p><strong>真实机器人的盘子放上碗架（RH20T）在“放进去”这一段上，用整段任务选定的参数，SAP 成功，MuJoCo 失败。</strong>盘子已经夹在手里（姿态由真实视频拟合），只回放下放和松手：SAP 形成稳定夹持，把盘子放进与真实相同的一格；MuJoCo 在半秒内丢掉了盘子。原因已定位：一个指垫正好压在盘壁两个凸块的接缝上，MuJoCo 给出的接触法向沿接缝侧向且互相相反，接触调硬后把盘子挤飞。MuJoCo 原生默认的软接触能放进去，但整段任务搬运时会打滑；SAP 一组参数两件事都做到了。完整任务（从抓起开始）两个引擎都失败：真实盘子在手里翻转了约 55°，刚体模型都复现不了。（本节已于 2026-11-17 更正一处坐标错误并全部重跑，见该节说明。）</p></div>
         <p><strong>投币（RoboDojo）：调参后 MuJoCo 和 SAP 都能完成（官方 100 分），结果几乎一样。</strong>差异在默认参数：MuJoCo 把 5 g 的薄硬币夹扁挤出；SAP 默认刚度太软，且落地冲击被过度耗散，硬币侧立不倒。鲁棒性测试（进行中）里，存钱罐横向偏 3 mm 时 SAP 的硬币卡在槽口而 MuJoCo 仍能投入，MuJoCo 的这一成功是否物理可信尚待核实。详见<a href="#deposit-coin">2.4</a>。</p>
+        <div class="study-note"><p><strong>新增：<a href="#laptop">闭合笔记本插竖架（Warp vs Warp）</a>。</strong>短片段 SAP 用 2 组配置、MuJoCo 用 3 组，两边都放入并释放；将参数原样迁移到拾取、换手、插架的连续流程后，宏观仍都放入，但接触、穿透和输入跟踪存在差异。完整流程两边未通过原先的夹爪姿态检查，作为诊断报告，不能据此排名复刻精度。</p></div>
         <div class="study-overview"><a href="#atomic"><strong>1. 原子能力</strong><span>单一机制和基础接触行为</span></a><a href="#composite"><strong>2. 复合任务</strong><span>固定机器人输入，比较物体运动与任务结果</span></a></div>
       </section>
 
@@ -617,6 +621,81 @@
             <h4>来源、数据与文件</h4>
             <p>数据 revision：<code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>；任务定义与成功判据参考 RoboDojo 代码 revision <code>fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f</code>（<code>deposit_coin.py</code>、<code>func_parser.py</code>）。资产：<code>Rigid/coin/00000</code>、<code>Geometry/vertical_coin_stand/00000</code>、<code>Geometry/piggy_bank/00000</code>。官方数据和示范视频来源：RoboDojo-Benchmark，数据集标注 Apache-2.0；本节的模拟回放、视频和分析由本实验生成。</p>
             <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/deposit_coin/arx_x5" target="_blank" rel="noreferrer">官方 episode 数据 ↗</a><a href="https://github.com/RoboDojo-Benchmark/RoboDojo/blob/fbfbbcb3801397fa00dcffaef3ca64d97c3fe76f/task/RoboDojo/tasks/deposit_coin.py" target="_blank" rel="noreferrer">任务设计代码 ↗</a><a href="assets/part5/deposit-coin/report.md">详细报告（MD）</a><a href="assets/part5/deposit-coin/tuning_log.json">迭代记录（JSON）</a></div>
+          </section>
+        </article>
+
+        <article id="laptop" class="study-subsection">
+          <h3>2.5 RoboDojo · 闭合笔记本插竖架 <span class="study-label">2026-11-18 · Warp vs Warp · 单 episode</span></h3>
+          <p>来自 RoboDojo 的 <strong>Store Laptop And Headphones</strong>。本实验只取已关闭的笔记本，不做耳机或关盖；比较 <strong>MuJoCo 4.0.0 Warp</strong> 与 <strong>SAP Internal + Newton Convex（2325082）</strong>。先回放插架短片段、最多调 5 组参数，再把选定参数原样用于“拾取 → 搬运 → 换手 → 插架 → 释放”的连续流程，各跑一次。</p>
+          <div class="study-note"><p><strong>目前结果：</strong>两边都观察到最终放入并撤手，尚未形成一成一败的宏观区分。短片段经过调参，穿透已较小；完整流程则有接触连续性、手中相对运动和穿透差异，且<strong>两边都未通过原先的夹爪姿态跟踪检查</strong>。这些完整流程结果是迁移诊断，不能直接作为严格复刻精度或成功率排名。</p></div>
+
+          <section id="laptop-short" class="study-subsection">
+            <h4>A. 插入短片段：SAP 用 2 组配置，MuJoCo 用 3 组</h4>
+            <p>源时间 18.00–21.96 s，笔记本已在右手中；追加 1.5 s 保持，共 5460 个 1 ms 步。只调整引擎的数值接触参数，足够好即停止，没有用满 5 组预算。每配置一次回放。</p>
+            <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/laptop/short/poster.jpg" style="aspect-ratio:4/1"><source src="assets/part5/laptop/short/comparison.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/laptop/short/comparison.mp4">下载对比视频</a>。</video><figcaption><h4>原始示范 / MuJoCo Warp 配置 3 / SAP Warp 配置 2</h4><p>原速、同一时间轴。最后 1.5 s 为追加观察段，左侧参考画面停在最后一帧，视频已标注。模拟画面只回放记录状态，未推进物理。</p><a href="assets/part5/laptop/short/comparison.mp4" download>下载三栏视频</a></figcaption></figure>
+            <div class="source-links"><a href="assets/part5/laptop/short/mujoco.mp4">单看 MuJoCo Warp</a><a href="assets/part5/laptop/short/sap.mp4">单看 SAP Warp</a><a href="assets/part5/laptop/short/closeup.mp4">接触特写 · 4 倍慢放</a></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>引擎 / 配置</th><th>数值接触参数</th><th>笔记本—竖架最大采样穿透区间</th></tr></thead><tbody>
+              <tr><td>MuJoCo 1</td><td>原生默认 <code>solref=(0.02,1)</code></td><td>3.423–3.924 mm</td></tr>
+              <tr><td>MuJoCo 2</td><td><code>solref=(0.004,1)</code></td><td>0.691–0.726 mm</td></tr>
+              <tr><td><strong>MuJoCo 3 · 选定</strong></td><td><code>solref=(0.002,1)</code></td><td><strong>0.064–0.225 mm</strong></td></tr>
+              <tr><td>SAP 1</td><td>原生默认，pair <code>ke=1250 N/m</code></td><td>2.892–3.008 mm</td></tr>
+              <tr><td><strong>SAP 2 · 选定</strong></td><td>pair <code>ke=100000 N/m</code>，pair <code>tau=0.02 s</code></td><td><strong>0.078–0.087 mm</strong></td></tr>
+            </tbody></table></div>
+            <p class="scope-line">SAP 对应 shape ke=200000 N/m、shape tau=0.01 s；MuJoCo 其余 solimp 和求解器设置保留原生默认。原生默认的宏观放入伴随明显穿透，不计为有效成功。首次 MuJoCo 启动曾在积分前遇到外力数组类型错误，已修正并留档，不算额外配置或完整 episode。</p>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>选定短片段指标</th><th>MuJoCo 配置 3</th><th>SAP 配置 2</th></tr></thead><tbody>
+              <tr><td>最大夹爪穿透保守上界</td><td>0.279 mm</td><td>0.158 mm</td></tr>
+              <tr><td>架子承载 duty / 最长断触（3.3–5.46 s）</td><td>98.843% / 1 ms</td><td>100% / 0 ms</td></tr>
+              <tr><td>最终追加窗线速度 RMS</td><td>1.851 mm/s</td><td>1.007 mm/s</td></tr>
+              <tr><td>最终追加窗角速度 RMS</td><td>0.01288 rad/s</td><td>0.01680 rad/s</td></tr>
+              <tr><td>最终追加窗 COM 净漂移</td><td>0.0584 mm</td><td>0.00362 mm</td></tr>
+              <tr><td>撤手后仍由夹爪承载</td><td>否，0 N</td><td>否，0 N</td></tr>
+            </tbody></table></div>
+            <p>最终追加窗为 [4.96,5.46] s。短暂断触不直接等于失稳；更静也不等于更接近参考。这里的二元放入结果区分度较低。</p>
+          </section>
+
+          <section id="laptop-full" class="study-subsection">
+            <h4>B. 从拾取开始：参数不变，各跑一次</h4>
+            <p>扩展到源时间 9.00–21.96 s：闭合笔记本放在原支架上，左手拾取、搬运，再换给右手插架。追加 1.5 s，共 14460 步。<strong>沿用上方选定参数，没有为完整流程调参，也没有在换手时重置物体。</strong>这仍是闭合笔记本流程，不包含官方任务里的耳机或关盖。</p>
+            <figure class="video-demo"><video controls muted playsinline preload="metadata" poster="assets/part5/laptop/full/poster.jpg" style="aspect-ratio:4/1"><source src="assets/part5/laptop/full/comparison.mp4" type="video/mp4">浏览器不支持视频，<a href="assets/part5/laptop/full/comparison.mp4">下载连续流程视频</a>。</video><figcaption><h4>原始示范 / MuJoCo Warp / SAP Warp · 连续流程</h4><p>两边都观察到拾取、换手和最终放入，末尾夹爪完全撤离。画面中的初始平台与插入竖架是两件不同的静态物体。颜色仅用于区分碰撞几何，不是纹理重建。末尾参考冻结段已标注。</p><a href="assets/part5/laptop/full/comparison.mp4" download>下载三栏视频</a></figcaption></figure>
+            <div class="source-links"><a href="assets/part5/laptop/full/mujoco.mp4">单看 MuJoCo Warp</a><a href="assets/part5/laptop/full/sap.mp4">单看 SAP Warp</a><a href="assets/part5/laptop/full/closeup.mp4">插架特写 · 4 倍慢放</a></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>连续流程指标</th><th>MuJoCo · 沿用配置 3</th><th>SAP · 沿用配置 2</th></tr></thead><tbody>
+              <tr><td>最大 COM 抬升</td><td>0.1650 m</td><td>0.1661 m</td></tr>
+              <tr><td>左手窗口内，COM 在夹爪系的最大变化</td><td>14.32 mm</td><td>8.82 mm</td></tr>
+              <tr><td>左手双指承载 duty / 最长不完整间隔</td><td>98.795% / 45 ms</td><td>100% / 0 ms</td></tr>
+              <tr><td>右手窗口内，COM 在夹爪系的最大变化</td><td>1.99 mm</td><td>0.70 mm</td></tr>
+              <tr><td>笔记本—竖架最大采样穿透区间</td><td>0.077–0.129 mm</td><td><strong>1.369–1.396 mm</strong></td></tr>
+              <tr><td>笔记本—初始支架最大采样穿透区间</td><td>0.108–0.109 mm</td><td>2.414–2.504 mm</td></tr>
+              <tr><td>最终追加窗线速度 RMS</td><td>4.019 mm/s</td><td>0.851 mm/s</td></tr>
+              <tr><td>最终追加窗角速度 RMS</td><td>0.08771 rad/s</td><td>0.01479 rad/s</td></tr>
+              <tr><td>撤手后的夹爪承载力</td><td>0 N</td><td>0 N</td></tr>
+              <tr><td>左夹爪最大位置误差</td><td>4.11 mm</td><td>4.43 mm</td></tr>
+              <tr><td><strong>左夹爪最大姿态误差 / 原 5° 检查</strong></td><td><strong>8.33° / 未通过</strong></td><td><strong>5.10° / 未通过</strong></td></tr>
+            </tbody></table></div>
+            <p class="scope-line">左手窗口 [3.2,7.6] s，右手窗口 [8.3,11.6] s，最终追加窗 [13.96,14.46] s。COM 在夹爪系的变化包括手中转动与调整，不冒充纯滑移或参考轨迹误差；双指承载不完整不等于物体脱手。</p>
+            <div class="study-note"><p><strong>完整流程的结论范围：</strong>SAP 接触更连续、末态更静，但架子和初始支架穿透更大；MuJoCo 有更多短暂断触和手中相对运动。两边都未过原先的姿态跟踪检查，没有放宽门槛让它们通过。拾取时左指还与原支架接触，原生法向力峰值约为 MuJoCo 122 N、SAP 75 N；新增支架接触、几何重建和输入跟踪误差都会影响结果。因此这条流程能提供诊断数据，<strong>不能只凭“都放进去了”或“SAP 更静”作严格物理保真度排名</strong>。</p></div>
+          </section>
+
+          <section id="laptop-design" class="study-subsection">
+            <h4>共同设置与评估口径</h4>
+            <ul>
+              <li>同一条官方机器人 / 夹爪输入，机器人轨迹作为输入、笔记本运动作为评价对象。两引擎共用几何、质量/惯量、摩擦和控制器；dt=1 ms。闭合笔记本用单凸包，质量 0.1 kg，μ=0.45，铰链固定。完整流程新增原初始支架。</li>
+              <li>起点由图像与相机标定重建，不是官方物体位姿真值。完整流程采用支架承托高度假设，角点 RMS 约 1.54 px、支架轮廓 RMS 约 1.69 px；初始交叠检查通过。支架侧脚孔洞和底部托架使用分区凸包近似，需要结合拾取接触解读。</li>
+              <li>状态与物体对接触以 1 ms 保存。承载阈值 0.01 N，另查 0.001/0.1 N；候选接触不等于承载接触。正常接触切换不直接判错。</li>
+              <li>共同几何观察器每 10 ms 检查，短片段 547 帧、连续流程 1447 帧。区间下界来自凸交集内切球，上界来自沿凸面法向分离的位移；这是<strong>凸组件对穿透的采样区间</strong>，不是并集的精确穿透或连续时间峰值。部分边角接触区间较宽，上界不能当作实测深度。</li>
+              <li>原 16 块架子凸分解缩窄槽口 1.5–4.3 mm，在动力学前弃用；现用底座与两侧壁，12 个截面最大采样边界误差约 0.0174 mm。早期 FCL 深度与独立分离界限不符，已作废并留档，上述表格只用验证后的区间。</li>
+              <li>末态多视角位姿拟合残差约 6.90 px，未通过 2 px 接纳线，故 trajectory/final-pose reference error 留空，可靠评分参考覆盖率为 0。初始化拟合不充当独立轨迹真值。单 episode、每配置一次，不报告成功率置信区间。</li>
+            </ul>
+          </section>
+
+          <section id="laptop-difference" class="study-subsection">
+            <h4>为什么这次没有复现 RH20T 放盘子的困难？</h4>
+            <p>旧盘子对比<strong>同样从已夹住开始</strong>，盘壁 8.3 mm 与本例约 9 mm 接近，不能把截取起点或厚度当作主要解释。旧盘子由 25 个凸块组成，指垫压在接缝处，MuJoCo 在硬接触下出现相反侧向法向并把盘子挤飞；这次单凸包板没有该接缝。旧实验的 MuJoCo 软参数其实能放入片段，却在整段搬运打滑，要求同组参数兼顾两阶段；参考还是真实藤编物体，有局部变形。本例是刚体仿真示范、较干净的几何对照。它没有触发旧实验的困难组合，<a href="#rack-why">不能据此推翻旧盘子的结果</a>。</p>
+          </section>
+
+          <section id="laptop-sources" class="study-subsection">
+            <h4>来源与数据</h4>
+            <p>官方数据 <code>RoboDojo-Benchmark/RoboDojo</code>，revision <code>1127bda94f172d757386945af3eb3a6754d1a4e6</code>，<code>store_laptop_and_headphones / arx_x5 / episode_0000000</code>。该参考是官方仿真示范。原生 1 ms 状态、接触、健康检查与源哈希保留；仅发布非专有设置与数值结果。</p>
+            <div class="source-links"><a href="https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/1127bda94f172d757386945af3eb3a6754d1a4e6/data/RoboDojo/store_laptop_and_headphones/arx_x5" target="_blank" rel="noreferrer">官方源数据 ↗</a><a href="assets/part5/laptop/reference-full.mp4">官方原视频 · 22 s</a><a href="assets/part5/laptop/report.md">报告（MD）</a><a href="assets/part5/laptop/iteration-ledger.json">逐配置记录</a><a href="assets/part5/laptop/short-metrics.json">短片段指标</a><a href="assets/part5/laptop/full-metrics.json">完整流程指标</a><a href="assets/part5/laptop/full-stages.json">分阶段数据</a><a href="assets/part5/laptop/short-sop.md">短片段 SOP</a><a href="assets/part5/laptop/full-sop.md">连续流程 SOP</a><a href="assets/part5/laptop/observer-validation.json">观察器更正记录</a></div>
           </section>
         </article>
       </section>
